@@ -1,0 +1,7 @@
+package pl.grm.narutocraftmod.items;
+
+import net.minecraft.item.Item;
+
+public class WKunai extends Item {
+
+}
