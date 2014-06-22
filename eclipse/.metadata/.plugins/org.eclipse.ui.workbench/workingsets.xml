@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<workingSetManager>
-<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1399655066159_2" label="zyczu2" name="zyczu2"/>
-<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1399655086542_3" label="Mods" name="Mods">
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Minecraft" type="4"/>
-</workingSet>
-<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1396268539550_0" label="Window Working Set" name="Aggregate for window 1396268539550"/>
-<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1396300426140_1" label="Window Working Set" name="Aggregate for window 1396300426140"/>
-</workingSetManager>
