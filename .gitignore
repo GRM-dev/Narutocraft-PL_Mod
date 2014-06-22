@@ -52,3 +52,5 @@ level.dat
 *.mca
 session.lock
 *.log.gz
+eclipse/saves/
+.metadata/
