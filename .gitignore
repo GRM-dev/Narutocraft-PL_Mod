@@ -1,3 +1,14 @@
+### Java ###
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -34,3 +45,10 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+#Others
+level.dat_old
+level.dat
+*.mca
+session.lock
+*.log.gz
