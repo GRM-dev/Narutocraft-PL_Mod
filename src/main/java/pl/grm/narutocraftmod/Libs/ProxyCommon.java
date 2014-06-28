@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.lib;
+package pl.grm.narutocraftmod.Libs;
 
 public class ProxyCommon {
 	

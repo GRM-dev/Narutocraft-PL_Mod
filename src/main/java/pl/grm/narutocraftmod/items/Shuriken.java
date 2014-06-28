@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.items;
+package pl.grm.narutocraftmod.Items;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import net.minecraft.item.Item;
@@ -8,5 +8,7 @@ public class Shuriken extends Item {
 		this.setUnlocalizedName("Shuriken");
 		this.setTextureName("narutocraftmod:Shuriken");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		maxStackSize = 10;
+		
 	}
 }

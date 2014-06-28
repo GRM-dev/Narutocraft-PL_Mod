@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.items;
+package pl.grm.narutocraftmod.Items;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +10,7 @@ public class Sharingan extends Item{
 		this.setUnlocalizedName("Sharingan");
 		this.setTextureName("narutocraftmod:Sharingan");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		maxStackSize = 1;
 	}
 	
 }

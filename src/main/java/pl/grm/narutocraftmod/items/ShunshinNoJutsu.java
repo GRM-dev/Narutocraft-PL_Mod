@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.items;
+package pl.grm.narutocraftmod.Items;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,6 +10,7 @@ public class ShunshinNoJutsu extends Item{
 		this.setUnlocalizedName("SNoJutsu");
 		this.setTextureName("narutocraftmod:NoJutsu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		maxStackSize = 1;
 	}
 	
 }

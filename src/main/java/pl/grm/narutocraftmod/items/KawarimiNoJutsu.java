@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.items;
+package pl.grm.narutocraftmod.Items;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import net.minecraft.item.Item;
@@ -9,6 +9,7 @@ public class KawarimiNoJutsu extends Item {
 		this.setUnlocalizedName("KNoJutsu");
 		this.setTextureName("narutocraftmod:NoJutsu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		 maxStackSize = 1;
 	}
 	
 }
