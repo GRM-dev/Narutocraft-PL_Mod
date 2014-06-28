@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Items;
+package pl.grm.narutocraftmod.Powers;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import net.minecraft.creativetab.CreativeTabs;

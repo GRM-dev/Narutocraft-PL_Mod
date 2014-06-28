@@ -15,17 +15,17 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import pl.grm.narutocraftmod.Items.KawarimiNoJutsu;
-import pl.grm.narutocraftmod.Items.Kunai;
-import pl.grm.narutocraftmod.Items.Rasengan;
-import pl.grm.narutocraftmod.Items.Rasengan2;
-import pl.grm.narutocraftmod.Items.Rasengan3;
-import pl.grm.narutocraftmod.Items.Sharingan;
-import pl.grm.narutocraftmod.Items.ShunshinNoJutsu;
-import pl.grm.narutocraftmod.Items.Shuriken;
-import pl.grm.narutocraftmod.Items.WKunai;
 import pl.grm.narutocraftmod.Libs.ProxyCommon;
 import pl.grm.narutocraftmod.Libs.References;
+import pl.grm.narutocraftmod.Powers.KawarimiNoJutsu;
+import pl.grm.narutocraftmod.Powers.Rasengan;
+import pl.grm.narutocraftmod.Powers.Rasengan2;
+import pl.grm.narutocraftmod.Powers.Rasengan3;
+import pl.grm.narutocraftmod.Powers.Sharingan;
+import pl.grm.narutocraftmod.Powers.ShunshinNoJutsu;
+import pl.grm.narutocraftmod.Weapons.Kunai;
+import pl.grm.narutocraftmod.Weapons.Shuriken;
+import pl.grm.narutocraftmod.Weapons.WKunai;
 
 @Mod(modid = References.MODID, version = References.VERSION)
 

@@ -22,7 +22,7 @@ group= "pl.grm.narutocraftmod" // http://maven.apache.org/guides/mini/guide-nami
 archivesBaseName = "NarutoCraft_Mod"
 
 minecraft {
-    version = "1.7.2-10.12.1.1112"
+    version = "1.7.2-10.12.2.1126"
     assetDir = "eclipse/assets"
 }
 
