@@ -17,6 +17,7 @@ public class Kunai extends Item{
 		this.setTextureName("narutocraftmod:Kunai");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 16;
+		
 	}
 	
 	@Override

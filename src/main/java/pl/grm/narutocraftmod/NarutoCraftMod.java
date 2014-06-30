@@ -1,6 +1,7 @@
 package pl.grm.narutocraftmod;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -9,6 +10,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -17,8 +19,10 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import pl.grm.narutocraftmod.Entities.EntityKunai;
 import pl.grm.narutocraftmod.Libs.ProxyCommon;
 import pl.grm.narutocraftmod.Libs.References;
+import pl.grm.narutocraftmod.Mobs.Bijuu.EntityKyuubi;
 import pl.grm.narutocraftmod.Powers.KawarimiNoJutsu;
 import pl.grm.narutocraftmod.Powers.Rasengan;
 import pl.grm.narutocraftmod.Powers.Rasengan2;
@@ -72,12 +76,24 @@ public class NarutoCraftMod
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+    	int id =0;
+    	EntityRegistry.registerModEntity(EntityKunai.class, "WKunai",  id, this, 120, 3, true );
+    	id++;
+    	
+    	
+    	EntityRegistry.registerModEntity(EntityKyuubi.class, "Kyuubi", id, this, 80, 1, true);//id is an internal mob id, you can start at 0 and continue adding them up.
+    	id++;
+    	//EntityRegistry.addSpawn(EntityKyuubi.class, 2, 0, 1, EnumCreatureType.creature, BiomeGenBase.biomeList);//change the values to vary the spawn rarity, biome, etc.              
+    	proxy.registerRenderThings();//calls the methods in our proxy, which will do things on client side
+    	proxy.registerSound();
     	
     }
     
     @EventHandler
     public void load(FMLInitializationEvent event) {
     	proxy.registerRenderInfomation();
+    	//EntityRegistry.registerGlobalEntityID(EntityKyuubi.class, "EntityKyuubi", 1);
+    	EntityRegistry.registerGlobalEntityID(EntityKyuubi.class, "EntityKyuubi", 4800, 2, 2);
     }
     
     /*EventHandler                      //depracated
@@ -112,5 +128,9 @@ public class NarutoCraftMod
                 		"  x",
                         'x', diamondStack, 'y', stickStack);
                 //GameRegistry.addShapelessRecipe(ItemStack result, Object... recipe)
+                
+                
+     //Entities
+                
     }
 }
