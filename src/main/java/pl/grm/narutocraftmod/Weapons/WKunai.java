@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 public class WKunai extends Item {
 	public WKunai(int i) {
 		this.setUnlocalizedName("WybuchowyKunai");
-		this.setTextureName("narutocraftmod:Kunai");
+		this.setTextureName("narutocraftmod:Wybuchowy Kunai");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 1;
 	}

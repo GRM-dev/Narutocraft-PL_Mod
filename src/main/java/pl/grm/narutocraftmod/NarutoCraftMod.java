@@ -2,7 +2,9 @@ package pl.grm.narutocraftmod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -26,6 +28,7 @@ import pl.grm.narutocraftmod.Powers.ShunshinNoJutsu;
 import pl.grm.narutocraftmod.Weapons.Kunai;
 import pl.grm.narutocraftmod.Weapons.Shuriken;
 import pl.grm.narutocraftmod.Weapons.WKunai;
+import pl.grm.narutocraftmod.Weapons.Senbon;
 
 @Mod(modid = References.MODID, version = References.VERSION)
 
@@ -51,6 +54,7 @@ public class NarutoCraftMod
    	public static Item Kunai = new Kunai(4606);
    	public static Item WKunai = new WKunai(4607);
    	public static Item Shuriken = new Shuriken(4608);
+   	public static Item Senbon = new Senbon(4609);
    	
 //	public static Item  = new (46);
     	
@@ -76,7 +80,7 @@ public class NarutoCraftMod
     	proxy.registerRenderInfomation();
     }
     
-    /*EventHandler
+    /*EventHandler                      //depracated
     public void Load(FMLInitializationEvent event) 
     {
          LanguageRegistry.instance().addStringLocalization("itemGroup.NarutoCraftMod", "NarutoCraftMod 1.1.0");
@@ -96,6 +100,17 @@ public class NarutoCraftMod
     			GameRegistry.registerItem(Kunai, "Kunai");
     			GameRegistry.registerItem(WKunai, "WybuchowyKunai");
     			GameRegistry.registerItem(Shuriken, "Shuriken");
-    			
+                GameRegistry.registerItem(Senbon, "Senbon");
+                
+    //crafting
+                ItemStack diamondStack = new ItemStack(Items.diamond);
+                ItemStack stickStack = new ItemStack(Items.stick);
+
+                GameRegistry.addRecipe(new ItemStack(NarutoCraftMod.Kunai, 2), 
+                		"x  ", 
+                		" y ", 
+                		"  x",
+                        'x', diamondStack, 'y', stickStack);
+                //GameRegistry.addShapelessRecipe(ItemStack result, Object... recipe)
     }
 }

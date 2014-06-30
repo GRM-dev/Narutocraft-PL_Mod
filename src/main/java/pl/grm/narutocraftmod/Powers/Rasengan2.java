@@ -8,7 +8,7 @@ public class Rasengan2 extends Item {
 
 	public Rasengan2(int i) {
 		this.setUnlocalizedName("ORasengan");
-		this.setTextureName("narutocraftmod:ORasengan");
+		this.setTextureName("narutocraftmod:Rasengan");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 1;
 	}
