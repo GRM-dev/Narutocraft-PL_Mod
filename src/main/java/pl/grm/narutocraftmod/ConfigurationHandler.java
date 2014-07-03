@@ -10,6 +10,9 @@ public class ConfigurationHandler {
     private static ArrayList<String> lines = new ArrayList<String>();
     private File path;
 
+    public static boolean printErrors = false;
+    
+    
     public ConfigurationHandler(File path) {
         this.path = path;
     }
