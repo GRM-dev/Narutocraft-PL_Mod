@@ -18,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderKunai extends Render {
 
 	final ResourceLocation texture = new ResourceLocation("narutocraftmod:textures/model/Kunai.png");
+    private static final String __OBFID = "CL_00000978";
 	
 	@Override
 	public void doRender(Entity par1EntityKunai, double var2, double var4, double var6,
@@ -39,7 +40,7 @@ public class RenderKunai extends Render {
 	    float f9 = (10 + b0 * 10) / 32.0F;
 	    float f10 = 0.05625F;
 	    GL11.glEnable(32826);
-	    float f11 = EntityKunai.arrowShake - var9;
+	    float f11 = EntityKunai.kunaiShake - var9;
 	    if (f11 > 0.0F)
 	    {
 	      float f12 = -MathHelper.sin(f11 * 3.0F) * f11;
