@@ -50,7 +50,7 @@ public class EntityKyuubi extends EntityMob
          return true;
 	 }
 
-	 /*@Override
+/*	 @Override
 	 public float getMaxHealth() {
          return 10;
  }*/
@@ -58,25 +58,25 @@ public class EntityKyuubi extends EntityMob
     @Override
     protected String getLivingSound()
     {
-        return "narutocraftpl:YourSound";   //refers to:yourmod/sound/YourSound
+        return "narutocraftpl:sounds.mobs.Kyuubi";   //refers to:yourmod/sound/YourSound
     }
 
     @Override
     protected String getHurtSound()
     {
-        return "narutocraftpl:optionalFile.YourSound";      //refers to:yourmod/sound/optionalFile/YourSound
+        return "narutocraftpl:sounds.mobs.KyuubiHurt";      //refers to:yourmod/sound/optionalFile/YourSound
     }
 
     @Override
     protected String getDeathSound()
     {
-        return "narutocraftpl:optionalFile.optionalFile2.YourSound";    //etc.
+        return "narutocraftpl:sounds.mobs.KyuubiDeath";    //etc.
     }
 
     @Override
     protected float getSoundVolume()
     {
-        return 0.4F;
+        return 0.7F;
     }
 
 }

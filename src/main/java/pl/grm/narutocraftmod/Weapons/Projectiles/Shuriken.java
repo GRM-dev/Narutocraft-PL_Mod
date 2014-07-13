@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Weapons;
+package pl.grm.narutocraftmod.Weapons.Projectiles;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import net.minecraft.item.Item;

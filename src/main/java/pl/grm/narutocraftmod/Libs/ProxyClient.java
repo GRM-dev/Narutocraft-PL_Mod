@@ -12,21 +12,22 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ProxyClient extends ProxyCommon{
 	
-	public void registerRenderInfomation(){
-		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
+	public void registerRenderInfomation() {
+		
 		
 	}
 	
 	@Override
     public void registerRenderThings() 
     {
-            RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
+		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 0.5F));
 //the 0.5F is the shadow size
     }
 	
     @Override
     public void registerSound() {
-            MinecraftForge.EVENT_BUS.register(new KyuubiSoundEvent());  //register the sound event handling class
+          MinecraftForge.EVENT_BUS.register(new KyuubiSoundEvent());  //register the sound event handling class
           MinecraftForge.EVENT_BUS.register(new Sounds());
     }
 	 

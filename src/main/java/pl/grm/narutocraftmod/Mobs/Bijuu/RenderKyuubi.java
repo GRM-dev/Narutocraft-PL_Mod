@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderKyuubi extends RenderLiving 
 {
-	private static final ResourceLocation Your_Texture = new ResourceLocation("narutocraftmod:textures/entity/Kyuubi.png");  //refers to:assets/yourmod/textures/entity/yourtexture.png
+	private static final ResourceLocation Kyuubi_Texture = new ResourceLocation("narutocraftmod:textures/entity/Kyuubi.png");  //refers to:assets/yourmod/textures/entity/yourtexture.png
 
     public RenderKyuubi(ModelBase par1ModelBase, float par2)
     {
@@ -18,7 +18,7 @@ public class RenderKyuubi extends RenderLiving
     @Override
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return Your_Texture;
+        return Kyuubi_Texture;
     }
 	
 }
