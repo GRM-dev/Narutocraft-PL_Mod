@@ -1,10 +1,11 @@
 package pl.grm.narutocraftmod.Mobs.Bijuu;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelKyuubi extends ModelBase {
+public class ModelKyuubi extends ModelBase {//ModelQuadruped {
 
 		ModelRenderer Body1;
 	    ModelRenderer Body2;
@@ -52,8 +53,9 @@ public class ModelKyuubi extends ModelBase {
 	  
 	  public ModelKyuubi()
 	  {
-	    textureWidth = 128;
-	    textureHeight = 128;
+		  //super(20, 0.5F);
+		  textureWidth = 128;
+		  textureHeight = 128;
 	    
 	      Body1 = new ModelRenderer(this, 0, 0);
 	      Body1.addBox(0F, 0F, 0F, 12, 8, 22);

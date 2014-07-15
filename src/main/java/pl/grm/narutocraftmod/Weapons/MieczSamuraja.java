@@ -11,10 +11,8 @@ public class MieczSamuraja extends ItemSword {
 	public static Object instance;
 	
 	public MieczSamuraja (int i) {
-		super(Materials.stal);
-		
-		MieczSamuraja = new ItemSword(Materials.stal);
-		
+		super(Materials.stal3);
+
 		this.setUnlocalizedName("Miecz Samuraja");
 		this.setTextureName("narutocraftmod:Miecz Samuraja");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);

@@ -11,10 +11,8 @@ public class Wakizashi extends ItemSword {
 	public static Object instance;
 	
 	public Wakizashi (int i) {
-		super(Materials.stal);
-		
-		Wakizashi = new ItemSword(Materials.stal);
-		
+		super(Materials.tytan);
+
 		this.setUnlocalizedName("Wakizashi");
 		this.setTextureName("narutocraftmod:Wakizashi");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);

@@ -11,10 +11,8 @@ public class KaMiecz extends ItemSword {
 	public static Object instance;
 	
 	public KaMiecz (int i) {
-		super(Materials.stal);
-		
-		KamiennyMiecz = new ItemSword(Materials.stal);
-		
+		super(Materials.kamien);
+
 		this.setUnlocalizedName("Kamienny Miecz");
 		this.setTextureName("narutocraftmod:Kamienny Miecz");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);

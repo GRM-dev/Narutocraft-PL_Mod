@@ -11,10 +11,8 @@ public class Katana extends ItemSword {
 	public static Object instance;
 	
 	public Katana (int i) {
-		super(Materials.stal);
-		
-		Katana = new ItemSword(Materials.stal);
-		
+		super(Materials.tytan3);
+
 		this.setUnlocalizedName("Katana");
 		this.setTextureName("narutocraftmod:Katana");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);

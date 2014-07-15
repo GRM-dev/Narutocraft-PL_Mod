@@ -11,9 +11,7 @@ public class Kurosawa extends ItemSword {
 	public static Object instance;
 	
 	public Kurosawa (int i) {
-		super(Materials.stal);
-		
-		Kurosawa = new ItemSword(Materials.stal);
+		super(Materials.metalsamurajow);
 		
 		this.setUnlocalizedName("Kurosawa");
 		this.setTextureName("narutocraftmod:Kurosawa");

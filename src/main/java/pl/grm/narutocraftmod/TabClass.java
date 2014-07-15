@@ -23,7 +23,7 @@ return (new ItemStack(RegPowers.Sharingan));
 
 public String getTranslatedTabLabel()
 {
-return "NarutoCraft Mod";
+return "NarutoCraft";
 }
 
 @Override

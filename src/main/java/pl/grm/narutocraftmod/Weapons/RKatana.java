@@ -11,10 +11,8 @@ public class RKatana extends ItemSword {
 	public static Object instance;
 	
 	public RKatana (int i) {
-		super(Materials.stal);
-		
-		RyuuKatana = new ItemSword(Materials.stal);
-		
+		super(Materials.smoczastal);
+
 		this.setUnlocalizedName("Ryuu Katana");
 		this.setTextureName("narutocraftmod:RyuuKatana");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);

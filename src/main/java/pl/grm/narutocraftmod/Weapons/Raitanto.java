@@ -10,7 +10,7 @@ public class Raitanto extends SwordMain {
 	public static Object instance;
 	
 	public Raitanto(int i) {
-		super(Materials.stal);		
+		super(Materials.smoczastal4);		
 		this.setUnlocalizedName("Raitanto");
 		this.setTextureName("narutocraftmod:Raitanto");
 		
