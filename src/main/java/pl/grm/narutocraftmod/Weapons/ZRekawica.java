@@ -6,15 +6,15 @@ import net.minecraftforge.common.util.EnumHelper;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Blocks.Materials;
 
-public class MieczSamuraja extends ItemSword {
-	public static Item MieczSamuraja;
+public class ZRekawica extends ItemSword {
+	public static Item ZelaznaRekawica;
 	public static Object instance;
 	
-	public MieczSamuraja (int i) {
-		super(Materials.stal3);
-
-		this.setUnlocalizedName("Miecz Samuraja");
-		this.setTextureName("narutocraftmod:Miecz Samuraja");
+	public ZRekawica (int i) {
+		super(Materials.stal);
+		
+		this.setUnlocalizedName("¯ela¿na Rêkawica");
+		this.setTextureName("narutocraftmod:Zelazna Rekawica");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 
 	}

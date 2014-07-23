@@ -7,9 +7,11 @@ import pl.grm.narutocraftmod.Weapons.KaMiecz;
 import pl.grm.narutocraftmod.Weapons.Katana;
 import pl.grm.narutocraftmod.Weapons.Kubiki;
 import pl.grm.narutocraftmod.Weapons.Kurosawa;
+import pl.grm.narutocraftmod.Weapons.MSamuraja;
 import pl.grm.narutocraftmod.Weapons.RKatana;
 import pl.grm.narutocraftmod.Weapons.Raitanto;
 import pl.grm.narutocraftmod.Weapons.Wakizashi;
+import pl.grm.narutocraftmod.Weapons.ZRekawica;
 import pl.grm.narutocraftmod.Weapons.Projectiles.Kunai;
 import pl.grm.narutocraftmod.Weapons.Projectiles.Senbon;
 import pl.grm.narutocraftmod.Weapons.Projectiles.Shuriken;
@@ -32,6 +34,8 @@ public class RegItems extends NarutoCraftMod{
    	public static Item Kurosawa = new Kurosawa(id+9);
    	public static Item RKatana = new RKatana(id+10);
    	public static Item  Wakizashi= new Wakizashi(id+11);
+   	public static Item  MSamuraja= new MSamuraja(id+12);
+   	public static Item  ZRekawica= new ZRekawica(id+13);
 //	public static Item  = new (id+);
 
 	public static void RegItemsList() {
@@ -48,7 +52,8 @@ public class RegItems extends NarutoCraftMod{
         GameRegistry.registerItem(Kurosawa, "Kurosawa");
         GameRegistry.registerItem(RKatana, "RyuuKatana");
         GameRegistry.registerItem(Wakizashi, "Wakizashi");
-        //GameRegistry.registerItem(, "");
+        GameRegistry.registerItem(MSamuraja, "MSamuraja");
+        GameRegistry.registerItem(ZRekawica, "ZRekawica");
         //GameRegistry.registerItem(, "");
         //GameRegistry.registerItem(, "");
         //GameRegistry.registerItem(, "");
