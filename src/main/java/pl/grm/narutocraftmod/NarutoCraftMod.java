@@ -38,7 +38,6 @@ public class NarutoCraftMod
     @EventHandler
     public void init(FMLInitializationEvent event) {
     	RegEntities.RegEntitiesList();
-    	proxy.registerRenderThings();
     	proxy.registerSound();
     	
     }
@@ -46,6 +45,7 @@ public class NarutoCraftMod
     @EventHandler
     public void load(FMLInitializationEvent event) {
     	proxy.registerRenderInfomation();
+    	proxy.registerRenderThings();
     	RegMobs.RegMobsList();
     }
     

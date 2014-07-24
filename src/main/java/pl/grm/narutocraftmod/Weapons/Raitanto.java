@@ -13,6 +13,6 @@ public class Raitanto extends SwordMain {
 		super(Materials.smoczastal4);		
 		this.setUnlocalizedName("Raitanto");
 		this.setTextureName("narutocraftmod:Raitanto");
-		
+		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 	}
 }

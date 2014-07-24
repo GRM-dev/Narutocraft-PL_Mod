@@ -1,6 +1,8 @@
 package pl.grm.narutocraftmod.Libs;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Weapons.KBushido;
 import pl.grm.narutocraftmod.Weapons.KaMiecz;
@@ -16,6 +18,8 @@ import pl.grm.narutocraftmod.Weapons.Projectiles.Kunai;
 import pl.grm.narutocraftmod.Weapons.Projectiles.Senbon;
 import pl.grm.narutocraftmod.Weapons.Projectiles.Shuriken;
 import pl.grm.narutocraftmod.Weapons.Projectiles.WKunai;
+import pl.grm.narutocraftmod.Armor.NCPLItemArmor;
+import pl.grm.narutocraftmod.Blocks.Materials;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegItems extends NarutoCraftMod{
@@ -36,6 +40,14 @@ public class RegItems extends NarutoCraftMod{
    	public static Item  Wakizashi= new Wakizashi(id+11);
    	public static Item  MSamuraja= new MSamuraja(id+12);
    	public static Item  ZRekawica= new ZRekawica(id+13);
+   	
+	public static ArmorMaterial armorBUSHIDO = Materials.armorBUSHIDO;
+	//public static int renderBushidoArmor = proxy.addArmor("armorBushido");
+   	
+   	public static final ItemArmor helmetBushido = (ItemArmor) (new NCPLItemArmor(armorBUSHIDO, 5, 0)).setUnlocalizedName("helmetBushido");
+	public static final ItemArmor plateBushido = (ItemArmor) (new NCPLItemArmor(armorBUSHIDO, 5, 1)).setUnlocalizedName("chestplateBushido");
+	public static final ItemArmor legsBushido = (ItemArmor) (new NCPLItemArmor(armorBUSHIDO, 5, 2)).setUnlocalizedName("leggingsBushido");
+	public static final ItemArmor bootsBushido = (ItemArmor) (new NCPLItemArmor(armorBUSHIDO, 5, 3)).setUnlocalizedName("bootsBushido");
 //	public static Item  = new (id+);
 
 	public static void RegItemsList() {
@@ -55,7 +67,10 @@ public class RegItems extends NarutoCraftMod{
         GameRegistry.registerItem(MSamuraja, "MSamuraja");
         GameRegistry.registerItem(ZRekawica, "ZRekawica");
         //GameRegistry.registerItem(, "");
-        //GameRegistry.registerItem(, "");
+        GameRegistry.registerItem(helmetBushido, "HelmetBushido");
+        GameRegistry.registerItem(plateBushido, "PlateBushido");
+        GameRegistry.registerItem(legsBushido, "LegsBushido");
+        GameRegistry.registerItem(bootsBushido, "BootsBushido");
         //GameRegistry.registerItem(, "");
 	}
    	

@@ -14,7 +14,6 @@ public class ProxyClient extends ProxyCommon{
 	
 	public void registerRenderInfomation() {
 		
-		
 	}
 	
 	@Override
@@ -22,7 +21,8 @@ public class ProxyClient extends ProxyCommon{
     {
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
 		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 0.5F));
-//the 0.5F is the shadow size
+		//the 0.5F is the shadow size
+		
     }
 	
     @Override
@@ -31,4 +31,10 @@ public class ProxyClient extends ProxyCommon{
           MinecraftForge.EVENT_BUS.register(new Sounds());
     }
 	 
+    @Override
+    public int addArmor(String armor)
+    {
+        return RenderingRegistry.addNewArmourRendererPrefix(armor);
+    }
+    
 }
