@@ -13,7 +13,7 @@ public class KBushido extends ItemSword {
 	public KBushido (int i) {
 		super(Materials.tytan2);
 
-		this.setUnlocalizedName("Katana Bushido");
+		this.setUnlocalizedName("KBushido");
 		this.setTextureName("narutocraftmod:Katana Bushido");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 

@@ -13,7 +13,7 @@ public class MSamuraja extends ItemSword {
 	public MSamuraja (int i) {
 		super(Materials.stal3);
 
-		this.setUnlocalizedName("Miecz Samuraja");
+		this.setUnlocalizedName("MSamuraja");
 		this.setTextureName("narutocraftmod:Miecz Samuraja");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 

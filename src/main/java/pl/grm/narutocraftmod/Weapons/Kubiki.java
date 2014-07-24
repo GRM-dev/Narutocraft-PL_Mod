@@ -13,7 +13,7 @@ public class Kubiki extends ItemSword {
 	public Kubiki(int i) {
 		super(Materials.metalshinobi);
 
-		this.setUnlocalizedName("Kubikiribocho");
+		this.setUnlocalizedName("Kubiki");
 		this.setTextureName("narutocraftmod:Kubikiribocho");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 

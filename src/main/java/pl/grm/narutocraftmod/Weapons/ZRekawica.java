@@ -13,7 +13,7 @@ public class ZRekawica extends ItemSword {
 	public ZRekawica (int i) {
 		super(Materials.stal);
 		
-		this.setUnlocalizedName("¯ela¿na Rêkawica");
+		this.setUnlocalizedName("ZRekawica");
 		this.setTextureName("narutocraftmod:Zelazna Rekawica");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 

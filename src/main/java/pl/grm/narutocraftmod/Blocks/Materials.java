@@ -23,5 +23,6 @@ public class Materials {
 	public static Item.ToolMaterial metalsamurajow = EnumHelper.addToolMaterial("METALSAMURAJOW", 1, 9999, 4F, 11F, 2);
 	public static Item.ToolMaterial kamien = EnumHelper.addToolMaterial("KAMIEN", 1, 2500, 4F, 9F, 2);
 	
-	public static ArmorMaterial armorBUSHIDO = EnumHelper.addArmorMaterial("BUSHIDO", 29, new int[] {2, 7, 5, 3}, 9);
+	public static ArmorMaterial armorBUSHIDO = EnumHelper.addArmorMaterial("BUSHIDO", 33, new int[] {3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorANBU  =  EnumHelper.addArmorMaterial("ANBU" , 40, new int[] {3, 8, 6, 3}, 10);
 }
