@@ -3,7 +3,7 @@ package pl.grm.narutocraftmod.Weapons;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSword;
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Blocks.Materials;
+import pl.grm.narutocraftmod.Libs.Materials;
 
 public class Raitanto extends SwordMain {
 	public static Item Raitanto;

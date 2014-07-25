@@ -20,7 +20,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraftmod.Libs.DamSource;
-import pl.grm.narutocraftmod.Libs.RegItems;
+import pl.grm.narutocraftmod.Libs.Registry.RegItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

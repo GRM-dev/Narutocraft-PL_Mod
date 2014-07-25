@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Libs.Registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;

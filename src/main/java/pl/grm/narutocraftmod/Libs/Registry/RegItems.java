@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Libs.Registry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -19,13 +19,13 @@ import pl.grm.narutocraftmod.Weapons.Projectiles.Senbon;
 import pl.grm.narutocraftmod.Weapons.Projectiles.Shuriken;
 import pl.grm.narutocraftmod.Weapons.Projectiles.WKunai;
 import pl.grm.narutocraftmod.Armor.NCPLItemArmor;
-import pl.grm.narutocraftmod.Blocks.Materials;
 import pl.grm.narutocraftmod.Items.DZwoj;
 import pl.grm.narutocraftmod.Items.FZwoj;
 import pl.grm.narutocraftmod.Items.KZwoj;
 import pl.grm.narutocraftmod.Items.NZwoj;
 import pl.grm.narutocraftmod.Items.RZwoj;
 import pl.grm.narutocraftmod.Items.SZwoj;
+import pl.grm.narutocraftmod.Libs.Materials;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegItems extends NarutoCraftMod{
@@ -57,6 +57,8 @@ public class RegItems extends NarutoCraftMod{
    	
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;
+	public static ArmorMaterial Kiri = Materials.armorKiri;
+	public static ArmorMaterial Suna = Materials.armorSuna;
 	//public static int renderBushidoArmor = proxy.addArmor("Bushido");
    	
    	public static final ItemArmor helmetBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 0)).setUnlocalizedName("helmetBushido");
@@ -67,6 +69,10 @@ public class RegItems extends NarutoCraftMod{
     public static final ItemArmor plateAnbu = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 1)).setUnlocalizedName("plateAnbu");
     public static final ItemArmor legsAnbu = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 2)).setUnlocalizedName("legginsAnbu");
     public static final ItemArmor bootsAnbu = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 3)).setUnlocalizedName("bootsAnbu");
+    public static final ItemArmor plateKiri = (ItemArmor) (new NCPLItemArmor(Kiri, 4, 2)).setUnlocalizedName("plateKiri");
+    public static final ItemArmor legsKiri = (ItemArmor) (new NCPLItemArmor(Kiri, 4,  3)).setUnlocalizedName("legginsKiri");
+    public static final ItemArmor plateSuna = (ItemArmor) (new NCPLItemArmor(Suna, 4, 3)).setUnlocalizedName("plateSuna");
+    public static final ItemArmor legsSuna = (ItemArmor) (new NCPLItemArmor(Suna, 4, 3)).setUnlocalizedName("legginsSuna");
 //	public static Item  = new (id+);
 
 	public static void RegItemsList() {
@@ -103,6 +109,10 @@ public class RegItems extends NarutoCraftMod{
         GameRegistry.registerItem(plateAnbu, "PlateAnbu");
         GameRegistry.registerItem(legsAnbu, "LegsAnbu");
         GameRegistry.registerItem(bootsAnbu, "BootsAnbu");
+        GameRegistry.registerItem(plateKiri, "PlateKiri");
+        GameRegistry.registerItem(legsKiri, "LegsKiri");
+        GameRegistry.registerItem(plateSuna, "PlateSuna");
+        GameRegistry.registerItem(legsSuna, "LegsSuna");
         
         //GameRegistry.registerItem(, "");
 	}

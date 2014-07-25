@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Libs.RegItems;
+import pl.grm.narutocraftmod.Libs.Registry.RegItems;
 
 public class NCPLItemArmor extends ItemArmor {
 	public ArmorMaterial amat;
@@ -26,11 +26,14 @@ public class NCPLItemArmor extends ItemArmor {
 		{ return "narutocraftmod:textures/model/BushidoArmor.1.png"; }
 		if (stack.getItem() == RegItems.legsBushido)
 		{ return "narutocraftmod:textures/model/BushidoArmor.2.png"; } 
-		
 		if(stack.getItem() == RegItems.helmetAnbu || stack.getItem() == RegItems.plateAnbu || stack.getItem() == RegItems.bootsAnbu) 
 		{ return "narutocraftmod:textures/model/AnbuArmor.1.png"; }
 		if (stack.getItem() == RegItems.legsAnbu)
 		{ return "narutocraftmod:textures/model/AnbuArmor.2.png"; } 
+		if(stack.getItem() == RegItems.plateKiri  ||  stack.getItem() == RegItems.legsKiri)
+		{ return "narutocraftmod:textures/model/Kiri.png"; }
+		if(stack.getItem() == RegItems.plateSuna  ||  stack.getItem() ==  RegItems.legsSuna)
+		{ return "narutocraftmod:textures/model/Suna.png"; }
 		else { return null; }
 	}
 	

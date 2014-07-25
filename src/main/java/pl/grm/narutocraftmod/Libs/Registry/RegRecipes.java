@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Libs.Registry;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

@@ -3,7 +3,7 @@ package pl.grm.narutocraftmod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import pl.grm.narutocraftmod.Libs.RegPowers;
+import pl.grm.narutocraftmod.Libs.Registry.RegPowers;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Entities.EntityKunai;
-import pl.grm.narutocraftmod.Libs.RegItems;
+import pl.grm.narutocraftmod.Libs.Registry.RegItems;
 
 public class Kunai extends Item{
 	
