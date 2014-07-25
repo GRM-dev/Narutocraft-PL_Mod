@@ -2,7 +2,9 @@ package pl.grm.narutocraftmod.Libs;
 
 import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraftmod.Entities.EntityKunai;
+import pl.grm.narutocraftmod.Entities.EntityWKunai;
 import pl.grm.narutocraftmod.Entities.Render.RenderKunai;
+import pl.grm.narutocraftmod.Entities.Render.RenderWKunai;
 import pl.grm.narutocraftmod.Libs.Sound.KyuubiSoundEvent;
 import pl.grm.narutocraftmod.Libs.Sound.Sounds;
 import pl.grm.narutocraftmod.Mobs.Bijuu.EntityKyuubi;
@@ -20,6 +22,8 @@ public class ProxyClient extends ProxyCommon{
     public void registerRenderThings() 
     {
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
+		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai());
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 0.5F));
 		//the 0.5F is the shadow size
 		

@@ -20,10 +20,17 @@ import pl.grm.narutocraftmod.Weapons.Projectiles.Shuriken;
 import pl.grm.narutocraftmod.Weapons.Projectiles.WKunai;
 import pl.grm.narutocraftmod.Armor.NCPLItemArmor;
 import pl.grm.narutocraftmod.Blocks.Materials;
+import pl.grm.narutocraftmod.Items.DZwoj;
+import pl.grm.narutocraftmod.Items.FZwoj;
+import pl.grm.narutocraftmod.Items.KZwoj;
+import pl.grm.narutocraftmod.Items.NZwoj;
+import pl.grm.narutocraftmod.Items.RZwoj;
+import pl.grm.narutocraftmod.Items.SZwoj;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegItems extends NarutoCraftMod{
 	private static int id = 4650;
+	private static int id2 = 4700;
 	public static Item block;
 	
    	public static Item Kunai = new Kunai(id);
@@ -41,6 +48,13 @@ public class RegItems extends NarutoCraftMod{
    	public static Item MSamuraja= new MSamuraja(id+12);
    	public static Item ZRekawica= new ZRekawica(id+13);
    	
+   	public static Item FZwoj = new FZwoj(id2);
+   	public static Item KZwoj = new KZwoj(id2+1);
+   	public static Item DZwoj = new DZwoj(id2+2);
+   	public static Item SZwoj = new SZwoj(id2+3);
+   	public static Item RZwoj = new RZwoj(id2+4);
+   	public static Item NZwoj = new NZwoj(id2+5);
+   	
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;
 	//public static int renderBushidoArmor = proxy.addArmor("Bushido");
@@ -56,7 +70,7 @@ public class RegItems extends NarutoCraftMod{
 //	public static Item  = new (id+);
 
 	public static void RegItemsList() {
-
+		//Bronie
 		GameRegistry.registerItem(Kunai, "Kunai");
 		GameRegistry.registerItem(WKunai, "WybuchowyKunai");
 		GameRegistry.registerItem(Shuriken, "Shuriken");
@@ -71,7 +85,16 @@ public class RegItems extends NarutoCraftMod{
         GameRegistry.registerItem(Wakizashi, "Wakizashi");
         GameRegistry.registerItem(MSamuraja, "MSamuraja");
         GameRegistry.registerItem(ZRekawica, "ZRekawica");
+        
         //GameRegistry.registerItem(, "");
+        //Itemy
+        GameRegistry.registerItem(FZwoj, "FZwoj");
+        GameRegistry.registerItem(KZwoj, "KZwoj");
+        GameRegistry.registerItem(DZwoj, "DZwoj");
+        GameRegistry.registerItem(SZwoj, "SZwoj");
+        GameRegistry.registerItem(RZwoj, "RZwoj");
+        GameRegistry.registerItem(NZwoj, "NZwoj");
+        //Zbroja
         GameRegistry.registerItem(helmetBushido, "HelmetBushido");
         GameRegistry.registerItem(plateBushido, "PlateBushido");
         GameRegistry.registerItem(legsBushido, "LegsBushido");
@@ -80,6 +103,7 @@ public class RegItems extends NarutoCraftMod{
         GameRegistry.registerItem(plateAnbu, "PlateAnbu");
         GameRegistry.registerItem(legsAnbu, "LegsAnbu");
         GameRegistry.registerItem(bootsAnbu, "BootsAnbu");
+        
         //GameRegistry.registerItem(, "");
 	}
    	

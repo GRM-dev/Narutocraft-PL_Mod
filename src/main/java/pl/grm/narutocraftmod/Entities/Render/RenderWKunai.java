@@ -10,9 +10,9 @@ import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraftmod.Entities.EntityKunai;
 
-public class RenderKunai extends Render {
+public class RenderWKunai extends Render {
 
-	final ResourceLocation texture = new ResourceLocation("narutocraftmod:textures/model/Kunai.png");
+	final ResourceLocation texture = new ResourceLocation("narutocraftmod:textures/model/WKunai.png");
     private static final String __OBFID = "CL_00000978";
 	
 	@Override

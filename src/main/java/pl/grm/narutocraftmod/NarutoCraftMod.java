@@ -33,6 +33,7 @@ public class NarutoCraftMod
     public void preInit(FMLPreInitializationEvent event) {
          config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
          config.readConfig();
+         
     }
     	
     @EventHandler
@@ -47,12 +48,13 @@ public class NarutoCraftMod
     	proxy.registerRenderInfomation();
     	proxy.registerRenderThings();
     	RegMobs.RegMobsList();
+    	
     }
     
     public NarutoCraftMod() {
     			RegItems.RegItemsList();
     			RegPowers.RegPowersList();
                 RegRecipes.RegRecipesList();
-                              
+                
     }
 }
