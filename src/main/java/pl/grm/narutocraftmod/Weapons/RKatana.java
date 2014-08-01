@@ -7,9 +7,6 @@ import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class RKatana extends ItemSword {
-	public static Item RyuuKatana;
-	public static Object instance;
-	
 	public RKatana (int i) {
 		super(Materials.smoczastal);
 

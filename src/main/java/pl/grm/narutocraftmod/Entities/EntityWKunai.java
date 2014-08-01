@@ -38,6 +38,7 @@ public class EntityWKunai extends Entity implements IProjectile
     private int ticksInGround;
     private int ticksInAir;
     private double damage = 2.0D;
+    private float explevel = 2.5F;
     private static final String __OBFID = "CL_00001715";
 
     public EntityWKunai(World par1World)
@@ -215,9 +216,10 @@ public class EntityWKunai extends Entity implements IProjectile
             {
                 ++this.ticksInGround;
 
-                if (this.ticksInGround == 1200) //1200 = 60s
+                if (this.ticksInGround == 20) //1200 = 60s
                 {
-                    this.setDead();
+                	this.onImpact(null);
+                	this.setDead();
                 }
             }
             else
@@ -313,6 +315,8 @@ public class EntityWKunai extends Entity implements IProjectile
                     {
                         damagesource = DamSource.causeWKunaiDamage(this, this.shootingEntity);
                     }
+                    
+                    this.onImpact(movingobjectposition);
 
                     if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)k))
                     {
@@ -529,5 +533,11 @@ public class EntityWKunai extends Entity implements IProjectile
     public boolean canAttackWithItem()
     {
         return true;
+    }
+    
+    protected void onImpact(MovingObjectPosition movingobjectposition) 
+    {
+      this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explevel, false);		
+      this.setDead();
     }
 }

@@ -7,9 +7,6 @@ import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class Wakizashi extends ItemSword {
-	public static Item Wakizashi;
-	public static Object instance;
-	
 	public Wakizashi (int i) {
 		super(Materials.tytan);
 

@@ -7,9 +7,6 @@ import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class KaMiecz extends ItemSword {
-	public static Item KamiennyMiecz;
-	public static Object instance;
-	
 	public KaMiecz (int i) {
 		super(Materials.kamien);
 

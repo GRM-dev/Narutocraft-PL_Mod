@@ -7,9 +7,6 @@ import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class Kubiki extends ItemSword {
-	public static Item Kubikiribocho;
-	public static Object instance;
-	
 	public Kubiki(int i) {
 		super(Materials.metalshinobi);
 

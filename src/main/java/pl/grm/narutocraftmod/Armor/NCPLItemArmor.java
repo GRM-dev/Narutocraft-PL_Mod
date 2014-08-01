@@ -26,7 +26,7 @@ public class NCPLItemArmor extends ItemArmor {
 		{ return "narutocraftmod:textures/model/BushidoArmor.1.png"; }
 		if (stack.getItem() == RegItems.legsBushido)
 		{ return "narutocraftmod:textures/model/BushidoArmor.2.png"; } 
-		if(stack.getItem() == RegItems.helmetAnbu || stack.getItem() == RegItems.plateAnbu || stack.getItem() == RegItems.bootsAnbu) 
+		if(stack.getItem() == RegItems.helmetAnbu || stack.getItem() == RegItems.helmetAnbu2  ||  stack.getItem() ==  RegItems.helmetAnbu3  ||  stack.getItem() == RegItems.helmetAnbu4  ||  stack.getItem() == RegItems.plateAnbu || stack.getItem() == RegItems.bootsAnbu) 
 		{ return "narutocraftmod:textures/model/AnbuArmor.1.png"; }
 		if (stack.getItem() == RegItems.legsAnbu)
 		{ return "narutocraftmod:textures/model/AnbuArmor.2.png"; } 

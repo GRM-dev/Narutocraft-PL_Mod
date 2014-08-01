@@ -6,10 +6,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
-public class MSamuraja extends ItemSword {
-	public static Item MieczSamuraja;
-	public static Object instance;
-	
+public class MSamuraja extends ItemSword {	
 	public MSamuraja (int i) {
 		super(Materials.stal3);
 

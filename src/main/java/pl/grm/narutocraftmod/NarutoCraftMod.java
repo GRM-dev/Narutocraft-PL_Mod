@@ -3,6 +3,7 @@ package pl.grm.narutocraftmod;
 import net.minecraft.creativetab.CreativeTabs;
 import pl.grm.narutocraftmod.Libs.ProxyCommon;
 import pl.grm.narutocraftmod.Libs.References;
+import pl.grm.narutocraftmod.Libs.Config.ConfigurationHandler;
 import pl.grm.narutocraftmod.Libs.Registry.RegEntities;
 import pl.grm.narutocraftmod.Libs.Registry.RegItems;
 import pl.grm.narutocraftmod.Libs.Registry.RegMobs;

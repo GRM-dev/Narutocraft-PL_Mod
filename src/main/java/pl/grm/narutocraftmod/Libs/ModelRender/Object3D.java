@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Libs.ModelRender;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraftmod.ConfigurationHandler;
+import pl.grm.narutocraftmod.Libs.Config.ConfigurationHandler;
 
 public class Object3D
 {

@@ -6,10 +6,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
-public class Kurosawa extends ItemSword {
-	public static Item Kurosawa;
-	public static Object instance;
-	
+public class Kurosawa extends ItemSword {	
 	public Kurosawa (int i) {
 		super(Materials.metalsamurajow);
 		

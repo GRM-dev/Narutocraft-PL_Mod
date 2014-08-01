@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Libs.ModelRender;
 
 
 import java.util.ArrayList;

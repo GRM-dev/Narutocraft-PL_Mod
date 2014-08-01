@@ -7,9 +7,6 @@ import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class KBushido extends ItemSword {
-	public static Item KatanaBushido;
-	public static Object instance;
-	
 	public KBushido (int i) {
 		super(Materials.tytan2);
 

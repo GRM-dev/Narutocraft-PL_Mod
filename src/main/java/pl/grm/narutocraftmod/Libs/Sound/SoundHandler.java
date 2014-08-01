@@ -1,5 +1,5 @@
 package pl.grm.narutocraftmod.Libs.Sound;
 
-public class Sounds {
+public class SoundHandler {
 
 }

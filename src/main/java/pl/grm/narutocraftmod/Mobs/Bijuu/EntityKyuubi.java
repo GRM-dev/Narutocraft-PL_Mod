@@ -39,11 +39,11 @@ public class EntityKyuubi extends EntityMob
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.45D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.5D);
 	}
 	
 	 public boolean isAIEnabled() {

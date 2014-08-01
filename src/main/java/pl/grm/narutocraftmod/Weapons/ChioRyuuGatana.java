@@ -7,9 +7,6 @@ import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class ChioRyuuGatana extends ItemSword {
-	public static Item ChioRyuuGatana;
-	public static Object instance;
-	
 	public ChioRyuuGatana (int i) {
 		super(Materials.metalshinobi2);
 		
