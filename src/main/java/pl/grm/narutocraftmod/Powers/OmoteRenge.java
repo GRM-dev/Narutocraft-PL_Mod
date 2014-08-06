@@ -7,9 +7,9 @@ public class OmoteRenge extends Item {
 
 	public OmoteRenge(int i) {
 		this.setUnlocalizedName("Omote Renge");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Omote Renge");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

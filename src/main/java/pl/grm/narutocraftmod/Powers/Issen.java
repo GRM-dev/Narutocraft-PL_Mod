@@ -7,9 +7,9 @@ public class Issen extends Item {
 
 	public Issen(int i) {
 		this.setUnlocalizedName("Issen");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Issen");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

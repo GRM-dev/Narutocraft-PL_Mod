@@ -7,9 +7,9 @@ public class KokuangyoNoJutsu extends Item {
 
 	public KokuangyoNoJutsu(int i) {
 		this.setUnlocalizedName("Kokuangyo No Jutsu");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Kokuangyo No Jutsu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

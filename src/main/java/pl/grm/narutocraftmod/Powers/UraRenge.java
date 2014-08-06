@@ -7,9 +7,9 @@ public class UraRenge extends Item {
 
 	public UraRenge(int i) {
 		this.setUnlocalizedName("Ura Renge");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Ura Renge");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

@@ -7,9 +7,9 @@ public class Omotegiri extends Item {
 
 	public Omotegiri(int i) {
 		this.setUnlocalizedName("Omotegiri");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Omotegiri");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

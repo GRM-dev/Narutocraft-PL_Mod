@@ -1,6 +1,9 @@
 package pl.grm.narutocraftmod;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
+import pl.grm.narutocraftmod.Libs.NCPLEventHandler;
+import pl.grm.narutocraftmod.Libs.NCPLFMLEventHandler;
 import pl.grm.narutocraftmod.Libs.ProxyCommon;
 import pl.grm.narutocraftmod.Libs.References;
 import pl.grm.narutocraftmod.Libs.Config.ConfigurationHandler;
@@ -9,6 +12,7 @@ import pl.grm.narutocraftmod.Libs.Registry.RegItems;
 import pl.grm.narutocraftmod.Libs.Registry.RegMobs;
 import pl.grm.narutocraftmod.Libs.Registry.RegPowers;
 import pl.grm.narutocraftmod.Libs.Registry.RegRecipes;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -24,7 +28,7 @@ public class NarutoCraftMod
     public static ProxyCommon proxy;
     
     public static CreativeTabs mTabNarutoCraftMod = new TabClass(CreativeTabs.getNextID(), "NarutoCraftMod");
-        	
+    
     @Instance(References.MODID)
     public static NarutoCraftMod instance;
     	
@@ -46,9 +50,13 @@ public class NarutoCraftMod
     
     @EventHandler
     public void load(FMLInitializationEvent event) {
+    	MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
+    	FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
+    	
     	proxy.registerRenderInfomation();
     	proxy.registerRenderThings();
     	RegMobs.RegMobsList();
+    	//NetworkRegistry.instance().registerGuiHandler(this, new ProxyCommon());
     	
     }
     

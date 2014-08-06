@@ -7,9 +7,9 @@ public class Meisaigakure extends Item {
 
 	public Meisaigakure(int i) {
 		this.setUnlocalizedName("Meisaigakure");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Meisaigakure");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

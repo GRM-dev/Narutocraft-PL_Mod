@@ -7,9 +7,9 @@ public class SamuraiSabreTechnique extends Item {
 
 	public SamuraiSabreTechnique(int i) {
 		this.setUnlocalizedName("SamuraiSabreTechnique");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:SamuraiSabreTechnique");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

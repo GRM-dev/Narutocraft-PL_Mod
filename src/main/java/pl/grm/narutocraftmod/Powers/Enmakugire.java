@@ -7,9 +7,9 @@ public class Enmakugire extends Item {
 
 	public Enmakugire(int i) {
 		this.setUnlocalizedName("Enmakugire");
-		this.setTextureName("narutocraftmod: No Jutsu");
+		this.setTextureName("narutocraftmod: Enmakugire");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

@@ -7,9 +7,9 @@ public class InyuShometsu extends Item {
 
 	public InyuShometsu(int i) {
 		this.setUnlocalizedName("InyuShometsu");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:InyuShometsu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

@@ -7,9 +7,9 @@ public class FumaNinken extends Item {
 
 	public FumaNinken(int i) {
 		this.setUnlocalizedName("Fuma Ninken");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Fuma Ninken");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

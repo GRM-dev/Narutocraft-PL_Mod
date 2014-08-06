@@ -7,9 +7,9 @@ public class NanKaizou extends Item {
 
 	public NanKaizou(int i) {
 		this.setUnlocalizedName("Nan Kaizou");
-		this.setTextureName("narutocraftmod:No Jutsu");
+		this.setTextureName("narutocraftmod:Nan Kaizou");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

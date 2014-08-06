@@ -7,9 +7,9 @@ public class AsaKujaku extends Item {
 
 	public AsaKujaku(int i) {
 		this.setUnlocalizedName("Asa Kujaku");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Asa Kujaku");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

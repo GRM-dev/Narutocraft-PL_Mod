@@ -7,9 +7,9 @@ public class KuchiyoseRashomon extends Item {
 
 	public KuchiyoseRashomon(int i) {
 		this.setUnlocalizedName("Kuchiyose Rashomon");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Kuchiyose Rashomon");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

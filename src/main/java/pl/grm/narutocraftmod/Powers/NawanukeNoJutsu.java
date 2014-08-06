@@ -7,9 +7,9 @@ public class NawanukeNoJutsu extends Item {
 
 	public NawanukeNoJutsu(int i) {
 		this.setUnlocalizedName("Nawanuke No Jutsu");
-		this.setTextureName("narutocraftmod:No Jutsu");
+		this.setTextureName("narutocraftmod:Nawanuke No Jutsu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

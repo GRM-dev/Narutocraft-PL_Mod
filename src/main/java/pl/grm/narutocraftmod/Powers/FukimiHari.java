@@ -7,9 +7,9 @@ public class FukimiHari extends Item {
 
 	public FukimiHari(int i) {
 		this.setUnlocalizedName("Fukimi Hari");
-		this.setTextureName("narutocraftmod:No Jutsu");
+		this.setTextureName("narutocraftmod:Fukimi Hari");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

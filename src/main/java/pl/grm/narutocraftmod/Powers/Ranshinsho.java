@@ -7,9 +7,9 @@ public class Ranshinsho extends Item {
 
 	public Ranshinsho(int i) {
 		this.setUnlocalizedName("Ranshinsho");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Ranshinsho");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

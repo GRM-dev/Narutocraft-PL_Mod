@@ -7,9 +7,9 @@ public class Haykkaroran extends Item {
 
 	public Haykkaroran(int i) {
 		this.setUnlocalizedName("Hyakkaroran");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Hyakkaroran");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

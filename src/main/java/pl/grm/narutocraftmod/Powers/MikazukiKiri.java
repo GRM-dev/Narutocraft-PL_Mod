@@ -7,9 +7,9 @@ public class MikazukiKiri extends Item {
 
 	public MikazukiKiri(int i) {
 		this.setUnlocalizedName("Mikazuki Kiri");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Mikazuki Kiri");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

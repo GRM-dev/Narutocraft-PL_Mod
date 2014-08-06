@@ -7,9 +7,9 @@ public class Byakugo extends Item {
 
 	public Byakugo(int i) {
 		this.setUnlocalizedName("Byakugo");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Byakugo");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

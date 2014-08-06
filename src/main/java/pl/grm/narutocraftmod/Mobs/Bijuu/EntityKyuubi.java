@@ -20,7 +20,7 @@ public class EntityKyuubi extends EntityMob
 	public EntityKyuubi(World par1World)
     {
         super(par1World);
-        this.setSize(0.9F, 1.3F);
+        this.setSize(2.9F, 3.3F);
         this.texture = "assets/narutocraftmod:textures/model/Kyuubi.png";
         this.getNavigator().setAvoidsWater(false);
         this.isImmuneToFire = true;

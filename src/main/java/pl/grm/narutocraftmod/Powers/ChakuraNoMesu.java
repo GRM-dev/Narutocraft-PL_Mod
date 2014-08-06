@@ -7,9 +7,9 @@ public class ChakuraNoMesu extends Item {
 
 	public ChakuraNoMesu(int i) {
 		this.setUnlocalizedName("Chakura No Mesu");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Chakura No Mesu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

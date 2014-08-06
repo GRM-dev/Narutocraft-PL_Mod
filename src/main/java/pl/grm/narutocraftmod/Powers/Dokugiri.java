@@ -7,9 +7,9 @@ public class Dokugiri extends Item {
 
 	public Dokugiri(int i) {
 		this.setUnlocalizedName("Dokugiri");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Dokugiri");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

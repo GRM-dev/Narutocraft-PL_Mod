@@ -7,9 +7,9 @@ public class Hirudora extends Item {
 
 	public Hirudora(int i) {
 		this.setUnlocalizedName("Hirudora");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Hirudora");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

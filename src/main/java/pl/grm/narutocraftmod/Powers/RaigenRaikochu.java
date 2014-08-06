@@ -8,9 +8,9 @@ public class RaigenRaikochu extends Item {
 
 	public RaigenRaikochu (int i) {
 		this.setUnlocalizedName("Raigen Raikochu");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Raigen Raikochu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

@@ -7,9 +7,9 @@ public class Koukongarasu extends Item {
 
 	public Koukongarasu(int i) {
 		this.setUnlocalizedName("Koukongarasu");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Koukongarasu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

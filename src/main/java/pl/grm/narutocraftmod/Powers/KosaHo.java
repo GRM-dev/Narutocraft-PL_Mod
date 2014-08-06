@@ -7,9 +7,9 @@ public class KosaHo extends Item {
 
 	public KosaHo(int i) {
 		this.setUnlocalizedName("Kosa Ho");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Kosa Ho");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

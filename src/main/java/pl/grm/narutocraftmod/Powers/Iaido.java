@@ -7,9 +7,9 @@ public class Iaido extends Item {
 
 	public Iaido(int i) {
 		this.setUnlocalizedName("Iaido");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Iaido");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

@@ -1,5 +1,7 @@
 package pl.grm.narutocraftmod.Mobs.Bijuu;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -13,6 +15,10 @@ public class RenderKyuubi extends RenderLiving
     public RenderKyuubi(ModelBase par1ModelBase, float par2)
     {
         super(par1ModelBase, par2);
+
+
+        
+
     }
 
     @Override

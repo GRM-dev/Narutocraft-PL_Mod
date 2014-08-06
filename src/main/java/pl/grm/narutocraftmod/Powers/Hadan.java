@@ -7,9 +7,9 @@ public class Hadan extends Item {
 
 	public Hadan(int i) {
 		this.setUnlocalizedName("Hadan");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Hadan");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

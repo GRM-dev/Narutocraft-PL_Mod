@@ -7,9 +7,9 @@ public class Kai extends Item {
 
 	public Kai(int i) {
 		this.setUnlocalizedName("Kai");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Kai");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

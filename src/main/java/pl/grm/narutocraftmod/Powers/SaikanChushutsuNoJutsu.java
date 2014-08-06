@@ -7,9 +7,9 @@ public class SaikanChushutsuNoJutsu extends Item {
 
 	public SaikanChushutsuNoJutsu(int i) {
 		this.setUnlocalizedName("Saikan Chushutsu No Jutsu");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Saikan Chushutsu No Jutsu");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

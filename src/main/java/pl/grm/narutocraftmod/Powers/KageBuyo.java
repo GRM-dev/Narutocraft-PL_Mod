@@ -7,9 +7,9 @@ public class KageBuyo extends Item {
 
 	public KageBuyo(int i) {
 		this.setUnlocalizedName("Kage Buyo");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Kage Buyo");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

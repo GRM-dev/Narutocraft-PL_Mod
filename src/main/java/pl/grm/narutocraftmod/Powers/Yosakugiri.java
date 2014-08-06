@@ -7,9 +7,9 @@ public class Yosakugiri extends Item {
 
 	public Yosakugiri(int i) {
 		this.setUnlocalizedName("Yosakugiri");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Yosakugiri");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }

@@ -7,9 +7,9 @@ public class JikukanKekkai extends Item {
 
 	public JikukanKekkai(int i) {
 		this.setUnlocalizedName("Jikukan Kekkai");
-		this.setTextureName("narutocraftmod:NoJutsu");
+		this.setTextureName("narutocraftmod:Jikukan Kekkai");
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 64;
+		maxStackSize = 1;
 	}
 
 }
