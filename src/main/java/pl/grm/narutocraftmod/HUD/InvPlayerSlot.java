@@ -123,7 +123,7 @@ public class InvPlayerSlot implements IInventory{
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack)
 	{
 	// If you have different kinds of slots, then check them here:
-	// if (slot == SLOT_SHIELD && itemstack.getItem() instanceof ItemShield) return true;
+	// if (slot == SLOT_SHIELD && itemstack.getItem() instance of ItemShield) return true;
 
 	// For now, only ItemUseMana items can be stored in these slots
 	return itemstack.getItem() instanceof Sharingan;

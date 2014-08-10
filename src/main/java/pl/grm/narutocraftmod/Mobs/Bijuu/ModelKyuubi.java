@@ -7,7 +7,7 @@ import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelKyuubi extends ModelBase {//ModelQuadruped {
+public class ModelKyuubi extends ModelBase { //ModelQuadruped {
 
 		ModelRenderer Body1;
 	    ModelRenderer Body2;

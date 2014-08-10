@@ -3,26 +3,16 @@ package pl.grm.narutocraftmod.Libs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import pl.grm.narutocraftmod.HUD.GuiBasic;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class ProxyCommon implements IGuiHandler {
+	public void registerRenderInfomation(){}
 	
-	public void registerRenderInfomation(){
-
-	}
+	public void registerRendering(){}
 	
-	public void registerKeyBindings () {
-		
-	}
-	
-	public void registerRenderThings() {
-		
-    }
+	public void registerRenderThings() {}
     
-    public void registerSound() {
-    	
-    }
+    public void registerSound() {}
 
     @Override
     public Object getServerGuiElement ( int ID, EntityPlayer player, World world, int x, int y, int z ) {

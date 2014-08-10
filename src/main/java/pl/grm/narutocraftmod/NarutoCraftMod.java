@@ -2,6 +2,8 @@ package pl.grm.narutocraftmod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import pl.grm.narutocraftmod.Libs.KeyBindings;
+import pl.grm.narutocraftmod.Libs.KeyInputHandler;
 import pl.grm.narutocraftmod.Libs.NCPLEventHandler;
 import pl.grm.narutocraftmod.Libs.NCPLFMLEventHandler;
 import pl.grm.narutocraftmod.Libs.ProxyCommon;
@@ -36,14 +38,16 @@ public class NarutoCraftMod
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-         config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
-         config.readConfig();
+    	proxy.registerRendering();
+        config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
+        config.readConfig();
          
     }
     	
     @EventHandler
     public void init(FMLInitializationEvent event) {
     	RegEntities.RegEntitiesList();
+    	FMLCommonHandler.instance().bus().register(new KeyInputHandler());
     	proxy.registerSound();
     	
     }
@@ -52,6 +56,7 @@ public class NarutoCraftMod
     public void load(FMLInitializationEvent event) {
     	MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
     	FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
+    	KeyBindings.init();
     	
     	proxy.registerRenderInfomation();
     	proxy.registerRenderThings();

@@ -9,18 +9,28 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import pl.grm.narutocraftmod.Entities.EntitySenbon;
+import pl.grm.narutocraftmod.Libs.References;
 
 public class RenderSenbon extends Render {
-	final ResourceLocation texture = new ResourceLocation("narutocraftmod:models/obj/Shuriken.png");
-	final ResourceLocation model = new ResourceLocation("narutocraftmod:models/obj/Shuriken.obj");
-
+	final ResourceLocation texture = new ResourceLocation("narutocraftmod:models/obj/Senbon.png");
+	final ResourceLocation modelobj = new ResourceLocation("narutocraftmod:models/obj/Senbon.obj");
+	private IModelCustom model;
+	
 	@Override
 	public void doRender(Entity par1EntitySenbon, double var2, double var4, double var6, float var8, float var9) 
 	{
-		Tessellator tessellator = Tessellator.instance;
-		IModelCustom modelSenbon = AdvancedModelLoader.loadModel(model);
+		/*Tessellator tessellator = Tessellator.instance;
+		this.model = AdvancedModelLoader.loadModel(modelobj);
 
+		GL11.glPushMatrix();
+		GL11.glTranslated(var2, var4, var6);
+		GL11.glScalef(1, 1, 1);
+		FMLClientHandler.instance().getClient().getTextureManager().bindTexture(texture);
+		GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
+		model.renderAll();
+		GL11.glPopMatrix();*/
 	}
 
 	public void renderSpecial()
