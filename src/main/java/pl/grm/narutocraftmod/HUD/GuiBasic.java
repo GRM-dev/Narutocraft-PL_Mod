@@ -3,9 +3,15 @@ package pl.grm.narutocraftmod.HUD;
 import net.minecraft.client.gui.GuiScreen;
 
 public class GuiBasic extends GuiScreen{
-	public static final int GUI_ID = 20;
+	public static int GUI_ID = 0;
 	
-	public GuiBasic () {}
+	public static final int
+	GUI_CUSTOM_INV = GUI_ID++,
+	GUI_ITEM_INV = GUI_ID++;
+	
+	public GuiBasic () {
+		
+	}
     
     @Override
     public void drawScreen(int par1, int par2, float par3) {

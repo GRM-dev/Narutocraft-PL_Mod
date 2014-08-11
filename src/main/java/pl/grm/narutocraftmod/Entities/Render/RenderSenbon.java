@@ -21,7 +21,7 @@ public class RenderSenbon extends Render {
 	@Override
 	public void doRender(Entity par1EntitySenbon, double var2, double var4, double var6, float var8, float var9) 
 	{
-		/*Tessellator tessellator = Tessellator.instance;
+		Tessellator tessellator = Tessellator.instance;
 		this.model = AdvancedModelLoader.loadModel(modelobj);
 
 		GL11.glPushMatrix();
@@ -30,7 +30,7 @@ public class RenderSenbon extends Render {
 		FMLClientHandler.instance().getClient().getTextureManager().bindTexture(texture);
 		GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
 		model.renderAll();
-		GL11.glPopMatrix();*/
+		GL11.glPopMatrix();
 	}
 
 	public void renderSpecial()

@@ -10,6 +10,7 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
@@ -24,7 +25,7 @@ import pl.grm.narutocraftmod.Libs.Registry.RegItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityKunai extends Entity implements IProjectile
+public class EntityKunai extends EntityArrow implements IProjectile
 {
     private int d = -1;
     private int e = -1;

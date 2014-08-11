@@ -10,6 +10,7 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
@@ -24,12 +25,12 @@ import pl.grm.narutocraftmod.Libs.Registry.RegItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityShuriken extends Entity implements IProjectile
+public class EntityShuriken extends EntityArrow implements IProjectile
 {
     private int d = -1;
     private int e = -1;
     private int f = -1;
-    private Block field_145790_g;
+    private Block contactBlock;
     private int inData;
     private boolean inGround;
     public int canBePickedUp;
@@ -211,7 +212,7 @@ public class EntityShuriken extends Entity implements IProjectile
         {
             int j = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
 
-            if (block == this.field_145790_g && j == this.inData)
+            if (block == this.contactBlock && j == this.inData)
             {
                 ++this.ticksInGround;
 
@@ -353,7 +354,7 @@ public class EntityShuriken extends Entity implements IProjectile
                     this.d = movingobjectposition.blockX;
                     this.e = movingobjectposition.blockY;
                     this.f = movingobjectposition.blockZ;
-                    this.field_145790_g = block;
+                    this.contactBlock = block;
                     this.inData = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
                     this.motionX = (double)((float)(movingobjectposition.hitVec.xCoord - this.posX));
                     this.motionY = (double)((float)(movingobjectposition.hitVec.yCoord - this.posY));
@@ -366,9 +367,9 @@ public class EntityShuriken extends Entity implements IProjectile
                     this.inGround = true;
                     this.ShurikenShake = 0;
 
-                    if (this.field_145790_g.getMaterial() != Material.air)
+                    if (this.contactBlock.getMaterial() != Material.air)
                     {
-                        this.field_145790_g.onEntityCollidedWithBlock(this.worldObj, this.d, this.e, this.f, this);
+                        this.contactBlock.onEntityCollidedWithBlock(this.worldObj, this.d, this.e, this.f, this);
                     }
                 }
             }
@@ -444,7 +445,7 @@ public class EntityShuriken extends Entity implements IProjectile
         par1NBTTagCompound.setShort("yTile", (short)this.e);
         par1NBTTagCompound.setShort("zTile", (short)this.f);
         par1NBTTagCompound.setShort("life", (short)this.ticksInGround);
-        par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.field_145790_g));
+        par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.contactBlock));
         par1NBTTagCompound.setByte("inData", (byte)this.inData);
         par1NBTTagCompound.setByte("shake", (byte)this.ShurikenShake);
         par1NBTTagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
@@ -459,7 +460,7 @@ public class EntityShuriken extends Entity implements IProjectile
         this.e = par1NBTTagCompound.getShort("yTile");
         this.f = par1NBTTagCompound.getShort("zTile");
         this.ticksInGround = par1NBTTagCompound.getShort("life");
-        this.field_145790_g = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
+        this.contactBlock = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
         this.inData = par1NBTTagCompound.getByte("inData") & 255;
         this.ShurikenShake = par1NBTTagCompound.getByte("shake") & 255;
         this.inGround = par1NBTTagCompound.getByte("inGround") == 1;

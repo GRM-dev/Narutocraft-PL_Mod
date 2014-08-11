@@ -28,7 +28,7 @@ public class GuiPowerContainer extends GuiContainer{
 
 	public GuiPowerContainer(EntityPlayer player, InventoryPlayer inventoryPlayer, InvPlayerSlot inventoryCustom)
 	{
-	super(new ContainerPlayer(player, inventoryPlayer, inventoryCustom));
+	super(new ContainerNCPLPlayer(player, inventoryPlayer, inventoryCustom));
 	this.inventory = inventoryCustom;
 	// if you need the player for something later on, store it in a local variable here as well
 	}

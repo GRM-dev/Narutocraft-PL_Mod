@@ -21,54 +21,52 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(modid = References.MODID, version = References.VERSION)
-
-public class NarutoCraftMod
-{
+public class NarutoCraftMod {
 	@SidedProxy(clientSide = References.Client, serverSide = References.Common)
-    public static ProxyCommon proxy;
-    
-    public static CreativeTabs mTabNarutoCraftMod = new TabClass(CreativeTabs.getNextID(), "NarutoCraftMod");
-    
-    @Instance(References.MODID)
-    public static NarutoCraftMod instance;
-    	
-    private ConfigurationHandler config;
+	public static ProxyCommon proxy;
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-    	proxy.registerRendering();
-        config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
-        config.readConfig();
-         
-    }
-    	
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-    	RegEntities.RegEntitiesList();
-    	FMLCommonHandler.instance().bus().register(new KeyInputHandler());
-    	proxy.registerSound();
-    	
-    }
-    
-    @EventHandler
-    public void load(FMLInitializationEvent event) {
-    	MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
-    	FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
-    	KeyBindings.init();
-    	
-    	proxy.registerRenderInfomation();
-    	proxy.registerRenderThings();
-    	RegMobs.RegMobsList();
-    	//NetworkRegistry.instance().registerGuiHandler(this, new ProxyCommon());
-    	
-    }
-    
-    public NarutoCraftMod() {
-    			RegItems.RegItemsList();
-    			RegPowers.RegPowersList();
-                RegRecipes.RegRecipesList();
-                
-    }
+	public static CreativeTabs mTabNarutoCraftMod = new TabClass(
+			CreativeTabs.getNextID(), "NarutoCraftMod");
+
+	@Instance(References.MODID)
+	public static NarutoCraftMod instance;
+
+	private ConfigurationHandler config;
+
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		proxy.registerRendering();
+		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
+		config.readConfig();
+
+	}
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		RegEntities.RegEntitiesList();
+		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
+		proxy.registerSound();
+
+	}
+
+	@EventHandler
+	public void load(FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
+		FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
+		proxy.registerRenderInfomation();
+		proxy.registerRenderThings();
+		RegMobs.RegMobsList();
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new ProxyCommon());
+
+	}
+
+	public NarutoCraftMod() {
+		RegItems.RegItemsList();
+		RegPowers.RegPowersList();
+		RegRecipes.RegRecipesList();
+
+	}
 }

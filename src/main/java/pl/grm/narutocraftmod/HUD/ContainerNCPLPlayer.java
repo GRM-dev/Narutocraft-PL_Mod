@@ -8,13 +8,13 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import pl.grm.narutocraftmod.Powers.Sharingan;
 
-public class ContainerPlayer extends Container{
+public class ContainerNCPLPlayer extends Container{
 	/** Avoid magic numbers! This will greatly reduce the chance of you making errors in 'transferStackInSlot' method */
 	private static final int ARMOR_START = InvPlayerSlot.INV_SIZE, ARMOR_END = ARMOR_START+3,
 	INV_START = ARMOR_END+1, INV_END = INV_START+26, HOTBAR_START = INV_END+1,
 	HOTBAR_END = HOTBAR_START+8;
 
-	public ContainerPlayer(EntityPlayer player, InventoryPlayer inventoryPlayer, InvPlayerSlot inventoryCustom)
+	public ContainerNCPLPlayer(EntityPlayer player, InventoryPlayer inventoryPlayer, InvPlayerSlot inventoryCustom)
 	{
 	int i;
 
