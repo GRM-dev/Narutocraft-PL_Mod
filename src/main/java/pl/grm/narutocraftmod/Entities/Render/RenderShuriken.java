@@ -17,6 +17,7 @@ public class RenderShuriken extends Render {
 	final ResourceLocation texture = new ResourceLocation("narutocraftmod:models/obj/Shuriken.png");
 	final ResourceLocation modelobj = new ResourceLocation("narutocraftmod:models/obj/Shuriken.obj");
 	private IModelCustom model;
+	public int rotation = 0;
 	
 	@Override
 	public void doRender(Entity par1EntityShuriken, double var2, double var4, double var6, float var8, float var9) 
@@ -47,6 +48,8 @@ public class RenderShuriken extends Render {
 	      GL11.glRotatef(f12, 0.0F, 0.0F, 1.0F);
 	    }
 	    GL11.glRotatef(45.0F, 1.0F, 0.0F, 0.0F);
+	    this.onUpdate();
+	    GL11.glRotatef(-rotation, 0, 1, 0);
 	    GL11.glScalef(f10, f10, f10);
 	    GL11.glTranslatef(-4.0F, 0.0F, 0.0F);
 	    
@@ -57,6 +60,10 @@ public class RenderShuriken extends Render {
 	public void renderSpecial()
 	{
 	}
+	
+	public void onUpdate() {
+		   rotation = (rotation + 1) % 360;
+		}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) 

@@ -39,7 +39,6 @@ public class EntityShuriken extends EntityArrow implements IProjectile
     private int ticksInGround;
     private int ticksInAir;
     private double damage = 2.0D;
-    private static final String __OBFID = "CL_00001715";
 
     public EntityShuriken(World par1World)
     {
