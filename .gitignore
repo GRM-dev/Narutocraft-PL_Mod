@@ -68,3 +68,6 @@ $RECYCLE.BIN/
 saves/
 logs/
 crash-reports/
+wrapper/
+
+.classpath

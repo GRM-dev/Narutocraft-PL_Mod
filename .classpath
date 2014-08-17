@@ -11,16 +11,8 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/4.1/7fb1108a191ea7b62b03225ced300ca8832dbe7a/asm-debug-all-4.1-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.10.2/755d154c5257d17ab9071ecdd1bfbee709ddc8e5/scala-library-2.10.2-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.10.2/6ba65d12cd09d441083262d6f73d2257fec7c663/scala-library-2.10.2.jar" exported="true">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.10.2/6bcae4ac7f8f165926785b5faf957f69405b73ed/scala-library-2.10.2-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-compiler/2.10.2/f30599c78fc82b0b299d785b5e5210ab01c3e3f9/scala-compiler-2.10.2-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-compiler/2.10.2/64c8b1380cc53d6850823d6e4e7ae984aa44ef9c/scala-compiler-2.10.2.jar" exported="true">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-compiler/2.10.2/ea15699624552fa1c5727b7cdd42c30992a06888/scala-compiler-2.10.2-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.10.2/6ba65d12cd09d441083262d6f73d2257fec7c663/scala-library-2.10.2.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-compiler/2.10.2/64c8b1380cc53d6850823d6e4e7ae984aa44ef9c/scala-compiler-2.10.2.jar" exported="true"/>
 	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/4.5/3cf4c3c1a6f565419bfd53a0e564d6fb128deeea/jopt-simple-4.5-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/4.5/6065cc95c661255349c1d0756657be17c29a4fd3/jopt-simple-4.5.jar" exported="true">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/4.5/cfddad09c47057a843170ef2ff70e057d90f935d/jopt-simple-4.5-javadoc.jar!/"/>
@@ -39,7 +31,7 @@
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/com.paulscode/libraryjavasound/20101123/5c5e304366f75f9eaa2e8cca546a1fb6109348b3/libraryjavasound-20101123.jar" exported="true"/>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/com.paulscode/librarylwjglopenal/20100824/73e80d0794c39665aec3f62eee88ca91676674ef/librarylwjglopenal-20100824.jar" exported="true">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/com.paulscode/soundsystem/20120107/419c05fe9be71f792b2d76cfc9b67f1ed0fec7f6/soundsystem-20120107.jar" exported="true"/>
@@ -66,7 +58,7 @@
 	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jinput/jinput/2.0.5/82604cfeb87b9ab70ed70aa19a137de8ceb21504/jinput-2.0.5-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jinput/jinput/2.0.5/39c7796b469a600f72380316f6b1f11db6c2c7c4/jinput-2.0.5.jar" exported="true">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jinput/jinput/2.0.5/695a26a9a58e8495c1e3ce7b7f3bec23ecf2ef16/jinput-2.0.5-javadoc.jar!/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jutils/jutils/1.0.0/d18678a00b216863206a1bb6190507e02a32971b/jutils-1.0.0-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jutils/jutils/1.0.0/e12fe1fda814bd348c1579329c86943d2cd3c6a6/jutils-1.0.0.jar" exported="true">
@@ -93,43 +85,43 @@
 	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl/2.9.0/c93326bd0f3a21f3b2c8c22b6f345ab6ca1dd683/lwjgl-2.9.0-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl/2.9.0/5654d06e61a1bba7ae1e7f5233e1106be64c91cd/lwjgl-2.9.0.jar" exported="true">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl/2.9.0/8831fc346adadcef83b54b42f1d83ed158e2a647/lwjgl-2.9.0-javadoc.jar!/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl_util/2.9.0/a7449c197615515f4f9cbf03e6a185ca5bf946e3/lwjgl_util-2.9.0-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl_util/2.9.0/a778846b64008fc7f48ead2377f034e547991699/lwjgl_util-2.9.0.jar" exported="true">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl_util/2.9.0/fc71e9e1ccd22dadeba9a7f86d8ab857331e8348/lwjgl_util-2.9.0-javadoc.jar!/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.0/2ba5dcb11048147f1a74eff2deb192c001321f77/lwjgl-platform-2.9.0-natives-linux.jar" exported="true">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.0/6621b382cb14cc409b041d8d72829156a87c31aa/lwjgl-platform-2.9.0-natives-osx.jar" exported="true">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl-platform/2.9.0/3f11873dc8e84c854ec7c5a8fd2e869f8aaef764/lwjgl-platform-2.9.0-natives-windows.jar" exported="true">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jinput/jinput-platform/2.0.5/7ff832a6eb9ab6a767f1ade2b548092d0fa64795/jinput-platform-2.0.5-natives-linux.jar" exported="true">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jinput/jinput-platform/2.0.5/53f9c919f34d2ca9de8c51fc4e1e8282029a9232/jinput-platform-2.0.5-natives-osx.jar" exported="true">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/net.java.jinput/jinput-platform/2.0.5/385ee093e01f587f30ee1c8a2ee7d408fd732e16/jinput-platform-2.0.5-natives-windows.jar" exported="true">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Łukasz/Documents/GitHub/Narutocraft-PL_Mod/build/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="N:/Kody/Narutocraft-PL_Mod/build/natives"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-reflect/2.10.2/ffa6bfd77b52043f4ffc8d9c7f7de086e1e839e7/scala-reflect-2.10.2-sources.jar" kind="lib" path="C:/Users/Łukasz/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-reflect/2.10.2/444ff8e89a81697997ed8a98a4642ba283130249/scala-reflect-2.10.2.jar" exported="true">
