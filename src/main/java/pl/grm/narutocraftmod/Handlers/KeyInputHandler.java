@@ -1,5 +1,6 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Handlers;
 
+import pl.grm.narutocraftmod.Libs.KeyBindings;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 

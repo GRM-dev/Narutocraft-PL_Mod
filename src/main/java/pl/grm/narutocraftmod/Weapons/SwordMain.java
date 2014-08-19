@@ -22,7 +22,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SwordMain extends Item {
 	private float field_150934_a;
     private final Item.ToolMaterial field_150933_b;
-    private static final String __OBFID = "CL_00000072";
 
     public SwordMain(Item.ToolMaterial p_i45356_1_)
     {
@@ -143,4 +142,6 @@ public class SwordMain extends Item {
         multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double)this.field_150934_a, 0));
         return multimap;
     }
+    
+    public void onUpdate(){}
 }

@@ -2,10 +2,10 @@ package pl.grm.narutocraftmod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import pl.grm.narutocraftmod.Handlers.KeyInputHandler;
+import pl.grm.narutocraftmod.Handlers.NCPLEventHandler;
+import pl.grm.narutocraftmod.Handlers.NCPLFMLEventHandler;
 import pl.grm.narutocraftmod.Libs.KeyBindings;
-import pl.grm.narutocraftmod.Libs.KeyInputHandler;
-import pl.grm.narutocraftmod.Libs.NCPLEventHandler;
-import pl.grm.narutocraftmod.Libs.NCPLFMLEventHandler;
 import pl.grm.narutocraftmod.Libs.ProxyCommon;
 import pl.grm.narutocraftmod.Libs.References;
 import pl.grm.narutocraftmod.Libs.Config.ConfigurationHandler;

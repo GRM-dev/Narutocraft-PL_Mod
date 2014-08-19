@@ -1,5 +1,6 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Handlers;
 
+import pl.grm.narutocraftmod.Libs.ExtendedPlayer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;

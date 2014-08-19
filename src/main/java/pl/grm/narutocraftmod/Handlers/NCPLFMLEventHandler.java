@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.Handlers;
 
 import pl.grm.narutocraftmod.Libs.Registry.RegPowers;
 import net.minecraft.entity.player.EntityPlayer;

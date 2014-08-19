@@ -32,9 +32,8 @@ public class EntityShuriken extends EntityArrow implements IProjectile
     private int f = -1;
     private Block contactBlock;
     private int inData;
-    private boolean inGround;
+    public boolean inGround;
     public int canBePickedUp;
-    public static int ShurikenShake;
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir;
@@ -202,11 +201,6 @@ public class EntityShuriken extends EntityArrow implements IProjectile
             }
         }
 
-        if (this.ShurikenShake > 0)
-        {
-            --this.ShurikenShake;
-        }
-
         if (this.inGround)
         {
             int j = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
@@ -364,7 +358,6 @@ public class EntityShuriken extends EntityArrow implements IProjectile
                     this.posZ -= this.motionZ / (double)f2 * 0.05000000074505806D;
                     this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                     this.inGround = true;
-                    this.ShurikenShake = 0;
 
                     if (this.contactBlock.getMaterial() != Material.air)
                     {
@@ -446,7 +439,6 @@ public class EntityShuriken extends EntityArrow implements IProjectile
         par1NBTTagCompound.setShort("life", (short)this.ticksInGround);
         par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.contactBlock));
         par1NBTTagCompound.setByte("inData", (byte)this.inData);
-        par1NBTTagCompound.setByte("shake", (byte)this.ShurikenShake);
         par1NBTTagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
         par1NBTTagCompound.setByte("pickup", (byte)this.canBePickedUp);
         par1NBTTagCompound.setDouble("damage", this.damage);
@@ -461,7 +453,6 @@ public class EntityShuriken extends EntityArrow implements IProjectile
         this.ticksInGround = par1NBTTagCompound.getShort("life");
         this.contactBlock = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
         this.inData = par1NBTTagCompound.getByte("inData") & 255;
-        this.ShurikenShake = par1NBTTagCompound.getByte("shake") & 255;
         this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
 
         if (par1NBTTagCompound.hasKey("damage", 99))
@@ -482,7 +473,7 @@ public class EntityShuriken extends EntityArrow implements IProjectile
     @Override
     public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
     {
-        if (!this.worldObj.isRemote && this.inGround && this.ShurikenShake <= 0)
+        if (!this.worldObj.isRemote && this.inGround)
         {
             boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && par1EntityPlayer.capabilities.isCreativeMode;
 
