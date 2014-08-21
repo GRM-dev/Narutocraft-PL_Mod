@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 
@@ -21,6 +22,13 @@ public class RenderKyuubi extends RenderLiving
 
     }
 
+    @Override
+    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
+    {
+    	float scale = 10.0F;
+    	GL11.glScalef(scale, scale, scale);
+    }
+    
     @Override
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {

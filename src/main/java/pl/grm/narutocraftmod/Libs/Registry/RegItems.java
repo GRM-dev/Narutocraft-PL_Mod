@@ -67,7 +67,7 @@ public class RegItems extends NarutoCraftMod{
 	public static final ItemArmor plateBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 1)).setUnlocalizedName("chestplateBushido");
 	public static final ItemArmor legsBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 2)).setUnlocalizedName("leggingsBushido");
 	public static final ItemArmor bootsBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 3)).setUnlocalizedName("bootsBushido");
-	public static final ItemArmor helmetAnbu  = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0)).setUnlocalizedName("helmetAnbu");
+	public static final ItemArmor helmetAnbu1  = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0)).setUnlocalizedName("helmetAnbu1");
 	public static final ItemArmor helmetAnbu2 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0)).setUnlocalizedName("HelmetAnbu2");
 	public static final ItemArmor helmetAnbu3 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0)).setUnlocalizedName("HelmetAnbu3");
 	public static final ItemArmor helmetAnbu4 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0)).setUnlocalizedName("HelmetAnbu4");
@@ -111,7 +111,7 @@ public class RegItems extends NarutoCraftMod{
         GameRegistry.registerItem(plateBushido, "PlateBushido");
         GameRegistry.registerItem(legsBushido, "LegsBushido");
         GameRegistry.registerItem(bootsBushido, "BootsBushido");
-        GameRegistry.registerItem(helmetAnbu, "HelmetAnbu");
+        GameRegistry.registerItem(helmetAnbu1, "HelmetAnbu");
         GameRegistry.registerItem(helmetAnbu2, "HelmetAnbu2");
         GameRegistry.registerItem(helmetAnbu3, "HelmetAnbu3");
         GameRegistry.registerItem(helmetAnbu4, "HelmetAnbu4");

@@ -38,10 +38,8 @@ public class ProxyClient extends ProxyCommon{
 		RenderingRegistry.registerEntityRenderingHandler(EntitySenbon.class, new RenderSenbon());
 		RenderingRegistry.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken());
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 5.5F));
 		//the 0.5F is the shadow size
-		
-		MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft.getMinecraft()));
 		
 		MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft.getMinecraft()));
 		KeyBindings.init();
