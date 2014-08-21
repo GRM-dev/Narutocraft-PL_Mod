@@ -1,19 +1,21 @@
 package pl.grm.narutocraftmod.Handlers;
 
-import pl.grm.narutocraftmod.Libs.Registry.RegPowers;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import pl.grm.narutocraftmod.Libs.Registry.RegPowers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 
-
+/**
+ * FML Event Handler
+ * @author Admaster
+ *
+ */
 public class NCPLFMLEventHandler {
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event)
 	{
-	//event.entity;
 	if (event.entity instanceof EntityPlayer)
 	{
 		EntityPlayer player = (EntityPlayer) event.entity;
@@ -30,8 +32,6 @@ public class NCPLFMLEventHandler {
 	
 	@SubscribeEvent
 	public void onRenderTick(RenderTickEvent event) {
-
-	//kazdy tick
 
 	}
 }

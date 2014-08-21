@@ -5,7 +5,6 @@ import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraftmod.Handlers.KeyInputHandler;
 import pl.grm.narutocraftmod.Handlers.NCPLEventHandler;
 import pl.grm.narutocraftmod.Handlers.NCPLFMLEventHandler;
-import pl.grm.narutocraftmod.Libs.KeyBindings;
 import pl.grm.narutocraftmod.Libs.ProxyCommon;
 import pl.grm.narutocraftmod.Libs.References;
 import pl.grm.narutocraftmod.Libs.Config.ConfigurationHandler;
@@ -24,34 +23,47 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(modid = References.MODID, version = References.VERSION)
+/**
+ * Main class
+ */
 public class NarutoCraftMod {
 	@SidedProxy(clientSide = References.Client, serverSide = References.Common)
 	public static ProxyCommon proxy;
-
+	private ConfigurationHandler config;
+	/**
+	 * Create Creative Tab named NarutoCraft Mod
+	 */
 	public static CreativeTabs mTabNarutoCraftMod = new TabClass(
 			CreativeTabs.getNextID(), "NarutoCraftMod");
-
+	/**
+	 * Create mod instance
+	 */
 	@Instance(References.MODID)
 	public static NarutoCraftMod instance;
-
-	private ConfigurationHandler config;
-
+	
+	/**
+	 * preInit
+	 */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.registerRendering();
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();
-
 	}
 
+	/**
+	 * Init
+	 */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		RegEntities.RegEntitiesList();
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		proxy.registerSound();
-
 	}
 
+	/**
+	 * Load
+	 */
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
@@ -59,14 +71,16 @@ public class NarutoCraftMod {
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();
 		RegMobs.RegMobsList();
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new ProxyCommon());
-
+		NetworkRegistry.INSTANCE
+				.registerGuiHandler(instance, new ProxyCommon());
 	}
-
+	
+	/**
+	 * Constructor to Registry Lists of mod elements
+	 */
 	public NarutoCraftMod() {
 		RegItems.RegItemsList();
 		RegPowers.RegPowersList();
 		RegRecipes.RegRecipesList();
-
 	}
 }

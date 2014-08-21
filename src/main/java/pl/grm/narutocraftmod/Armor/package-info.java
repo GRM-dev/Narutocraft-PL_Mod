@@ -1,5 +1,5 @@
 /**
- * 
+ * Armor sets
  */
 /**
  * @author Admaster

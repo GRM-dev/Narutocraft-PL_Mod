@@ -6,7 +6,6 @@ import java.util.Map;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.HUD.ContainerNCPLPlayer;
 import pl.grm.narutocraftmod.HUD.GuiBasic;
 import pl.grm.narutocraftmod.HUD.GuiPowerInv;

@@ -1,9 +1,12 @@
 package pl.grm.narutocraftmod.Effects;
 
-import pl.grm.narutocraftmod.Libs.ExtendedPlayer;
-
+/**
+ * Main class of ItemEffect setters
+ * @author Admaster
+ *
+ */
 public class ItemEffect {
-	private EffectsList[] effectsList;
+	//private EffectsList[] effectsList;
 	
 	public ItemEffect() {
 		
