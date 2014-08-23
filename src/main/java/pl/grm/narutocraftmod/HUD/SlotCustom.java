@@ -4,7 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import pl.grm.narutocraftmod.Powers.Sharingan;
+import pl.grm.narutocraftmod.jutsu.Sharingan;
 
 public class SlotCustom extends Slot {
 	public SlotCustom(IInventory inventory, int slotIndex, int x, int y) {

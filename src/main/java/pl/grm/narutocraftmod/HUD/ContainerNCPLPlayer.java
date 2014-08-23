@@ -6,7 +6,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import pl.grm.narutocraftmod.Powers.Sharingan;
+
+import pl.grm.narutocraftmod.jutsu.Sharingan;
 
 public class ContainerNCPLPlayer extends Container{
 	/** Avoid magic numbers! This will greatly reduce the chance of you making errors in 'transferStackInSlot' method */

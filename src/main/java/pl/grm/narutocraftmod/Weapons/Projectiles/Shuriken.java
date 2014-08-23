@@ -4,9 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Entities.EntityShuriken;
-import pl.grm.narutocraftmod.Libs.Registry.RegItems;
+import pl.grm.narutocraftmod.Libs.registry.RegItems;
 
 public class Shuriken extends Item {
 	public Shuriken(int i) {

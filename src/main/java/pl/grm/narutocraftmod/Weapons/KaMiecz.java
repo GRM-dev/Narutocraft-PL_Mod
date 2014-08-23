@@ -1,18 +1,11 @@
 package pl.grm.narutocraftmod.Weapons;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemSword;
-import net.minecraftforge.common.util.EnumHelper;
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
-public class KaMiecz extends ItemSword {
+public class KaMiecz extends SwordMain {
 	public KaMiecz (int i) {
 		super(Materials.kamien);
-
 		this.setUnlocalizedName("KaMiecz");
 		this.setTextureName("narutocraftmod:Kamienny Miecz");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-
 	}
 }

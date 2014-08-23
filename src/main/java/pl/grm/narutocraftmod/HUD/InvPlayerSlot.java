@@ -5,7 +5,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import pl.grm.narutocraftmod.Powers.Sharingan;
+
+import pl.grm.narutocraftmod.jutsu.Sharingan;
 
 public class InvPlayerSlot implements IInventory{
 	/** The name your custom inventory will display in the GUI, possibly just "Inventory" */

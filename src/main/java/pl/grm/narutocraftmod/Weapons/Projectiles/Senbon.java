@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Entities.EntitySenbon;
-import pl.grm.narutocraftmod.Libs.Registry.RegItems;
+import pl.grm.narutocraftmod.Libs.registry.RegItems;
 
 public class Senbon extends Item {
 	public Senbon(int i) {

@@ -4,11 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Entities.EntityKunai;
-import pl.grm.narutocraftmod.Libs.Registry.RegItems;
+import pl.grm.narutocraftmod.Libs.registry.RegItems;
 
-public class Kunai extends Item{
+public class Kunai extends Item implements IProjectileCast{
 	
 	public Kunai(int i) {
 		super();
@@ -19,6 +20,9 @@ public class Kunai extends Item{
 		
 	}
 	
+	/*
+	 * create Kunai Entity
+	 */
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,EntityPlayer par3EntityPlayer) {
 	    

@@ -2,17 +2,6 @@ package pl.grm.narutocraftmod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import pl.grm.narutocraftmod.Handlers.KeyInputHandler;
-import pl.grm.narutocraftmod.Handlers.NCPLEventHandler;
-import pl.grm.narutocraftmod.Handlers.NCPLFMLEventHandler;
-import pl.grm.narutocraftmod.Libs.ProxyCommon;
-import pl.grm.narutocraftmod.Libs.References;
-import pl.grm.narutocraftmod.Libs.Config.ConfigurationHandler;
-import pl.grm.narutocraftmod.Libs.Registry.RegEntities;
-import pl.grm.narutocraftmod.Libs.Registry.RegItems;
-import pl.grm.narutocraftmod.Libs.Registry.RegMobs;
-import pl.grm.narutocraftmod.Libs.Registry.RegPowers;
-import pl.grm.narutocraftmod.Libs.Registry.RegRecipes;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -21,6 +10,18 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+
+import pl.grm.narutocraftmod.Libs.ProxyCommon;
+import pl.grm.narutocraftmod.Libs.References;
+import pl.grm.narutocraftmod.Libs.config.ConfigurationHandler;
+import pl.grm.narutocraftmod.Libs.registry.RegEntities;
+import pl.grm.narutocraftmod.Libs.registry.RegItems;
+import pl.grm.narutocraftmod.Libs.registry.RegJutsus;
+import pl.grm.narutocraftmod.Libs.registry.RegMobs;
+import pl.grm.narutocraftmod.Libs.registry.RegRecipes;
+import pl.grm.narutocraftmod.handlers.KeyInputHandler;
+import pl.grm.narutocraftmod.handlers.NCPLEventHandler;
+import pl.grm.narutocraftmod.handlers.NCPLFMLEventHandler;
 
 @Mod(modid = References.MODID, version = References.VERSION)
 /**
@@ -80,7 +81,7 @@ public class NarutoCraftMod {
 	 */
 	public NarutoCraftMod() {
 		RegItems.RegItemsList();
-		RegPowers.RegPowersList();
+		RegJutsus.RegPowersList();
 		RegRecipes.RegRecipesList();
 	}
 }
