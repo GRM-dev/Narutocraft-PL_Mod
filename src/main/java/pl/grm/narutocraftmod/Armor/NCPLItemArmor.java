@@ -62,9 +62,18 @@ public class NCPLItemArmor extends ItemArmor {
 		if (stack.getItem() == RegItems.plateSuna
 				|| stack.getItem() == RegItems.legsSuna) {
 			return "narutocraftmod:textures/model/Suna.png";
-		} else {
+		}
+		if (stack.getItem() == RegItems.helmetAkatsuki
+				|| stack.getItem() == RegItems.plateAkatsuki
+				|| stack.getItem() == RegItems.plateAkatsuki2
+				|| stack.getItem() == RegItems.plateAkatsuki3
+				|| stack.getItem() == RegItems.bootsAkatsuki) {
+			return "narutocraftmod:textures/model/AkatsukiArmor.1.png";
+		
+		}else {
 			return null;
 		}
+		
 	}
 
 }
