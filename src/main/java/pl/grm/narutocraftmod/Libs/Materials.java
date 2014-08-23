@@ -25,6 +25,7 @@ public class Materials {
 	
 	public static ArmorMaterial armorBUSHIDO = EnumHelper.addArmorMaterial("BUSHIDO", 33, new int[] {3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorANBU  =  EnumHelper.addArmorMaterial("ANBU" , 40, new int[] {3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorKiri  =  EnumHelper.addArmorMaterial("Kiri" , 45, new int[] {3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorSuna  =  EnumHelper.addArmorMaterial("Suna" , 46, new int[] {3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorKIRI  =  EnumHelper.addArmorMaterial("KIRI" , 45, new int[] {3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorSUNA  =  EnumHelper.addArmorMaterial("SUNA" , 46, new int[] {3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorAKATSUKI = EnumHelper.addArmorMaterial("AKATSUKI" , 47, new int[] {3, 8, 6, 3}, 10);
 }

@@ -1,4 +1,3 @@
-
 invertYMouse:false
 mouseSensitivity:0.5
 fov:0.0
@@ -71,7 +70,7 @@ key_key.hotbar.6:7
 key_key.hotbar.7:8
 key_key.hotbar.8:9
 key_key.hotbar.9:10
-key_Previous Jutsu:24
+key_Jutsu:24
 key_Next Jutsu:25
 soundCategory_master:1.0
 soundCategory_music:1.0

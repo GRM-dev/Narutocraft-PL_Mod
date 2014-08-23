@@ -59,8 +59,9 @@ public class RegItems extends NarutoCraftMod{
    	
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;
-	public static ArmorMaterial Kiri = Materials.armorKiri;
-	public static ArmorMaterial Suna = Materials.armorSuna;
+	public static ArmorMaterial Kiri = Materials.armorKIRI;
+	public static ArmorMaterial Suna = Materials.armorSUNA;
+	public static ArmorMaterial Akatsuki =Materials.armorAKATSUKI;
 	//public static int renderBushidoArmor = proxy.addArmor("Bushido");
    	
    	public static final ItemArmor helmetBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 0)).setUnlocalizedName("helmetBushido");
@@ -78,6 +79,12 @@ public class RegItems extends NarutoCraftMod{
     public static final ItemArmor legsKiri = (ItemArmor) (new NCPLItemArmor(Kiri, 4,  3)).setUnlocalizedName("legginsKiri");
     public static final ItemArmor plateSuna = (ItemArmor) (new NCPLItemArmor(Suna, 4, 3)).setUnlocalizedName("plateSuna");
     public static final ItemArmor legsSuna = (ItemArmor) (new NCPLItemArmor(Suna, 4, 3)).setUnlocalizedName("legginsSuna");
+    public static final ItemArmor helmetAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 0)).setUnlocalizedName("helmentAkatsuki");
+    public static final ItemArmor plateAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 1)).setUnlocalizedName("plateAkatsuki");
+    public static final ItemArmor plateAkatsuki2 = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 1)).setUnlocalizedName("plateAkatsuki2");
+    public static final ItemArmor plateAkatsuki3 = (ItemArmor)  (new NCPLItemArmor(Akatsuki, 4, 1)).setUnlocalizedName("plateAkatsuki3");
+    public static final ItemArmor legsAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 2)).setUnlocalizedName("legginsAkatsuki");
+    public static final ItemArmor bootsAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 3)).setUnlocalizedName("bootsAkatsuki");
 //	public static Item  = new (id+);
 
 	public static void RegItemsList() {
@@ -122,6 +129,12 @@ public class RegItems extends NarutoCraftMod{
         GameRegistry.registerItem(legsKiri, "LegsKiri");
         GameRegistry.registerItem(plateSuna, "PlateSuna");
         GameRegistry.registerItem(legsSuna, "LegsSuna");
+        GameRegistry.registerItem(helmetAkatsuki, "HelmetAkatsuki");
+        GameRegistry.registerItem(plateAkatsuki, "PlateAkatsuki");
+        GameRegistry.registerItem(plateAkatsuki2, "PlateAkatsuki2");
+        GameRegistry.registerItem(plateAkatsuki3, "PlateAkatsuki3");
+        GameRegistry.registerItem(legsAkatsuki, "LegsAkatsuki");
+        GameRegistry.registerItem(bootsAkatsuki, "BootsAkatsuki");
         
         //GameRegistry.registerItem(, "");
 	}
