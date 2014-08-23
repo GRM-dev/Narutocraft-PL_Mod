@@ -71,3 +71,4 @@ crash-reports/
 wrapper/
 
 .classpath
+/.project
