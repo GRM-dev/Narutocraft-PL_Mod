@@ -19,11 +19,17 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import pl.grm.narutocraftmod.Libs.DamSource;
 import pl.grm.narutocraftmod.Libs.Registry.RegItems;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
+/**
+ * Senbon Entity
+ * @author Admaster
+ *
+ */
 public class EntitySenbon extends Entity implements IProjectile
 {
     private int d = -1;
@@ -38,15 +44,20 @@ public class EntitySenbon extends Entity implements IProjectile
     private int ticksInGround;
     private int ticksInAir;
     private double damage = 2.0D;
-    private static final String __OBFID = "CL_00001715";
-
+    
     public EntitySenbon(World par1World)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
         this.setSize(0.5F, 0.5F);
     }
-
+    /**
+     * 
+     * @param par1World World
+     * @param par2 x
+     * @param par4 y
+     * @param par6 z
+     */
     public EntitySenbon(World par1World, double par2, double par4, double par6)
     {
         super(par1World);
@@ -177,7 +188,8 @@ public class EntitySenbon extends Entity implements IProjectile
     /**
      * Called to update the entity's position/logic.
      */
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onEntityUpdate()
     {
         super.onEntityUpdate();
@@ -202,9 +214,9 @@ public class EntitySenbon extends Entity implements IProjectile
             }
         }
 
-        if (this.SenbonShake > 0)
+        if (EntitySenbon.SenbonShake > 0)
         {
-            --this.SenbonShake;
+            --EntitySenbon.SenbonShake;
         }
 
         if (this.inGround)
@@ -245,7 +257,8 @@ public class EntitySenbon extends Entity implements IProjectile
             }
 
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            @SuppressWarnings("rawtypes")
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
             int i;
             float f1;
@@ -364,7 +377,7 @@ public class EntitySenbon extends Entity implements IProjectile
                     this.posZ -= this.motionZ / (double)f2 * 0.05000000074505806D;
                     this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                     this.inGround = true;
-                    this.SenbonShake = 0;
+                    EntitySenbon.SenbonShake = 0;
 
                     if (this.field_145790_g.getMaterial() != Material.air)
                     {
@@ -446,7 +459,7 @@ public class EntitySenbon extends Entity implements IProjectile
         par1NBTTagCompound.setShort("life", (short)this.ticksInGround);
         par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.field_145790_g));
         par1NBTTagCompound.setByte("inData", (byte)this.inData);
-        par1NBTTagCompound.setByte("shake", (byte)this.SenbonShake);
+        par1NBTTagCompound.setByte("shake", (byte)EntitySenbon.SenbonShake);
         par1NBTTagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
         par1NBTTagCompound.setByte("pickup", (byte)this.canBePickedUp);
         par1NBTTagCompound.setDouble("damage", this.damage);
@@ -461,7 +474,7 @@ public class EntitySenbon extends Entity implements IProjectile
         this.ticksInGround = par1NBTTagCompound.getShort("life");
         this.field_145790_g = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
         this.inData = par1NBTTagCompound.getByte("inData") & 255;
-        this.SenbonShake = par1NBTTagCompound.getByte("shake") & 255;
+        EntitySenbon.SenbonShake = par1NBTTagCompound.getByte("shake") & 255;
         this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
 
         if (par1NBTTagCompound.hasKey("damage", 99))
@@ -482,7 +495,7 @@ public class EntitySenbon extends Entity implements IProjectile
     @Override
     public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
     {
-        if (!this.worldObj.isRemote && this.inGround && this.SenbonShake <= 0)
+        if (!this.worldObj.isRemote && this.inGround && EntitySenbon.SenbonShake <= 0)
         {
             boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && par1EntityPlayer.capabilities.isCreativeMode;
 

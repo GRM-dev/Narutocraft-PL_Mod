@@ -2,13 +2,10 @@ package pl.grm.narutocraftmod.Libs;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.HUD.InvPlayerSlot;
-import pl.grm.narutocraftmod.Network.SyncPlayerPropsPacket;
 
 public class ExtendedPlayer implements IExtendedEntityProperties
 {

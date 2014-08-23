@@ -1,5 +1,5 @@
 /**
- * 
+ * Models of Entities Items and Projectiles
  */
 /**
  * @author Admaster

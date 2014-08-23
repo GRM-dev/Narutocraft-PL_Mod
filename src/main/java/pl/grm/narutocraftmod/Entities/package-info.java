@@ -1,6 +1,7 @@
 /*
  * 
- * 
+ * Entities - Byty
+ * Items and Projectiles
  * 
  */
 

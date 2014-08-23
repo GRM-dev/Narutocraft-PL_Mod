@@ -1,8 +1,8 @@
 /**
- * 
+ * Render mrthods of Entities
  */
 /**
- * @author Lukasz
+ * @author Admaster
  *
  */
 package pl.grm.narutocraftmod.Entities.Render;

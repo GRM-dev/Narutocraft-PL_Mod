@@ -20,8 +20,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import pl.grm.narutocraftmod.Libs.DamSource;
 import pl.grm.narutocraftmod.Libs.Registry.RegItems;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -45,7 +47,13 @@ public class EntityShuriken extends EntityArrow implements IProjectile
         this.renderDistanceWeight = 10.0D;
         this.setSize(0.5F, 0.5F);
     }
-
+    /**
+     * Constructor of entity
+     * @param par1World World
+     * @param par2 x
+     * @param par4 y
+     * @param par6 z
+     */
     public EntityShuriken(World par1World, double par2, double par4, double par6)
     {
         super(par1World);
@@ -176,7 +184,8 @@ public class EntityShuriken extends EntityArrow implements IProjectile
     /**
      * Called to update the entity's position/logic.
      */
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onEntityUpdate()
     {
         super.onEntityUpdate();
@@ -239,7 +248,8 @@ public class EntityShuriken extends EntityArrow implements IProjectile
             }
 
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            @SuppressWarnings("rawtypes")
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
             int i;
             float f1;

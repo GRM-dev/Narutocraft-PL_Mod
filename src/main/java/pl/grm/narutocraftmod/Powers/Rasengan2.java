@@ -1,8 +1,8 @@
 package pl.grm.narutocraftmod.Powers;
 
-import pl.grm.narutocraftmod.NarutoCraftMod;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
+import pl.grm.narutocraftmod.NarutoCraftMod;
 
 public class Rasengan2 extends Item {
 
@@ -12,5 +12,5 @@ public class Rasengan2 extends Item {
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 1;
 	}
-	
+
 }

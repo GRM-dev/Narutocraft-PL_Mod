@@ -9,7 +9,11 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
-
+/**
+ * Render method of Entity Shuriken with obj model file
+ * @author Admaster
+ *
+ */
 public class RenderShuriken extends Render {
 	final ResourceLocation texture = new ResourceLocation("narutocraftmod:models/obj/Shuriken.png");
 	final ResourceLocation modelobj = new ResourceLocation("narutocraftmod:models/obj/Shuriken.obj");
