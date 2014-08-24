@@ -11,8 +11,7 @@ import pl.grm.narutocraftmod.Entities.Render.RenderSenbon;
 import pl.grm.narutocraftmod.Entities.Render.RenderShuriken;
 import pl.grm.narutocraftmod.Entities.Render.RenderWKunai;
 import pl.grm.narutocraftmod.HUD.GuiChakraBar;
-import pl.grm.narutocraftmod.Libs.Sound.KyuubiSoundEvent;
-import pl.grm.narutocraftmod.Libs.Sound.SoundHandler;
+import pl.grm.narutocraftmod.handlers.SoundHandler;
 import pl.grm.narutocraftmod.Mobs.Bijuu.EntityKyuubi;
 import pl.grm.narutocraftmod.Mobs.Bijuu.ModelKyuubi;
 import pl.grm.narutocraftmod.Mobs.Bijuu.RenderKyuubi;
@@ -34,23 +33,24 @@ public class ProxyClient extends ProxyCommon{
 	@Override
     public void registerRenderThings() 
     {
+		//Projectiles:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
 		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySenbon.class, new RenderSenbon());
 		RenderingRegistry.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken());
-		
+		//Mobs:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 5.5F));
-		//the 0.5F is the shadow size
-		
+		//the last param is the shadow size
+		//GUI:
 		MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft.getMinecraft()));
+		//Keys:
 		KeyBindings.init();
 		
     }
 
     @Override
     public void registerSound() {
-          MinecraftForge.EVENT_BUS.register(new KyuubiSoundEvent());  //register the sound event handling class
-          MinecraftForge.EVENT_BUS.register(new SoundHandler());
+          MinecraftForge.EVENT_BUS.register(new SoundHandler());  //register the sound event handling class
     }
 
     @Override
