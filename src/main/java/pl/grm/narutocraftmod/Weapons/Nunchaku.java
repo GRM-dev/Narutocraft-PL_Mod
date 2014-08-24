@@ -3,8 +3,6 @@ package pl.grm.narutocraftmod.Weapons;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class Nunchaku extends SwordMain {
@@ -13,7 +11,6 @@ public class Nunchaku extends SwordMain {
 
 		this.setUnlocalizedName("Nunchaku");
 		this.setTextureName("narutocraftmod:Nunchaku");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 
 	}
 	

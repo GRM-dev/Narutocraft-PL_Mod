@@ -1,14 +1,11 @@
 package pl.grm.narutocraftmod.jutsu;
 
-import net.minecraft.item.Item;
-import pl.grm.narutocraftmod.NarutoCraftMod;
 
-public class Omotegiri extends Item {
+public class Omotegiri extends Jutsu {
 
 	public Omotegiri(int i) {
 		this.setUnlocalizedName("Omotegiri");
 		this.setTextureName("narutocraftmod:Omotegiri");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 1;
 	}
 

@@ -1,14 +1,11 @@
 package pl.grm.narutocraftmod.jutsu;
 
-import net.minecraft.item.Item;
-import pl.grm.narutocraftmod.NarutoCraftMod;
 
-public class KosaHo extends Item {
+public class KosaHo extends Jutsu {
 
 	public KosaHo(int i) {
 		this.setUnlocalizedName("Kosa Ho");
 		this.setTextureName("narutocraftmod:Kosa Ho");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 1;
 	}
 

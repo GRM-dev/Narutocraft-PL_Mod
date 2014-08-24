@@ -1,6 +1,5 @@
 package pl.grm.narutocraftmod.Weapons;
 
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class Wakizashi extends SwordMain {
@@ -9,7 +8,6 @@ public class Wakizashi extends SwordMain {
 
 		this.setUnlocalizedName("Wakizashi");
 		this.setTextureName("narutocraftmod:Wakizashi");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 
 	}
 }

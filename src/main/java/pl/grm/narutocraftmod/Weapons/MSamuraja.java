@@ -1,6 +1,5 @@
 package pl.grm.narutocraftmod.Weapons;
 
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class MSamuraja extends SwordMain {	
@@ -9,7 +8,6 @@ public class MSamuraja extends SwordMain {
 
 		this.setUnlocalizedName("MSamuraja");
 		this.setTextureName("narutocraftmod:Miecz Samuraja");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 
 	}
 }

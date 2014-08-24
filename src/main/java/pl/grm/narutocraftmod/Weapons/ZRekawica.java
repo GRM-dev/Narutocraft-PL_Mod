@@ -1,6 +1,5 @@
 package pl.grm.narutocraftmod.Weapons;
 
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class ZRekawica extends SwordMain {	
@@ -9,7 +8,6 @@ public class ZRekawica extends SwordMain {
 		
 		this.setUnlocalizedName("ZRekawica");
 		this.setTextureName("narutocraftmod:Zelazna Rekawica");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 
 	}
 }

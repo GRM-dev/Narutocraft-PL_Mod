@@ -1,6 +1,5 @@
 package pl.grm.narutocraftmod.Weapons;
 
-import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.Libs.Materials;
 
 public class KBushido extends SwordMain {
@@ -9,7 +8,6 @@ public class KBushido extends SwordMain {
 
 		this.setUnlocalizedName("KBushido");
 		this.setTextureName("narutocraftmod:Katana Bushido");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 
 	}
 }

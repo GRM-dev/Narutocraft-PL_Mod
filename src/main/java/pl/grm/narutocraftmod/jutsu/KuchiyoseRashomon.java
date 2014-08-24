@@ -1,14 +1,11 @@
 package pl.grm.narutocraftmod.jutsu;
 
-import net.minecraft.item.Item;
-import pl.grm.narutocraftmod.NarutoCraftMod;
 
-public class KuchiyoseRashomon extends Item {
+public class KuchiyoseRashomon extends Jutsu {
 
 	public KuchiyoseRashomon(int i) {
 		this.setUnlocalizedName("Kuchiyose Rashomon");
 		this.setTextureName("narutocraftmod:Kuchiyose Rashomon");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 1;
 	}
 

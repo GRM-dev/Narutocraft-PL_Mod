@@ -1,19 +1,17 @@
 package pl.grm.narutocraftmod.jutsu;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.HUD.GuiBasic;
 
-public class Sharingan extends Item{
+public class Sharingan extends Jutsu{
 
 	public Sharingan(int i) {
 		super();
 		this.setUnlocalizedName("Sharingan");
 		this.setTextureName("narutocraftmod:Sharingan");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 1;
 	}
 	
