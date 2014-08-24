@@ -1,6 +1,5 @@
 package pl.grm.narutocraftmod.Libs.registry;
 
-import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import pl.grm.narutocraftmod.jutsu.AsaKujaku;
@@ -18,6 +17,7 @@ import pl.grm.narutocraftmod.jutsu.Iaido;
 import pl.grm.narutocraftmod.jutsu.InyuShometsu;
 import pl.grm.narutocraftmod.jutsu.Issen;
 import pl.grm.narutocraftmod.jutsu.JikukanKekkai;
+import pl.grm.narutocraftmod.jutsu.Jutsu;
 import pl.grm.narutocraftmod.jutsu.KageBuyo;
 import pl.grm.narutocraftmod.jutsu.Kai;
 import pl.grm.narutocraftmod.jutsu.KawarimiNoJutsu;
@@ -45,54 +45,51 @@ import pl.grm.narutocraftmod.jutsu.Yosakugiri;
 
 public class RegJutsus {
 	private static int id = 4600;
-	public static Item KNoJutsu = new KawarimiNoJutsu(id);
-    public static Item SNoJutsu = new ShunshinNoJutsu(id+1);
-   	public static Item Sharingan = new Sharingan(id+2);
-   	public static Item Rasengan = new Rasengan(id+3);
-   	public static Item Rasengan2 = new Rasengan2(id+4);
-   	public static Item Rasengan3 = new Rasengan3(id+5);
-   	public static Item AsaKujaku = new AsaKujaku(id+6);
-   	public static Item Byakugo = new Byakugo(id+7);
-   	public static Item ChakuraNoMesu = new ChakuraNoMesu(id+8);
-   	public static Item Dokugiri = new Dokugiri(id+9);
-   	public static Item Enmakugire = new Enmakugire(id+10);
-   	public static Item FukimiHari = new FukimiHari(id+11);
-   	public static Item FumaNinken = new FumaNinken(id+12);
-   	public static Item Hadan = new Hadan(id+13);
-   	public static Item HariJizo = new HariJizo(id+14);
-   	public static Item Haykkaroran = new Haykkaroran(id+15);
-   	public static Item Hirudora = new Hirudora(id+15);
-   	public static Item Iaido = new Iaido(id+16);
-   	public static Item InyuShometsu = new InyuShometsu(id+17);
-   	public static Item Issen = new Issen(id+18);
-   	public static Item JikukanKekkai = new JikukanKekkai(id+19);
-   	public static Item KageBuyo = new KageBuyo(id+20);
-   	public static Item Kai = new Kai(+21);
-   	public static Item KokuangyoNoJutsu = new KokuangyoNoJutsu(id+22);
-   	public static Item KosaHo = new KosaHo(id+23);
-   	public static Item Koukongarasu = new Koukongarasu(id+24);
-   	public static Item KuchiyoseRashomon = new KuchiyoseRashomon(id+25);
-   	public static Item Meisaigakure = new Meisaigakure(id+26);
-   	public static Item MikazukiKiri = new MikazukiKiri(id+27);
-   	public static Item NanKaizou = new NanKaizou(id+28);
-   	public static Item NawanukeNoJutsu = new NawanukeNoJutsu(id+29);
-   	public static Item Omotegiri = new Omotegiri(id+30);
-   	public static Item OmoteRenge = new OmoteRenge(id+31);
-   	public static Item RaigenRaikochu = new RaigenRaikochu(id+32);
-   	public static Item Ranshinsho = new Ranshinsho(id+33);
-   	public static Item SaikanChushutsuNoJutsu = new SaikanChushutsuNoJutsu(id+34);
-   	public static Item SamuraiSabreTechnique = new SamuraiSabreTechnique(id+35);
-   	public static Item UraRenge = new UraRenge(id+36);
-   	public static Item Yosakugiri = new Yosakugiri(id+3);
-   	
-   	 
-   	
-//	public static Item  = new (id+);
-   	
+	public static Jutsu KawarimiNoJutsu = new KawarimiNoJutsu(id);
+    public static Jutsu ShunshinNoJutsu = new ShunshinNoJutsu(id+1);
+   	public static Jutsu Sharingan = new Sharingan(id+2);
+   	public static Jutsu Rasengan = new Rasengan(id+3);
+   	public static Jutsu Rasengan2 = new Rasengan2(id+4);
+   	public static Jutsu Rasengan3 = new Rasengan3(id+5);
+   	public static Jutsu AsaKujaku = new AsaKujaku(id+6);
+   	public static Jutsu Byakugo = new Byakugo(id+7);
+   	public static Jutsu ChakuraNoMesu = new ChakuraNoMesu(id+8);
+   	public static Jutsu Dokugiri = new Dokugiri(id+9);
+   	public static Jutsu Enmakugire = new Enmakugire(id+10);
+   	public static Jutsu FukimiHari = new FukimiHari(id+11);
+   	public static Jutsu FumaNinken = new FumaNinken(id+12);
+   	public static Jutsu Hadan = new Hadan(id+13);
+   	public static Jutsu HariJizo = new HariJizo(id+14);
+   	public static Jutsu Haykkaroran = new Haykkaroran(id+15);
+   	public static Jutsu Hirudora = new Hirudora(id+15);
+   	public static Jutsu Iaido = new Iaido(id+16);
+   	public static Jutsu InyuShometsu = new InyuShometsu(id+17);
+   	public static Jutsu Issen = new Issen(id+18);
+   	public static Jutsu JikukanKekkai = new JikukanKekkai(id+19);
+   	public static Jutsu KageBuyo = new KageBuyo(id+20);
+   	public static Jutsu Kai = new Kai(+21);
+   	public static Jutsu KokuangyoNoJutsu = new KokuangyoNoJutsu(id+22);
+   	public static Jutsu KosaHo = new KosaHo(id+23);
+   	public static Jutsu Koukongarasu = new Koukongarasu(id+24);
+   	public static Jutsu KuchiyoseRashomon = new KuchiyoseRashomon(id+25);
+   	public static Jutsu Meisaigakure = new Meisaigakure(id+26);
+   	public static Jutsu MikazukiKiri = new MikazukiKiri(id+27);
+   	public static Jutsu NanKaizou = new NanKaizou(id+28);
+   	public static Jutsu NawanukeNoJutsu = new NawanukeNoJutsu(id+29);
+   	public static Jutsu Omotegiri = new Omotegiri(id+30);
+   	public static Jutsu OmoteRenge = new OmoteRenge(id+31);
+   	public static Jutsu RaigenRaikochu = new RaigenRaikochu(id+32);
+   	public static Jutsu Ranshinsho = new Ranshinsho(id+33);
+   	public static Jutsu SaikanChushutsuNoJutsu = new SaikanChushutsuNoJutsu(id+34);
+   	public static Jutsu SamuraiSabreTechnique = new SamuraiSabreTechnique(id+35);
+   	public static Jutsu UraRenge = new UraRenge(id+36);
+   	public static Jutsu Yosakugiri = new Yosakugiri(id+37);
+
+//	public static Jutsu  = new (id+);
    	
    	public static void RegPowersList() {
-		GameRegistry.registerItem(KNoJutsu, "KawarimiNoJutsu");
-		GameRegistry.registerItem(SNoJutsu, "ShunshinNoJutsu");
+		GameRegistry.registerItem(KawarimiNoJutsu, "KawarimiNoJutsu");
+		GameRegistry.registerItem(ShunshinNoJutsu, "ShunshinNoJutsu");
 		GameRegistry.registerItem(Sharingan, "Sharingan");
 		GameRegistry.registerItem(Rasengan, "Rasengan");
 		GameRegistry.registerItem(Rasengan2, "OdamaRasengan");

@@ -23,7 +23,7 @@ public class NCPLFMLEventHandler {
 		EntityPlayer player = (EntityPlayer) event.entity;
 		ItemStack heldItem = player.getHeldItem();
 		System.out.println("hhhhhhh");
-		if (heldItem != null && heldItem.getItem() == RegJutsus.KNoJutsu) {
+		if (heldItem != null && heldItem.getItem() == RegJutsus.KawarimiNoJutsu) {
 			player.capabilities.allowFlying = true;
 		}
 		else {

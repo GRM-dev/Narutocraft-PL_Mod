@@ -3,7 +3,7 @@ package pl.grm.narutocraftmod.effects;
  * Enum(List) of all effects
  */
 public enum EffectsList {
-	SLOW(0),STUN(1);
+	SLOW(0),STUN(1), jutsu(2);
 	
 	private int numberRepresentation;
 	/**
