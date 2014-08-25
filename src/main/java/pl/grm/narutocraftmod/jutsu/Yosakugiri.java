@@ -1,12 +1,23 @@
 package pl.grm.narutocraftmod.jutsu;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 
 public class Yosakugiri extends Jutsu {
 
 	public Yosakugiri(int i) {
 		this.setUnlocalizedName("Yosakugiri");
 		this.setTextureName("narutocraftmod:Yosakugiri");
-		maxStackSize = 1;
+}
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player) {
+		if (!world.isRemote) {
+
+		}
+		return stack;
 	}
 
 }

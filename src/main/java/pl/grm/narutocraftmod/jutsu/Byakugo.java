@@ -1,5 +1,9 @@
 package pl.grm.narutocraftmod.jutsu;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 
 public class Byakugo extends Jutsu {
 
@@ -7,7 +11,14 @@ public class Byakugo extends Jutsu {
 		this.setUnlocalizedName("Byakugo");
 		this.setTextureName("narutocraftmod:Byakugo");
 	
-		maxStackSize = 1;
+	}
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player) {
+		if (!world.isRemote) {
+
+		}
+		return stack;
 	}
 
 }

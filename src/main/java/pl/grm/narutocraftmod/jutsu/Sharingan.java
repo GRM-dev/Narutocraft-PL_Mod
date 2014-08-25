@@ -12,8 +12,8 @@ public class Sharingan extends Jutsu{
 		super();
 		this.setUnlocalizedName("Sharingan");
 		this.setTextureName("narutocraftmod:Sharingan");
-		maxStackSize = 1;
-	}
+}
+
 	
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
