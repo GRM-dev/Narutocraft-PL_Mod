@@ -22,7 +22,6 @@ public class ContainerNCPLPlayer extends Container {
 	public ContainerNCPLPlayer(EntityPlayer player,
 			InventoryPlayer inventoryPlayer, InvPlayerSlot inventoryCustom) {
 		int i;
-
 		/**
 		 * Adds CUSTOM slots new Slot class for each different item type
 		 */
@@ -38,7 +37,6 @@ public class ContainerNCPLPlayer extends Container {
 			// inventoryPlayer.getSizeInventory() - 1 - i, 8, 8 + i * 18,
 			// i));
 		}
-
 		// Add PLAYER INVENTORY
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
@@ -46,7 +44,6 @@ public class ContainerNCPLPlayer extends Container {
 						j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
-
 		// Add ACTION BAR
 		for (i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18,

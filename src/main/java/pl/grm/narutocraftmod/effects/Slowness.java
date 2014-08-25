@@ -1,7 +1,5 @@
 package pl.grm.narutocraftmod.effects;
 
-public class Slowness {
-	
-
+public class Slowness extends ItemEffect {
 
 }
