@@ -89,7 +89,6 @@ public class NCPLEventHandler {
 			}
 		}
 	}
-
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onRenderExperienceBar(RenderGameOverlayEvent.Post event) {
 		GuiChakraBar guichakrabar = new GuiChakraBar();

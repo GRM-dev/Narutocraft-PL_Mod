@@ -19,6 +19,7 @@ import pl.grm.narutocraftmod.Libs.registry.RegItems;
 import pl.grm.narutocraftmod.Libs.registry.RegJutsus;
 import pl.grm.narutocraftmod.Libs.registry.RegMobs;
 import pl.grm.narutocraftmod.Libs.registry.RegRecipes;
+import pl.grm.narutocraftmod.Network.PacketPipeline;
 import pl.grm.narutocraftmod.handlers.KeyInputHandler;
 import pl.grm.narutocraftmod.handlers.NCPLEventHandler;
 import pl.grm.narutocraftmod.handlers.NCPLFMLEventHandler;
@@ -31,6 +32,7 @@ public class NarutoCraftMod {
 	@SidedProxy(clientSide = References.Client, serverSide = References.Common)
 	public static ProxyCommon proxy;
 	private ConfigurationHandler config;
+	public static final PacketPipeline packetPipeline = new PacketPipeline();
 	/**
 	 * Create Creative Tab named NarutoCraft Mod
 	 */
@@ -41,7 +43,7 @@ public class NarutoCraftMod {
 	 */
 	@Instance(References.MODID)
 	public static NarutoCraftMod instance;
-	
+
 	/**
 	 * preInit
 	 */
@@ -60,6 +62,7 @@ public class NarutoCraftMod {
 		RegEntities.RegEntitiesList();
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
 		proxy.registerSound();
+		packetPipeline.initialise();
 	}
 
 	/**
@@ -69,13 +72,14 @@ public class NarutoCraftMod {
 	public void load(FMLInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
 		FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
+		packetPipeline.postInitialise();
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();
 		RegMobs.RegMobsList();
 		NetworkRegistry.INSTANCE
 				.registerGuiHandler(instance, new ProxyCommon());
 	}
-	
+
 	/**
 	 * Constructor to Registry Lists of mod elements
 	 */

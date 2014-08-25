@@ -6,7 +6,7 @@ public class GuiBasic extends GuiScreen{
 	public static int GUI_ID = 0;
 	
 	public static final int
-	GUI_CUSTOM_INV = GUI_ID++,
+	GUI_JUTSU_INV = GUI_ID++,
 	GUI_ITEM_INV = GUI_ID++;
 	
 	public GuiBasic () {

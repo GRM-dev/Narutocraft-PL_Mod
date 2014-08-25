@@ -72,6 +72,7 @@ key_key.hotbar.8:9
 key_key.hotbar.9:10
 key_Previous Jutsu:24
 key_Next Jutsu:25
+key_Jutsu Panel:23
 soundCategory_master:1.0
 soundCategory_music:1.0
 soundCategory_record:1.0
