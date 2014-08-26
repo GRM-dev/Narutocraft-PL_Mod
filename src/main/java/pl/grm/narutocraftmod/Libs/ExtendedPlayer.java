@@ -10,13 +10,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.HUD.InvPlayerSlot;
+import pl.grm.narutocraftmod.HUD.JutsuInv;
 import pl.grm.narutocraftmod.Network.SyncPlayerPropsPacket;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "ExtendedPlayer";
 	private final EntityPlayer player;
-	public final InvPlayerSlot inventory = new InvPlayerSlot();
+	public final JutsuInv inventory = new JutsuInv();
 	public InventoryPlayer inventoryPanel;
 	private int maxChakra, chakraRegenTimer;
 	public static final int CHAKRA_WATCHER = 20;

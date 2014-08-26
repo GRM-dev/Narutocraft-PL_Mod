@@ -13,52 +13,33 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class GuiPowerContainer extends GuiContainer {
-	/**
-	 * x size of the inventory window in pixels. Defined as float, passed as int
-	 */
+public class GuiJutsuInv extends GuiContainer {
 	private float xSize_lo;
-
-	/**
-	 * y size of the inventory window in pixels. Defined as float, passed as
-	 * int.
-	 */
 	private float ySize_lo;
-
-	/**
-	 * Normally I use '(ModInfo.MOD_ID, "textures/...")', but it can be done
-	 * this way as well
-	 */
+	private EntityPlayer player;
 	private static final ResourceLocation iconLocation = new ResourceLocation(
-			"tutorial:textures/gui/custom_inventory.png");
+			"narutocraftmod:textures/gui/jutsuGUI.png");
+	private final JutsuInv inventory;
 
-	/**
-	 * Could use IInventory type to be more generic, but this way will save an
-	 * import...
-	 */
-	private final InvPlayerSlot inventory;
-
-	public GuiPowerContainer(EntityPlayer player,
-			InventoryPlayer inventoryPlayer, InvPlayerSlot inventoryCustom) {
+	public GuiJutsuInv(EntityPlayer player, InventoryPlayer inventoryPlayer,
+			JutsuInv inventoryCustom) {
 		super(new ContainerNCPLPlayer(player, inventoryPlayer, inventoryCustom));
 		this.inventory = inventoryCustom;
-		// if you need the player for something later on, store it in a local
-		// variable here as well
+		this.player = player;
 	}
 
-	/**
-	 * Draws the screen and all the components in it.
-	 */
+	@Override
 	public void drawScreen(int par1, int par2, float par3) {
 		super.drawScreen(par1, par2, par3);
-		this.xSize_lo = (float) par1;
-		this.ySize_lo = (float) par2;
+		this.xSize_lo = par1;
+		this.ySize_lo = par2;
 	}
 
 	/**
 	 * Draw the foreground layer for the GuiContainer (everything in front of
 	 * the items)
 	 */
+	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		// This method will simply draw inventory names on the screen - you
 		// could do without it entirely
@@ -83,6 +64,7 @@ public class GuiPowerContainer extends GuiContainer {
 	 * Draw the background layer for the GuiContainer (everything behind the
 	 * items)
 	 */
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2,
 			int par3) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -90,8 +72,8 @@ public class GuiPowerContainer extends GuiContainer {
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-		drawPlayerModel(k + 51, l + 75, 30, (float) (k + 51) - this.xSize_lo,
-				(float) (l + 75 - 50) - this.ySize_lo, this.mc.thePlayer);
+		drawPlayerModel(k + 51, l + 75, 30, k + 51 - this.xSize_lo, l + 75 - 50
+				- this.ySize_lo, this.mc.thePlayer);
 	}
 
 	/**

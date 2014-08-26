@@ -4,16 +4,16 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import pl.grm.narutocraftmod.jutsu.Sharingan;
+import pl.grm.narutocraftmod.jutsu.Jutsu;
 
-public class SlotCustom extends Slot {
-	public SlotCustom(IInventory inventory, int slotIndex, int x, int y) {
+public class JutsuSlot extends Slot {
+	public JutsuSlot(IInventory inventory, int slotIndex, int x, int y) {
 		super(inventory, slotIndex, x, y);
 	}
 
 	@Override
 	public boolean isItemValid(ItemStack itemstack) {
-		return itemstack.getItem() instanceof Sharingan;
+		return itemstack.getItem() instanceof Jutsu;
 	}
 }
 // Armor Slot:

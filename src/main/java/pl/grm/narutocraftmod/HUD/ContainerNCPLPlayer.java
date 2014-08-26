@@ -14,19 +14,19 @@ public class ContainerNCPLPlayer extends Container {
 	 * Avoid magic numbers! This will greatly reduce the chance of you making
 	 * errors in 'transferStackInSlot' method
 	 */
-	private static final int ARMOR_START = InvPlayerSlot.INV_SIZE,
+	private static final int ARMOR_START = JutsuInv.INV_SIZE,
 			ARMOR_END = ARMOR_START + 3, INV_START = ARMOR_END + 1,
 			INV_END = INV_START + 26, HOTBAR_START = INV_END + 1,
 			HOTBAR_END = HOTBAR_START + 8;
 
 	public ContainerNCPLPlayer(EntityPlayer player,
-			InventoryPlayer inventoryPlayer, InvPlayerSlot inventoryCustom) {
+			InventoryPlayer inventoryPlayer, JutsuInv inventoryCustom) {
 		int i;
 		/**
 		 * Adds CUSTOM slots new Slot class for each different item type
 		 */
-		this.addSlotToContainer(new SlotCustom(inventoryCustom, 0, 80, 8));
-		this.addSlotToContainer(new SlotCustom(inventoryCustom, 1, 80, 26));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 80, 8));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 1, 80, 26));
 
 		/**
 		 * Add ARMOR slots; needs public version of SlotArmor copy and paste the
@@ -86,7 +86,7 @@ public class ContainerNCPLPlayer extends Container {
 				// if item is our custom item
 				if (itemstack1.getItem() instanceof Sharingan) {
 					if (!this.mergeItemStack(itemstack1, 0,
-							InvPlayerSlot.INV_SIZE, false)) {
+							JutsuInv.INV_SIZE, false)) {
 						return null;
 					}
 				}
