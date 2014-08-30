@@ -4,11 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
-
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.HUD.GuiBasic;
-import pl.grm.narutocraftmod.Libs.KeyBindings;
-import pl.grm.narutocraftmod.Network.OpenGuiPacket;
+import pl.grm.narutocraftmod.hud.GuiBasic;
+import pl.grm.narutocraftmod.libs.config.KeyBindings;
+import pl.grm.narutocraftmod.network.OpenGuiPacket;
 /**
  * gets keyboard button presses form {@link KeyBindings}
  * 

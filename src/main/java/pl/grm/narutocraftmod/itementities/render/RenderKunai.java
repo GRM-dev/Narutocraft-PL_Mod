@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Entities.Render;
+package pl.grm.narutocraftmod.itementities.render;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraftmod.Entities.EntityKunai;
+import pl.grm.narutocraftmod.itementities.EntityKunai;
 /**
  * Method Render EntityKunai
  * @author Admaster

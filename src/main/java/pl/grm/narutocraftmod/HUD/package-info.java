@@ -5,4 +5,4 @@
  * @author Admaster
  *
  */
-package pl.grm.narutocraftmod.HUD;
+package pl.grm.narutocraftmod.hud;

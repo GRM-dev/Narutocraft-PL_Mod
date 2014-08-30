@@ -1,11 +1,11 @@
-package pl.grm.narutocraftmod.Libs.registry;
+package pl.grm.narutocraftmod.libs.registry;
 
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Entities.EntityKunai;
-import pl.grm.narutocraftmod.Entities.EntitySenbon;
-import pl.grm.narutocraftmod.Entities.EntityShuriken;
-import pl.grm.narutocraftmod.Entities.EntityWKunai;
-import pl.grm.narutocraftmod.Mobs.Bijuu.EntityKyuubi;
+import pl.grm.narutocraftmod.itementities.EntityKunai;
+import pl.grm.narutocraftmod.itementities.EntitySenbon;
+import pl.grm.narutocraftmod.itementities.EntityShuriken;
+import pl.grm.narutocraftmod.itementities.EntityWKunai;
+import pl.grm.narutocraftmod.mobs.bijuu.EntityKyuubi;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class RegEntities extends NarutoCraftMod {

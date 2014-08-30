@@ -3,9 +3,7 @@ package pl.grm.narutocraftmod.handlers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-
-import pl.grm.narutocraftmod.Libs.registry.RegJutsus;
-
+import pl.grm.narutocraftmod.libs.registry.RegJutsus;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 

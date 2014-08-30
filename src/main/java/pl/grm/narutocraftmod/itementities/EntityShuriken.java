@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Entities;
+package pl.grm.narutocraftmod.itementities;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
@@ -21,43 +22,37 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import pl.grm.narutocraftmod.libs.DamSource;
+import pl.grm.narutocraftmod.libs.registry.RegItems;
 
-import pl.grm.narutocraftmod.Libs.DamSource;
-import pl.grm.narutocraftmod.Libs.registry.RegItems;
-/**
- * Senbon Entity
- * @author Admaster
- *
- */
-public class EntitySenbon extends Entity implements IProjectile
+public class EntityShuriken extends EntityArrow implements IProjectile
 {
     private int d = -1;
     private int e = -1;
     private int f = -1;
-    private Block field_145790_g;
+    private Block contactBlock;
     private int inData;
-    private boolean inGround;
+    public boolean inGround;
     public int canBePickedUp;
-    public static int SenbonShake;
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir;
     private double damage = 2.0D;
-    
-    public EntitySenbon(World par1World)
+
+    public EntityShuriken(World par1World)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
         this.setSize(0.5F, 0.5F);
     }
     /**
-     * 
+     * Constructor of entity
      * @param par1World World
      * @param par2 x
      * @param par4 y
      * @param par6 z
      */
-    public EntitySenbon(World par1World, double par2, double par4, double par6)
+    public EntityShuriken(World par1World, double par2, double par4, double par6)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -66,7 +61,7 @@ public class EntitySenbon extends Entity implements IProjectile
         this.yOffset = 0.0F;
     }
 
-    public EntitySenbon(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase, float par4, float par5)
+    public EntityShuriken(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase, float par4, float par5)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -96,7 +91,7 @@ public class EntitySenbon extends Entity implements IProjectile
         }
     }
 
-    public EntitySenbon(World par1World, EntityLivingBase par2EntityLivingBase, float par3)
+    public EntityShuriken(World par1World, EntityLivingBase par2EntityLivingBase, float par3)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -213,16 +208,11 @@ public class EntitySenbon extends Entity implements IProjectile
             }
         }
 
-        if (EntitySenbon.SenbonShake > 0)
-        {
-            --EntitySenbon.SenbonShake;
-        }
-
         if (this.inGround)
         {
             int j = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
 
-            if (block == this.field_145790_g && j == this.inData)
+            if (block == this.contactBlock && j == this.inData)
             {
                 ++this.ticksInGround;
 
@@ -319,11 +309,11 @@ public class EntitySenbon extends Entity implements IProjectile
 
                     if (this.shootingEntity == null)
                     {
-                        damagesource = DamSource.causeSenbonDamage(this, this);
+                        damagesource = DamSource.causeShurikenDamage(this, this);
                     }
                     else
                     {
-                        damagesource = DamSource.causeSenbonDamage(this, this.shootingEntity);
+                        damagesource = DamSource.causeShurikenDamage(this, this.shootingEntity);
                     }
 
                     if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)k))
@@ -365,7 +355,7 @@ public class EntitySenbon extends Entity implements IProjectile
                     this.d = movingobjectposition.blockX;
                     this.e = movingobjectposition.blockY;
                     this.f = movingobjectposition.blockZ;
-                    this.field_145790_g = block;
+                    this.contactBlock = block;
                     this.inData = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
                     this.motionX = (double)((float)(movingobjectposition.hitVec.xCoord - this.posX));
                     this.motionY = (double)((float)(movingobjectposition.hitVec.yCoord - this.posY));
@@ -376,11 +366,10 @@ public class EntitySenbon extends Entity implements IProjectile
                     this.posZ -= this.motionZ / (double)f2 * 0.05000000074505806D;
                     this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                     this.inGround = true;
-                    EntitySenbon.SenbonShake = 0;
 
-                    if (this.field_145790_g.getMaterial() != Material.air)
+                    if (this.contactBlock.getMaterial() != Material.air)
                     {
-                        this.field_145790_g.onEntityCollidedWithBlock(this.worldObj, this.d, this.e, this.f, this);
+                        this.contactBlock.onEntityCollidedWithBlock(this.worldObj, this.d, this.e, this.f, this);
                     }
                 }
             }
@@ -456,9 +445,8 @@ public class EntitySenbon extends Entity implements IProjectile
         par1NBTTagCompound.setShort("yTile", (short)this.e);
         par1NBTTagCompound.setShort("zTile", (short)this.f);
         par1NBTTagCompound.setShort("life", (short)this.ticksInGround);
-        par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.field_145790_g));
+        par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.contactBlock));
         par1NBTTagCompound.setByte("inData", (byte)this.inData);
-        par1NBTTagCompound.setByte("shake", (byte)EntitySenbon.SenbonShake);
         par1NBTTagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
         par1NBTTagCompound.setByte("pickup", (byte)this.canBePickedUp);
         par1NBTTagCompound.setDouble("damage", this.damage);
@@ -471,9 +459,8 @@ public class EntitySenbon extends Entity implements IProjectile
         this.e = par1NBTTagCompound.getShort("yTile");
         this.f = par1NBTTagCompound.getShort("zTile");
         this.ticksInGround = par1NBTTagCompound.getShort("life");
-        this.field_145790_g = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
+        this.contactBlock = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
         this.inData = par1NBTTagCompound.getByte("inData") & 255;
-        EntitySenbon.SenbonShake = par1NBTTagCompound.getByte("shake") & 255;
         this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
 
         if (par1NBTTagCompound.hasKey("damage", 99))
@@ -494,11 +481,11 @@ public class EntitySenbon extends Entity implements IProjectile
     @Override
     public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
     {
-        if (!this.worldObj.isRemote && this.inGround && EntitySenbon.SenbonShake <= 0)
+        if (!this.worldObj.isRemote && this.inGround)
         {
             boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && par1EntityPlayer.capabilities.isCreativeMode;
 
-            if (this.canBePickedUp == 1 && !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegItems.Senbon, 1)))
+            if (this.canBePickedUp == 1 && !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegItems.Shuriken, 1)))
             {
                 flag = false;
             }

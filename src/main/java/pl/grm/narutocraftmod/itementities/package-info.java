@@ -5,4 +5,4 @@
  * 
  */
 
-package pl.grm.narutocraftmod.Entities;
+package pl.grm.narutocraftmod.itementities;

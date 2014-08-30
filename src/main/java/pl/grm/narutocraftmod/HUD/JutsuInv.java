@@ -1,24 +1,18 @@
-package pl.grm.narutocraftmod.HUD;
+package pl.grm.narutocraftmod.hud;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-
+import pl.grm.narutocraftmod.jutsu.Jutsu;
 import pl.grm.narutocraftmod.jutsu.Sharingan;
 
 public class JutsuInv implements IInventory {
-
-	private final String name = "Custom Inventory";
-	private final String tagName = "JutsuInv";
-	// can be SLOT_SHIELD = 0, SLOT_AMULET = 1;
-	public static final int INV_SIZE = 2;
+	private final String name = "Jutsu Panel";
+	private final String tagName = "JutsuPanel";
+	public static final int INV_SIZE = 5;
 	private ItemStack[] inventory = new ItemStack[INV_SIZE];
-
-	public JutsuInv() {
-
-	}
 
 	@Override
 	public int getSizeInventory() {
@@ -79,9 +73,6 @@ public class JutsuInv implements IInventory {
 		return name.length() > 0;
 	}
 
-	/**
-	 * Our custom slots are similar to armor - only one item per slot
-	 */
 	@Override
 	public int getInventoryStackLimit() {
 		return 1;
@@ -92,18 +83,13 @@ public class JutsuInv implements IInventory {
 		return true;
 	}
 
-	/**
-	 * This method doesn't seem to do what it claims to do, as items can still
-	 * be left-clicked and placed in the inventory even when this returns false
-	 */
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-		// If you have different kinds of slots, then check them here:
+		// If different kinds of slots, then check them here:
 		// if (slot == SLOT_SHIELD && itemstack.getItem() instance of
 		// ItemShield) return true;
 
-		// For now, only ItemUseMana items can be stored in these slots
-		return itemstack.getItem() instanceof Sharingan;
+		return itemstack.getItem() instanceof Jutsu;
 	}
 
 	public void writeToNBT(NBTTagCompound compound) {
@@ -117,10 +103,6 @@ public class JutsuInv implements IInventory {
 				items.appendTag(item);
 			}
 		}
-
-		// We're storing our items in a custom tag list using our 'tagName' from
-		// above
-		// to prevent potential conflicts
 		compound.setTag(tagName, items);
 	}
 
@@ -142,7 +124,6 @@ public class JutsuInv implements IInventory {
 					&& this.getStackInSlot(i).stackSize == 0)
 				this.setInventorySlotContents(i, null);
 		}
-
 	}
 
 	@Override

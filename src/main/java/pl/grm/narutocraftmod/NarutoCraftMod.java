@@ -10,19 +10,18 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-
-import pl.grm.narutocraftmod.Libs.ProxyCommon;
-import pl.grm.narutocraftmod.Libs.References;
-import pl.grm.narutocraftmod.Libs.config.ConfigurationHandler;
-import pl.grm.narutocraftmod.Libs.registry.RegEntities;
-import pl.grm.narutocraftmod.Libs.registry.RegItems;
-import pl.grm.narutocraftmod.Libs.registry.RegJutsus;
-import pl.grm.narutocraftmod.Libs.registry.RegMobs;
-import pl.grm.narutocraftmod.Libs.registry.RegRecipes;
-import pl.grm.narutocraftmod.Network.PacketPipeline;
 import pl.grm.narutocraftmod.handlers.KeyInputHandler;
 import pl.grm.narutocraftmod.handlers.NCPLEventHandler;
 import pl.grm.narutocraftmod.handlers.NCPLFMLEventHandler;
+import pl.grm.narutocraftmod.libs.ProxyCommon;
+import pl.grm.narutocraftmod.libs.References;
+import pl.grm.narutocraftmod.libs.config.ConfigurationHandler;
+import pl.grm.narutocraftmod.libs.registry.RegEntities;
+import pl.grm.narutocraftmod.libs.registry.RegItems;
+import pl.grm.narutocraftmod.libs.registry.RegJutsus;
+import pl.grm.narutocraftmod.libs.registry.RegMobs;
+import pl.grm.narutocraftmod.libs.registry.RegRecipes;
+import pl.grm.narutocraftmod.network.PacketPipeline;
 
 @Mod(modid = References.MODID, version = References.VERSION)
 /**
@@ -36,7 +35,7 @@ public class NarutoCraftMod {
 	/**
 	 * Create Creative Tab named NarutoCraft Mod
 	 */
-	public static CreativeTabs mTabNarutoCraftMod = new TabClass(
+	public static CreativeTabs mTabNarutoCraftMod = new NCPLCreativeTab(
 			CreativeTabs.getNextID(), "NarutoCraftMod");
 	/**
 	 * Create mod instance

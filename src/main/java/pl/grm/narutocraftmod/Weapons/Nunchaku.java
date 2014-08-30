@@ -1,9 +1,9 @@
-package pl.grm.narutocraftmod.Weapons;
+package pl.grm.narutocraftmod.weapons;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import pl.grm.narutocraftmod.Libs.Materials;
+import pl.grm.narutocraftmod.libs.Materials;
 
 public class Nunchaku extends SwordMain {
 	public Nunchaku (int i) {

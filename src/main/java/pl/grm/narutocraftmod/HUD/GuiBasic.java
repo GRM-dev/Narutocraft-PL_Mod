@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.HUD;
+package pl.grm.narutocraftmod.hud;
 
 import net.minecraft.client.gui.GuiScreen;
 

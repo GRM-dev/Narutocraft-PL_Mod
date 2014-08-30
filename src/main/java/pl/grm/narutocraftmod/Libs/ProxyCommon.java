@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.libs;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,11 +6,10 @@ import java.util.Map;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import pl.grm.narutocraftmod.hud.ContainerNCPLPlayer;
+import pl.grm.narutocraftmod.hud.GuiBasic;
+import pl.grm.narutocraftmod.hud.GuiJutsuInvContainer;
 import cpw.mods.fml.common.network.IGuiHandler;
-
-import pl.grm.narutocraftmod.HUD.ContainerNCPLPlayer;
-import pl.grm.narutocraftmod.HUD.GuiBasic;
-import pl.grm.narutocraftmod.HUD.GuiJutsuInv;
 
 public class ProxyCommon implements IGuiHandler {
 	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
@@ -45,7 +44,7 @@ public class ProxyCommon implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
 		if (ID == GuiBasic.GUI_JUTSU_INV) {
-			return new GuiJutsuInv(player, player.inventory,
+			return new GuiJutsuInvContainer(player, player.inventory,
 					ExtendedPlayer.get(player).inventory);
 		} else if (ID == GuiBasic.GUI_ITEM_INV) {
 			return null; // new GuiMagicBag(player, player.inventory, new

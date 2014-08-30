@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Mobs.Bijuu;
+package pl.grm.narutocraftmod.mobs.bijuu;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;

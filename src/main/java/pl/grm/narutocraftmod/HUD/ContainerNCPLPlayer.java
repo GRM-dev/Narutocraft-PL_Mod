@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.HUD;
+package pl.grm.narutocraftmod.hud;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -6,14 +6,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-
-import pl.grm.narutocraftmod.jutsu.Sharingan;
+import pl.grm.narutocraftmod.jutsu.Jutsu;
 
 public class ContainerNCPLPlayer extends Container {
-	/**
-	 * Avoid magic numbers! This will greatly reduce the chance of you making
-	 * errors in 'transferStackInSlot' method
-	 */
 	private static final int ARMOR_START = JutsuInv.INV_SIZE,
 			ARMOR_END = ARMOR_START + 3, INV_START = ARMOR_END + 1,
 			INV_END = INV_START + 26, HOTBAR_START = INV_END + 1,
@@ -22,21 +17,22 @@ public class ContainerNCPLPlayer extends Container {
 	public ContainerNCPLPlayer(EntityPlayer player,
 			InventoryPlayer inventoryPlayer, JutsuInv inventoryCustom) {
 		int i;
-		/**
-		 * Adds CUSTOM slots new Slot class for each different item type
-		 */
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 80, 8));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 1, 80, 26));
+		int x = 20, y = 8;
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 6 * x, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 2 * x, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 3 * x, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 4 * x, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 5 * x, y));
 
 		/**
 		 * Add ARMOR slots; needs public version of SlotArmor copy and paste the
 		 * vanilla code into a new class and change what you need
 		 */
-		for (i = 0; i < 4; ++i) {
-			// this.addSlotToContainer(new SlotArmor(player, inventoryPlayer,
-			// inventoryPlayer.getSizeInventory() - 1 - i, 8, 8 + i * 18,
-			// i));
-		}
+		// for (i = 0; i < 4; ++i) {
+		// this.addSlotToContainer(new SlotArmor(player, inventoryPlayer,
+		// inventoryPlayer.getSizeInventory() - 1 - i, 8, 8 + i * 18,
+		// i));
+		// }
 		// Add PLAYER INVENTORY
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
@@ -84,9 +80,9 @@ public class ContainerNCPLPlayer extends Container {
 			// armor slots
 			else {
 				// if item is our custom item
-				if (itemstack1.getItem() instanceof Sharingan) {
-					if (!this.mergeItemStack(itemstack1, 0,
-							JutsuInv.INV_SIZE, false)) {
+				if (itemstack1.getItem() instanceof Jutsu) {
+					if (!this.mergeItemStack(itemstack1, 0, JutsuInv.INV_SIZE,
+							false)) {
 						return null;
 					}
 				}

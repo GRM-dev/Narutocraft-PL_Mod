@@ -5,20 +5,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import pl.grm.narutocraftmod.Libs.registry.RegJutsus;
+import pl.grm.narutocraftmod.libs.registry.RegJutsus;
 
 /**
  * Create Creative Tab
  */
-public class TabClass extends CreativeTabs {
+public class NCPLCreativeTab extends CreativeTabs {
 	private Item item;
 	/**
 	 * 
 	 * @param par1 Creative Tab Id
 	 * @param par2Str Tab Name
 	 */
-	public TabClass(int par1, String par2Str) {
+	public NCPLCreativeTab(int par1, String par2Str) {
 		super(par1, par2Str);
 	}
 

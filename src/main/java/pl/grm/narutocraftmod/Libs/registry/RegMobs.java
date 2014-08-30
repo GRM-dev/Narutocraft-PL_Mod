@@ -1,8 +1,8 @@
-package pl.grm.narutocraftmod.Libs.registry;
+package pl.grm.narutocraftmod.libs.registry;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Mobs.Bijuu.EntityKyuubi;
+import pl.grm.narutocraftmod.mobs.bijuu.EntityKyuubi;
 
 public class RegMobs extends NarutoCraftMod {
 	public static void RegMobsList() {

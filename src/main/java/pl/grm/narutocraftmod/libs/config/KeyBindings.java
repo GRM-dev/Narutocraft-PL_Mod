@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.libs.config;
 
 import net.minecraft.client.settings.KeyBinding;
 

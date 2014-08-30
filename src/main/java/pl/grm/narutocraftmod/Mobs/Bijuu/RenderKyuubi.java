@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Mobs.Bijuu;
+package pl.grm.narutocraftmod.mobs.bijuu;
 
 import org.lwjgl.opengl.GL11;
 

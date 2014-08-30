@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs.config;
+package pl.grm.narutocraftmod.libs.config;
 
 import java.io.*;
 import java.util.ArrayList;

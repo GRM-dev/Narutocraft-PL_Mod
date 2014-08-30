@@ -5,4 +5,4 @@
  * @author Admaster
  *
  */
-package pl.grm.narutocraftmod.Entities.Render;
+package pl.grm.narutocraftmod.itementities.render;

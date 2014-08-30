@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Mobs.Bijuu;
+package pl.grm.narutocraftmod.mobs.bijuu;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

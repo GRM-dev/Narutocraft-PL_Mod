@@ -1,27 +1,10 @@
-package pl.grm.narutocraftmod.Libs.registry;
+package pl.grm.narutocraftmod.libs.registry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import cpw.mods.fml.common.registry.GameRegistry;
-
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Libs.Materials;
-import pl.grm.narutocraftmod.Weapons.KBushido;
-import pl.grm.narutocraftmod.Weapons.KaMiecz;
-import pl.grm.narutocraftmod.Weapons.Katana;
-import pl.grm.narutocraftmod.Weapons.Kubiki;
-import pl.grm.narutocraftmod.Weapons.Kurosawa;
-import pl.grm.narutocraftmod.Weapons.MSamuraja;
-import pl.grm.narutocraftmod.Weapons.Nunchaku;
-import pl.grm.narutocraftmod.Weapons.RKatana;
-import pl.grm.narutocraftmod.Weapons.Raitanto;
-import pl.grm.narutocraftmod.Weapons.Wakizashi;
-import pl.grm.narutocraftmod.Weapons.ZRekawica;
-import pl.grm.narutocraftmod.Weapons.Projectiles.Kunai;
-import pl.grm.narutocraftmod.Weapons.Projectiles.Senbon;
-import pl.grm.narutocraftmod.Weapons.Projectiles.Shuriken;
-import pl.grm.narutocraftmod.Weapons.Projectiles.WKunai;
 import pl.grm.narutocraftmod.armor.NCPLItemArmor;
 import pl.grm.narutocraftmod.items.DZwoj;
 import pl.grm.narutocraftmod.items.FZwoj;
@@ -29,6 +12,22 @@ import pl.grm.narutocraftmod.items.KZwoj;
 import pl.grm.narutocraftmod.items.NZwoj;
 import pl.grm.narutocraftmod.items.RZwoj;
 import pl.grm.narutocraftmod.items.SZwoj;
+import pl.grm.narutocraftmod.libs.Materials;
+import pl.grm.narutocraftmod.weapons.KBushido;
+import pl.grm.narutocraftmod.weapons.KaMiecz;
+import pl.grm.narutocraftmod.weapons.Katana;
+import pl.grm.narutocraftmod.weapons.Kubiki;
+import pl.grm.narutocraftmod.weapons.Kurosawa;
+import pl.grm.narutocraftmod.weapons.MSamuraja;
+import pl.grm.narutocraftmod.weapons.Nunchaku;
+import pl.grm.narutocraftmod.weapons.RKatana;
+import pl.grm.narutocraftmod.weapons.Raitanto;
+import pl.grm.narutocraftmod.weapons.Wakizashi;
+import pl.grm.narutocraftmod.weapons.ZRekawica;
+import pl.grm.narutocraftmod.weapons.projectiles.Kunai;
+import pl.grm.narutocraftmod.weapons.projectiles.Senbon;
+import pl.grm.narutocraftmod.weapons.projectiles.Shuriken;
+import pl.grm.narutocraftmod.weapons.projectiles.WKunai;
 
 public class RegItems extends NarutoCraftMod{
 	private static int id = 4650;

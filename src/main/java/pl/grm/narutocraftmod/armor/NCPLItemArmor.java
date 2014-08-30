@@ -3,9 +3,8 @@ package pl.grm.narutocraftmod.armor;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Libs.registry.RegItems;
+import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 /**
  * Adds Armor items

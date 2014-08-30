@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Entities.Render;
+package pl.grm.narutocraftmod.itementities.render;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;

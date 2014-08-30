@@ -1,13 +1,12 @@
-package pl.grm.narutocraftmod.Weapons.Projectiles;
+package pl.grm.narutocraftmod.weapons.projectiles;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Entities.EntityShuriken;
-import pl.grm.narutocraftmod.Libs.registry.RegItems;
+import pl.grm.narutocraftmod.itementities.EntityShuriken;
+import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 public class Shuriken extends Item {
 	public Shuriken(int i) {

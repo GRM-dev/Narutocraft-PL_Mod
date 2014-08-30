@@ -1,20 +1,21 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.libs;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
-import pl.grm.narutocraftmod.Entities.EntityKunai;
-import pl.grm.narutocraftmod.Entities.EntitySenbon;
-import pl.grm.narutocraftmod.Entities.EntityShuriken;
-import pl.grm.narutocraftmod.Entities.EntityWKunai;
-import pl.grm.narutocraftmod.Entities.Render.RenderKunai;
-import pl.grm.narutocraftmod.Entities.Render.RenderSenbon;
-import pl.grm.narutocraftmod.Entities.Render.RenderShuriken;
-import pl.grm.narutocraftmod.Entities.Render.RenderWKunai;
-import pl.grm.narutocraftmod.HUD.GuiChakraBar;
 import pl.grm.narutocraftmod.handlers.SoundHandler;
-import pl.grm.narutocraftmod.Mobs.Bijuu.EntityKyuubi;
-import pl.grm.narutocraftmod.Mobs.Bijuu.ModelKyuubi;
-import pl.grm.narutocraftmod.Mobs.Bijuu.RenderKyuubi;
+import pl.grm.narutocraftmod.hud.ChakraBar.GuiChakraBar;
+import pl.grm.narutocraftmod.itementities.EntityKunai;
+import pl.grm.narutocraftmod.itementities.EntitySenbon;
+import pl.grm.narutocraftmod.itementities.EntityShuriken;
+import pl.grm.narutocraftmod.itementities.EntityWKunai;
+import pl.grm.narutocraftmod.itementities.render.RenderKunai;
+import pl.grm.narutocraftmod.itementities.render.RenderSenbon;
+import pl.grm.narutocraftmod.itementities.render.RenderShuriken;
+import pl.grm.narutocraftmod.itementities.render.RenderWKunai;
+import pl.grm.narutocraftmod.libs.config.KeyBindings;
+import pl.grm.narutocraftmod.mobs.bijuu.EntityKyuubi;
+import pl.grm.narutocraftmod.mobs.bijuu.ModelKyuubi;
+import pl.grm.narutocraftmod.mobs.bijuu.RenderKyuubi;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ProxyClient extends ProxyCommon{

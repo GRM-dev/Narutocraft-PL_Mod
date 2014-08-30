@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Libs;
+package pl.grm.narutocraftmod.libs;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,10 +8,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.HUD.JutsuInv;
-import pl.grm.narutocraftmod.Network.SyncPlayerPropsPacket;
+import pl.grm.narutocraftmod.hud.JutsuInv;
+import pl.grm.narutocraftmod.network.SyncPlayerPropsPacket;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "ExtendedPlayer";

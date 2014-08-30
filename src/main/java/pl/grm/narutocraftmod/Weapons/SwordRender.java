@@ -1,12 +1,11 @@
-package pl.grm.narutocraftmod.Weapons;
+package pl.grm.narutocraftmod.weapons;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-
-import pl.grm.narutocraftmod.Weapons.SwordModel;
+import pl.grm.narutocraftmod.weapons.SwordModel;
 
 import org.lwjgl.opengl.GL11;
 

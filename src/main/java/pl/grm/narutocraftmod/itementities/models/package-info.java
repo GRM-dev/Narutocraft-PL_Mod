@@ -5,4 +5,4 @@
  * @author Admaster
  *
  */
-package pl.grm.narutocraftmod.Entities.Models;
+package pl.grm.narutocraftmod.itementities.models;

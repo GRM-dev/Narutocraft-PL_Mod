@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Network;
+package pl.grm.narutocraftmod.network;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

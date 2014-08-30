@@ -5,4 +5,4 @@
  * @author _Admaster
  *
  */
-package pl.grm.narutocraftmod.Network;
+package pl.grm.narutocraftmod.network;

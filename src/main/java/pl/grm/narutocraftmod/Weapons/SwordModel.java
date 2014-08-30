@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Weapons;
+package pl.grm.narutocraftmod.weapons;
 
 import net.minecraft.entity.Entity;
 

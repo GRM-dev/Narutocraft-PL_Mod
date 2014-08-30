@@ -1,13 +1,12 @@
-package pl.grm.narutocraftmod.Weapons.Projectiles;
+package pl.grm.narutocraftmod.weapons.projectiles;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import pl.grm.narutocraftmod.NarutoCraftMod;
-import pl.grm.narutocraftmod.Entities.EntityWKunai;
-import pl.grm.narutocraftmod.Libs.registry.RegItems;
+import pl.grm.narutocraftmod.itementities.EntityWKunai;
+import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 public class WKunai extends Item {
 	public WKunai(int i) {

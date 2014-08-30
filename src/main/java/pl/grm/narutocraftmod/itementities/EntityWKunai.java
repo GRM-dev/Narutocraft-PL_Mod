@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.Entities;
+package pl.grm.narutocraftmod.itementities;
 
 import java.util.List;
 
@@ -21,9 +21,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import pl.grm.narutocraftmod.Libs.DamSource;
-import pl.grm.narutocraftmod.Libs.registry.RegItems;
+import pl.grm.narutocraftmod.libs.DamSource;
+import pl.grm.narutocraftmod.libs.registry.RegItems;
 /**
  * Entity Wybuchajacy Kunai
  * @author Admaster

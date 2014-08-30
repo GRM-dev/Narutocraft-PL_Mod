@@ -5,4 +5,4 @@
  * @author Lukasz
  *
  */
-package pl.grm.narutocraftmod.Mobs;
+package pl.grm.narutocraftmod.mobs;

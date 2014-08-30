@@ -5,4 +5,4 @@
  * @author Lukasz
  *
  */
-package pl.grm.narutocraftmod.Weapons;
+package pl.grm.narutocraftmod.weapons;

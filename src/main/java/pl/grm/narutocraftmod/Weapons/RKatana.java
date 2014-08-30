@@ -1,6 +1,6 @@
-package pl.grm.narutocraftmod.Weapons;
+package pl.grm.narutocraftmod.weapons;
 
-import pl.grm.narutocraftmod.Libs.Materials;
+import pl.grm.narutocraftmod.libs.Materials;
 
 public class RKatana extends SwordMain {
 	public RKatana (int i) {
