@@ -8,7 +8,7 @@ public class AsaKujaku extends Jutsu {
 
 	public AsaKujaku(int i) {
 		this.setUnlocalizedName("Asa Kujaku");
-		this.setTextureName("narutocraftmod:/jutsu/Asa Kujaku");
+		this.setTextureName(jutsuLoc + "Asa Kujaku");
 	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,

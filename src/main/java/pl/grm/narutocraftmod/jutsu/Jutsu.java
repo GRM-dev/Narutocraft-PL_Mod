@@ -26,13 +26,13 @@ import net.minecraft.util.RegistryNamespaced;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import pl.grm.narutocraftmod.NarutoCraftMod;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import pl.grm.narutocraftmod.NarutoCraftMod;
-
 public class Jutsu extends Item {
+	public static String jutsuLoc = "narutocraftmod:/jutsu/";
 	public static int getIdFromItem(Item p_150891_0_) {
 		return p_150891_0_ == null ? 0 : itemRegistry
 				.getIDForObject(p_150891_0_);

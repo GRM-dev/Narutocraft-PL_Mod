@@ -17,38 +17,34 @@ public class ContainerNCPLPlayer extends Container {
 	public ContainerNCPLPlayer(EntityPlayer player,
 			InventoryPlayer inventoryPlayer, JutsuInv inventoryCustom) {
 		int i;
-		int x = 20, y = 8;
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 6 * x, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 2 * x, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 3 * x, y));
+		int x = 20, y = 6;
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 2 * x + 4, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 3 * x + 2, y));
 		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 4 * x, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 5 * x, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 5 * x - 2, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 6 * x - 4, y));
 
-		/**
-		 * Add ARMOR slots; needs public version of SlotArmor copy and paste the
-		 * vanilla code into a new class and change what you need
-		 */
+		// Add ARMOR slots; needs public version of SlotArmor copy and paste the
+		// vanilla code into a new class and change what you need
 		// for (i = 0; i < 4; ++i) {
 		// this.addSlotToContainer(new SlotArmor(player, inventoryPlayer,
 		// inventoryPlayer.getSizeInventory() - 1 - i, 8, 8 + i * 18,
 		// i));
 		// }
-		// Add PLAYER INVENTORY
+		// Adds PLAYER INVENTORY
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
 				this.addSlotToContainer(new Slot(inventoryPlayer,
 						j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
-		// Add ACTION BAR
+		// Adds ACTION BAR
 		for (i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18,
 					142));
 		}
 	}
-	/**
-	 * @return Always should be true
-	 */
+
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
@@ -67,7 +63,6 @@ public class ContainerNCPLPlayer extends Container {
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			// Either armor slot or custom item slot was clicked
 			if (par2 < INV_START) {
 				// try to place in player inventory / action bar
 				if (!this.mergeItemStack(itemstack1, INV_START, HOTBAR_END + 1,
@@ -75,10 +70,7 @@ public class ContainerNCPLPlayer extends Container {
 					return null;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
-			}
-			// Item is in inventory / hotbar, try to place either in custom or
-			// armor slots
-			else {
+			} else {
 				// if item is our custom item
 				if (itemstack1.getItem() instanceof Jutsu) {
 					if (!this.mergeItemStack(itemstack1, 0, JutsuInv.INV_SIZE,
@@ -94,7 +86,7 @@ public class ContainerNCPLPlayer extends Container {
 						return null;
 					}
 				}
-				// item in player's inventory, but not in action bar
+				// item in player's inventory
 				else if (par2 >= INV_START && par2 < HOTBAR_START) {
 					// place in action bar
 					if (!this.mergeItemStack(itemstack1, HOTBAR_START,
@@ -102,7 +94,7 @@ public class ContainerNCPLPlayer extends Container {
 						return null;
 					}
 				}
-				// item in action bar - place in player inventory
+				// item in action bar
 				else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) {
 					if (!this.mergeItemStack(itemstack1, INV_START,
 							INV_END + 1, false)) {

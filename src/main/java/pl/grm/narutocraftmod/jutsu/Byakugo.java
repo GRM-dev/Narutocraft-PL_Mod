@@ -8,7 +8,7 @@ public class Byakugo extends Jutsu {
 
 	public Byakugo(int i) {
 		this.setUnlocalizedName("Byakugo");
-		this.setTextureName("narutocraftmod:Byakugo");
+		this.setTextureName(jutsuLoc + "Byakugo");
 
 	}
 	@Override

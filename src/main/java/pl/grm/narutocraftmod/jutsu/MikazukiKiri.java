@@ -4,13 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-
 public class MikazukiKiri extends Jutsu {
 
 	public MikazukiKiri(int i) {
 		this.setUnlocalizedName("Mikazuki Kiri");
-		this.setTextureName("narutocraftmod:Mikazuki Kiri");
-}
+		this.setTextureName(jutsuLoc + "Mikazuki Kiri");
+	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {

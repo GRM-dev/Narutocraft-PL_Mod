@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import pl.grm.narutocraftmod.jutsu.Jutsu;
-import pl.grm.narutocraftmod.jutsu.Sharingan;
 
 public class JutsuInv implements IInventory {
 	private final String name = "Jutsu Panel";
@@ -59,7 +58,6 @@ public class JutsuInv implements IInventory {
 				&& itemstack.stackSize > this.getInventoryStackLimit()) {
 			itemstack.stackSize = this.getInventoryStackLimit();
 		}
-
 		this.markDirty();
 	}
 
@@ -88,7 +86,6 @@ public class JutsuInv implements IInventory {
 		// If different kinds of slots, then check them here:
 		// if (slot == SLOT_SHIELD && itemstack.getItem() instance of
 		// ItemShield) return true;
-
 		return itemstack.getItem() instanceof Jutsu;
 	}
 
@@ -128,11 +125,9 @@ public class JutsuInv implements IInventory {
 
 	@Override
 	public void openInventory() {
-
 	}
 
 	@Override
 	public void closeInventory() {
-
 	}
 }
