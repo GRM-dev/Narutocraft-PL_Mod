@@ -9,9 +9,7 @@ import pl.grm.narutocraftmod.itementities.EntitySenbon;
 import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 public class Senbon extends Item {
-	public Senbon(int i) {
-		this.setUnlocalizedName("Senbon");
-		this.setTextureName("narutocraftmod:Senbon");
+	public Senbon() {		
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 30;
 	}
