@@ -1,4 +1,4 @@
-package pl.grm.narutocraftmod.hud.ChakraBar;
+package pl.grm.narutocraftmod.hud.chakraBar;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

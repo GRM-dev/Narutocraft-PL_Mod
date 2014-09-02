@@ -6,17 +6,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.itementities.EntityKunai;
+import pl.grm.narutocraftmod.libs.References;
 import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 public class Kunai extends Item implements IProjectileCast{
 	
-	public Kunai(int i) {
-		super();
-		this.setUnlocalizedName("Kunai");
-		this.setTextureName("narutocraftmod:Kunai");
+	public Kunai() 
+	{
+		super();		
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		maxStackSize = 16;
-		
+		this.maxStackSize = 16;		
 	}
 	
 	/*
