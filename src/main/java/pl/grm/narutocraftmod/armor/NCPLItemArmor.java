@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import pl.grm.narutocraftmod.NarutoCraftMod;
+import pl.grm.narutocraftmod.libs.References;
 import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 /**
@@ -11,32 +12,48 @@ import pl.grm.narutocraftmod.libs.registry.RegItems;
  * @author Admaster
  *
  */
-public class NCPLItemArmor extends ItemArmor {
-	private String armorTex = "narutocraftmod:armor/";
+public class NCPLItemArmor extends ItemArmor 
+{
+	private int armorSlot = 0;
+	private String modelTexture;
 	/**
 	 * Create Armor Item
 	 * @param armormaterial materia³ zbroi
 	 * @param ID ID armora
 	 * @param placement placement of part of armor from head = 0
+	 * @param itemTextureName this is the displayed icon of the armor for held and inventories
+	 * @param modelTextureName the base texture name for what is rendered on the player, _1 is helm, chest, and boots. _2 is pants.
 	 */
-	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement) {
+	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement,String itemTextureName , String modelTextureName) {
 		super(armormaterial, ID, placement);
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
-		
-		if (placement == 0) {
-			this.setTextureName(armorTex + "helmet" + armormaterial);
-		} else if (placement == 1) {
-			this.setTextureName(armorTex + "chestplate" + armormaterial);
-		} else if (placement == 2) {
-			this.setTextureName(armorTex + "leggins" + armormaterial);
-		} else if (placement == 3) {
-			this.setTextureName(armorTex + "boots" + armormaterial);
+		this.setMaxStackSize(1);
+		armorSlot = placement;
+		modelTexture = modelTextureName;
+		switch (placement)
+		{
+			case 0:
+				this.setTextureName(References.ModTexturePath + "armor/helmet" + itemTextureName);
+				break;
+			case 1:
+				this.setTextureName(References.ModTexturePath + "armor/chestplate" + itemTextureName);
+				break;
+			case 2:
+				this.setTextureName(References.ModTexturePath + "armor/pants" + itemTextureName);
+				break;
+			case 3:
+				this.setTextureName(References.ModTexturePath + "armor/boots" + itemTextureName);
+				break;
 		}
 	}
 	
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
-			String type) {
-		if (stack.getItem() == RegItems.helmetBushido
+			String type) 
+	{
+		if (armorSlot != 2)return "narutocraftmod:textures/model/"+modelTexture+"_1.png";
+		else return "narutocraftmod:textures/model/"+modelTexture+"_2.png";
+		
+		/*if (stack.getItem() == RegItems.helmetBushido
 				|| stack.getItem() == RegItems.plateBushido
 				|| stack.getItem() == RegItems.bootsBushido) {
 			return "narutocraftmod:textures/model/BushidoArmor.1.png";
@@ -72,7 +89,7 @@ public class NCPLItemArmor extends ItemArmor {
 		
 		}else {
 			return null;
-		}
+		}*/
 		
 	}
 

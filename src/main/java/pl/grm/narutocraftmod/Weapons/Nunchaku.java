@@ -6,11 +6,10 @@ import net.minecraft.world.World;
 import pl.grm.narutocraftmod.libs.Materials;
 
 public class Nunchaku extends SwordMain {
-	public Nunchaku (int i) {
+	public Nunchaku () {
 		super(Materials.stal);
 
-		this.setUnlocalizedName("Nunchaku");
-		this.setTextureName("narutocraftmod:Nunchaku");
+		
 
 	}
 	
