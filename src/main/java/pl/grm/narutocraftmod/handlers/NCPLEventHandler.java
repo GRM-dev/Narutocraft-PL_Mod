@@ -13,10 +13,10 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 
 import org.lwjgl.opengl.GL11;
 
+import pl.grm.narutocraftmod.hud.chakraBar.GuiChakraBar;
+import pl.grm.narutocraftmod.libs.ExtendedPlayer;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import pl.grm.narutocraftmod.hud.ChakraBar.GuiChakraBar;
-import pl.grm.narutocraftmod.libs.ExtendedPlayer;
 /**
  * Event Handler of NCPL mod
  * 

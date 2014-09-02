@@ -6,12 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.itementities.EntityWKunai;
+import pl.grm.narutocraftmod.libs.References;
 import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 public class WKunai extends Item {
-	public WKunai(int i) {
-		this.setUnlocalizedName("WybuchowyKunai");
-		this.setTextureName("narutocraftmod:Wybuchowy Kunai");
+	public WKunai() {
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 16;
 	}

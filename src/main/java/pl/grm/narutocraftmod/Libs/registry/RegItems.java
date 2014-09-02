@@ -3,7 +3,6 @@ package pl.grm.narutocraftmod.libs.registry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import cpw.mods.fml.common.registry.GameRegistry;
 import pl.grm.narutocraftmod.NarutoCraftMod;
 import pl.grm.narutocraftmod.armor.NCPLItemArmor;
 import pl.grm.narutocraftmod.items.DZwoj;
@@ -13,6 +12,7 @@ import pl.grm.narutocraftmod.items.NZwoj;
 import pl.grm.narutocraftmod.items.RZwoj;
 import pl.grm.narutocraftmod.items.SZwoj;
 import pl.grm.narutocraftmod.libs.Materials;
+import pl.grm.narutocraftmod.libs.References;
 import pl.grm.narutocraftmod.weapons.KBushido;
 import pl.grm.narutocraftmod.weapons.KaMiecz;
 import pl.grm.narutocraftmod.weapons.Katana;
@@ -28,34 +28,39 @@ import pl.grm.narutocraftmod.weapons.projectiles.Kunai;
 import pl.grm.narutocraftmod.weapons.projectiles.Senbon;
 import pl.grm.narutocraftmod.weapons.projectiles.Shuriken;
 import pl.grm.narutocraftmod.weapons.projectiles.WKunai;
+import cpw.mods.fml.common.registry.GameRegistry;
 
-public class RegItems extends NarutoCraftMod{
-	private static int id = 4650;
-	private static int id2 = 4700;
+public class RegItems extends NarutoCraftMod
+{
 	public static Item block;
 	
-   	public static Item Kunai = new Kunai(id);
-   	public static Item WKunai = new WKunai(id+1);
-   	public static Item Shuriken = new Shuriken(id+2);
-   	public static Item Senbon = new Senbon(id+3);
-   	public static Item Raitanto = new Raitanto(id+4);
-   	public static Item KaMiecz = new KaMiecz(id+5);
-   	public static Item Katana = new Katana(id+6);
-   	public static Item KBushido = new KBushido(id+7);
-   	public static Item Kubiki = new Kubiki(id+8);
-   	public static Item Kurosawa = new Kurosawa(id+9);
-   	public static Item RKatana = new RKatana(id+10);
-   	public static Item Wakizashi = new Wakizashi(id+11);
-   	public static Item MSamuraja = new MSamuraja(id+12);
-   	public static Item ZRekawica = new ZRekawica(id+13);
-   	public static Item Nunchaku = new Nunchaku(id+14);
+	//The Id's where not needed so I removed those and re done how Weapons are defined.
+	
+	/**Weapons**/
+   	public static Item Kunai = new Kunai().setUnlocalizedName("Kunai").setTextureName(References.ModTexturePath+"weapons/Kunai");
+   	public static Item WKunai = new WKunai().setUnlocalizedName("WybuchowyKunai").setTextureName(References.ModTexturePath+"weapons/Wybuchowy Kunai");
+   	//the zeros are just for the constructor placeholder, I am slowly fixing these to work correctly
+   	public static Item Shuriken = new Shuriken().setUnlocalizedName("Shuriken").setTextureName(References.ModTexturePath+"weapons/Shuriken");
+   	public static Item Senbon = new Senbon(0);
+   	public static Item Raitanto = new Raitanto(0);
+   	public static Item KaMiecz = new KaMiecz(0);
+   	public static Item Katana = new Katana(0);
+   	public static Item KBushido = new KBushido(0);
+   	public static Item Kubiki = new Kubiki(0);
+   	public static Item Kurosawa = new Kurosawa(0);
+   	public static Item RKatana = new RKatana(0);
+   	public static Item Wakizashi = new Wakizashi(0);
+   	public static Item MSamuraja = new MSamuraja(0);
+   	public static Item ZRekawica = new ZRekawica(0);
+   	public static Item Nunchaku = new Nunchaku(0);
    	
-   	public static Item FZwoj = new FZwoj(id2);
-   	public static Item KZwoj = new KZwoj(id2+1);
-   	public static Item DZwoj = new DZwoj(id2+2);
-   	public static Item SZwoj = new SZwoj(id2+3);
-   	public static Item RZwoj = new RZwoj(id2+4);
-   	public static Item NZwoj = new NZwoj(id2+5);
+   	/** Not sure what these are **/
+   	public static Item FZwoj = new FZwoj(0);
+   	public static Item KZwoj = new KZwoj(0);
+   	public static Item DZwoj = new DZwoj(0);
+   	public static Item SZwoj = new SZwoj(0);
+   	public static Item RZwoj = new RZwoj(0);
+   	public static Item NZwoj = new NZwoj(0);
    	
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;

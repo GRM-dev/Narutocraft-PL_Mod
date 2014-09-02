@@ -3,7 +3,7 @@ package pl.grm.narutocraftmod.libs;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraftmod.handlers.SoundHandler;
-import pl.grm.narutocraftmod.hud.ChakraBar.GuiChakraBar;
+import pl.grm.narutocraftmod.hud.chakraBar.GuiChakraBar;
 import pl.grm.narutocraftmod.itementities.EntityKunai;
 import pl.grm.narutocraftmod.itementities.EntitySenbon;
 import pl.grm.narutocraftmod.itementities.EntityShuriken;

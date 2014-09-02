@@ -9,9 +9,7 @@ import pl.grm.narutocraftmod.itementities.EntityShuriken;
 import pl.grm.narutocraftmod.libs.registry.RegItems;
 
 public class Shuriken extends Item {
-	public Shuriken(int i) {
-		this.setUnlocalizedName("Shuriken");
-		this.setTextureName("narutocraftmod:Shuriken");
+	public Shuriken() {
 		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
 		maxStackSize = 10;
 	}
