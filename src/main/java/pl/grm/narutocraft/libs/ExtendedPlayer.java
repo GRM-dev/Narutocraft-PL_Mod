@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import pl.grm.narutocraft.NarutoCraftMod;
+import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.hud.JutsuInv;
 import pl.grm.narutocraft.network.SyncPlayerPropsPacket;
 
@@ -144,7 +144,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		// packets later
 		// data can by synced just by sending the appropriate packet, as
 		// everything is handled internally by the packet class
-		NarutoCraftMod.packetPipeline.sendTo(new SyncPlayerPropsPacket(player),
+		NarutoCraft.packetPipeline.sendTo(new SyncPlayerPropsPacket(player),
 				(EntityPlayerMP) player);
 	}
 }

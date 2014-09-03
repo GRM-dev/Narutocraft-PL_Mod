@@ -16,7 +16,7 @@ import com.google.common.collect.Multimap;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import pl.grm.narutocraft.NarutoCraftMod;
+import pl.grm.narutocraft.NarutoCraft;
 
 public class SwordMain extends Item {
 	private float field_150934_a;
@@ -26,7 +26,7 @@ public class SwordMain extends Item {
 		this.field_150933_b = p_i45356_1_;
 		this.maxStackSize = 1;
 		this.setMaxDamage(p_i45356_1_.getMaxUses());
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
 		this.field_150934_a = 4.0F + p_i45356_1_.getDamageVsEntity();
 	}
 

@@ -9,14 +9,16 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.itementities.EntityKunai;
+import pl.grm.narutocraft.libs.References;
 /**
  * Method Render EntityKunai
+ * 
  * @author Admaster
  *
  */
 public class RenderKunai extends Render {
 	final ResourceLocation texture = new ResourceLocation(
-			"narutocraftmod:textures/model/Kunai.png");
+			References.ModTexturePath + "textures/model/Kunai.png");
 
 	@Override
 	public void doRender(Entity par1EntityKunai, double var2, double var4,

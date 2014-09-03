@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import pl.grm.narutocraft.NarutoCraftMod;
+import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.itementities.EntityKunai;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.registry.RegItems;
@@ -14,7 +14,7 @@ public class Kunai extends Item implements IProjectileCast{
 	public Kunai() 
 	{
 		super();		
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
 		this.maxStackSize = 16;		
 	}
 	

@@ -8,30 +8,33 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
+import pl.grm.narutocraft.libs.References;
 import cpw.mods.fml.client.FMLClientHandler;
 /**
  * Render method of Entity
+ * 
  * @author Admaster
  *
  */
 public class RenderSenbon extends Render {
 	final ResourceLocation texture = new ResourceLocation(
-			"narutocraftmod:models/obj/Senbon.png");
+			References.ModTexturePath + "models/obj/Senbon.png");
 	final ResourceLocation modelobj = new ResourceLocation(
-			"narutocraftmod:models/obj/Senbon.obj");
+			References.ModTexturePath + "models/obj/Senbon.obj");
 	private IModelCustom model;
 
 	@Override
 	public void doRender(Entity par1EntitySenbon, double var2, double var4,
 			double var6, float var8, float var9) {
 		this.model = AdvancedModelLoader.loadModel(modelobj);
+		float scale = 0.1F;
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(var2, var4, var6);
-		GL11.glScalef(1, 1, 1);
+		GL11.glScalef(scale, scale, scale);
 		FMLClientHandler.instance().getClient().getTextureManager()
 				.bindTexture(texture);
-		GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
+		GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 		model.renderAll();
 		GL11.glPopMatrix();
 	}

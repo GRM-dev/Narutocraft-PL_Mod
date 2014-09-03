@@ -8,12 +8,14 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import pl.grm.narutocraft.libs.References;
+
 public class GuiJutsuInvContainer extends GuiContainer {
 	private float xSize_lo;
 	private float ySize_lo;
 	private EntityPlayer player;
 	private static final ResourceLocation iconLocation = new ResourceLocation(
-			"narutocraftmod:textures/gui/jutsuGUI.png");
+			References.ModTexturePath + "textures/gui/jutsuGUI.png");
 	private final JutsuInv inventory;
 
 	public GuiJutsuInvContainer(EntityPlayer player,

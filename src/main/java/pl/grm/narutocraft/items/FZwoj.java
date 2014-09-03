@@ -1,14 +1,15 @@
 package pl.grm.narutocraft.items;
 
-import pl.grm.narutocraft.NarutoCraftMod;
 import net.minecraft.item.Item;
+import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.libs.References;
 
 public class FZwoj extends Item {
 
-	public FZwoj(int i) {
+	public FZwoj() {
 		this.setUnlocalizedName("FZwoj");
-		this.setTextureName("narutocraftmod:Zwoj Fuuton");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		this.setTextureName(References.ModTexturePath + "Zwoj Fuuton");
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
 		maxStackSize = 64;
 	}
 

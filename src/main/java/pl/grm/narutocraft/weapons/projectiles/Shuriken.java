@@ -4,13 +4,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import pl.grm.narutocraft.NarutoCraftMod;
+import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.itementities.EntityShuriken;
 import pl.grm.narutocraft.libs.registry.RegItems;
 
 public class Shuriken extends Item {
 	public Shuriken() {
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
 		maxStackSize = 10;
 	}
 	

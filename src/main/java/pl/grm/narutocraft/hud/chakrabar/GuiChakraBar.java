@@ -15,8 +15,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class GuiChakraBar extends Gui {
 	private Minecraft mc;
 	private final ResourceLocation texture = new ResourceLocation(
-			"narutocraftmod", "textures/gui/chakra_bar3.png");
-	
+			"narutocraft", "textures/gui/chakra_bar3.png");
+
 	public int barW = 54, barH = 9;
 
 	public ResourceLocation getTexture() {
@@ -24,7 +24,7 @@ public class GuiChakraBar extends Gui {
 	}
 
 	public GuiChakraBar() {
-	
+
 	}
 
 	public GuiChakraBar(Minecraft mc) {
@@ -36,13 +36,14 @@ public class GuiChakraBar extends Gui {
 		mc = Minecraft.getMinecraft();
 		return mc;
 	}
-	
+
 	@SubscribeEvent(priority = EventPriority.NORMAL)
-	public void onRenderExperienceBar(RenderGameOverlayEvent.Post event) 
-	{
-		/*GuiChakraBar guichakrabar = new GuiChakraBar();
-		Minecraft mc = guichakrabar.getMc();*/
-		//ResourceLocation texture = guichakrabar.getTexture();
+	public void onRenderExperienceBar(RenderGameOverlayEvent.Post event) {
+		/*
+		 * GuiChakraBar guichakrabar = new GuiChakraBar(); Minecraft mc =
+		 * guichakrabar.getMc();
+		 */
+		// ResourceLocation texture = guichakrabar.getTexture();
 		if (event.type != ElementType.EXPERIENCE) {
 			return;
 		}
@@ -65,15 +66,12 @@ public class GuiChakraBar extends Gui {
 		 * Draw the background bar which contains a transparent section; note
 		 * the new size
 		 */
-		drawTexturedModalRect(xPos, yPos, 
-				0, 0, 
-				barW, barH);
-		
-		int manabarwidth = (int) (((float) props.getCurrentChakra() / 
-				props.getMaxChakra()) * barW);
-		
-		drawTexturedModalRect(xPos, yPos, 0, barH,
-				manabarwidth, barH);
+		drawTexturedModalRect(xPos, yPos, 0, 0, barW, barH);
+
+		int manabarwidth = (int) (((float) props.getCurrentChakra() / props
+				.getMaxChakra()) * barW);
+
+		drawTexturedModalRect(xPos, yPos, 0, barH, manabarwidth, barH);
 		String s = "Chakra " + props.getCurrentChakra() + "/"
 				+ props.getMaxChakra();
 		yPos += barH + 2;
@@ -86,33 +84,23 @@ public class GuiChakraBar extends Gui {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(true);
 	}
-	
-	/*@SubscribeEvent(priority = EventPriority.NORMAL)
-	public void onRenderExperienceBar(RenderGameOverlayEvent event)
-	{
-		if (event.isCancelable() || event.type != ElementType.EXPERIENCE)
-		{
-			return;
-		}
-		ExtendedPlayer props = ExtendedPlayer.get(this.mc.thePlayer);
 
-		if (props == null || props.getMaxChakra() == 0)
-		{
-			return;
-		}
-		int xPos = 2;
-		int yPos = 2;
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDisable(GL11.GL_LIGHTING);
-		this.mc.getTextureManager().bindTexture(texture);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthMask(false);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-		this.drawTexturedModalRect(xPos, yPos, 0, 0, barW, barH);
-		int manabarwidth = (int)(((float) props.getCurrentChakra() / props.getMaxChakra()) * barW);
-		this.drawTexturedModalRect(xPos, yPos, 0, barH, manabarwidth, barH);
-	}*/
+	/*
+	 * @SubscribeEvent(priority = EventPriority.NORMAL) public void
+	 * onRenderExperienceBar(RenderGameOverlayEvent event) { if
+	 * (event.isCancelable() || event.type != ElementType.EXPERIENCE) { return;
+	 * } ExtendedPlayer props = ExtendedPlayer.get(this.mc.thePlayer);
+	 * 
+	 * if (props == null || props.getMaxChakra() == 0) { return; } int xPos = 2;
+	 * int yPos = 2; GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	 * GL11.glDisable(GL11.GL_LIGHTING);
+	 * this.mc.getTextureManager().bindTexture(texture);
+	 * GL11.glEnable(GL11.GL_BLEND); GL11.glDisable(GL11.GL_DEPTH_TEST);
+	 * GL11.glDepthMask(false); GL11.glBlendFunc(GL11.GL_SRC_ALPHA,
+	 * GL11.GL_ONE_MINUS_SRC_ALPHA); GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	 * GL11.glDisable(GL11.GL_ALPHA_TEST); this.drawTexturedModalRect(xPos,
+	 * yPos, 0, 0, barW, barH); int manabarwidth = (int)(((float)
+	 * props.getCurrentChakra() / props.getMaxChakra()) * barW);
+	 * this.drawTexturedModalRect(xPos, yPos, 0, barH, manabarwidth, barH); }
+	 */
 }

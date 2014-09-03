@@ -31,7 +31,7 @@ import cpw.mods.fml.relauncher.Side;
 /**
  * Main class
  */
-public class NarutoCraftMod {
+public class NarutoCraft {
 	@SidedProxy(clientSide = References.Client, serverSide = References.Common)
 	public static ProxyCommon proxy;
 	private ConfigurationHandler config;
@@ -45,7 +45,7 @@ public class NarutoCraftMod {
 	 * Create mod instance
 	 */
 	@Instance(References.MODID)
-	public static NarutoCraftMod instance;
+	public static NarutoCraft instance;
 	
 	//Packet Channel
 	public static SimpleNetworkWrapper netHandler;
@@ -97,7 +97,7 @@ public class NarutoCraftMod {
 	/**
 	 * Constructor to Registry Lists of mod elements
 	 */
-	public NarutoCraftMod() {
+	public NarutoCraft() {
 		RegItems.RegItemsList();
 		RegJutsus.RegPowersList();
 		RegRecipes.RegRecipesList();

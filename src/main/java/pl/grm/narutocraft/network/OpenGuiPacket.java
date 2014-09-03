@@ -3,7 +3,7 @@ package pl.grm.narutocraft.network;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.player.EntityPlayer;
-import pl.grm.narutocraft.NarutoCraftMod;
+import pl.grm.narutocraft.NarutoCraft;
 
 public class OpenGuiPacket extends AbstractPacket {
 	// this will store the id of the gui to open
@@ -43,7 +43,7 @@ public class OpenGuiPacket extends AbstractPacket {
 	public void handleServerSide(EntityPlayer player) {
 		// because we sent the gui's id with the packet, we can handle all cases
 		// with one line:
-		player.openGui(NarutoCraftMod.instance, id, player.worldObj,
+		player.openGui(NarutoCraft.instance, id, player.worldObj,
 				(int) player.posX, (int) player.posY, (int) player.posZ);
 	}
 }

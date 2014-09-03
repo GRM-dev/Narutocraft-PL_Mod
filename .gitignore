@@ -65,11 +65,15 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-#Gradle and Forge
+#Gradle, Minecraft and Forge
 .classpath
 /.project
 eclipse/
 gradle/
+config/
+logs/
+crash-reports/
+saves/
 CREDITS-fml.txt
 forge-1.7.*.txt
 gradle-app.setting

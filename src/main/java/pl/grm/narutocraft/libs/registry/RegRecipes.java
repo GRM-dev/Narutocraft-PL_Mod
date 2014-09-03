@@ -2,10 +2,10 @@ package pl.grm.narutocraft.libs.registry;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import pl.grm.narutocraft.NarutoCraftMod;
+import pl.grm.narutocraft.NarutoCraft;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class RegRecipes extends NarutoCraftMod {
+public class RegRecipes extends NarutoCraft {
 	public static ItemStack diamondStack = new ItemStack(Items.diamond);
     public static ItemStack stickStack = new ItemStack(Items.stick);
     public static ItemStack stringStack = new ItemStack(Items.string);

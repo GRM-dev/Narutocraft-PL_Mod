@@ -1,14 +1,15 @@
 package pl.grm.narutocraft.items;
 
-import pl.grm.narutocraft.NarutoCraftMod;
 import net.minecraft.item.Item;
+import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.libs.References;
 
 public class KZwoj extends Item {
 
-	public KZwoj(int i) {
+	public KZwoj() {
 		this.setUnlocalizedName("KZwoj");
-		this.setTextureName("narutocraftmod:Zwoj Katon");
-		this.setCreativeTab(NarutoCraftMod.mTabNarutoCraftMod);
+		this.setTextureName(References.ModTexturePath + "Zwoj Katon");
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
 		maxStackSize = 64;
 	}
 
