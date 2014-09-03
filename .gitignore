@@ -65,10 +65,18 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-saves/
-logs/
-crash-reports/
-wrapper/
-
+#Gradle and Forge
 .classpath
 /.project
+eclipse/
+gradle/
+CREDITS-fml.txt
+forge-1.7.*.txt
+gradle-app.setting
+gradlew
+gradlew.bat
+LICENSE-fml.txt
+MinecraftForge-Credits.txt
+MinecraftForge-License.txt
+options.txt
+README.txt
