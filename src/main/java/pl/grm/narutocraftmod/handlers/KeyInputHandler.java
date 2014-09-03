@@ -2,6 +2,7 @@ package pl.grm.narutocraftmod.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import pl.grm.narutocraftmod.NarutoCraftMod;
+import pl.grm.narutocraftmod.libs.PacketExample;
 import pl.grm.narutocraftmod.libs.config.KeyBindings;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -19,9 +20,12 @@ public class KeyInputHandler {
 	public void onKeyInput(InputEvent.KeyInputEvent event) {
 		if (KeyBindings.PJutsu.isPressed()) {
 			System.out.println("Previous Jutsu");
+			NarutoCraftMod.netHandler.sendToServer(new PacketExample(6, 4.75f, "back"));
 		}
-		if (KeyBindings.NJutsu.isPressed()) {
+		if (KeyBindings.NJutsu.isPressed()) 
+		{
 			System.out.println("Next Jutsu");
+			NarutoCraftMod.netHandler.sendToServer(new PacketExample(0, 2.5f, "next"));
 		}
 		if (KeyBindings.Jutsu.isPressed()) {
 			System.out.println("Open Panel");

@@ -6,6 +6,7 @@ import pl.grm.narutocraftmod.handlers.GuiHandler;
 import pl.grm.narutocraftmod.handlers.KeyInputHandler;
 import pl.grm.narutocraftmod.handlers.NCPLEventHandler;
 import pl.grm.narutocraftmod.handlers.NCPLFMLEventHandler;
+import pl.grm.narutocraftmod.libs.PacketExample;
 import pl.grm.narutocraftmod.libs.ProxyCommon;
 import pl.grm.narutocraftmod.libs.References;
 import pl.grm.narutocraftmod.libs.config.ConfigurationHandler;
@@ -23,6 +24,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = References.MODID, version = References.VERSION)
 /**
@@ -43,12 +46,22 @@ public class NarutoCraftMod {
 	 */
 	@Instance(References.MODID)
 	public static NarutoCraftMod instance;
+	
+	//Packet Channel
+	public static SimpleNetworkWrapper netHandler;
+	private int packetId = 0;
+	
 
 	/**
 	 * preInit
 	 */
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event) 
+	{
+		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
+		
+		netHandler.registerMessage(PacketExample.PacketExampleHandler.class, PacketExample.class, packetId++, Side.SERVER);
+		
 		proxy.registerRendering();
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();

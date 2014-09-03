@@ -13,16 +13,18 @@ public class ContainerNCPLPlayer extends Container {
 			ARMOR_END = ARMOR_START + 3, INV_START = ARMOR_END + 1,
 			INV_END = INV_START + 26, HOTBAR_START = INV_END + 1,
 			HOTBAR_END = HOTBAR_START + 8;
+	
+	private JutsuInv ji;
 
 	public ContainerNCPLPlayer(EntityPlayer player,
 			InventoryPlayer inventoryPlayer, JutsuInv inventoryCustom) {
 		int i;
-		int x = 20, y = 6;
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 2 * x + 4, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 1, 3 * x + 2, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 2, 4 * x, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 3, 5 * x - 2, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 4, 6 * x - 4, y));
+		int x = 44, y = 6;
+		this.ji = inventoryCustom;
+		for (int k = 0; k < ji.INV_SIZE; k++)
+		{
+			this.addSlotToContainer(new JutsuSlot(ji, k, x + k * 18, y));
+		}
 
 		// Add ARMOR slots; needs public version of SlotArmor copy and paste the
 		// vanilla code into a new class and change what you need

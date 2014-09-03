@@ -26,13 +26,18 @@ public class JutsuInv implements IInventory {
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
 		ItemStack stack = getStackInSlot(slot);
-		if (stack != null) {
-			if (stack.stackSize > amount) {
+		if (stack != null) 
+		{
+			if (stack.stackSize > amount) 
+			{
 				stack = stack.splitStack(amount);
-				if (stack.stackSize == 0) {
+				if (stack.stackSize == 0) 
+				{
 					setInventorySlotContents(slot, null);
 				}
-			} else {
+			} 
+			else 
+			{
 				setInventorySlotContents(slot, null);
 			}
 
@@ -86,7 +91,8 @@ public class JutsuInv implements IInventory {
 		// If different kinds of slots, then check them here:
 		// if (slot == SLOT_SHIELD && itemstack.getItem() instance of
 		// ItemShield) return true;
-		return itemstack.getItem() instanceof Jutsu;
+		//return itemstack.getItem() instanceof Jutsu;
+		return true;
 	}
 
 	public void writeToNBT(NBTTagCompound compound) {
