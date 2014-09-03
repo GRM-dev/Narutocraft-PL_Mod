@@ -37,10 +37,10 @@ public class RegItems extends NarutoCraftMod
 	//The Id's where not needed so I removed those and re done how Weapons are defined.
 	
 	/**Weapons**/
-   	public static Item Kunai = new Kunai().setUnlocalizedName("Kunai").setTextureName(References.ModTexturePath+"weapons/Kunai");
-   	public static Item WKunai = new WKunai().setUnlocalizedName("WybuchowyKunai").setTextureName(References.ModTexturePath+"weapons/Wybuchowy Kunai");
+   	public static Item Kunai = new Kunai().setUnlocalizedName("Kunai").setTextureName(References.ModTexturePath+"weapons/Kunai").setFull3D();
+   	public static Item WKunai = new WKunai().setUnlocalizedName("WybuchowyKunai").setTextureName(References.ModTexturePath+"weapons/Wybuchowy Kunai").setFull3D();
    	//the zeros are just for the constructor placeholder, I am slowly fixing these to work correctly
-   	public static Item Shuriken = new Shuriken().setUnlocalizedName("Shuriken").setTextureName(References.ModTexturePath+"weapons/Shuriken");
+   	public static Item Shuriken = new Shuriken().setUnlocalizedName("Shuriken").setTextureName(References.ModTexturePath+"weapons/Shuriken").setFull3D();
    	public static Item Senbon = new Senbon().setUnlocalizedName("Senbon").setTextureName(References.ModTexturePath+"weapons/Senbon");
    	public static Item Raitanto = new Raitanto().setUnlocalizedName("Raitanto").setTextureName(References.ModTexturePath+"weapons/Raitanto");
    	public static Item KaMiecz = new KaMiecz().setUnlocalizedName("KaMiecz").setTextureName(References.ModTexturePath+"weapons/Kamienny Miecz");

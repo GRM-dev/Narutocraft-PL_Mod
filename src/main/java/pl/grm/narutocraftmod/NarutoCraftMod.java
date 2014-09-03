@@ -2,14 +2,7 @@ package pl.grm.narutocraftmod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
+import pl.grm.narutocraftmod.handlers.GuiHandler;
 import pl.grm.narutocraftmod.handlers.KeyInputHandler;
 import pl.grm.narutocraftmod.handlers.NCPLEventHandler;
 import pl.grm.narutocraftmod.handlers.NCPLFMLEventHandler;
@@ -22,6 +15,14 @@ import pl.grm.narutocraftmod.libs.registry.RegJutsus;
 import pl.grm.narutocraftmod.libs.registry.RegMobs;
 import pl.grm.narutocraftmod.libs.registry.RegRecipes;
 import pl.grm.narutocraftmod.network.PacketPipeline;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(modid = References.MODID, version = References.VERSION)
 /**
@@ -60,6 +61,7 @@ public class NarutoCraftMod {
 	public void init(FMLInitializationEvent event) {
 		RegEntities.RegEntitiesList();
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		proxy.registerSound();
 		packetPipeline.initialise();
 	}

@@ -1,9 +1,10 @@
 package pl.grm.narutocraftmod.libs;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraftmod.handlers.SoundHandler;
-import pl.grm.narutocraftmod.hud.chakraBar.GuiChakraBar;
+import pl.grm.narutocraftmod.hud.chakrabar.GuiChakraBar;
 import pl.grm.narutocraftmod.itementities.EntityKunai;
 import pl.grm.narutocraftmod.itementities.EntitySenbon;
 import pl.grm.narutocraftmod.itementities.EntityShuriken;
@@ -13,6 +14,7 @@ import pl.grm.narutocraftmod.itementities.render.RenderSenbon;
 import pl.grm.narutocraftmod.itementities.render.RenderShuriken;
 import pl.grm.narutocraftmod.itementities.render.RenderWKunai;
 import pl.grm.narutocraftmod.libs.config.KeyBindings;
+import pl.grm.narutocraftmod.libs.registry.RegItems;
 import pl.grm.narutocraftmod.mobs.bijuu.EntityKyuubi;
 import pl.grm.narutocraftmod.mobs.bijuu.ModelKyuubi;
 import pl.grm.narutocraftmod.mobs.bijuu.RenderKyuubi;
@@ -34,6 +36,9 @@ public class ProxyClient extends ProxyCommon{
 	@Override
     public void registerRenderThings() 
     {
+		//Scaled Items
+		//MinecraftForgeClient.registerItemRenderer(item, new ItemRendererScaled(.75f)); .75f is about 2x
+		MinecraftForgeClient.registerItemRenderer(RegItems.Kubiki, new ItemRendererScaled(.875f));
 		//Projectiles:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
 		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai());

@@ -19,10 +19,10 @@ public class ContainerNCPLPlayer extends Container {
 		int i;
 		int x = 20, y = 6;
 		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 2 * x + 4, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 3 * x + 2, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 4 * x, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 5 * x - 2, y));
-		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 0, 6 * x - 4, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 1, 3 * x + 2, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 2, 4 * x, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 3, 5 * x - 2, y));
+		this.addSlotToContainer(new JutsuSlot(inventoryCustom, 4, 6 * x - 4, y));
 
 		// Add ARMOR slots; needs public version of SlotArmor copy and paste the
 		// vanilla code into a new class and change what you need

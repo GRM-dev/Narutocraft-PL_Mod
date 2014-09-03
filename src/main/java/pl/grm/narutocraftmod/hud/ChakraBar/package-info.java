@@ -5,4 +5,4 @@
  * @author Admaster
  *
  */
-package pl.grm.narutocraftmod.hud.chakraBar;
+package pl.grm.narutocraftmod.hud.chakrabar;
