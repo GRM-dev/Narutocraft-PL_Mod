@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs;
+package pl.grm.narutocraft.network;
 
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;

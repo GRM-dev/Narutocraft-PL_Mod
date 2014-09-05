@@ -7,5 +7,5 @@ public class References {
 	public static final String Client = "pl.grm.narutocraft.libs.ProxyClient";
 	public static final String Common = "pl.grm.narutocraft.libs.ProxyCommon";
 	public static final String ModTexturePath = "narutocraft:";
-
+	public static final String ModTag = "ncpl:";
 }

@@ -38,7 +38,7 @@ public class ProxyClient extends ProxyCommon{
     {
 		//Scaled Items
 		//MinecraftForgeClient.registerItemRenderer(item, new ItemRendererScaled(.75f)); .75f is about 2x
-		MinecraftForgeClient.registerItemRenderer(RegItems.Kubiki, new ItemRendererScaled(.875f));
+		MinecraftForgeClient.registerItemRenderer(RegItems.Kubiki, new ItemRendererSizeable(0.7f));
 		//Projectiles:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
 		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai());

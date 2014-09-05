@@ -11,7 +11,7 @@ import pl.grm.narutocraft.hud.GuiBasic;
 import pl.grm.narutocraft.hud.GuiJutsuInvContainer;
 import cpw.mods.fml.common.network.IGuiHandler;
 
-public class ProxyCommon implements IGuiHandler {
+public class ProxyCommon {
 	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
 
 	public void registerRenderInfomation() {
@@ -24,34 +24,6 @@ public class ProxyCommon implements IGuiHandler {
 	}
 
 	public void registerSound() {
-	}
-
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
-			int x, int y, int z) {
-		if (ID == GuiBasic.GUI_JUTSU_INV) {
-			return new ContainerNCPLPlayer(player, player.inventory,
-					ExtendedPlayer.get(player).inventory);
-		} else if (ID == GuiBasic.GUI_ITEM_INV) {
-			return null; // new ContainerMagicBag(player, player.inventory, new
-							// InventoryMagicBag(player.getHeldItem()));
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
-			int x, int y, int z) {
-		if (ID == GuiBasic.GUI_JUTSU_INV) {
-			return new GuiJutsuInvContainer(player, player.inventory,
-					ExtendedPlayer.get(player).inventory);
-		} else if (ID == GuiBasic.GUI_ITEM_INV) {
-			return null; // new GuiMagicBag(player, player.inventory, new
-							// InventoryMagicBag(player.getHeldItem()));
-		} else {
-			return null;
-		}
 	}
 
 	public int addArmor(String armor) {

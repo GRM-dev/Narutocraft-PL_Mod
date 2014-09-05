@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.hud.JutsuInv;
-import pl.grm.narutocraft.network.SyncPlayerPropsPacket;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "ExtendedPlayer";
@@ -129,11 +128,5 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		if (savedData != null) {
 			playerData.loadNBTData(savedData);
 		}
-		// we are replacing the entire sync() method with a single line; more on
-		// packets later
-		// data can by synced just by sending the appropriate packet, as
-		// everything is handled internally by the packet class
-		NarutoCraft.packetPipeline.sendTo(new SyncPlayerPropsPacket(player),
-				(EntityPlayerMP) player);
 	}
 }
