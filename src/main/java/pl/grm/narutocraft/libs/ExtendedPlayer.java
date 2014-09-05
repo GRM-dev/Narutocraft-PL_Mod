@@ -3,9 +3,7 @@ package pl.grm.narutocraft.libs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.NarutoCraft;
@@ -16,14 +14,14 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "ExtendedPlayer";
 	private final EntityPlayer player;
 	public final JutsuInv inventory = new JutsuInv();
-	//public InventoryPlayer inventoryPanel;
-	private int maxChakra; //chakraRegenTimer;
+	// public InventoryPlayer inventoryPanel;
+	private int maxChakra; // chakraRegenTimer;
 	public static final int CHAKRA_WATCHER = 20;
 
 	public ExtendedPlayer(EntityPlayer player) {
 		this.player = player;
 		this.maxChakra = 50;
-		//this.chakraRegenTimer = 0;
+		// this.chakraRegenTimer = 0;
 		this.player.getDataWatcher().addObject(CHAKRA_WATCHER, this.maxChakra);
 	}
 
@@ -38,30 +36,30 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	@Override
 	public final void saveNBTData(NBTTagCompound compound) {
-		//inventoryPanel = new InventoryPlayer(player);
+		// inventoryPanel = new InventoryPlayer(player);
 		NBTTagCompound properties = new NBTTagCompound();
 		inventory.writeToNBT(properties);
-		NBTTagList props = new NBTTagList();
-		//this.inventoryPanel.writeToNBT(props);
+		// NBTTagList props = new NBTTagList();
+		// this.inventoryPanel.writeToNBT(props);
 		properties.setInteger("CurrentChakra", player.getDataWatcher()
 				.getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", maxChakra);
-		//properties.setInteger("ChakraRegenTimer", chakraRegenTimer);
+		// properties.setInteger("ChakraRegenTimer", chakraRegenTimer);
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
 
 	@Override
 	public final void loadNBTData(NBTTagCompound compound) {
-		//inventoryPanel = new InventoryPlayer(player);
+		// inventoryPanel = new InventoryPlayer(player);
 		NBTTagCompound properties = (NBTTagCompound) compound
 				.getTag(EXT_PROP_NAME);
 		inventory.readFromNBT(properties);
-		NBTTagList props = new NBTTagList();
-		//this.inventoryPanel.readFromNBT(props);
+		// NBTTagList props = new NBTTagList();
+		// this.inventoryPanel.readFromNBT(props);
 		player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));
 		maxChakra = properties.getInteger("MaxChakra");
-		//chakraRegenTimer = properties.getInteger("ChakraRegenTimer");
+		// chakraRegenTimer = properties.getInteger("ChakraRegenTimer");
 		System.out.println("[TUT PROPS] Chakra from NBT: "
 				+ player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER)
 				+ "/" + this.maxChakra);
@@ -71,25 +69,16 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 	}
 
-	/*public void onUpdate() {
-		if (!player.worldObj.isRemote) {
-			if (updateChakraTimer()) {
-				regenChakra(1);
-			}
-		}
-	}
-
-	private boolean updateChakraTimer() {
-		if (chakraRegenTimer > 0) {
-			--chakraRegenTimer;
-		}
-		if (chakraRegenTimer == 0) {
-			chakraRegenTimer = getCurrentChakra() < getMaxChakra() ? 100 : 0;
-			return true;
-		}
-
-		return false;
-	}*/
+	/*
+	 * public void onUpdate() { if (!player.worldObj.isRemote) { if
+	 * (updateChakraTimer()) { regenChakra(1); } } }
+	 * 
+	 * private boolean updateChakraTimer() { if (chakraRegenTimer > 0) {
+	 * --chakraRegenTimer; } if (chakraRegenTimer == 0) { chakraRegenTimer =
+	 * getCurrentChakra() < getMaxChakra() ? 100 : 0; return true; }
+	 * 
+	 * return false; }
+	 */
 
 	public final void regenChakra(int amount) {
 		setCurrentChakra(getCurrentChakra() + amount);

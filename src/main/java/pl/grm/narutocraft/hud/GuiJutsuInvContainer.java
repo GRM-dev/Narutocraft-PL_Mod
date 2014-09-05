@@ -11,8 +11,7 @@ import org.lwjgl.opengl.GL11;
 import pl.grm.narutocraft.libs.References;
 
 public class GuiJutsuInvContainer extends GuiContainer {
-	private float xSize_lo;
-	private float ySize_lo;
+	private float xSize_lo, ySize_lo;
 	private EntityPlayer player;
 	private static final ResourceLocation iconLocation = new ResourceLocation(
 			References.ModTexturePath + "textures/gui/jutsuGUI.png");

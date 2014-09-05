@@ -13,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class EntityKyuubi extends EntityMob {
-
 	public EntityKyuubi(World par1World) {
 		super(par1World);
 		this.setSize(2.9F, 3.3F);
@@ -46,6 +45,7 @@ public class EntityKyuubi extends EntityMob {
 				.setBaseValue(5.5D);
 	}
 
+	@Override
 	public boolean isAIEnabled() {
 		return true;
 	}
@@ -56,24 +56,21 @@ public class EntityKyuubi extends EntityMob {
 
 	@Override
 	protected String getLivingSound() {
-		return "narutocraftpl:sounds.mobs.Kyuubi"; // refers
-													// to:yourmod/sound/YourSound
+		return "narutocraftpl:sounds.mobs.Kyuubi";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "narutocraftpl:sounds.mobs.KyuubiHurt"; // refers
-														// to:yourmod/sound/optionalFile/YourSound
+		return "narutocraftpl:sounds.mobs.KyuubiHurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "narutocraftpl:sounds.mobs.KyuubiDeath"; // etc.
+		return "narutocraftpl:sounds.mobs.KyuubiDeath";
 	}
 
 	@Override
 	protected float getSoundVolume() {
 		return 0.7F;
 	}
-
 }
