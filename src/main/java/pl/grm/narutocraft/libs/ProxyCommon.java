@@ -3,16 +3,16 @@ package pl.grm.narutocraft.libs;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-import pl.grm.narutocraft.hud.ContainerNCPLPlayer;
-import pl.grm.narutocraft.hud.GuiBasic;
-import pl.grm.narutocraft.hud.GuiJutsuInvContainer;
-import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.world.WorldServer;
+import pl.grm.narutocraft.network.PlayerTracker;
+import cpw.mods.fml.server.FMLServerHandler;
 
 public class ProxyCommon {
 	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
+	public PlayerTracker playerTracker;
 
 	public void registerRenderInfomation() {
 	}
@@ -36,6 +36,24 @@ public class ProxyCommon {
 
 	public static NBTTagCompound getEntityData(String name) {
 		return extendedEntityData.remove(name);
+	}
+
+	public EntityLivingBase getEntityByID(int entityID) {
+		Entity ent = null;
+		for (WorldServer ws : getWorldServers()) {
+			ent = ws.getEntityByID(entityID);
+			if (ent != null) {
+				if ((ent instanceof EntityLivingBase)) {
+					break;
+				}
+				return null;
+			}
+		}
+		return (EntityLivingBase) ent;
+	}
+
+	private WorldServer[] getWorldServers() {
+		return FMLServerHandler.instance().getServer().worldServers;
 	}
 
 }

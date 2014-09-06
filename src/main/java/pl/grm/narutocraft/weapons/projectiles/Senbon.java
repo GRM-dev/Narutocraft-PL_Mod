@@ -5,12 +5,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.itementities.EntitySenbon;
 import pl.grm.narutocraft.libs.registry.RegItems;
+import pl.grm.narutocraft.weapons.projectiles.entities.EntitySenbon;
 
 public class Senbon extends Item {
-	public Senbon() {		
-		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
+	public Senbon() {
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		maxStackSize = 30;
 	}
 

@@ -2,7 +2,9 @@ package pl.grm.narutocraft;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import pl.grm.narutocraft.handlers.GuiHandler;
+import pl.grm.narutocraft.creativetabs.JutsuTab;
+import pl.grm.narutocraft.creativetabs.NCPLCreativeTab;
+import pl.grm.narutocraft.handlers.ClientGuiHandler;
 import pl.grm.narutocraft.handlers.KeyInputHandler;
 import pl.grm.narutocraft.handlers.NCPLEventHandler;
 import pl.grm.narutocraft.handlers.NCPLFMLEventHandler;
@@ -33,33 +35,34 @@ import cpw.mods.fml.relauncher.Side;
 public class NarutoCraft {
 	@SidedProxy(clientSide = References.Client, serverSide = References.Common)
 	public static ProxyCommon proxy;
-	private ConfigurationHandler config;
+	public static ConfigurationHandler config;
 	/**
-	 * Create Creative Tab named NarutoCraft Mod
+	 * Create Creative Tabs named NarutoCraft Mod and Jutsu's
 	 */
-	public static CreativeTabs mTabNarutoCraftMod = new NCPLCreativeTab(
+	public static CreativeTabs mTabNarutoCraft = new NCPLCreativeTab(
 			CreativeTabs.getNextID(), "NarutoCraftMod");
+	public static CreativeTabs mTabJutsu = new JutsuTab(
+			CreativeTabs.getNextID(), "NarutoCraftMod Jutsu's");
 	/**
 	 * Create mod instance
 	 */
 	@Instance(References.MODID)
 	public static NarutoCraft instance;
-	
-	//Packet Channel
+
+	// Packet Channel
 	public static SimpleNetworkWrapper netHandler;
 	private int packetId = 0;
-	
 
 	/**
 	 * preInit
 	 */
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) 
-	{
+	public void preInit(FMLPreInitializationEvent event) {
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
-		
-		netHandler.registerMessage(PacketExample.PacketExampleHandler.class, PacketExample.class, packetId++, Side.SERVER);
-		
+
+		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
+				PacketExample.class, packetId++, Side.SERVER);
+
 		proxy.registerRendering();
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();
@@ -72,7 +75,8 @@ public class NarutoCraft {
 	public void init(FMLInitializationEvent event) {
 		RegEntities.RegEntitiesList();
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this,
+				new ClientGuiHandler());
 		proxy.registerSound();
 	}
 

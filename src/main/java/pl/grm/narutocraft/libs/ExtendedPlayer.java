@@ -1,20 +1,32 @@
 package pl.grm.narutocraft.libs;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.hud.JutsuInv;
+import pl.grm.narutocraft.gui.JutsuInv;
+import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "ExtendedPlayer";
+	private static EntityLivingBase living;
 	private final EntityPlayer player;
 	public final JutsuInv inventory = new JutsuInv();
 	// public InventoryPlayer inventoryPanel;
 	private int maxChakra; // chakraRegenTimer;
+	private int AuraIndex;
+	private int AuraBehaviour;
+	private float AuraScale;
+	private float AuraAlpha;
+	private boolean AuraColorRandomize = true;
+	private boolean AuraColorDefault = true;
+	private int AuraColor;
+	private int AuraDelay;
+	private int AuraQuantity;
+	private float AuraSpeed;
+	public float TK_Distance = 8.0F;
 	public static final int CHAKRA_WATCHER = 20;
 
 	public ExtendedPlayer(EntityPlayer player) {
@@ -68,17 +80,6 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 	}
 
-	/*
-	 * public void onUpdate() { if (!player.worldObj.isRemote) { if
-	 * (updateChakraTimer()) { regenChakra(1); } } }
-	 * 
-	 * private boolean updateChakraTimer() { if (chakraRegenTimer > 0) {
-	 * --chakraRegenTimer; } if (chakraRegenTimer == 0) { chakraRegenTimer =
-	 * getCurrentChakra() < getMaxChakra() ? 100 : 0; return true; }
-	 * 
-	 * return false; }
-	 */
-
 	public final void regenChakra(int amount) {
 		setCurrentChakra(getCurrentChakra() + amount);
 	}
@@ -128,5 +129,42 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		if (savedData != null) {
 			playerData.loadNBTData(savedData);
 		}
+	}
+
+	public static ExtendedPlayer For(EntityLivingBase living) {
+		return (ExtendedPlayer) living
+				.getExtendedProperties("NarutoCraftExProps");
+	}
+
+	public void updateAuraData(int index, int behaviour, float scale,
+			float alpha, boolean randomColor, boolean defaultColor, int color,
+			int delay, int quantity, float speed) {
+		this.AuraIndex = index;
+		this.AuraBehaviour = behaviour;
+		this.AuraScale = scale;
+		this.AuraAlpha = alpha;
+		this.AuraColorRandomize = randomColor;
+		this.AuraColorDefault = defaultColor;
+		this.AuraColor = color;
+		this.AuraDelay = delay;
+		this.AuraQuantity = quantity;
+		this.AuraSpeed = speed;
+
+	}
+
+	public byte[] getAuraData() {
+		DataWriter writer = new DataWriter();
+		writer.add(this.AuraIndex);
+		writer.add(this.AuraBehaviour);
+		writer.add(this.AuraScale);
+		writer.add(this.AuraAlpha);
+		writer.add(this.AuraColorRandomize);
+		writer.add(this.AuraColorDefault);
+		writer.add(this.AuraColor);
+		writer.add(this.AuraDelay);
+		writer.add(this.AuraQuantity);
+		writer.add(this.AuraSpeed);
+
+		return writer.generate();
 	}
 }

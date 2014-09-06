@@ -9,7 +9,7 @@ public class FZwoj extends Item {
 	public FZwoj() {
 		this.setUnlocalizedName("FZwoj");
 		this.setTextureName(References.ModTexturePath + "Zwoj Fuuton");
-		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		maxStackSize = 64;
 	}
 

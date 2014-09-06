@@ -26,7 +26,7 @@ public class SwordMain extends Item {
 		this.field_150933_b = p_i45356_1_;
 		this.maxStackSize = 1;
 		this.setMaxDamage(p_i45356_1_.getMaxUses());
-		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.field_150934_a = 4.0F + p_i45356_1_.getDamageVsEntity();
 	}
 

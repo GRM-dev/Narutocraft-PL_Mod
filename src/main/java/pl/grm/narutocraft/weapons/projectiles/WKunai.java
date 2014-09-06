@@ -5,12 +5,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.itementities.EntityWKunai;
 import pl.grm.narutocraft.libs.registry.RegItems;
+import pl.grm.narutocraft.weapons.projectiles.entities.EntityWKunai;
 
 public class WKunai extends Item {
 	public WKunai() {
-		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		maxStackSize = 16;
 	}
 

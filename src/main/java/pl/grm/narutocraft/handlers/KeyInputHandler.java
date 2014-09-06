@@ -20,22 +20,20 @@ public class KeyInputHandler {
 	public void onKeyInput(InputEvent.KeyInputEvent event) {
 		if (KeyBindings.PJutsu.isPressed()) {
 			System.out.println("Previous Jutsu");
-			NarutoCraft.netHandler.sendToServer(new PacketExample(6, 4.75f, "back"));
+			NarutoCraft.netHandler.sendToServer(new PacketExample(6, 4.75f,
+					"back"));
 		}
-		if (KeyBindings.NJutsu.isPressed()) 
-		{
+		if (KeyBindings.NJutsu.isPressed()) {
 			System.out.println("Next Jutsu");
-			NarutoCraft.netHandler.sendToServer(new PacketExample(0, 2.5f, "next"));
+			NarutoCraft.netHandler.sendToServer(new PacketExample(0, 2.5f,
+					"next"));
 		}
 		if (KeyBindings.Jutsu.isPressed()) {
 			System.out.println("Open Panel");
 			EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
-			FMLNetworkHandler.openGui(player, NarutoCraft.instance, 0, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
-			/*NarutoCraftMod.packetPipeline.sendToServer(new OpenGuiPacket(
-					GuiBasic.GUI_JUTSU_INV));
-			player.openGui(NarutoCraftMod.instance, GuiBasic.GUI_JUTSU_INV,
+			FMLNetworkHandler.openGui(player, NarutoCraft.instance, 0,
 					player.worldObj, (int) player.posX, (int) player.posY,
-					(int) player.posZ);*/
+					(int) player.posZ);
 		}
 	}
 }

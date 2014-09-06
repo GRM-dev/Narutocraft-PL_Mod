@@ -47,7 +47,7 @@ public class Jutsu extends Item {
 			.getItemRegistry();
 	protected static final UUID field_111210_e = UUID
 			.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
-	private CreativeTabs tabToDisplayOn = NarutoCraft.mTabNarutoCraftMod;
+	private CreativeTabs tabToDisplayOn = NarutoCraft.mTabJutsu;
 	protected static Random itemRand = new Random();
 	protected int maxStackSize = 1;
 	private int maxDamage;
@@ -860,5 +860,8 @@ public class Jutsu extends Item {
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
 		return stack.isItemDamaged();
+	}
+	public static Jutsu For(EntityPlayer player) {
+		return (Jutsu) player.getExtendedProperties("JutsuKnowledgeData");
 	}
 }

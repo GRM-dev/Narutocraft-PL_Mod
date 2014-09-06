@@ -34,7 +34,7 @@ public class NCPLItemArmor extends ItemArmor {
 	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement,
 			String itemTextureName, String modelTextureName) {
 		super(armormaterial, ID, placement);
-		this.setCreativeTab(NarutoCraft.mTabNarutoCraftMod);
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.setMaxStackSize(1);
 		armorSlot = placement;
 		modelTexture = modelTextureName;

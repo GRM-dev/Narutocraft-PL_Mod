@@ -1,0 +1,5 @@
+package pl.grm.narutocraft.gui.skilltrees;
+
+public enum SkillTrees {
+	NONE, MAIN, TRAINING, PLAYERATTRIBUTES, JUTSU, CLANJUTSU, NINJUTSU, GENJUTSU, FUUINJUTSU, TAIJUTSU, KANJUTSU, SOSHIJUTSU;
+}
