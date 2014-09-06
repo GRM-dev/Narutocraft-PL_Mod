@@ -21,14 +21,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class NetHandler {
-	private static final String ChannelLabel = "AM2DataTunnel";
+	private static final String ChannelLabel = "NCPLDataTunnel";
 	private static FMLEventChannel Channel;
 	private boolean registeredChannels = false;
 	public static final NetHandler INSTANCE = new NetHandler();
 
 	public void init() {
 		Channel = NetworkRegistry.INSTANCE
-				.newEventDrivenChannel("AM2DataTunnel");
+				.newEventDrivenChannel("NCPLDataTunnel");
 	}
 
 	public void registerChannels(PacketProcessorServer proc) {
@@ -37,7 +37,7 @@ public class NetHandler {
 			Channel.register(proc);
 			FMLCommonHandler.instance().bus().register(proc);
 		} else {
-			FMLLog.info("Ars Magica 2 >> redundant call to register channels.",
+			FMLLog.info("NarutoCraft >> redundant call to register channels.",
 					new Object[0]);
 		}
 	}
@@ -50,7 +50,7 @@ public class NetHandler {
 			pkt_data[(i + 1)] = data[i];
 		}
 		FMLProxyPacket packet = new FMLProxyPacket(
-				Unpooled.copiedBuffer(pkt_data), "AM2DataTunnel");
+				Unpooled.copiedBuffer(pkt_data), ChannelLabel);
 		packet.setTarget(Side.CLIENT);
 		Channel.sendTo(packet, player);
 	}
@@ -63,7 +63,7 @@ public class NetHandler {
 			pkt_data[(i + 1)] = data[i];
 		}
 		FMLProxyPacket packet = new FMLProxyPacket(
-				Unpooled.copiedBuffer(pkt_data), "AM2DataTunnel");
+				Unpooled.copiedBuffer(pkt_data), ChannelLabel);
 		packet.setTarget(Side.SERVER);
 		Channel.sendToServer(packet);
 	}
@@ -76,7 +76,7 @@ public class NetHandler {
 			pkt_data[(i + 1)] = data[i];
 		}
 		FMLProxyPacket packet = new FMLProxyPacket(
-				Unpooled.copiedBuffer(pkt_data), "AM2DataTunnel");
+				Unpooled.copiedBuffer(pkt_data), ChannelLabel);
 		packet.setTarget(Side.CLIENT);
 		Channel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(
 				dimension, ox, oy, oz, radius));

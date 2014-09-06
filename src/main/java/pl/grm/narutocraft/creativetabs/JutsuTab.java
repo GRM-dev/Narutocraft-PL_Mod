@@ -36,7 +36,7 @@ public class JutsuTab extends CreativeTabs {
 
 	@Override
 	public String getTranslatedTabLabel() {
-		return "NarutoCraft";
+		return "NarutoCraft Jutsu's";
 	}
 
 }
