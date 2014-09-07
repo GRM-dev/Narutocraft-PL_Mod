@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public class KawarimiNoJutsu extends Jutsu {
 
-	public KawarimiNoJutsu(int i) {
+	public KawarimiNoJutsu() {
 		this.setUnlocalizedName("KNoJutsu");
 		this.setTextureName(jutsuLoc + "NoJutsu");
 	}

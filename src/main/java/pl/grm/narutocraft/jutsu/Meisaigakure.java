@@ -16,9 +16,10 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	private World world;
 	private EntityPlayer player;
 	private int chackraConsumption = 5;
+	private int effectDuration = 300;
 	private boolean active = false;
 
-	public Meisaigakure(int i) {
+	public Meisaigakure() {
 		this.setUnlocalizedName("Meisaigakure");
 		this.setTextureName(jutsuLoc + "Meisaigakure");
 		effects = new HashMap<IJutsu, IEffect>();
@@ -41,7 +42,7 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 
 	@Override
 	public void uploadEffects() {
-		setEffect(new Invisible(14, 200, stack, world, player));
+		setEffect(new Invisible(14, effectDuration, stack, world, player));
 		this.setActive(true);
 		this.consumeChackra(chackraConsumption);
 	}

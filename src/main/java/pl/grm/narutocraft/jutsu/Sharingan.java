@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public class Sharingan extends Jutsu {
 
-	public Sharingan(int i) {
+	public Sharingan() {
 		super();
 		this.setUnlocalizedName("Sharingan");
 		this.setTextureName(jutsuLoc + "Sharingan");

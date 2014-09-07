@@ -1,12 +1,15 @@
 package pl.grm.narutocraft.jutsu;
 
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import pl.grm.narutocraft.effects.IEffect;
 
-public class FumaNinken extends Jutsu {
+public class FumaNinken extends Jutsu implements IJutsu {
 
-	public FumaNinken(int i) {
+	public FumaNinken() {
 		this.setUnlocalizedName("Fuma Ninken");
 		this.setTextureName(jutsuLoc + "Fuma Ninken");
 	}
@@ -17,6 +20,41 @@ public class FumaNinken extends Jutsu {
 
 		}
 		return stack;
+	}
+	@Override
+	public void uploadEffects() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public Map<IJutsu, IEffect> getEffects() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setEffect(IEffect effect) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public boolean isActive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void setActive(boolean par) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void onJutsuUpdate() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void consumeChackra(int value) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

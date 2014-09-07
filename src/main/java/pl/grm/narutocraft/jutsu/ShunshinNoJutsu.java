@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public class ShunshinNoJutsu extends Jutsu {
 
-	public ShunshinNoJutsu(int i) {
+	public ShunshinNoJutsu() {
 		this.setUnlocalizedName("SNoJutsu");
 		this.setTextureName(jutsuLoc + "NoJutsu");
 	}
