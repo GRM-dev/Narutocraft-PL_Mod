@@ -15,6 +15,7 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	private ItemStack stack;
 	private World world;
 	private EntityPlayer player;
+	private int chackraConsumption = 5;
 	private boolean active = false;
 
 	public Meisaigakure(int i) {
@@ -42,6 +43,23 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	public void uploadEffects() {
 		setEffect(new Invisible(14, 200, stack, world, player));
 		this.setActive(true);
+		this.consumeChackra(chackraConsumption);
+	}
+
+	@Override
+	public void onJutsuUpdate() {
+		effects.get(this).onEffectUpdate();
+		if (effects.get(this).isEnded())
+			setActive(false);
+	}
+
+	@Override
+	public void consumeChackra(int value) {
+		ExtendedProperties props = ExtendedProperties.get(player);
+		if (props.getCurrentChakra() < chackraConsumption)
+			setActive(false);
+		else
+			ExtendedProperties.get(player).consumeChakra(value);
 	}
 
 	@Override
@@ -62,12 +80,5 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	@Override
 	public void setActive(boolean par) {
 		this.active = par;
-	}
-
-	@Override
-	public void onJutsuUpdate() {
-		effects.get(this).onEffectUpdate();
-		if (effects.get(this).isEnded())
-			setActive(false);
 	}
 }

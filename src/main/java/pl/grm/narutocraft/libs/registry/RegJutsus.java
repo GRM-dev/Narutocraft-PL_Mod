@@ -85,12 +85,10 @@ public class RegJutsus {
 			id + 35);
 	public static Jutsu UraRenge = new UraRenge(id + 36);
 	public static Jutsu Yosakugiri = new Yosakugiri(id + 37);
-	public static Jutsu jutsu = (Jutsu) new Jutsu().setUnlocalizedName("jutsu");
 
 	// public static Jutsu = new (id+);
 
 	public static void RegPowersList() {
-		GameRegistry.registerItem(jutsu, "jutsu");
 		GameRegistry.registerItem(KawarimiNoJutsu, "KawarimiNoJutsu");
 		GameRegistry.registerItem(ShunshinNoJutsu, "ShunshinNoJutsu");
 		GameRegistry.registerItem(Sharingan, "Sharingan");

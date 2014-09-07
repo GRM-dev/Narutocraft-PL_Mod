@@ -49,7 +49,6 @@ public class Invisible extends Potion implements IEffect {
 
 	@Override
 	public void endEffect() {
-		System.out.println(tickCount);
 		player.setInvisible(false);
 		this.ended = true;
 	}

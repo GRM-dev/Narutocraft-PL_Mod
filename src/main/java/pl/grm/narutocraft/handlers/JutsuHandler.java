@@ -19,11 +19,15 @@ public class JutsuHandler {
 					.iterator();
 			Map.Entry<IJutsu, IEffect> elem;
 			IJutsu jutsu;
+			IEffect effect;
 			while (iterator.hasNext()) {
 				elem = (Map.Entry) iterator.next();
 				jutsu = elem.getKey();
+				effect = elem.getValue();
 				if (jutsu.isActive())
 					jutsu.onJutsuUpdate();
+				else
+					effect.endEffect();
 			}
 		}
 	}

@@ -90,9 +90,9 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		setCurrentChakra(getCurrentChakra() + amount);
 	}
 
-	public final boolean consumeChakra(int amount) {
-		boolean sufficient = amount <= getCurrentChakra();
-		setCurrentChakra(getCurrentChakra() - amount);
+	public final boolean consumeChakra(int value) {
+		boolean sufficient = value <= getCurrentChakra();
+		setCurrentChakra(getCurrentChakra() - value);
 		return sufficient;
 	}
 
@@ -104,9 +104,9 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final int getCurrentChakra() {
 		return player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER);
 	}
-	public final void setCurrentChakra(int amount) {
+	public final void setCurrentChakra(int value) {
 		player.getDataWatcher().updateObject(CHAKRA_WATCHER,
-				amount > 0 ? (amount < maxChakra ? amount : maxChakra) : 0);
+				value > 0 ? (value < maxChakra ? value : maxChakra) : 0);
 	}
 	public final int getMaxChakra() {
 		return maxChakra;

@@ -68,10 +68,9 @@ public class GuiChakraBar extends Gui {
 		 */
 		drawTexturedModalRect(xPos, yPos, 0, 0, barW, barH);
 
-		int manabarwidth = (int) (((float) props.getCurrentChakra() / props
-				.getMaxChakra()) * barW);
-
-		drawTexturedModalRect(xPos, yPos, 0, barH, manabarwidth, barH);
+		int chakrabarwidth = props.getCurrentChakra() * barW
+				/ props.getMaxChakra();
+		drawTexturedModalRect(xPos, yPos, 0, barH, chakrabarwidth, barH);
 		String s = "Chakra " + props.getCurrentChakra() + "/"
 				+ props.getMaxChakra();
 		yPos += barH + 2;

@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 public class InyuShometsu extends Jutsu {
 
 	public InyuShometsu(int i) {
-		this.setUnlocalizedName("InyuShometsu");
-		this.setTextureName(jutsuLoc + "InyuShometsu");
+		this.setUnlocalizedName("Inyu Shometsu");
+		this.setTextureName(jutsuLoc + "Inyu Shometsu");
 	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,

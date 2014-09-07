@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 public class SamuraiSabreTechnique extends Jutsu {
 
 	public SamuraiSabreTechnique(int i) {
-		this.setUnlocalizedName("SamuraiSabreTechnique");
-		this.setTextureName(jutsuLoc + "SamuraiSabreTechnique");
+		this.setUnlocalizedName("Samurai Sabre Technique");
+		this.setTextureName(jutsuLoc + "Samurai Sabre Technique");
 	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,

@@ -23,6 +23,14 @@ public interface IEffect {
 	public abstract void action();
 	public abstract void startEffect();
 	public abstract void endEffect();
+	/**
+	 * Called every tick by Jutsu it corresponds to.
+	 */
 	public abstract void onEffectUpdate();
+	/**
+	 * Check is effect has finished.
+	 * 
+	 * @return true if ended.
+	 */
 	public abstract boolean isEnded();
 }

@@ -9,8 +9,8 @@ import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.world.WorldServer;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.items.ItemJutsuBook;
+import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.libs.ExtendedProperties;
-import pl.grm.narutocraft.libs.registry.RegJutsus;
 import pl.grm.narutocraft.network.DataReader;
 import pl.grm.narutocraft.network.DataWriter;
 import cpw.mods.fml.common.FMLLog;
@@ -175,7 +175,7 @@ public class PacketProcessorServer {
 
 		ItemStack stack = player.getCurrentEquippedItem();
 		if (stack != null) {
-			if (stack.getItem() == RegJutsus.jutsu) {
+			if (stack.getItem() instanceof Jutsu) {
 
 			}
 		}

@@ -8,7 +8,7 @@ public class UraRenge extends Jutsu {
 
 	public UraRenge(int i) {
 		this.setUnlocalizedName("Ura Renge");
-		this.setTextureName("narutocraftmod:Ura Renge");
+		this.setTextureName(jutsuLoc + "Ura Renge");
 	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
