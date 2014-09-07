@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.gui.GuiBasic;
 import pl.grm.narutocraft.gui.GuiJutsuInvContainer;
-import pl.grm.narutocraft.libs.ExtendedPlayer;
+import pl.grm.narutocraft.libs.ExtendedProperties;
 
 public class ClientGuiHandler extends ServerGuiHandler {
 
@@ -14,7 +14,7 @@ public class ClientGuiHandler extends ServerGuiHandler {
 
 		if (ID == GuiBasic.GUI_JUTSU_INV) {
 			return new GuiJutsuInvContainer(player, player.inventory,
-					ExtendedPlayer.get(player).inventory);
+					ExtendedProperties.get(player).inventory);
 		}
 		return null;
 	}

@@ -1,15 +1,20 @@
 package pl.grm.narutocraft.libs;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import pl.grm.narutocraft.effects.IEffect;
 import pl.grm.narutocraft.gui.JutsuInv;
+import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.network.DataWriter;
 
-public class ExtendedPlayer implements IExtendedEntityProperties {
+public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "ExtendedPlayer";
 	private static EntityLivingBase living;
 	private final EntityPlayer player;
@@ -28,8 +33,9 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	private float AuraSpeed;
 	public float TK_Distance = 8.0F;
 	public static final int CHAKRA_WATCHER = 20;
+	public static Map<IJutsu, IEffect> activeEffects = new HashMap<IJutsu, IEffect>();
 
-	public ExtendedPlayer(EntityPlayer player) {
+	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
 		this.maxChakra = 50;
 		// this.chakraRegenTimer = 0;
@@ -37,12 +43,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public static final void register(EntityPlayer player) {
-		player.registerExtendedProperties(ExtendedPlayer.EXT_PROP_NAME,
-				new ExtendedPlayer(player));
+		player.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME,
+				new ExtendedProperties(player));
 	}
 
-	public static final ExtendedPlayer get(EntityPlayer player) {
-		return (ExtendedPlayer) player.getExtendedProperties(EXT_PROP_NAME);
+	public static final ExtendedProperties get(EntityPlayer player) {
+		return (ExtendedProperties) player.getExtendedProperties(EXT_PROP_NAME);
 	}
 
 	@Override
@@ -118,12 +124,12 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 	public static final void saveProxyData(EntityPlayer player) {
 		NBTTagCompound savedData = new NBTTagCompound();
-		ExtendedPlayer.get(player).saveNBTData(savedData);
+		ExtendedProperties.get(player).saveNBTData(savedData);
 		ProxyCommon.storeEntityData(getSaveKey(player), savedData);
 	}
 
 	public static final void loadProxyData(EntityPlayer player) {
-		ExtendedPlayer playerData = ExtendedPlayer.get(player);
+		ExtendedProperties playerData = ExtendedProperties.get(player);
 		NBTTagCompound savedData = ProxyCommon
 				.getEntityData(getSaveKey(player));
 		if (savedData != null) {
@@ -131,8 +137,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 		}
 	}
 
-	public static ExtendedPlayer For(EntityLivingBase living) {
-		return (ExtendedPlayer) living
+	public static ExtendedProperties For(EntityLivingBase living) {
+		return (ExtendedProperties) living
 				.getExtendedProperties("NarutoCraftExProps");
 	}
 
@@ -167,4 +173,5 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 
 		return writer.generate();
 	}
+
 }

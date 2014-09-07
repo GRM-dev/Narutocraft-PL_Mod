@@ -1,12 +1,14 @@
 package pl.grm.narutocraft.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import pl.grm.narutocraft.libs.ExtendedPlayer;
+import pl.grm.narutocraft.libs.ExtendedProperties;
+import pl.grm.narutocraft.libs.registry.RegJutsus;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -20,20 +22,20 @@ public class NCPLEventHandler {
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
 		if (event.entity instanceof EntityPlayer
-				&& ExtendedPlayer.get((EntityPlayer) event.entity) == null)
-			ExtendedPlayer.register((EntityPlayer) event.entity);
+				&& ExtendedProperties.get((EntityPlayer) event.entity) == null)
+			ExtendedProperties.register((EntityPlayer) event.entity);
 		if (event.entity instanceof EntityPlayer
 				&& event.entity
-						.getExtendedProperties(ExtendedPlayer.EXT_PROP_NAME) == null)
+						.getExtendedProperties(ExtendedProperties.EXT_PROP_NAME) == null)
 			event.entity.registerExtendedProperties(
-					ExtendedPlayer.EXT_PROP_NAME, new ExtendedPlayer(
+					ExtendedProperties.EXT_PROP_NAME, new ExtendedProperties(
 							(EntityPlayer) event.entity));
 	}
 
 	@SubscribeEvent
 	public void onLivingFallEvent(LivingFallEvent event) {
 		if (event.entity instanceof EntityPlayer) {
-			ExtendedPlayer props = ExtendedPlayer
+			ExtendedProperties props = ExtendedProperties
 					.get((EntityPlayer) event.entity);
 			if (event.distance > 3.0F && props.getCurrentChakra() > 0) {
 				System.out.println("[EVENT] Fall distance: " + event.distance);
@@ -56,7 +58,7 @@ public class NCPLEventHandler {
 	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		if (!event.entity.worldObj.isRemote
 				&& event.entity instanceof EntityPlayer) {
-			ExtendedPlayer.loadProxyData((EntityPlayer) event.entity);
+			ExtendedProperties.loadProxyData((EntityPlayer) event.entity);
 		}
 	}
 
@@ -64,7 +66,7 @@ public class NCPLEventHandler {
 	public void onLivingDeathEvent(LivingDeathEvent event) {
 		if (!event.entity.worldObj.isRemote
 				&& event.entity instanceof EntityPlayer) {
-			ExtendedPlayer.saveProxyData((EntityPlayer) event.entity);
+			ExtendedProperties.saveProxyData((EntityPlayer) event.entity);
 		}
 	}
 
@@ -74,13 +76,29 @@ public class NCPLEventHandler {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			// ExtendedPlayer.get(player).onUpdate();
 			if (event.entity.worldObj.getWorldTime() % 100 == 0)
-				ExtendedPlayer.get(player).regenChakra(1);
+				ExtendedProperties.get(player).regenChakra(1);
 			if (player.isPlayerFullyAsleep()) {
 				System.out
 						.println("After a full night's rest, you feel refreshed!");
-				ExtendedPlayer.get(player).replenishChakra();
+				ExtendedProperties.get(player).replenishChakra();
 			}
 		}
 	}
 
+	@SubscribeEvent
+	public void onLivingUpdateEvent(LivingUpdateEvent event) {
+		if (event.entity instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.entity;
+			ItemStack heldItem = player.getHeldItem();
+			if (heldItem != null
+					&& heldItem.getItem() == RegJutsus.KawarimiNoJutsu) // Testing
+			{
+				player.capabilities.allowFlying = true;
+			} else {
+				player.capabilities.allowFlying = player.capabilities.isCreativeMode
+						? true
+						: false;
+			}
+		}
+	}
 }

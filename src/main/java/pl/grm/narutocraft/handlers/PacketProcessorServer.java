@@ -9,7 +9,7 @@ import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.world.WorldServer;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.items.ItemJutsuBook;
-import pl.grm.narutocraft.libs.ExtendedPlayer;
+import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.registry.RegJutsus;
 import pl.grm.narutocraft.network.DataReader;
 import pl.grm.narutocraft.network.DataWriter;
@@ -57,7 +57,7 @@ public class PacketProcessorServer {
 					handleSyncJutsuKnowledge(remaining, player);
 					break;
 				case 39 :
-					ExtendedPlayer.For(player).TK_Distance = new DataReader(
+					ExtendedProperties.For(player).TK_Distance = new DataReader(
 							remaining).getFloat();
 					break;
 				case 16 :
@@ -122,7 +122,7 @@ public class PacketProcessorServer {
 		if (!NarutoCraft.proxy.playerTracker.hasAA((EntityPlayer) entity)) {
 			return;
 		}
-		byte[] expropData = ExtendedPlayer.For(entity).getAuraData();
+		byte[] expropData = ExtendedProperties.For(entity).getAuraData();
 
 		DataWriter writer = new DataWriter();
 		writer.add(entity.getEntityId());
@@ -138,7 +138,7 @@ public class PacketProcessorServer {
 
 		EntityLivingBase e = getEntityByID(entityID);
 		if ((e != null) && ((e instanceof EntityPlayer))) {
-			ExtendedPlayer props = ExtendedPlayer.For(e);
+			ExtendedProperties props = ExtendedProperties.For(e);
 			// if (!props.detectPossibleDesync()) {
 			// props.setFullSync();
 			// props.forceSync();
@@ -163,7 +163,7 @@ public class PacketProcessorServer {
 		int quantity = rdr.getInt();
 		float speed = rdr.getFloat();
 
-		ExtendedPlayer.For(player)
+		ExtendedProperties.For(player)
 				.updateAuraData(index, behaviour, scale, alpha, randomColor,
 						defaultColor, color, delay, quantity, speed);
 	}

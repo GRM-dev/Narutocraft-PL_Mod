@@ -5,6 +5,7 @@ import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraft.creativetabs.JutsuTab;
 import pl.grm.narutocraft.creativetabs.NCPLCreativeTab;
 import pl.grm.narutocraft.handlers.ClientGuiHandler;
+import pl.grm.narutocraft.handlers.JutsuEventsHandler;
 import pl.grm.narutocraft.handlers.KeyInputHandler;
 import pl.grm.narutocraft.handlers.NCPLEventHandler;
 import pl.grm.narutocraft.handlers.NCPLFMLEventHandler;
@@ -87,6 +88,7 @@ public class NarutoCraft {
 	public void load(FMLInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
 		FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
+		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();
 		RegMobs.RegMobsList();

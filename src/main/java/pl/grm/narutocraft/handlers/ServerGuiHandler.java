@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.gui.ContainerNCPLPlayer;
 import pl.grm.narutocraft.gui.GuiBasic;
-import pl.grm.narutocraft.libs.ExtendedPlayer;
+import pl.grm.narutocraft.libs.ExtendedProperties;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class ServerGuiHandler implements IGuiHandler {
@@ -15,7 +15,7 @@ public class ServerGuiHandler implements IGuiHandler {
 			int x, int y, int z) {
 		if (ID == GuiBasic.GUI_JUTSU_INV) {
 			return new ContainerNCPLPlayer(player, player.inventory,
-					ExtendedPlayer.get(player).inventory);
+					ExtendedProperties.get(player).inventory);
 		} else if (ID == GuiBasic.GUI_SKILL_TREE)
 			return null;
 		return null;

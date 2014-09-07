@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import pl.grm.narutocraft.gui.skilltrees.SkillTreeManager;
 import pl.grm.narutocraft.handlers.NetHandler;
-import pl.grm.narutocraft.libs.ExtendedPlayer;
+import pl.grm.narutocraft.libs.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
@@ -102,14 +102,14 @@ public class PlayerTracker {
 					.getDisplayName());
 			storedExtProps_death.remove(event.player.getDisplayName());
 
-			ExtendedPlayer.For(event.player).loadNBTData(stored);
+			ExtendedProperties.For(event.player).loadNBTData(stored);
 		} else if (storedExtProps_dimension.containsKey(event.player
 				.getDisplayName())) {
 			NBTTagCompound stored = storedExtProps_dimension.get(event.player
 					.getDisplayName());
 			storedExtProps_dimension.remove(event.player.getDisplayName());
 
-			ExtendedPlayer.For(event.player).loadNBTData(stored);
+			ExtendedProperties.For(event.player).loadNBTData(stored);
 		}
 		if (spellKnowledgeStorage_death.containsKey(event.player
 				.getDisplayName())) {
@@ -152,7 +152,7 @@ public class PlayerTracker {
 			storedExtProps_death.remove(player.getDisplayName());
 		}
 		NBTTagCompound save = new NBTTagCompound();
-		ExtendedPlayer.For(player).saveNBTData(save);
+		ExtendedProperties.For(player).saveNBTData(save);
 
 		storedExtProps_death.put(player.getDisplayName(), save);
 
@@ -203,7 +203,7 @@ public class PlayerTracker {
 				storedExtProps_dimension.remove(player.getDisplayName());
 			}
 			NBTTagCompound saveExprop = new NBTTagCompound();
-			ExtendedPlayer.For(player).saveNBTData(saveExprop);
+			ExtendedProperties.For(player).saveNBTData(saveExprop);
 
 			storedExtProps_dimension.put(player.getDisplayName(), saveExprop);
 		}

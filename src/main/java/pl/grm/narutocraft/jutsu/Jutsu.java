@@ -16,7 +16,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -27,6 +26,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.effects.IEffect;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -60,11 +60,11 @@ public class Jutsu extends Item {
 	protected IIcon itemIcon;
 	protected String iconString;
 	protected boolean canRepair = true;
-	private HashMap<String, Integer> toolClasses = new HashMap<String, Integer>();
+	private HashMap<IJutsu, IEffect> jutsuEffects = new HashMap<IJutsu, IEffect>();
 
-	@Override
 	@SuppressWarnings("rawtypes")
 	@SideOnly(Side.CLIENT)
+	@Override
 	public void addInformation(ItemStack par1ItemStack,
 			EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 	}
@@ -127,16 +127,6 @@ public class Jutsu extends Item {
 	}
 
 	@Override
-	public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_) {
-		return 1.0F;
-	}
-
-	@Override
-	public boolean func_150897_b(Block p_150897_1_) {
-		return false;
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack par1ItemStack, int par2) {
 		return 16777215;
@@ -145,6 +135,12 @@ public class Jutsu extends Item {
 	@Override
 	public Item getContainerItem() {
 		return this.containerItem;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public CreativeTabs getCreativeTab() {
+		return this.tabToDisplayOn;
 	}
 
 	/**
@@ -161,24 +157,6 @@ public class Jutsu extends Item {
 			return null;
 		}
 		return new ItemStack(getContainerItem());
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public CreativeTabs getCreativeTab() {
-		return this.tabToDisplayOn;
-	}
-
-	/**
-	 * Gets a list of tabs that items belonging to this class can display on,
-	 * combined properly with getSubItems allows for a single item to span many
-	 * sub-items across many tabs.
-	 *
-	 * @return A list of all tabs that this item could possibly be one.
-	 */
-	@Override
-	public CreativeTabs[] getCreativeTabs() {
-		return new CreativeTabs[]{getCreativeTab()};
 	}
 
 	/**
@@ -342,27 +320,6 @@ public class Jutsu extends Item {
 	}
 
 	/**
-	 * Return the maxDamage for this ItemStack. Defaults to the maxDamage field
-	 * in this item, but can be overridden here for other sources such as NBT.
-	 *
-	 * @param stack
-	 *            The itemstack that is damaged
-	 * @return the damage value
-	 */
-	@Override
-	public int getMaxDamage(ItemStack stack) {
-		/**
-		 * Returns the maximum damage an item can take.
-		 */
-		return getMaxDamage();
-	}
-
-	@Override
-	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
-		return 0;
-	}
-
-	/**
 	 * Returns the metadata of the block which this Item (ItemBlock) can place
 	 */
 	@Override
@@ -421,13 +378,6 @@ public class Jutsu extends Item {
 		return this.potionEffect;
 	}
 
-	@Override
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
-		return par1ItemStack.isItemEnchanted()
-				? EnumRarity.rare
-				: EnumRarity.common;
-	}
-
 	/**
 	 * Returns the number of render passes/layers this item has. Usually equates
 	 * to ItemRenderer.renderItem being called for this many passes. Does not
@@ -467,15 +417,6 @@ public class Jutsu extends Item {
 	}
 
 	/**
-	 * Returns 0 for /terrain.png, 1 for /gui/items.png
-	 */
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getSpriteNumber() {
-		return 1;
-	}
-
-	/**
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
 	 */
@@ -487,9 +428,8 @@ public class Jutsu extends Item {
 		p_150895_3_.add(new ItemStack(p_150895_1_, 1, 0));
 	}
 
-	@Override
-	public Set<String> getToolClasses(ItemStack stack) {
-		return toolClasses.keySet();
+	public Set<IJutsu> getJutsuEffects(ItemStack stack) {
+		return jutsuEffects.keySet();
 	}
 	/*
 	 * ======================================== FORGE END
@@ -513,22 +453,6 @@ public class Jutsu extends Item {
 	}
 
 	/**
-	 * ItemStack sensitive version of hasContainerItem
-	 * 
-	 * @param stack
-	 *            The current item stack
-	 * @return True if this item has a 'container'
-	 */
-	@Override
-	@SuppressWarnings("deprecation")
-	public boolean hasContainerItem(ItemStack stack) {
-		/**
-		 * True if this Item has a container item (a.k.a. crafting result)
-		 */
-		return hasContainerItem();
-	}
-
-	/**
 	 * Determines if this Item has a special entity for when they are in the
 	 * world. Is called when a EntityItem is spawned in the world, if true and
 	 * Item#createCustomEntity returns non null, the EntityItem will be
@@ -544,18 +468,6 @@ public class Jutsu extends Item {
 		return false;
 	}
 
-	/**
-	 * Render Pass sensitive version of hasEffect()
-	 */
-	@Override
-	@SuppressWarnings("deprecation")
-	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack par1ItemStack, int pass) {
-		return hasEffect(par1ItemStack)
-				&& (pass == 0 || this != Jutsu
-						.getItemById(getItemEnchantability()));
-	}
-
 	@Override
 	public boolean hitEntity(ItemStack par1ItemStack,
 			EntityLivingBase par2EntityLivingBase,
@@ -565,7 +477,7 @@ public class Jutsu extends Item {
 
 	@Override
 	public boolean isDamageable() {
-		return this.maxDamage > 0 && !this.hasSubtypes;
+		return false;
 	}
 
 	/**
@@ -578,7 +490,7 @@ public class Jutsu extends Item {
 	 */
 	@Override
 	public boolean isDamaged(ItemStack stack) {
-		return stack.getItemDamage() > 0;
+		return false;
 	}
 
 	@Override
@@ -592,13 +504,12 @@ public class Jutsu extends Item {
 	 */
 	@Override
 	public boolean isItemTool(ItemStack par1ItemStack) {
-		return this.getItemStackLimit(par1ItemStack) == 1
-				&& this.isDamageable();
+		return false;
 	}
 
 	@Override
 	public boolean isPotionIngredient(ItemStack p_150892_1_) {
-		return this.getPotionEffect(p_150892_1_) != null;
+		return false;
 	}
 
 	/**
@@ -608,8 +519,9 @@ public class Jutsu extends Item {
 	 */
 	@Override
 	public boolean isRepairable() {
-		return canRepair && isDamageable();
+		return false;
 	}
+
 	/**
 	 * Returns true if the item can be used on the given entity, e.g. shears on
 	 * sheep.
@@ -859,8 +771,9 @@ public class Jutsu extends Item {
 	 */
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		return stack.isItemDamaged();
+		return false;
 	}
+
 	public static Jutsu For(EntityPlayer player) {
 		return (Jutsu) player.getExtendedProperties("JutsuKnowledgeData");
 	}

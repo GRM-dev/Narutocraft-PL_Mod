@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraft.libs.ExtendedPlayer;
+import pl.grm.narutocraft.libs.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -48,7 +48,7 @@ public class GuiChakraBar extends Gui {
 			return;
 		}
 
-		ExtendedPlayer props = ExtendedPlayer.get(mc.thePlayer);
+		ExtendedProperties props = ExtendedProperties.get(mc.thePlayer);
 		if (props == null || props.getMaxChakra() == 0) {
 			return;
 		}
