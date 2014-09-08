@@ -9,19 +9,24 @@ import net.minecraft.potion.PotionEffect;
  * Interface of all effects
  */
 public interface IEffect {
-	public int ID = 0;
-	public int duration = 0;
-	public int amplifier = 0;
-	public boolean ended = false;
-	List<ItemStack> curativeItems = null;
 
 	public abstract PotionEffect getEffect();
-	public int getID();
-	public int getDuration();
-	public int getAmplifier();
-	public List<ItemStack> getCurativeItems();
+	public abstract int getJutsuID();
+	public abstract int getEffectID();
+	public abstract int getDuration();
+	public abstract int getAmplifier();
+	public abstract List<ItemStack> getCurativeItems();
+	/**
+	 * Describes Efeect actions. What it makes.
+	 */
 	public abstract void action();
+	/**
+	 * Called to start effect.
+	 */
 	public abstract void startEffect();
+	/**
+	 * Called on end effect.
+	 */
 	public abstract void endEffect();
 	/**
 	 * Called every tick by Jutsu it corresponds to.

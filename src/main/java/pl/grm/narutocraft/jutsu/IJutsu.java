@@ -44,4 +44,10 @@ public interface IJutsu {
 	 * @param value
 	 */
 	public abstract void consumeChackra(int value);
+	/**
+	 * Id of the Jutsu.
+	 * 
+	 * @return ID of Jutsu
+	 */
+	public abstract int getID();
 }

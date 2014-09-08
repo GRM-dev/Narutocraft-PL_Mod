@@ -18,6 +18,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -27,6 +29,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.effects.IEffect;
+import pl.grm.narutocraft.libs.ExtendedProperties;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -61,6 +64,37 @@ public class Jutsu extends Item {
 	protected String iconString;
 	protected boolean canRepair = true;
 	private HashMap<IJutsu, IEffect> jutsuEffects = new HashMap<IJutsu, IEffect>();
+
+	public void writeToNBT(NBTTagCompound compound) {
+		NBTTagList jutsus = new NBTTagList();
+		ExtendedProperties.updateActiveJutsu(1);
+		int[] jutsuArray = ExtendedProperties.activeJutsuArray;
+		int[] effectArray = ExtendedProperties.activeEffectArray;
+
+		if (jutsuArray.length > 0)
+			for (int i = 0; i < jutsuArray.length; i++) {
+				NBTTagCompound jutsu = new NBTTagCompound();
+				jutsu.setInteger("JutsuType", jutsuArray[i]);
+				jutsu.setInteger("EffectType", effectArray[i]);
+				jutsus.appendTag(jutsu);
+			}
+		compound.setTag("JutsuManager", jutsus);
+	}
+
+	public void readFromNBT(NBTTagCompound compound) {
+		NBTTagList jutsus = compound.getTagList("JutsuManager",
+				compound.getId());
+		int[] jutsuArray = null;
+		int[] effectArray = null;
+		for (int i = 0; i < jutsus.tagCount(); ++i) {
+			NBTTagCompound jutsu = jutsus.getCompoundTagAt(i);
+			jutsuArray[i] = jutsu.getInteger("JutsuType");
+			effectArray[i] = jutsu.getInteger("EffectType");
+		}
+		ExtendedProperties.activeJutsuArray = jutsuArray;
+		ExtendedProperties.activeEffectArray = effectArray;
+		ExtendedProperties.updateActiveJutsu(2);
+	}
 
 	@SuppressWarnings("rawtypes")
 	@SideOnly(Side.CLIENT)

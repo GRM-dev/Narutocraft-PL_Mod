@@ -4,33 +4,33 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class Invisible extends Potion implements IEffect {
+public class Invisible implements IEffect {
 	private EntityPlayer player;
-	private int ID;
+	public int effectID;
 	private int duration;
 	private List<ItemStack> curativeItems;
 	private int tickCount;
 	private boolean ended;
+	private int jutsuID;
 
 	/**
 	 * Make player invisible for duration(ticks).
 	 * 
-	 * @param ID
+	 * @param jutsuID
 	 * @param duration
 	 * @param stack
 	 * @param world
 	 * @param player
 	 */
-	public Invisible(int ID, int duration, ItemStack stack, World world,
+	public Invisible(int jutsuID, int duration, ItemStack stack, World world,
 			EntityPlayer player) {
-		super(ID, false, 8356754);
 		this.player = player;
-		this.ID = ID;
+		this.jutsuID = jutsuID;
 		this.duration = duration;
+		this.effectID = EffectList.INVISIBLE.getID();
 	}
 
 	@Override
@@ -66,8 +66,13 @@ public class Invisible extends Potion implements IEffect {
 	}
 
 	@Override
-	public int getID() {
-		return ID;
+	public int getEffectID() {
+		return effectID;
+	}
+
+	@Override
+	public int getJutsuID() {
+		return jutsuID;
 	}
 
 	@Override

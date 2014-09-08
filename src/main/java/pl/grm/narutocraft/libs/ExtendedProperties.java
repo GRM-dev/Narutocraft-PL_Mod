@@ -1,7 +1,9 @@
 package pl.grm.narutocraft.libs;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,13 +14,15 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.effects.IEffect;
 import pl.grm.narutocraft.gui.JutsuInv;
 import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
-	public final static String EXT_PROP_NAME = "ExtendedPlayer";
+	public final static String EXT_PROP_NAME = "NCPLExtPlayer";
 	private static EntityLivingBase living;
 	private final EntityPlayer player;
 	public final JutsuInv inventory = new JutsuInv();
+	public final Jutsu jutsu = new Jutsu();
 	// public InventoryPlayer inventoryPanel;
 	private int maxChakra; // chakraRegenTimer;
 	private int AuraIndex;
@@ -28,17 +32,17 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	private boolean AuraColorRandomize = true;
 	private boolean AuraColorDefault = true;
 	private int AuraColor;
-	private int AuraDelay;
 	private int AuraQuantity;
 	private float AuraSpeed;
 	public float TK_Distance = 8.0F;
+	public static int[] activeJutsuArray;
+	public static int[] activeEffectArray;
 	public static final int CHAKRA_WATCHER = 20;
 	public static Map<IJutsu, IEffect> activeEffects = new HashMap<IJutsu, IEffect>();
 
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
 		this.maxChakra = 50;
-		// this.chakraRegenTimer = 0;
 		this.player.getDataWatcher().addObject(CHAKRA_WATCHER, this.maxChakra);
 	}
 
@@ -53,30 +57,36 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 
 	@Override
 	public final void saveNBTData(NBTTagCompound compound) {
-		// inventoryPanel = new InventoryPlayer(player);
 		NBTTagCompound properties = new NBTTagCompound();
+
 		inventory.writeToNBT(properties);
-		// NBTTagList props = new NBTTagList();
-		// this.inventoryPanel.writeToNBT(props);
+		// jutsu.writeToNBT(compound);
+
 		properties.setInteger("CurrentChakra", player.getDataWatcher()
 				.getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", maxChakra);
-		// properties.setInteger("ChakraRegenTimer", chakraRegenTimer);
+		// properties.setIntArray("ActiveJutsu", activeJutsuArray);
+		// properties.setIntArray("ActiveEffects", activeEffectArray);
+
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
 
 	@Override
 	public final void loadNBTData(NBTTagCompound compound) {
-		// inventoryPanel = new InventoryPlayer(player);
 		NBTTagCompound properties = (NBTTagCompound) compound
 				.getTag(EXT_PROP_NAME);
+
 		inventory.readFromNBT(properties);
-		// NBTTagList props = new NBTTagList();
-		// this.inventoryPanel.readFromNBT(props);
+		// jutsu.readFromNBT(compound);
+
 		player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));
 		maxChakra = properties.getInteger("MaxChakra");
-		// chakraRegenTimer = properties.getInteger("ChakraRegenTimer");
+		// activeJutsuArray = properties.getIntArray("ActiveJutsu");
+		// activeEffectArray = properties.getIntArray("ActiveEffects");
+
+		System.out.println(activeEffectArray);
+
 		System.out.println("[TUT PROPS] Chakra from NBT: "
 				+ player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER)
 				+ "/" + this.maxChakra);
@@ -84,6 +94,36 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 
 	@Override
 	public void init(Entity entity, World world) {
+
+	}
+
+	/**
+	 * 
+	 * @param j
+	 *            if 1 arrays to map, if 2 -opposite
+	 */
+	public static void updateActiveJutsu(int j) {
+		if (j == 1) {
+			Map.Entry<IJutsu, IEffect> elem;
+			IJutsu jutsu;
+			IEffect effect;
+			Iterator<Entry<IJutsu, IEffect>> iterator = activeEffects
+					.entrySet().iterator();
+			activeJutsuArray = new int[activeEffects.size()];
+			activeEffectArray = new int[activeEffects.size()];
+			for (int i = 0; iterator.hasNext(); i++) {
+				elem = iterator.next();
+				jutsu = elem.getKey();
+				effect = elem.getValue();
+				if (jutsu.isActive()) {
+					activeJutsuArray[i] = effect.getJutsuID();
+					activeEffectArray[i] = effect.getEffectID();
+				}
+			}
+		} else if (j == 2) {
+			System.out.println("fill");
+
+		}
 	}
 
 	public final void regenChakra(int amount) {
@@ -152,7 +192,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		this.AuraColorRandomize = randomColor;
 		this.AuraColorDefault = defaultColor;
 		this.AuraColor = color;
-		this.AuraDelay = delay;
 		this.AuraQuantity = quantity;
 		this.AuraSpeed = speed;
 
@@ -167,7 +206,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		writer.add(this.AuraColorRandomize);
 		writer.add(this.AuraColorDefault);
 		writer.add(this.AuraColor);
-		writer.add(this.AuraDelay);
 		writer.add(this.AuraQuantity);
 		writer.add(this.AuraSpeed);
 
