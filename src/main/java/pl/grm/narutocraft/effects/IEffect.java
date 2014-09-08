@@ -14,7 +14,6 @@ public interface IEffect {
 	public abstract int getJutsuID();
 	public abstract int getEffectID();
 	public abstract int getDuration();
-	public abstract int getAmplifier();
 	public abstract List<ItemStack> getCurativeItems();
 	/**
 	 * Describes Efeect actions. What it makes.
@@ -32,6 +31,11 @@ public interface IEffect {
 	 * Called every tick by Jutsu it corresponds to.
 	 */
 	public abstract void onEffectUpdate();
+	/**
+	 * 
+	 * @return ticks passed from Effect start.
+	 */
+	public abstract int getDurationPass();
 	/**
 	 * Check is effect has finished.
 	 * 

@@ -12,7 +12,7 @@ public class Invisible implements IEffect {
 	public int effectID;
 	private int duration;
 	private List<ItemStack> curativeItems;
-	private int tickCount;
+	private int durationPass;
 	private boolean ended;
 	private int jutsuID;
 
@@ -42,7 +42,7 @@ public class Invisible implements IEffect {
 	@Override
 	public void startEffect() {
 		this.ended = false;
-		this.tickCount = 0;
+		this.durationPass = 0;
 		this.action();
 
 	}
@@ -55,9 +55,14 @@ public class Invisible implements IEffect {
 
 	@Override
 	public void onEffectUpdate() {
-		tickCount++;
-		if (tickCount > duration)
+		durationPass++;
+		if (durationPass > duration)
 			endEffect();
+	}
+
+	@Override
+	public int getDurationPass() {
+		return durationPass;
 	}
 
 	@Override
@@ -78,11 +83,6 @@ public class Invisible implements IEffect {
 	@Override
 	public int getDuration() {
 		return duration;
-	}
-
-	@Override
-	public int getAmplifier() {
-		return 0;
 	}
 
 	@Override

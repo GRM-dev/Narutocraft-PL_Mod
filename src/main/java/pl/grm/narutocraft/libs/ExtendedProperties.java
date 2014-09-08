@@ -1,9 +1,7 @@
 package pl.grm.narutocraft.libs;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,12 +17,11 @@ import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "NCPLExtPlayer";
-	private static EntityLivingBase living;
 	private final EntityPlayer player;
 	public final JutsuInv inventory = new JutsuInv();
 	public final Jutsu jutsu = new Jutsu();
 	// public InventoryPlayer inventoryPanel;
-	private int maxChakra; // chakraRegenTimer;
+	private int maxChakra;
 	private int AuraIndex;
 	private int AuraBehaviour;
 	private float AuraScale;
@@ -37,6 +34,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public float TK_Distance = 8.0F;
 	public static int[] activeJutsuArray;
 	public static int[] activeEffectArray;
+	public static int[] effectRemainingDurations;
 	public static final int CHAKRA_WATCHER = 20;
 	public static Map<IJutsu, IEffect> activeEffects = new HashMap<IJutsu, IEffect>();
 
@@ -60,13 +58,11 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		NBTTagCompound properties = new NBTTagCompound();
 
 		inventory.writeToNBT(properties);
-		// jutsu.writeToNBT(compound);
+		jutsu.writeToNBT(properties);
 
 		properties.setInteger("CurrentChakra", player.getDataWatcher()
 				.getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", maxChakra);
-		// properties.setIntArray("ActiveJutsu", activeJutsuArray);
-		// properties.setIntArray("ActiveEffects", activeEffectArray);
 
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
@@ -77,17 +73,15 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 				.getTag(EXT_PROP_NAME);
 
 		inventory.readFromNBT(properties);
-		// jutsu.readFromNBT(compound);
+		jutsu.readFromNBT(properties);
 
 		player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));
 		maxChakra = properties.getInteger("MaxChakra");
-		// activeJutsuArray = properties.getIntArray("ActiveJutsu");
-		// activeEffectArray = properties.getIntArray("ActiveEffects");
 
-		System.out.println(activeEffectArray);
+		System.out.println("bgh: " + activeEffectArray[0]);
 
-		System.out.println("[TUT PROPS] Chakra from NBT: "
+		System.out.println("[NCPL Chakra] Chakra from NBT: "
 				+ player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER)
 				+ "/" + this.maxChakra);
 	}
@@ -98,44 +92,29 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	}
 
 	/**
+	 * Add amount of chakra to currentChakra.
 	 * 
-	 * @param j
-	 *            if 1 arrays to map, if 2 -opposite
+	 * @param amount
 	 */
-	public static void updateActiveJutsu(int j) {
-		if (j == 1) {
-			Map.Entry<IJutsu, IEffect> elem;
-			IJutsu jutsu;
-			IEffect effect;
-			Iterator<Entry<IJutsu, IEffect>> iterator = activeEffects
-					.entrySet().iterator();
-			activeJutsuArray = new int[activeEffects.size()];
-			activeEffectArray = new int[activeEffects.size()];
-			for (int i = 0; iterator.hasNext(); i++) {
-				elem = iterator.next();
-				jutsu = elem.getKey();
-				effect = elem.getValue();
-				if (jutsu.isActive()) {
-					activeJutsuArray[i] = effect.getJutsuID();
-					activeEffectArray[i] = effect.getEffectID();
-				}
-			}
-		} else if (j == 2) {
-			System.out.println("fill");
-
-		}
-	}
-
 	public final void regenChakra(int amount) {
 		setCurrentChakra(getCurrentChakra() + amount);
 	}
 
+	/**
+	 * Consumes chakra
+	 * 
+	 * @param value
+	 * @return sufficient
+	 */
 	public final boolean consumeChakra(int value) {
 		boolean sufficient = value <= getCurrentChakra();
 		setCurrentChakra(getCurrentChakra() - value);
 		return sufficient;
 	}
 
+	/**
+	 * Sets currentChakra to maxChakra.
+	 */
 	public final void replenishChakra() {
 		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				this.maxChakra);
@@ -144,6 +123,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final int getCurrentChakra() {
 		return player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER);
 	}
+
 	public final void setCurrentChakra(int value) {
 		player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				value > 0 ? (value < maxChakra ? value : maxChakra) : 0);
@@ -211,5 +191,4 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 
 		return writer.generate();
 	}
-
 }

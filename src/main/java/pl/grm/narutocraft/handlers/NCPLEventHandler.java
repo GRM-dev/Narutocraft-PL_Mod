@@ -30,6 +30,7 @@ public class NCPLEventHandler {
 			event.entity.registerExtendedProperties(
 					ExtendedProperties.EXT_PROP_NAME, new ExtendedProperties(
 							(EntityPlayer) event.entity));
+
 	}
 
 	@SubscribeEvent

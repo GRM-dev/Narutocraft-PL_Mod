@@ -1,7 +1,10 @@
 package pl.grm.narutocraft.jutsu;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
@@ -64,38 +67,87 @@ public class Jutsu extends Item {
 	protected String iconString;
 	protected boolean canRepair = true;
 	private HashMap<IJutsu, IEffect> jutsuEffects = new HashMap<IJutsu, IEffect>();
+	private int[] jutsuArrays;
+	private int[] effectArrays;
+	private int[] effectDurationRemaining;
+	private Map.Entry<IJutsu, IEffect> elem;
+	private IJutsu jutsu;
+	private IEffect effect;
 
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = new NBTTagList();
-		ExtendedProperties.updateActiveJutsu(1);
-		int[] jutsuArray = ExtendedProperties.activeJutsuArray;
-		int[] effectArray = ExtendedProperties.activeEffectArray;
+		jutsuMapToArrays();
+		jutsuArrays = ExtendedProperties.activeJutsuArray;
+		jutsuArrays = ExtendedProperties.activeEffectArray;
+		effectDurationRemaining = ExtendedProperties.effectRemainingDurations;
 
-		if (jutsuArray.length > 0)
-			for (int i = 0; i < jutsuArray.length; i++) {
-				NBTTagCompound jutsu = new NBTTagCompound();
-				jutsu.setInteger("JutsuType", jutsuArray[i]);
-				jutsu.setInteger("EffectType", effectArray[i]);
-				jutsus.appendTag(jutsu);
-			}
+		if (jutsuArrays.length > 0) {
+			NBTTagCompound jutsu = new NBTTagCompound();
+			jutsu.setIntArray("JutsuType", jutsuArrays);
+			jutsu.setIntArray("EffectType", jutsuArrays);
+			jutsu.setIntArray("EffectLeftDuration", effectDurationRemaining);
+			jutsus.appendTag(jutsu);
+		}
 		compound.setTag("JutsuManager", jutsus);
 	}
 
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = compound.getTagList("JutsuManager",
 				compound.getId());
-		int[] jutsuArray = null;
-		int[] effectArray = null;
-		for (int i = 0; i < jutsus.tagCount(); ++i) {
-			NBTTagCompound jutsu = jutsus.getCompoundTagAt(i);
-			jutsuArray[i] = jutsu.getInteger("JutsuType");
-			effectArray[i] = jutsu.getInteger("EffectType");
-		}
-		ExtendedProperties.activeJutsuArray = jutsuArray;
-		ExtendedProperties.activeEffectArray = effectArray;
-		ExtendedProperties.updateActiveJutsu(2);
+		if (jutsus.tagCount() > 0)
+			for (int i = 0; i < jutsus.tagCount(); ++i) {
+				NBTTagCompound jutsu = jutsus.getCompoundTagAt(i);
+				System.out.println("[] " + jutsus.getCompoundTagAt(i));
+				jutsuArrays[i] = jutsu.getInteger("JutsuType");
+				effectArrays[i] = jutsu.getInteger("EffectType");
+				effectDurationRemaining[i] = jutsu
+						.getInteger("EffectLeftDuration");
+			}
+		ExtendedProperties.activeJutsuArray = jutsuArrays;
+		ExtendedProperties.activeEffectArray = effectArrays;
+		arraysToJutsuMap();
 	}
 
+	/**
+	 * Converts Map IJutsu, IEffect to arrays[].
+	 */
+	public void jutsuMapToArrays() {
+		Iterator<Entry<IJutsu, IEffect>> iterator = ExtendedProperties.activeEffects
+				.entrySet().iterator();
+		ExtendedProperties.activeJutsuArray = new int[ExtendedProperties.activeEffects
+				.size()];
+		ExtendedProperties.activeEffectArray = new int[ExtendedProperties.activeEffects
+				.size()];
+		ExtendedProperties.effectRemainingDurations = new int[ExtendedProperties.activeEffects
+				.size()];
+
+		for (int i = 0; iterator.hasNext(); i++) {
+			elem = iterator.next();
+			jutsu = elem.getKey();
+			effect = elem.getValue();
+			int durationLeft = effect.getDuration() - effect.getDurationPass();
+			if (jutsu.isActive()) {
+				ExtendedProperties.activeJutsuArray[i] = effect.getJutsuID();
+				ExtendedProperties.activeEffectArray[i] = effect.getEffectID();
+				ExtendedProperties.effectRemainingDurations[i] = durationLeft;
+			}
+		}
+	}
+
+	/**
+	 * Arrazs to Jutsu, Effect Map.
+	 */
+	public void arraysToJutsuMap() {
+		Map<IJutsu, IEffect> activeEffects = ExtendedProperties.activeEffects;
+		int[] jutsuArray = ExtendedProperties.activeJutsuArray;
+		int[] effectArray = ExtendedProperties.activeEffectArray;
+
+		// if (jutsuArray.length > 0)
+		// for (int i : jutsuArray) {
+		// activeEffects.put(JutsuList.jutsuArray[i], effectArray[i]);
+		// }
+
+	}
 	@SuppressWarnings("rawtypes")
 	@SideOnly(Side.CLIENT)
 	@Override
