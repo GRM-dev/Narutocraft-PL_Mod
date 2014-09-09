@@ -79,8 +79,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 				properties.getInteger("CurrentChakra"));
 		maxChakra = properties.getInteger("MaxChakra");
 
-		System.out.println("bgh: " + activeEffectArray[0]);
-
 		System.out.println("[NCPL Chakra] Chakra from NBT: "
 				+ player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER)
 				+ "/" + this.maxChakra);
@@ -128,14 +126,13 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				value > 0 ? (value < maxChakra ? value : maxChakra) : 0);
 	}
+
 	public final int getMaxChakra() {
 		return maxChakra;
 	}
 
 	public final void setMaxChakra(int amount) {
 		maxChakra = (amount > 0 ? amount : 0);
-		// NarutoCraftMod.packetPipeline.sendTo(new
-		// SyncPlayerPropsPacket(player), (EntityPlayerMP) player);
 	}
 
 	private static final String getSaveKey(EntityPlayer player) {

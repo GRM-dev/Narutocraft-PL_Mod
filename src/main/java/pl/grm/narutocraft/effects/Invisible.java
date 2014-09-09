@@ -27,9 +27,13 @@ public class Invisible implements IEffect {
 	 */
 	public Invisible(int jutsuID, int duration, ItemStack stack, World world,
 			EntityPlayer player) {
+		this();
 		this.player = player;
 		this.jutsuID = jutsuID;
 		this.duration = duration;
+	}
+
+	public Invisible() {
 		this.effectID = EffectList.INVISIBLE.getID();
 	}
 

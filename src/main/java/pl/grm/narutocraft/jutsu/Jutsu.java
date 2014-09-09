@@ -94,20 +94,16 @@ public class Jutsu extends Item {
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = compound.getTagList("JutsuManager",
 				compound.getId());
-		if (jutsus.tagCount() > 0)
-			for (int i = 0; i < jutsus.tagCount(); ++i) {
-				NBTTagCompound jutsu = jutsus.getCompoundTagAt(i);
-				System.out.println("[] " + jutsus.getCompoundTagAt(i));
-				jutsuArrays[i] = jutsu.getInteger("JutsuType");
-				effectArrays[i] = jutsu.getInteger("EffectType");
-				effectDurationRemaining[i] = jutsu
-						.getInteger("EffectLeftDuration");
-			}
+		if (jutsus.tagCount() > 0) {
+			NBTTagCompound jutsu = jutsus.getCompoundTagAt(0);
+			jutsuArrays = jutsu.getIntArray("JutsuType");
+			effectArrays = jutsu.getIntArray("EffectType");
+			effectDurationRemaining = jutsu.getIntArray("EffectLeftDuration");
+		}
 		ExtendedProperties.activeJutsuArray = jutsuArrays;
 		ExtendedProperties.activeEffectArray = effectArrays;
 		arraysToJutsuMap();
 	}
-
 	/**
 	 * Converts Map IJutsu, IEffect to arrays[].
 	 */
@@ -141,10 +137,12 @@ public class Jutsu extends Item {
 		Map<IJutsu, IEffect> activeEffects = ExtendedProperties.activeEffects;
 		int[] jutsuArray = ExtendedProperties.activeJutsuArray;
 		int[] effectArray = ExtendedProperties.activeEffectArray;
+		int[] effectLeftDuration = ExtendedProperties.effectRemainingDurations;
 
 		// if (jutsuArray.length > 0)
 		// for (int i : jutsuArray) {
-		// activeEffects.put(JutsuList.jutsuArray[i], effectArray[i]);
+		// activeEffects.put(JutsuList.jutsuArray[i],
+		// EffectList.getById(effectArray[i]));
 		// }
 
 	}
