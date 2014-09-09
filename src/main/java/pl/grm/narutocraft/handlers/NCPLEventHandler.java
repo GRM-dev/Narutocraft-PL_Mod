@@ -7,6 +7,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.registry.RegJutsus;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -99,6 +100,22 @@ public class NCPLEventHandler {
 				player.capabilities.allowFlying = player.capabilities.isCreativeMode
 						? true
 						: false;
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void onPlayerClone(PlayerEvent.Clone event)
+	{
+		if(event.wasDeath)
+		{
+			if(!event.entityPlayer.worldObj.isRemote)
+			{
+				ExtendedProperties deadPlayer = ExtendedProperties.get(event.original);
+				ExtendedProperties clonePlayer = ExtendedProperties.get(event.entityPlayer);
+				clonePlayer.psa.setValues(deadPlayer.psa.getValues());
+				//Need to have a packet get sent to update the client that the values are changed.
+				//net.sendToServer(new RequestPacket("myStats"));
 			}
 		}
 	}
