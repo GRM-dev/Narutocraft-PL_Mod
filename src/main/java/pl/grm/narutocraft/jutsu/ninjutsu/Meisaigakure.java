@@ -1,5 +1,8 @@
-package pl.grm.narutocraft.jutsu;
+package pl.grm.narutocraft.jutsu.ninjutsu;
 
+import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
