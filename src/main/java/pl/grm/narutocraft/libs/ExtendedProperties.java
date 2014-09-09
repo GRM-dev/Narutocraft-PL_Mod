@@ -6,7 +6,10 @@ import java.util.Map;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.effects.IEffect;
@@ -21,6 +24,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final JutsuInv inventory = new JutsuInv();
 	public final Jutsu jutsu = new Jutsu();
 	// public InventoryPlayer inventoryPanel;
+	public PlayerSkillsAtrributes psa = new PlayerSkillsAtrributes();
 	private int maxChakra;
 	private int AuraIndex;
 	private int AuraBehaviour;
@@ -63,6 +67,18 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		properties.setInteger("CurrentChakra", player.getDataWatcher()
 				.getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", maxChakra);
+		
+		//Save stats
+		NBTTagList stats = new NBTTagList();
+
+		for (int i = 0; i < psa.getValues().length; ++i) 
+		{
+			NBTTagCompound stat = new NBTTagCompound();
+			stat.setInteger("psaStat"+i, psa.getValues()[i]);
+			stats.appendTag(stat);
+			
+		}
+		properties.setTag("psaStats", stats);
 
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
@@ -78,6 +94,15 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));
 		maxChakra = properties.getInteger("MaxChakra");
+		
+		NBTTagList stats = properties.getTagList("psaStats", properties.getId());
+		int[] statList = new int[stats.tagCount()];
+		for (int i = 0; i < stats.tagCount(); ++i) 
+		{
+			NBTTagCompound stat = stats.getCompoundTagAt(i);
+			statList[i] = stat.getInteger("psaStat"+i);
+		}
+		psa.setValues(statList);
 
 		System.out.println("[NCPL Chakra] Chakra from NBT: "
 				+ player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER)
