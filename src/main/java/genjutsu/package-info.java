@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+/**
+ * @author Freesher
+ *
+ */
+package genjutsu;
