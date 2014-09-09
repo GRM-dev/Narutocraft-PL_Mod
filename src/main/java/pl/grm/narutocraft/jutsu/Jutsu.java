@@ -1,12 +1,10 @@
 package pl.grm.narutocraft.jutsu;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
-import java.util.Set;
 import java.util.UUID;
 
 import net.minecraft.block.Block;
@@ -31,13 +29,13 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.effects.IEffect;
+import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Jutsu extends Item {
+public abstract class Jutsu extends Item implements IJutsu {
 	public static String jutsuLoc = "narutocraft:jutsu/";
 	public static int getIdFromItem(Item p_150891_0_) {
 		return p_150891_0_ == null ? 0 : itemRegistry
@@ -66,86 +64,60 @@ public class Jutsu extends Item {
 	protected IIcon itemIcon;
 	protected String iconString;
 	protected boolean canRepair = true;
-	private HashMap<IJutsu, IEffect> jutsuEffects = new HashMap<IJutsu, IEffect>();
-	private int[] jutsuArrays;
-	private int[] effectArrays;
-	private int[] effectDurationRemaining;
-	private Map.Entry<IJutsu, IEffect> elem;
+	private Map<Integer, IJutsu> activeJutsus = new HashMap<Integer, IJutsu>();
+	private int[] activeJutsuIDs;
+	private int jutsuID;
+	private int[] jutsuProperties;
+	private Entry<Integer, IJutsu> elem;
 	private IJutsu jutsu;
-	private IEffect effect;
+	private int chackraConsumption = 0;
 
+	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = new NBTTagList();
-		jutsuMapToArrays();
-		jutsuArrays = ExtendedProperties.activeJutsuArray;
-		jutsuArrays = ExtendedProperties.activeEffectArray;
-		effectDurationRemaining = ExtendedProperties.effectRemainingDurations;
-
-		if (jutsuArrays.length > 0) {
-			NBTTagCompound jutsu = new NBTTagCompound();
-			jutsu.setIntArray("JutsuType", jutsuArrays);
-			jutsu.setIntArray("EffectType", jutsuArrays);
-			jutsu.setIntArray("EffectLeftDuration", effectDurationRemaining);
-			jutsus.appendTag(jutsu);
+		NBTTagCompound jutsu;
+		new JutsuManager().jutsuMapToArrays();
+		activeJutsuIDs = ExtendedProperties.activeJutsuArray;
+		if (activeJutsuIDs.length > 0) {
+			for (int i : activeJutsuIDs) {
+				activeJutsuIDs = ExtendedProperties.activeJutsuArray[i];
+				jutsuProperties = ExtendedProperties.jutsuProperties[i];
+				jutsuId = activeJutsuIDs[i];
+				jutsu = new NBTTagCompound();
+				jutsu.setInteger("JutsuID" + jutsuID, activeJutsuIDs);
+				jutsu.setIntArray("Properties", jutsuProperties);
+				jutsus.appendTag(jutsu);
+			}
 		}
 		compound.setTag("JutsuManager", jutsus);
 	}
 
+	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = compound.getTagList("JutsuManager",
 				compound.getId());
 		if (jutsus.tagCount() > 0) {
-			NBTTagCompound jutsu = jutsus.getCompoundTagAt(0);
-			jutsuArrays = jutsu.getIntArray("JutsuType");
-			effectArrays = jutsu.getIntArray("EffectType");
-			effectDurationRemaining = jutsu.getIntArray("EffectLeftDuration");
-		}
-		ExtendedProperties.activeJutsuArray = jutsuArrays;
-		ExtendedProperties.activeEffectArray = effectArrays;
-		arraysToJutsuMap();
-	}
-	/**
-	 * Converts Map IJutsu, IEffect to arrays[].
-	 */
-	public void jutsuMapToArrays() {
-		Iterator<Entry<IJutsu, IEffect>> iterator = ExtendedProperties.activeEffects
-				.entrySet().iterator();
-		ExtendedProperties.activeJutsuArray = new int[ExtendedProperties.activeEffects
-				.size()];
-		ExtendedProperties.activeEffectArray = new int[ExtendedProperties.activeEffects
-				.size()];
-		ExtendedProperties.effectRemainingDurations = new int[ExtendedProperties.activeEffects
-				.size()];
+			for (int i : activeJutsuIDs) {
+				NBTTagCompound jutsu = jutsus.getCompoundTagAt(0);
+				activeJutsuIDs = jutsu.getIntArray("JutsuID");
+				jutsuProperties = jutsu.getIntArray("Properties");
 
-		for (int i = 0; iterator.hasNext(); i++) {
-			elem = iterator.next();
-			jutsu = elem.getKey();
-			effect = elem.getValue();
-			int durationLeft = effect.getDuration() - effect.getDurationPass();
-			if (jutsu.isActive()) {
-				ExtendedProperties.activeJutsuArray[i] = effect.getJutsuID();
-				ExtendedProperties.activeEffectArray[i] = effect.getEffectID();
-				ExtendedProperties.effectRemainingDurations[i] = durationLeft;
+				ExtendedProperties.activeJutsuArray = activeJutsuIDs;
+				ExtendedProperties.jutsuProperties = jutsuProperties;
+				JutsuManager.arraysToJutsuMap();
 			}
 		}
 	}
 
-	/**
-	 * Arrazs to Jutsu, Effect Map.
-	 */
-	public void arraysToJutsuMap() {
-		Map<IJutsu, IEffect> activeEffects = ExtendedProperties.activeEffects;
-		int[] jutsuArray = ExtendedProperties.activeJutsuArray;
-		int[] effectArray = ExtendedProperties.activeEffectArray;
-		int[] effectLeftDuration = ExtendedProperties.effectRemainingDurations;
-
-		// if (jutsuArray.length > 0)
-		// for (int i : jutsuArray) {
-		// activeEffects.put(JutsuList.jutsuArray[i],
-		// EffectList.getById(effectArray[i]));
-		// }
-
+	@Override
+	public void consumeChackra(EntityPlayer player, int value) {
+		ExtendedProperties props = ExtendedProperties.get(player);
+		if (props.getCurrentChakra() < chackraConsumption)
+			setActive(false);
+		else
+			ExtendedProperties.get(player).consumeChakra(value);
 	}
+
 	@SuppressWarnings("rawtypes")
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -512,9 +484,6 @@ public class Jutsu extends Item {
 		p_150895_3_.add(new ItemStack(p_150895_1_, 1, 0));
 	}
 
-	public Set<IJutsu> getJutsuEffects(ItemStack stack) {
-		return jutsuEffects.keySet();
-	}
 	/*
 	 * ======================================== FORGE END
 	 * =====================================

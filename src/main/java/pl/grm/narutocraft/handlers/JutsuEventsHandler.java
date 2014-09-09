@@ -5,7 +5,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class JutsuEventsHandler {
-	JutsuHandler jH = new JutsuHandler();
+	JutsuManager jH = new JutsuManager();
 
 	@SubscribeEvent
 	public void playerTick(PlayerTickEvent event) {

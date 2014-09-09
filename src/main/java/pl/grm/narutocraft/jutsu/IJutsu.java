@@ -2,52 +2,87 @@ package pl.grm.narutocraft.jutsu;
 
 import java.util.Map;
 
-import pl.grm.narutocraft.effects.IEffect;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
 public interface IJutsu {
 	/**
-	 * Uploads to Map EffectList using setEffect.
+	 * Method invoked by JutsuEvent every Player Tick.
 	 */
-	public abstract void uploadEffects();
+	public void onJutsuUpdate();
+
 	/**
-	 * IJutsu with corresponding Effect.
-	 * 
-	 * @return Map of linkages.
+	 * Initialize Jutsu when activated
 	 */
-	public abstract Map<IJutsu, IEffect> getEffects();
+	public void activateJutsu();
+
 	/**
-	 * Set effect to Jutsu.
-	 * 
-	 * @param effect
+	 * Called on Jutsu end.
 	 */
-	public abstract void setEffect(IEffect effect);
+	public void jutsuEnd();
+
+	/**
+	 * @return Map of Jutsu Props
+	 */
+	public Map<Integer, IJutsu> getJutsuProps();
+
+	/**
+	 * Adds to Map Jutsu durations.
+	 */
+	public void updateJutsuDurationsMap();
+
 	/**
 	 * Check if Jutsu is Active
 	 * 
 	 * @return true if Jutsu is activated.
 	 */
-	public abstract boolean isActive();
+	public boolean isActive();
+
 	/**
 	 * Enable/diasable jutsu.
 	 * 
 	 * @param par
 	 *            false to disable
 	 */
-	public abstract void setActive(boolean par);
-	/**
-	 * Method invoked by JutsuEvent every Player Tick.
-	 */
-	public abstract void onJutsuUpdate();
+	public void setActive(boolean par);
+
 	/**
 	 * Consumes amount of chackra.
 	 * 
 	 * @param value
 	 */
-	public abstract void consumeChackra(int value);
+	public void consumeChackra(EntityPlayer player, int value);
+
+	/**
+	 * Writes to NBT.
+	 * 
+	 * @param properties
+	 */
+	public void writeToNBT(NBTTagCompound properties);
+
+	/**
+	 * Reads from NBT.
+	 * 
+	 * @param properties
+	 */
+	public void readFromNBT(NBTTagCompound properties);
+
 	/**
 	 * Id of the Jutsu.
 	 * 
 	 * @return ID of Jutsu
 	 */
-	public abstract int getID();
+	public int getJutsuID();
+
+	/**
+	 * 
+	 * @return jutsu duration
+	 */
+	public abstract int getTotalDuration();
+
+	/**
+	 * 
+	 * @return ticks passed from Effect start.
+	 */
+	public abstract int getDurationPass();
 }
