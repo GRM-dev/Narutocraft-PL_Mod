@@ -31,7 +31,7 @@ public class KeyInputHandler {
 		if (KeyBindings.Jutsu.isPressed()) {
 			System.out.println("Open Panel");
 			EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
-			FMLNetworkHandler.openGui(player, NarutoCraft.instance, 0,
+			FMLNetworkHandler.openGui(player, NarutoCraft.instance, 3,
 					player.worldObj, (int) player.posX, (int) player.posY,
 					(int) player.posZ);
 		}
