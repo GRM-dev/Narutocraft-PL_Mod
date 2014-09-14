@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class Rasengan extends Jutsu implements IJutsu{
+public class Rasengan extends Jutsu implements IJutsu {
 
 	public Rasengan() {
 		this.setUnlocalizedName("Rasengan");
@@ -23,20 +23,9 @@ public class Rasengan extends Jutsu implements IJutsu{
 		}
 		return stack;
 	}
-	@Override
 	public void uploadEffects() {
 		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public Map<IJutsu, IEffect> getEffects() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void setEffect(IEffect effect) {
-		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public boolean isActive() {
@@ -46,57 +35,50 @@ public class Rasengan extends Jutsu implements IJutsu{
 	@Override
 	public void setActive(boolean par) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	@Override
+
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
-	public void activateJutsu()
-	{
+	public void activateJutsu() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
-	public void jutsuEnd()
-	{
+	public void jutsuEnd() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
-	public Map<Integer, IJutsu> getJutsuProps()
-	{
+	public Map<Integer, IJutsu> getJutsuProps() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public void updateJutsuDurationsMap()
-	{
+	public void updateJutsuDurationsMap() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
-	public int getJutsuID()
-	{
+	public int getJutsuID() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public int getTotalDuration()
-	{
+	public int getTotalDuration() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public int getDurationPass()
-	{
+	public int getDurationPass() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

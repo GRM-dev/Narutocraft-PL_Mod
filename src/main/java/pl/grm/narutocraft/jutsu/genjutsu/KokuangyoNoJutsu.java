@@ -26,14 +26,6 @@ public class KokuangyoNoJutsu<IEffect> extends Jutsu implements IJutsu {
 		// TODO Auto-generated method stub
 
 	}
-	public Map<IJutsu, IEffect> getEffects() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void setEffect(IEffect effect) {
-		// TODO Auto-generated method stub
-
-	}
 	@Override
 	public boolean isActive() {
 		// TODO Auto-generated method stub

@@ -22,17 +22,7 @@ public class Hadan extends Jutsu implements IJutsu {
 		}
 		return stack;
 	}
-
 	public void uploadEffects() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public <IEffect> Map<IJutsu, IEffect> getEffects() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public <IEffect> void setEffect(IEffect effect) {
 		// TODO Auto-generated method stub
 
 	}

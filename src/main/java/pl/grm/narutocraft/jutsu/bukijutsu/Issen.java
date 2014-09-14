@@ -26,14 +26,6 @@ public class Issen extends Jutsu implements IJutsu {
 		// TODO Auto-generated method stub
 
 	}
-	public <IEffect> Map<IJutsu, IEffect> getEffects() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public <IEffect> void setEffect(IEffect effect) {
-		// TODO Auto-generated method stub
-
-	}
 	@Override
 	public boolean isActive() {
 		// TODO Auto-generated method stub

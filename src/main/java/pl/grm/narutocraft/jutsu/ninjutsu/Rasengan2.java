@@ -1,15 +1,12 @@
 package pl.grm.narutocraft.jutsu.ninjutsu;
 
-import java.util.Map;
-
-import pl.grm.narutocraft.effects.IEffect;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class Rasengan2 extends Jutsu implements IJutsu  {
+public class Rasengan2 extends Jutsu implements IJutsu {
 
 	public Rasengan2() {
 		this.setUnlocalizedName("ORasengan");
@@ -23,20 +20,9 @@ public class Rasengan2 extends Jutsu implements IJutsu  {
 		}
 		return stack;
 	}
-	@Override
 	public void uploadEffects() {
 		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public Map<IJutsu, IEffect> getEffects() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void setEffect(IEffect effect) {
-		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public boolean isActive() {
@@ -46,17 +32,17 @@ public class Rasengan2 extends Jutsu implements IJutsu  {
 	@Override
 	public void setActive(boolean par) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	@Override
+
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

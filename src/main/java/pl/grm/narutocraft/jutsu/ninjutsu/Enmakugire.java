@@ -26,14 +26,6 @@ public class Enmakugire<IEffect> extends Jutsu implements IJutsu {
 		// TODO Auto-generated method stub
 
 	}
-	public Map<IJutsu, IEffect> getEffect() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void setEffect(IEffects effect) {
-		// TODO Auto-generated method stub
-
-	}
 	@Override
 	public boolean isActive() {
 		// TODO Auto-generated method stub
