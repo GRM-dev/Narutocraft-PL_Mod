@@ -1,8 +1,7 @@
 package pl.grm.narutocraft.libs;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,13 +12,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.gui.JutsuInv;
 import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "NCPLExtPlayer";
 	private final EntityPlayer player;
 	public final JutsuInv inventory = new JutsuInv();
-	public IJutsu jutsu;
+	public IJutsu jutsu = new Jutsu();
 	public PlayerSkillsAtrributes psa = new PlayerSkillsAtrributes();
 	private int maxChakra;
 	private int AuraIndex;
@@ -32,10 +32,8 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	private int AuraQuantity;
 	private float AuraSpeed;
 	public float TK_Distance = 8.0F;
-	public static int[] activeJutsuArray;
-	public static List<int[]> jutsuProperties;
 	public static final int CHAKRA_WATCHER = 20;
-	public static Map<Integer, IJutsu> activeJutsus = new HashMap<Integer, IJutsu>();
+	public static List<int[]> activeJutsus = new ArrayList<int[]>();
 
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
@@ -72,7 +70,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 			stats.appendTag(stat);
 		}
 		properties.setTag("psaStats", stats);
-
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
 
