@@ -2,12 +2,12 @@ package pl.grm.narutocraft.jutsu.ninjutsu;
 
 import java.util.Map;
 
-import pl.grm.narutocraft.effects.IEffect;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+//import pl.grm.narutocraft.effects.IEffect;
+import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.Jutsu;
 
 public class Rasengan extends Jutsu implements IJutsu{
 
@@ -57,6 +57,48 @@ public class Rasengan extends Jutsu implements IJutsu{
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void activateJutsu()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void jutsuEnd()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Map<Integer, IJutsu> getJutsuProps()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void updateJutsuDurationsMap()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int getJutsuID()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getTotalDuration()
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getDurationPass()
+	{
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

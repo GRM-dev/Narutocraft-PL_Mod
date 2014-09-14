@@ -1,13 +1,11 @@
 package pl.grm.narutocraft.jutsu;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Random;
 import java.util.UUID;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,24 +27,14 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class Jutsu extends Item implements IJutsu {
+public class Jutsu extends Item implements IJutsu {
 	public static String jutsuLoc = "narutocraft:jutsu/";
-	public static int getIdFromItem(Item p_150891_0_) {
-		return p_150891_0_ == null ? 0 : itemRegistry
-				.getIDForObject(p_150891_0_);
-	}
-	public static Item getItemById(int p_150899_0_) {
-		return (Item) itemRegistry.getObjectById(p_150899_0_);
-	}
-	public static Item getItemFromBlock(Block p_150898_0_) {
-		return getItemById(Block.getIdFromBlock(p_150898_0_));
-	}
+
 	public static final RegistryNamespaced itemRegistry = GameData
 			.getItemRegistry();
 	protected static final UUID field_111210_e = UUID
@@ -64,51 +52,39 @@ public abstract class Jutsu extends Item implements IJutsu {
 	protected IIcon itemIcon;
 	protected String iconString;
 	protected boolean canRepair = true;
-	private Map<Integer, IJutsu> activeJutsus = new HashMap<Integer, IJutsu>();
-	private int[] activeJutsuIDs;
-	private int jutsuID;
-	private int[] jutsuProperties;
-	private Entry<Integer, IJutsu> elem;
+	private List<int[]> activeJutsus = new ArrayList<int[]>();
 	private IJutsu jutsu;
 	private int chackraConsumption = 0;
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = new NBTTagList();
-		NBTTagCompound jutsu;
-		new JutsuManager().jutsuMapToArrays();
-		activeJutsuIDs = ExtendedProperties.activeJutsuArray;
-		if (activeJutsuIDs.length > 0) {
-			for (int i : activeJutsuIDs) {
-				activeJutsuIDs = ExtendedProperties.activeJutsuArray[i];
-				jutsuProperties = ExtendedProperties.jutsuProperties[i];
-				jutsuId = activeJutsuIDs[i];
-				jutsu = new NBTTagCompound();
-				jutsu.setInteger("JutsuID" + jutsuID, activeJutsuIDs);
-				jutsu.setIntArray("Properties", jutsuProperties);
+		NBTTagCompound jutsu = new NBTTagCompound();
+		int[] elem;
+		activeJutsus = ExtendedProperties.activeJutsus;
+		if (!activeJutsus.isEmpty()) {
+			while (activeJutsus.iterator().hasNext()) {
+				elem = activeJutsus.iterator().next();
+				jutsu.setIntArray("Jutsu" + elem[0], elem);
 				jutsus.appendTag(jutsu);
 			}
 		}
 		compound.setTag("JutsuManager", jutsus);
 	}
-
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = compound.getTagList("JutsuManager",
 				compound.getId());
-		if (jutsus.tagCount() > 0) {
-			for (int i : activeJutsuIDs) {
-				NBTTagCompound jutsu = jutsus.getCompoundTagAt(0);
-				activeJutsuIDs = jutsu.getIntArray("JutsuID");
-				jutsuProperties = jutsu.getIntArray("Properties");
-
-				ExtendedProperties.activeJutsuArray = activeJutsuIDs;
-				ExtendedProperties.jutsuProperties = jutsuProperties;
-				JutsuManager.arraysToJutsuMap();
+		int[] elem;
+		activeJutsus = ExtendedProperties.activeJutsus;
+		int jCount = jutsus.tagCount();
+		if (jCount > 0) {
+			for (int i = 0; i < jCount; i++) {
+				NBTTagCompound jutsu = jutsus.getCompoundTagAt(jCount);
+				activeJutsus.add(jutsu.getIntArray("Jutsu" + i));
 			}
 		}
 	}
-
 	@Override
 	public void consumeChackra(EntityPlayer player, int value) {
 		ExtendedProperties props = ExtendedProperties.get(player);
@@ -199,6 +175,9 @@ public abstract class Jutsu extends Item implements IJutsu {
 		return this.tabToDisplayOn;
 	}
 
+	public static Item getItemById(int p_150899_0_) {
+		return (Item) itemRegistry.getObjectById(p_150899_0_);
+	}
 	/**
 	 * ItemStack sensitive version of getContainerItem. Returns a full ItemStack
 	 * instance of the result.
@@ -829,5 +808,55 @@ public abstract class Jutsu extends Item implements IJutsu {
 
 	public static Jutsu For(EntityPlayer player) {
 		return (Jutsu) player.getExtendedProperties("JutsuKnowledgeData");
+	}
+	@Override
+	public void onJutsuUpdate() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void activateJutsu() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void jutsuEnd() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public Map<Integer, IJutsu> getJutsuProps() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void updateJutsuDurationsMap() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public boolean isActive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void setActive(boolean par) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public int getJutsuID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getTotalDuration() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getDurationPass() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
