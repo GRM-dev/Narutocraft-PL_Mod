@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class Ranshinsho<IEffect> extends Jutsu implements IJutsu {
+public class Ranshinsho extends Jutsu implements IJutsu {
 
 	public Ranshinsho() {
 		this.setUnlocalizedName("Ranshinsho");

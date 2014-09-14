@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class Koukongarasu<IEffect> extends Jutsu implements IJutsu {
+public class Koukongarasu extends Jutsu implements IJutsu {
 
 	public Koukongarasu() {
 		this.setUnlocalizedName("Koukongarasu");

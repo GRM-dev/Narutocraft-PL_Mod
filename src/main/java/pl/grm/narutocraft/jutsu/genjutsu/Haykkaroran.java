@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class Haykkaroran<IEffect> extends Jutsu implements IJutsu {
+public class Haykkaroran extends Jutsu implements IJutsu {
 
 	public Haykkaroran() {
 		this.setUnlocalizedName("Hyakkaroran");

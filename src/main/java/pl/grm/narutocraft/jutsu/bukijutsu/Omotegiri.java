@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class Omotegiri<IEffect> extends Jutsu implements IJutsu {
+public class Omotegiri extends Jutsu implements IJutsu {
 
 	public Omotegiri() {
 		this.setUnlocalizedName("Omotegiri");

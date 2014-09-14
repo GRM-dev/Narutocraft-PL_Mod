@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class ChakuraNoMesu<IEffect> extends Jutsu implements IJutsu {
+public class ChakuraNoMesu extends Jutsu implements IJutsu {
 
 	public ChakuraNoMesu() {
 		this.setUnlocalizedName("Chakura No Mesu");

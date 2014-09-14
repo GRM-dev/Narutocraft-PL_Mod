@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
-public class SamuraiSabreTechnique<IEffect> extends Jutsu implements IJutsu {
+public class SamuraiSabreTechnique extends Jutsu implements IJutsu {
 
 	public SamuraiSabreTechnique() {
 		this.setUnlocalizedName("Samurai Sabre Technique");
