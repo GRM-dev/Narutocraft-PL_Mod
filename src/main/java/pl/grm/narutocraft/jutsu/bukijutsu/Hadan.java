@@ -5,7 +5,6 @@ import java.util.Map;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import pl.grm.narutocraft.effects.IEffect;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
@@ -23,18 +22,17 @@ public class Hadan extends Jutsu implements IJutsu {
 		}
 		return stack;
 	}
-	@Override
+
 	public void uploadEffects() {
 		// TODO Auto-generated method stub
 
 	}
-	@Override
-	public Map<IJutsu, IEffect> getEffects() {
+
+	public <IEffect> Map<IJutsu, IEffect> getEffects() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public void setEffect(IEffect effect) {
+	public <IEffect> void setEffect(IEffect effect) {
 		// TODO Auto-generated method stub
 
 	}
@@ -53,10 +51,44 @@ public class Hadan extends Jutsu implements IJutsu {
 		// TODO Auto-generated method stub
 
 	}
-	@Override
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub
 
+	}
+	@Override
+	public void activateJutsu() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void jutsuEnd() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public Map<Integer, IJutsu> getJutsuProps() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void updateJutsuDurationsMap() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public int getJutsuID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getTotalDuration() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getDurationPass() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
