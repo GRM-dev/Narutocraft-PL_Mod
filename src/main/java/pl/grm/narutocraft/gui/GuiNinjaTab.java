@@ -14,7 +14,7 @@ import pl.grm.narutocraft.libs.References;
 
 public class GuiNinjaTab extends GuiButton
 {
-	public static final ResourceLocation texture2 = 
+	public static final ResourceLocation tex = 
 			new ResourceLocation(References.ModTexturePath+"textures/gui/NinjaGuiWidgets.png");
 	private IIcon icon;
 	
@@ -50,7 +50,7 @@ public class GuiNinjaTab extends GuiButton
 		if (this.visible)
         {
             FontRenderer fontrenderer = p_146112_1_.fontRenderer;
-            p_146112_1_.getTextureManager().bindTexture(texture2);
+            p_146112_1_.getTextureManager().bindTexture(tex);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.field_146123_n = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height;
             int k = this.getHoverState(this.field_146123_n);

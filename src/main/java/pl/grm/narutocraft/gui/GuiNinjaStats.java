@@ -10,19 +10,32 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.registry.RegItems;
+import pl.grm.narutocraft.libs.registry.RegJutsus;
 
 public class GuiNinjaStats extends GuiContainer
 {
-	public static final ResourceLocation texture1 = 
+	public static final ResourceLocation stats = 
 			new ResourceLocation(References.ModTexturePath+"textures/gui/SkillTree_Utility.png");
-	public static final ResourceLocation texture2 = 
-			new ResourceLocation(References.ModTexturePath+"textures/gui/SkillTreeUI.png");
+	public static final ResourceLocation[] jutsu = 
+			new ResourceLocation[]
+					{
+						new ResourceLocation(References.ModTexturePath+"textures/gui/JutsuPage1.png"),
+						new ResourceLocation(References.ModTexturePath+"textures/gui/JutsuPage2.png"),
+						new ResourceLocation(References.ModTexturePath+"textures/gui/JutsuPage3.png"),
+						new ResourceLocation(References.ModTexturePath+"textures/gui/JutsuPage4.png"),
+						new ResourceLocation(References.ModTexturePath+"textures/gui/JutsuPage5.png"),
+						new ResourceLocation(References.ModTexturePath+"textures/gui/JutsuPage6.png")
+					};
+	public static final ResourceLocation ninjaWidgets = 
+			new ResourceLocation(References.ModTexturePath+"textures/gui/NinjaGuiWidgets.png");
 	
 	private EntityPlayer player;
-	private int pad = 4;
-	private int ch = 20;
+	private int padLeft = 44, padTop = 27;
 	private Boolean jutsuMenu = false;
+	private int jutsuPage = 0;
 
 	public GuiNinjaStats(EntityPlayer player)
 	{
@@ -46,7 +59,7 @@ public class GuiNinjaStats extends GuiContainer
 	    drawTexturedModelRectFromIcon(300, 300, RotItems.itemGunpowderInfuser.getIconFromDamage(0), 16, 16);*/	
 		
 		GL11.glColor4f(1F, 1F, 1F, 1F);
-		Minecraft.getMinecraft().renderEngine.bindTexture(jutsuMenu ? texture2 : texture1);
+		Minecraft.getMinecraft().renderEngine.bindTexture(jutsuMenu ? jutsu[jutsuPage] : stats);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
 		this.buttonList.clear();
@@ -56,32 +69,88 @@ public class GuiNinjaStats extends GuiContainer
 		int x2 = (guiLeft + xSize) - (22);
 		int x3 = (x2 + x1) / 2;
 		
-		this.buttonList.add(new GuiNinjaTab(0, x2, guiTop - 22, Items.apple.getIconFromDamage(0)));
-		//this.drawString(fontRendererObj, ExtendPlayer.classNames[selectedClass], x3, guiTop + pad + 5, 0xddeeee);
-		this.buttonList.add(new GuiNinjaTab(1, x1, guiTop - 22, Items.apple.getIconFromDamage(0)));
+		//Controls
+		this.buttonList.add(new GuiNinjaTab(0, x2, guiTop - 22, RegJutsus.Enmakugire.getIconFromDamage(0)));//Stats page		
+		this.buttonList.add(new GuiNinjaTab(1, x1, guiTop - 22, Items.apple.getIconFromDamage(0)));//Jutsu
 		this.buttonList.add(new GuiNinjaTab(2, x1 + 22, guiTop - 22, Items.apple.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(3, x1 + 22 * 2, guiTop - 22, Items.apple.getIconFromDamage(0)));//Jutsu
+		this.buttonList.add(new GuiNinjaTab(4, x1 + 22 * 3, guiTop - 22, Items.apple.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(5, x1 + 22 * 4, guiTop - 22, Items.apple.getIconFromDamage(0)));//Jutsu
+		this.buttonList.add(new GuiNinjaTab(6, x1 + 22 * 5, guiTop - 22, Items.apple.getIconFromDamage(0)));
 		
-		//this.drawString(fontRendererObj, "Current Class: " + ExtendPlayer.get(player).getCurrentClassName(), guiLeft + pad, guiTop + pad + 45, 0xdbdd15);
-
-		//Visual information on location
-		/*this.drawString(fontRendererObj, "X: "+(xOffset+te.xCoord)+" offSet: "+xOffset, (startLeft + ((gridSizeX * 2) * cw)) + cw * 5, (startTop + (gridSizeZ * ch) + 4) - ch, 0xFFFFFF);
-		this.drawString(fontRendererObj, "Y: "+(yOffset+te.yCoord)+" offSet: "+yOffset, (startLeft + ((gridSizeX * 2) * cw)) + cw * 5, (startTop + (gridSizeZ * ch) + 4), 0xFFFFFF);
-		this.drawString(fontRendererObj, "Z: "+(zOffset+te.zCoord)+" offSet: "+zOffset, (startLeft + ((gridSizeX * 2) * cw)) + cw * 5, (startTop + (gridSizeZ * ch) + 4) + ch, 0xFFFFFF);*/
+		//Stats
+		ExtendedProperties props = ExtendedProperties.get(player);
+		if (!jutsuMenu)
+		{
+			this.drawString(fontRendererObj, "Ninja Level: " + props.psa.getNinjaLevel(), guiLeft + 175, guiTop + 9, 0xddeeee);
+			if (props.psa.skillPoints > 0)
+				this.drawString(fontRendererObj, "Skill Points: " + props.psa.skillPoints, guiLeft + padLeft, guiTop + 9, 0xddeeee);
+			Minecraft.getMinecraft().renderEngine.bindTexture(ninjaWidgets);
+			drawTexturedModalRect(guiLeft + 132, guiTop + 12, 66, 0, 39, 4);
+			drawTexturedModalRect(guiLeft + 132, guiTop + 12, 66, 4, 
+					(int)(props.psa.getCurrentNinjaXp() * 39 / 
+							props.psa.getNinjaXpCap()), 4);
+			
+			this.drawString(fontRendererObj, "Stats (3 points)", guiLeft + padLeft, guiTop + padTop + 9, 0xddeeee);
+			this.drawString(fontRendererObj, "Strength: " + props.psa.getStrength(), guiLeft + padLeft, guiTop + padTop + 9 * 2, 0xddeeee);
+			this.drawString(fontRendererObj, "Resistance: " + props.psa.getResistance(), guiLeft + padLeft, guiTop + padTop + 9 * 3, 0xddeeee);			
+			this.drawString(fontRendererObj, "Dexterity: " + props.psa.getDexterity(), guiLeft + padLeft, guiTop + padTop + 9 * 4, 0xddeeee);
+			this.drawString(fontRendererObj, "Agility: " + props.psa.getAgility(), guiLeft + padLeft, guiTop + padTop + 9 * 5, 0xddeeee);
+			if (props.psa.skillPoints >= 3)
+			{
+				this.buttonList.add(new GuiNinjaButton(7, guiLeft + padLeft + 70, guiTop + padTop + 9 * 2, "plus"));
+				this.buttonList.add(new GuiNinjaButton(8, guiLeft + padLeft + 70, guiTop + padTop + 9 * 3, "plus"));
+				this.buttonList.add(new GuiNinjaButton(9, guiLeft + padLeft + 70, guiTop + padTop + 9 * 4, "plus"));
+				this.buttonList.add(new GuiNinjaButton(10, guiLeft + padLeft + 70, guiTop + padTop + 9 * 5, "plus"));
+			}
+			
+			this.drawString(fontRendererObj, "Taining (1 point)", guiLeft + padLeft, guiTop + padTop + 9 * 7, 0xddeeee);
+			this.drawString(fontRendererObj, "Element Power: " + props.psa.getElementPowerModifier(), guiLeft + padLeft, guiTop + padTop + 9 * 8, 0xddeeee);
+			this.drawString(fontRendererObj, "Max Chakra Bonus: " + props.psa.getChakraModifier(), guiLeft + padLeft, guiTop + padTop + 9 * 9, 0xddeeee);
+			this.drawString(fontRendererObj, "Chakra Regen Bonus: " + props.psa.getChakraRegenBonus(), guiLeft + padLeft, guiTop + padTop + 9 * 10, 0xddeeee);
+			if (props.psa.skillPoints >= 1)
+			{
+				this.buttonList.add(new GuiNinjaButton(11, guiLeft + padLeft + 120, guiTop + padTop + 9 * 8, "plus"));
+				this.buttonList.add(new GuiNinjaButton(12, guiLeft + padLeft + 120, guiTop + padTop + 9 * 9, "plus"));
+				this.buttonList.add(new GuiNinjaButton(13, guiLeft + padLeft + 120, guiTop + padTop + 9 * 10, "plus"));
+			}
+		}
 	}
 	
 	/** Button Clicks **/
 	@Override
 	protected void actionPerformed(GuiButton button) 
 	{	
+		//Tabs 0 - 6, Stats and then the 6 Jutsu types
 		switch (button.id)
 		{
-			case 0: // Class Forward
+			case 0: // Stats
+				jutsuMenu = false;
 				break;
-			case 1: // Class Back
+			case 1: // jutsu
+				jutsuMenu = true;
+				jutsuPage = 0;
 				break;
-			case 2: // Change Class
-				jutsuMenu = !jutsuMenu;
-				break;			
+			case 2: // jutsu
+				jutsuMenu = true;
+				jutsuPage = 1;
+				break;	
+			case 3: // jutsu
+				jutsuMenu = true;
+				jutsuPage = 2;
+				break;	
+			case 4: // jutsu
+				jutsuMenu = true;
+				jutsuPage = 3;
+				break;	
+			case 5: // jutsu
+				jutsuMenu = true;
+				jutsuPage = 4;
+				break;	
+			case 6: // jutsu
+				jutsuMenu = true;
+				jutsuPage = 5;
+				break;	
 		}
 	}
 	

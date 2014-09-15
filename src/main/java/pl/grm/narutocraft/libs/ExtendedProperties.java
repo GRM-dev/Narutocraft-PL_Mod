@@ -61,15 +61,17 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 				.getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", maxChakra);
 
+		//New PSA data saving
+		properties.setIntArray("psaStats", psa.getValues());
 		// Save stats
-		NBTTagList stats = new NBTTagList();
+		/*NBTTagList stats = new NBTTagList();
 
 		for (int i = 0; i < psa.getValues().length; ++i) {
 			NBTTagCompound stat = new NBTTagCompound();
 			stat.setInteger("psaStat" + i, psa.getValues()[i]);
 			stats.appendTag(stat);
 		}
-		properties.setTag("psaStats", stats);
+		properties.setTag("psaStats", stats);*/
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
 
@@ -85,14 +87,15 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 				properties.getInteger("CurrentChakra"));
 		maxChakra = properties.getInteger("MaxChakra");
 
-		NBTTagList stats = properties
+		/*NBTTagList stats = properties
 				.getTagList("psaStats", properties.getId());
 		int[] statList = new int[stats.tagCount()];
 		for (int i = 0; i < stats.tagCount(); ++i) {
 			NBTTagCompound stat = stats.getCompoundTagAt(i);
 			statList[i] = stat.getInteger("psaStat" + i);
-		}
-		psa.setValues(statList);
+		}*/
+		//New PSA loading
+		psa.setValues(properties.getIntArray("psaStats"));
 
 		System.out.println("[NCPL Chakra] Chakra from NBT: "
 				+ player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER)

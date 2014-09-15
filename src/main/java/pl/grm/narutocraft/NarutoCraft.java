@@ -18,6 +18,7 @@ import pl.grm.narutocraft.libs.registry.RegJutsus;
 import pl.grm.narutocraft.libs.registry.RegMobs;
 import pl.grm.narutocraft.libs.registry.RegRecipes;
 import pl.grm.narutocraft.network.PacketExample;
+import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -63,6 +64,9 @@ public class NarutoCraft {
 
 		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
 				PacketExample.class, packetId++, Side.SERVER);
+		//Register Ninja Stat Handling packets
+		netHandler.registerMessage(PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
+				PacketNinjaStatsResponse.class, packetId++, Side.CLIENT);
 
 		proxy.registerRendering();
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());

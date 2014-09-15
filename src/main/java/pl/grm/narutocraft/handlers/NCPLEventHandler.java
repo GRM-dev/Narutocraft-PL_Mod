@@ -1,6 +1,7 @@
 package pl.grm.narutocraft.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -8,8 +9,10 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.registry.RegJutsus;
+import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -70,6 +73,15 @@ public class NCPLEventHandler {
 				&& event.entity instanceof EntityPlayer) {
 			ExtendedProperties.saveProxyData((EntityPlayer) event.entity);
 		}
+		//Adding XP when Killing an enemy, plus update client
+		if (event.source.getEntity() instanceof EntityPlayer)
+		{
+			ExtendedProperties prop = ExtendedProperties.get((EntityPlayer)event.source.getEntity());
+			System.out.println(prop.psa.getCurrentNinjaXp());
+			prop.psa.levelUp((int)event.entityLiving.getMaxHealth() / 3);
+			NarutoCraft.netHandler.sendTo(new PacketNinjaStatsResponse(prop.psa.getValues()), (EntityPlayerMP)event.source.getEntity());
+			System.out.println(prop.psa.getCurrentNinjaXp());
+		}
 	}
 
 	@SubscribeEvent
@@ -118,5 +130,12 @@ public class NCPLEventHandler {
 				//net.sendToServer(new RequestPacket("myStats"));
 			}
 		}
+	}
+	
+	@SubscribeEvent
+	public void onPlayerJoin(EntityJoinWorldEvent e)
+	{
+		if (e.entity instanceof EntityPlayer && !e.world.isRemote)
+			NarutoCraft.netHandler.sendTo(new PacketNinjaStatsResponse(ExtendedProperties.get((EntityPlayer) e.entity).psa.getValues()), (EntityPlayerMP) e.entity);
 	}
 }

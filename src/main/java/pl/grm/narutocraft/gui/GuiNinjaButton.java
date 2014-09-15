@@ -14,9 +14,10 @@ import pl.grm.narutocraft.libs.References;
 
 public class GuiNinjaButton extends GuiButton
 {
-	public static final ResourceLocation texture2 = 
+	public static final ResourceLocation tex = 
 			new ResourceLocation(References.ModTexturePath+"textures/gui/NinjaGuiWidgets.png");
 	private IIcon icon;
+	private String type;
 
 	public GuiNinjaButton(int par1, int par2, int par3, IIcon par4)
 	{
@@ -24,6 +25,14 @@ public class GuiNinjaButton extends GuiButton
 		icon = par4;
 		this.width = 20;
         this.height = 20;
+	}
+	
+	public GuiNinjaButton(int par1, int par2, int par3, String type)
+	{
+		super(par1, par2, par3, "");
+		this.type = type;
+		this.width = 7;
+        this.height = 7;
 	}
 	
 	@Override
@@ -49,21 +58,34 @@ public class GuiNinjaButton extends GuiButton
 	{
 		if (this.visible)
         {
-            FontRenderer fontrenderer = p_146112_1_.fontRenderer;
-            p_146112_1_.getTextureManager().bindTexture(texture2);
+			FontRenderer fontrenderer = p_146112_1_.fontRenderer;
+            p_146112_1_.getTextureManager().bindTexture(tex);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.field_146123_n = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height;
             int k = this.getHoverState(this.field_146123_n);
             GL11.glEnable(GL11.GL_BLEND);
             OpenGlHelper.glBlendFunc(770, 771, 1, 0);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            this.drawTexturedModalRect(this.xPosition, this.yPosition, k == 1 ? 0 : 22, 0, 20, 20);
-            TextureManager manager = Minecraft.getMinecraft().renderEngine;
-            manager.bindTexture(manager.getResourceLocation(1));
-            //RENDER ITEMS
-            
-            drawTexturedModelRectFromIcon(this.xPosition + 2, this.yPosition + 2, icon, 16, 16);
-            this.mouseDragged(p_146112_1_, p_146112_2_, p_146112_3_);
+			if (type != null)
+            {
+            	if (type.equals("plus"))
+            	{
+            		this.drawTexturedModalRect(this.xPosition, this.yPosition, k == 1 ? 0 : 7, 42, 7, 7);
+            	}
+            }
+			else
+			{	            
+	            this.drawTexturedModalRect(this.xPosition, this.yPosition, k == 1 ? 0 : 20, 22, 20, 20);
+	            if (icon != null)
+	            {
+		            TextureManager manager = Minecraft.getMinecraft().renderEngine;
+		            manager.bindTexture(manager.getResourceLocation(1));
+		            //RENDER ITEMS
+		            
+		            drawTexturedModelRectFromIcon(this.xPosition + 2, this.yPosition + 2, icon, 16, 16);
+	            }	            
+			}
+			this.mouseDragged(p_146112_1_, p_146112_2_, p_146112_3_);
             int l = 14737632;
 
             if (packedFGColour != 0)
