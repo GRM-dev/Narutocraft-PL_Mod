@@ -1,7 +1,5 @@
 package pl.grm.narutocraft.jutsu;
 
-import java.util.Map;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -22,14 +20,14 @@ public interface IJutsu {
 	public void jutsuEnd();
 
 	/**
-	 * @return Map of Jutsu Props
+	 * @return List of Jutsu Props
 	 */
-	public Map<Integer, IJutsu> getJutsuProps();
+	public int[] getJutsuProps();
 
 	/**
 	 * Adds to Map Jutsu durations.
 	 */
-	public void updateJutsuDurationsMap();
+	public void updateJutsuProperties();
 
 	/**
 	 * Check if Jutsu is Active
@@ -73,16 +71,4 @@ public interface IJutsu {
 	 * @return ID of Jutsu
 	 */
 	public int getJutsuID();
-
-	/**
-	 * 
-	 * @return jutsu duration
-	 */
-	public abstract int getTotalDuration();
-
-	/**
-	 * 
-	 * @return ticks passed from Effect start.
-	 */
-	public abstract int getDurationPass();
 }

@@ -61,7 +61,7 @@ public class Koukongarasu extends Jutsu implements IJutsu {
 		return null;
 	}
 	@Override
-	public void updateJutsuDurationsMap() {
+	public void updateJutsuProperties() {
 		// TODO Auto-generated method stub
 
 	}

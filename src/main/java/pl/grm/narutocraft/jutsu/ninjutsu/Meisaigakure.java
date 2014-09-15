@@ -1,11 +1,11 @@
 package pl.grm.narutocraft.jutsu.ninjutsu;
 
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuList;
 
 public class Meisaigakure extends Jutsu implements IJutsu {
 	private ItemStack stack;
@@ -31,9 +31,14 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 		this.player = player;
 
 		if (!world.isRemote) {
-			activateJutsu();
-			// ExtendedProperties.activeJutsus.put(passDuration);
+			this.activateJutsu();
 		}
 		return stack;
+	}
+
+	@Override
+	public void activateJutsu() {
+
+		setPotionEffect("Invisible");
 	}
 }

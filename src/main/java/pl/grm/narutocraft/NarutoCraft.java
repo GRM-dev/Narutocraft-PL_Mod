@@ -1,7 +1,9 @@
 package pl.grm.narutocraft;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import pl.grm.narutocraft.blocks.ByoinBlock;
 import pl.grm.narutocraft.creativetabs.JutsuTab;
 import pl.grm.narutocraft.creativetabs.NCPLCreativeTab;
 import pl.grm.narutocraft.handlers.ClientGuiHandler;
@@ -29,6 +31,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = References.MODID, version = References.VERSION)
@@ -39,36 +42,35 @@ public class NarutoCraft {
 	@SidedProxy(clientSide = References.Client, serverSide = References.Common)
 	public static ProxyCommon proxy;
 	public static ConfigurationHandler config;
-	/**
-	 * Create Creative Tabs named NarutoCraft Mod and Jutsu's
-	 */
+	/** Create Creative Tabs named NarutoCraft Mod and Jutsu's */
 	public static CreativeTabs mTabNarutoCraft = new NCPLCreativeTab(
 			CreativeTabs.getNextID(), "NarutoCraftMod");
 	public static CreativeTabs mTabJutsu = new JutsuTab(
 			CreativeTabs.getNextID(), "NarutoCraftMod Jutsu's");
-	/**
-	 * Create mod instance
-	 */
+	/** Reg Blocks */
+	public static Block byoinBlock;
+
+	/** Create mod instance */
 	@Instance(References.MODID)
 	public static NarutoCraft instance;
 
-	// Packet Channel
+	/** Packet Channel */
 	public static SimpleNetworkWrapper netHandler;
 	private int packetId = 0;
 
-	/**
-	 * preInit
-	 */
+	/** preInit */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
 
 		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
 				PacketExample.class, packetId++, Side.SERVER);
-		//Register Ninja Stat Handling packets
-		netHandler.registerMessage(PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
+		// Register Ninja Stat Handling packets
+		netHandler.registerMessage(
+				PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
 				PacketNinjaStatsRequest.class, packetId++, Side.SERVER);
-		netHandler.registerMessage(PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
+		netHandler.registerMessage(
+				PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
 				PacketNinjaStatsResponse.class, packetId++, Side.CLIENT);
 
 		proxy.registerRendering();
@@ -76,9 +78,7 @@ public class NarutoCraft {
 		config.readConfig();
 	}
 
-	/**
-	 * Init
-	 */
+	/** Init */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		RegEntities.RegEntitiesList();
@@ -88,9 +88,7 @@ public class NarutoCraft {
 		proxy.registerSound();
 	}
 
-	/**
-	 * Load
-	 */
+	/** Load */
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
@@ -105,6 +103,9 @@ public class NarutoCraft {
 	 * Constructor to Registry Lists of mod elements
 	 */
 	public NarutoCraft() {
+		byoinBlock = new ByoinBlock();
+		GameRegistry.registerBlock(byoinBlock, byoinBlock.getUnlocalizedName()
+				.substring(5));
 		RegItems.RegItemsList();
 		RegJutsus.RegPowersList();
 		RegRecipes.RegRecipesList();

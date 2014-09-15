@@ -2,9 +2,6 @@ package pl.grm.narutocraft.jutsu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -28,33 +25,30 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.ExtendedProperties;
+import pl.grm.narutocraft.libs.References;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class Jutsu extends Item implements IJutsu {
-	public static String jutsuLoc = "narutocraft:jutsu/";
-
-	public static final RegistryNamespaced itemRegistry = GameData
+	public static String jutsuLoc = References.jutsuLoc;
+	private static final RegistryNamespaced itemRegistry = GameData
 			.getItemRegistry();
-	protected static final UUID field_111210_e = UUID
-			.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
 	private CreativeTabs tabToDisplayOn = NarutoCraft.mTabJutsu;
-	protected static Random itemRand = new Random();
-	protected int maxStackSize = 1;
 	private int maxDamage;
-	protected boolean bFull3D;
-	protected boolean hasSubtypes;
+	private boolean bFull3D;
+	private boolean hasSubtypes;
 	private Item containerItem;
 	private String potionEffect;
 	private String unlocalizedName;
 	@SideOnly(Side.CLIENT)
-	protected IIcon itemIcon;
-	protected String iconString;
-	protected boolean canRepair = true;
+	private IIcon itemIcon;
+	private String iconString;
 	private List<int[]> activeJutsus = new ArrayList<int[]>();
-	private IJutsu jutsu;
 	private int chackraConsumption = 0;
+	private int jutsuID;
+	private boolean activated;
+	private int[] jutsuProps;
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
@@ -71,6 +65,7 @@ public class Jutsu extends Item implements IJutsu {
 		}
 		compound.setTag("JutsuManager", jutsus);
 	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = compound.getTagList("JutsuManager",
@@ -78,6 +73,7 @@ public class Jutsu extends Item implements IJutsu {
 		int[] elem;
 		activeJutsus = ExtendedProperties.activeJutsus;
 		int jCount = jutsus.tagCount();
+		System.out.println("JCount: " + jCount);
 		if (jCount > 0) {
 			for (int i = 0; i < jCount; i++) {
 				NBTTagCompound jutsu = jutsus.getCompoundTagAt(jCount);
@@ -85,6 +81,7 @@ public class Jutsu extends Item implements IJutsu {
 			}
 		}
 	}
+
 	@Override
 	public void consumeChackra(EntityPlayer player, int value) {
 		ExtendedProperties props = ExtendedProperties.get(player);
@@ -175,9 +172,6 @@ public class Jutsu extends Item implements IJutsu {
 		return this.tabToDisplayOn;
 	}
 
-	public static Item getItemById(int p_150899_0_) {
-		return (Item) itemRegistry.getObjectById(p_150899_0_);
-	}
 	/**
 	 * ItemStack sensitive version of getContainerItem. Returns a full ItemStack
 	 * instance of the result.
@@ -773,7 +767,6 @@ public class Jutsu extends Item implements IJutsu {
 	 * @param damage
 	 *            the new damage value
 	 */
-
 	@Override
 	public Item setTextureName(String par1Str) {
 		this.iconString = par1Str;
@@ -792,23 +785,6 @@ public class Jutsu extends Item implements IJutsu {
 		return false;
 	}
 
-	/**
-	 * Determines if the durability bar should be rendered for this item.
-	 * Defaults to vanilla stack.isDamaged behavior. But modders can use this
-	 * for any data they wish.
-	 * 
-	 * @param stack
-	 *            The current Item Stack
-	 * @return True if it should render the 'durability' bar.
-	 */
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return false;
-	}
-
-	public static Jutsu For(EntityPlayer player) {
-		return (Jutsu) player.getExtendedProperties("JutsuKnowledgeData");
-	}
 	@Override
 	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
@@ -816,47 +792,35 @@ public class Jutsu extends Item implements IJutsu {
 	}
 	@Override
 	public void activateJutsu() {
-		// TODO Auto-generated method stub
-
+		this.setActive(true);
 	}
+
 	@Override
 	public void jutsuEnd() {
 		// TODO Auto-generated method stub
 
 	}
-	@Override
-	public Map<Integer, IJutsu> getJutsuProps() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void updateJutsuDurationsMap() {
-		// TODO Auto-generated method stub
 
+	@Override
+	public int[] getJutsuProps() {
+		return jutsuProps;
 	}
+
+	@Override
+	public void updateJutsuProperties() {
+		// TODO Auto-generated method stub
+	}
+
 	@Override
 	public boolean isActive() {
-		// TODO Auto-generated method stub
-		return false;
+		return activated;
 	}
 	@Override
 	public void setActive(boolean par) {
-		// TODO Auto-generated method stub
-
+		activated = par;
 	}
 	@Override
 	public int getJutsuID() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int getTotalDuration() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int getDurationPass() {
-		// TODO Auto-generated method stub
-		return 0;
+		return jutsuID;
 	}
 }

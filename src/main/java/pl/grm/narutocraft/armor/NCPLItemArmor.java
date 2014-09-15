@@ -15,6 +15,7 @@ import pl.grm.narutocraft.libs.References;
 public class NCPLItemArmor extends ItemArmor {
 	private int armorSlot = 0;
 	private String modelTexture;
+
 	/**
 	 * Create Armor Item
 	 * 
@@ -36,8 +37,9 @@ public class NCPLItemArmor extends ItemArmor {
 		super(armormaterial, ID, placement);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.setMaxStackSize(1);
-		armorSlot = placement;
-		modelTexture = modelTextureName;
+		this.armorSlot = placement;
+		this.modelTexture = modelTextureName;
+
 		switch (placement) {
 			case 0 :
 				this.setTextureName(References.ModTexturePath + "armor/helmet"
@@ -65,33 +67,5 @@ public class NCPLItemArmor extends ItemArmor {
 			return "narutocraft:textures/model/" + modelTexture + "_1.png";
 		else
 			return "narutocraft:textures/model/" + modelTexture + "_2.png";
-
-		/*
-		 * if (stack.getItem() == RegItems.helmetBushido || stack.getItem() ==
-		 * RegItems.plateBushido || stack.getItem() == RegItems.bootsBushido) {
-		 * return "narutocraftmod:textures/model/BushidoArmor.1.png"; } if
-		 * (stack.getItem() == RegItems.legsBushido) { return
-		 * "narutocraftmod:textures/model/BushidoArmor.2.png"; } if
-		 * (stack.getItem() == RegItems.helmetAnbu1 || stack.getItem() ==
-		 * RegItems.helmetAnbu2 || stack.getItem() == RegItems.helmetAnbu3 ||
-		 * stack.getItem() == RegItems.helmetAnbu4 || stack.getItem() ==
-		 * RegItems.plateAnbu || stack.getItem() == RegItems.bootsAnbu) { return
-		 * "narutocraftmod:textures/model/AnbuArmor.1.png"; } if
-		 * (stack.getItem() == RegItems.legsAnbu) { return
-		 * "narutocraftmod:textures/model/AnbuArmor.2.png"; } if
-		 * (stack.getItem() == RegItems.plateKiri || stack.getItem() ==
-		 * RegItems.legsKiri) { return "narutocraftmod:textures/model/Kiri.png";
-		 * } if (stack.getItem() == RegItems.plateSuna || stack.getItem() ==
-		 * RegItems.legsSuna) { return "narutocraftmod:textures/model/Suna.png";
-		 * } if (stack.getItem() == RegItems.helmetAkatsuki || stack.getItem()
-		 * == RegItems.plateAkatsuki || stack.getItem() ==
-		 * RegItems.plateAkatsuki2 || stack.getItem() == RegItems.plateAkatsuki3
-		 * || stack.getItem() == RegItems.bootsAkatsuki) { return
-		 * "narutocraftmod:textures/model/AkatsukiArmor.1.png";
-		 * 
-		 * }else { return null; }
-		 */
-
 	}
-
 }
