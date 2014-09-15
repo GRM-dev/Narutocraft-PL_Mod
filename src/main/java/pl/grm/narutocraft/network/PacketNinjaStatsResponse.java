@@ -45,22 +45,11 @@ public class PacketNinjaStatsResponse implements IMessage
 
 	public static class PacketNinjaStatsResponseHandler implements IMessageHandler<PacketNinjaStatsResponse, IMessage> 
 	{
-
 		@Override
 		public IMessage onMessage(PacketNinjaStatsResponse message, MessageContext ctx) 
 		{
-			/*System.out.println(String.format("Received %d %f %s from %s", 
-					message.exampleInt, message.exampleFloat,message.exampleString, 
-					ctx.getServerHandler().playerEntity.getDisplayName()));*/
-			System.out.println(message.data);
 			ExtendedProperties.get(Minecraft.getMinecraft().thePlayer).psa.setValues(message.data);
-			//the return is null because there is no response.
 			return null;
-			/*If you wanted a response you'd make another packet for the response and register it on the other side
-			Such as if a GUI was to send info to the server, and the server was to say "got it" you'd need:
-			return new PacketResponse("Got it");
-			and PacketResponse takes just a String
-			*/
 		}
 
 	}

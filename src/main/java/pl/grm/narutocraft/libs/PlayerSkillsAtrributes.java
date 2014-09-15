@@ -3,6 +3,7 @@ package pl.grm.narutocraft.libs;
 public class PlayerSkillsAtrributes
 {
 	public static int arraySize = 11;
+	public static int skillPointsPerLevel = 5;
 	//Stats
 	private int strength = 0, agility = 0, dexterity = 0, 
 			resistance = 0,elementPowerModifier = 0, chakraModifier = 0, 
@@ -23,6 +24,15 @@ public class PlayerSkillsAtrributes
 	public int getCurrentNinjaXp(){return currentNinjaXp;}
 	public int getNinjaXpCap(){return ninjaXpLevelUpCap;}
 	
+	//Setters
+	public void setStrength(int v){strength = v;}
+	public void setAgility(int v){agility = v;}
+	public void setDexterity(int v){dexterity = v;}
+	public void setResistance(int v){resistance = v;}
+	public void setElementPowerModifier(int v){elementPowerModifier = v;}
+	public void setChakraModifier(int v){chakraModifier = v;}
+	public void setChakraRegenBonus(int v){chakraRegenBonus = v;}
+	
 	/**This is used to add xp, it also handles leveling up**/
 	public void levelUp (int xpGained)
 	{
@@ -35,7 +45,7 @@ public class PlayerSkillsAtrributes
 			}
 			else currentNinjaXp = 0;
 			ninjaLevel++;
-			skillPoints += 5;
+			skillPoints += skillPointsPerLevel;
 			//Cap doubles plus 50% more
 			ninjaXpLevelUpCap = (int)(ninjaXpLevelUpCap * 2.5f);
 		}

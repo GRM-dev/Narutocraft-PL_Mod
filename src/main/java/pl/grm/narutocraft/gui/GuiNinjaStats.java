@@ -10,10 +10,12 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.registry.RegItems;
 import pl.grm.narutocraft.libs.registry.RegJutsus;
+import pl.grm.narutocraft.network.PacketNinjaStatsRequest;
 
 public class GuiNinjaStats extends GuiContainer
 {
@@ -114,6 +116,8 @@ public class GuiNinjaStats extends GuiContainer
 				this.buttonList.add(new GuiNinjaButton(12, guiLeft + padLeft + 120, guiTop + padTop + 9 * 9, "plus"));
 				this.buttonList.add(new GuiNinjaButton(13, guiLeft + padLeft + 120, guiTop + padTop + 9 * 10, "plus"));
 			}
+			this.buttonList.add(new GuiButton(14, guiLeft + padLeft, guiTop + padTop + 9 * 12, 50, 20, "Save"));
+			this.buttonList.add(new GuiButton(15, guiLeft + padLeft + 50, guiTop + padTop + 9 * 12, 50, 20, "Reset"));
 		}
 	}
 	
@@ -151,6 +155,40 @@ public class GuiNinjaStats extends GuiContainer
 				jutsuMenu = true;
 				jutsuPage = 5;
 				break;	
+			case 7: // increase Strength
+				ExtendedProperties.get(player).psa.setStrength(ExtendedProperties.get(player).psa.getStrength() + 1);
+				ExtendedProperties.get(player).psa.skillPoints -= 3;
+				break;
+			case 8: // increase Resist
+				ExtendedProperties.get(player).psa.setResistance(ExtendedProperties.get(player).psa.getResistance() + 1);
+				ExtendedProperties.get(player).psa.skillPoints -= 3;
+				break;
+			case 9: // increase Dex
+				ExtendedProperties.get(player).psa.setDexterity(ExtendedProperties.get(player).psa.getDexterity() + 1);
+				ExtendedProperties.get(player).psa.skillPoints -= 3;
+				break;
+			case 10: // increase Agi
+				ExtendedProperties.get(player).psa.setAgility(ExtendedProperties.get(player).psa.getAgility() + 1);
+				ExtendedProperties.get(player).psa.skillPoints -= 3;
+				break;
+			case 11: // increase elm
+				ExtendedProperties.get(player).psa.setElementPowerModifier(ExtendedProperties.get(player).psa.getElementPowerModifier() + 1);
+				ExtendedProperties.get(player).psa.skillPoints -= 1;
+				break;
+			case 12: // increase mcha
+				ExtendedProperties.get(player).psa.setChakraModifier(ExtendedProperties.get(player).psa.getChakraModifier() + 1);
+				ExtendedProperties.get(player).psa.skillPoints -= 1;
+				break;
+			case 13: // increase char
+				ExtendedProperties.get(player).psa.setChakraRegenBonus(ExtendedProperties.get(player).psa.getChakraRegenBonus() + 1);
+				ExtendedProperties.get(player).psa.skillPoints -= 1;
+				break;
+			case 14: // send changes
+				NarutoCraft.netHandler.sendToServer(new PacketNinjaStatsRequest("set", ExtendedProperties.get(player).psa.getValues()));
+				break;
+			case 15: // reset all
+				NarutoCraft.netHandler.sendToServer(new PacketNinjaStatsRequest("reset", ExtendedProperties.get(player).psa.getValues()));
+				break;
 		}
 	}
 	
