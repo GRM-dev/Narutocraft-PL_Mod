@@ -3,9 +3,11 @@ package pl.grm.narutocraft.handlers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -13,6 +15,7 @@ import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.registry.RegJutsus;
 import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -61,6 +64,9 @@ public class NCPLEventHandler {
 
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
+		/* This loadProxyData should be converted so that it is in the
+		 * ClonePlayer event, not the proxy. It works but it is not where
+		 * it belongs */
 		if (!event.entity.worldObj.isRemote
 				&& event.entity instanceof EntityPlayer) {
 			ExtendedProperties.loadProxyData((EntityPlayer) event.entity);
@@ -69,6 +75,9 @@ public class NCPLEventHandler {
 
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event) {
+		/* This saveProxyData should be converted so that it is in the
+		 * ClonePlayer event, not the proxy. It works but it is not where
+		 * it belongs */
 		if (!event.entity.worldObj.isRemote
 				&& event.entity instanceof EntityPlayer) {
 			ExtendedProperties.saveProxyData((EntityPlayer) event.entity);
@@ -77,13 +86,12 @@ public class NCPLEventHandler {
 		if (event.source.getEntity() instanceof EntityPlayer)
 		{
 			ExtendedProperties prop = ExtendedProperties.get((EntityPlayer)event.source.getEntity());
-			System.out.println(prop.psa.getCurrentNinjaXp());
 			prop.psa.levelUp((int)event.entityLiving.getMaxHealth() / 3);
 			NarutoCraft.netHandler.sendTo(new PacketNinjaStatsResponse(prop.psa.getValues()), (EntityPlayerMP)event.source.getEntity());
-			System.out.println(prop.psa.getCurrentNinjaXp());
 		}
 	}
 
+	/** Refresh chakra by sleeping, and normal chakra regen **/
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event) {
 		if (event.entity instanceof EntityPlayer) {
@@ -99,6 +107,7 @@ public class NCPLEventHandler {
 		}
 	}
 
+	/** Testing flight by holding jutsu **/
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event) {
 		if (event.entity instanceof EntityPlayer) {
@@ -116,6 +125,7 @@ public class NCPLEventHandler {
 		}
 	}
 	
+	/** When player dies, ninja stats transfer over **/
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.Clone event)
 	{
@@ -126,16 +136,46 @@ public class NCPLEventHandler {
 				ExtendedProperties deadPlayer = ExtendedProperties.get(event.original);
 				ExtendedProperties clonePlayer = ExtendedProperties.get(event.entityPlayer);
 				clonePlayer.psa.setValues(deadPlayer.psa.getValues());
-				//Need to have a packet get sent to update the client that the values are changed.
-				//net.sendToServer(new RequestPacket("myStats"));
 			}
 		}
 	}
 	
+	/** When a player joins game, changes from Overworld to Nether or End update client info **/
 	@SubscribeEvent
 	public void onPlayerJoin(EntityJoinWorldEvent e)
 	{
 		if (e.entity instanceof EntityPlayer && !e.world.isRemote)
 			NarutoCraft.netHandler.sendTo(new PacketNinjaStatsResponse(ExtendedProperties.get((EntityPlayer) e.entity).psa.getValues()), (EntityPlayerMP) e.entity);
+	}
+	
+	/** Attack and Defense Bonus **/
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void onDamage(LivingHurtEvent event)
+	{
+		//Offense
+		if(event.source instanceof EntityDamageSource)
+		{
+			EntityDamageSource source = (EntityDamageSource) event.source;
+			if(source.getEntity() instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer) source.getEntity();
+				
+				if (event.source.getDamageType() == "player")// physical attack
+				{
+					event.ammount += ExtendedProperties.get(player).psa.getStrength() * 0.15f;
+				}
+				else if (event.source.getDamageType() == "arrow")
+				{
+					event.ammount += ExtendedProperties.get(player).psa.getDexterity() * 0.15f;
+				}
+			}
+		}
+		
+		//Defense
+		if (event.entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)event.entity;
+			event.ammount -= ExtendedProperties.get(player).psa.getResistance() * 0.25f;
+		}
 	}
 }
