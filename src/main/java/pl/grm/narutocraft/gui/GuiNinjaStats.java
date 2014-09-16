@@ -33,14 +33,6 @@ public class GuiNinjaStats extends GuiContainer {
 		xSize = jutsuMenu ? 210 : 256;
 		ySize = jutsuMenu ? 210 : 256;
 
-		/*
-		 * TextureManager manager = Minecraft.getMinecraft().renderEngine;
-		 * manager.bindTexture(manager.getResourceLocation(1)); //RENDER ITEMS
-		 * 
-		 * drawTexturedModelRectFromIcon(300, 300,
-		 * RotItems.itemGunpowderInfuser.getIconFromDamage(0), 16, 16);
-		 */
-
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(jutsuMenu
 				? References.jutsuGUI[jutsuPage]
@@ -74,71 +66,71 @@ public class GuiNinjaStats extends GuiContainer {
 		ExtendedProperties props = ExtendedProperties.get(player);
 		if (!jutsuMenu) {
 			this.drawString(fontRendererObj,
-					"Ninja Level: " + props.psa.getNinjaLevel(), guiLeft + 175,
-					guiTop + 9, 0xddeeee);
+					"Ninja Level: " + props.psa.getNinjaLevel(), guiLeft + padLeft,
+					guiTop + padTop - 9, 0xddeeee);
 			if (props.psa.skillPoints > 0)
 				this.drawString(fontRendererObj, "Skill Points: "
-						+ props.psa.skillPoints, guiLeft + padLeft, guiTop + 9,
+						+ props.psa.skillPoints, guiLeft + padLeft, guiTop + padTop,
 						0xddeeee);
 			Minecraft.getMinecraft().renderEngine
 					.bindTexture(References.ninjaWidgets);
-			drawTexturedModalRect(guiLeft + 132, guiTop + 12, 66, 0, 39, 4);
+			drawTexturedModalRect(guiLeft + 132, guiTop + padTop - 7, 66, 0, 39, 4);
 			drawTexturedModalRect(
 					guiLeft + 132,
-					guiTop + 12,
+					guiTop + padTop - 7,
 					66,
 					4,
 					props.psa.getCurrentNinjaXp() * 39
 							/ props.psa.getNinjaXpCap(), 4);
 
 			this.drawString(fontRendererObj, "Stats (3 points)", guiLeft
-					+ padLeft, guiTop + padTop + 9, 0xddeeee);
+					+ padLeft, guiTop + padTop + 9 * 2, 0xddeeee);
 			this.drawString(fontRendererObj,
 					"Strength: " + props.psa.getStrength(), guiLeft + padLeft,
-					guiTop + padTop + 9 * 2, 0xddeeee);
+					guiTop + padTop + 9 * 3, 0xddeeee);
 			this.drawString(fontRendererObj,
 					"Resistance: " + props.psa.getResistance(), guiLeft
-							+ padLeft, guiTop + padTop + 9 * 3, 0xddeeee);
+							+ padLeft, guiTop + padTop + 9 * 4, 0xddeeee);
 			this.drawString(fontRendererObj,
 					"Dexterity: " + props.psa.getDexterity(),
-					guiLeft + padLeft, guiTop + padTop + 9 * 4, 0xddeeee);
+					guiLeft + padLeft, guiTop + padTop + 9 * 5, 0xddeeee);
 			this.drawString(fontRendererObj,
 					"Agility: " + props.psa.getAgility(), guiLeft + padLeft,
-					guiTop + padTop + 9 * 5, 0xddeeee);
+					guiTop + padTop + 9 * 6, 0xddeeee);
 			if (props.psa.skillPoints >= 3) {
 				this.buttonList.add(new GuiNinjaButton(7, guiLeft + padLeft
-						+ 70, guiTop + padTop + 9 * 2, "plus"));
-				this.buttonList.add(new GuiNinjaButton(8, guiLeft + padLeft
 						+ 70, guiTop + padTop + 9 * 3, "plus"));
-				this.buttonList.add(new GuiNinjaButton(9, guiLeft + padLeft
+				this.buttonList.add(new GuiNinjaButton(8, guiLeft + padLeft
 						+ 70, guiTop + padTop + 9 * 4, "plus"));
-				this.buttonList.add(new GuiNinjaButton(10, guiLeft + padLeft
+				this.buttonList.add(new GuiNinjaButton(9, guiLeft + padLeft
 						+ 70, guiTop + padTop + 9 * 5, "plus"));
+				this.buttonList.add(new GuiNinjaButton(10, guiLeft + padLeft
+						+ 70, guiTop + padTop + 9 * 6, "plus"));
 			}
 
 			this.drawString(fontRendererObj, "Taining (1 point)", guiLeft
-					+ padLeft, guiTop + padTop + 9 * 7, 0xddeeee);
+					+ padLeft, guiTop + padTop + 9 * 8, 0xddeeee);
 			this.drawString(fontRendererObj,
 					"Element Power: " + props.psa.getElementPowerModifier(),
-					guiLeft + padLeft, guiTop + padTop + 9 * 8, 0xddeeee);
-			this.drawString(fontRendererObj,
-					"Max Chakra Bonus: " + props.psa.getChakraModifier(),
 					guiLeft + padLeft, guiTop + padTop + 9 * 9, 0xddeeee);
 			this.drawString(fontRendererObj,
-					"Chakra Regen Bonus: " + props.psa.getChakraRegenBonus(),
+					"Max Chakra Bonus: " + props.psa.getChakraModifier(),
 					guiLeft + padLeft, guiTop + padTop + 9 * 10, 0xddeeee);
+			this.drawString(fontRendererObj,
+					"Chakra Regen Bonus: " + props.psa.getChakraRegenBonus(),
+					guiLeft + padLeft, guiTop + padTop + 9 * 11, 0xddeeee);
 			if (props.psa.skillPoints >= 1) {
 				this.buttonList.add(new GuiNinjaButton(11, guiLeft + padLeft
-						+ 120, guiTop + padTop + 9 * 8, "plus"));
-				this.buttonList.add(new GuiNinjaButton(12, guiLeft + padLeft
 						+ 120, guiTop + padTop + 9 * 9, "plus"));
-				this.buttonList.add(new GuiNinjaButton(13, guiLeft + padLeft
+				this.buttonList.add(new GuiNinjaButton(12, guiLeft + padLeft
 						+ 120, guiTop + padTop + 9 * 10, "plus"));
+				this.buttonList.add(new GuiNinjaButton(13, guiLeft + padLeft
+						+ 120, guiTop + padTop + 9 * 11, "plus"));
 			}
 			this.buttonList.add(new GuiButton(14, guiLeft + padLeft, guiTop
-					+ padTop + 9 * 12, 50, 20, "Save"));
+					+ padTop + 9 * 13, 50, 20, "Save"));
 			this.buttonList.add(new GuiButton(15, guiLeft + padLeft + 50,
-					guiTop + padTop + 9 * 12, 50, 20, "Reset"));
+					guiTop + padTop + 9 * 13, 50, 20, "Reset"));
 		}
 	}
 
@@ -211,10 +203,13 @@ public class GuiNinjaStats extends GuiContainer {
 				ExtendedProperties.get(player).psa.skillPoints -= 1;
 				break;
 			case 13 : // increase char
-				ExtendedProperties.get(player).psa
-						.setChakraRegenBonus(ExtendedProperties.get(player).psa
-								.getChakraRegenBonus() + 1);
-				ExtendedProperties.get(player).psa.skillPoints -= 1;
+				if (ExtendedProperties.get(player).psa.getChakraRegenBonus() < 75)
+				{
+					ExtendedProperties.get(player).psa
+							.setChakraRegenBonus(ExtendedProperties.get(player).psa
+									.getChakraRegenBonus() + 1);
+					ExtendedProperties.get(player).psa.skillPoints -= 1;
+				}
 				break;
 			case 14 : // send changes
 				NarutoCraft.netHandler

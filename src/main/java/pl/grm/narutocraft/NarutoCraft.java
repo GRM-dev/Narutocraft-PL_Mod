@@ -1,9 +1,12 @@
 package pl.grm.narutocraft;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraft.blocks.ByoinBlock;
+import pl.grm.narutocraft.blocks.Shoji;
+import pl.grm.narutocraft.blocks.Tatami;
 import pl.grm.narutocraft.creativetabs.JutsuTab;
 import pl.grm.narutocraft.creativetabs.NCPLCreativeTab;
 import pl.grm.narutocraft.handlers.ClientGuiHandler;
@@ -49,6 +52,8 @@ public class NarutoCraft {
 			CreativeTabs.getNextID(), "NarutoCraftMod Jutsu's");
 	/** Reg Blocks */
 	public static Block byoinBlock;
+	public static Block shoji;
+	public static Block tatami;
 
 	/** Create mod instance */
 	@Instance(References.MODID)
@@ -104,7 +109,16 @@ public class NarutoCraft {
 	 */
 	public NarutoCraft() {
 		byoinBlock = new ByoinBlock();
+		shoji = new Shoji(References.ModTexturePath+"shoji", References.ModTexturePath+"shoji_top", Material.wood, false)
+			.setBlockName("shoji")
+			.setCreativeTab(mTabNarutoCraft);
+		tatami = new Tatami().setBlockName("tatami").setBlockTextureName(References.ModTexturePath+"tatami").setCreativeTab(mTabNarutoCraft);
+		
 		GameRegistry.registerBlock(byoinBlock, byoinBlock.getUnlocalizedName()
+				.substring(5));
+		GameRegistry.registerBlock(shoji, shoji.getUnlocalizedName()
+				.substring(5));
+		GameRegistry.registerBlock(tatami, tatami.getUnlocalizedName()
 				.substring(5));
 		RegItems.RegItemsList();
 		RegJutsus.RegPowersList();

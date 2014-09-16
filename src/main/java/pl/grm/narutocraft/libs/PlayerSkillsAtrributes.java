@@ -46,8 +46,8 @@ public class PlayerSkillsAtrributes
 			else currentNinjaXp = 0;
 			ninjaLevel++;
 			skillPoints += skillPointsPerLevel;
-			//Cap doubles plus 50% more
-			ninjaXpLevelUpCap = (int)(ninjaXpLevelUpCap * 2.5f);
+			//Cap increases by 75% more
+			ninjaXpLevelUpCap = (int)(ninjaXpLevelUpCap * 1.75f);
 		}
 		else
 		{
