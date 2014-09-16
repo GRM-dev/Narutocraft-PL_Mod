@@ -49,18 +49,19 @@ public class Jutsu extends Item implements IJutsu {
 	private int jutsuID;
 	private boolean activated;
 	private int[] jutsuProps;
+	private int[] jutsuLine;
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
-		NBTTagList jutsus = new NBTTagList();
-		NBTTagCompound jutsu = new NBTTagCompound();
-		int[] elem;
+		NBTTagList jutsuList = new NBTTagList();
+		NBTTagCompound jutsus = new NBTTagCompound();
+
 		activeJutsus = ExtendedProperties.activeJutsus;
 		if (!activeJutsus.isEmpty()) {
 			while (activeJutsus.iterator().hasNext()) {
-				elem = activeJutsus.iterator().next();
-				jutsu.setIntArray("Jutsu" + elem[0], elem);
-				jutsus.appendTag(jutsu);
+				jutsuLine = activeJutsus.iterator().next();
+				jutsus.setIntArray("Jutsu" + jutsuLine[0], jutsuLine);
+				jutsuList.appendTag(jutsus);
 			}
 		}
 		compound.setTag("JutsuManager", jutsus);

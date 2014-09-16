@@ -31,11 +31,6 @@ import pl.grm.narutocraft.weapons.projectiles.WKunai;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegItems extends NarutoCraft {
-	public static Item block;
-
-	// The Id's where not needed so I removed those and re done how Weapons are
-	// defined.
-
 	/** Weapons **/
 	public static Item Kunai = new Kunai().setUnlocalizedName("Kunai")
 			.setTextureName(References.ModTexturePath + "weapons/Kunai")
@@ -81,7 +76,7 @@ public class RegItems extends NarutoCraft {
 	public static Item Nunchaku = new Nunchaku().setUnlocalizedName("Nunchaku")
 			.setTextureName(References.ModTexturePath + "weapons/Nunchaku");
 
-	/** Not sure what these are **/
+	/** Zwoj - scroll **/
 	public static Item FZwoj = new FZwoj();
 	public static Item KZwoj = new KZwoj();
 	public static Item DZwoj = new DZwoj();
@@ -146,7 +141,7 @@ public class RegItems extends NarutoCraft {
 	 */
 	// public static Item = new (id+);
 
-	public static void RegItemsList() {
+	public static void regItemsList() {
 		// Bronie
 		GameRegistry.registerItem(Kunai, "Kunai");
 		GameRegistry.registerItem(WKunai, "WybuchowyKunai");
@@ -199,5 +194,4 @@ public class RegItems extends NarutoCraft {
 
 		// GameRegistry.registerItem(, "");
 	}
-
 }

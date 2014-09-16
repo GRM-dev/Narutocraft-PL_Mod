@@ -66,15 +66,16 @@ public class GuiNinjaStats extends GuiContainer {
 		ExtendedProperties props = ExtendedProperties.get(player);
 		if (!jutsuMenu) {
 			this.drawString(fontRendererObj,
-					"Ninja Level: " + props.psa.getNinjaLevel(), guiLeft + padLeft,
-					guiTop + padTop - 9, 0xddeeee);
+					"Ninja Level: " + props.psa.getNinjaLevel(), guiLeft
+							+ padLeft, guiTop + padTop - 9, 0xddeeee);
 			if (props.psa.skillPoints > 0)
 				this.drawString(fontRendererObj, "Skill Points: "
-						+ props.psa.skillPoints, guiLeft + padLeft, guiTop + padTop,
-						0xddeeee);
+						+ props.psa.skillPoints, guiLeft + padLeft, guiTop
+						+ padTop, 0xddeeee);
 			Minecraft.getMinecraft().renderEngine
 					.bindTexture(References.ninjaWidgets);
-			drawTexturedModalRect(guiLeft + 132, guiTop + padTop - 7, 66, 0, 39, 4);
+			drawTexturedModalRect(guiLeft + 132, guiTop + padTop - 7, 66, 0,
+					39, 4);
 			drawTexturedModalRect(
 					guiLeft + 132,
 					guiTop + padTop - 7,
@@ -108,7 +109,7 @@ public class GuiNinjaStats extends GuiContainer {
 						+ 70, guiTop + padTop + 9 * 6, "plus"));
 			}
 
-			this.drawString(fontRendererObj, "Taining (1 point)", guiLeft
+			this.drawString(fontRendererObj, "Training (1 point)", guiLeft
 					+ padLeft, guiTop + padTop + 9 * 8, 0xddeeee);
 			this.drawString(fontRendererObj,
 					"Element Power: " + props.psa.getElementPowerModifier(),
@@ -203,8 +204,7 @@ public class GuiNinjaStats extends GuiContainer {
 				ExtendedProperties.get(player).psa.skillPoints -= 1;
 				break;
 			case 13 : // increase char
-				if (ExtendedProperties.get(player).psa.getChakraRegenBonus() < 75)
-				{
+				if (ExtendedProperties.get(player).psa.getChakraRegenBonus() < 75) {
 					ExtendedProperties.get(player).psa
 							.setChakraRegenBonus(ExtendedProperties.get(player).psa
 									.getChakraRegenBonus() + 1);

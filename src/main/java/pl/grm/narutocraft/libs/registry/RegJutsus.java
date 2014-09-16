@@ -85,7 +85,7 @@ public class RegJutsus {
 
 	// public static Jutsu = new (id+);
 
-	public static void RegPowersList() {
+	public static void regPowersList() {
 		GameRegistry.registerItem(KawarimiNoJutsu, "KawarimiNoJutsu");
 		GameRegistry.registerItem(ShunshinNoJutsu, "ShunshinNoJutsu");
 		GameRegistry.registerItem(Sharingan, "Sharingan");

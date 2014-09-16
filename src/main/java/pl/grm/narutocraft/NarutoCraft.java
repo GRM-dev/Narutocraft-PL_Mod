@@ -1,12 +1,7 @@
 package pl.grm.narutocraft;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import pl.grm.narutocraft.blocks.ByoinBlock;
-import pl.grm.narutocraft.blocks.Shoji;
-import pl.grm.narutocraft.blocks.Tatami;
 import pl.grm.narutocraft.creativetabs.JutsuTab;
 import pl.grm.narutocraft.creativetabs.NCPLCreativeTab;
 import pl.grm.narutocraft.handlers.ClientGuiHandler;
@@ -17,6 +12,7 @@ import pl.grm.narutocraft.handlers.NCPLFMLEventHandler;
 import pl.grm.narutocraft.libs.ProxyCommon;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
+import pl.grm.narutocraft.libs.registry.RegBlocks;
 import pl.grm.narutocraft.libs.registry.RegEntities;
 import pl.grm.narutocraft.libs.registry.RegItems;
 import pl.grm.narutocraft.libs.registry.RegJutsus;
@@ -34,7 +30,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = References.MODID, version = References.VERSION)
@@ -50,10 +45,6 @@ public class NarutoCraft {
 			CreativeTabs.getNextID(), "NarutoCraftMod");
 	public static CreativeTabs mTabJutsu = new JutsuTab(
 			CreativeTabs.getNextID(), "NarutoCraftMod Jutsu's");
-	/** Reg Blocks */
-	public static Block byoinBlock;
-	public static Block shoji;
-	public static Block tatami;
 
 	/** Create mod instance */
 	@Instance(References.MODID)
@@ -101,27 +92,16 @@ public class NarutoCraft {
 		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();
-		RegMobs.RegMobsList();
 	}
 
 	/**
 	 * Constructor to Registry Lists of mod elements
 	 */
 	public NarutoCraft() {
-		byoinBlock = new ByoinBlock();
-		shoji = new Shoji(References.ModTexturePath+"shoji", References.ModTexturePath+"shoji_top", Material.wood, false)
-			.setBlockName("shoji")
-			.setCreativeTab(mTabNarutoCraft);
-		tatami = new Tatami().setBlockName("tatami").setBlockTextureName(References.ModTexturePath+"tatami").setCreativeTab(mTabNarutoCraft);
-		
-		GameRegistry.registerBlock(byoinBlock, byoinBlock.getUnlocalizedName()
-				.substring(5));
-		GameRegistry.registerBlock(shoji, shoji.getUnlocalizedName()
-				.substring(5));
-		GameRegistry.registerBlock(tatami, tatami.getUnlocalizedName()
-				.substring(5));
-		RegItems.RegItemsList();
-		RegJutsus.RegPowersList();
-		RegRecipes.RegRecipesList();
+		RegMobs.regMobsList();
+		RegBlocks.regBlocksList();
+		RegItems.regItemsList();
+		RegJutsus.regPowersList();
+		RegRecipes.regRecipesList();
 	}
 }

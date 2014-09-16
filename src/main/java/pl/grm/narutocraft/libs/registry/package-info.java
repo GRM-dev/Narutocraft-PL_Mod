@@ -1,8 +1,5 @@
 /**
- * 
+ * All registry to mod's things.
  */
-/**
- * @author Ad-master
- *
- */
+
 package pl.grm.narutocraft.libs.registry;
