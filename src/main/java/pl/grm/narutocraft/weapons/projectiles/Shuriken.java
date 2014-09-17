@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.registry.RegWeapons;
+import pl.grm.narutocraft.registry.RegWeapons;
 import pl.grm.narutocraft.weapons.projectiles.entities.EntityShuriken;
 
 public class Shuriken extends Item {

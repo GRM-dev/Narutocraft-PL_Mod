@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs.registry;
+package pl.grm.narutocraft.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

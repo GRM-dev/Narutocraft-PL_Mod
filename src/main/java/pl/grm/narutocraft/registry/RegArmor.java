@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs.registry;
+package pl.grm.narutocraft.registry;
 
 import net.minecraft.item.ItemArmor;
 import pl.grm.narutocraft.armor.NCPLItemArmor;

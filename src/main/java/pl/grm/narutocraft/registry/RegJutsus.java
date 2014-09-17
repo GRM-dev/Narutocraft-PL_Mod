@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs.registry;
+package pl.grm.narutocraft.registry;
 
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;

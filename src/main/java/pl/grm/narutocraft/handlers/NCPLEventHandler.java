@@ -13,8 +13,8 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.ExtendedProperties;
-import pl.grm.narutocraft.libs.registry.RegJutsus;
 import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
+import pl.grm.narutocraft.registry.RegJutsus;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 

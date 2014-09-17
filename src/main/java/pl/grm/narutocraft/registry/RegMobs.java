@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs.registry;
+package pl.grm.narutocraft.registry;
 
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.mobs.bijuu.EntityKyuubi;

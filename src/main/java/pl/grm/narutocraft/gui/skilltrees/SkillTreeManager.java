@@ -11,12 +11,21 @@ import cpw.mods.fml.common.FMLLog;
 
 public class SkillTreeManager {
 	public static SkillTreeManager instance = new SkillTreeManager();
+
 	private final ArrayList<SkillTreeEntry> ninjutsuTree = new ArrayList<SkillTreeEntry>();
 	private final ArrayList<SkillTreeEntry> genjutsuTree = new ArrayList<SkillTreeEntry>();
 	private final ArrayList<SkillTreeEntry> fuuinjutsuTree = new ArrayList<SkillTreeEntry>();
 	private final ArrayList<SkillTreeEntry> taijutsuTree = new ArrayList<SkillTreeEntry>();
+	private final ArrayList<SkillTreeEntry> kanjutsuTree = new ArrayList<SkillTreeEntry>();
+	private final ArrayList<SkillTreeEntry> soshijutsuTree = new ArrayList<SkillTreeEntry>();
+
 	private final HashMap<Integer, TreePointTypes> skillPointTypeList;
 	private int highestSkillDepth = 0;
+	private ArrayList<Integer> disableds;
+	private ArrayList<SkillTreeEntry> safeCopy;
+	private SkillTreeEntry newEntry;
+	private ArrayList<SkillTreeEntry> locatedPrerequisites;
+	private ArrayList<SkillTreeEntry> treeListing;
 
 	private SkillTreeManager() {
 		this.skillPointTypeList = new HashMap<Integer, TreePointTypes>();
@@ -24,15 +33,21 @@ public class SkillTreeManager {
 
 	public void RegisterEntry(IJutsu jutsu, int x, int y, SkillTrees tree,
 			TreePointTypes requiredPoint, SkillTreeEntry... prerequisites) {
-		ArrayList<SkillTreeEntry> treeListing = tree == SkillTrees.NINJUTSU
-				? this.fuuinjutsuTree
+		treeListing = tree == SkillTrees.NINJUTSU
+				? this.ninjutsuTree
 				: tree == SkillTrees.GENJUTSU
-						? this.ninjutsuTree
+						? this.genjutsuTree
 						: tree == SkillTrees.FUUINJUTSU
-								? this.genjutsuTree
-								: this.taijutsuTree;
+								? this.fuuinjutsuTree
+								: tree == SkillTrees.TAIJUTSU
+										? this.taijutsuTree
+										: tree == SkillTrees.KANJUTSU
+												? this.kanjutsuTree
+												: tree == SkillTrees.KANJUTSU
+														? this.kanjutsuTree
+														: this.soshijutsuTree;
 
-		ArrayList<SkillTreeEntry> locatedPrerequisites = new ArrayList<SkillTreeEntry>();
+		locatedPrerequisites = new ArrayList<SkillTreeEntry>();
 		if ((prerequisites != null) && (prerequisites.length > 0)) {
 			for (SkillTreeEntry prerequisite : prerequisites) {
 				for (SkillTreeEntry entry : treeListing) {
@@ -50,7 +65,7 @@ public class SkillTreeManager {
 			}
 		}
 		boolean enabled = true;
-		SkillTreeEntry newEntry = new SkillTreeEntry(
+		newEntry = new SkillTreeEntry(
 				x,
 				y,
 				tree,
@@ -65,7 +80,7 @@ public class SkillTreeManager {
 	}
 
 	public ArrayList<SkillTreeEntry> getTree(SkillTrees tree) {
-		ArrayList<SkillTreeEntry> safeCopy = new ArrayList<SkillTreeEntry>();
+		safeCopy = new ArrayList<SkillTreeEntry>();
 		switch (tree.ordinal()) {
 			case 1 :
 				safeCopy.addAll(this.genjutsuTree);
@@ -102,7 +117,7 @@ public class SkillTreeManager {
 	}
 
 	public int[] getDisabledSkillIDs() {
-		ArrayList<Integer> disableds = new ArrayList<Integer>();
+		disableds = new ArrayList<Integer>();
 		for (SkillTreeEntry entry : this.ninjutsuTree) {
 			if (!entry.enabled) {
 				disableds.add(Integer.valueOf(JutsuManager.instance
@@ -192,35 +207,34 @@ public class SkillTreeManager {
 
 	public void init() {
 		this.ninjutsuTree.clear();
-		// RegisterPart(JutsuManager.instance.getJutsu("Projectile"), 300, 45,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Projectile"), 300, 45,
 		// SkillTrees.Offense, TreePointTypes.BLUE, new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("PhysicalDamage"), 300,
-		// 90,
+		// RegisterEntry(JutsuManager.instance.getJutsu("PhysicalDamage"), 300,
+		// 90, SkillTrees.Offense, TreePointTypes.BLUE,
+		// new SkillTreeEntry[]{JutsuManager.instance
+		// .getJutsu("Projectile")});
+		// RegisterEntry(JutsuManager.instance.getJutsu("Gravity"), 255, 70,
 		// SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Projectile")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Gravity"), 255, 70,
-		// SkillTrees.Offense, TreePointTypes.BLUE,
-		// new SkillTreeEntry[]{JutsuManager.instance
-		// .getJutsu("Projectile")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Bounce"), 345, 70,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Bounce"), 345, 70,
 		// SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Projectile")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("FireDamage"), 210, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("FireDamage"), 210, 135,
 		// SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("PhysicalDamage")});
-		// RegisterPart(JutsuManager.instance.getJutsu("LightningDamage"), 255,
+		// RegisterEntry(JutsuManager.instance.getJutsu("LightningDamage"), 255,
 		// 135, SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("FireDamage")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Ignition"), 165, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Ignition"), 165, 135,
 		// SkillTrees.Offense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("FireDamage")});
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("Forge"),
 		// 120,
 		// 135,
@@ -228,7 +242,7 @@ public class SkillTreeManager {
 		// TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Ignition")});
 		//
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("Contingency_Fire"),
 		// 165,
 		// 180,
@@ -236,49 +250,51 @@ public class SkillTreeManager {
 		// TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Ignition")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("MagicDamage"), 390, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("MagicDamage"), 390,
+		// 135,
 		// SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("PhysicalDamage")});
-		// RegisterPart(JutsuManager.instance.getJutsu("FrostDamage"), 345, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("FrostDamage"), 345,
+		// 135,
 		// SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("MagicDamage")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Drown"), 435, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Drown"), 435, 135,
 		// SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("MagicDamage")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Blind"), 233, 180,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Blind"), 233, 180,
 		// SkillTrees.Offense, TreePointTypes.GREEN, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("FireDamage"),
 		// JutsuManager.instance.getJutsu("LightningDamage")});
-		// RegisterPart(JutsuManager.instance.getJutsu("AoE"), 300, 180,
+		// RegisterEntry(JutsuManager.instance.getJutsu("AoE"), 300, 180,
 		// SkillTrees.Offense, TreePointTypes.GREEN, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("PhysicalDamage"),
 		// JutsuManager.instance.getJutsu("FrostDamage"),
 		// JutsuManager.instance.getJutsu("FireDamage"),
 		// JutsuManager.instance.getJutsu("LightningDamage"),
 		// JutsuManager.instance.getJutsu("MagicDamage")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Freeze"), 345, 180,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Freeze"), 345, 180,
 		// SkillTrees.Offense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("FrostDamage")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Knockback"), 390, 180,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Knockback"), 390, 180,
 		// SkillTrees.Offense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("MagicDamage")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Solar"), 210, 225,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Solar"), 210, 225,
 		// SkillTrees.Offense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Blind")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Storm"), 255, 225,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Storm"), 255, 225,
 		// SkillTrees.Offense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("LightningDamage")});
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("AstralDistortion"),
 		// 367,
 		// 215,
@@ -287,100 +303,101 @@ public class SkillTreeManager {
 		// new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("MagicDamage"),
 		// JutsuManager.instance.getJutsu("FrostDamage")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Silence"), 345, 245,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Silence"), 345, 245,
 		// SkillTrees.Offense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("AstralDistortion")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Fling"), 390, 245,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Fling"), 390, 245,
 		// SkillTrees.Offense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Knockback")});
-		// RegisterPart(JutsuManager.instance.getJutsu("VelocityAdded"), 390,
-		// 290,
-		// SkillTrees.Offense, TreePointTypes.RED,
+		// RegisterEntry(JutsuManager.instance.getJutsu("VelocityAdded"), 390,
+		// 290, SkillTrees.Offense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Fling")});
-		// RegisterPart(JutsuManager.instance.getJutsu("WateryGrave"), 435, 245,
+		// RegisterEntry(JutsuManager.instance.getJutsu("WateryGrave"), 435,
+		// 245,
 		// SkillTrees.Offense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Drown")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Piercing"), 323, 215,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Piercing"), 323, 215,
 		// SkillTrees.Offense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Freeze")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Beam"), 300, 270,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Beam"), 300, 270,
 		// SkillTrees.Offense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("AoE")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Damage"), 300, 315,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Damage"), 300, 315,
 		// SkillTrees.Offense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Beam")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Fury"), 255, 315,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Fury"), 255, 315,
 		// SkillTrees.Offense, TreePointTypes.RED, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("Beam"),
 		// JutsuManager.instance.getJutsu("Storm")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Wave"), 367, 315,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Wave"), 367, 315,
 		// SkillTrees.Offense, TreePointTypes.RED, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("Beam"),
 		// JutsuManager.instance.getJutsu("Fling")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Blizzard"), 75, 45,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Blizzard"), 75, 45,
 		// SkillTrees.Offense, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("FallingStar"), 75, 90,
+		// RegisterEntry(JutsuManager.instance.getJutsu("FallingStar"), 75, 90,
 		// SkillTrees.Offense, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("FireRain"), 75, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("FireRain"), 75, 135,
 		// SkillTrees.Offense, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("Dismembering"), 75, 180,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Dismembering"), 75,
+		// 180,
 		// SkillTrees.Offense, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
 		//
 		// this.defenseTree.clear();
-		// RegisterPart(JutsuManager.instance.getJutsu("Self"), 267, 45,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Self"), 267, 45,
 		// SkillTrees.Defense, TreePointTypes.BLUE, new SkillTreeEntry[0]);
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Leap"), 222, 90,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Leap"), 222, 90,
 		// SkillTrees.Defense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Self")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Regeneration"), 357, 90,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Regeneration"), 357,
+		// 90,
 		// SkillTrees.Defense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Self")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Shrink"), 402, 90,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Shrink"), 402, 90,
 		// SkillTrees.Defense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Regeneration")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Slowfall"), 222, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Slowfall"), 222, 135,
 		// SkillTrees.Defense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Leap")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Heal"), 357, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Heal"), 357, 135,
 		// SkillTrees.Defense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Regeneration")});
-		// RegisterPart(JutsuManager.instance.getJutsu("LifeTap"), 312, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("LifeTap"), 312, 135,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Heal")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Healing"), 402, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Healing"), 402, 135,
 		// SkillTrees.Defense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Heal")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Summon"), 267, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Summon"), 267, 135,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("LifeTap")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Contingency_Damage"),
-		// 447,
-		// 180, SkillTrees.Defense, TreePointTypes.GREEN,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Contingency_Damage"),
+		// 447, 180, SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Healing")});
 		//
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("Haste"),
 		// 177,
 		// 155,
 		// SkillTrees.Defense,
 		// TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Slowfall")});
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("Slow"),
 		// 132,
 		// 155,
@@ -388,55 +405,56 @@ public class SkillTreeManager {
 		// TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Slowfall")});
 		//
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("GravityWell"),
 		// 222,
 		// 180,
 		// SkillTrees.Defense,
 		// TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Slowfall")});
-		// RegisterPart(JutsuManager.instance.getJutsu("LifeDrain"), 312, 180,
+		// RegisterEntry(JutsuManager.instance.getJutsu("LifeDrain"), 312, 180,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("LifeTap")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Dispel"), 357, 180,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Dispel"), 357, 180,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Heal")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Contingency_Fall"), 267,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Contingency_Fall"),
+		// 267,
 		// 180, SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("GravityWell")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("SwiftSwim"), 177, 200,
+		// RegisterEntry(JutsuManager.instance.getJutsu("SwiftSwim"), 177, 200,
 		// SkillTrees.Defense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Haste")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Repel"), 132, 200,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Repel"), 132, 200,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Slow")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Levitate"), 222, 225,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Levitate"), 222, 225,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("GravityWell")});
-		// RegisterPart(JutsuManager.instance.getJutsu("ManaDrain"), 312, 225,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ManaDrain"), 312, 225,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("LifeDrain")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Zone"), 357, 225,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Zone"), 357, 225,
 		// SkillTrees.Defense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Dispel")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Wall"), 87, 200,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Wall"), 87, 200,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Repel")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Accelerate"), 177, 245,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Accelerate"), 177, 245,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("SwiftSwim")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Entangle"), 132, 245,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Entangle"), 132, 245,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Repel")});
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("Appropriation"),
 		// 87,
 		// 245,
@@ -444,138 +462,137 @@ public class SkillTreeManager {
 		// TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Entangle")});
 		//
-		// RegisterPart(
+		// RegisterEntry(
 		// JutsuManager.instance.getJutsu("Flight"),
 		// 222,
 		// 270,
 		// SkillTrees.Defense,
 		// TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Levitate")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Shield"), 357, 270,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Shield"), 357, 270,
 		// SkillTrees.Defense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Zone")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Contingency_Health"),
-		// 402,
-		// 270, SkillTrees.Defense, TreePointTypes.RED,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Contingency_Health"),
+		// 402, 270, SkillTrees.Defense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Shield")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Rune"), 157, 315,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Rune"), 157, 315,
 		// SkillTrees.Defense, TreePointTypes.GREEN, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("Accelerate"),
 		// JutsuManager.instance.getJutsu("Entangle")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("RuneProcs"), 157, 360,
+		// RegisterEntry(JutsuManager.instance.getJutsu("RuneProcs"), 157, 360,
 		// SkillTrees.Defense, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Rune")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Speed"), 202, 315,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Speed"), 202, 315,
 		// SkillTrees.Defense, TreePointTypes.RED, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("Accelerate"),
 		// JutsuManager.instance.getJutsu("Flight")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Reflect"), 357, 315,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Reflect"), 357, 315,
 		// SkillTrees.Defense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Shield")});
-		// RegisterPart(JutsuManager.instance.getJutsu("ChronoAnchor"), 312,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ChronoAnchor"), 312,
 		// 315,
 		// SkillTrees.Defense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Reflect")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Duration"), 312, 360,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Duration"), 312, 360,
 		// SkillTrees.Defense, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("ChronoAnchor")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("ManaLink"), 30, 45,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ManaLink"), 30, 45,
 		// SkillTrees.Defense, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("ManaShield"), 30, 90,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ManaShield"), 30, 90,
 		// SkillTrees.Defense, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("BuffPower"), 30, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("BuffPower"), 30, 135,
 		// SkillTrees.Defense, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
 		//
 		// this.utilityTree.clear();
-		// RegisterPart(JutsuManager.instance.getJutsu("Touch"), 275, 75,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Touch"), 275, 75,
 		// SkillTrees.Utility, TreePointTypes.BLUE, new SkillTreeEntry[0]);
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Dig"), 275, 120,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Dig"), 275, 120,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Touch")});
-		// RegisterPart(JutsuManager.instance.getJutsu("WizardsAutumn"), 315,
-		// 120,
-		// SkillTrees.Utility, TreePointTypes.BLUE,
+		// RegisterEntry(JutsuManager.instance.getJutsu("WizardsAutumn"), 315,
+		// 120, SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Dig")});
-		// RegisterPart(JutsuManager.instance.getJutsu("TargetNonSolid"), 230,
-		// 75,
-		// SkillTrees.Utility, TreePointTypes.BLUE,
+		// RegisterEntry(JutsuManager.instance.getJutsu("TargetNonSolid"), 230,
+		// 75, SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Touch")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("PlaceBlock"), 185, 93,
+		// RegisterEntry(JutsuManager.instance.getJutsu("PlaceBlock"), 185, 93,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Dig")});
-		// RegisterPart(JutsuManager.instance.getJutsu("FeatherTouch"), 230,
+		// RegisterEntry(JutsuManager.instance.getJutsu("FeatherTouch"), 230,
 		// 137,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Dig")});
-		// RegisterPart(JutsuManager.instance.getJutsu("MiningPower"), 185, 137,
+		// RegisterEntry(JutsuManager.instance.getJutsu("MiningPower"), 185,
+		// 137,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("FeatherTouch")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Light"), 275, 165,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Light"), 275, 165,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Dig")});
-		// RegisterPart(JutsuManager.instance.getJutsu("NightVision"), 185, 165,
+		// RegisterEntry(JutsuManager.instance.getJutsu("NightVision"), 185,
+		// 165,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Light")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Binding"), 275, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Binding"), 275, 210,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Light")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Disarm"), 230, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Disarm"), 230, 210,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Charm"), 315, 235,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Charm"), 315, 235,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
-		// RegisterPart(JutsuManager.instance.getJutsu("TrueSight"), 185, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("TrueSight"), 185, 210,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("NightVision")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Lunar"), 145, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Lunar"), 145, 210,
 		// SkillTrees.Utility, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("TrueSight")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("HarvestPlants"), 365,
-		// 120,
-		// SkillTrees.Utility, TreePointTypes.GREEN,
+		// RegisterEntry(JutsuManager.instance.getJutsu("HarvestPlants"), 365,
+		// 120, SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Plow"), 365, 165,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Plow"), 365, 165,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Plant"), 365, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Plant"), 365, 210,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
-		// RegisterPart(JutsuManager.instance.getJutsu("CreateWater"), 365, 255,
+		// RegisterEntry(JutsuManager.instance.getJutsu("CreateWater"), 365,
+		// 255,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Drought"), 365, 300,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Drought"), 365, 300,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("BanishRain"), 365, 345,
+		// RegisterEntry(JutsuManager.instance.getJutsu("BanishRain"), 365, 345,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Drought")});
-		// RegisterPart(JutsuManager.instance.getJutsu("WaterBreathing"), 410,
+		// RegisterEntry(JutsuManager.instance.getJutsu("WaterBreathing"), 410,
 		// 345, SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Drought")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Grow"), 410, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Grow"), 410, 210,
 		// SkillTrees.Utility, TreePointTypes.RED, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("Drought"),
 		// JutsuManager.instance.getJutsu("CreateWater"),
@@ -583,129 +600,131 @@ public class SkillTreeManager {
 		// JutsuManager.instance.getJutsu("Plow"),
 		// JutsuManager.instance.getJutsu("HarvestPlants")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Chain"), 455, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Chain"), 455, 210,
 		// SkillTrees.Utility, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Grow")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Rift"), 275, 255,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Rift"), 275, 255,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Binding")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Invisibility"), 185,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Invisibility"), 185,
 		// 255,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("TrueSight")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("RandomTeleport"), 185,
+		// RegisterEntry(JutsuManager.instance.getJutsu("RandomTeleport"), 185,
 		// 300, SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Invisibility")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Attract"), 245, 300,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Attract"), 245, 300,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Rift")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Telekinesis"), 305, 300,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Telekinesis"), 305,
+		// 300,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Rift")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Blink"), 185, 345,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Blink"), 185, 345,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("RandomTeleport")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Range"), 140, 345,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Range"), 140, 345,
 		// SkillTrees.Utility, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Blink")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Channel"), 275, 345,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Channel"), 275, 345,
 		// SkillTrees.Utility, TreePointTypes.GREEN, new SkillTreeEntry[]{
 		// JutsuManager.instance.getJutsu("Attract"),
 		// JutsuManager.instance.getJutsu("Telekinesis")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Radius"), 275, 390,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Radius"), 275, 390,
 		// SkillTrees.Utility, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Channel")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Transplace"), 185, 390,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Transplace"), 185, 390,
 		// SkillTrees.Utility, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Blink")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Mark"), 155, 435,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Mark"), 155, 435,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Transplace")});
-		// RegisterPart(JutsuManager.instance.getJutsu("Recall"), 215, 435,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Recall"), 215, 435,
 		// SkillTrees.Utility, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("Transplace")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("DivineIntervention"),
-		// 172,
-		// 480, SkillTrees.Utility, TreePointTypes.RED,
+		// RegisterEntry(JutsuManager.instance.getJutsu("DivineIntervention"),
+		// 172, 480, SkillTrees.Utility, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Recall"),
 		// JutsuManager.instance.getJutsu("Mark")});
-		// RegisterPart(JutsuManager.instance.getJutsu("EnderIntervention"),
+		// RegisterEntry(JutsuManager.instance.getJutsu("EnderIntervention"),
 		// 198,
 		// 480, SkillTrees.Utility, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance.getJutsu("Recall"),
 		// JutsuManager.instance.getJutsu("Mark")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Contingency_Death"),
+		// RegisterEntry(JutsuManager.instance.getJutsu("Contingency_Death"),
 		// 198,
 		// 524, SkillTrees.Utility, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("EnderIntervention")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("Daylight"), 75, 45,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Daylight"), 75, 45,
 		// SkillTrees.Utility, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("Moonrise"), 75, 90,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Moonrise"), 75, 90,
 		// SkillTrees.Utility, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("Prosperity"), 75, 135,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Prosperity"), 75, 135,
 		// SkillTrees.Utility, TreePointTypes.SILVER,
 		// new SkillTreeEntry[0]);
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("ManaRegenI"), 275, 75,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ManaRegenI"), 275, 75,
 		// SkillTrees.Talents, TreePointTypes.BLUE, new SkillTreeEntry[0]);
-		// RegisterPart(JutsuManager.instance.getJutsu("Colour"), 230, 75,
+		// RegisterEntry(JutsuManager.instance.getJutsu("Colour"), 230, 75,
 		// SkillTrees.Talents, TreePointTypes.BLUE, new SkillTreeEntry[0]);
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("AffinityGains"), 365,
-		// 120,
-		// SkillTrees.Talents, TreePointTypes.BLUE,
+		// RegisterEntry(JutsuManager.instance.getJutsu("AffinityGains"), 365,
+		// 120, SkillTrees.Talents, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("ManaRegenI")});
-		// RegisterPart(JutsuManager.instance.getJutsu("ManaRegenII"), 275, 120,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ManaRegenII"), 275,
+		// 120,
 		// SkillTrees.Talents, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("ManaRegenI")});
-		// RegisterPart(JutsuManager.instance.getJutsu("SpellMotion"), 230, 120,
+		// RegisterEntry(JutsuManager.instance.getJutsu("SpellMotion"), 230,
+		// 120,
 		// SkillTrees.Talents, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("ManaRegenII")});
-		// RegisterPart(JutsuManager.instance.getJutsu("AugmentedCasting"), 230,
+		// RegisterEntry(JutsuManager.instance.getJutsu("AugmentedCasting"),
+		// 230,
 		// 165, SkillTrees.Talents, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("SpellMotion")});
-		// RegisterPart(JutsuManager.instance.getJutsu("ManaRegenIII"), 275,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ManaRegenIII"), 275,
 		// 165,
 		// SkillTrees.Talents, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("ManaRegenII")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("ExtraSummon"), 230, 210,
+		// RegisterEntry(JutsuManager.instance.getJutsu("ExtraSummon"), 230,
+		// 210,
 		// SkillTrees.Talents, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("AugmentedCasting")});
 		//
-		// RegisterPart(JutsuManager.instance.getJutsu("MageBandI"), 320, 120,
+		// RegisterEntry(JutsuManager.instance.getJutsu("MageBandI"), 320, 120,
 		// SkillTrees.Talents, TreePointTypes.GREEN,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("ManaRegenI")});
-		// RegisterPart(JutsuManager.instance.getJutsu("MageBandII"), 320, 165,
+		// RegisterEntry(JutsuManager.instance.getJutsu("MageBandII"), 320, 165,
 		// SkillTrees.Talents, TreePointTypes.RED,
 		// new SkillTreeEntry[]{JutsuManager.instance
 		// .getJutsu("MageBandI")});
 
 		calculateHighestOverallTier();
-
 		ConfigurationHandler.saveJutsus();
 	}
 }

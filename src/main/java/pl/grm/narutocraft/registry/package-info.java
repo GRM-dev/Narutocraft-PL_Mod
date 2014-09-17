@@ -2,4 +2,4 @@
  * All registry to mod's things.
  */
 
-package pl.grm.narutocraft.libs.registry;
+package pl.grm.narutocraft.registry;

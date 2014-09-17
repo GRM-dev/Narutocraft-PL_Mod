@@ -11,8 +11,8 @@ import org.lwjgl.opengl.GL11;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.References;
-import pl.grm.narutocraft.libs.registry.RegJutsus;
 import pl.grm.narutocraft.network.PacketNinjaStatsRequest;
+import pl.grm.narutocraft.registry.RegJutsus;
 
 public class GuiNinjaStats extends GuiContainer {
 	private EntityPlayer player;
