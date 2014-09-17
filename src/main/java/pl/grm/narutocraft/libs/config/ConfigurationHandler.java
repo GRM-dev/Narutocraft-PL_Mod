@@ -1,68 +1,81 @@
 package pl.grm.narutocraft.libs.config;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ConfigurationHandler {
 
-    private static ArrayList<String> lines = new ArrayList<String>();
-    private File path;
+	private static ArrayList<String> lines = new ArrayList<String>();
+	private File path;
 
-    public static boolean printErrors = false;
-    
-    
-    public ConfigurationHandler(File path) {
-        this.path = path;
-    }
+	public static boolean printErrors = false;
 
-    public void readConfig() {
-        BufferedReader reader = getReader();
-        if (reader == null) {
-            writeConfig();
-            return;
-        }
+	public ConfigurationHandler(File path) {
+		this.path = path;
+	}
 
-        try {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.trim().startsWith("#") || line.isEmpty()) continue;
-                line = line.trim();
-                lines.add(line);
-                //MainClass.addID(line);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace(System.err);
-        }
-    }
+	public void readConfig() {
+		BufferedReader reader = getReader();
+		if (reader == null) {
+			writeConfig();
+			return;
+		}
 
-    public static List<String> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
+		try {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.trim().startsWith("#") || line.isEmpty())
+					continue;
+				line = line.trim();
+				lines.add(line);
+				// MainClass.addID(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace(System.err);
+		}
+	}
 
-    private BufferedReader getReader() {
-        try {
-            FileInputStream fis = new FileInputStream(path);
-            DataInputStream dis = new DataInputStream(fis);
-            return new BufferedReader(new InputStreamReader(dis));
-        } catch (FileNotFoundException e) {
-            return null;
-        }
-    }
+	public static List<String> getLines() {
+		return Collections.unmodifiableList(lines);
+	}
 
-    private void writeConfig() {
-        try {
-            FileWriter fw = new FileWriter(path, true);
-            BufferedWriter writer = new BufferedWriter(fw);
+	private BufferedReader getReader() {
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			DataInputStream dis = new DataInputStream(fis);
+			return new BufferedReader(new InputStreamReader(dis));
+		} catch (FileNotFoundException e) {
+			return null;
+		}
+	}
 
-            writer.write("# Format: <id>:<metadata>\n");
-            writer.write("# If no metadata ");
+	private void writeConfig() {
+		try {
+			FileWriter fw = new FileWriter(path, true);
+			BufferedWriter writer = new BufferedWriter(fw);
 
-            writer.close();
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
-        }
-    }
+			writer.write("# Format: <id>:<metadata>\n");
+			writer.write("# If no metadata ");
+
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
+		}
+	}
+
+	public static void saveJutsus() {
+		// TODO Auto-generated method stub
+
+	}
 }
