@@ -47,6 +47,7 @@ public class GuiNinjaStats extends GuiContainer {
 		int x3 = (x2 + x1) / 2;
 
 		// Controls
+		// Tabs
 		this.buttonList.add(new GuiNinjaTab(0, x2, guiTop - 22,
 				RegJutsus.Enmakugire.getIconFromDamage(0)));// Stats page
 		this.buttonList.add(new GuiNinjaTab(1, x1, guiTop - 22, Items.apple
@@ -84,49 +85,63 @@ public class GuiNinjaStats extends GuiContainer {
 					props.psa.getCurrentNinjaXp() * 39
 							/ props.psa.getNinjaXpCap(), 4);
 
-			this.drawString(fontRendererObj, "Stats (3 points)", guiLeft
-					+ padLeft, guiTop + padTop + 9 * 2, 0xddeeee);
+			this.drawString(fontRendererObj, "Stats (3 points)", guiLeft + padLeft, guiTop + padTop + 9 * 2, 0xddeeee);
+			this.drawString(fontRendererObj, "Strength: ", guiLeft + padLeft, guiTop + padTop + 9 * 3, 0xddeeee);
 			this.drawString(fontRendererObj,
-					"Strength: " + props.psa.getStrength(), guiLeft + padLeft,
-					guiTop + padTop + 9 * 3, 0xddeeee);
+					"" + props.psa.getStrength(), guiLeft + padLeft + 110, 
+						guiTop + padTop + 9 * 3, 0xddeeee);
+			
+			this.drawString(fontRendererObj, "Resistance: ", guiLeft + padLeft, guiTop + padTop + 9 * 4, 0xddeeee);
 			this.drawString(fontRendererObj,
-					"Resistance: " + props.psa.getResistance(), guiLeft
-							+ padLeft, guiTop + padTop + 9 * 4, 0xddeeee);
+					"" + props.psa.getResistance(), guiLeft + padLeft + 110, 
+						guiTop + padTop + 9 * 4, 0xddeeee);
+			
+			this.drawString(fontRendererObj, "Dexterity: ", guiLeft + padLeft, guiTop + padTop + 9 * 5, 0xddeeee);
 			this.drawString(fontRendererObj,
-					"Dexterity: " + props.psa.getDexterity(),
-					guiLeft + padLeft, guiTop + padTop + 9 * 5, 0xddeeee);
-			this.drawString(fontRendererObj,
-					"Agility: " + props.psa.getAgility(), guiLeft + padLeft,
-					guiTop + padTop + 9 * 6, 0xddeeee);
+					"" + props.psa.getDexterity(), guiLeft + padLeft + 110, 
+						guiTop + padTop + 9 * 5, 0xddeeee);
+			
+			this.drawString(fontRendererObj, "Agility: ", guiLeft + padLeft, guiTop + padTop + 9 * 6, 0xddeeee);
+			this.drawString(fontRendererObj, 
+					"" + props.psa.getAgility(), guiLeft + padLeft + 110,
+						guiTop + padTop + 9 * 6, 0xddeeee);
+			
+			//Level up Controls
 			if (props.psa.skillPoints >= 3) {
 				this.buttonList.add(new GuiNinjaButton(7, guiLeft + padLeft
-						+ 70, guiTop + padTop + 9 * 3, "plus"));
+						+ 125, guiTop + padTop + 9 * 3, "plus"));
 				this.buttonList.add(new GuiNinjaButton(8, guiLeft + padLeft
-						+ 70, guiTop + padTop + 9 * 4, "plus"));
+						+ 125, guiTop + padTop + 9 * 4, "plus"));
 				this.buttonList.add(new GuiNinjaButton(9, guiLeft + padLeft
-						+ 70, guiTop + padTop + 9 * 5, "plus"));
+						+ 125, guiTop + padTop + 9 * 5, "plus"));
 				this.buttonList.add(new GuiNinjaButton(10, guiLeft + padLeft
-						+ 70, guiTop + padTop + 9 * 6, "plus"));
+						+ 125, guiTop + padTop + 9 * 6, "plus"));
 			}
 
-			this.drawString(fontRendererObj, "Training (1 point)", guiLeft
-					+ padLeft, guiTop + padTop + 9 * 8, 0xddeeee);
+			this.drawString(fontRendererObj, "Training (1 point)", guiLeft + padLeft, guiTop + padTop + 9 * 8, 0xddeeee);
+			this.drawString(fontRendererObj, "Element Power: ", guiLeft + padLeft, guiTop + padTop + 9 * 9, 0xddeeee);
 			this.drawString(fontRendererObj,
-					"Element Power: " + props.psa.getElementPowerModifier(),
-					guiLeft + padLeft, guiTop + padTop + 9 * 9, 0xddeeee);
+					"" + props.psa.getElementPowerModifier(),
+						guiLeft + padLeft + 110, guiTop + padTop + 9 * 9, 0xddeeee);
+			
+			this.drawString(fontRendererObj, "Max Chakra Bonus: ", guiLeft + padLeft, guiTop + padTop + 9 * 10, 0xddeeee);
 			this.drawString(fontRendererObj,
-					"Max Chakra Bonus: " + props.psa.getChakraModifier(),
-					guiLeft + padLeft, guiTop + padTop + 9 * 10, 0xddeeee);
+					"" + props.psa.getChakraModifier(),
+						guiLeft + padLeft + 110, guiTop + padTop + 9 * 10, 0xddeeee);
+			
+			this.drawString(fontRendererObj, "Chakra Regen Bonus: ", guiLeft + padLeft, guiTop + padTop + 9 * 11, 0xddeeee);
 			this.drawString(fontRendererObj,
-					"Chakra Regen Bonus: " + props.psa.getChakraRegenBonus(),
-					guiLeft + padLeft, guiTop + padTop + 9 * 11, 0xddeeee);
+					"" + props.psa.getChakraRegenBonus(),
+						guiLeft + padLeft + 110, guiTop + padTop + 9 * 11, 0xddeeee);
+			
+			//Level up Controls
 			if (props.psa.skillPoints >= 1) {
 				this.buttonList.add(new GuiNinjaButton(11, guiLeft + padLeft
-						+ 120, guiTop + padTop + 9 * 9, "plus"));
+						+ 125, guiTop + padTop + 9 * 9, "plus"));
 				this.buttonList.add(new GuiNinjaButton(12, guiLeft + padLeft
-						+ 120, guiTop + padTop + 9 * 10, "plus"));
+						+ 125, guiTop + padTop + 9 * 10, "plus"));
 				this.buttonList.add(new GuiNinjaButton(13, guiLeft + padLeft
-						+ 120, guiTop + padTop + 9 * 11, "plus"));
+						+ 125, guiTop + padTop + 9 * 11, "plus"));
 			}
 			this.buttonList.add(new GuiButton(14, guiLeft + padLeft, guiTop
 					+ padTop + 9 * 13, 50, 20, "Save"));
