@@ -6,7 +6,8 @@ import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraft.gui.chakrabar.GuiChakraBar;
 import pl.grm.narutocraft.handlers.SoundHandler;
 import pl.grm.narutocraft.libs.config.KeyBindings;
-import pl.grm.narutocraft.libs.registry.RegItems;
+import pl.grm.narutocraft.libs.modelrender.ItemRendererSizeable;
+import pl.grm.narutocraft.libs.registry.RegWeapons;
 import pl.grm.narutocraft.mobs.bijuu.EntityKyuubi;
 import pl.grm.narutocraft.mobs.bijuu.ModelKyuubi;
 import pl.grm.narutocraft.mobs.bijuu.RenderKyuubi;
@@ -38,7 +39,11 @@ public class ProxyClient extends ProxyCommon {
 		// Scaled Items
 		// MinecraftForgeClient.registerItemRenderer(item, new
 		// ItemRendererScaled(.75f)); .75f is about 2x
-		MinecraftForgeClient.registerItemRenderer(RegItems.Kubiki,
+		MinecraftForgeClient.registerItemRenderer(RegWeapons.Kubiki,
+				new ItemRendererSizeable(0.7f));
+		MinecraftForgeClient.registerItemRenderer(RegWeapons.ChioRyuuGatana,
+				new ItemRendererSizeable(0.7f));
+		MinecraftForgeClient.registerItemRenderer(RegWeapons.Raitanto,
 				new ItemRendererSizeable(0.7f));
 		// Projectiles:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class,

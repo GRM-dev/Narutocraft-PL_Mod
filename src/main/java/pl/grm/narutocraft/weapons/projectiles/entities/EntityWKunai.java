@@ -19,12 +19,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import pl.grm.narutocraft.libs.DamSource;
+import pl.grm.narutocraft.libs.registry.RegWeapons;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import pl.grm.narutocraft.libs.DamSource;
-import pl.grm.narutocraft.libs.registry.RegItems;
 /**
  * Entity Wybuchajacy Kunai
+ * 
  * @author Admaster
  *
  */
@@ -48,13 +49,18 @@ public class EntityWKunai extends Entity implements IProjectile {
 		this.renderDistanceWeight = 10.0D;
 		this.setSize(0.5F, 0.5F);
 	}
-    /**
-     * Constructor of entity
-     * @param par1World World
-     * @param par2 x
-     * @param par4 y
-     * @param par6 z
-     */
+	/**
+	 * Constructor of entity
+	 * 
+	 * @param par1World
+	 *            World
+	 * @param par2
+	 *            x
+	 * @param par4
+	 *            y
+	 * @param par6
+	 *            z
+	 */
 	public EntityWKunai(World par1World, double par2, double par4, double par6) {
 		super(par1World);
 		this.renderDistanceWeight = 10.0D;
@@ -74,13 +80,12 @@ public class EntityWKunai extends Entity implements IProjectile {
 		}
 
 		this.posY = par2EntityLivingBase.posY
-				+ (double) par2EntityLivingBase.getEyeHeight()
-				- 0.10000000149011612D;
+				+ par2EntityLivingBase.getEyeHeight() - 0.10000000149011612D;
 		double d0 = par3EntityLivingBase.posX - par2EntityLivingBase.posX;
 		double d1 = par3EntityLivingBase.boundingBox.minY
-				+ (double) (par3EntityLivingBase.height / 3.0F) - this.posY;
+				+ par3EntityLivingBase.height / 3.0F - this.posY;
 		double d2 = par3EntityLivingBase.posZ - par2EntityLivingBase.posZ;
-		double d3 = (double) MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+		double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
 
 		if (d3 >= 1.0E-7D) {
 			float f2 = (float) (Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
@@ -91,7 +96,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 					this.posY, par2EntityLivingBase.posZ + d5, f2, f3);
 			this.yOffset = 0.0F;
 			float f4 = (float) d3 * 0.2F;
-			this.setThrowableHeading(d0, d1 + (double) f4, d2, par4, par5);
+			this.setThrowableHeading(d0, d1 + f4, d2, par4, par5);
 		}
 	}
 
@@ -108,24 +113,23 @@ public class EntityWKunai extends Entity implements IProjectile {
 		this.setSize(0.5F, 0.5F);
 		this.setLocationAndAngles(
 				par2EntityLivingBase.posX,
-				par2EntityLivingBase.posY
-						+ (double) par2EntityLivingBase.getEyeHeight(),
+				par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight(),
 				par2EntityLivingBase.posZ, par2EntityLivingBase.rotationYaw,
 				par2EntityLivingBase.rotationPitch);
-		this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F
-				* (float) Math.PI) * 0.16F);
+		this.posX -= MathHelper
+				.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
 		this.posY -= 0.10000000149011612D;
-		this.posZ -= (double) (MathHelper.sin(this.rotationYaw / 180.0F
-				* (float) Math.PI) * 0.16F);
+		this.posZ -= MathHelper
+				.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.yOffset = 0.0F;
-		this.motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F
-				* (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F
-				* (float) Math.PI));
-		this.motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F
-				* (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F
-				* (float) Math.PI));
-		this.motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F
+		this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F
+				* (float) Math.PI)
+				* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+		this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F
+				* (float) Math.PI)
+				* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+		this.motionY = (-MathHelper.sin(this.rotationPitch / 180.0F
 				* (float) Math.PI));
 		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ,
 				par3 * 1.5F, 1.0F);
@@ -145,21 +149,18 @@ public class EntityWKunai extends Entity implements IProjectile {
 			float par7, float par8) {
 		float f2 = MathHelper.sqrt_double(par1 * par1 + par3 * par3 + par5
 				* par5);
-		par1 /= (double) f2;
-		par3 /= (double) f2;
-		par5 /= (double) f2;
-		par1 += this.rand.nextGaussian()
-				* (double) (this.rand.nextBoolean() ? -1 : 1)
-				* 0.007499999832361937D * (double) par8;
-		par3 += this.rand.nextGaussian()
-				* (double) (this.rand.nextBoolean() ? -1 : 1)
-				* 0.007499999832361937D * (double) par8;
-		par5 += this.rand.nextGaussian()
-				* (double) (this.rand.nextBoolean() ? -1 : 1)
-				* 0.007499999832361937D * (double) par8;
-		par1 *= (double) par7;
-		par3 *= (double) par7;
-		par5 *= (double) par7;
+		par1 /= f2;
+		par3 /= f2;
+		par5 /= f2;
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par1 *= par7;
+		par3 *= par7;
+		par5 *= par7;
 		this.motionX = par1;
 		this.motionY = par3;
 		this.motionZ = par5;
@@ -167,7 +168,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 		this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(par1,
 				par5) * 180.0D / Math.PI);
 		this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(par3,
-				(double) f3) * 180.0D / Math.PI);
+				f3) * 180.0D / Math.PI);
 		this.ticksInGround = 0;
 	}
 
@@ -175,6 +176,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 	 * Sets the position and rotation. Only difference from the other one is no
 	 * bounding on the rotation. Args: posX, posY, posZ, yaw, pitch
 	 */
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void setPositionAndRotation2(double par1, double par3, double par5,
 			float par7, float par8, int par9) {
@@ -185,6 +187,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 	/**
 	 * Sets the velocity to the args. Args: x, y, z
 	 */
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void setVelocity(double par1, double par3, double par5) {
 		this.motionX = par1;
@@ -196,7 +199,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 			this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(par1,
 					par5) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(
-					par3, (double) f) * 180.0D / Math.PI);
+					par3, f) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch;
 			this.prevRotationYaw = this.rotationYaw;
 			this.setLocationAndAngles(this.posX, this.posY, this.posZ,
@@ -219,7 +222,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 			this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(
 					this.motionX, this.motionZ) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(
-					this.motionY, (double) f) * 180.0D / Math.PI);
+					this.motionY, f) * 180.0D / Math.PI);
 		}
 
 		Block block = this.worldObj.getBlock(this.d, this.e, this.f);
@@ -256,9 +259,9 @@ public class EntityWKunai extends Entity implements IProjectile {
 				}
 			} else {
 				this.inGround = false;
-				this.motionX *= (double) (this.rand.nextFloat() * 0.2F);
-				this.motionY *= (double) (this.rand.nextFloat() * 0.2F);
-				this.motionZ *= (double) (this.rand.nextFloat() * 0.2F);
+				this.motionX *= this.rand.nextFloat() * 0.2F;
+				this.motionY *= this.rand.nextFloat() * 0.2F;
+				this.motionZ *= this.rand.nextFloat() * 0.2F;
 				this.ticksInGround = 0;
 				this.ticksInAir = 0;
 			}
@@ -301,7 +304,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 						&& (entity1 != this.shootingEntity || this.ticksInAir >= 5)) {
 					f1 = 0.3F;
 					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(
-							(double) f1, (double) f1, (double) f1);
+							f1, f1, f1);
 					MovingObjectPosition movingobjectposition1 = axisalignedbb1
 							.calculateIntercept(vec31, vec3);
 
@@ -342,8 +345,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 					f2 = MathHelper.sqrt_double(this.motionX * this.motionX
 							+ this.motionY * this.motionY + this.motionZ
 							* this.motionZ);
-					int k = MathHelper.ceiling_double_int((double) f2
-							* this.damage);
+					int k = MathHelper.ceiling_double_int(f2 * this.damage);
 
 					/*
 					 * if (this.getIsCritical()) { k += this.rand.nextInt(k / 2
@@ -362,7 +364,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 					this.onImpact(movingobjectposition);
 
 					if (movingobjectposition.entityHit.attackEntityFrom(
-							damagesource, (float) k)) {
+							damagesource, k)) {
 						if (movingobjectposition.entityHit instanceof EntityLivingBase) {
 							EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
 
@@ -403,18 +405,15 @@ public class EntityWKunai extends Entity implements IProjectile {
 					this.field_145790_g = block;
 					this.inData = this.worldObj.getBlockMetadata(this.d,
 							this.e, this.f);
-					this.motionX = (double) ((float) (movingobjectposition.hitVec.xCoord - this.posX));
-					this.motionY = (double) ((float) (movingobjectposition.hitVec.yCoord - this.posY));
-					this.motionZ = (double) ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
+					this.motionX = ((float) (movingobjectposition.hitVec.xCoord - this.posX));
+					this.motionY = ((float) (movingobjectposition.hitVec.yCoord - this.posY));
+					this.motionZ = ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
 					f2 = MathHelper.sqrt_double(this.motionX * this.motionX
 							+ this.motionY * this.motionY + this.motionZ
 							* this.motionZ);
-					this.posX -= this.motionX / (double) f2
-							* 0.05000000074505806D;
-					this.posY -= this.motionY / (double) f2
-							* 0.05000000074505806D;
-					this.posZ -= this.motionZ / (double) f2
-							* 0.05000000074505806D;
+					this.posX -= this.motionX / f2 * 0.05000000074505806D;
+					this.posY -= this.motionY / f2 * 0.05000000074505806D;
+					this.posZ -= this.motionZ / f2 * 0.05000000074505806D;
 					this.playSound("random.bowhit", 1.0F,
 							1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 					this.inGround = true;
@@ -442,8 +441,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 					+ this.motionZ * this.motionZ);
 			this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
-			for (this.rotationPitch = (float) (Math.atan2(this.motionY,
-					(double) f2) * 180.0D / Math.PI); this.rotationPitch
+			for (this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI); this.rotationPitch
 					- this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
 				;
 			}
@@ -471,9 +469,8 @@ public class EntityWKunai extends Entity implements IProjectile {
 				for (int l = 0; l < 4; ++l) {
 					f4 = 0.25F;
 					this.worldObj.spawnParticle("bubble", this.posX
-							- this.motionX * (double) f4, this.posY
-							- this.motionY * (double) f4, this.posZ
-							- this.motionZ * (double) f4, this.motionX,
+							- this.motionX * f4, this.posY - this.motionY * f4,
+							this.posZ - this.motionZ * f4, this.motionX,
 							this.motionY, this.motionZ);
 				}
 
@@ -484,10 +481,10 @@ public class EntityWKunai extends Entity implements IProjectile {
 				this.extinguish();
 			}
 
-			this.motionX *= (double) f3;
-			this.motionY *= (double) f3;
-			this.motionZ *= (double) f3;
-			this.motionY -= (double) f1;
+			this.motionX *= f3;
+			this.motionY *= f3;
+			this.motionZ *= f3;
+			this.motionY -= f1;
 			this.setPosition(this.posX, this.posY, this.posZ);
 			this.func_145775_I();
 		}
@@ -535,14 +532,15 @@ public class EntityWKunai extends Entity implements IProjectile {
 
 	@Override
 	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
-		if (!this.worldObj.isRemote && this.inGround && EntityWKunai.kunaiShake <= 0) {
+		if (!this.worldObj.isRemote && this.inGround
+				&& EntityWKunai.kunaiShake <= 0) {
 			boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2
 					&& par1EntityPlayer.capabilities.isCreativeMode;
 
 			if (this.canBePickedUp == 1
 					&& !par1EntityPlayer.inventory
 							.addItemStackToInventory(new ItemStack(
-									RegItems.WKunai, 1))) {
+									RegWeapons.WKunai, 1))) {
 				flag = false;
 			}
 
@@ -561,10 +559,12 @@ public class EntityWKunai extends Entity implements IProjectile {
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
 	 */
+	@Override
 	protected boolean canTriggerWalking() {
 		return false;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize() {
 		return 0.0F;

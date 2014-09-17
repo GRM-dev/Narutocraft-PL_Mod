@@ -1,21 +1,19 @@
-package pl.grm.narutocraft.libs;
+package pl.grm.narutocraft.libs.modelrender;
 
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-public class ItemRendererSizeable implements IItemRenderer {
-	private float scale = 0;
+public class ItemRendererScaled implements IItemRenderer {
+	private final float scale;
 
-	public ItemRendererSizeable() {
-	}
-
-	public ItemRendererSizeable(float scale) {
+	public ItemRendererScaled(float scale) {
 		this.scale = scale;
 	}
 
@@ -46,23 +44,15 @@ public class ItemRendererSizeable implements IItemRenderer {
 
 	private void renderEquippedItem(ItemStack stack, EntityLivingBase entity,
 			boolean firstPerson) {
-		GL11.glPushMatrix();
+		GL11.glPushMatrix(); // Push the render matrix out
 		// Proceed to make alterations
-		float f = scale == 0 ? 1f : 1 + scale;
+		float f = scale;
 		if (firstPerson) {
-			f = scale < 0 ? f : 1 + (scale / 2);
+			f *= 1.75F;
+			GL11.glTranslatef(-0.35F * scale, -0.125F * scale, 0.0F);
 		} else {
-			if (scale < 0) {
-				if (UtilityNBTHelper.getBoolean(stack, References.ModTag
-						+ "rFlip")) {
-					GL11.glRotatef(-170, 0, 0, 0);
-					GL11.glTranslatef(-0.55F - f, 1.625F * scale, 0.05F * scale);
-				} else {
-					GL11.glTranslatef(1.0F - f, -0.125F * scale, 0.05F * scale);
-				}
-			} else {
-				GL11.glTranslatef(1.0F - f, -0.125F * scale, 0.05F * scale);
-			}
+			f *= (entity instanceof EntityPlayer ? 2.0F : 1.75F);
+			GL11.glTranslatef(1.0F - f, -0.125F * scale, 0.05F * scale);
 		}
 		GL11.glScalef(f, f, f);
 
@@ -71,6 +61,7 @@ public class ItemRendererSizeable implements IItemRenderer {
 		ItemRenderer.renderItemIn2D(tessellator, icon.getMaxU(),
 				icon.getMinV(), icon.getMinU(), icon.getMaxV(),
 				icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
-		GL11.glPopMatrix();
+		GL11.glPopMatrix();// Pop the render matrix back in with changes to be
+							// used.
 	}
 }

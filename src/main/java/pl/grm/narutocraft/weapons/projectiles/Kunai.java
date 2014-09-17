@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.registry.RegItems;
+import pl.grm.narutocraft.libs.registry.RegWeapons;
 import pl.grm.narutocraft.weapons.projectiles.entities.EntityKunai;
 
 public class Kunai extends Item implements IProjectileCast {
@@ -25,7 +25,7 @@ public class Kunai extends Item implements IProjectileCast {
 
 		if (par3EntityPlayer.capabilities.isCreativeMode
 				|| par3EntityPlayer.inventory
-						.consumeInventoryItem(RegItems.Kunai)) {
+						.consumeInventoryItem(RegWeapons.Kunai)) {
 			par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F,
 					0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 			if (!par2World.isRemote) {

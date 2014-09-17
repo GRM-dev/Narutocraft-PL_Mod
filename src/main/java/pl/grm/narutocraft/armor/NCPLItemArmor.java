@@ -16,6 +16,15 @@ public class NCPLItemArmor extends ItemArmor {
 	private int armorSlot = 0;
 	private String modelTexture;
 
+	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement) {
+		this(armormaterial, ID, placement, "Test");
+	}
+
+	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement,
+			String modelTextureName) {
+		this(armormaterial, ID, placement, "Test", modelTextureName);
+	}
+
 	/**
 	 * Create Armor Item
 	 * 

@@ -12,12 +12,14 @@ import pl.grm.narutocraft.handlers.NCPLFMLEventHandler;
 import pl.grm.narutocraft.libs.ProxyCommon;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
+import pl.grm.narutocraft.libs.registry.RegArmor;
 import pl.grm.narutocraft.libs.registry.RegBlocks;
 import pl.grm.narutocraft.libs.registry.RegEntities;
 import pl.grm.narutocraft.libs.registry.RegItems;
 import pl.grm.narutocraft.libs.registry.RegJutsus;
 import pl.grm.narutocraft.libs.registry.RegMobs;
 import pl.grm.narutocraft.libs.registry.RegRecipes;
+import pl.grm.narutocraft.libs.registry.RegWeapons;
 import pl.grm.narutocraft.network.PacketExample;
 import pl.grm.narutocraft.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
@@ -101,6 +103,8 @@ public class NarutoCraft {
 		RegMobs.regMobsList();
 		RegBlocks.regBlocksList();
 		RegItems.regItemsList();
+		RegWeapons.regWeaponsList();
+		RegArmor.regArmorList();
 		RegJutsus.regPowersList();
 		RegRecipes.regRecipesList();
 	}

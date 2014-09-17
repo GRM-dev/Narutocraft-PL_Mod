@@ -21,7 +21,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.libs.DamSource;
-import pl.grm.narutocraft.libs.registry.RegItems;
+import pl.grm.narutocraft.libs.registry.RegWeapons;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 /**
@@ -176,7 +176,7 @@ public class EntityKunai extends EntityArrow implements IProjectile {
 			if (this.canBePickedUp == 1
 					&& !par1EntityPlayer.inventory
 							.addItemStackToInventory(new ItemStack(
-									RegItems.Kunai, 1))) {
+									RegWeapons.Kunai, 1))) {
 				flag = false;
 			}
 
