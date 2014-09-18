@@ -1,9 +1,9 @@
 package pl.grm.narutocraft.jutsu.ninjutsu;
 
-import pl.grm.narutocraft.jutsu.Jutsu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import pl.grm.narutocraft.jutsu.Jutsu;
 
 public class KawarimiNoJutsu extends Jutsu {
 

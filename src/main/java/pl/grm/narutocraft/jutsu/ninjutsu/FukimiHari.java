@@ -12,15 +12,7 @@ public class FukimiHari extends Jutsu implements IJutsu {
 		this.setUnlocalizedName("Fukimi Hari");
 		this.setTextureName(jutsuLoc + "Fukimi Hari");
 	}
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		if (!world.isRemote) {
-
-		}
-		return stack;
-	}
-	public void uploadEffects() {
+	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub
 
 	}
@@ -30,17 +22,25 @@ public class FukimiHari extends Jutsu implements IJutsu {
 		return false;
 	}
 	@Override
-	public void setActive(boolean par) {
-		// TODO Auto-generated method stub
+	public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player) {
+		if (!world.isRemote) {
 
+		}
+		return stack;
 	}
 	@Override
 	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
+	public void setActive(boolean par) {
+		// TODO Auto-generated method stub
 
-	public void consumeChackra(int value) {
+	}
+
+	public void uploadEffects() {
 		// TODO Auto-generated method stub
 
 	}

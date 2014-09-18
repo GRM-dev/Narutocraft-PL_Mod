@@ -11,9 +11,9 @@ public class JutsuEventsHandler {
 	public void playerTick(PlayerTickEvent event) {
 		if (event.player instanceof EntityPlayer) {
 			// ExtendedProperties props = ExtendedProperties.get(event.player);
-			jH.iterateOverJutsus();
+			this.jH.iterateOverJutsus();
 
-			if (event.player.worldObj.getWorldTime() % 100 == 0) {
+			if ((event.player.worldObj.getWorldTime() % 100) == 0) {
 
 			}
 		}

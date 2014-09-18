@@ -42,6 +42,61 @@ public class NetHandler {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
+	public void requestAuras(EntityPlayer player) {
+		DataWriter writer = new DataWriter();
+		EntityPlayer localPlayer = Minecraft.getMinecraft().thePlayer;
+		if (localPlayer == null) {
+			return;
+		}
+		writer.add(localPlayer.getEntityId());
+		writer.add(player.getEntityId());
+
+		sendPacketToServer((byte) 31, writer.generate());
+	}
+
+	public void requestClientAuras(EntityPlayerMP player) {
+		sendPacketToClientPlayer(player, (byte) 17, new byte[0]);
+	}
+
+	public void sendCapabilityChangePacket(EntityPlayerMP player,
+			int capability, boolean state) {
+		DataWriter writer = new DataWriter();
+		writer.add(capability);
+		writer.add(state);
+
+		sendPacketToClientPlayer(player, (byte) 55, writer.generate());
+	}
+
+	public void sendCompendiumUnlockPacket(EntityPlayerMP player, String id,
+			boolean isCategory) {
+		DataWriter writer = new DataWriter();
+		writer.add(id);
+		writer.add(isCategory);
+
+		sendPacketToClientPlayer(player, (byte) 46, writer.generate());
+	}
+
+	public void sendExPropCommandToServer(int flag) {
+		DataWriter writer = new DataWriter();
+		writer.add(flag);
+		sendPacketToServer((byte) 16, writer.generate());
+	}
+
+	public void sendPacketToAllClientsNear(int dimension, double ox, double oy,
+			double oz, double radius, byte packetID, byte[] data) {
+		byte[] pkt_data = new byte[data.length + 1];
+		pkt_data[0] = packetID;
+		for (int i = 0; i < data.length; i++) {
+			pkt_data[(i + 1)] = data[i];
+		}
+		FMLProxyPacket packet = new FMLProxyPacket(
+				Unpooled.copiedBuffer(pkt_data), ChannelLabel);
+		packet.setTarget(Side.CLIENT);
+		Channel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(
+				dimension, ox, oy, oz, radius));
+	}
+
 	public void sendPacketToClientPlayer(EntityPlayerMP player, byte packetID,
 			byte[] data) {
 		byte[] pkt_data = new byte[data.length + 1];
@@ -68,104 +123,6 @@ public class NetHandler {
 		Channel.sendToServer(packet);
 	}
 
-	public void sendPacketToAllClientsNear(int dimension, double ox, double oy,
-			double oz, double radius, byte packetID, byte[] data) {
-		byte[] pkt_data = new byte[data.length + 1];
-		pkt_data[0] = packetID;
-		for (int i = 0; i < data.length; i++) {
-			pkt_data[(i + 1)] = data[i];
-		}
-		FMLProxyPacket packet = new FMLProxyPacket(
-				Unpooled.copiedBuffer(pkt_data), ChannelLabel);
-		packet.setTarget(Side.CLIENT);
-		Channel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(
-				dimension, ox, oy, oz, radius));
-	}
-
-	public void sendVelocityAddPacket(World world, EntityLivingBase target,
-			double velX, double velY, double velZ) {
-		if (world.isRemote) {
-			return;
-		}
-		byte[] data = new DataWriter().add(target.getEntityId()).add(velX)
-				.add(velY).add(velZ).generate();
-
-		sendPacketToAllClientsNear(world.provider.dimensionId, target.posX,
-				target.posY, target.posZ, 50.0D, (byte) 7, data);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void requestAuras(EntityPlayer player) {
-		DataWriter writer = new DataWriter();
-		EntityPlayer localPlayer = Minecraft.getMinecraft().thePlayer;
-		if (localPlayer == null) {
-			return;
-		}
-		writer.add(localPlayer.getEntityId());
-		writer.add(player.getEntityId());
-
-		sendPacketToServer((byte) 31, writer.generate());
-	}
-
-	public void requestClientAuras(EntityPlayerMP player) {
-		sendPacketToClientPlayer(player, (byte) 17, new byte[0]);
-	}
-
-	public void syncWorldName(EntityPlayerMP player, String name) {
-		sendPacketToClientPlayer(player, (byte) 47, new DataWriter().add(name)
-				.generate());
-	}
-
-	public void syncLoginData(EntityPlayerMP player, byte[] data) {
-		sendPacketToClientPlayer(player, (byte) 42, data);
-	}
-
-	public void sendSpellbookSlotChange(EntityPlayerMP player,
-			int inventoryIndex, int subID) {
-		sendPacketToServer(
-				(byte) 14,
-				new DataWriter().add(subID).add(player.getEntityId())
-						.add(inventoryIndex).generate());
-	}
-
-	public void sendShapeGroupChangePacket(int newCastingMode, int entityid) {
-		byte[] packetData = new DataWriter().add(newCastingMode).add(entityid)
-				.generate();
-		sendPacketToServer((byte) 1, packetData);
-	}
-
-	public void sendStarImpactToClients(double x, double y, double z,
-			World world, ItemStack spellStack) {
-		DataWriter writer = new DataWriter().add(x).add(y).add(z);
-		if (spellStack != null) {
-			writer.add(true).add(spellStack);
-		} else {
-			writer.add(false);
-		}
-		sendPacketToAllClientsNear(world.provider.dimensionId, x, y, z, 64.0D,
-				(byte) 48, writer.generate());
-	}
-
-	public void sendSilverSkillPointPacket(EntityPlayerMP player) {
-		sendPacketToClientPlayer(player, (byte) 49, new byte[0]);
-	}
-
-	public void sendSpellApplyEffectToAllAround(EntityLivingBase caster,
-			Entity target, double x, double y, double z, World world,
-			ItemStack spellStack) {
-		DataWriter writer = new DataWriter().add(x).add(y).add(z);
-		if (spellStack != null) {
-			writer.add(true).add(spellStack);
-		} else {
-			writer.add(false);
-		}
-		writer.add(caster.getEntityId());
-		writer.add(target.getEntityId());
-
-		sendPacketToAllClientsNear(world.provider.dimensionId, x, y, z, 64.0D,
-				(byte) 44, writer.generate());
-	}
-
 	public void sendPowerRequestToServer(Vector3D location) {
 		DataWriter writer = new DataWriter();
 		writer.add((byte) 1);
@@ -188,27 +145,70 @@ public class NetHandler {
 		sendPacketToClientPlayer(player, (byte) 53, writer.generate());
 	}
 
-	public void sendCapabilityChangePacket(EntityPlayerMP player,
-			int capability, boolean state) {
-		DataWriter writer = new DataWriter();
-		writer.add(capability);
-		writer.add(state);
-
-		sendPacketToClientPlayer(player, (byte) 55, writer.generate());
+	public void sendShapeGroupChangePacket(int newCastingMode, int entityid) {
+		byte[] packetData = new DataWriter().add(newCastingMode).add(entityid)
+				.generate();
+		sendPacketToServer((byte) 1, packetData);
 	}
 
-	public void sendExPropCommandToServer(int flag) {
-		DataWriter writer = new DataWriter();
-		writer.add(flag);
-		sendPacketToServer((byte) 16, writer.generate());
+	public void sendSilverSkillPointPacket(EntityPlayerMP player) {
+		sendPacketToClientPlayer(player, (byte) 49, new byte[0]);
 	}
 
-	public void sendCompendiumUnlockPacket(EntityPlayerMP player, String id,
-			boolean isCategory) {
-		DataWriter writer = new DataWriter();
-		writer.add(id);
-		writer.add(isCategory);
+	public void sendSpellApplyEffectToAllAround(EntityLivingBase caster,
+			Entity target, double x, double y, double z, World world,
+			ItemStack spellStack) {
+		DataWriter writer = new DataWriter().add(x).add(y).add(z);
+		if (spellStack != null) {
+			writer.add(true).add(spellStack);
+		} else {
+			writer.add(false);
+		}
+		writer.add(caster.getEntityId());
+		writer.add(target.getEntityId());
 
-		sendPacketToClientPlayer(player, (byte) 46, writer.generate());
+		sendPacketToAllClientsNear(world.provider.dimensionId, x, y, z, 64.0D,
+				(byte) 44, writer.generate());
+	}
+
+	public void sendSpellbookSlotChange(EntityPlayerMP player,
+			int inventoryIndex, int subID) {
+		sendPacketToServer(
+				(byte) 14,
+				new DataWriter().add(subID).add(player.getEntityId())
+						.add(inventoryIndex).generate());
+	}
+
+	public void sendStarImpactToClients(double x, double y, double z,
+			World world, ItemStack spellStack) {
+		DataWriter writer = new DataWriter().add(x).add(y).add(z);
+		if (spellStack != null) {
+			writer.add(true).add(spellStack);
+		} else {
+			writer.add(false);
+		}
+		sendPacketToAllClientsNear(world.provider.dimensionId, x, y, z, 64.0D,
+				(byte) 48, writer.generate());
+	}
+
+	public void sendVelocityAddPacket(World world, EntityLivingBase target,
+			double velX, double velY, double velZ) {
+		if (world.isRemote) {
+			return;
+		}
+		byte[] data = new DataWriter().add(target.getEntityId()).add(velX)
+				.add(velY).add(velZ).generate();
+
+		sendPacketToAllClientsNear(world.provider.dimensionId, target.posX,
+				target.posY, target.posZ, 50.0D, (byte) 7, data);
+	}
+
+	public void syncLoginData(EntityPlayerMP player, byte[] data) {
+		sendPacketToClientPlayer(player, (byte) 42, data);
+	}
+
+	public void syncWorldName(EntityPlayerMP player, String name) {
+		sendPacketToClientPlayer(player, (byte) 47, new DataWriter().add(name)
+				.generate());
 	}
 }

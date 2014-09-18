@@ -15,36 +15,6 @@ public class JutsuManager {
 	private Iterator<int[]> iterator;
 	private int[] elem;
 
-	public synchronized void iterateOverJutsus() {
-		this.activeJutsus = ExtendedProperties.activeJutsus;
-		if (!activeJutsus.isEmpty()) {
-			iterator = activeJutsus.iterator();
-			while (iterator.hasNext()) {
-				elem = iterator.next();
-				jutsuID = elem[0];
-				durationLeft = elem[1];
-
-				if (jutsu.isActive())
-					jutsu.onJutsuUpdate();
-				else
-					jutsu.setActive(false);
-			}
-		}
-	}
-
-	public synchronized void loadJutsuEffectsOnPlayer() {
-		if (!ExtendedProperties.activeJutsus.isEmpty()) {
-			int[] elem;
-			while (iterator.hasNext()) {
-				elem = activeJutsus.iterator().next();
-				if (jutsu.isActive())
-					jutsu.onJutsuUpdate();
-				else
-					jutsu.setActive(false);
-			}
-		}
-	}
-
 	public SkillTreeEntry getJutsu(int intValue) {
 		// TODO Auto-generated method stub
 		return null;
@@ -57,5 +27,37 @@ public class JutsuManager {
 	public String getJutsuName(IJutsu jutsu) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public synchronized void iterateOverJutsus() {
+		this.activeJutsus = ExtendedProperties.activeJutsus;
+		if (!this.activeJutsus.isEmpty()) {
+			this.iterator = this.activeJutsus.iterator();
+			while (this.iterator.hasNext()) {
+				this.elem = this.iterator.next();
+				this.jutsuID = this.elem[0];
+				this.durationLeft = this.elem[1];
+
+				if (this.jutsu.isActive()) {
+					this.jutsu.onJutsuUpdate();
+				} else {
+					this.jutsu.setActive(false);
+				}
+			}
+		}
+	}
+
+	public synchronized void loadJutsuEffectsOnPlayer() {
+		if (!ExtendedProperties.activeJutsus.isEmpty()) {
+			int[] elem;
+			while (this.iterator.hasNext()) {
+				elem = this.activeJutsus.iterator().next();
+				if (this.jutsu.isActive()) {
+					this.jutsu.onJutsuUpdate();
+				} else {
+					this.jutsu.setActive(false);
+				}
+			}
+		}
 	}
 }

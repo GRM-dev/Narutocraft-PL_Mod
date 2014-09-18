@@ -52,44 +52,8 @@ public class Jutsu extends Item implements IJutsu {
 	private int[] jutsuLine;
 
 	@Override
-	public void writeToNBT(NBTTagCompound compound) {
-		NBTTagList jutsuList = new NBTTagList();
-		NBTTagCompound jutsus = new NBTTagCompound();
-
-		activeJutsus = ExtendedProperties.activeJutsus;
-		if (!activeJutsus.isEmpty()) {
-			while (activeJutsus.iterator().hasNext()) {
-				jutsuLine = activeJutsus.iterator().next();
-				jutsus.setIntArray("Jutsu" + jutsuLine[0], jutsuLine);
-				jutsuList.appendTag(jutsus);
-			}
-		}
-		compound.setTag("JutsuManager", jutsus);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		NBTTagList jutsus = compound.getTagList("JutsuManager",
-				compound.getId());
-		int[] elem;
-		activeJutsus = ExtendedProperties.activeJutsus;
-		int jCount = jutsus.tagCount();
-		System.out.println("JCount: " + jCount);
-		if (jCount > 0) {
-			for (int i = 0; i < jCount; i++) {
-				NBTTagCompound jutsu = jutsus.getCompoundTagAt(jCount);
-				activeJutsus.add(jutsu.getIntArray("Jutsu" + i));
-			}
-		}
-	}
-
-	@Override
-	public void consumeChackra(EntityPlayer player, int value) {
-		ExtendedProperties props = ExtendedProperties.get(player);
-		if (props.getCurrentChakra() < chackraConsumption)
-			setActive(false);
-		else
-			ExtendedProperties.get(player).consumeChakra(value);
+	public void activateJutsu() {
+		this.setActive(true);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -102,6 +66,16 @@ public class Jutsu extends Item implements IJutsu {
 	@Override
 	public boolean canItemEditBlocks() {
 		return true;
+	}
+
+	@Override
+	public void consumeChackra(EntityPlayer player, int value) {
+		ExtendedProperties props = ExtendedProperties.get(player);
+		if (props.getCurrentChakra() < this.chackraConsumption) {
+			setActive(false);
+		} else {
+			ExtendedProperties.get(player).consumeChakra(value);
+		}
 	}
 
 	/**
@@ -167,12 +141,6 @@ public class Jutsu extends Item implements IJutsu {
 		return this.containerItem;
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public CreativeTabs getCreativeTab() {
-		return this.tabToDisplayOn;
-	}
-
 	/**
 	 * ItemStack sensitive version of getContainerItem. Returns a full ItemStack
 	 * instance of the result.
@@ -189,9 +157,15 @@ public class Jutsu extends Item implements IJutsu {
 		return new ItemStack(getContainerItem());
 	}
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	public CreativeTabs getCreativeTab() {
+		return this.tabToDisplayOn;
+	}
+
 	/**
 	 * Queries the percentage of the 'Durability' bar that should be drawn.
-	 * 
+	 *
 	 * @param stack
 	 *            The current ItemStack
 	 * @return 1.0 for 100% 0 for 0%
@@ -221,7 +195,7 @@ public class Jutsu extends Item implements IJutsu {
 	/**
 	 * Returns the font renderer used to render tooltips and overlays for this
 	 * item. Returning null will use the standard font renderer.
-	 * 
+	 *
 	 * @param stack
 	 *            The current item stack
 	 * @return A instance of FontRenderer or null to use default
@@ -242,7 +216,7 @@ public class Jutsu extends Item implements IJutsu {
 	 * render pass.
 	 *
 	 * Defers to {@link #getIconFromDamageForRenderPass(int, int)}
-	 * 
+	 *
 	 * @param stack
 	 *            to render for
 	 * @param pass
@@ -345,6 +319,16 @@ public class Jutsu extends Item implements IJutsu {
 	}
 
 	@Override
+	public int getJutsuID() {
+		return this.jutsuID;
+	}
+
+	@Override
+	public int[] getJutsuProps() {
+		return this.jutsuProps;
+	}
+
+	@Override
 	public int getMaxDamage() {
 		return this.maxDamage;
 	}
@@ -362,16 +346,13 @@ public class Jutsu extends Item implements IJutsu {
 			World par1World, EntityPlayer par2EntityPlayer, boolean par3) {
 		float f = 1.0F;
 		float f1 = par2EntityPlayer.prevRotationPitch
-				+ (par2EntityPlayer.rotationPitch - par2EntityPlayer.prevRotationPitch)
-				* f;
+				+ ((par2EntityPlayer.rotationPitch - par2EntityPlayer.prevRotationPitch) * f);
 		float f2 = par2EntityPlayer.prevRotationYaw
-				+ (par2EntityPlayer.rotationYaw - par2EntityPlayer.prevRotationYaw)
-				* f;
+				+ ((par2EntityPlayer.rotationYaw - par2EntityPlayer.prevRotationYaw) * f);
 		double d0 = par2EntityPlayer.prevPosX
-				+ (par2EntityPlayer.posX - par2EntityPlayer.prevPosX) * f;
+				+ ((par2EntityPlayer.posX - par2EntityPlayer.prevPosX) * f);
 		double d1 = par2EntityPlayer.prevPosY
-				+ (par2EntityPlayer.posY - par2EntityPlayer.prevPosY)
-				* f
+				+ ((par2EntityPlayer.posY - par2EntityPlayer.prevPosY) * f)
 				+ (par1World.isRemote
 						? par2EntityPlayer.getEyeHeight()
 								- par2EntityPlayer.getDefaultEyeHeight()
@@ -385,11 +366,11 @@ public class Jutsu extends Item implements IJutsu {
 															// yOffset
 															// differences
 		double d2 = par2EntityPlayer.prevPosZ
-				+ (par2EntityPlayer.posZ - par2EntityPlayer.prevPosZ) * f;
+				+ ((par2EntityPlayer.posZ - par2EntityPlayer.prevPosZ) * f);
 		@SuppressWarnings("deprecation")
 		Vec3 vec3 = par1World.getWorldVec3Pool().getVecFromPool(d0, d1, d2);
-		float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
-		float f4 = MathHelper.sin(-f2 * 0.017453292F - (float) Math.PI);
+		float f3 = MathHelper.cos((-f2 * 0.017453292F) - (float) Math.PI);
+		float f4 = MathHelper.sin((-f2 * 0.017453292F) - (float) Math.PI);
 		float f5 = -MathHelper.cos(-f1 * 0.017453292F);
 		float f6 = MathHelper.sin(-f1 * 0.017453292F);
 		float f7 = f4 * f5;
@@ -446,6 +427,11 @@ public class Jutsu extends Item implements IJutsu {
 		return -1; // -1 will default to the old lookups.
 	}
 
+	/*
+	 * ======================================== FORGE END
+	 * =====================================
+	 */
+
 	/**
 	 * returns a list of items with the same ID, but different meta (eg: dye
 	 * returns 16 items)
@@ -457,11 +443,6 @@ public class Jutsu extends Item implements IJutsu {
 			List p_150895_3_) {
 		p_150895_3_.add(new ItemStack(p_150895_1_, 1, 0));
 	}
-
-	/*
-	 * ======================================== FORGE END
-	 * =====================================
-	 */
 
 	@Override
 	public String getUnlocalizedName() {
@@ -503,6 +484,11 @@ public class Jutsu extends Item implements IJutsu {
 	}
 
 	@Override
+	public boolean isActive() {
+		return this.activated;
+	}
+
+	@Override
 	public boolean isDamageable() {
 		return false;
 	}
@@ -510,7 +496,7 @@ public class Jutsu extends Item implements IJutsu {
 	/**
 	 * Return if this itemstack is damaged. Note only called if
 	 * {@link #isDamageable()} is true.
-	 * 
+	 *
 	 * @param stack
 	 *            the stack
 	 * @return if the stack is damaged
@@ -541,7 +527,7 @@ public class Jutsu extends Item implements IJutsu {
 
 	/**
 	 * Called by CraftingManager to determine if an item is reparable.
-	 * 
+	 *
 	 * @return True if reparable
 	 */
 	@Override
@@ -557,6 +543,12 @@ public class Jutsu extends Item implements IJutsu {
 	public boolean itemInteractionForEntity(ItemStack par1ItemStack,
 			EntityPlayer par2EntityPlayer, EntityLivingBase par3EntityLivingBase) {
 		return false;
+	}
+
+	@Override
+	public void jutsuEnd() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -587,7 +579,7 @@ public class Jutsu extends Item implements IJutsu {
 	 * Called by the default implemetation of EntityItem's onUpdate method,
 	 * allowing for cleaner control over the update of the item without having
 	 * to write a subclass.
-	 * 
+	 *
 	 * @param entityItem
 	 *            The entity Item
 	 * @return Return true to skip any further update code.
@@ -599,7 +591,7 @@ public class Jutsu extends Item implements IJutsu {
 
 	/**
 	 * Called when a entity tries to play the 'swing' animation.
-	 * 
+	 *
 	 * @param entityLiving
 	 *            The entity swinging the item.
 	 * @param stack
@@ -626,7 +618,7 @@ public class Jutsu extends Item implements IJutsu {
 
 	/**
 	 * This is called when the item is used, before the block is activated.
-	 * 
+	 *
 	 * @param stack
 	 *            The Item Stack
 	 * @param player
@@ -648,6 +640,12 @@ public class Jutsu extends Item implements IJutsu {
 			World world, int x, int y, int z, int side, float hitX, float hitY,
 			float hitZ) {
 		return false;
+	}
+
+	@Override
+	public void onJutsuUpdate() {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -681,7 +679,7 @@ public class Jutsu extends Item implements IJutsu {
 
 	/**
 	 * Called each tick while using an item.
-	 * 
+	 *
 	 * @param stack
 	 *            The Item being used
 	 * @param player
@@ -695,6 +693,22 @@ public class Jutsu extends Item implements IJutsu {
 	}
 
 	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		NBTTagList jutsus = compound.getTagList("JutsuManager",
+				compound.getId());
+		int[] elem;
+		this.activeJutsus = ExtendedProperties.activeJutsus;
+		int jCount = jutsus.tagCount();
+		System.out.println("JCount: " + jCount);
+		if (jCount > 0) {
+			for (int i = 0; i < jCount; i++) {
+				NBTTagCompound jutsu = jutsus.getCompoundTagAt(jCount);
+				this.activeJutsus.add(jutsu.getIntArray("Jutsu" + i));
+			}
+		}
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister) {
 		this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
@@ -704,6 +718,11 @@ public class Jutsu extends Item implements IJutsu {
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
 		return false;
+	}
+
+	@Override
+	public void setActive(boolean par) {
+		this.activated = par;
 	}
 
 	@Override
@@ -741,15 +760,14 @@ public class Jutsu extends Item implements IJutsu {
 		this.maxStackSize = par1;
 		return this;
 	}
-
 	/**
 	 * Call to disable repair recipes.
-	 * 
+	 *
 	 * @return The current Item instance
 	 */
 	@Override
 	public Item setNoRepair() {
-		canRepair = false;
+		this.canRepair = false;
 		return this;
 	}
 
@@ -762,7 +780,7 @@ public class Jutsu extends Item implements IJutsu {
 	/**
 	 * Set the damage for this itemstack. Note, this method is responsible for
 	 * zero checking.
-	 * 
+	 *
 	 * @param stack
 	 *            the stack
 	 * @param damage
@@ -785,43 +803,23 @@ public class Jutsu extends Item implements IJutsu {
 	public boolean shouldRotateAroundWhenRendering() {
 		return false;
 	}
-
-	@Override
-	public void onJutsuUpdate() {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void activateJutsu() {
-		this.setActive(true);
-	}
-
-	@Override
-	public void jutsuEnd() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int[] getJutsuProps() {
-		return jutsuProps;
-	}
-
 	@Override
 	public void updateJutsuProperties() {
 		// TODO Auto-generated method stub
 	}
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		NBTTagList jutsuList = new NBTTagList();
+		NBTTagCompound jutsus = new NBTTagCompound();
 
-	@Override
-	public boolean isActive() {
-		return activated;
-	}
-	@Override
-	public void setActive(boolean par) {
-		activated = par;
-	}
-	@Override
-	public int getJutsuID() {
-		return jutsuID;
+		this.activeJutsus = ExtendedProperties.activeJutsus;
+		if (!this.activeJutsus.isEmpty()) {
+			while (this.activeJutsus.iterator().hasNext()) {
+				this.jutsuLine = this.activeJutsus.iterator().next();
+				jutsus.setIntArray("Jutsu" + this.jutsuLine[0], this.jutsuLine);
+				jutsuList.appendTag(jutsus);
+			}
+		}
+		compound.setTag("JutsuManager", jutsus);
 	}
 }

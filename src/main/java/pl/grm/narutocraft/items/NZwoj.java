@@ -10,7 +10,7 @@ public class NZwoj extends Item {
 		this.setUnlocalizedName("NZwoj");
 		this.setTextureName(References.ModTexturePath + "Zwoj");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
-		maxStackSize = 64;
+		this.maxStackSize = 64;
 	}
 
 }

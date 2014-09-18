@@ -21,14 +21,14 @@ public class ByoinBlock extends Block {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerBlockIcons(IIconRegister icon) {
-		blockIcon = icon.registerIcon(References.ModTexturePath
-				+ this.getUnlocalizedName().substring(5));
+	public IIcon getIcon(int side, int meta) {
+		return this.blockIcon;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public IIcon getIcon(int side, int meta) {
-		return blockIcon;
+	public void registerBlockIcons(IIconRegister icon) {
+		this.blockIcon = icon.registerIcon(References.ModTexturePath
+				+ this.getUnlocalizedName().substring(5));
 	}
 }

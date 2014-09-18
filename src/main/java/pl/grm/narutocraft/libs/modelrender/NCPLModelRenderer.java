@@ -21,10 +21,6 @@ public class NCPLModelRenderer extends ModelRenderer {
 	private boolean isTransparent = false;
 	private float transparency;
 
-	public NCPLModelRenderer(ModelBase par1ModelBase, String par2Str) {
-		super(par1ModelBase, par2Str);
-	}
-
 	public NCPLModelRenderer(ModelBase par1ModelBase) {
 		super(par1ModelBase);
 	}
@@ -33,15 +29,27 @@ public class NCPLModelRenderer extends ModelRenderer {
 		super(par1ModelBase, par2, par3);
 	}
 
+	public NCPLModelRenderer(ModelBase par1ModelBase, String par2Str) {
+		super(par1ModelBase, par2Str);
+	}
+
 	public void addCustomModel(ModelWrapper model) {
 		this.objs.add(model);
 	}
 
-	public void setTransparent(float transparency) {
-		this.isTransparent = true;
-		this.transparency = transparency;
+	@SideOnly(Side.CLIENT)
+	private void compileDisplayList(float par1) {
+		this.displayList = GLAllocation.generateDisplayLists(1);
+		GL11.glNewList(this.displayList, 4864);
+		Tessellator var2 = Tessellator.instance;
+		for (int var3 = 0; var3 < this.cubeList.size(); var3++) {
+			((ModelBox) this.cubeList.get(var3)).render(var2, par1);
+		}
+		GL11.glEndList();
+		this.compiled = true;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void render(float par1) {
 		if ((!this.isHidden) && (this.showModel)) {
@@ -71,29 +79,22 @@ public class NCPLModelRenderer extends ModelRenderer {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	private void compileDisplayList(float par1) {
-		this.displayList = GLAllocation.generateDisplayLists(1);
-		GL11.glNewList(this.displayList, 4864);
-		Tessellator var2 = Tessellator.instance;
-		for (int var3 = 0; var3 < this.cubeList.size(); var3++) {
-			((ModelBox) this.cubeList.get(var3)).render(var2, par1);
-		}
-		GL11.glEndList();
-		this.compiled = true;
-	}
-
 	protected void renderCustomModels(float scale) {
 		if (this.isTransparent) {
 			GL11.glEnable(3042);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, this.transparency);
 		}
 		for (int i = 0; i < this.objs.size(); i++) {
-			((ModelWrapper) this.objs.get(i)).render(scale);
+			this.objs.get(i).render(scale);
 		}
 		if (this.isTransparent) {
 			GL11.glDisable(3042);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
+	}
+
+	public void setTransparent(float transparency) {
+		this.isTransparent = true;
+		this.transparency = transparency;
 	}
 }

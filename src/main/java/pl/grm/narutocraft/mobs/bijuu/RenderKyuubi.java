@@ -17,14 +17,14 @@ public class RenderKyuubi extends RenderLiving {
 	}
 
 	@Override
+	protected ResourceLocation getEntityTexture(Entity par1Entity) {
+		return Kyuubi_Texture;
+	}
+
+	@Override
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase,
 			float par2) {
 		float scale = 10.0F;
 		GL11.glScalef(scale, scale, scale);
-	}
-
-	@Override
-	protected ResourceLocation getEntityTexture(Entity par1Entity) {
-		return Kyuubi_Texture;
 	}
 }

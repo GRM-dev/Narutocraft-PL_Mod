@@ -19,10 +19,6 @@ public class GuiChakraBar extends Gui {
 
 	public int barW = 54, barH = 9;
 
-	public ResourceLocation getTexture() {
-		return texture;
-	}
-
 	public GuiChakraBar() {
 
 	}
@@ -33,8 +29,12 @@ public class GuiChakraBar extends Gui {
 	}
 
 	public Minecraft getMc() {
-		mc = Minecraft.getMinecraft();
-		return mc;
+		this.mc = Minecraft.getMinecraft();
+		return this.mc;
+	}
+
+	public ResourceLocation getTexture() {
+		return this.texture;
 	}
 
 	@SubscribeEvent(priority = EventPriority.NORMAL)
@@ -48,14 +48,14 @@ public class GuiChakraBar extends Gui {
 			return;
 		}
 
-		ExtendedProperties props = ExtendedProperties.get(mc.thePlayer);
-		if (props == null || props.getMaxChakra() == 0) {
+		ExtendedProperties props = ExtendedProperties.get(this.mc.thePlayer);
+		if ((props == null) || (props.getMaxChakra() == 0)) {
 			return;
 		}
 
 		int xPos = 2;
 		int yPos = 2;
-		mc.getTextureManager().bindTexture(texture);
+		this.mc.getTextureManager().bindTexture(this.texture);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(false);
@@ -66,19 +66,20 @@ public class GuiChakraBar extends Gui {
 		 * Draw the background bar which contains a transparent section; note
 		 * the new size
 		 */
-		drawTexturedModalRect(xPos, yPos, 0, 0, barW, barH);
+		drawTexturedModalRect(xPos, yPos, 0, 0, this.barW, this.barH);
 
-		int chakrabarwidth = props.getCurrentChakra() * barW
+		int chakrabarwidth = (props.getCurrentChakra() * this.barW)
 				/ props.getMaxChakra();
-		drawTexturedModalRect(xPos, yPos, 0, barH, chakrabarwidth, barH);
+		drawTexturedModalRect(xPos, yPos, 0, this.barH, chakrabarwidth,
+				this.barH);
 		String s = "Chakra " + props.getCurrentChakra() + "/"
 				+ props.getMaxChakra();
-		yPos += barH + 2;
-		mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
-		mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
-		mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
-		mc.fontRenderer.drawString(s, xPos, yPos - 1, 0);
-		mc.fontRenderer.drawString(s, xPos, yPos, 8453920);
+		yPos += this.barH + 2;
+		this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
+		this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
+		this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
+		this.mc.fontRenderer.drawString(s, xPos, yPos - 1, 0);
+		this.mc.fontRenderer.drawString(s, xPos, yPos, 8453920);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(true);
@@ -89,7 +90,7 @@ public class GuiChakraBar extends Gui {
 	 * onRenderExperienceBar(RenderGameOverlayEvent event) { if
 	 * (event.isCancelable() || event.type != ElementType.EXPERIENCE) { return;
 	 * } ExtendedPlayer props = ExtendedPlayer.get(this.mc.thePlayer);
-	 * 
+	 *
 	 * if (props == null || props.getMaxChakra() == 0) { return; } int xPos = 2;
 	 * int yPos = 2; GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	 * GL11.glDisable(GL11.GL_LIGHTING);

@@ -5,19 +5,23 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public interface IJutsu {
 	/**
-	 * Method invoked by JutsuEvent every Player Tick.
-	 */
-	public void onJutsuUpdate();
-
-	/**
 	 * Initialize Jutsu when activated
 	 */
 	public void activateJutsu();
 
 	/**
-	 * Called on Jutsu end.
+	 * Consumes amount of chackra.
+	 *
+	 * @param value
 	 */
-	public void jutsuEnd();
+	public void consumeChackra(EntityPlayer player, int value);
+
+	/**
+	 * Id of the Jutsu.
+	 *
+	 * @return ID of Jutsu
+	 */
+	public int getJutsuID();
 
 	/**
 	 * @return List of Jutsu Props
@@ -25,50 +29,46 @@ public interface IJutsu {
 	public int[] getJutsuProps();
 
 	/**
-	 * Adds to Map Jutsu durations.
-	 */
-	public void updateJutsuProperties();
-
-	/**
 	 * Check if Jutsu is Active
-	 * 
+	 *
 	 * @return true if Jutsu is activated.
 	 */
 	public boolean isActive();
 
 	/**
+	 * Called on Jutsu end.
+	 */
+	public void jutsuEnd();
+
+	/**
+	 * Method invoked by JutsuEvent every Player Tick.
+	 */
+	public void onJutsuUpdate();
+
+	/**
+	 * Reads from NBT.
+	 *
+	 * @param properties
+	 */
+	public void readFromNBT(NBTTagCompound properties);
+
+	/**
 	 * Enable/diasable jutsu.
-	 * 
+	 *
 	 * @param par
 	 *            false to disable
 	 */
 	public void setActive(boolean par);
 
 	/**
-	 * Consumes amount of chackra.
-	 * 
-	 * @param value
+	 * Adds to Map Jutsu durations.
 	 */
-	public void consumeChackra(EntityPlayer player, int value);
+	public void updateJutsuProperties();
 
 	/**
 	 * Writes to NBT.
-	 * 
+	 *
 	 * @param properties
 	 */
 	public void writeToNBT(NBTTagCompound properties);
-
-	/**
-	 * Reads from NBT.
-	 * 
-	 * @param properties
-	 */
-	public void readFromNBT(NBTTagCompound properties);
-
-	/**
-	 * Id of the Jutsu.
-	 * 
-	 * @return ID of Jutsu
-	 */
-	public int getJutsuID();
 }

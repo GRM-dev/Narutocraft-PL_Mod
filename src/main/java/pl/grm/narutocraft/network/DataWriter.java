@@ -21,15 +21,6 @@ public class DataWriter {
 		this.data = new DataOutputStream(this.bytes);
 	}
 
-	public DataWriter add(int value) {
-		try {
-			this.data.writeInt(Integer.valueOf(value).intValue());
-		} catch (IOException e) {
-			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
-		}
-		return this;
-	}
-
 	public DataWriter add(boolean value) {
 		try {
 			this.data.writeBoolean(value);
@@ -48,18 +39,9 @@ public class DataWriter {
 		return this;
 	}
 
-	public DataWriter add(String value) {
+	public DataWriter add(byte[] value) {
 		try {
-			this.data.writeUTF(value);
-		} catch (IOException e) {
-			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
-		}
-		return this;
-	}
-
-	public DataWriter add(short value) {
-		try {
-			this.data.writeShort(value);
+			this.data.write(value);
 		} catch (IOException e) {
 			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
 		}
@@ -84,18 +66,9 @@ public class DataWriter {
 		return this;
 	}
 
-	public DataWriter add(long value) {
+	public DataWriter add(int value) {
 		try {
-			this.data.writeLong(value);
-		} catch (IOException e) {
-			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
-		}
-		return this;
-	}
-
-	public DataWriter add(byte[] value) {
-		try {
-			this.data.write(value);
+			this.data.writeInt(Integer.valueOf(value).intValue());
 		} catch (IOException e) {
 			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
 		}
@@ -105,9 +78,24 @@ public class DataWriter {
 	public DataWriter add(int[] value) {
 		try {
 			this.data.writeInt(Integer.valueOf(value.length).intValue());
-			for (int i = 0; i < value.length; i++) {
-				this.data.writeInt(Integer.valueOf(value[i]).intValue());
+			for (int element : value) {
+				this.data.writeInt(Integer.valueOf(element).intValue());
 			}
+		} catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+
+	public DataWriter add(ItemStack stack) {
+		NBTTagCompound compound = new NBTTagCompound();
+		stack.writeToNBT(compound);
+		return add(compound);
+	}
+
+	public DataWriter add(long value) {
+		try {
+			this.data.writeLong(value);
 		} catch (IOException e) {
 			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
 		}
@@ -127,10 +115,22 @@ public class DataWriter {
 		return this;
 	}
 
-	public DataWriter add(ItemStack stack) {
-		NBTTagCompound compound = new NBTTagCompound();
-		stack.writeToNBT(compound);
-		return add(compound);
+	public DataWriter add(short value) {
+		try {
+			this.data.writeShort(value);
+		} catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+
+	public DataWriter add(String value) {
+		try {
+			this.data.writeUTF(value);
+		} catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
 	}
 
 	public byte[] generate() {

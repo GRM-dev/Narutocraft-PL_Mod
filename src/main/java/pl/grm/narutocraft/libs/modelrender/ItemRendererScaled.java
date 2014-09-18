@@ -19,14 +19,32 @@ public class ItemRendererScaled implements IItemRenderer {
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		return type == ItemRenderType.EQUIPPED
-				|| type == ItemRenderType.EQUIPPED_FIRST_PERSON;
+		return (type == ItemRenderType.EQUIPPED)
+				|| (type == ItemRenderType.EQUIPPED_FIRST_PERSON);
 	}
 
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
-			ItemRendererHelper helper) {
-		return false;
+	private void renderEquippedItem(ItemStack stack, EntityLivingBase entity,
+			boolean firstPerson) {
+		GL11.glPushMatrix(); // Push the render matrix out
+		// Proceed to make alterations
+		float f = this.scale;
+		if (firstPerson) {
+			f *= 1.75F;
+			GL11.glTranslatef(-0.35F * this.scale, -0.125F * this.scale, 0.0F);
+		} else {
+			f *= (entity instanceof EntityPlayer ? 2.0F : 1.75F);
+			GL11.glTranslatef(1.0F - f, -0.125F * this.scale,
+					0.05F * this.scale);
+		}
+		GL11.glScalef(f, f, f);
+
+		IIcon icon = stack.getItem().getIcon(stack, 0);
+		Tessellator tessellator = Tessellator.instance;
+		ItemRenderer.renderItemIn2D(tessellator, icon.getMaxU(),
+				icon.getMinV(), icon.getMinU(), icon.getMaxV(),
+				icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
+		GL11.glPopMatrix();// Pop the render matrix back in with changes to be
+							// used.
 	}
 
 	@Override
@@ -42,26 +60,9 @@ public class ItemRendererScaled implements IItemRenderer {
 		}
 	}
 
-	private void renderEquippedItem(ItemStack stack, EntityLivingBase entity,
-			boolean firstPerson) {
-		GL11.glPushMatrix(); // Push the render matrix out
-		// Proceed to make alterations
-		float f = scale;
-		if (firstPerson) {
-			f *= 1.75F;
-			GL11.glTranslatef(-0.35F * scale, -0.125F * scale, 0.0F);
-		} else {
-			f *= (entity instanceof EntityPlayer ? 2.0F : 1.75F);
-			GL11.glTranslatef(1.0F - f, -0.125F * scale, 0.05F * scale);
-		}
-		GL11.glScalef(f, f, f);
-
-		IIcon icon = stack.getItem().getIcon(stack, 0);
-		Tessellator tessellator = Tessellator.instance;
-		ItemRenderer.renderItemIn2D(tessellator, icon.getMaxU(),
-				icon.getMinV(), icon.getMinU(), icon.getMaxV(),
-				icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
-		GL11.glPopMatrix();// Pop the render matrix back in with changes to be
-							// used.
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
+			ItemRendererHelper helper) {
+		return false;
 	}
 }

@@ -3,13 +3,22 @@ package pl.grm.narutocraft.jutsu;
 public enum JutsuList {
 	NONE(5600), MEISAIGAKURE(5601);
 
-	private int ID;
+	private int jutsuID;
 
 	JutsuList(int ID) {
-		this.ID = ID;
+		this.jutsuID = ID;
+	}
+
+	public JutsuList getByID(int ID) {
+		for (JutsuList jutsu : JutsuList.values()) {
+			if (jutsu.jutsuID == ID) {
+				return jutsu;
+			}
+		}
+		return NONE;
 	}
 
 	public int getID() {
-		return ID;
+		return this.jutsuID;
 	}
 }

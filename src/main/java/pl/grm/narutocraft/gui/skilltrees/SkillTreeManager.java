@@ -31,124 +31,6 @@ public class SkillTreeManager {
 		this.skillPointTypeList = new HashMap<Integer, TreePointTypes>();
 	}
 
-	public void RegisterEntry(IJutsu jutsu, int x, int y, SkillTrees tree,
-			TreePointTypes requiredPoint, SkillTreeEntry... prerequisites) {
-		treeListing = tree == SkillTrees.NINJUTSU
-				? this.ninjutsuTree
-				: tree == SkillTrees.GENJUTSU
-						? this.genjutsuTree
-						: tree == SkillTrees.FUUINJUTSU
-								? this.fuuinjutsuTree
-								: tree == SkillTrees.TAIJUTSU
-										? this.taijutsuTree
-										: tree == SkillTrees.KANJUTSU
-												? this.kanjutsuTree
-												: tree == SkillTrees.KANJUTSU
-														? this.kanjutsuTree
-														: this.soshijutsuTree;
-
-		locatedPrerequisites = new ArrayList<SkillTreeEntry>();
-		if ((prerequisites != null) && (prerequisites.length > 0)) {
-			for (SkillTreeEntry prerequisite : prerequisites) {
-				for (SkillTreeEntry entry : treeListing) {
-					if (entry.getJutsu() == prerequisite) {
-						locatedPrerequisites.add(entry);
-						break;
-					}
-				}
-			}
-			if (locatedPrerequisites.size() == 0) {
-				throw new InvalidParameterException(
-						String.format(
-								"Unable to locate one or more prerequisite jutsu in the specified tree (%s).",
-								new Object[]{tree.toString()}));
-			}
-		}
-		boolean enabled = true;
-		newEntry = new SkillTreeEntry(
-				x,
-				y,
-				tree,
-				locatedPrerequisites
-						.toArray(new SkillTreeEntry[locatedPrerequisites.size()]),
-				jutsu, enabled);
-		treeListing.add(newEntry);
-
-		this.skillPointTypeList.put(
-				Integer.valueOf(JutsuManager.instance.getJutsuID(jutsu)),
-				requiredPoint);
-	}
-
-	public ArrayList<SkillTreeEntry> getTree(SkillTrees tree) {
-		safeCopy = new ArrayList<SkillTreeEntry>();
-		switch (tree.ordinal()) {
-			case 1 :
-				safeCopy.addAll(this.genjutsuTree);
-				break;
-			case 2 :
-				safeCopy.addAll(this.ninjutsuTree);
-				break;
-			case 3 :
-				safeCopy.addAll(this.fuuinjutsuTree);
-				break;
-			case 4 :
-				safeCopy.addAll(this.taijutsuTree);
-		}
-		return safeCopy;
-	}
-
-	public SkillTreeEntry getJutsuTreeEntry(SkillTreeEntry part) {
-		ArrayList<SkillTreeEntry> treeEntries = instance
-				.getTree(SkillTrees.NINJUTSU);
-		for (SkillTreeEntry st_entry : treeEntries) {
-			IJutsu jutsu = st_entry.getJutsu();
-			if ((jutsu != null) && (jutsu == part)) {
-				return st_entry;
-			}
-		}
-		treeEntries = instance.getTree(SkillTrees.GENJUTSU);
-		for (SkillTreeEntry st_entry : treeEntries) {
-			IJutsu jutsu = st_entry.getJutsu();
-			if ((jutsu != null) && (jutsu == part)) {
-				return st_entry;
-			}
-		}
-		return null;
-	}
-
-	public int[] getDisabledSkillIDs() {
-		disableds = new ArrayList<Integer>();
-		for (SkillTreeEntry entry : this.ninjutsuTree) {
-			if (!entry.enabled) {
-				disableds.add(Integer.valueOf(JutsuManager.instance
-						.getJutsuID(entry.getJutsu())));
-			}
-		}
-		for (SkillTreeEntry entry : this.genjutsuTree) {
-			if (!entry.enabled) {
-				disableds.add(Integer.valueOf(JutsuManager.instance
-						.getJutsuID(entry.getJutsu())));
-			}
-		}
-		for (SkillTreeEntry entry : this.fuuinjutsuTree) {
-			if (!entry.enabled) {
-				disableds.add(Integer.valueOf(JutsuManager.instance
-						.getJutsuID(entry.getJutsu())));
-			}
-		}
-		for (SkillTreeEntry entry : this.taijutsuTree) {
-			if (!entry.enabled) {
-				disableds.add(Integer.valueOf(JutsuManager.instance
-						.getJutsuID(entry.getJutsu())));
-			}
-		}
-		int[] toReturn = new int[disableds.size()];
-		for (int i = 0; i < disableds.size(); i++) {
-			toReturn[i] = disableds.get(i).intValue();
-		}
-		return toReturn;
-	}
-
 	private void calculateHighestOverallTier() {
 		int offense = calculateHighestTier(this.ninjutsuTree);
 		int defense = calculateHighestTier(this.genjutsuTree);
@@ -165,10 +47,6 @@ public class SkillTreeManager {
 			}
 		}
 		return highest;
-	}
-
-	public int getHighestTier() {
-		return this.highestSkillDepth;
 	}
 
 	public void disableAllSkillsIn(int[] disabledSkills) {
@@ -197,12 +75,78 @@ public class SkillTreeManager {
 		}
 	}
 
-	public boolean isSkillDisabled(SkillTreeEntry component) {
-		SkillTreeEntry entry = getJutsuTreeEntry(component);
-		if (entry == null) {
-			return false;
+	public int[] getDisabledSkillIDs() {
+		this.disableds = new ArrayList<Integer>();
+		for (SkillTreeEntry entry : this.ninjutsuTree) {
+			if (!entry.enabled) {
+				this.disableds.add(Integer.valueOf(JutsuManager.instance
+						.getJutsuID(entry.getJutsu())));
+			}
 		}
-		return !entry.enabled;
+		for (SkillTreeEntry entry : this.genjutsuTree) {
+			if (!entry.enabled) {
+				this.disableds.add(Integer.valueOf(JutsuManager.instance
+						.getJutsuID(entry.getJutsu())));
+			}
+		}
+		for (SkillTreeEntry entry : this.fuuinjutsuTree) {
+			if (!entry.enabled) {
+				this.disableds.add(Integer.valueOf(JutsuManager.instance
+						.getJutsuID(entry.getJutsu())));
+			}
+		}
+		for (SkillTreeEntry entry : this.taijutsuTree) {
+			if (!entry.enabled) {
+				this.disableds.add(Integer.valueOf(JutsuManager.instance
+						.getJutsuID(entry.getJutsu())));
+			}
+		}
+		int[] toReturn = new int[this.disableds.size()];
+		for (int i = 0; i < this.disableds.size(); i++) {
+			toReturn[i] = this.disableds.get(i).intValue();
+		}
+		return toReturn;
+	}
+
+	public int getHighestTier() {
+		return this.highestSkillDepth;
+	}
+
+	public SkillTreeEntry getJutsuTreeEntry(SkillTreeEntry part) {
+		ArrayList<SkillTreeEntry> treeEntries = instance
+				.getTree(SkillTrees.NINJUTSU);
+		for (SkillTreeEntry st_entry : treeEntries) {
+			IJutsu jutsu = st_entry.getJutsu();
+			if ((jutsu != null) && (jutsu == part)) {
+				return st_entry;
+			}
+		}
+		treeEntries = instance.getTree(SkillTrees.GENJUTSU);
+		for (SkillTreeEntry st_entry : treeEntries) {
+			IJutsu jutsu = st_entry.getJutsu();
+			if ((jutsu != null) && (jutsu == part)) {
+				return st_entry;
+			}
+		}
+		return null;
+	}
+
+	public ArrayList<SkillTreeEntry> getTree(SkillTrees tree) {
+		this.safeCopy = new ArrayList<SkillTreeEntry>();
+		switch (tree.ordinal()) {
+			case 1 :
+				this.safeCopy.addAll(this.genjutsuTree);
+				break;
+			case 2 :
+				this.safeCopy.addAll(this.ninjutsuTree);
+				break;
+			case 3 :
+				this.safeCopy.addAll(this.fuuinjutsuTree);
+				break;
+			case 4 :
+				this.safeCopy.addAll(this.taijutsuTree);
+		}
+		return this.safeCopy;
 	}
 
 	public void init() {
@@ -726,5 +670,58 @@ public class SkillTreeManager {
 
 		calculateHighestOverallTier();
 		ConfigurationHandler.saveJutsus();
+	}
+
+	public boolean isSkillDisabled(SkillTreeEntry component) {
+		SkillTreeEntry entry = getJutsuTreeEntry(component);
+		if (entry == null) {
+			return false;
+		}
+		return !entry.enabled;
+	}
+
+	public void RegisterEntry(IJutsu jutsu, int x, int y, SkillTrees tree,
+			TreePointTypes requiredPoint, SkillTreeEntry... prerequisites) {
+		this.treeListing = tree == SkillTrees.NINJUTSU
+				? this.ninjutsuTree
+				: tree == SkillTrees.GENJUTSU
+						? this.genjutsuTree
+						: tree == SkillTrees.FUUINJUTSU
+								? this.fuuinjutsuTree
+								: tree == SkillTrees.TAIJUTSU
+										? this.taijutsuTree
+										: tree == SkillTrees.KANJUTSU
+												? this.kanjutsuTree
+												: tree == SkillTrees.KANJUTSU
+														? this.kanjutsuTree
+														: this.soshijutsuTree;
+
+		this.locatedPrerequisites = new ArrayList<SkillTreeEntry>();
+		if ((prerequisites != null) && (prerequisites.length > 0)) {
+			for (SkillTreeEntry prerequisite : prerequisites) {
+				for (SkillTreeEntry entry : this.treeListing) {
+					if (entry.getJutsu() == prerequisite) {
+						this.locatedPrerequisites.add(entry);
+						break;
+					}
+				}
+			}
+			if (this.locatedPrerequisites.size() == 0) {
+				throw new InvalidParameterException(
+						String.format(
+								"Unable to locate one or more prerequisite jutsu in the specified tree (%s).",
+								new Object[]{tree.toString()}));
+			}
+		}
+		boolean enabled = true;
+		this.newEntry = new SkillTreeEntry(x, y, tree,
+				this.locatedPrerequisites
+						.toArray(new SkillTreeEntry[this.locatedPrerequisites
+								.size()]), jutsu, enabled);
+		this.treeListing.add(this.newEntry);
+
+		this.skillPointTypeList.put(
+				Integer.valueOf(JutsuManager.instance.getJutsuID(jutsu)),
+				requiredPoint);
 	}
 }

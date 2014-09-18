@@ -15,13 +15,32 @@ import java.util.List;
 
 public class ConfigurationHandler {
 
+	public static List<String> getLines() {
+		return Collections.unmodifiableList(lines);
+	}
+	public static void saveJutsus() {
+		// TODO Auto-generated method stub
+
+	}
+
 	private static ArrayList<String> lines = new ArrayList<String>();
+
 	private File path;
 
 	public static boolean printErrors = false;
 
 	public ConfigurationHandler(File path) {
 		this.path = path;
+	}
+
+	private BufferedReader getReader() {
+		try {
+			FileInputStream fis = new FileInputStream(this.path);
+			DataInputStream dis = new DataInputStream(fis);
+			return new BufferedReader(new InputStreamReader(dis));
+		} catch (FileNotFoundException e) {
+			return null;
+		}
 	}
 
 	public void readConfig() {
@@ -34,8 +53,9 @@ public class ConfigurationHandler {
 		try {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				if (line.trim().startsWith("#") || line.isEmpty())
+				if (line.trim().startsWith("#") || line.isEmpty()) {
 					continue;
+				}
 				line = line.trim();
 				lines.add(line);
 				// MainClass.addID(line);
@@ -46,23 +66,9 @@ public class ConfigurationHandler {
 		}
 	}
 
-	public static List<String> getLines() {
-		return Collections.unmodifiableList(lines);
-	}
-
-	private BufferedReader getReader() {
-		try {
-			FileInputStream fis = new FileInputStream(path);
-			DataInputStream dis = new DataInputStream(fis);
-			return new BufferedReader(new InputStreamReader(dis));
-		} catch (FileNotFoundException e) {
-			return null;
-		}
-	}
-
 	private void writeConfig() {
 		try {
-			FileWriter fw = new FileWriter(path, true);
+			FileWriter fw = new FileWriter(this.path, true);
 			BufferedWriter writer = new BufferedWriter(fw);
 
 			writer.write("# Format: <id>:<metadata>\n");
@@ -72,10 +78,5 @@ public class ConfigurationHandler {
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
-	}
-
-	public static void saveJutsus() {
-		// TODO Auto-generated method stub
-
 	}
 }

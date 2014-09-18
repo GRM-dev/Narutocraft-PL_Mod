@@ -13,6 +13,18 @@ public class Rasengan extends Jutsu {
 		this.setTextureName(jutsuLoc + "Rasengan");
 	}
 	@Override
+	public void activateJutsu() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void jutsuEnd() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
 		if (!world.isRemote) {
@@ -23,18 +35,6 @@ public class Rasengan extends Jutsu {
 
 	@Override
 	public void onJutsuUpdate() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void activateJutsu() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void jutsuEnd() {
 		// TODO Auto-generated method stub
 
 	}

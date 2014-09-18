@@ -30,6 +30,6 @@ public class SkillTreeEntry {
 	}
 
 	public IJutsu getJutsu() {
-		return jutsu;
+		return this.jutsu;
 	}
 }

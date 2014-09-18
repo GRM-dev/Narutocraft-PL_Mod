@@ -16,29 +16,7 @@ public class Byakugo extends Jutsu implements IJutsu {
 
 	}
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		if (!world.isRemote) {
-
-		}
-		return stack;
-	}
-	public void uploadEffects() {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public boolean isActive() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public void setActive(boolean par) {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void onJutsuUpdate() {
+	public void activateJutsu() {
 		// TODO Auto-generated method stub
 
 	}
@@ -47,24 +25,9 @@ public class Byakugo extends Jutsu implements IJutsu {
 
 	}
 	@Override
-	public void activateJutsu() {
+	public int getDurationPass() {
 		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public void jutsuEnd() {
-		// TODO Auto-generated method stub
-
-	}
-	@Override
-	public Map<Integer, IJutsu> getJutsuProps() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void updateJutsuProperties() {
-		// TODO Auto-generated method stub
-
+		return 0;
 	}
 	@Override
 	public int getJutsuID() {
@@ -72,14 +35,51 @@ public class Byakugo extends Jutsu implements IJutsu {
 		return 0;
 	}
 	@Override
+	public Map<Integer, IJutsu> getJutsuProps() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
 	public int getTotalDuration() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public int getDurationPass() {
+	public boolean isActive() {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
+	}
+	@Override
+	public void jutsuEnd() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player) {
+		if (!world.isRemote) {
+
+		}
+		return stack;
+	}
+	@Override
+	public void onJutsuUpdate() {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void setActive(boolean par) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void updateJutsuProperties() {
+		// TODO Auto-generated method stub
+
+	}
+	public void uploadEffects() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

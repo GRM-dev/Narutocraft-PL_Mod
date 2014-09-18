@@ -12,6 +12,16 @@ public class Rasengan3 extends Jutsu implements IJutsu {
 		this.setUnlocalizedName("CORasengan");
 		this.setTextureName(jutsuLoc + "Rasengan");
 	}
+	public void consumeChackra(int value) {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public boolean isActive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
@@ -20,28 +30,18 @@ public class Rasengan3 extends Jutsu implements IJutsu {
 		}
 		return stack;
 	}
-	public void uploadEffects() {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
-	public boolean isActive() {
+	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
-		return false;
+
 	}
 	@Override
 	public void setActive(boolean par) {
 		// TODO Auto-generated method stub
 
 	}
-	@Override
-	public void onJutsuUpdate() {
-		// TODO Auto-generated method stub
 
-	}
-
-	public void consumeChackra(int value) {
+	public void uploadEffects() {
 		// TODO Auto-generated method stub
 
 	}

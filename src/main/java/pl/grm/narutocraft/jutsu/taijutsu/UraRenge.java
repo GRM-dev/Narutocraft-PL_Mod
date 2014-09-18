@@ -12,13 +12,9 @@ public class UraRenge extends Jutsu implements IJutsu {
 		this.setUnlocalizedName("Ura Renge");
 		this.setTextureName(jutsuLoc + "Ura Renge");
 	}
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		if (!world.isRemote) {
+	public void consumeChackra(int value) {
+		// TODO Auto-generated method stub
 
-		}
-		return stack;
 	}
 
 	@Override
@@ -27,16 +23,20 @@ public class UraRenge extends Jutsu implements IJutsu {
 		return false;
 	}
 	@Override
-	public void setActive(boolean par) {
-		// TODO Auto-generated method stub
+	public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player) {
+		if (!world.isRemote) {
 
+		}
+		return stack;
 	}
 	@Override
 	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
 
 	}
-	public void consumeChackra(int value) {
+	@Override
+	public void setActive(boolean par) {
 		// TODO Auto-generated method stub
 
 	}

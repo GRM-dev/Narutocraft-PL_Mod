@@ -10,7 +10,31 @@ public enum Elements {
 			new Color(0x00FF80)), RAITON(3, new Color(0xFFFF00)), DOTON(4,
 			new Color(0xFF8000)), SUITON(5, new Color(0x0080FF));
 
+	/**
+	 * Gets element by ID [1-5]
+	 *
+	 * @param ID
+	 * @return Element
+	 */
+	public static Elements getById(int ID) {
+		for (Elements elem : Elements.values()) {
+			if (elem.ID == ID) {
+				return elem;
+			}
+		}
+		return NONE;
+	}
+	/**
+	 * Gets Ordered Elements.
+	 *
+	 * @return Elements[]
+	 */
+	public static Elements[] getOrderedElements() {
+		return new Elements[]{KATON, FUUTON, RAITON, DOTON, SUITON};
+	}
+
 	private int ID;
+
 	private Color color;
 
 	private Elements(int ID, Color color) {
@@ -18,47 +42,27 @@ public enum Elements {
 		this.color = color;
 	}
 
-	public Elements getWeakerElement() {
-		if (this.getID() == 1)
-			return Elements.getById(5);
-		else
-			return Elements.getById(ID--);
-	}
-
-	public Elements getStrongerElement() {
-		if (this.getID() == 5)
-			return Elements.getById(1);
-		else
-			return Elements.getById(ID++);
-	}
-
-	/**
-	 * Gets element by ID [1-5]
-	 * 
-	 * @param ID
-	 * @return Element
-	 */
-	public static Elements getById(int ID) {
-		for (Elements elem : Elements.values())
-			if (elem.ID == ID)
-				return elem;
-		return NONE;
-	}
-
-	/**
-	 * Gets Ordered Elements.
-	 * 
-	 * @return Elements[]
-	 */
-	public static Elements[] getOrderedElements() {
-		return new Elements[]{KATON, FUUTON, RAITON, DOTON, SUITON};
+	public Color getColor() {
+		return this.color;
 	}
 
 	public int getID() {
-		return ID;
+		return this.ID;
 	}
 
-	public Color getColor() {
-		return color;
+	public Elements getStrongerElement() {
+		if (this.getID() == 5) {
+			return Elements.getById(1);
+		} else {
+			return Elements.getById(this.ID++);
+		}
+	}
+
+	public Elements getWeakerElement() {
+		if (this.getID() == 1) {
+			return Elements.getById(5);
+		} else {
+			return Elements.getById(this.ID--);
+		}
 	}
 }

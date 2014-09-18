@@ -1,11 +1,11 @@
 package pl.grm.narutocraft.registry;
 
 import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
 import pl.grm.narutocraft.mobs.bijuu.EntityKyuubi;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntityKunai;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntitySenbon;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntityShuriken;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntityWKunai;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class RegEntities extends NarutoCraft {

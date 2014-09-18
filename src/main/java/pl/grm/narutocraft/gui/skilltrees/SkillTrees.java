@@ -13,13 +13,14 @@ public enum SkillTrees {
 
 	public SkillTrees getByID(int ID) {
 		for (SkillTrees sT : SkillTrees.values()) {
-			if (sT.treeID == ID)
+			if (sT.treeID == ID) {
 				return sT;
+			}
 		}
 		return NONE;
 	}
 
 	public int getID(SkillTrees sT) {
-		return treeID;
+		return this.treeID;
 	}
 }

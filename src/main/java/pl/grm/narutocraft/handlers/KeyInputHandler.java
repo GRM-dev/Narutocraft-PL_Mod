@@ -10,7 +10,7 @@ import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 /**
  * gets keyboard button presses form {@link KeyBindings}
- * 
+ *
  * @author Admaster
  *
  */

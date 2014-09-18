@@ -12,15 +12,7 @@ public class KosaHo extends Jutsu implements IJutsu {
 		this.setUnlocalizedName("Kosa Ho");
 		this.setTextureName(jutsuLoc + "Kosa Ho");
 	}
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		if (!world.isRemote) {
-
-		}
-		return stack;
-	}
-	public void uploadEffects() {
+	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub
 
 	}
@@ -30,16 +22,24 @@ public class KosaHo extends Jutsu implements IJutsu {
 		return false;
 	}
 	@Override
-	public void setActive(boolean par) {
-		// TODO Auto-generated method stub
+	public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player) {
+		if (!world.isRemote) {
 
+		}
+		return stack;
 	}
 	@Override
 	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
 
 	}
-	public void consumeChackra(int value) {
+	@Override
+	public void setActive(boolean par) {
+		// TODO Auto-generated method stub
+
+	}
+	public void uploadEffects() {
 		// TODO Auto-generated method stub
 
 	}

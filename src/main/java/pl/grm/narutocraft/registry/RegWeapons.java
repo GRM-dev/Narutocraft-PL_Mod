@@ -1,25 +1,43 @@
 package pl.grm.narutocraft.registry;
 
 import net.minecraft.item.Item;
+import pl.grm.narutocraft.items.weapons.ChioRyuuGatana;
+import pl.grm.narutocraft.items.weapons.KBushido;
+import pl.grm.narutocraft.items.weapons.KaMiecz;
+import pl.grm.narutocraft.items.weapons.Katana;
+import pl.grm.narutocraft.items.weapons.Kubiki;
+import pl.grm.narutocraft.items.weapons.Kurosawa;
+import pl.grm.narutocraft.items.weapons.MSamuraja;
+import pl.grm.narutocraft.items.weapons.Nunchaku;
+import pl.grm.narutocraft.items.weapons.RKatana;
+import pl.grm.narutocraft.items.weapons.Raitanto;
+import pl.grm.narutocraft.items.weapons.Wakizashi;
+import pl.grm.narutocraft.items.weapons.ZRekawica;
+import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
+import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
+import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.WKunai;
 import pl.grm.narutocraft.libs.References;
-import pl.grm.narutocraft.weapons.ChioRyuuGatana;
-import pl.grm.narutocraft.weapons.KBushido;
-import pl.grm.narutocraft.weapons.KaMiecz;
-import pl.grm.narutocraft.weapons.Katana;
-import pl.grm.narutocraft.weapons.Kubiki;
-import pl.grm.narutocraft.weapons.Kurosawa;
-import pl.grm.narutocraft.weapons.MSamuraja;
-import pl.grm.narutocraft.weapons.Nunchaku;
-import pl.grm.narutocraft.weapons.RKatana;
-import pl.grm.narutocraft.weapons.Raitanto;
-import pl.grm.narutocraft.weapons.Wakizashi;
-import pl.grm.narutocraft.weapons.ZRekawica;
-import pl.grm.narutocraft.weapons.projectiles.Kunai;
-import pl.grm.narutocraft.weapons.projectiles.Senbon;
-import pl.grm.narutocraft.weapons.projectiles.Shuriken;
-import pl.grm.narutocraft.weapons.projectiles.WKunai;
 
 public class RegWeapons extends RegItems {
+	public static void regWeaponsList() {
+		registerItem(Kunai, "Kunai");
+		registerItem(WKunai, "WybuchowyKunai");
+		registerItem(Shuriken, "Shuriken");
+		registerItem(Senbon, "Senbon");
+		registerItem(Raitanto, "Raitanto");
+		registerItem(KaMiecz, "KamiennyMiecz");
+		registerItem(Katana, "Katana");
+		registerItem(KBushido, "KatanaBushido");
+		registerItem(Kubiki, "Kubikiribocho");
+		registerItem(Kurosawa, "Kurosawa");
+		registerItem(RKatana, "RyuuKatana");
+		registerItem(Wakizashi, "Wakizashi");
+		registerItem(MSamuraja, "MSamuraja");
+		registerItem(ZRekawica, "ZRekawica");
+		registerItem(Nunchaku, "Nunchaku");
+		registerItem(ChioRyuuGatana, "ChioRyuuGatana");
+	}
 	public static Item Kunai = new Kunai().setUnlocalizedName("Kunai")
 			.setTextureName(References.ModTexturePath + "weapons/Kunai")
 			.setFull3D();
@@ -61,26 +79,8 @@ public class RegWeapons extends RegItems {
 			References.ModTexturePath + "weapons/Zelazna Rekawica");
 	public static Item Nunchaku = new Nunchaku().setUnlocalizedName("Nunchaku")
 			.setTextureName(References.ModTexturePath + "weapons/Nunchaku");
+
 	public static Item ChioRyuuGatana = new ChioRyuuGatana()
 			.setUnlocalizedName("ChioRyuuGatana").setTextureName(
 					References.ModTexturePath + "weapons/ChioRyuuGatana");
-
-	public static void regWeaponsList() {
-		registerItem(Kunai, "Kunai");
-		registerItem(WKunai, "WybuchowyKunai");
-		registerItem(Shuriken, "Shuriken");
-		registerItem(Senbon, "Senbon");
-		registerItem(Raitanto, "Raitanto");
-		registerItem(KaMiecz, "KamiennyMiecz");
-		registerItem(Katana, "Katana");
-		registerItem(KBushido, "KatanaBushido");
-		registerItem(Kubiki, "Kubikiribocho");
-		registerItem(Kurosawa, "Kurosawa");
-		registerItem(RKatana, "RyuuKatana");
-		registerItem(Wakizashi, "Wakizashi");
-		registerItem(MSamuraja, "MSamuraja");
-		registerItem(ZRekawica, "ZRekawica");
-		registerItem(Nunchaku, "Nunchaku");
-		registerItem(ChioRyuuGatana, "ChioRyuuGatana");
-	}
 }

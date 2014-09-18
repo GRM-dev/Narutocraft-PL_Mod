@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class JutsuTab extends CreativeTabs {
 	private Item item;
 	/**
-	 * 
+	 *
 	 * @param par1
 	 *            Creative Tab Id
 	 * @param par2Str
@@ -31,7 +31,7 @@ public class JutsuTab extends CreativeTabs {
 
 	@Override
 	public Item getTabIconItem() {
-		return item;
+		return this.item;
 	}
 
 	@Override

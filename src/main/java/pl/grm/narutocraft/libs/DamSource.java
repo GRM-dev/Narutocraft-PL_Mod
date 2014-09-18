@@ -3,27 +3,16 @@ package pl.grm.narutocraft.libs;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntityKunai;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntitySenbon;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntityShuriken;
-import pl.grm.narutocraft.weapons.projectiles.entities.EntityWKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
 
 public class DamSource extends DamageSource {
-
-	public DamSource(String par1Str) {
-		super(par1Str);
-		// TODO Auto-generated constructor stub
-	}
 
 	public static DamageSource causeKunaiDamage(EntityKunai entityKunai,
 			Entity shootingEntity) {
 		return (new EntityDamageSourceIndirect("kunai", entityKunai,
-				shootingEntity)).setProjectile();
-	}
-
-	public static DamageSource causeWKunaiDamage(EntityWKunai entityWKunai,
-			Entity shootingEntity) {
-		return (new EntityDamageSourceIndirect("wkunai", entityWKunai,
 				shootingEntity)).setProjectile();
 	}
 
@@ -37,6 +26,17 @@ public class DamSource extends DamageSource {
 			EntityShuriken entityShuriken, Entity shootingEntity) {
 		return (new EntityDamageSourceIndirect("shuriken", entityShuriken,
 				shootingEntity)).setProjectile();
+	}
+
+	public static DamageSource causeWKunaiDamage(EntityWKunai entityWKunai,
+			Entity shootingEntity) {
+		return (new EntityDamageSourceIndirect("wkunai", entityWKunai,
+				shootingEntity)).setProjectile();
+	}
+
+	public DamSource(String par1Str) {
+		super(par1Str);
+		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -46,8 +46,8 @@ public class EntityKyuubi extends EntityMob {
 	}
 
 	@Override
-	public boolean isAIEnabled() {
-		return true;
+	protected String getDeathSound() {
+		return "narutocraftpl:sounds.mobs.KyuubiDeath";
 	}
 
 	/*
@@ -55,22 +55,22 @@ public class EntityKyuubi extends EntityMob {
 	 */
 
 	@Override
-	protected String getLivingSound() {
-		return "narutocraftpl:sounds.mobs.Kyuubi";
-	}
-
-	@Override
 	protected String getHurtSound() {
 		return "narutocraftpl:sounds.mobs.KyuubiHurt";
 	}
 
 	@Override
-	protected String getDeathSound() {
-		return "narutocraftpl:sounds.mobs.KyuubiDeath";
+	protected String getLivingSound() {
+		return "narutocraftpl:sounds.mobs.Kyuubi";
 	}
 
 	@Override
 	protected float getSoundVolume() {
 		return 0.7F;
+	}
+
+	@Override
+	public boolean isAIEnabled() {
+		return true;
 	}
 }

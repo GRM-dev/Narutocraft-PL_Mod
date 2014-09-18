@@ -7,11 +7,6 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class KeyBindings {
-	public static KeyBinding Jutsu;
-	public static KeyBinding PJutsu;
-	public static KeyBinding NJutsu;
-	private static String narutocraftmod = "NarutoCraft Mod";
-
 	public static void init() {
 		PJutsu = new KeyBinding("Previous Jutsu", Keyboard.KEY_O,
 				narutocraftmod);
@@ -24,4 +19,9 @@ public class KeyBindings {
 		ClientRegistry.registerKeyBinding(Jutsu);
 
 	}
+	public static KeyBinding Jutsu;
+	public static KeyBinding PJutsu;
+	public static KeyBinding NJutsu;
+
+	private static String narutocraftmod = "NarutoCraft Mod";
 }

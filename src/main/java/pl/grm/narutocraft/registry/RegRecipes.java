@@ -6,11 +6,6 @@ import pl.grm.narutocraft.NarutoCraft;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegRecipes extends NarutoCraft {
-	public static ItemStack diamondStack = new ItemStack(Items.diamond);
-	public static ItemStack stickStack = new ItemStack(Items.stick);
-	public static ItemStack stringStack = new ItemStack(Items.string);
-	public static ItemStack ironingotStack = new ItemStack(Items.iron_ingot);
-
 	public static void regRecipesList() {
 		GameRegistry.addRecipe(new ItemStack(RegWeapons.Kunai, 2), "x  ",
 				" y ", "  x", 'x', diamondStack, 'y', stickStack);
@@ -29,4 +24,9 @@ public class RegRecipes extends NarutoCraft {
 
 		// GameRegistry.addShapelessRecipe(ItemStack result, Object... recipe)
 	}
+	public static ItemStack diamondStack = new ItemStack(Items.diamond);
+	public static ItemStack stickStack = new ItemStack(Items.stick);
+	public static ItemStack stringStack = new ItemStack(Items.string);
+
+	public static ItemStack ironingotStack = new ItemStack(Items.iron_ingot);
 }

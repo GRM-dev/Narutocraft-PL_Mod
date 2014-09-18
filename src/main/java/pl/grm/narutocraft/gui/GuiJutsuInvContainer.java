@@ -25,10 +25,13 @@ public class GuiJutsuInvContainer extends GuiContainer {
 	}
 
 	@Override
-	public void drawScreen(int par1, int par2, float par3) {
-		super.drawScreen(par1, par2, par3);
-		this.xSize_lo = par1;
-		this.ySize_lo = par2;
+	protected void drawGuiContainerBackgroundLayer(float par1, int par2,
+			int par3) {
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		this.mc.getTextureManager().bindTexture(iconLocation);
+		int k = (this.width - this.xSize) / 2;
+		int l = (this.height - this.ySize) / 2;
+		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 	}
 
 	@Override
@@ -43,12 +46,9 @@ public class GuiJutsuInvContainer extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-			int par3) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(iconLocation);
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+	public void drawScreen(int par1, int par2, float par3) {
+		super.drawScreen(par1, par2, par3);
+		this.xSize_lo = par1;
+		this.ySize_lo = par2;
 	}
 }

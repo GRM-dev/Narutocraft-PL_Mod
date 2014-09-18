@@ -24,14 +24,41 @@ public class ItemRendererSizeable implements IItemRenderer {
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		return type == ItemRenderType.EQUIPPED
-				|| type == ItemRenderType.EQUIPPED_FIRST_PERSON;
+		return (type == ItemRenderType.EQUIPPED)
+				|| (type == ItemRenderType.EQUIPPED_FIRST_PERSON);
 	}
 
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
-			ItemRendererHelper helper) {
-		return false;
+	private void renderEquippedItem(ItemStack stack, EntityLivingBase entity,
+			boolean firstPerson) {
+		GL11.glPushMatrix();
+		// Proceed to make alterations
+		float f = this.scale == 0 ? 1f : 1 + this.scale;
+		if (firstPerson) {
+			f = this.scale < 0 ? f : 1 + (this.scale / 2);
+		} else {
+			if (this.scale < 0) {
+				if (UtilityNBTHelper.getBoolean(stack, References.ModTag
+						+ "rFlip")) {
+					GL11.glRotatef(-170, 0, 0, 0);
+					GL11.glTranslatef(-0.55F - f, 1.625F * this.scale,
+							0.05F * this.scale);
+				} else {
+					GL11.glTranslatef(1.0F - f, -0.125F * this.scale,
+							0.05F * this.scale);
+				}
+			} else {
+				GL11.glTranslatef(1.0F - f, -0.125F * this.scale,
+						0.05F * this.scale);
+			}
+		}
+		GL11.glScalef(f, f, f);
+
+		IIcon icon = stack.getItem().getIcon(stack, 0);
+		Tessellator tessellator = Tessellator.instance;
+		ItemRenderer.renderItemIn2D(tessellator, icon.getMaxU(),
+				icon.getMinV(), icon.getMinU(), icon.getMaxV(),
+				icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
+		GL11.glPopMatrix();
 	}
 
 	@Override
@@ -47,33 +74,9 @@ public class ItemRendererSizeable implements IItemRenderer {
 		}
 	}
 
-	private void renderEquippedItem(ItemStack stack, EntityLivingBase entity,
-			boolean firstPerson) {
-		GL11.glPushMatrix();
-		// Proceed to make alterations
-		float f = scale == 0 ? 1f : 1 + scale;
-		if (firstPerson) {
-			f = scale < 0 ? f : 1 + (scale / 2);
-		} else {
-			if (scale < 0) {
-				if (UtilityNBTHelper.getBoolean(stack, References.ModTag
-						+ "rFlip")) {
-					GL11.glRotatef(-170, 0, 0, 0);
-					GL11.glTranslatef(-0.55F - f, 1.625F * scale, 0.05F * scale);
-				} else {
-					GL11.glTranslatef(1.0F - f, -0.125F * scale, 0.05F * scale);
-				}
-			} else {
-				GL11.glTranslatef(1.0F - f, -0.125F * scale, 0.05F * scale);
-			}
-		}
-		GL11.glScalef(f, f, f);
-
-		IIcon icon = stack.getItem().getIcon(stack, 0);
-		Tessellator tessellator = Tessellator.instance;
-		ItemRenderer.renderItemIn2D(tessellator, icon.getMaxU(),
-				icon.getMinV(), icon.getMinU(), icon.getMaxV(),
-				icon.getIconWidth(), icon.getIconHeight(), 0.0625F);
-		GL11.glPopMatrix();
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
+			ItemRendererHelper helper) {
+		return false;
 	}
 }

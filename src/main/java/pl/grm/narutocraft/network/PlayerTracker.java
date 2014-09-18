@@ -15,13 +15,106 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 public class PlayerTracker {
+	public static void storeExtendedPlayerForDimensionChange(EntityPlayer player) {
+		if (!storedExtProps_death.containsKey(player.getDisplayName())) {
+			if (storedExtProps_dimension.containsKey(player.getDisplayName())) {
+				storedExtProps_dimension.remove(player.getDisplayName());
+			}
+			NBTTagCompound saveExprop = new NBTTagCompound();
+			ExtendedProperties.For(player).saveNBTData(saveExprop);
+
+			storedExtProps_dimension.put(player.getDisplayName(), saveExprop);
+		}
+		if (!spellKnowledgeStorage_death.containsKey(player.getDisplayName())) {
+			if (jutsuKnowledgeStorage_dimension.containsKey(player
+					.getDisplayName())) {
+				jutsuKnowledgeStorage_dimension.remove(player.getDisplayName());
+			}
+			NBTTagCompound jutsuKnowledge = new NBTTagCompound();
+			// Jutsu.For(player).saveNBTData(jutsuKnowledge);
+
+			jutsuKnowledgeStorage_dimension.put(player.getDisplayName(),
+					jutsuKnowledge);
+		}
+	}
+	public static void storeExtendedPlayerForRespawn(EntityPlayer player) {
+		if (storedExtProps_death.containsKey(player.getDisplayName())) {
+			storedExtProps_death.remove(player.getDisplayName());
+		}
+		NBTTagCompound save = new NBTTagCompound();
+		ExtendedProperties.For(player).saveNBTData(save);
+
+		storedExtProps_death.put(player.getDisplayName(), save);
+
+		NBTTagCompound saveSpellKnowledge = new NBTTagCompound();
+		// Jutsu.For(player).saveNBTData(saveSpellKnowledge);
+
+		spellKnowledgeStorage_death.put(player.getDisplayName(),
+				saveSpellKnowledge);
+	}
+	public static void storeSoulboundItemForRespawn(EntityPlayer player,
+			ItemStack stack) {
+		if (!soulbound_Storage.containsKey(player.getDisplayName())) {
+			return;
+		}
+		HashMap<Integer, ItemStack> soulboundItems = soulbound_Storage
+				.get(player.getDisplayName());
+
+		int slotTest = 0;
+		while (soulboundItems.containsKey(Integer.valueOf(slotTest))) {
+			slotTest++;
+			if (slotTest == player.inventory.mainInventory.length) {
+				slotTest += player.inventory.armorInventory.length;
+			}
+		}
+		soulboundItems.put(Integer.valueOf(slotTest), stack);
+	}
+	public static void storeSoulboundItemsForRespawn(EntityPlayer player) {
+		if (soulbound_Storage.containsKey(player.getDisplayName())) {
+			soulbound_Storage.remove(player.getDisplayName());
+		}
+		HashMap<Integer, ItemStack> soulboundItems = new HashMap();
+
+		int slotCount = 0;
+		// for (ItemStack stack : player.inventory.mainInventory) {
+		// int soulbound_level = EnchantmentHelper.func_77506_a(
+		// NCPLEnchantments.soulbound.effectId, stack);
+		// if (soulbound_level > 0) {
+		// soulboundItems.put(Integer.valueOf(slotCount), stack.copy());
+		// player.inventory.setInventorySlotContents(slotCount, null);
+		// }
+		// slotCount++;
+		// }
+		slotCount = 0;
+		for (ItemStack stack : player.inventory.armorInventory) {
+			// {
+			// int soulbound_level = EnchantmentHelper.getEnchantmentLevel(
+			// NCPLEnchantments.soulbound.effectId, stack);
+			// if ((soulbound_level > 0)
+			// || (ArmorHelper.isInfusionPreset(stack, "soulbound"))) {
+			// soulboundItems.put(
+			// Integer.valueOf(slotCount
+			// + player.inventory.mainInventory.length),
+			// stack.copy());
+			// player.inventory.setInventorySlotContents(slotCount
+			// + player.inventory.mainInventory.length, null);
+			// }
+			// slotCount++;
+			// }
+			soulbound_Storage.put(player.getDisplayName(), soulboundItems);
+		}
+	}
 	public static HashMap<String, NBTTagCompound> storedExtProps_death;
 	public static HashMap<String, NBTTagCompound> spellKnowledgeStorage_death;
 	public static HashMap<String, NBTTagCompound> storedExtProps_dimension;
 	public static HashMap<String, NBTTagCompound> jutsuKnowledgeStorage_dimension;
+
 	public static HashMap<String, HashMap<Integer, ItemStack>> soulbound_Storage;
+
 	private TreeMap<String, Integer> aals;
+
 	private TreeMap<String, String> clls;
+
 	private TreeMap<String, Integer> cldm;
 
 	public PlayerTracker() {
@@ -37,8 +130,62 @@ public class PlayerTracker {
 		this.cldm = new TreeMap();
 	}
 
-	public void postInit() {
-		populateAALList();
+	public int getAAL(EntityPlayer thePlayer) {
+		try {
+			thePlayer.getDisplayName();
+		} catch (Throwable t) {
+			return 0;
+		}
+		if ((this.aals == null) || (this.clls == null)) {
+			populateAALList();
+		}
+		if (this.aals.containsKey(thePlayer.getDisplayName().toLowerCase())) {
+			return this.aals.get(thePlayer.getDisplayName().toLowerCase())
+					.intValue();
+		}
+		return 0;
+	}
+
+	public int getCLDM(String userName) {
+		return this.cldm.get(userName.toLowerCase()).intValue();
+	}
+
+	public String getCLF(String userName) {
+		return this.clls.get(userName.toLowerCase());
+	}
+
+	public boolean hasAA(EntityPlayer entity) {
+		return getAAL(entity) > 0;
+	}
+	public boolean hasCLDM(String userName) {
+		return this.cldm.containsKey(userName.toLowerCase());
+	}
+
+	public boolean hasCLS(String userName) {
+		return this.clls.containsKey(userName.toLowerCase());
+	}
+
+	@SubscribeEvent
+	public void onPlayerChangedDimension(
+			PlayerEvent.PlayerChangedDimensionEvent event) {
+		if (!event.player.worldObj.isRemote) {
+			storeExtendedPlayerForDimensionChange(event.player);
+			List list = event.player.worldObj.loadedEntityList;
+			// for (Object o : list) {
+			// if (((o instanceof EntityLivingBase))
+			// && (EntityUtilities.isSummon((EntityLivingBase) o))
+			// && (EntityUtilities.getOwner((EntityLivingBase) o) ==
+			// event.player
+			// .getEntityId())) {
+			// ((EntityLivingBase) o).setDead();
+			// }
+			// }
+		}
+	}
+
+	public void onPlayerDeath(EntityPlayer player) {
+		storeExtendedPlayerForRespawn(player);
+		storeSoulboundItemsForRespawn(player);
 	}
 
 	@SubscribeEvent
@@ -64,24 +211,6 @@ public class PlayerTracker {
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
 		if (!event.player.worldObj.isRemote) {
-			List list = event.player.worldObj.loadedEntityList;
-			// for (Object o : list) {
-			// if (((o instanceof EntityLivingBase))
-			// && (EntityUtilities.isSummon((EntityLivingBase) o))
-			// && (EntityUtilities.getOwner((EntityLivingBase) o) ==
-			// event.player
-			// .getEntityId())) {
-			// ((EntityLivingBase) o).setDead();
-			// }
-			// }
-		}
-	}
-
-	@SubscribeEvent
-	public void onPlayerChangedDimension(
-			PlayerEvent.PlayerChangedDimensionEvent event) {
-		if (!event.player.worldObj.isRemote) {
-			storeExtendedPlayerForDimensionChange(event.player);
 			List list = event.player.worldObj.loadedEntityList;
 			// for (Object o : list) {
 			// if (((o instanceof EntityLivingBase))
@@ -142,122 +271,6 @@ public class PlayerTracker {
 		}
 	}
 
-	public void onPlayerDeath(EntityPlayer player) {
-		storeExtendedPlayerForRespawn(player);
-		storeSoulboundItemsForRespawn(player);
-	}
-
-	public static void storeExtendedPlayerForRespawn(EntityPlayer player) {
-		if (storedExtProps_death.containsKey(player.getDisplayName())) {
-			storedExtProps_death.remove(player.getDisplayName());
-		}
-		NBTTagCompound save = new NBTTagCompound();
-		ExtendedProperties.For(player).saveNBTData(save);
-
-		storedExtProps_death.put(player.getDisplayName(), save);
-
-		NBTTagCompound saveSpellKnowledge = new NBTTagCompound();
-		// Jutsu.For(player).saveNBTData(saveSpellKnowledge);
-
-		spellKnowledgeStorage_death.put(player.getDisplayName(),
-				saveSpellKnowledge);
-	}
-
-	public static void storeSoulboundItemsForRespawn(EntityPlayer player) {
-		if (soulbound_Storage.containsKey(player.getDisplayName())) {
-			soulbound_Storage.remove(player.getDisplayName());
-		}
-		HashMap<Integer, ItemStack> soulboundItems = new HashMap();
-
-		int slotCount = 0;
-		// for (ItemStack stack : player.inventory.mainInventory) {
-		// int soulbound_level = EnchantmentHelper.func_77506_a(
-		// NCPLEnchantments.soulbound.effectId, stack);
-		// if (soulbound_level > 0) {
-		// soulboundItems.put(Integer.valueOf(slotCount), stack.copy());
-		// player.inventory.setInventorySlotContents(slotCount, null);
-		// }
-		// slotCount++;
-		// }
-		slotCount = 0;
-		for (ItemStack stack : player.inventory.armorInventory)
-			// {
-			// int soulbound_level = EnchantmentHelper.getEnchantmentLevel(
-			// NCPLEnchantments.soulbound.effectId, stack);
-			// if ((soulbound_level > 0)
-			// || (ArmorHelper.isInfusionPreset(stack, "soulbound"))) {
-			// soulboundItems.put(
-			// Integer.valueOf(slotCount
-			// + player.inventory.mainInventory.length),
-			// stack.copy());
-			// player.inventory.setInventorySlotContents(slotCount
-			// + player.inventory.mainInventory.length, null);
-			// }
-			// slotCount++;
-			// }
-			soulbound_Storage.put(player.getDisplayName(), soulboundItems);
-	}
-	public static void storeExtendedPlayerForDimensionChange(EntityPlayer player) {
-		if (!storedExtProps_death.containsKey(player.getDisplayName())) {
-			if (storedExtProps_dimension.containsKey(player.getDisplayName())) {
-				storedExtProps_dimension.remove(player.getDisplayName());
-			}
-			NBTTagCompound saveExprop = new NBTTagCompound();
-			ExtendedProperties.For(player).saveNBTData(saveExprop);
-
-			storedExtProps_dimension.put(player.getDisplayName(), saveExprop);
-		}
-		if (!spellKnowledgeStorage_death.containsKey(player.getDisplayName())) {
-			if (jutsuKnowledgeStorage_dimension.containsKey(player
-					.getDisplayName())) {
-				jutsuKnowledgeStorage_dimension.remove(player.getDisplayName());
-			}
-			NBTTagCompound jutsuKnowledge = new NBTTagCompound();
-			// Jutsu.For(player).saveNBTData(jutsuKnowledge);
-
-			jutsuKnowledgeStorage_dimension.put(player.getDisplayName(),
-					jutsuKnowledge);
-		}
-	}
-
-	public static void storeSoulboundItemForRespawn(EntityPlayer player,
-			ItemStack stack) {
-		if (!soulbound_Storage.containsKey(player.getDisplayName())) {
-			return;
-		}
-		HashMap<Integer, ItemStack> soulboundItems = soulbound_Storage
-				.get(player.getDisplayName());
-
-		int slotTest = 0;
-		while (soulboundItems.containsKey(Integer.valueOf(slotTest))) {
-			slotTest++;
-			if (slotTest == player.inventory.mainInventory.length) {
-				slotTest += player.inventory.armorInventory.length;
-			}
-		}
-		soulboundItems.put(Integer.valueOf(slotTest), stack);
-	}
-
-	public boolean hasAA(EntityPlayer entity) {
-		return getAAL(entity) > 0;
-	}
-
-	public int getAAL(EntityPlayer thePlayer) {
-		try {
-			thePlayer.getDisplayName();
-		} catch (Throwable t) {
-			return 0;
-		}
-		if ((this.aals == null) || (this.clls == null)) {
-			populateAALList();
-		}
-		if (this.aals.containsKey(thePlayer.getDisplayName().toLowerCase())) {
-			return this.aals.get(thePlayer.getDisplayName().toLowerCase())
-					.intValue();
-		}
-		return 0;
-	}
-
 	private void populateAALList() {
 		this.aals = new TreeMap();
 		this.clls = new TreeMap();
@@ -296,19 +309,7 @@ public class PlayerTracker {
 		}
 	}
 
-	public String getCLF(String userName) {
-		return this.clls.get(userName.toLowerCase());
-	}
-
-	public boolean hasCLS(String userName) {
-		return this.clls.containsKey(userName.toLowerCase());
-	}
-
-	public boolean hasCLDM(String userName) {
-		return this.cldm.containsKey(userName.toLowerCase());
-	}
-
-	public int getCLDM(String userName) {
-		return this.cldm.get(userName.toLowerCase()).intValue();
+	public void postInit() {
+		populateAALList();
 	}
 }

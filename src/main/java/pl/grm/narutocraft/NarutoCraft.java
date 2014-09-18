@@ -9,7 +9,6 @@ import pl.grm.narutocraft.handlers.JutsuEventsHandler;
 import pl.grm.narutocraft.handlers.KeyInputHandler;
 import pl.grm.narutocraft.handlers.NCPLEventHandler;
 import pl.grm.narutocraft.handlers.NCPLFMLEventHandler;
-import pl.grm.narutocraft.libs.ProxyCommon;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import pl.grm.narutocraft.network.PacketExample;
@@ -56,24 +55,17 @@ public class NarutoCraft {
 	public static SimpleNetworkWrapper netHandler;
 	private int packetId = 0;
 
-	/** preInit */
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
-
-		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
-				PacketExample.class, packetId++, Side.SERVER);
-		// Register Ninja Stat Handling packets
-		netHandler.registerMessage(
-				PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
-				PacketNinjaStatsRequest.class, packetId++, Side.SERVER);
-		netHandler.registerMessage(
-				PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
-				PacketNinjaStatsResponse.class, packetId++, Side.CLIENT);
-
-		proxy.registerRendering();
-		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
-		config.readConfig();
+	/**
+	 * Constructor to Registry Lists of mod elements
+	 */
+	public NarutoCraft() {
+		RegMobs.regMobsList();
+		RegBlocks.regBlocksList();
+		RegItems.regItemsList();
+		RegWeapons.regWeaponsList();
+		RegArmor.regArmorList();
+		RegJutsus.regPowersList();
+		RegRecipes.regRecipesList();
 	}
 
 	/** Init */
@@ -96,16 +88,23 @@ public class NarutoCraft {
 		proxy.registerRenderThings();
 	}
 
-	/**
-	 * Constructor to Registry Lists of mod elements
-	 */
-	public NarutoCraft() {
-		RegMobs.regMobsList();
-		RegBlocks.regBlocksList();
-		RegItems.regItemsList();
-		RegWeapons.regWeaponsList();
-		RegArmor.regArmorList();
-		RegJutsus.regPowersList();
-		RegRecipes.regRecipesList();
+	/** preInit */
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
+
+		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
+				PacketExample.class, this.packetId++, Side.SERVER);
+		// Register Ninja Stat Handling packets
+		netHandler.registerMessage(
+				PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
+				PacketNinjaStatsRequest.class, this.packetId++, Side.SERVER);
+		netHandler.registerMessage(
+				PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
+				PacketNinjaStatsResponse.class, this.packetId++, Side.CLIENT);
+
+		proxy.registerRendering();
+		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
+		config.readConfig();
 	}
 }

@@ -9,9 +9,6 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 
 public class WebUtils {
-	private static final String charset = "UTF-8";
-	private static final String USER_AGENT = "Mozilla/5.0";
-
 	public static String sendPost(String webURL,
 			HashMap<String, String> postOptions) throws Exception {
 		URL obj = new URL(webURL);
@@ -55,4 +52,7 @@ public class WebUtils {
 
 		return response.toString();
 	}
+	private static final String charset = "UTF-8";
+
+	private static final String USER_AGENT = "Mozilla/5.0";
 }

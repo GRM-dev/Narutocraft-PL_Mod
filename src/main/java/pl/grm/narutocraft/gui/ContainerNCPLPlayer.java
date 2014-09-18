@@ -21,20 +21,20 @@ public class ContainerNCPLPlayer extends Container {
 		int i, x = 44, y = 6;
 		this.ji = inventoryCustom;
 		for (int k = 0; k < JutsuInv.INV_SIZE; k++) {
-			this.addSlotToContainer(new JutsuSlot(ji, k, x + k * 18, y));
+			this.addSlotToContainer(new JutsuSlot(this.ji, k, x + (k * 18), y));
 		}
 
 		// Adds PLAYER INVENTORY
 		for (i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
-				this.addSlotToContainer(new Slot(inventoryPlayer,
-						j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+				this.addSlotToContainer(new Slot(inventoryPlayer, j + (i * 9)
+						+ 9, 8 + (j * 18), 84 + (i * 18)));
 			}
 		}
 
 		// Adds ACTION BAR
 		for (i = 0; i < 9; ++i) {
-			this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18,
+			this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + (i * 18),
 					142));
 		}
 	}
@@ -54,7 +54,7 @@ public class ContainerNCPLPlayer extends Container {
 	public ItemStack transferStackInSlot(EntityPlayer player, int par2) {
 		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(par2);
-		if (slot != null && slot.getHasStack()) {
+		if ((slot != null) && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 			if (par2 < INV_START) {
@@ -81,7 +81,7 @@ public class ContainerNCPLPlayer extends Container {
 					}
 				}
 				// item in player's inventory
-				else if (par2 >= INV_START && par2 < HOTBAR_START) {
+				else if ((par2 >= INV_START) && (par2 < HOTBAR_START)) {
 					// place in action bar
 					if (!this.mergeItemStack(itemstack1, HOTBAR_START,
 							HOTBAR_START + 1, false)) {
@@ -89,7 +89,7 @@ public class ContainerNCPLPlayer extends Container {
 					}
 				}
 				// item in action bar
-				else if (par2 >= HOTBAR_START && par2 < HOTBAR_END + 1) {
+				else if ((par2 >= HOTBAR_START) && (par2 < (HOTBAR_END + 1))) {
 					if (!this.mergeItemStack(itemstack1, INV_START,
 							INV_END + 1, false)) {
 						return null;

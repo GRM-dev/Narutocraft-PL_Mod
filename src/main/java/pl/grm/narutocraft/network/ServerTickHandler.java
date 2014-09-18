@@ -15,6 +15,19 @@ public class ServerTickHandler {
 	public static HashMap<EntityLiving, EntityLivingBase> targetsToSet = new HashMap<EntityLiving, EntityLivingBase>();
 	public static String lastWorldName;
 
+	public void addDeferredTarget(EntityLiving ent, EntityLivingBase target) {
+		targetsToSet.put(ent, target);
+	}
+
+	public void blackoutArmorPiece(EntityPlayerMP player, int slot, int cooldown) {
+		NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 9,
+				new DataWriter().add(slot).add(cooldown).generate());
+	}
+
+	private void gameTick_End() {
+
+	}
+
 	private void gameTick_Start() {
 		if (MinecraftServer.getServer().getFolderName() != lastWorldName) {
 			lastWorldName = MinecraftServer.getServer().getFolderName();
@@ -24,10 +37,6 @@ public class ServerTickHandler {
 			this.firstTick = false;
 		}
 		// NarutoCraft.proxy.itemFrameWatcher.checkWatchedFrames();
-	}
-
-	private void gameTick_End() {
-
 	}
 
 	@SubscribeEvent
@@ -42,14 +51,5 @@ public class ServerTickHandler {
 	@SubscribeEvent
 	public void onWorldTick(TickEvent.WorldTickEvent event) {
 
-	}
-
-	public void addDeferredTarget(EntityLiving ent, EntityLivingBase target) {
-		targetsToSet.put(ent, target);
-	}
-
-	public void blackoutArmorPiece(EntityPlayerMP player, int slot, int cooldown) {
-		NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 9,
-				new DataWriter().add(slot).add(cooldown).generate());
 	}
 }

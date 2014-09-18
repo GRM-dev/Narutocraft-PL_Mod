@@ -1,9 +1,32 @@
 package pl.grm.narutocraft.registry;
 
 import net.minecraft.item.ItemArmor;
-import pl.grm.narutocraft.armor.NCPLItemArmor;
+import pl.grm.narutocraft.items.armor.NCPLItemArmor;
 
 public class RegArmor extends RegItems {
+	public static void regArmorList() {
+		registerItem(helmetBushido, "HelmetBushido");
+		registerItem(plateBushido, "PlateBushido");
+		registerItem(legsBushido, "LegsBushido");
+		registerItem(bootsBushido, "BootsBushido");
+		registerItem(helmetAnbu1, "HelmetAnbu");
+		registerItem(helmetAnbu2, "HelmetAnbu2");
+		registerItem(helmetAnbu3, "HelmetAnbu3");
+		registerItem(helmetAnbu4, "HelmetAnbu4");
+		registerItem(plateAnbu, "PlateAnbu");
+		registerItem(legsAnbu, "LegsAnbu");
+		registerItem(bootsAnbu, "BootsAnbu");
+		registerItem(plateKiri, "PlateKiri");
+		registerItem(legsKiri, "LegsKiri");
+		registerItem(plateSuna, "PlateSuna");
+		registerItem(legsSuna, "LegsSuna");
+		registerItem(helmetAkatsuki, "HelmetAkatsuki");
+		registerItem(plateAkatsuki, "PlateAkatsuki");
+		registerItem(plateAkatsuki2, "PlateAkatsuki2");
+		registerItem(plateAkatsuki3, "PlateAkatsuki3");
+		registerItem(legsAkatsuki, "LegsAkatsuki");
+		registerItem(bootsAkatsuki, "BootsAkatsuki");
+	}
 	public static final ItemArmor helmetBushido = (ItemArmor) (new NCPLItemArmor(
 			Bushido, 4, 0, "Test", "BushidoArmor"))
 			.setUnlocalizedName("helmetBushido");
@@ -48,30 +71,7 @@ public class RegArmor extends RegItems {
 			Akatsuki, 4, 1)).setUnlocalizedName("plateAkatsuki3");
 	public static final ItemArmor legsAkatsuki = (ItemArmor) (new NCPLItemArmor(
 			Akatsuki, 4, 2)).setUnlocalizedName("legginsAkatsuki");
+
 	public static final ItemArmor bootsAkatsuki = (ItemArmor) (new NCPLItemArmor(
 			Akatsuki, 4, 3)).setUnlocalizedName("bootsAkatsuki");
-
-	public static void regArmorList() {
-		registerItem(helmetBushido, "HelmetBushido");
-		registerItem(plateBushido, "PlateBushido");
-		registerItem(legsBushido, "LegsBushido");
-		registerItem(bootsBushido, "BootsBushido");
-		registerItem(helmetAnbu1, "HelmetAnbu");
-		registerItem(helmetAnbu2, "HelmetAnbu2");
-		registerItem(helmetAnbu3, "HelmetAnbu3");
-		registerItem(helmetAnbu4, "HelmetAnbu4");
-		registerItem(plateAnbu, "PlateAnbu");
-		registerItem(legsAnbu, "LegsAnbu");
-		registerItem(bootsAnbu, "BootsAnbu");
-		registerItem(plateKiri, "PlateKiri");
-		registerItem(legsKiri, "LegsKiri");
-		registerItem(plateSuna, "PlateSuna");
-		registerItem(legsSuna, "LegsSuna");
-		registerItem(helmetAkatsuki, "HelmetAkatsuki");
-		registerItem(plateAkatsuki, "PlateAkatsuki");
-		registerItem(plateAkatsuki2, "PlateAkatsuki2");
-		registerItem(plateAkatsuki3, "PlateAkatsuki3");
-		registerItem(legsAkatsuki, "LegsAkatsuki");
-		registerItem(bootsAkatsuki, "BootsAkatsuki");
-	}
 }

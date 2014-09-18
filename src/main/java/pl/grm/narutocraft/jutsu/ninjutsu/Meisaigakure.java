@@ -2,6 +2,7 @@ package pl.grm.narutocraft.jutsu.ninjutsu;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
@@ -24,6 +25,12 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	}
 
 	@Override
+	public void activateJutsu() {
+		this.player.addPotionEffect(new PotionEffect(10, 10));
+		this.setPotionEffect("Invisible");
+	}
+
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
 		this.stack = stack;
@@ -34,11 +41,5 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 			this.activateJutsu();
 		}
 		return stack;
-	}
-
-	@Override
-	public void activateJutsu() {
-
-		setPotionEffect("Invisible");
 	}
 }

@@ -10,7 +10,7 @@ public class RZwoj extends Item {
 		this.setUnlocalizedName("RZwoj");
 		this.setTextureName(References.ModTexturePath + "Zwoj Raiton");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
-		maxStackSize = 64;
+		this.maxStackSize = 64;
 	}
 
 }
