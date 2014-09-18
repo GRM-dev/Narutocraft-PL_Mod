@@ -1,7 +1,5 @@
 package pl.grm.narutocraft.jutsu.bukijutsu;
 
-import java.util.Map;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -24,20 +22,11 @@ public class Iaido extends Jutsu implements IJutsu {
 
 	}
 	@Override
-	public int getDurationPass() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
 	public int getJutsuID() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	@Override
-	public Map<Integer, IJutsu> getJutsuProps() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	@Override
 	public int getTotalDuration() {
 		// TODO Auto-generated method stub
