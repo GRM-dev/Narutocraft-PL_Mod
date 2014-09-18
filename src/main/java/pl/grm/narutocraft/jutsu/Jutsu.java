@@ -50,6 +50,7 @@ public class Jutsu extends Item implements IJutsu {
 	private boolean activated;
 	private int[] jutsuProps;
 	private int[] jutsuLine;
+	private int totalDuration, passDuration;
 
 	@Override
 	public void activateJutsu() {
@@ -122,7 +123,7 @@ public class Jutsu extends Item implements IJutsu {
 	 *            The X Position
 	 * @param player
 	 *            The Player that is wielding the item
-	 * @return
+	 * @return false
 	 */
 	@Override
 	public boolean doesSneakBypassUse(World world, int x, int y, int z,
@@ -547,8 +548,8 @@ public class Jutsu extends Item implements IJutsu {
 
 	@Override
 	public void jutsuEnd() {
-		// TODO Auto-generated method stub
 
+		this.setActive(false);
 	}
 
 	@Override
@@ -644,8 +645,11 @@ public class Jutsu extends Item implements IJutsu {
 
 	@Override
 	public void onJutsuUpdate() {
-		// TODO Auto-generated method stub
-
+		this.passDuration++;
+		this.updateJutsuProperties();
+		if (passDuration > totalDuration) {
+			this.jutsuEnd();
+		}
 	}
 
 	/**
@@ -665,6 +669,26 @@ public class Jutsu extends Item implements IJutsu {
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player,
 			Entity entity) {
 		return false;
+	}
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+
+	public int getChackraConsumption() {
+		return chackraConsumption;
+	}
+
+	public int getTotalDuration() {
+		return totalDuration;
+	}
+
+	public int getPassDuration() {
+		return passDuration;
 	}
 
 	@Override
@@ -696,8 +720,7 @@ public class Jutsu extends Item implements IJutsu {
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = compound.getTagList("JutsuManager",
 				compound.getId());
-		int[] elem;
-		this.activeJutsus = ExtendedProperties.activeJutsus;
+
 		int jCount = jutsus.tagCount();
 		System.out.println("JCount: " + jCount);
 		if (jCount > 0) {
@@ -706,6 +729,7 @@ public class Jutsu extends Item implements IJutsu {
 				this.activeJutsus.add(jutsu.getIntArray("Jutsu" + i));
 			}
 		}
+		ExtendedProperties.activeJutsus = activeJutsus;
 	}
 
 	@Override
@@ -777,15 +801,6 @@ public class Jutsu extends Item implements IJutsu {
 		return this;
 	}
 
-	/**
-	 * Set the damage for this itemstack. Note, this method is responsible for
-	 * zero checking.
-	 *
-	 * @param stack
-	 *            the stack
-	 * @param damage
-	 *            the new damage value
-	 */
 	@Override
 	public Item setTextureName(String par1Str) {
 		this.iconString = par1Str;
@@ -803,10 +818,15 @@ public class Jutsu extends Item implements IJutsu {
 	public boolean shouldRotateAroundWhenRendering() {
 		return false;
 	}
+
 	@Override
 	public void updateJutsuProperties() {
-		// TODO Auto-generated method stub
+		this.jutsuProps[0] = jutsuID;
+		this.jutsuProps[1] = totalDuration;
+		this.jutsuProps[2] = passDuration;
+		this.jutsuProps[3] = chackraConsumption;
 	}
+
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList jutsuList = new NBTTagList();

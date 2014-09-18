@@ -16,8 +16,8 @@ public class SkillTreeManager {
 	private final ArrayList<SkillTreeEntry> genjutsuTree = new ArrayList<SkillTreeEntry>();
 	private final ArrayList<SkillTreeEntry> fuuinjutsuTree = new ArrayList<SkillTreeEntry>();
 	private final ArrayList<SkillTreeEntry> taijutsuTree = new ArrayList<SkillTreeEntry>();
-	private final ArrayList<SkillTreeEntry> kanjutsuTree = new ArrayList<SkillTreeEntry>();
-	private final ArrayList<SkillTreeEntry> soshijutsuTree = new ArrayList<SkillTreeEntry>();
+	private final ArrayList<SkillTreeEntry> bukijutsuTree = new ArrayList<SkillTreeEntry>();
+	private final ArrayList<SkillTreeEntry> iryojutsuTree = new ArrayList<SkillTreeEntry>();
 
 	private final HashMap<Integer, TreePointTypes> skillPointTypeList;
 	private int highestSkillDepth = 0;
@@ -32,13 +32,16 @@ public class SkillTreeManager {
 	}
 
 	private void calculateHighestOverallTier() {
-		int offense = calculateHighestTier(this.ninjutsuTree);
-		int defense = calculateHighestTier(this.genjutsuTree);
-		int utility = calculateHighestTier(this.fuuinjutsuTree);
+		int ninjutsu = calculateHighestTier(this.ninjutsuTree);
+		int genjutsu = calculateHighestTier(this.genjutsuTree);
+		int fuuinjutsu = calculateHighestTier(this.fuuinjutsuTree);
+		int taijutsu = calculateHighestTier(this.taijutsuTree);
+		int bukijutsu = calculateHighestTier(this.bukijutsuTree);
+		int iryojutsu = calculateHighestTier(this.iryojutsuTree);
 
-		this.highestSkillDepth = Math.max(offense, Math.max(defense, utility));
+		this.highestSkillDepth = Math.max(ninjutsu,
+				Math.max(genjutsu, fuuinjutsu));
 	}
-
 	private int calculateHighestTier(ArrayList<SkillTreeEntry> tree) {
 		int highest = 0;
 		for (SkillTreeEntry entry : tree) {
@@ -145,6 +148,8 @@ public class SkillTreeManager {
 				break;
 			case 4 :
 				this.safeCopy.addAll(this.taijutsuTree);
+			default :
+				break;
 		}
 		return this.safeCopy;
 	}
@@ -690,11 +695,11 @@ public class SkillTreeManager {
 								? this.fuuinjutsuTree
 								: tree == SkillTrees.TAIJUTSU
 										? this.taijutsuTree
-										: tree == SkillTrees.KANJUTSU
-												? this.kanjutsuTree
-												: tree == SkillTrees.KANJUTSU
-														? this.kanjutsuTree
-														: this.soshijutsuTree;
+										: tree == SkillTrees.BUKIJUTSU
+												? this.bukijutsuTree
+												: tree == SkillTrees.BUKIJUTSU
+														? this.bukijutsuTree
+														: this.iryojutsuTree;
 
 		this.locatedPrerequisites = new ArrayList<SkillTreeEntry>();
 		if ((prerequisites != null) && (prerequisites.length > 0)) {

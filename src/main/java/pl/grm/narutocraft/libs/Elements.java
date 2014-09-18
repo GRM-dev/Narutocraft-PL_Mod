@@ -10,6 +10,9 @@ public enum Elements {
 			new Color(0x00FF80)), RAITON(3, new Color(0xFFFF00)), DOTON(4,
 			new Color(0xFF8000)), SUITON(5, new Color(0x0080FF));
 
+	private int ID;
+	private Color color;
+
 	/**
 	 * Gets element by ID [1-5]
 	 *
@@ -24,6 +27,7 @@ public enum Elements {
 		}
 		return NONE;
 	}
+
 	/**
 	 * Gets Ordered Elements.
 	 *
@@ -32,10 +36,6 @@ public enum Elements {
 	public static Elements[] getOrderedElements() {
 		return new Elements[]{KATON, FUUTON, RAITON, DOTON, SUITON};
 	}
-
-	private int ID;
-
-	private Color color;
 
 	private Elements(int ID, Color color) {
 		this.ID = ID;
@@ -53,16 +53,14 @@ public enum Elements {
 	public Elements getStrongerElement() {
 		if (this.getID() == 5) {
 			return Elements.getById(1);
-		} else {
-			return Elements.getById(this.ID++);
 		}
+		return Elements.getById(this.ID++);
 	}
 
 	public Elements getWeakerElement() {
 		if (this.getID() == 1) {
 			return Elements.getById(5);
-		} else {
-			return Elements.getById(this.ID--);
 		}
+		return Elements.getById(this.ID--);
 	}
 }

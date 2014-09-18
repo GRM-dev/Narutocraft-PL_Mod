@@ -55,17 +55,11 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	private float AuraAlpha;
 	private boolean AuraColorRandomize = true;
 	private boolean AuraColorDefault = true;
-
 	private int AuraColor;
-
 	private int AuraQuantity;
-
 	private float AuraSpeed;
-
 	public float TK_Distance = 8.0F;
-
 	public static final int CHAKRA_WATCHER = 20;
-
 	public static List<int[]> activeJutsus = new ArrayList<int[]>();
 
 	public ExtendedProperties(EntityPlayer player) {
@@ -175,7 +169,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		// Save stats
 		/*
 		 * NBTTagList stats = new NBTTagList();
-		 *
+		 * 
 		 * for (int i = 0; i < psa.getValues().length; ++i) { NBTTagCompound
 		 * stat = new NBTTagCompound(); stat.setInteger("psaStat" + i,
 		 * psa.getValues()[i]); stats.appendTag(stat); }

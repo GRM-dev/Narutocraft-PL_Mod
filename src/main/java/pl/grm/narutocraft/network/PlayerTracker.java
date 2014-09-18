@@ -37,6 +37,7 @@ public class PlayerTracker {
 					jutsuKnowledge);
 		}
 	}
+
 	public static void storeExtendedPlayerForRespawn(EntityPlayer player) {
 		if (storedExtProps_death.containsKey(player.getDisplayName())) {
 			storedExtProps_death.remove(player.getDisplayName());
@@ -52,6 +53,7 @@ public class PlayerTracker {
 		spellKnowledgeStorage_death.put(player.getDisplayName(),
 				saveSpellKnowledge);
 	}
+
 	public static void storeSoulboundItemForRespawn(EntityPlayer player,
 			ItemStack stack) {
 		if (!soulbound_Storage.containsKey(player.getDisplayName())) {
@@ -69,11 +71,12 @@ public class PlayerTracker {
 		}
 		soulboundItems.put(Integer.valueOf(slotTest), stack);
 	}
+
 	public static void storeSoulboundItemsForRespawn(EntityPlayer player) {
 		if (soulbound_Storage.containsKey(player.getDisplayName())) {
 			soulbound_Storage.remove(player.getDisplayName());
 		}
-		HashMap<Integer, ItemStack> soulboundItems = new HashMap();
+		HashMap<Integer, ItemStack> soulboundItems = new HashMap<Integer, ItemStack>();
 
 		int slotCount = 0;
 		// for (ItemStack stack : player.inventory.mainInventory) {
@@ -108,26 +111,22 @@ public class PlayerTracker {
 	public static HashMap<String, NBTTagCompound> spellKnowledgeStorage_death;
 	public static HashMap<String, NBTTagCompound> storedExtProps_dimension;
 	public static HashMap<String, NBTTagCompound> jutsuKnowledgeStorage_dimension;
-
 	public static HashMap<String, HashMap<Integer, ItemStack>> soulbound_Storage;
-
 	private TreeMap<String, Integer> aals;
-
 	private TreeMap<String, String> clls;
-
 	private TreeMap<String, Integer> cldm;
 
 	public PlayerTracker() {
-		storedExtProps_death = new HashMap();
-		storedExtProps_dimension = new HashMap();
-		spellKnowledgeStorage_death = new HashMap();
-		jutsuKnowledgeStorage_dimension = new HashMap();
+		storedExtProps_death = new HashMap<String, NBTTagCompound>();
+		storedExtProps_dimension = new HashMap<String, NBTTagCompound>();
+		spellKnowledgeStorage_death = new HashMap<String, NBTTagCompound>();
+		jutsuKnowledgeStorage_dimension = new HashMap<String, NBTTagCompound>();
 
-		soulbound_Storage = new HashMap();
+		soulbound_Storage = new HashMap<String, HashMap<Integer, ItemStack>>();
 
-		this.aals = new TreeMap();
-		this.clls = new TreeMap();
-		this.cldm = new TreeMap();
+		this.aals = new TreeMap<String, Integer>();
+		this.clls = new TreeMap<String, String>();
+		this.cldm = new TreeMap<String, Integer>();
 	}
 
 	public int getAAL(EntityPlayer thePlayer) {
@@ -157,6 +156,7 @@ public class PlayerTracker {
 	public boolean hasAA(EntityPlayer entity) {
 		return getAAL(entity) > 0;
 	}
+
 	public boolean hasCLDM(String userName) {
 		return this.cldm.containsKey(userName.toLowerCase());
 	}
@@ -170,7 +170,7 @@ public class PlayerTracker {
 			PlayerEvent.PlayerChangedDimensionEvent event) {
 		if (!event.player.worldObj.isRemote) {
 			storeExtendedPlayerForDimensionChange(event.player);
-			List list = event.player.worldObj.loadedEntityList;
+			List<?> list = event.player.worldObj.loadedEntityList;
 			// for (Object o : list) {
 			// if (((o instanceof EntityLivingBase))
 			// && (EntityUtilities.isSummon((EntityLivingBase) o))
@@ -211,7 +211,7 @@ public class PlayerTracker {
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
 		if (!event.player.worldObj.isRemote) {
-			List list = event.player.worldObj.loadedEntityList;
+			List<?> list = event.player.worldObj.loadedEntityList;
 			// for (Object o : list) {
 			// if (((o instanceof EntityLivingBase))
 			// && (EntityUtilities.isSummon((EntityLivingBase) o))
@@ -272,9 +272,9 @@ public class PlayerTracker {
 	}
 
 	private void populateAALList() {
-		this.aals = new TreeMap();
-		this.clls = new TreeMap();
-		this.cldm = new TreeMap();
+		this.aals = new TreeMap<String, Integer>();
+		this.clls = new TreeMap<String, String>();
+		this.cldm = new TreeMap<String, Integer>();
 
 		char[] dl = {'h', 't', 't', 'p', ':', '/', '/', 'a', 'r', 'c', 'a',
 				'n', 'a', 'c', 'r', 'a', 'f', 't', '.', 'q', 'o', 'r', 'c',
@@ -282,7 +282,8 @@ public class PlayerTracker {
 				'c', '/', 'D', 'G', 'S', 'V', 'N', 'T', '3', '5', '2', '.',
 				't', 'x', 't'};
 		try {
-			String s = WebUtils.sendPost(new String(dl), new HashMap());
+			String s = WebUtils.sendPost(new String(dl),
+					new HashMap<String, String>());
 			String[] lines = s.replace("\r\n", "\n").split("\n");
 			for (String line : lines) {
 				if (line.startsWith(":AL")) {
