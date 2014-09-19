@@ -9,7 +9,7 @@ public class ShunshinNoJutsu extends Jutsu {
 
 	public ShunshinNoJutsu() {
 		this.setUnlocalizedName("SNoJutsu");
-		this.setTextureName(jutsuLoc + "NoJutsu");
+		this.setTextureName(textureLoc + "NoJutsu");
 	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,

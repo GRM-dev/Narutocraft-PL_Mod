@@ -6,12 +6,9 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuList;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 
 public class Meisaigakure extends Jutsu implements IJutsu {
-	private ItemStack stack;
-	private World world;
-	private EntityPlayer player;
 	private int chackraConsumption = 5;
 	private boolean active = false;
 	private int jutsuID;
@@ -19,27 +16,20 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	private int passDuration;
 
 	public Meisaigakure() {
-		this.setUnlocalizedName("Meisaigakure");
-		this.setTextureName(jutsuLoc + "Meisaigakure");
-		this.jutsuID = JutsuList.MEISAIGAKURE.getID();
+		super(JutsuEnum.MEISAIGAKURE);
 	}
 
 	@Override
 	public void activateJutsu() {
+		super.activateJutsu();
 		this.player.addPotionEffect(new PotionEffect(10, 10));
 		this.setPotionEffect("Invisible");
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		this.stack = stack;
-		this.world = world;
-		this.player = player;
-
-		if (!world.isRemote) {
-			this.activateJutsu();
-		}
-		return stack;
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+			EntityPlayer par3EntityPlayer) {
+		return super.onItemRightClick(par1ItemStack, par2World,
+				par3EntityPlayer);
 	}
 }

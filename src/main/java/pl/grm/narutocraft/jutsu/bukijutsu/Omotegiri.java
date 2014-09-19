@@ -10,7 +10,7 @@ public class Omotegiri extends Jutsu implements IJutsu {
 
 	public Omotegiri() {
 		this.setUnlocalizedName("Omotegiri");
-		this.setTextureName(jutsuLoc + "Omotegiri");
+		this.setTextureName(textureLoc + "Omotegiri");
 	}
 	@Override
 	public void activateJutsu() {

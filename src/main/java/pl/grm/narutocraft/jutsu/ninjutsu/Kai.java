@@ -10,7 +10,7 @@ public class Kai extends Jutsu implements IJutsu {
 
 	public Kai() {
 		this.setUnlocalizedName("Kai");
-		this.setTextureName(jutsuLoc + "Kai");
+		this.setTextureName(textureLoc + "Kai");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

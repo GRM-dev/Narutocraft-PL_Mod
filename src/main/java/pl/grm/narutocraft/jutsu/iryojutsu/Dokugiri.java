@@ -10,7 +10,7 @@ public class Dokugiri extends Jutsu implements IJutsu {
 
 	public Dokugiri() {
 		this.setUnlocalizedName("Dokugiri");
-		this.setTextureName(jutsuLoc + "Dokugiri");
+		this.setTextureName(textureLoc + "Dokugiri");
 	}
 	@Override
 	public void activateJutsu() {

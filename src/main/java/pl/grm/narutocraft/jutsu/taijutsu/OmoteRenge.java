@@ -10,7 +10,7 @@ public class OmoteRenge extends Jutsu implements IJutsu {
 
 	public OmoteRenge() {
 		this.setUnlocalizedName("Omote Renge");
-		this.setTextureName(jutsuLoc + "Omote Renge");
+		this.setTextureName(textureLoc + "Omote Renge");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

@@ -10,7 +10,7 @@ public class HariJizo extends Jutsu implements IJutsu {
 
 	public HariJizo() {
 		this.setUnlocalizedName("HariJizo");
-		this.setTextureName(jutsuLoc + "HariJizo");
+		this.setTextureName(textureLoc + "HariJizo");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

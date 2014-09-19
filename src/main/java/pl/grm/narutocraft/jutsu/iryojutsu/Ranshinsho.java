@@ -10,7 +10,7 @@ public class Ranshinsho extends Jutsu implements IJutsu {
 
 	public Ranshinsho() {
 		this.setUnlocalizedName("Ranshinsho");
-		this.setTextureName(jutsuLoc + "Ranshinsho");
+		this.setTextureName(textureLoc + "Ranshinsho");
 	}
 	@Override
 	public void activateJutsu() {

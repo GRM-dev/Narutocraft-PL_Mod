@@ -10,7 +10,7 @@ public class RaigenRaikochu extends Jutsu implements IJutsu {
 
 	public RaigenRaikochu() {
 		this.setUnlocalizedName("Raigen Raikochu");
-		this.setTextureName(jutsuLoc + "Raigen Raikochu");
+		this.setTextureName(textureLoc + "Raigen Raikochu");
 	}
 	@Override
 	public void activateJutsu() {

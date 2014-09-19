@@ -10,7 +10,7 @@ public class Issen extends Jutsu implements IJutsu {
 
 	public Issen() {
 		this.setUnlocalizedName("Issen");
-		this.setTextureName(jutsuLoc + "Issen");
+		this.setTextureName(textureLoc + "Issen");
 	}
 	@Override
 	public void activateJutsu() {

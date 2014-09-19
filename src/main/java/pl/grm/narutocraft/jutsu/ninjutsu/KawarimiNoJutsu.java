@@ -4,12 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 
 public class KawarimiNoJutsu extends Jutsu {
 
 	public KawarimiNoJutsu() {
-		this.setUnlocalizedName("KNoJutsu");
-		this.setTextureName(jutsuLoc + "NoJutsu");
+		super(JutsuEnum.KAWARIMINOJUTSU);
 	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,

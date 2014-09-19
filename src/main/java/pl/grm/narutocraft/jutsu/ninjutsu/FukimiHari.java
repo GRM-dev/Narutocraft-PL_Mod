@@ -10,7 +10,7 @@ public class FukimiHari extends Jutsu implements IJutsu {
 
 	public FukimiHari() {
 		this.setUnlocalizedName("Fukimi Hari");
-		this.setTextureName(jutsuLoc + "Fukimi Hari");
+		this.setTextureName(textureLoc + "Fukimi Hari");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

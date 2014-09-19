@@ -10,7 +10,7 @@ public class Hadan extends Jutsu implements IJutsu {
 
 	public Hadan() {
 		this.setUnlocalizedName("Hadan");
-		this.setTextureName(jutsuLoc + "Hadan");
+		this.setTextureName(textureLoc + "Hadan");
 	}
 	@Override
 	public void activateJutsu() {

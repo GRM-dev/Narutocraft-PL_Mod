@@ -10,7 +10,7 @@ public class Enmakugire extends Jutsu implements IJutsu {
 
 	public Enmakugire() {
 		this.setUnlocalizedName("Enmakugire");
-		this.setTextureName(jutsuLoc + "Enmakugire");
+		this.setTextureName(textureLoc + "Enmakugire");
 	}
 	@Override
 	public void activateJutsu() {

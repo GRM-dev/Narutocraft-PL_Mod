@@ -10,7 +10,7 @@ public class KageBuyo extends Jutsu implements IJutsu {
 
 	public KageBuyo() {
 		this.setUnlocalizedName("Kage Buyo");
-		this.setTextureName(jutsuLoc + "Kage Buyo");
+		this.setTextureName(textureLoc + "Kage Buyo");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

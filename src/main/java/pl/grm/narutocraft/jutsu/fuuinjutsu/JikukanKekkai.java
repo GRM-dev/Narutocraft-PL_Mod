@@ -10,7 +10,7 @@ public class JikukanKekkai extends Jutsu implements IJutsu {
 
 	public JikukanKekkai() {
 		this.setUnlocalizedName("Jikukan Kekkai");
-		this.setTextureName(jutsuLoc + "Jikukan Kekkai");
+		this.setTextureName(textureLoc + "Jikukan Kekkai");
 	}
 	@Override
 	public void activateJutsu() {

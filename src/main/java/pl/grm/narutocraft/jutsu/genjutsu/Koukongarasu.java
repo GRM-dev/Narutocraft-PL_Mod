@@ -10,7 +10,7 @@ public class Koukongarasu extends Jutsu implements IJutsu {
 
 	public Koukongarasu() {
 		this.setUnlocalizedName("Koukongarasu");
-		this.setTextureName(jutsuLoc + "Koukongarasu");
+		this.setTextureName(textureLoc + "Koukongarasu");
 	}
 	@Override
 	public void activateJutsu() {

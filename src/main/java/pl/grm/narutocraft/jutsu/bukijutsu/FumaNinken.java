@@ -10,7 +10,7 @@ public class FumaNinken extends Jutsu implements IJutsu {
 
 	public FumaNinken() {
 		this.setUnlocalizedName("Fuma Ninken");
-		this.setTextureName(jutsuLoc + "Fuma Ninken");
+		this.setTextureName(textureLoc + "Fuma Ninken");
 	}
 	@Override
 	public void activateJutsu() {

@@ -10,7 +10,7 @@ public class MikazukiKiri extends Jutsu implements IJutsu {
 
 	public MikazukiKiri() {
 		this.setUnlocalizedName("Mikazuki Kiri");
-		this.setTextureName(jutsuLoc + "Mikazuki Kiri");
+		this.setTextureName(textureLoc + "Mikazuki Kiri");
 	}
 	@Override
 	public void activateJutsu() {

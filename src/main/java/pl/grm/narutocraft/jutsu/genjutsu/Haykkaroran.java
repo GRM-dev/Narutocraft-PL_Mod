@@ -10,7 +10,7 @@ public class Haykkaroran extends Jutsu implements IJutsu {
 
 	public Haykkaroran() {
 		this.setUnlocalizedName("Hyakkaroran");
-		this.setTextureName(jutsuLoc + "Hyakkaroran");
+		this.setTextureName(textureLoc + "Hyakkaroran");
 	}
 	@Override
 	public void activateJutsu() {

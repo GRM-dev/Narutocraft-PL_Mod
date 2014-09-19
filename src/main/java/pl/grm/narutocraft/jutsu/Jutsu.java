@@ -19,31 +19,23 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.RegistryNamespaced;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.References;
-import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Jutsu extends Item implements IJutsu {
-	public static String jutsuLoc = References.jutsuLoc;
-	private static final RegistryNamespaced itemRegistry = GameData
-			.getItemRegistry();
+public abstract class Jutsu extends Item implements IJutsu {
+	public static String textureLoc = References.JUTSUTEXTURELOC;
 	private CreativeTabs tabToDisplayOn = NarutoCraft.mTabJutsu;
 	private int maxDamage;
-	private boolean bFull3D;
-	private boolean hasSubtypes;
 	private Item containerItem;
 	private String potionEffect;
 	private String unlocalizedName;
 	@SideOnly(Side.CLIENT)
-	private IIcon itemIcon;
-	private String iconString;
 	private List<int[]> activeJutsus = new ArrayList<int[]>();
 	private int chackraConsumption = 0;
 	private int jutsuID;
@@ -51,6 +43,17 @@ public class Jutsu extends Item implements IJutsu {
 	private int[] jutsuProps;
 	private int[] jutsuLine;
 	private int totalDuration, passDuration;
+	protected JutsuEnum myInstance;
+	protected ItemStack stack;
+	protected World world;
+	protected EntityPlayer player;
+
+	public Jutsu(JutsuEnum jutsu) {
+		this.myInstance = jutsu;
+		this.setUnlocalizedName(myInstance.getName());
+		this.setTextureName(textureLoc + myInstance.getName());
+		this.jutsuID = myInstance.getID();
+	}
 
 	@Override
 	public void activateJutsu() {
@@ -607,7 +610,14 @@ public class Jutsu extends Item implements IJutsu {
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
 			EntityPlayer par3EntityPlayer) {
-		return par1ItemStack;
+		this.stack = par1ItemStack;
+		this.world = par2World;
+		this.player = par3EntityPlayer;
+
+		if (!world.isRemote) {
+			this.activateJutsu();
+		}
+		return stack;
 	}
 
 	@Override
@@ -831,8 +841,8 @@ public class Jutsu extends Item implements IJutsu {
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList jutsuList = new NBTTagList();
 		NBTTagCompound jutsus = new NBTTagCompound();
-
 		this.activeJutsus = ExtendedProperties.activeJutsus;
+
 		if (!this.activeJutsus.isEmpty()) {
 			while (this.activeJutsus.iterator().hasNext()) {
 				this.jutsuLine = this.activeJutsus.iterator().next();

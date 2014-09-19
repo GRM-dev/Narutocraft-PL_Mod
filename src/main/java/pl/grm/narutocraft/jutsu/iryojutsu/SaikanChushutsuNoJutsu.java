@@ -10,7 +10,7 @@ public class SaikanChushutsuNoJutsu extends Jutsu implements IJutsu {
 
 	public SaikanChushutsuNoJutsu() {
 		this.setUnlocalizedName("Saikan Chushutsu No Jutsu");
-		this.setTextureName(jutsuLoc + "Saikan Chushutsu No Jutsu");
+		this.setTextureName(textureLoc + "Saikan Chushutsu No Jutsu");
 	}
 	@Override
 	public void activateJutsu() {

@@ -10,7 +10,7 @@ public class InyuShometsu extends Jutsu implements IJutsu {
 
 	public InyuShometsu() {
 		this.setUnlocalizedName("Inyu Shometsu");
-		this.setTextureName(jutsuLoc + "Inyu Shometsu");
+		this.setTextureName(textureLoc + "Inyu Shometsu");
 	}
 	@Override
 	public void activateJutsu() {

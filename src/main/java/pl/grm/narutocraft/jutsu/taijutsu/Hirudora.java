@@ -10,7 +10,7 @@ public class Hirudora extends Jutsu implements IJutsu {
 
 	public Hirudora() {
 		this.setUnlocalizedName("Hirudora");
-		this.setTextureName(jutsuLoc + "Hirudora");
+		this.setTextureName(textureLoc + "Hirudora");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

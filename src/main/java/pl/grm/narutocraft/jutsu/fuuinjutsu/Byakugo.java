@@ -10,7 +10,7 @@ public class Byakugo extends Jutsu implements IJutsu {
 
 	public Byakugo() {
 		this.setUnlocalizedName("Byakugo");
-		this.setTextureName(jutsuLoc + "Byakugo");
+		this.setTextureName(textureLoc + "Byakugo");
 
 	}
 	@Override

@@ -10,7 +10,7 @@ public class NanKaizou extends Jutsu implements IJutsu {
 
 	public NanKaizou() {
 		this.setUnlocalizedName("Nan Kaizou");
-		this.setTextureName(jutsuLoc + "Nan Kaizou");
+		this.setTextureName(textureLoc + "Nan Kaizou");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

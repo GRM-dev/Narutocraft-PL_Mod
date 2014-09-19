@@ -194,7 +194,7 @@ public class PlayerTracker {
 			NetHandler.INSTANCE
 					.requestClientAuras((EntityPlayerMP) event.player);
 		}
-		int[] disabledSkills = SkillTreeManager.instance.getDisabledSkillIDs();
+		int[] disabledSkills = SkillTreeManager.instance.getDisabledJutsusIDs();
 
 		DataWriter writer = new DataWriter();
 		// writer.add(NarutoCraft.config.getSkillTreeTierCap())

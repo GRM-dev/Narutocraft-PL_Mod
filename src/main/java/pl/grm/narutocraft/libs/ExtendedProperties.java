@@ -12,7 +12,6 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.ProxyCommon;
 import pl.grm.narutocraft.gui.JutsuInv;
 import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
@@ -46,7 +45,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String EXT_PROP_NAME = "NCPLExtPlayer";
 	private final EntityPlayer player;
 	public final JutsuInv inventory = new JutsuInv();
-	public IJutsu jutsu = new Jutsu();
+	public IJutsu jutsu;
 	public PlayerSkillsAtrributes psa = new PlayerSkillsAtrributes();
 	private int maxChakra;
 	private int AuraIndex;

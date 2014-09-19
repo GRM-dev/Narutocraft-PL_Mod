@@ -10,7 +10,7 @@ public class Yosakugiri extends Jutsu implements IJutsu {
 
 	public Yosakugiri() {
 		this.setUnlocalizedName("Yosakugiri");
-		this.setTextureName(jutsuLoc + "Yosakugiri");
+		this.setTextureName(textureLoc + "Yosakugiri");
 	}
 	@Override
 	public void activateJutsu() {

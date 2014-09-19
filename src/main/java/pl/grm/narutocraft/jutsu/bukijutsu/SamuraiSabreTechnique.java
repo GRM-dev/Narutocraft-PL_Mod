@@ -10,7 +10,7 @@ public class SamuraiSabreTechnique extends Jutsu implements IJutsu {
 
 	public SamuraiSabreTechnique() {
 		this.setUnlocalizedName("Samurai Sabre Technique");
-		this.setTextureName(jutsuLoc + "Samurai Sabre Technique");
+		this.setTextureName(textureLoc + "Samurai Sabre Technique");
 	}
 	@Override
 	public void activateJutsu() {

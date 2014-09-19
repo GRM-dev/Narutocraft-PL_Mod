@@ -10,7 +10,7 @@ public class ChakuraNoMesu extends Jutsu implements IJutsu {
 
 	public ChakuraNoMesu() {
 		this.setUnlocalizedName("Chakura No Mesu");
-		this.setTextureName(jutsuLoc + "Chakura No Mesu");
+		this.setTextureName(textureLoc + "Chakura No Mesu");
 	}
 	@Override
 	public void activateJutsu() {

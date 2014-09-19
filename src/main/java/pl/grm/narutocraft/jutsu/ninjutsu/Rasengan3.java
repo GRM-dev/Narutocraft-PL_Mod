@@ -10,7 +10,7 @@ public class Rasengan3 extends Jutsu implements IJutsu {
 
 	public Rasengan3() {
 		this.setUnlocalizedName("CORasengan");
-		this.setTextureName(jutsuLoc + "Rasengan");
+		this.setTextureName(textureLoc + "Rasengan");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

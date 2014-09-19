@@ -10,7 +10,7 @@ public class NawanukeNoJutsu extends Jutsu implements IJutsu {
 
 	public NawanukeNoJutsu() {
 		this.setUnlocalizedName("Nawanuke No Jutsu");
-		this.setTextureName(jutsuLoc + "Nawanuke No Jutsu");
+		this.setTextureName(textureLoc + "Nawanuke No Jutsu");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

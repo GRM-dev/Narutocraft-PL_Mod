@@ -10,7 +10,7 @@ public class KuchiyoseRashomon extends Jutsu implements IJutsu {
 
 	public KuchiyoseRashomon() {
 		this.setUnlocalizedName("Kuchiyose Rashomon");
-		this.setTextureName(jutsuLoc + "Kuchiyose Rashomon");
+		this.setTextureName(textureLoc + "Kuchiyose Rashomon");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

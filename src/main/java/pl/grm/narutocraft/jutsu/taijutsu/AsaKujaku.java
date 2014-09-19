@@ -10,7 +10,7 @@ public class AsaKujaku extends Jutsu implements IJutsu {
 
 	public AsaKujaku() {
 		this.setUnlocalizedName("Asa Kujaku");
-		this.setTextureName(jutsuLoc + "Asa Kujaku");
+		this.setTextureName(textureLoc + "Asa Kujaku");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

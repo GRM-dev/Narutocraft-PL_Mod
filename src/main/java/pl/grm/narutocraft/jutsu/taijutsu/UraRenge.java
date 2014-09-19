@@ -10,7 +10,7 @@ public class UraRenge extends Jutsu implements IJutsu {
 
 	public UraRenge() {
 		this.setUnlocalizedName("Ura Renge");
-		this.setTextureName(jutsuLoc + "Ura Renge");
+		this.setTextureName(textureLoc + "Ura Renge");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

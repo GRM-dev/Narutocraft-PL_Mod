@@ -10,7 +10,7 @@ public class Sharingan extends Jutsu {
 	public Sharingan() {
 		super();
 		this.setUnlocalizedName("Sharingan");
-		this.setTextureName(jutsuLoc + "Sharingan");
+		this.setTextureName(textureLoc + "Sharingan");
 	}
 
 	@Override

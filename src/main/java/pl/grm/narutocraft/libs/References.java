@@ -10,7 +10,7 @@ public class References {
 	public static final String Common = "pl.grm.narutocraft.ProxyCommon";
 	public static final String ModTexturePath = "narutocraft:";
 	public static final String ModTag = "ncpl:";
-	public static final String jutsuLoc = "narutocraft:jutsu/";
+	public static final String JUTSUTEXTURELOC = "narutocraft:jutsu/";
 	public static final ResourceLocation[] jutsuGUI = new ResourceLocation[]{
 			new ResourceLocation(ModTexturePath + "textures/gui/JutsuPage1.png"),
 			new ResourceLocation(ModTexturePath + "textures/gui/JutsuPage2.png"),

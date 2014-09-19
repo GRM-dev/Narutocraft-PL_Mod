@@ -1,10 +1,12 @@
 package pl.grm.narutocraft.handlers;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import pl.grm.narutocraft.gui.skilltrees.SkillTreeEntry;
 import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 
 public class JutsuManager {
@@ -13,20 +15,17 @@ public class JutsuManager {
 	private IJutsu jutsu;
 	private List<int[]> activeJutsus;
 	private Iterator<int[]> iterator;
+	private final HashMap<Integer, SkillTreeEntry> registeredEntries;
 	private int[] elem;
 
-	public SkillTreeEntry getJutsu(int intValue) {
-		// TODO Auto-generated method stub
-		return null;
+	public JutsuManager() {
+		this.registeredEntries = new HashMap<>();
 	}
 
-	public int getJutsuID(IJutsu jutsu) {
-		return jutsu.getJutsuID();
-	}
-
-	public String getJutsuName(IJutsu jutsu) {
-		// TODO Auto-generated method stub
-		return null;
+	public SkillTreeEntry getJutsu(int id) {
+		SkillTreeEntry component = this.registeredEntries.get(Integer
+				.valueOf(id));
+		return component;
 	}
 
 	public synchronized void iterateOverJutsus() {
@@ -59,5 +58,21 @@ public class JutsuManager {
 				}
 			}
 		}
+	}
+
+	public SkillTreeEntry getJutsu(String name) {
+		Integer ID = JutsuEnum.getByName(name).getID();
+		if (ID == null) {
+			return null;
+		}
+		return this.registeredEntries.get(ID);
+	}
+
+	public int getJutsuID(JutsuEnum jutsuListElem) {
+		return jutsuListElem.getID();
+	}
+
+	public int getJutsuID(IJutsu jutsu) {
+		return jutsu.getJutsuID();
 	}
 }

@@ -10,7 +10,7 @@ public class KokuangyoNoJutsu extends Jutsu implements IJutsu {
 
 	public KokuangyoNoJutsu() {
 		this.setUnlocalizedName("Kokuangyo No Jutsu");
-		this.setTextureName(jutsuLoc + "Kokuangyo No Jutsu");
+		this.setTextureName(textureLoc + "Kokuangyo No Jutsu");
 	}
 	@Override
 	public void activateJutsu() {

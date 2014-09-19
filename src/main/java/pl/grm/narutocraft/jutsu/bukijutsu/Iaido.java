@@ -10,7 +10,7 @@ public class Iaido extends Jutsu implements IJutsu {
 
 	public Iaido() {
 		this.setUnlocalizedName("Iaido");
-		this.setTextureName(jutsuLoc + "Iaido");
+		this.setTextureName(textureLoc + "Iaido");
 	}
 	@Override
 	public void activateJutsu() {

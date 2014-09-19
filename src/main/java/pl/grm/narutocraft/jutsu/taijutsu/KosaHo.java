@@ -10,7 +10,7 @@ public class KosaHo extends Jutsu implements IJutsu {
 
 	public KosaHo() {
 		this.setUnlocalizedName("Kosa Ho");
-		this.setTextureName(jutsuLoc + "Kosa Ho");
+		this.setTextureName(textureLoc + "Kosa Ho");
 	}
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub

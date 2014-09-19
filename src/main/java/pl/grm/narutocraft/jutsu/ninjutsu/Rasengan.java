@@ -10,7 +10,7 @@ public class Rasengan extends Jutsu {
 
 	public Rasengan() {
 		this.setUnlocalizedName("Rasengan");
-		this.setTextureName(jutsuLoc + "Rasengan");
+		this.setTextureName(textureLoc + "Rasengan");
 	}
 	@Override
 	public void activateJutsu() {
