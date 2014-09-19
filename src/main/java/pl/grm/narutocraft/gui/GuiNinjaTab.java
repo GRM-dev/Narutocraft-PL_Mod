@@ -20,7 +20,7 @@ public class GuiNinjaTab extends GuiButton {
 		this.width = 22;
 		this.height = 22;
 	}
-	
+	// TODO rework this class to use a image instead of a Icon
 	@Override
 	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_) {
 		if (this.visible) {
@@ -41,6 +41,7 @@ public class GuiNinjaTab extends GuiButton {
 			manager.bindTexture(manager.getResourceLocation(1));
 			// RENDER ITEMS
 			
+			if (this.icon != null)
 			drawTexturedModelRectFromIcon(this.xPosition + 2, this.yPosition + 2,
 					this.icon, 16, 16);
 			this.mouseDragged(p_146112_1_, p_146112_2_, p_146112_3_);

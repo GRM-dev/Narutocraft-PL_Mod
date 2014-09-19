@@ -29,6 +29,7 @@ public class GuiNinjaButton extends GuiButton {
 		this.height = 7;
 	}
 	
+	// TODO I'd prefer this to use Icons, which it does. But as of 19/09/2014 Jutsu are not giving up their Icons.
 	@Override
 	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_) {
 		if (this.visible) {
