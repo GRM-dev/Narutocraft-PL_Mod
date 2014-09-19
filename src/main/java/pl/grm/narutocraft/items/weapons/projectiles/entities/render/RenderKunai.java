@@ -10,19 +10,19 @@ import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 import pl.grm.narutocraft.libs.References;
+
 /**
  * Method Render EntityKunai
  *
  * @author Admaster
- *
  */
 public class RenderKunai extends Render {
-	final ResourceLocation texture = new ResourceLocation(
-			References.ModTexturePath + "textures/model/Kunai.png");
-
+	final ResourceLocation	texture	= new ResourceLocation(References.ModTexturePath
+											+ "textures/model/Kunai.png");
+	
 	@Override
-	public void doRender(Entity par1EntityKunai, double var2, double var4,
-			double var6, float var8, float var9) {
+	public void doRender(Entity par1EntityKunai, double var2, double var4, double var6,
+			float var8, float var9) {
 		this.bindTexture(this.texture);
 		Tessellator tessellator = Tessellator.instance;
 		GL11.glPushMatrix();
@@ -80,16 +80,16 @@ public class RenderKunai extends Render {
 		GL11.glDisable(32826);
 		GL11.glPopMatrix();
 	}
-
-	@Override
-	protected ResourceLocation getEntityTexture(Entity var1) {
-
-		return null;
-	}
-
+	
 	public void renderSpecial() {
 		GL11.glScalef(0.4F, 0.4F, 0.4F);
 		GL11.glTranslatef(-0.4F, 0.5F, 0.1F);
 	}
-
+	
+	@Override
+	protected ResourceLocation getEntityTexture(Entity var1) {
+		
+		return null;
+	}
+	
 }

@@ -9,27 +9,22 @@ import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 
 public class Meisaigakure extends Jutsu implements IJutsu {
-	private int chackraConsumption = 5;
-	private boolean active = false;
-	private int jutsuID;
-	private int totalDuration;
-	private int passDuration;
-
+	
 	public Meisaigakure() {
 		super(JutsuEnum.MEISAIGAKURE);
+		chackraConsumption = 5;
 	}
-
+	
 	@Override
 	public void activateJutsu() {
 		super.activateJutsu();
 		this.player.addPotionEffect(new PotionEffect(10, 10));
-		this.setPotionEffect("Invisible");
+		// this.setPotionEffect("Invisible");
 	}
-
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
 			EntityPlayer par3EntityPlayer) {
-		return super.onItemRightClick(par1ItemStack, par2World,
-				par3EntityPlayer);
+		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
 	}
 }

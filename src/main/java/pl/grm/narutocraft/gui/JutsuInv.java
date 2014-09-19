@@ -7,15 +7,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 public class JutsuInv implements IInventory {
-	private final String name = "Jutsu Panel";
-	private final String tagName = "JutsuPanel";
-	public static final int INV_SIZE = 5;
-	private ItemStack[] inventory = new ItemStack[INV_SIZE];
-
+	private final String	name		= "Jutsu Panel";
+	private final String	tagName		= "JutsuPanel";
+	public static final int	INV_SIZE	= 5;
+	private ItemStack[]		inventory	= new ItemStack[INV_SIZE];
+	
 	@Override
-	public void closeInventory() {
-	}
-
+	public void closeInventory() {}
+	
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
 		ItemStack stack = getStackInSlot(slot);
@@ -28,32 +27,32 @@ public class JutsuInv implements IInventory {
 			} else {
 				setInventorySlotContents(slot, null);
 			}
-
+			
 			this.markDirty();
 		}
 		return stack;
 	}
-
+	
 	@Override
 	public String getInventoryName() {
 		return this.name;
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit() {
 		return 1;
 	}
-
+	
 	@Override
 	public int getSizeInventory() {
 		return this.inventory.length;
 	}
-
+	
 	@Override
 	public ItemStack getStackInSlot(int slot) {
 		return this.inventory[slot];
 	}
-
+	
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {
 		ItemStack stack = getStackInSlot(slot);
@@ -62,12 +61,12 @@ public class JutsuInv implements IInventory {
 		}
 		return stack;
 	}
-
+	
 	@Override
 	public boolean hasCustomInventoryName() {
 		return this.name.length() > 0;
 	}
-
+	
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
 		// If different kinds of slots, then check them here:
@@ -76,12 +75,12 @@ public class JutsuInv implements IInventory {
 		// return itemstack.getItem() instanceof Jutsu;
 		return true;
 	}
-
+	
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 		return true;
 	}
-
+	
 	@Override
 	public void markDirty() {
 		for (int i = 0; i < this.getSizeInventory(); ++i) {
@@ -91,11 +90,10 @@ public class JutsuInv implements IInventory {
 			}
 		}
 	}
-
+	
 	@Override
-	public void openInventory() {
-	}
-
+	public void openInventory() {}
+	
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList items = compound.getTagList(this.tagName, compound.getId());
 		for (int i = 0; i < items.tagCount(); ++i) {
@@ -106,21 +104,20 @@ public class JutsuInv implements IInventory {
 			}
 		}
 	}
-
+	
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack itemstack) {
 		this.inventory[slot] = itemstack;
-
-		if ((itemstack != null)
-				&& (itemstack.stackSize > this.getInventoryStackLimit())) {
+		
+		if ((itemstack != null) && (itemstack.stackSize > this.getInventoryStackLimit())) {
 			itemstack.stackSize = this.getInventoryStackLimit();
 		}
 		this.markDirty();
 	}
-
+	
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList items = new NBTTagList();
-
+		
 		for (int i = 0; i < getSizeInventory(); ++i) {
 			if (getStackInSlot(i) != null) {
 				NBTTagCompound item = new NBTTagCompound();

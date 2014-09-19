@@ -6,13 +6,34 @@ import java.awt.Color;
  * Contains elements and their linkage.
  */
 public enum Elements {
-	NONE(0, new Color(0x000000)), KATON(1, new Color(0xFF0000)), FUUTON(2,
-			new Color(0x00FF80)), RAITON(3, new Color(0xFFFF00)), DOTON(4,
-			new Color(0xFF8000)), SUITON(5, new Color(0x0080FF));
-
-	private int ID;
-	private Color color;
-
+	NONE(
+			0,
+			new Color(0x000000)) ,
+	KATON(
+			1,
+			new Color(0xFF0000)) ,
+	FUUTON(
+			2,
+			new Color(0x00FF80)) ,
+	RAITON(
+			3,
+			new Color(0xFFFF00)) ,
+	DOTON(
+			4,
+			new Color(0xFF8000)) ,
+	SUITON(
+			5,
+			new Color(0x0080FF));
+	
+	private int		ID;
+	
+	private Color	color;
+	
+	private Elements(int ID, Color color) {
+		this.ID = ID;
+		this.color = color;
+	}
+	
 	/**
 	 * Gets element by ID [1-5]
 	 *
@@ -21,13 +42,11 @@ public enum Elements {
 	 */
 	public static Elements getById(int ID) {
 		for (Elements elem : Elements.values()) {
-			if (elem.ID == ID) {
-				return elem;
-			}
+			if (elem.ID == ID) { return elem; }
 		}
 		return NONE;
 	}
-
+	
 	/**
 	 * Gets Ordered Elements.
 	 *
@@ -36,31 +55,22 @@ public enum Elements {
 	public static Elements[] getOrderedElements() {
 		return new Elements[]{KATON, FUUTON, RAITON, DOTON, SUITON};
 	}
-
-	private Elements(int ID, Color color) {
-		this.ID = ID;
-		this.color = color;
-	}
-
+	
 	public Color getColor() {
 		return this.color;
 	}
-
+	
 	public int getID() {
 		return this.ID;
 	}
-
+	
 	public Elements getStrongerElement() {
-		if (this.getID() == 5) {
-			return Elements.getById(1);
-		}
+		if (this.getID() == 5) { return Elements.getById(1); }
 		return Elements.getById(this.ID++);
 	}
-
+	
 	public Elements getWeakerElement() {
-		if (this.getID() == 1) {
-			return Elements.getById(5);
-		}
+		if (this.getID() == 1) { return Elements.getById(5); }
 		return Elements.getById(this.ID--);
 	}
 }

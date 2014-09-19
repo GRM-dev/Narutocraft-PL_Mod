@@ -11,23 +11,37 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class ServerTickHandler {
-	private boolean firstTick = true;
-	public static HashMap<EntityLiving, EntityLivingBase> targetsToSet = new HashMap<EntityLiving, EntityLivingBase>();
-	public static String lastWorldName;
-
+	private boolean											firstTick		= true;
+	public static HashMap<EntityLiving, EntityLivingBase>	targetsToSet	= new HashMap<EntityLiving, EntityLivingBase>();
+	public static String									lastWorldName;
+	
 	public void addDeferredTarget(EntityLiving ent, EntityLivingBase target) {
 		targetsToSet.put(ent, target);
 	}
-
+	
 	public void blackoutArmorPiece(EntityPlayerMP player, int slot, int cooldown) {
-		NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 9,
-				new DataWriter().add(slot).add(cooldown).generate());
+		NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 9, new DataWriter()
+				.add(slot).add(cooldown).generate());
 	}
-
+	
+	@SubscribeEvent
+	public void onServerTick(TickEvent.ServerTickEvent event) {
+		if (event.phase == TickEvent.Phase.START) {
+			gameTick_Start();
+		} else if (event.phase == TickEvent.Phase.END) {
+			gameTick_End();
+		}
+	}
+	
+	@SubscribeEvent
+	public void onWorldTick(TickEvent.WorldTickEvent event) {
+		
+	}
+	
 	private void gameTick_End() {
-
+		
 	}
-
+	
 	private void gameTick_Start() {
 		if (MinecraftServer.getServer().getFolderName() != lastWorldName) {
 			lastWorldName = MinecraftServer.getServer().getFolderName();
@@ -37,19 +51,5 @@ public class ServerTickHandler {
 			this.firstTick = false;
 		}
 		// NarutoCraft.proxy.itemFrameWatcher.checkWatchedFrames();
-	}
-
-	@SubscribeEvent
-	public void onServerTick(TickEvent.ServerTickEvent event) {
-		if (event.phase == TickEvent.Phase.START) {
-			gameTick_Start();
-		} else if (event.phase == TickEvent.Phase.END) {
-			gameTick_End();
-		}
-	}
-
-	@SubscribeEvent
-	public void onWorldTick(TickEvent.WorldTickEvent event) {
-
 	}
 }

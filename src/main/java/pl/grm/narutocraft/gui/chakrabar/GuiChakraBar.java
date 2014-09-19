@@ -13,46 +13,43 @@ import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GuiChakraBar extends Gui {
-	private Minecraft mc;
-	private final ResourceLocation texture = new ResourceLocation(
-			"narutocraft", "textures/gui/chakra_bar3.png");
-
-	public int barW = 54, barH = 9;
-
+	private Minecraft				mc;
+	private final ResourceLocation	texture	= new ResourceLocation("narutocraft",
+													"textures/gui/chakra_bar3.png");
+	
+	public int						barW	= 54, barH = 9;
+	
 	public GuiChakraBar() {
-
+		
 	}
-
+	
 	public GuiChakraBar(Minecraft mc) {
 		super();
 		this.mc = mc;
 	}
-
+	
 	public Minecraft getMc() {
 		this.mc = Minecraft.getMinecraft();
 		return this.mc;
 	}
-
+	
 	public ResourceLocation getTexture() {
 		return this.texture;
 	}
-
-	@SubscribeEvent(priority = EventPriority.NORMAL)
+	
+	@SubscribeEvent(
+			priority = EventPriority.NORMAL)
 	public void onRenderExperienceBar(RenderGameOverlayEvent.Post event) {
 		/*
 		 * GuiChakraBar guichakrabar = new GuiChakraBar(); Minecraft mc =
 		 * guichakrabar.getMc();
 		 */
 		// ResourceLocation texture = guichakrabar.getTexture();
-		if (event.type != ElementType.EXPERIENCE) {
-			return;
-		}
-
+		if (event.type != ElementType.EXPERIENCE) { return; }
+		
 		ExtendedProperties props = ExtendedProperties.get(this.mc.thePlayer);
-		if ((props == null) || (props.getMaxChakra() == 0)) {
-			return;
-		}
-
+		if ((props == null) || (props.getMaxChakra() == 0)) { return; }
+		
 		int xPos = 2;
 		int yPos = 2;
 		this.mc.getTextureManager().bindTexture(this.texture);
@@ -67,13 +64,11 @@ public class GuiChakraBar extends Gui {
 		 * the new size
 		 */
 		drawTexturedModalRect(xPos, yPos, 0, 0, this.barW, this.barH);
-
+		
 		int chakrabarwidth = (props.getCurrentChakra() * this.barW)
 				/ props.getMaxChakra();
-		drawTexturedModalRect(xPos, yPos, 0, this.barH, chakrabarwidth,
-				this.barH);
-		String s = "Chakra " + props.getCurrentChakra() + "/"
-				+ props.getMaxChakra();
+		drawTexturedModalRect(xPos, yPos, 0, this.barH, chakrabarwidth, this.barH);
+		String s = "Chakra " + props.getCurrentChakra() + "/" + props.getMaxChakra();
 		yPos += this.barH + 2;
 		this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
 		this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
@@ -84,13 +79,12 @@ public class GuiChakraBar extends Gui {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(true);
 	}
-
+	
 	/*
 	 * @SubscribeEvent(priority = EventPriority.NORMAL) public void
 	 * onRenderExperienceBar(RenderGameOverlayEvent event) { if
 	 * (event.isCancelable() || event.type != ElementType.EXPERIENCE) { return;
 	 * } ExtendedPlayer props = ExtendedPlayer.get(this.mc.thePlayer);
-	 *
 	 * if (props == null || props.getMaxChakra() == 0) { return; } int xPos = 2;
 	 * int yPos = 2; GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	 * GL11.glDisable(GL11.GL_LIGHTING);

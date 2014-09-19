@@ -10,21 +10,20 @@ import pl.grm.narutocraft.libs.References;
  * Adds Armor items
  *
  * @author Admaster
- *
  */
 public class NCPLItemArmor extends ItemArmor {
-	private int armorSlot = 0;
-	private String modelTexture;
-
+	private int		armorSlot	= 0;
+	private String	modelTexture;
+	
 	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement) {
 		this(armormaterial, ID, placement, "Test");
 	}
-
+	
 	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement,
 			String modelTextureName) {
 		this(armormaterial, ID, placement, "Test", modelTextureName);
 	}
-
+	
 	/**
 	 * Create Armor Item
 	 *
@@ -48,15 +47,15 @@ public class NCPLItemArmor extends ItemArmor {
 		this.setMaxStackSize(1);
 		this.armorSlot = placement;
 		this.modelTexture = modelTextureName;
-
+		
 		switch (placement) {
 			case 0 :
 				this.setTextureName(References.ModTexturePath + "armor/helmet"
 						+ itemTextureName);
 				break;
 			case 1 :
-				this.setTextureName(References.ModTexturePath
-						+ "armor/chestplate" + itemTextureName);
+				this.setTextureName(References.ModTexturePath + "armor/chestplate"
+						+ itemTextureName);
 				break;
 			case 2 :
 				this.setTextureName(References.ModTexturePath + "armor/pants"
@@ -68,10 +67,9 @@ public class NCPLItemArmor extends ItemArmor {
 				break;
 		}
 	}
-
+	
 	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
-			String type) {
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		if (this.armorSlot != 2) {
 			return "narutocraft:textures/model/" + this.modelTexture + "_1.png";
 		} else {

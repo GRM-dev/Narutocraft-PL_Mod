@@ -11,21 +11,22 @@ import pl.grm.narutocraft.network.PlayerTracker;
 import cpw.mods.fml.server.FMLServerHandler;
 
 public class ProxyCommon {
+	private static final Map<String, NBTTagCompound>	extendedEntityData	= new HashMap<String, NBTTagCompound>();
+	
+	public PlayerTracker								playerTracker;
+	
 	public static NBTTagCompound getEntityData(String name) {
 		return extendedEntityData.remove(name);
 	}
+	
 	public static void storeEntityData(String name, NBTTagCompound compound) {
 		extendedEntityData.put(name, compound);
 	}
-
-	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
-
-	public PlayerTracker playerTracker;
-
+	
 	public int addArmor(String armor) {
 		return 0;
 	}
-
+	
 	public EntityLivingBase getEntityByID(int entityID) {
 		Entity ent = null;
 		for (WorldServer ws : getWorldServers()) {
@@ -39,21 +40,17 @@ public class ProxyCommon {
 		}
 		return (EntityLivingBase) ent;
 	}
-
+	
+	public void registerRenderInfomation() {}
+	
+	public void registerRendering() {}
+	
+	public void registerRenderThings() {}
+	
+	public void registerSound() {}
+	
 	private WorldServer[] getWorldServers() {
 		return FMLServerHandler.instance().getServer().worldServers;
 	}
-
-	public void registerRenderInfomation() {
-	}
-
-	public void registerRendering() {
-	}
-
-	public void registerRenderThings() {
-	}
-
-	public void registerSound() {
-	}
-
+	
 }

@@ -13,14 +13,13 @@ public class WKunai extends Item {
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 16;
 	}
-
+	
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
 			EntityPlayer par3EntityPlayer) {
-
+		
 		if (par3EntityPlayer.capabilities.isCreativeMode
-				|| par3EntityPlayer.inventory
-						.consumeInventoryItem(RegWeapons.WKunai)) {
+				|| par3EntityPlayer.inventory.consumeInventoryItem(RegWeapons.WKunai)) {
 			par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F,
 					0.4F / ((itemRand.nextFloat() * 0.4F) + 0.8F));
 			if (!par2World.isRemote) {

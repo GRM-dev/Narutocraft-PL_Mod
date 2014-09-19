@@ -7,11 +7,10 @@ import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
  * FML Event Handler
  *
  * @author Admaster
- *
  */
 public class NCPLFMLEventHandler {
 	@SubscribeEvent
 	public void onRenderTick(RenderTickEvent event) {
-
+		
 	}
 }

@@ -23,13 +23,13 @@ public class RegEntities extends NarutoCraft {
 		EntityRegistry.registerModEntity(EntityShuriken.class, "Shuriken", id,
 				NarutoCraft.instance, 80, 1, true);
 		id++;
-
+		
 		EntityRegistry.registerModEntity(EntityKyuubi.class, "Kyuubi", id,
 				NarutoCraft.instance, 80, 1, true);
 		id++;
 		// EntityRegistry.addSpawn(EntityKyuubi.class, 2, 0, 1,
 		// EnumCreatureType.creature, BiomeGenBase.biomeList);//change the
 		// values to vary the spawn rarity, biome, etc.
-
+		
 	}
 }

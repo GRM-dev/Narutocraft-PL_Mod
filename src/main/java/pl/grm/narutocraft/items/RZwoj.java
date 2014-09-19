@@ -5,12 +5,12 @@ import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.References;
 
 public class RZwoj extends Item {
-
+	
 	public RZwoj() {
 		this.setUnlocalizedName("RZwoj");
 		this.setTextureName(References.ModTexturePath + "Zwoj Raiton");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}
-
+	
 }

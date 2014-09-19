@@ -23,125 +23,19 @@ public class PacketProcessorServer {
 	public EntityLivingBase getEntityByID(int entityID) {
 		return NarutoCraft.proxy.getEntityByID(entityID);
 	}
-
+	
 	public WorldServer[] getWorldServers() {
 		return FMLServerHandler.instance().getServer().worldServers;
 	}
-
-	private void handleCastingModeChange(byte[] data, EntityPlayerMP player) {
-		DataReader rdr = new DataReader(data, false);
-		int newShapeGroupOrdinal = rdr.getInt();
-		int index = rdr.getInt();
-
-		ItemStack stack = player.getCurrentEquippedItem();
-		if (stack != null) {
-			if (stack.getItem() instanceof Jutsu) {
-
-			}
-		}
-	}
-
-	private void handleExpropOperation(byte[] data, EntityPlayerMP player) {
-		// ExtendedPlayer.For(player).performRemoteOp(
-		// new DataReader(data, false).getInt());
-	}
-
-	private void handleMagicLevelUp(byte[] data, EntityPlayerMP player) {
-	}
-
-	private void handlePossibleClientExpropDesync(byte[] data) {
-		DataReader rdr = new DataReader(data, false);
-		int entityID = rdr.getInt();
-
-		EntityLivingBase e = getEntityByID(entityID);
-		if ((e != null) && ((e instanceof EntityPlayer))) {
-			ExtendedProperties props = ExtendedProperties.For(e);
-			// if (!props.detectPossibleDesync()) {
-			// props.setFullSync();
-			// props.forceSync();
-			// }
-		}
-	}
-
-	private void handleRequestBetaParticles(byte[] data, EntityPlayerMP player) {
-		DataReader rdr = new DataReader(data, false);
-		int requesterID = rdr.getInt();
-		int entityID = rdr.getInt();
-		EntityLivingBase entity = getEntityByID(entityID);
-		if ((player == null) || (entity == null)
-				|| (!(entity instanceof EntityPlayer))) {
-			return;
-		}
-		if (!NarutoCraft.proxy.playerTracker.hasAA((EntityPlayer) entity)) {
-			return;
-		}
-		byte[] expropData = ExtendedProperties.For(entity).getAuraData();
-
-		DataWriter writer = new DataWriter();
-		writer.add(entity.getEntityId());
-		writer.add(expropData);
-
-		NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 31,
-				writer.generate());
-	}
-
-	private void handleSpellBookChangeActiveSlot(byte[] data,
-			EntityPlayerMP player) {
-		DataReader rdr = new DataReader(data, false);
-		byte subID = rdr.getByte();
-		int entityID = rdr.getInt();
-		int inventorySlot = rdr.getInt();
-
-		ItemStack stack = player.inventory.getStackInSlot(inventorySlot);
-		if ((stack == null) || (!(stack.getItem() instanceof ItemJutsuBook))) {
-			return;
-		}
-		// int newIndex = 0;
-		// if (subID == 0) {
-		// newIndex = RegItems.jutsuBook.SetNextSlot(stack);
-		// } else if (subID == 1) {
-		// newIndex = RegItems.jutsuBook.SetPrevSlot(stack);
-		// } else {
-		// }
-	}
-
-	private void handleSyncBetaParticles(byte[] data, EntityPlayerMP player) {
-		DataReader rdr = new DataReader(data, false);
-		if ((player == null)
-				|| (!NarutoCraft.proxy.playerTracker.hasAA(player))) {
-			return;
-		}
-		int index = rdr.getInt();
-		int behaviour = rdr.getInt();
-		float scale = rdr.getFloat();
-		float alpha = rdr.getFloat();
-		boolean randomColor = rdr.getBoolean();
-		boolean defaultColor = rdr.getBoolean();
-		int color = rdr.getInt();
-		int delay = rdr.getInt();
-		int quantity = rdr.getInt();
-		float speed = rdr.getFloat();
-
-		ExtendedProperties.For(player)
-				.updateAuraData(index, behaviour, scale, alpha, randomColor,
-						defaultColor, color, delay, quantity, speed);
-	}
-
-	private void handleSyncJutsuKnowledge(byte[] data, EntityPlayerMP player) {
-		// Jutsu.For(player).handlePacketData(data);
-	}
-
+	
 	@SubscribeEvent
 	public void onServerPacketData(FMLNetworkEvent.ServerCustomPacketEvent event) {
 		ByteBufInputStream bbis = new ByteBufInputStream(event.packet.payload());
 		byte packetID = -1;
 		try {
-			if (event.packet.getTarget() != Side.SERVER) {
-				return;
-			}
+			if (event.packet.getTarget() != Side.SERVER) { return; }
 			packetID = bbis.readByte();
-			NetHandlerPlayServer srv = (NetHandlerPlayServer) event.packet
-					.handler();
+			NetHandlerPlayServer srv = (NetHandlerPlayServer) event.packet.handler();
 			EntityPlayerMP player = srv.playerEntity;
 			byte[] remaining = new byte[bbis.available()];
 			bbis.readFully(remaining);
@@ -168,27 +62,118 @@ public class PacketProcessorServer {
 					handleSyncJutsuKnowledge(remaining, player);
 					break;
 				case 39 :
-					ExtendedProperties.For(player).TK_Distance = new DataReader(
-							remaining).getFloat();
+					ExtendedProperties.For(player).TK_Distance = new DataReader(remaining)
+							.getFloat();
 					break;
 				case 16 :
 					handleExpropOperation(remaining, player);
 			}
 			return;
-		} catch (Throwable t) {
-			FMLLog.severe("Ars Magica >> Server Packet Failed to Handle!",
-					new Object[0]);
-			FMLLog.severe("Ars Magica >> Packet Type: " + packetID,
-					new Object[0]);
+		}
+		catch (Throwable t) {
+			FMLLog.severe("Ars Magica >> Server Packet Failed to Handle!", new Object[0]);
+			FMLLog.severe("Ars Magica >> Packet Type: " + packetID, new Object[0]);
 			t.printStackTrace();
-		} finally {
+		}
+		finally {
 			try {
 				if (bbis != null) {
 					bbis.close();
 				}
-			} catch (Throwable t) {
+			}
+			catch (Throwable t) {
 				t.printStackTrace();
 			}
 		}
+	}
+	
+	private void handleCastingModeChange(byte[] data, EntityPlayerMP player) {
+		DataReader rdr = new DataReader(data, false);
+		int newShapeGroupOrdinal = rdr.getInt();
+		int index = rdr.getInt();
+		
+		ItemStack stack = player.getCurrentEquippedItem();
+		if (stack != null) {
+			if (stack.getItem() instanceof Jutsu) {
+				
+			}
+		}
+	}
+	
+	private void handleExpropOperation(byte[] data, EntityPlayerMP player) {
+		// ExtendedPlayer.For(player).performRemoteOp(
+		// new DataReader(data, false).getInt());
+	}
+	
+	private void handleMagicLevelUp(byte[] data, EntityPlayerMP player) {}
+	
+	private void handlePossibleClientExpropDesync(byte[] data) {
+		DataReader rdr = new DataReader(data, false);
+		int entityID = rdr.getInt();
+		
+		EntityLivingBase e = getEntityByID(entityID);
+		if ((e != null) && ((e instanceof EntityPlayer))) {
+			ExtendedProperties props = ExtendedProperties.For(e);
+			// if (!props.detectPossibleDesync()) {
+			// props.setFullSync();
+			// props.forceSync();
+			// }
+		}
+	}
+	
+	private void handleRequestBetaParticles(byte[] data, EntityPlayerMP player) {
+		DataReader rdr = new DataReader(data, false);
+		int requesterID = rdr.getInt();
+		int entityID = rdr.getInt();
+		EntityLivingBase entity = getEntityByID(entityID);
+		if ((player == null) || (entity == null) || (!(entity instanceof EntityPlayer))) { return; }
+		if (!NarutoCraft.proxy.playerTracker.hasAA((EntityPlayer) entity)) { return; }
+		byte[] expropData = ExtendedProperties.For(entity).getAuraData();
+		
+		DataWriter writer = new DataWriter();
+		writer.add(entity.getEntityId());
+		writer.add(expropData);
+		
+		NetHandler.INSTANCE
+				.sendPacketToClientPlayer(player, (byte) 31, writer.generate());
+	}
+	
+	private void handleSpellBookChangeActiveSlot(byte[] data, EntityPlayerMP player) {
+		DataReader rdr = new DataReader(data, false);
+		byte subID = rdr.getByte();
+		int entityID = rdr.getInt();
+		int inventorySlot = rdr.getInt();
+		
+		ItemStack stack = player.inventory.getStackInSlot(inventorySlot);
+		if ((stack == null) || (!(stack.getItem() instanceof ItemJutsuBook))) { return; }
+		// int newIndex = 0;
+		// if (subID == 0) {
+		// newIndex = RegItems.jutsuBook.SetNextSlot(stack);
+		// } else if (subID == 1) {
+		// newIndex = RegItems.jutsuBook.SetPrevSlot(stack);
+		// } else {
+		// }
+	}
+	
+	private void handleSyncBetaParticles(byte[] data, EntityPlayerMP player) {
+		DataReader rdr = new DataReader(data, false);
+		if ((player == null) || (!NarutoCraft.proxy.playerTracker.hasAA(player))) { return; }
+		int index = rdr.getInt();
+		int behaviour = rdr.getInt();
+		float scale = rdr.getFloat();
+		float alpha = rdr.getFloat();
+		boolean randomColor = rdr.getBoolean();
+		boolean defaultColor = rdr.getBoolean();
+		int color = rdr.getInt();
+		int delay = rdr.getInt();
+		int quantity = rdr.getInt();
+		float speed = rdr.getFloat();
+		
+		ExtendedProperties.For(player).updateAuraData(index, behaviour, scale, alpha,
+				randomColor, defaultColor, color, quantity, speed);
+	}
+	
+	private void handleSyncJutsuKnowledge(byte[] data, EntityPlayerMP player) {
+		// Jutsu.For(player).handlePacketData(data);
 	}
 }

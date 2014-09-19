@@ -7,38 +7,41 @@ import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 
 public class UraRenge extends Jutsu implements IJutsu {
-
+	
 	public UraRenge() {
 		this.setUnlocalizedName("Ura Renge");
 		this.setTextureName(textureLoc + "Ura Renge");
 	}
+	
 	public void consumeChackra(int value) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	@Override
 	public boolean isActive() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if (!world.isRemote) {
-
+			
 		}
 		return stack;
 	}
+	
 	@Override
 	public void onJutsuUpdate() {
 		// TODO Auto-generated method stub
-
+		
 	}
+	
 	@Override
 	public void setActive(boolean par) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 }

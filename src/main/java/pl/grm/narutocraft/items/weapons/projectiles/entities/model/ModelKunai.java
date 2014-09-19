@@ -3,26 +3,26 @@ package pl.grm.narutocraft.items.weapons.projectiles.entities.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
 /**
  * Model of {@link EntityLunai}
- * 
- * @author Admaster
  *
+ * @author Admaster
  */
 public class ModelKunai extends ModelBase {
-	ModelRenderer Pivot;
-	ModelRenderer Shape2;
-	ModelRenderer Shape3;
-	ModelRenderer Shape2a;
-	ModelRenderer Shape3a;
-	ModelRenderer Uch1;
-	ModelRenderer Uch2;
-	ModelRenderer UchE;
-
+	ModelRenderer	Pivot;
+	ModelRenderer	Shape2;
+	ModelRenderer	Shape3;
+	ModelRenderer	Shape2a;
+	ModelRenderer	Shape3a;
+	ModelRenderer	Uch1;
+	ModelRenderer	Uch2;
+	ModelRenderer	UchE;
+	
 	public ModelKunai() {
 		this.textureWidth = 64;
 		this.textureHeight = 64;
-
+		
 		this.Pivot = new ModelRenderer(this, 0, 0);
 		this.Pivot.addBox(0F, 0F, 0F, 1, 1, 12);
 		this.Pivot.setRotationPoint(0F, 0F, 0F);
@@ -72,10 +72,10 @@ public class ModelKunai extends ModelBase {
 		this.UchE.mirror = true;
 		setRotation(this.UchE, 0F, 0F, 0F);
 	}
-
+	
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3,
-			float f4, float f5) {
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4,
+			float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.Pivot.render(f5);
@@ -87,17 +87,17 @@ public class ModelKunai extends ModelBase {
 		this.Uch2.render(f5);
 		this.UchE.render(f5);
 	}
-
+	
+	@Override
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4,
+			float f5, Entity entity) {
+		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	}
+	
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
-
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3,
-			float f4, float f5, Entity entity) {
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-	}
-
+	
 }

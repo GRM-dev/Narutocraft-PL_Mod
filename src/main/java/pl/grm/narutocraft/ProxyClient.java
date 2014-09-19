@@ -22,23 +22,23 @@ import pl.grm.narutocraft.registry.RegWeapons;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ProxyClient extends ProxyCommon {
-
+	
 	@Override
 	public int addArmor(String armor) {
 		return RenderingRegistry.addNewArmourRendererPrefix(armor);
 	}
-
+	
 	@Override
 	public void registerRenderInfomation() {
-
+		
 	}
-
+	
 	@Override
 	public void registerRendering() {
 		// ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTestContainer.class,
 		// new RenderTestContainer());
 	}
-
+	
 	@Override
 	public void registerRenderThings() {
 		// Scaled Items
@@ -64,13 +64,12 @@ public class ProxyClient extends ProxyCommon {
 				new RenderKyuubi(new ModelKyuubi(), 5.5F));
 		// the last param is the shadow size
 		// GUI:
-		MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft
-				.getMinecraft()));
+		MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft.getMinecraft()));
 		// Keys:
 		KeyBindings.init();
-
+		
 	}
-
+	
 	@Override
 	public void registerSound() {
 		MinecraftForge.EVENT_BUS.register(new SoundHandler()); // register the
@@ -78,5 +77,5 @@ public class ProxyClient extends ProxyCommon {
 																// handling
 																// class
 	}
-
+	
 }

@@ -9,34 +9,34 @@ import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
 
 public class DamSource extends DamageSource {
-
-	public static DamageSource causeKunaiDamage(EntityKunai entityKunai,
-			Entity shootingEntity) {
-		return (new EntityDamageSourceIndirect("kunai", entityKunai,
-				shootingEntity)).setProjectile();
-	}
-
-	public static DamageSource causeSenbonDamage(EntitySenbon entitySenbon,
-			Entity shootingEntity) {
-		return (new EntityDamageSourceIndirect("senbon", entitySenbon,
-				shootingEntity)).setProjectile();
-	}
-
-	public static DamageSource causeShurikenDamage(
-			EntityShuriken entityShuriken, Entity shootingEntity) {
-		return (new EntityDamageSourceIndirect("shuriken", entityShuriken,
-				shootingEntity)).setProjectile();
-	}
-
-	public static DamageSource causeWKunaiDamage(EntityWKunai entityWKunai,
-			Entity shootingEntity) {
-		return (new EntityDamageSourceIndirect("wkunai", entityWKunai,
-				shootingEntity)).setProjectile();
-	}
-
+	
 	public DamSource(String par1Str) {
 		super(par1Str);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public static DamageSource causeKunaiDamage(EntityKunai entityKunai,
+			Entity shootingEntity) {
+		return (new EntityDamageSourceIndirect("kunai", entityKunai, shootingEntity))
+				.setProjectile();
+	}
+	
+	public static DamageSource causeSenbonDamage(EntitySenbon entitySenbon,
+			Entity shootingEntity) {
+		return (new EntityDamageSourceIndirect("senbon", entitySenbon, shootingEntity))
+				.setProjectile();
+	}
+	
+	public static DamageSource causeShurikenDamage(EntityShuriken entityShuriken,
+			Entity shootingEntity) {
+		return (new EntityDamageSourceIndirect("shuriken", entityShuriken, shootingEntity))
+				.setProjectile();
+	}
+	
+	public static DamageSource causeWKunaiDamage(EntityWKunai entityWKunai,
+			Entity shootingEntity) {
+		return (new EntityDamageSourceIndirect("wkunai", entityWKunai, shootingEntity))
+				.setProjectile();
+	}
+	
 }

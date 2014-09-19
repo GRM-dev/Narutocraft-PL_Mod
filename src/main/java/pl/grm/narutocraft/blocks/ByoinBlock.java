@@ -11,20 +11,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ByoinBlock extends Block {
 	@SideOnly(Side.CLIENT)
-	protected IIcon blockIcon;
-
+	protected IIcon	blockIcon;
+	
 	public ByoinBlock() {
 		super(Material.rock);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.setBlockName("byoin");
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int side, int meta) {
 		return this.blockIcon;
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister icon) {

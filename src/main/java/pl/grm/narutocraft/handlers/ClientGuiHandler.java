@@ -8,16 +8,14 @@ import pl.grm.narutocraft.gui.GuiNinjaStats;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 
 public class ClientGuiHandler extends ServerGuiHandler {
-
+	
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
-			int x, int y, int z) {
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x,
+			int y, int z) {
 		if (ID == GuiBasic.GUI_JUTSU_INV) {
 			return new GuiJutsuInvContainer(player, player.inventory,
 					ExtendedProperties.get(player).inventory);
-		} else if (ID == 3) {
-			return new GuiNinjaStats(player);
-		}
+		} else if (ID == 3) { return new GuiNinjaStats(player); }
 		return null;
 	}
 }

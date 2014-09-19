@@ -19,58 +19,54 @@ public class EntityKyuubi extends EntityMob {
 		this.getNavigator().setAvoidsWater(false);
 		this.isImmuneToFire = true;
 		this.tasks.addTask(1, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
-				EntityPlayer.class, 1.2D, false));
+		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2D,
+				false));
 		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this,
-				EntityPlayer.class, 8.0F));
+		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(5, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this,
 				EntityPlayer.class, 0, true));
 	}
-
+	
+	@Override
+	public boolean isAIEnabled() {
+		return true;
+	}
+	
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
-				.setBaseValue(50.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange)
-				.setBaseValue(35.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance)
 				.setBaseValue(1.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
 				.setBaseValue(0.45D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage)
-				.setBaseValue(5.5D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.5D);
 	}
-
+	
+	/*
+	 * @Override public float getMaxHealth() { return 10; }
+	 */
+	
 	@Override
 	protected String getDeathSound() {
 		return "narutocraftpl:sounds.mobs.KyuubiDeath";
 	}
-
-	/*
-	 * @Override public float getMaxHealth() { return 10; }
-	 */
-
+	
 	@Override
 	protected String getHurtSound() {
 		return "narutocraftpl:sounds.mobs.KyuubiHurt";
 	}
-
+	
 	@Override
 	protected String getLivingSound() {
 		return "narutocraftpl:sounds.mobs.Kyuubi";
 	}
-
+	
 	@Override
 	protected float getSoundVolume() {
 		return 0.7F;
-	}
-
-	@Override
-	public boolean isAIEnabled() {
-		return true;
 	}
 }
