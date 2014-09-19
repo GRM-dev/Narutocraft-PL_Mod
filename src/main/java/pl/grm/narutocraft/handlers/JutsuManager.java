@@ -26,7 +26,7 @@ public class JutsuManager {
 	private int[]									jutsuLine;
 	
 	public JutsuManager() {
-		this.registeredEntries = new HashMap<>();
+		this.registeredEntries = new HashMap<Integer, SkillTreeEntry>();
 	}
 	
 	public static void registerJutsu(JutsuEnum jutsu) {
@@ -36,8 +36,46 @@ public class JutsuManager {
 	}
 	
 	public static void regJutsusList() {
-		// registerJutsu(JutsuEnum.MEISAIGAKURE);
-		// registerJutsu(JutsuEnum.KAWARIMINOJUTSU);
+		registerJutsu(JutsuEnum.MEISAIGAKURE);
+		registerJutsu(JutsuEnum.KAWARIMINOJUTSU);
+		registerJutsu(JutsuEnum.FUMANINKEN);
+		registerJutsu(JutsuEnum.HADAN);
+		registerJutsu(JutsuEnum.IAIDO);
+		registerJutsu(JutsuEnum.ISSEN);
+		registerJutsu(JutsuEnum.MIKAZUKIKIRI);
+		registerJutsu(JutsuEnum.OMOTEGIRI);
+		registerJutsu(JutsuEnum.SAMURAISABRETECHNIQUE);
+		registerJutsu(JutsuEnum.YOSAKUGIRI);
+		registerJutsu(JutsuEnum.BYAKUGO);
+		registerJutsu(JutsuEnum.JIKUKANKEKKAI);
+		registerJutsu(JutsuEnum.HAYKKARORAN);
+		registerJutsu(JutsuEnum.KOKUANGYONOJUTSU);
+		registerJutsu(JutsuEnum.KOUKONGARASU);
+		registerJutsu(JutsuEnum.RAIGENRAIKOCHU);
+		registerJutsu(JutsuEnum.CHAKURANOMESU);
+		registerJutsu(JutsuEnum.DOKUGIRI);
+		registerJutsu(JutsuEnum.INYUSHOMETSU);
+		registerJutsu(JutsuEnum.RANSHINSHO);
+		registerJutsu(JutsuEnum.SAIKANCHUSHUTSUNOJUTSU);
+		registerJutsu(JutsuEnum.CHIOODAMARASENGAN);
+		registerJutsu(JutsuEnum.ENMAKUGIRE);
+		registerJutsu(JutsuEnum.FUKIMIHARI);
+		registerJutsu(JutsuEnum.HARIJIZO);
+		registerJutsu(JutsuEnum.KAI);
+		registerJutsu(JutsuEnum.KUCHIYOSERASHOMON);
+		registerJutsu(JutsuEnum.NANKAIZOU);
+		registerJutsu(JutsuEnum.NAWANUKENOJUTSU);
+		registerJutsu(JutsuEnum.ODAMARASENGAN);
+		registerJutsu(JutsuEnum.RASENGAN);
+		registerJutsu(JutsuEnum.SHARINGAN);
+		registerJutsu(JutsuEnum.SHUNSHINNOJUTSU);
+		registerJutsu(JutsuEnum.ASAKUJAKU);
+		registerJutsu(JutsuEnum.HIRUDORA);
+		registerJutsu(JutsuEnum.KAGEBUYO);
+		registerJutsu(JutsuEnum.KOSAHO);
+		registerJutsu(JutsuEnum.OMOTERENGE);
+		registerJutsu(JutsuEnum.URARENGE);
+		
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
 			registerJutsu(jutsu);
 		}

@@ -2,81 +2,29 @@ package pl.grm.narutocraft.jutsu.bukijutsu;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 
 public class Issen extends Jutsu implements IJutsu {
 	
 	public Issen() {
-		this.setUnlocalizedName("Issen");
-		this.setTextureName(textureLoc + "Issen");
+		super(JutsuEnum.ISSEN);
+		chackraConsumption = 5;
 	}
 	
 	@Override
 	public void activateJutsu() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void consumeChackra(int value) {
-		// TODO Auto-generated method stub
-		
+		super.activateJutsu();
+		this.player.addPotionEffect(new PotionEffect(10, 10));
+		// this.setPotionEffect("Invisible");
 	}
 	
 	@Override
-	public int getJutsuID() {
-		// TODO Auto-generated method stub
-		return 0;
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+			EntityPlayer par3EntityPlayer) {
+		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
 	}
-	
-	@Override
-	public int getTotalDuration() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public boolean isActive() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public void jutsuEnd() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!world.isRemote) {
-			
-		}
-		return stack;
-	}
-	
-	@Override
-	public void onJutsuUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void setActive(boolean par) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void updateJutsuProperties() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void uploadEffects() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

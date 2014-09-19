@@ -4,11 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 
 public class Sharingan extends Jutsu {
 	
 	public Sharingan() {
-		super();
+		super(JutsuEnum.SHARINGAN);
 		this.setUnlocalizedName("Sharingan");
 		this.setTextureName(textureLoc + "Sharingan");
 	}

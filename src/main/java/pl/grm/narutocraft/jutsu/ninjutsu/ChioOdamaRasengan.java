@@ -2,51 +2,29 @@ package pl.grm.narutocraft.jutsu.ninjutsu;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 
 public class ChioOdamaRasengan extends Jutsu implements IJutsu {
 	
 	public ChioOdamaRasengan() {
-		this.setUnlocalizedName("CORasengan");
-		this.setTextureName(textureLoc + "Rasengan");
-	}
-	
-	public void consumeChackra(int value) {
-		// TODO Auto-generated method stub
-		
+		super(JutsuEnum.CHIOODAMARASENGAN);
+		chackraConsumption = 5;
 	}
 	
 	@Override
-	public boolean isActive() {
-		// TODO Auto-generated method stub
-		return false;
+	public void activateJutsu() {
+		super.activateJutsu();
+		this.player.addPotionEffect(new PotionEffect(10, 10));
+		// this.setPotionEffect("Invisible");
 	}
 	
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!world.isRemote) {
-			
-		}
-		return stack;
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+			EntityPlayer par3EntityPlayer) {
+		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
 	}
-	
-	@Override
-	public void onJutsuUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void setActive(boolean par) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void uploadEffects() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
