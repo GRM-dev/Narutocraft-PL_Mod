@@ -29,106 +29,25 @@ public class JutsuManager {
 		this.registeredEntries = new HashMap<Integer, SkillTreeEntry>();
 	}
 	
+	/**
+	 * Iterate over JutsuEnum and calls regitster method
+	 */
+	public static void regJutsusList() {
+		for (JutsuEnum jutsu : JutsuEnum.values()) {
+			if (jutsu != JutsuEnum.NONE && jutsu != null)
+				registerJutsu(jutsu);
+		}
+	}
+	
+	/**
+	 * Add jutsu to GameRegistry.
+	 * 
+	 * @param jutsu
+	 */
 	public static void registerJutsu(JutsuEnum jutsu) {
 		GameRegistry.registerItem(jutsu.getJutsu(), jutsu.getName());
 		count++;
 		System.out.println(count);
-	}
-	
-	public static void regJutsusList() {
-		registerJutsu(JutsuEnum.MEISAIGAKURE);
-		registerJutsu(JutsuEnum.KAWARIMINOJUTSU);
-		registerJutsu(JutsuEnum.FUMANINKEN);
-		registerJutsu(JutsuEnum.HADAN);
-		registerJutsu(JutsuEnum.IAIDO);
-		registerJutsu(JutsuEnum.ISSEN);
-		registerJutsu(JutsuEnum.MIKAZUKIKIRI);
-		registerJutsu(JutsuEnum.OMOTEGIRI);
-		registerJutsu(JutsuEnum.SAMURAISABRETECHNIQUE);
-		registerJutsu(JutsuEnum.YOSAKUGIRI);
-		registerJutsu(JutsuEnum.BYAKUGO);
-		registerJutsu(JutsuEnum.JIKUKANKEKKAI);
-		registerJutsu(JutsuEnum.HAYKKARORAN);
-		registerJutsu(JutsuEnum.KOKUANGYONOJUTSU);
-		registerJutsu(JutsuEnum.KOUKONGARASU);
-		registerJutsu(JutsuEnum.RAIGENRAIKOCHU);
-		registerJutsu(JutsuEnum.CHAKURANOMESU);
-		registerJutsu(JutsuEnum.DOKUGIRI);
-		registerJutsu(JutsuEnum.INYUSHOMETSU);
-		registerJutsu(JutsuEnum.RANSHINSHO);
-		registerJutsu(JutsuEnum.SAIKANCHUSHUTSUNOJUTSU);
-		registerJutsu(JutsuEnum.CHIOODAMARASENGAN);
-		registerJutsu(JutsuEnum.ENMAKUGIRE);
-		registerJutsu(JutsuEnum.FUKIMIHARI);
-		registerJutsu(JutsuEnum.HARIJIZO);
-		registerJutsu(JutsuEnum.KAI);
-		registerJutsu(JutsuEnum.KUCHIYOSERASHOMON);
-		registerJutsu(JutsuEnum.NANKAIZOU);
-		registerJutsu(JutsuEnum.NAWANUKENOJUTSU);
-		registerJutsu(JutsuEnum.ODAMARASENGAN);
-		registerJutsu(JutsuEnum.RASENGAN);
-		registerJutsu(JutsuEnum.SHARINGAN);
-		registerJutsu(JutsuEnum.SHUNSHINNOJUTSU);
-		registerJutsu(JutsuEnum.ASAKUJAKU);
-		registerJutsu(JutsuEnum.HIRUDORA);
-		registerJutsu(JutsuEnum.KAGEBUYO);
-		registerJutsu(JutsuEnum.KOSAHO);
-		registerJutsu(JutsuEnum.OMOTERENGE);
-		registerJutsu(JutsuEnum.URARENGE);
-		
-		for (JutsuEnum jutsu : JutsuEnum.values()) {
-			registerJutsu(jutsu);
-		}
-	}
-	
-	public SkillTreeEntry getJutsu(int id) {
-		SkillTreeEntry component = this.registeredEntries.get(Integer.valueOf(id));
-		return component;
-	}
-	
-	public SkillTreeEntry getJutsu(String name) {
-		Integer ID = JutsuEnum.getByName(name).getID();
-		if (ID == null) { return null; }
-		return this.registeredEntries.get(ID);
-	}
-	
-	public int getJutsuID(IJutsu jutsu) {
-		return jutsu.getJutsuProps()[0];
-	}
-	
-	public int getJutsuID(JutsuEnum jutsuListElem) {
-		return jutsuListElem.getID();
-	}
-	
-	public synchronized void iterateOverJutsus() {
-		this.activeJutsus = ExtendedProperties.activeJutsus;
-		if (!this.activeJutsus.isEmpty()) {
-			this.iterator = this.activeJutsus.iterator();
-			while (this.iterator.hasNext()) {
-				this.elem = this.iterator.next();
-				this.jutsuID = this.elem[0];
-				this.durationLeft = this.elem[1];
-				
-				if (this.jutsu.isActive()) {
-					this.jutsu.onJutsuUpdate();
-				} else {
-					this.jutsu.setActive(false);
-				}
-			}
-		}
-	}
-	
-	public synchronized void loadJutsuEffectsOnPlayer() {
-		if (!ExtendedProperties.activeJutsus.isEmpty()) {
-			while (this.iterator.hasNext()) {
-				this.elem = this.activeJutsus.iterator().next();
-				if (this.jutsu.isActive()) {
-					this.jutsu.onJutsuUpdate();
-				} else {
-					this.jutsu.setActive(false);
-				}
-			}
-		}
 	}
 	
 	public void readFromNBT(NBTTagCompound compound) {
@@ -158,5 +77,61 @@ public class JutsuManager {
 			}
 		}
 		compound.setTag("JutsuManager", jutsus);
+	}
+	
+	/**
+	 * Called on every PLayerTick to update all Jutsu effects.
+	 */
+	public synchronized void iterateOverJutsus() {
+		this.activeJutsus = ExtendedProperties.activeJutsus;
+		if (!this.activeJutsus.isEmpty()) {
+			this.iterator = this.activeJutsus.iterator();
+			while (this.iterator.hasNext()) {
+				this.elem = this.iterator.next();
+				this.jutsuID = this.elem[0];
+				this.durationLeft = this.elem[1];
+				
+				if (this.jutsu.isActive()) {
+					this.jutsu.onJutsuUpdate();
+				} else {
+					this.jutsu.setActive(false);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Called after read from NBT.
+	 */
+	public synchronized void loadJutsuEffectsOnPlayer() {
+		if (!ExtendedProperties.activeJutsus.isEmpty()) {
+			while (this.iterator.hasNext()) {
+				this.elem = this.activeJutsus.iterator().next();
+				if (this.jutsu.isActive()) {
+					this.jutsu.onJutsuUpdate();
+				} else {
+					this.jutsu.setActive(false);
+				}
+			}
+		}
+	}
+	
+	public SkillTreeEntry getJutsu(int id) {
+		SkillTreeEntry component = this.registeredEntries.get(Integer.valueOf(id));
+		return component;
+	}
+	
+	public SkillTreeEntry getJutsu(String name) {
+		Integer ID = JutsuEnum.getByName(name).getID();
+		if (ID == null) { return null; }
+		return this.registeredEntries.get(ID);
+	}
+	
+	public int getJutsuID(IJutsu jutsu) {
+		return jutsu.getJutsuProps()[0];
+	}
+	
+	public int getJutsuID(JutsuEnum jutsuListElem) {
+		return jutsuListElem.getID();
 	}
 }

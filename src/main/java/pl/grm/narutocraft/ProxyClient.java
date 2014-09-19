@@ -70,12 +70,11 @@ public class ProxyClient extends ProxyCommon {
 		
 	}
 	
+	/**
+	 * register the sound event handling class
+	 */
 	@Override
 	public void registerSound() {
-		MinecraftForge.EVENT_BUS.register(new SoundHandler()); // register the
-																// sound event
-																// handling
-																// class
+		MinecraftForge.EVENT_BUS.register(new SoundHandler());
 	}
-	
 }
