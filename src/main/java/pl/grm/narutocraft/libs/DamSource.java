@@ -12,7 +12,6 @@ public class DamSource extends DamageSource {
 	
 	public DamSource(String par1Str) {
 		super(par1Str);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static DamageSource causeKunaiDamage(EntityKunai entityKunai,

@@ -4,9 +4,9 @@ import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.References;
 
-public class NZwoj extends Item {
+public class NScroll extends Item {
 	
-	public NZwoj() {
+	public NScroll() {
 		this.setUnlocalizedName("NZwoj");
 		this.setTextureName(References.ModTexturePath + "Zwoj");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);

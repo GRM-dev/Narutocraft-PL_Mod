@@ -1,0 +1,2725 @@
+Found a 91 line (689 tokens) duplication in the following files: 
+Starting at line 448 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 442 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+		EntityWKunai.kunaiShake = par1NBTTagCompound.getByte("shake") & 255;
+		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
+		
+		if (par1NBTTagCompound.hasKey("damage", 99)) {
+			this.damage = par1NBTTagCompound.getDouble("damage");
+		}
+		
+		if (par1NBTTagCompound.hasKey("pickup", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getByte("pickup");
+		} else if (par1NBTTagCompound.hasKey("player", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getBoolean("player") ? 1 : 0;
+		}
+	}
+	
+	public void setDamage(double par1) {
+		this.damage = par1;
+	}
+	
+	/**
+	 * Sets the position and rotation. Only difference from the other one is no
+	 * bounding on the rotation. Args: posX, posY, posZ, yaw, pitch
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setPositionAndRotation2(double par1, double par3, double par5,
+			float par7, float par8, int par9) {
+		this.setPosition(par1, par3, par5);
+		this.setRotation(par7, par8);
+	}
+	
+	/**
+	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
+	 * direction.
+	 */
+	@Override
+	public void setThrowableHeading(double par1, double par3, double par5, float par7,
+			float par8) {
+		float f2 = MathHelper.sqrt_double((par1 * par1) + (par3 * par3) + (par5 * par5));
+		par1 /= f2;
+		par3 /= f2;
+		par5 /= f2;
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par1 *= par7;
+		par3 *= par7;
+		par5 *= par7;
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		float f3 = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+		this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f3) * 180.0D) / Math.PI);
+		this.ticksInGround = 0;
+	}
+	
+	/**
+	 * Sets the velocity to the args. Args: x, y, z
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setVelocity(double par1, double par3, double par5) {
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F)) {
+			float f = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch;
+			this.prevRotationYaw = this.rotationYaw;
+			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw,
+					this.rotationPitch);
+			this.ticksInGround = 0;
+		}
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
+		par1NBTTagCompound.setShort("xTile", (short) this.d);
+		par1NBTTagCompound.setShort("yTile", (short) this.e);
+		par1NBTTagCompound.setShort("zTile", (short) this.f);
+		par1NBTTagCompound.setShort("life", (short) this.ticksInGround);
+		par1NBTTagCompound.setByte("inTile",
+				(byte) Block.getIdFromBlock(this.field_145790_g));
+		par1NBTTagCompound.setByte("inData", (byte) this.inData);
+		par1NBTTagCompound.setByte("shake", (byte) EntityWKunai.kunaiShake);
+=====================================================================
+Found a 107 line (668 tokens) duplication in the following files: 
+Starting at line 198 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 201 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		}
+		
+		if (this.inGround) {
+			int j = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
+			
+			if ((block == this.field_145790_g) && (j == this.inData)) {
+				++this.ticksInGround;
+				
+				if (this.ticksInGround == 1200) // 1200 = 60s
+				{
+					this.setDead();
+				}
+			} else {
+				this.inGround = false;
+				this.motionX *= this.rand.nextFloat() * 0.2F;
+				this.motionY *= this.rand.nextFloat() * 0.2F;
+				this.motionZ *= this.rand.nextFloat() * 0.2F;
+				this.ticksInGround = 0;
+				this.ticksInAir = 0;
+			}
+		} else {
+			++this.ticksInAir;
+			Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX,
+					this.posY, this.posZ);
+			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+					this.posX + this.motionX, this.posY + this.motionY,
+					this.posZ + this.motionZ);
+			MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(
+					vec31, vec3, false, true, false);
+			vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY,
+					this.posZ);
+			vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+					this.posX + this.motionX, this.posY + this.motionY,
+					this.posZ + this.motionZ);
+			
+			if (movingobjectposition != null) {
+				vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+						movingobjectposition.hitVec.xCoord,
+						movingobjectposition.hitVec.yCoord,
+						movingobjectposition.hitVec.zCoord);
+			}
+			
+			Entity entity = null;
+			@SuppressWarnings("rawtypes")
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
+					this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ)
+							.expand(1.0D, 1.0D, 1.0D));
+			double d0 = 0.0D;
+			int i;
+			float f1;
+			
+			for (i = 0; i < list.size(); ++i) {
+				Entity entity1 = (Entity) list.get(i);
+				
+				if (entity1.canBeCollidedWith()
+						&& ((entity1 != this.shootingEntity) || (this.ticksInAir >= 5))) {
+					f1 = 0.3F;
+					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
+					MovingObjectPosition movingobjectposition1 = axisalignedbb1
+							.calculateIntercept(vec31, vec3);
+					
+					if (movingobjectposition1 != null) {
+						double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
+						
+						if ((d1 < d0) || (d0 == 0.0D)) {
+							entity = entity1;
+							d0 = d1;
+						}
+					}
+				}
+			}
+			
+			if (entity != null) {
+				movingobjectposition = new MovingObjectPosition(entity);
+			}
+			
+			if ((movingobjectposition != null)
+					&& (movingobjectposition.entityHit != null)
+					&& (movingobjectposition.entityHit instanceof EntityPlayer)) {
+				EntityPlayer entityplayer = (EntityPlayer) movingobjectposition.entityHit;
+				
+				if (entityplayer.capabilities.disableDamage
+						|| ((this.shootingEntity instanceof EntityPlayer) && !((EntityPlayer) this.shootingEntity)
+								.canAttackPlayer(entityplayer))) {
+					movingobjectposition = null;
+				}
+			}
+			
+			float f2;
+			float f4;
+			
+			if (movingobjectposition != null) {
+				if (movingobjectposition.entityHit != null) {
+					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+							+ (this.motionY * this.motionY)
+							+ (this.motionZ * this.motionZ));
+					int k = MathHelper.ceiling_double_int(f2 * this.damage);
+					
+					/*
+					 * if (this.getIsCritical()) { k += this.rand.nextInt(k / 2
+					 * + 2); }
+					 */
+					
+					DamageSource damagesource = null;
+					
+					if (this.shootingEntity == null) {
+						damagesource = DamSource.causeSenbonDamage(this, this);
+=====================================================================
+Found a 90 line (660 tokens) duplication in the following files: 
+Starting at line 433 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 445 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		this.inData = par1NBTTagCompound.getByte("inData") & 255;
+		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
+		
+		if (par1NBTTagCompound.hasKey("damage", 99)) {
+			this.damage = par1NBTTagCompound.getDouble("damage");
+		}
+		
+		if (par1NBTTagCompound.hasKey("pickup", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getByte("pickup");
+		} else if (par1NBTTagCompound.hasKey("player", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getBoolean("player") ? 1 : 0;
+		}
+	}
+	
+	@Override
+	public void setDamage(double par1) {
+		this.damage = par1;
+	}
+	
+	/**
+	 * Sets the position and rotation. Only difference from the other one is no
+	 * bounding on the rotation. Args: posX, posY, posZ, yaw, pitch
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setPositionAndRotation2(double par1, double par3, double par5,
+			float par7, float par8, int par9) {
+		this.setPosition(par1, par3, par5);
+		this.setRotation(par7, par8);
+	}
+	
+	/**
+	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
+	 * direction.
+	 */
+	@Override
+	public void setThrowableHeading(double par1, double par3, double par5, float par7,
+			float par8) {
+		float f2 = MathHelper.sqrt_double((par1 * par1) + (par3 * par3) + (par5 * par5));
+		par1 /= f2;
+		par3 /= f2;
+		par5 /= f2;
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par1 *= par7;
+		par3 *= par7;
+		par5 *= par7;
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		float f3 = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+		this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f3) * 180.0D) / Math.PI);
+		this.ticksInGround = 0;
+	}
+	
+	/**
+	 * Sets the velocity to the args. Args: x, y, z
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setVelocity(double par1, double par3, double par5) {
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F)) {
+			float f = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch;
+			this.prevRotationYaw = this.rotationYaw;
+			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw,
+					this.rotationPitch);
+			this.ticksInGround = 0;
+		}
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
+		par1NBTTagCompound.setShort("xTile", (short) this.d);
+		par1NBTTagCompound.setShort("yTile", (short) this.e);
+		par1NBTTagCompound.setShort("zTile", (short) this.f);
+		par1NBTTagCompound.setShort("life", (short) this.ticksInGround);
+		par1NBTTagCompound.setByte("inTile",
+				(byte) Block.getIdFromBlock(this.contactBlock));
+=====================================================================
+Found a 102 line (631 tokens) duplication in the following files: 
+Starting at line 196 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 203 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 206 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+			if ((block == this.contactBlock) && (j == this.inData)) {
+				++this.ticksInGround;
+				
+				if (this.ticksInGround == 1200) // 1200 = 60s
+				{
+					this.setDead();
+				}
+			} else {
+				this.inGround = false;
+				this.motionX *= this.rand.nextFloat() * 0.2F;
+				this.motionY *= this.rand.nextFloat() * 0.2F;
+				this.motionZ *= this.rand.nextFloat() * 0.2F;
+				this.ticksInGround = 0;
+				this.ticksInAir = 0;
+			}
+		} else {
+			++this.ticksInAir;
+			Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX,
+					this.posY, this.posZ);
+			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+					this.posX + this.motionX, this.posY + this.motionY,
+					this.posZ + this.motionZ);
+			MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(
+					vec31, vec3, false, true, false);
+			vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY,
+					this.posZ);
+			vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+					this.posX + this.motionX, this.posY + this.motionY,
+					this.posZ + this.motionZ);
+			
+			if (movingobjectposition != null) {
+				vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+						movingobjectposition.hitVec.xCoord,
+						movingobjectposition.hitVec.yCoord,
+						movingobjectposition.hitVec.zCoord);
+			}
+			
+			Entity entity = null;
+			@SuppressWarnings("rawtypes")
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
+					this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ)
+							.expand(1.0D, 1.0D, 1.0D));
+			double d0 = 0.0D;
+			int i;
+			float f1;
+			
+			for (i = 0; i < list.size(); ++i) {
+				Entity entity1 = (Entity) list.get(i);
+				
+				if (entity1.canBeCollidedWith()
+						&& ((entity1 != this.shootingEntity) || (this.ticksInAir >= 5))) {
+					f1 = 0.3F;
+					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
+					MovingObjectPosition movingobjectposition1 = axisalignedbb1
+							.calculateIntercept(vec31, vec3);
+					
+					if (movingobjectposition1 != null) {
+						double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
+						
+						if ((d1 < d0) || (d0 == 0.0D)) {
+							entity = entity1;
+							d0 = d1;
+						}
+					}
+				}
+			}
+			
+			if (entity != null) {
+				movingobjectposition = new MovingObjectPosition(entity);
+			}
+			
+			if ((movingobjectposition != null)
+					&& (movingobjectposition.entityHit != null)
+					&& (movingobjectposition.entityHit instanceof EntityPlayer)) {
+				EntityPlayer entityplayer = (EntityPlayer) movingobjectposition.entityHit;
+				
+				if (entityplayer.capabilities.disableDamage
+						|| ((this.shootingEntity instanceof EntityPlayer) && !((EntityPlayer) this.shootingEntity)
+								.canAttackPlayer(entityplayer))) {
+					movingobjectposition = null;
+				}
+			}
+			
+			float f2;
+			float f4;
+			
+			if (movingobjectposition != null) {
+				if (movingobjectposition.entityHit != null) {
+					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+							+ (this.motionY * this.motionY)
+							+ (this.motionZ * this.motionZ));
+					int k = MathHelper.ceiling_double_int(f2 * this.damage);
+					
+					/*
+					 * if (this.getIsCritical()) { k += this.rand.nextInt(k / 2
+					 * + 2); }
+					 */
+					
+					DamageSource damagesource = null;
+					
+					if (this.shootingEntity == null) {
+						damagesource = DamSource.causeShurikenDamage(this, this);
+=====================================================================
+Found a 74 line (614 tokens) duplication in the following files: 
+Starting at line 19 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\render\RenderWKunai.java
+Starting at line 21 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\render\RenderKunai.java
+
+											+ "textures/model/WKunai.png");
+	
+	@Override
+	public void doRender(Entity par1EntityKunai, double var2, double var4, double var6,
+			float var8, float var9) {
+		this.bindTexture(this.texture);
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glPushMatrix();
+		GL11.glTranslatef((float) var2, (float) var4, (float) var6);
+		GL11.glRotatef(
+				(par1EntityKunai.prevRotationYaw + ((par1EntityKunai.rotationYaw - par1EntityKunai.prevRotationYaw) * var9)) - 90.0F,
+				0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(
+				par1EntityKunai.prevRotationPitch
+						+ ((par1EntityKunai.rotationPitch - par1EntityKunai.prevRotationPitch) * var9),
+				0.0F, 0.0F, 1.0F);
+		byte b0 = 0;
+		float f2 = 0.0F;
+		float f3 = 0.5F;
+		float f4 = (0 + (b0 * 10)) / 32.0F;
+		float f5 = (5 + (b0 * 10)) / 32.0F;
+		float f6 = 0.0F;
+		float f7 = 0.15625F;
+		float f8 = (5 + (b0 * 10)) / 32.0F;
+		float f9 = (10 + (b0 * 10)) / 32.0F;
+		float f10 = 0.05625F;
+		GL11.glEnable(32826);
+		float f11 = EntityKunai.kunaiShake - var9;
+		if (f11 > 0.0F) {
+			float f12 = -MathHelper.sin(f11 * 3.0F) * f11;
+			GL11.glRotatef(f12, 0.0F, 0.0F, 1.0F);
+		}
+		GL11.glRotatef(45.0F, 1.0F, 0.0F, 0.0F);
+		GL11.glScalef(f10, f10, f10);
+		GL11.glTranslatef(-4.0F, 0.0F, 0.0F);
+		GL11.glNormal3f(f10, 0.0F, 0.0F);
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f8);
+		tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f8);
+		tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f9);
+		tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f9);
+		tessellator.draw();
+		GL11.glNormal3f(-f10, 0.0F, 0.0F);
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f8);
+		tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f8);
+		tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f9);
+		tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f9);
+		tessellator.draw();
+		for (int i = 0; i < 4; i++) {
+			GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
+			GL11.glNormal3f(0.0F, 0.0F, f10);
+			tessellator.startDrawingQuads();
+			tessellator.addVertexWithUV(-8.0D, -2.0D, 0.0D, f2, f4);
+			tessellator.addVertexWithUV(8.0D, -2.0D, 0.0D, f3, f4);
+			tessellator.addVertexWithUV(8.0D, 2.0D, 0.0D, f3, f5);
+			tessellator.addVertexWithUV(-8.0D, 2.0D, 0.0D, f2, f5);
+			tessellator.draw();
+		}
+		GL11.glDisable(32826);
+		GL11.glPopMatrix();
+	}
+	
+	public void renderSpecial() {
+		GL11.glScalef(0.4F, 0.4F, 0.4F);
+		GL11.glTranslatef(-0.4F, 0.5F, 0.1F);
+	}
+	
+	@Override
+	protected ResourceLocation getEntityTexture(Entity var1) {
+		return null;
+	}
+	
+}
+=====================================================================
+Found a 97 line (607 tokens) duplication in the following files: 
+Starting at line 212 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 201 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 208 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 211 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+					this.setDead();
+				}
+			} else {
+				this.inGround = false;
+				this.motionX *= this.rand.nextFloat() * 0.2F;
+				this.motionY *= this.rand.nextFloat() * 0.2F;
+				this.motionZ *= this.rand.nextFloat() * 0.2F;
+				this.ticksInGround = 0;
+				this.ticksInAir = 0;
+			}
+		} else {
+			++this.ticksInAir;
+			Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX,
+					this.posY, this.posZ);
+			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+					this.posX + this.motionX, this.posY + this.motionY,
+					this.posZ + this.motionZ);
+			MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(
+					vec31, vec3, false, true, false);
+			vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY,
+					this.posZ);
+			vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+					this.posX + this.motionX, this.posY + this.motionY,
+					this.posZ + this.motionZ);
+			
+			if (movingobjectposition != null) {
+				vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+						movingobjectposition.hitVec.xCoord,
+						movingobjectposition.hitVec.yCoord,
+						movingobjectposition.hitVec.zCoord);
+			}
+			
+			Entity entity = null;
+			@SuppressWarnings("rawtypes")
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
+					this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ)
+							.expand(1.0D, 1.0D, 1.0D));
+			double d0 = 0.0D;
+			int i;
+			float f1;
+			
+			for (i = 0; i < list.size(); ++i) {
+				Entity entity1 = (Entity) list.get(i);
+				
+				if (entity1.canBeCollidedWith()
+						&& ((entity1 != this.shootingEntity) || (this.ticksInAir >= 5))) {
+					f1 = 0.3F;
+					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
+					MovingObjectPosition movingobjectposition1 = axisalignedbb1
+							.calculateIntercept(vec31, vec3);
+					
+					if (movingobjectposition1 != null) {
+						double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
+						
+						if ((d1 < d0) || (d0 == 0.0D)) {
+							entity = entity1;
+							d0 = d1;
+						}
+					}
+				}
+			}
+			
+			if (entity != null) {
+				movingobjectposition = new MovingObjectPosition(entity);
+			}
+			
+			if ((movingobjectposition != null)
+					&& (movingobjectposition.entityHit != null)
+					&& (movingobjectposition.entityHit instanceof EntityPlayer)) {
+				EntityPlayer entityplayer = (EntityPlayer) movingobjectposition.entityHit;
+				
+				if (entityplayer.capabilities.disableDamage
+						|| ((this.shootingEntity instanceof EntityPlayer) && !((EntityPlayer) this.shootingEntity)
+								.canAttackPlayer(entityplayer))) {
+					movingobjectposition = null;
+				}
+			}
+			
+			float f2;
+			float f4;
+			
+			if (movingobjectposition != null) {
+				if (movingobjectposition.entityHit != null) {
+					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+							+ (this.motionY * this.motionY)
+							+ (this.motionZ * this.motionZ));
+					int k = MathHelper.ceiling_double_int(f2 * this.damage);
+					
+					/*
+					 * if (this.getIsCritical()) { k += this.rand.nextInt(k / 2
+					 * + 2); }
+					 */
+					
+					DamageSource damagesource = null;
+					
+					if (this.shootingEntity == null) {
+						damagesource = DamSource.causeWKunaiDamage(this, this);
+=====================================================================
+Found a 77 line (593 tokens) duplication in the following files: 
+Starting at line 462 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 456 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 460 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+	public void setDamage(double par1) {
+		this.damage = par1;
+	}
+	
+	/**
+	 * Sets the position and rotation. Only difference from the other one is no
+	 * bounding on the rotation. Args: posX, posY, posZ, yaw, pitch
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setPositionAndRotation2(double par1, double par3, double par5,
+			float par7, float par8, int par9) {
+		this.setPosition(par1, par3, par5);
+		this.setRotation(par7, par8);
+	}
+	
+	/**
+	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
+	 * direction.
+	 */
+	@Override
+	public void setThrowableHeading(double par1, double par3, double par5, float par7,
+			float par8) {
+		float f2 = MathHelper.sqrt_double((par1 * par1) + (par3 * par3) + (par5 * par5));
+		par1 /= f2;
+		par3 /= f2;
+		par5 /= f2;
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par1 *= par7;
+		par3 *= par7;
+		par5 *= par7;
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		float f3 = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+		this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f3) * 180.0D) / Math.PI);
+		this.ticksInGround = 0;
+	}
+	
+	/**
+	 * Sets the velocity to the args. Args: x, y, z
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setVelocity(double par1, double par3, double par5) {
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F)) {
+			float f = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch;
+			this.prevRotationYaw = this.rotationYaw;
+			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw,
+					this.rotationPitch);
+			this.ticksInGround = 0;
+		}
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
+		par1NBTTagCompound.setShort("xTile", (short) this.d);
+		par1NBTTagCompound.setShort("yTile", (short) this.e);
+		par1NBTTagCompound.setShort("zTile", (short) this.f);
+		par1NBTTagCompound.setShort("life", (short) this.ticksInGround);
+		par1NBTTagCompound.setByte("inTile",
+				(byte) Block.getIdFromBlock(this.field_145790_g));
+		par1NBTTagCompound.setByte("inData", (byte) this.inData);
+		par1NBTTagCompound.setByte("shake", (byte) EntityWKunai.kunaiShake);
+=====================================================================
+Found a 75 line (568 tokens) duplication in the following files: 
+Starting at line 462 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 448 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 456 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+	public void setDamage(double par1) {
+		this.damage = par1;
+	}
+	
+	/**
+	 * Sets the position and rotation. Only difference from the other one is no
+	 * bounding on the rotation. Args: posX, posY, posZ, yaw, pitch
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setPositionAndRotation2(double par1, double par3, double par5,
+			float par7, float par8, int par9) {
+		this.setPosition(par1, par3, par5);
+		this.setRotation(par7, par8);
+	}
+	
+	/**
+	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
+	 * direction.
+	 */
+	@Override
+	public void setThrowableHeading(double par1, double par3, double par5, float par7,
+			float par8) {
+		float f2 = MathHelper.sqrt_double((par1 * par1) + (par3 * par3) + (par5 * par5));
+		par1 /= f2;
+		par3 /= f2;
+		par5 /= f2;
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+		par1 *= par7;
+		par3 *= par7;
+		par5 *= par7;
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		float f3 = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+		this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f3) * 180.0D) / Math.PI);
+		this.ticksInGround = 0;
+	}
+	
+	/**
+	 * Sets the velocity to the args. Args: x, y, z
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setVelocity(double par1, double par3, double par5) {
+		this.motionX = par1;
+		this.motionY = par3;
+		this.motionZ = par5;
+		
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F)) {
+			float f = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch;
+			this.prevRotationYaw = this.rotationYaw;
+			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw,
+					this.rotationPitch);
+			this.ticksInGround = 0;
+		}
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
+		par1NBTTagCompound.setShort("xTile", (short) this.d);
+		par1NBTTagCompound.setShort("yTile", (short) this.e);
+		par1NBTTagCompound.setShort("zTile", (short) this.f);
+		par1NBTTagCompound.setShort("life", (short) this.ticksInGround);
+		par1NBTTagCompound.setByte("inTile",
+				(byte) Block.getIdFromBlock(this.field_145790_g));
+=====================================================================
+Found a 82 line (507 tokens) duplication in the following files: 
+Starting at line 366 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 363 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+					EntityWKunai.kunaiShake = 0;
+					
+					if (this.field_145790_g.getMaterial() != Material.air) {
+						this.field_145790_g.onEntityCollidedWithBlock(this.worldObj,
+								this.d, this.e, this.f, this);
+					}
+				}
+			}
+			
+			/*
+			 * if (this.getIsCritical()) { for (i = 0; i < 4; ++i) {
+			 * this.worldObj.spawnParticle("crit", this.posX + this.motionX *
+			 * (double)i / 4.0D, this.posY + this.motionY * (double)i / 4.0D,
+			 * this.posZ + this.motionZ * (double)i / 4.0D, -this.motionX,
+			 * -this.motionY + 0.2D, -this.motionZ); } }
+			 */
+			
+			this.posX += this.motionX;
+			this.posY += this.motionY;
+			this.posZ += this.motionZ;
+			f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+					+ (this.motionZ * this.motionZ));
+			this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180.0D) / Math.PI);
+			
+			for (this.rotationPitch = (float) ((Math.atan2(this.motionY, f2) * 180.0D) / Math.PI); (this.rotationPitch - this.prevRotationPitch) < -180.0F; this.prevRotationPitch -= 360.0F) {
+				;
+			}
+			
+			while ((this.rotationPitch - this.prevRotationPitch) >= 180.0F) {
+				this.prevRotationPitch += 360.0F;
+			}
+			
+			while ((this.rotationYaw - this.prevRotationYaw) < -180.0F) {
+				this.prevRotationYaw -= 360.0F;
+			}
+			
+			while ((this.rotationYaw - this.prevRotationYaw) >= 180.0F) {
+				this.prevRotationYaw += 360.0F;
+			}
+			
+			this.rotationPitch = this.prevRotationPitch
+					+ ((this.rotationPitch - this.prevRotationPitch) * 0.2F);
+			this.rotationYaw = this.prevRotationYaw
+					+ ((this.rotationYaw - this.prevRotationYaw) * 0.2F);
+			float f3 = 0.99F;
+			f1 = 0.05F;
+			
+			if (this.isInWater()) {
+				for (int l = 0; l < 4; ++l) {
+					f4 = 0.25F;
+					this.worldObj.spawnParticle("bubble",
+							this.posX - (this.motionX * f4), this.posY
+									- (this.motionY * f4), this.posZ
+									- (this.motionZ * f4), this.motionX, this.motionY,
+							this.motionZ);
+				}
+				
+				f3 = 0.8F;
+			}
+			
+			if (this.isWet()) {
+				this.extinguish();
+			}
+			
+			this.motionX *= f3;
+			this.motionY *= f3;
+			this.motionZ *= f3;
+			this.motionY -= f1;
+			this.setPosition(this.posX, this.posY, this.posZ);
+			this.func_145775_I();
+		}
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
+		this.d = par1NBTTagCompound.getShort("xTile");
+		this.e = par1NBTTagCompound.getShort("yTile");
+		this.f = par1NBTTagCompound.getShort("zTile");
+		this.ticksInGround = par1NBTTagCompound.getShort("life");
+		this.field_145790_g = Block
+				.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
+		this.inData = par1NBTTagCompound.getByte("inData") & 255;
+=====================================================================
+Found a 82 line (505 tokens) duplication in the following files: 
+Starting at line 366 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 360 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 363 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+					EntityWKunai.kunaiShake = 0;
+					
+					if (this.field_145790_g.getMaterial() != Material.air) {
+						this.field_145790_g.onEntityCollidedWithBlock(this.worldObj,
+								this.d, this.e, this.f, this);
+					}
+				}
+			}
+			
+			/*
+			 * if (this.getIsCritical()) { for (i = 0; i < 4; ++i) {
+			 * this.worldObj.spawnParticle("crit", this.posX + this.motionX *
+			 * (double)i / 4.0D, this.posY + this.motionY * (double)i / 4.0D,
+			 * this.posZ + this.motionZ * (double)i / 4.0D, -this.motionX,
+			 * -this.motionY + 0.2D, -this.motionZ); } }
+			 */
+			
+			this.posX += this.motionX;
+			this.posY += this.motionY;
+			this.posZ += this.motionZ;
+			f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+					+ (this.motionZ * this.motionZ));
+			this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180.0D) / Math.PI);
+			
+			for (this.rotationPitch = (float) ((Math.atan2(this.motionY, f2) * 180.0D) / Math.PI); (this.rotationPitch - this.prevRotationPitch) < -180.0F; this.prevRotationPitch -= 360.0F) {
+				;
+			}
+			
+			while ((this.rotationPitch - this.prevRotationPitch) >= 180.0F) {
+				this.prevRotationPitch += 360.0F;
+			}
+			
+			while ((this.rotationYaw - this.prevRotationYaw) < -180.0F) {
+				this.prevRotationYaw -= 360.0F;
+			}
+			
+			while ((this.rotationYaw - this.prevRotationYaw) >= 180.0F) {
+				this.prevRotationYaw += 360.0F;
+			}
+			
+			this.rotationPitch = this.prevRotationPitch
+					+ ((this.rotationPitch - this.prevRotationPitch) * 0.2F);
+			this.rotationYaw = this.prevRotationYaw
+					+ ((this.rotationYaw - this.prevRotationYaw) * 0.2F);
+			float f3 = 0.99F;
+			f1 = 0.05F;
+			
+			if (this.isInWater()) {
+				for (int l = 0; l < 4; ++l) {
+					f4 = 0.25F;
+					this.worldObj.spawnParticle("bubble",
+							this.posX - (this.motionX * f4), this.posY
+									- (this.motionY * f4), this.posZ
+									- (this.motionZ * f4), this.motionX, this.motionY,
+							this.motionZ);
+				}
+				
+				f3 = 0.8F;
+			}
+			
+			if (this.isWet()) {
+				this.extinguish();
+			}
+			
+			this.motionX *= f3;
+			this.motionY *= f3;
+			this.motionZ *= f3;
+			this.motionY -= f1;
+			this.setPosition(this.posX, this.posY, this.posZ);
+			this.func_145775_I();
+		}
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
+		this.d = par1NBTTagCompound.getShort("xTile");
+		this.e = par1NBTTagCompound.getShort("yTile");
+		this.f = par1NBTTagCompound.getShort("zTile");
+		this.ticksInGround = par1NBTTagCompound.getShort("life");
+		this.field_145790_g = Block
+				.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
+		this.inData = par1NBTTagCompound.getByte("inData") & 255;
+=====================================================================
+Found a 77 line (458 tokens) duplication in the following files: 
+Starting at line 369 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 355 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 363 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 366 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+						this.field_145790_g.onEntityCollidedWithBlock(this.worldObj,
+								this.d, this.e, this.f, this);
+					}
+				}
+			}
+			
+			/*
+			 * if (this.getIsCritical()) { for (i = 0; i < 4; ++i) {
+			 * this.worldObj.spawnParticle("crit", this.posX + this.motionX *
+			 * (double)i / 4.0D, this.posY + this.motionY * (double)i / 4.0D,
+			 * this.posZ + this.motionZ * (double)i / 4.0D, -this.motionX,
+			 * -this.motionY + 0.2D, -this.motionZ); } }
+			 */
+			
+			this.posX += this.motionX;
+			this.posY += this.motionY;
+			this.posZ += this.motionZ;
+			f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+					+ (this.motionZ * this.motionZ));
+			this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180.0D) / Math.PI);
+			
+			for (this.rotationPitch = (float) ((Math.atan2(this.motionY, f2) * 180.0D) / Math.PI); (this.rotationPitch - this.prevRotationPitch) < -180.0F; this.prevRotationPitch -= 360.0F) {
+				;
+			}
+			
+			while ((this.rotationPitch - this.prevRotationPitch) >= 180.0F) {
+				this.prevRotationPitch += 360.0F;
+			}
+			
+			while ((this.rotationYaw - this.prevRotationYaw) < -180.0F) {
+				this.prevRotationYaw -= 360.0F;
+			}
+			
+			while ((this.rotationYaw - this.prevRotationYaw) >= 180.0F) {
+				this.prevRotationYaw += 360.0F;
+			}
+			
+			this.rotationPitch = this.prevRotationPitch
+					+ ((this.rotationPitch - this.prevRotationPitch) * 0.2F);
+			this.rotationYaw = this.prevRotationYaw
+					+ ((this.rotationYaw - this.prevRotationYaw) * 0.2F);
+			float f3 = 0.99F;
+			f1 = 0.05F;
+			
+			if (this.isInWater()) {
+				for (int l = 0; l < 4; ++l) {
+					f4 = 0.25F;
+					this.worldObj.spawnParticle("bubble",
+							this.posX - (this.motionX * f4), this.posY
+									- (this.motionY * f4), this.posZ
+									- (this.motionZ * f4), this.motionX, this.motionY,
+							this.motionZ);
+				}
+				
+				f3 = 0.8F;
+			}
+			
+			if (this.isWet()) {
+				this.extinguish();
+			}
+			
+			this.motionX *= f3;
+			this.motionY *= f3;
+			this.motionZ *= f3;
+			this.motionY -= f1;
+			this.setPosition(this.posX, this.posY, this.posZ);
+			this.func_145775_I();
+		}
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
+		this.d = par1NBTTagCompound.getShort("xTile");
+		this.e = par1NBTTagCompound.getShort("yTile");
+		this.f = par1NBTTagCompound.getShort("zTile");
+		this.ticksInGround = par1NBTTagCompound.getShort("life");
+		this.field_145790_g = Block
+=====================================================================
+Found a 54 line (421 tokens) duplication in the following files: 
+Starting at line 306 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 309 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+						damagesource = DamSource.causeSenbonDamage(this,
+								this.shootingEntity);
+					}
+					
+					if (movingobjectposition.entityHit.attackEntityFrom(damagesource, k)) {
+						if (movingobjectposition.entityHit instanceof EntityLivingBase) {
+							EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
+							
+							if (!this.worldObj.isRemote) {
+								entitylivingbase.setArrowCountInEntity(entitylivingbase
+										.getArrowCountInEntity() + 1);
+							}
+							
+							if ((this.shootingEntity != null)
+									&& (movingobjectposition.entityHit != this.shootingEntity)
+									&& (movingobjectposition.entityHit instanceof EntityPlayer)
+									&& (this.shootingEntity instanceof EntityPlayerMP)) {
+								((EntityPlayerMP) this.shootingEntity).playerNetServerHandler
+										.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
+							}
+						}
+						
+						this.playSound("random.bowhit", 1.0F,
+								1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+						
+						if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
+							this.setDead();
+						}
+					} else {
+						this.motionX *= -0.10000000149011612D;
+						this.motionY *= -0.10000000149011612D;
+						this.motionZ *= -0.10000000149011612D;
+						this.rotationYaw += 180.0F;
+						this.prevRotationYaw += 180.0F;
+						this.ticksInAir = 0;
+					}
+				} else {
+					this.d = movingobjectposition.blockX;
+					this.e = movingobjectposition.blockY;
+					this.f = movingobjectposition.blockZ;
+					this.field_145790_g = block;
+					this.inData = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
+					this.motionX = ((float) (movingobjectposition.hitVec.xCoord - this.posX));
+					this.motionY = ((float) (movingobjectposition.hitVec.yCoord - this.posY));
+					this.motionZ = ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
+					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+							+ (this.motionY * this.motionY)
+							+ (this.motionZ * this.motionZ));
+					this.posX -= (this.motionX / f2) * 0.05000000074505806D;
+					this.posY -= (this.motionY / f2) * 0.05000000074505806D;
+					this.posZ -= (this.motionZ / f2) * 0.05000000074505806D;
+					this.playSound("random.bowhit", 1.0F,
+							1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+					this.inGround = true;
+=====================================================================
+Found a 50 line (413 tokens) duplication in the following files: 
+Starting at line 316 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 310 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 313 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+					if (movingobjectposition.entityHit.attackEntityFrom(damagesource, k)) {
+						if (movingobjectposition.entityHit instanceof EntityLivingBase) {
+							EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
+							
+							if (!this.worldObj.isRemote) {
+								entitylivingbase.setArrowCountInEntity(entitylivingbase
+										.getArrowCountInEntity() + 1);
+							}
+							
+							if ((this.shootingEntity != null)
+									&& (movingobjectposition.entityHit != this.shootingEntity)
+									&& (movingobjectposition.entityHit instanceof EntityPlayer)
+									&& (this.shootingEntity instanceof EntityPlayerMP)) {
+								((EntityPlayerMP) this.shootingEntity).playerNetServerHandler
+										.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
+							}
+						}
+						
+						this.playSound("random.bowhit", 1.0F,
+								1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+						
+						if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
+							this.setDead();
+						}
+					} else {
+						this.motionX *= -0.10000000149011612D;
+						this.motionY *= -0.10000000149011612D;
+						this.motionZ *= -0.10000000149011612D;
+						this.rotationYaw += 180.0F;
+						this.prevRotationYaw += 180.0F;
+						this.ticksInAir = 0;
+					}
+				} else {
+					this.d = movingobjectposition.blockX;
+					this.e = movingobjectposition.blockY;
+					this.f = movingobjectposition.blockZ;
+					this.field_145790_g = block;
+					this.inData = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
+					this.motionX = ((float) (movingobjectposition.hitVec.xCoord - this.posX));
+					this.motionY = ((float) (movingobjectposition.hitVec.yCoord - this.posY));
+					this.motionZ = ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
+					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+							+ (this.motionY * this.motionY)
+							+ (this.motionZ * this.motionZ));
+					this.posX -= (this.motionX / f2) * 0.05000000074505806D;
+					this.posY -= (this.motionY / f2) * 0.05000000074505806D;
+					this.posZ -= (this.motionZ / f2) * 0.05000000074505806D;
+					this.playSound("random.bowhit", 1.0F,
+							1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+					this.inGround = true;
+=====================================================================
+Found a 45 line (352 tokens) duplication in the following files: 
+Starting at line 103 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 100 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+	public EntityWKunai(World par1World, EntityLivingBase par2EntityLivingBase, float par3) {
+		super(par1World);
+		this.renderDistanceWeight = 10.0D;
+		this.shootingEntity = par2EntityLivingBase;
+		
+		if (par2EntityLivingBase instanceof EntityPlayer) {
+			this.canBePickedUp = 1;
+		}
+		
+		this.setSize(0.5F, 0.5F);
+		this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY
+				+ par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ,
+				par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
+		this.posX -= MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
+		this.posY -= 0.10000000149011612D;
+		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
+		this.setPosition(this.posX, this.posY, this.posZ);
+		this.yOffset = 0.0F;
+		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
+				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
+		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
+				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
+		this.motionY = (-MathHelper.sin((this.rotationPitch / 180.0F) * (float) Math.PI));
+		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, par3 * 1.5F,
+				1.0F);
+	}
+	
+	@Override
+	public boolean canAttackWithItem() {
+		return true;
+	}
+	
+	public double getDamage() {
+		return this.damage;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getShadowSize() {
+		return 0.0F;
+	}
+	
+	@Override
+	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
+		if (!this.worldObj.isRemote && this.inGround && (EntityWKunai.kunaiShake <= 0)) {
+=====================================================================
+Found a 47 line (352 tokens) duplication in the following files: 
+Starting at line 95 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 99 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+	public EntityShuriken(World par1World, EntityLivingBase par2EntityLivingBase,
+			float par3) {
+		super(par1World);
+		this.renderDistanceWeight = 10.0D;
+		this.shootingEntity = par2EntityLivingBase;
+		
+		if (par2EntityLivingBase instanceof EntityPlayer) {
+			this.canBePickedUp = 1;
+		}
+		
+		this.setSize(0.5F, 0.5F);
+		this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY
+				+ par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ,
+				par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
+		this.posX -= MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
+		this.posY -= 0.10000000149011612D;
+		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
+		this.setPosition(this.posX, this.posY, this.posZ);
+		this.yOffset = 0.0F;
+		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
+				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
+		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
+				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
+		this.motionY = (-MathHelper.sin((this.rotationPitch / 180.0F) * (float) Math.PI));
+		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, par3 * 1.5F,
+				1.0F);
+	}
+	
+	@Override
+	public boolean canAttackWithItem() {
+		return true;
+	}
+	
+	@Override
+	public double getDamage() {
+		return this.damage;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getShadowSize() {
+		return 0.0F;
+	}
+	
+	@Override
+	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
+		if (!this.worldObj.isRemote && this.inGround) {
+=====================================================================
+Found a 47 line (319 tokens) duplication in the following files: 
+Starting at line 153 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 147 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 150 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 153 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+							RegWeapons.WKunai, 1))) {
+				flag = false;
+			}
+			
+			if (flag) {
+				this.playSound(
+						"random.pop",
+						0.2F,
+						(((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F) + 1.0F) * 2.0F);
+				par1EntityPlayer.onItemPickup(this, 1);
+				this.setDead();
+			}
+		}
+	}
+	
+	/**
+	 * Called to update the entity's position/logic.
+	 */
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F)) {
+			float f = MathHelper.sqrt_double((this.motionX * this.motionX)
+					+ (this.motionZ * this.motionZ));
+			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(this.motionX,
+					this.motionZ) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(
+					this.motionY, f) * 180.0D) / Math.PI);
+		}
+		
+		Block block = this.worldObj.getBlock(this.d, this.e, this.f);
+		
+		if (block.getMaterial() != Material.air) {
+			block.setBlockBoundsBasedOnState(this.worldObj, this.d, this.e, this.f);
+			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBoxFromPool(
+					this.worldObj, this.d, this.e, this.f);
+			
+			if ((axisalignedbb != null)
+					&& axisalignedbb.isVecInside(this.worldObj.getWorldVec3Pool()
+							.getVecFromPool(this.posX, this.posY, this.posZ))) {
+				this.inGround = true;
+			}
+		}
+		
+		if (EntityWKunai.kunaiShake > 0) {
+=====================================================================
+Found a 31 line (299 tokens) duplication in the following files: 
+Starting at line 103 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 95 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 100 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 99 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+	public EntityWKunai(World par1World, EntityLivingBase par2EntityLivingBase, float par3) {
+		super(par1World);
+		this.renderDistanceWeight = 10.0D;
+		this.shootingEntity = par2EntityLivingBase;
+		
+		if (par2EntityLivingBase instanceof EntityPlayer) {
+			this.canBePickedUp = 1;
+		}
+		
+		this.setSize(0.5F, 0.5F);
+		this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY
+				+ par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ,
+				par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
+		this.posX -= MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
+		this.posY -= 0.10000000149011612D;
+		this.posZ -= MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
+		this.setPosition(this.posX, this.posY, this.posZ);
+		this.yOffset = 0.0F;
+		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
+				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
+		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
+				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
+		this.motionY = (-MathHelper.sin((this.rotationPitch / 180.0F) * (float) Math.PI));
+		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, par3 * 1.5F,
+				1.0F);
+	}
+	
+	@Override
+	public boolean canAttackWithItem() {
+		return true;
+	}
+=====================================================================
+Found a 31 line (251 tokens) duplication in the following files: 
+Starting at line 73 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 65 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 70 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 69 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+	public EntityWKunai(World par1World, EntityLivingBase par2EntityLivingBase,
+			EntityLivingBase par3EntityLivingBase, float par4, float par5) {
+		super(par1World);
+		this.renderDistanceWeight = 10.0D;
+		this.shootingEntity = par2EntityLivingBase;
+		
+		if (par2EntityLivingBase instanceof EntityPlayer) {
+			this.canBePickedUp = 1;
+		}
+		
+		this.posY = (par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight()) - 0.10000000149011612D;
+		double d0 = par3EntityLivingBase.posX - par2EntityLivingBase.posX;
+		double d1 = (par3EntityLivingBase.boundingBox.minY + (par3EntityLivingBase.height / 3.0F))
+				- this.posY;
+		double d2 = par3EntityLivingBase.posZ - par2EntityLivingBase.posZ;
+		double d3 = MathHelper.sqrt_double((d0 * d0) + (d2 * d2));
+		
+		if (d3 >= 1.0E-7D) {
+			float f2 = (float) ((Math.atan2(d2, d0) * 180.0D) / Math.PI) - 90.0F;
+			float f3 = (float) (-((Math.atan2(d1, d3) * 180.0D) / Math.PI));
+			double d4 = d0 / d3;
+			double d5 = d2 / d3;
+			this.setLocationAndAngles(par2EntityLivingBase.posX + d4, this.posY,
+					par2EntityLivingBase.posZ + d5, f2, f3);
+			this.yOffset = 0.0F;
+			float f4 = (float) d3 * 0.2F;
+			this.setThrowableHeading(d0, d1 + f4, d2, par4, par5);
+		}
+	}
+	
+	public EntityWKunai(World par1World, EntityLivingBase par2EntityLivingBase, float par3) {
+=====================================================================
+Found a 41 line (230 tokens) duplication in the following files: 
+Starting at line 299 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 306 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 309 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+						damagesource = DamSource.causeShurikenDamage(this,
+								this.shootingEntity);
+					}
+					
+					if (movingobjectposition.entityHit.attackEntityFrom(damagesource, k)) {
+						if (movingobjectposition.entityHit instanceof EntityLivingBase) {
+							EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
+							
+							if (!this.worldObj.isRemote) {
+								entitylivingbase.setArrowCountInEntity(entitylivingbase
+										.getArrowCountInEntity() + 1);
+							}
+							
+							if ((this.shootingEntity != null)
+									&& (movingobjectposition.entityHit != this.shootingEntity)
+									&& (movingobjectposition.entityHit instanceof EntityPlayer)
+									&& (this.shootingEntity instanceof EntityPlayerMP)) {
+								((EntityPlayerMP) this.shootingEntity).playerNetServerHandler
+										.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
+							}
+						}
+						
+						this.playSound("random.bowhit", 1.0F,
+								1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+						
+						if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
+							this.setDead();
+						}
+					} else {
+						this.motionX *= -0.10000000149011612D;
+						this.motionY *= -0.10000000149011612D;
+						this.motionZ *= -0.10000000149011612D;
+						this.rotationYaw += 180.0F;
+						this.prevRotationYaw += 180.0F;
+						this.ticksInAir = 0;
+					}
+				} else {
+					this.d = movingobjectposition.blockX;
+					this.e = movingobjectposition.blockY;
+					this.f = movingobjectposition.blockZ;
+					this.contactBlock = block;
+=====================================================================
+Found a 37 line (222 tokens) duplication in the following files: 
+Starting at line 316 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 303 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+
+					if (movingobjectposition.entityHit.attackEntityFrom(damagesource, k)) {
+						if (movingobjectposition.entityHit instanceof EntityLivingBase) {
+							EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
+							
+							if (!this.worldObj.isRemote) {
+								entitylivingbase.setArrowCountInEntity(entitylivingbase
+										.getArrowCountInEntity() + 1);
+							}
+							
+							if ((this.shootingEntity != null)
+									&& (movingobjectposition.entityHit != this.shootingEntity)
+									&& (movingobjectposition.entityHit instanceof EntityPlayer)
+									&& (this.shootingEntity instanceof EntityPlayerMP)) {
+								((EntityPlayerMP) this.shootingEntity).playerNetServerHandler
+										.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
+							}
+						}
+						
+						this.playSound("random.bowhit", 1.0F,
+								1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+						
+						if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
+							this.setDead();
+						}
+					} else {
+						this.motionX *= -0.10000000149011612D;
+						this.motionY *= -0.10000000149011612D;
+						this.motionZ *= -0.10000000149011612D;
+						this.rotationYaw += 180.0F;
+						this.prevRotationYaw += 180.0F;
+						this.ticksInAir = 0;
+					}
+				} else {
+					this.d = movingobjectposition.blockX;
+					this.e = movingobjectposition.blockY;
+					this.f = movingobjectposition.blockZ;
+					this.field_145790_g = block;
+=====================================================================
+Found a 14 line (190 tokens) duplication in the following files: 
+Starting at line 352 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 339 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 346 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 349 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+					this.field_145790_g = block;
+					this.inData = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
+					this.motionX = ((float) (movingobjectposition.hitVec.xCoord - this.posX));
+					this.motionY = ((float) (movingobjectposition.hitVec.yCoord - this.posY));
+					this.motionZ = ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
+					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+							+ (this.motionY * this.motionY)
+							+ (this.motionZ * this.motionZ));
+					this.posX -= (this.motionX / f2) * 0.05000000074505806D;
+					this.posY -= (this.motionY / f2) * 0.05000000074505806D;
+					this.posZ -= (this.motionZ / f2) * 0.05000000074505806D;
+					this.playSound("random.bowhit", 1.0F,
+							1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+					this.inGround = true;
+=====================================================================
+Found a 34 line (147 tokens) duplication in the following files: 
+Starting at line 20 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\modelrender\ItemRendererSizeable.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\modelrender\ItemRendererScaled.java
+
+	public ItemRendererSizeable(float scale) {
+		this.scale = scale;
+	}
+	
+	@Override
+	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+		return (type == ItemRenderType.EQUIPPED)
+				|| (type == ItemRenderType.EQUIPPED_FIRST_PERSON);
+	}
+	
+	@Override
+	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+		switch (type) {
+			case EQUIPPED_FIRST_PERSON :
+				renderEquippedItem(item, (EntityLivingBase) data[1], true);
+				break;
+			case EQUIPPED :
+				renderEquippedItem(item, (EntityLivingBase) data[1], false);
+				break;
+			default :
+		}
+	}
+	
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
+			ItemRendererHelper helper) {
+		return false;
+	}
+	
+	private void renderEquippedItem(ItemStack stack, EntityLivingBase entity,
+			boolean firstPerson) {
+		GL11.glPushMatrix();
+		// Proceed to make alterations
+		float f = this.scale == 0 ? 1f : 1 + this.scale;
+=====================================================================
+Found a 16 line (144 tokens) duplication in the following files: 
+Starting at line 22 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaTab.java
+Starting at line 30 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaButton.java
+
+	}
+	
+	@Override
+	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_) {
+		if (this.visible) {
+			FontRenderer fontrenderer = p_146112_1_.fontRenderer;
+			p_146112_1_.getTextureManager().bindTexture(References.ninjaWidgets);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			this.field_146123_n = (p_146112_2_ >= this.xPosition)
+					&& (p_146112_3_ >= this.yPosition)
+					&& (p_146112_2_ < (this.xPosition + this.width))
+					&& (p_146112_3_ < (this.yPosition + this.height));
+			int k = this.getHoverState(this.field_146123_n);
+			GL11.glEnable(GL11.GL_BLEND);
+			OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+=====================================================================
+Found a 13 line (98 tokens) duplication in the following files: 
+Starting at line 448 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 445 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		EntityWKunai.kunaiShake = par1NBTTagCompound.getByte("shake") & 255;
+		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
+		
+		if (par1NBTTagCompound.hasKey("damage", 99)) {
+			this.damage = par1NBTTagCompound.getDouble("damage");
+		}
+		
+		if (par1NBTTagCompound.hasKey("pickup", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getByte("pickup");
+		} else if (par1NBTTagCompound.hasKey("player", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getBoolean("player") ? 1 : 0;
+		}
+	}
+=====================================================================
+Found a 13 line (96 tokens) duplication in the following files: 
+Starting at line 442 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 445 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		EntitySenbon.SenbonShake = par1NBTTagCompound.getByte("shake") & 255;
+		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
+		
+		if (par1NBTTagCompound.hasKey("damage", 99)) {
+			this.damage = par1NBTTagCompound.getDouble("damage");
+		}
+		
+		if (par1NBTTagCompound.hasKey("pickup", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getByte("pickup");
+		} else if (par1NBTTagCompound.hasKey("player", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getBoolean("player") ? 1 : 0;
+		}
+	}
+=====================================================================
+Found a 13 line (90 tokens) duplication in the following files: 
+Starting at line 448 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 433 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 442 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+		EntityWKunai.kunaiShake = par1NBTTagCompound.getByte("shake") & 255;
+		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
+		
+		if (par1NBTTagCompound.hasKey("damage", 99)) {
+			this.damage = par1NBTTagCompound.getDouble("damage");
+		}
+		
+		if (par1NBTTagCompound.hasKey("pickup", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getByte("pickup");
+		} else if (par1NBTTagCompound.hasKey("player", 99)) {
+			this.canBePickedUp = par1NBTTagCompound.getBoolean("player") ? 1 : 0;
+		}
+	}
+=====================================================================
+Found a 19 line (84 tokens) duplication in the following files: 
+Starting at line 538 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 536 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		par1NBTTagCompound.setByte("shake", (byte) EntityWKunai.kunaiShake);
+		par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+		par1NBTTagCompound.setByte("pickup", (byte) this.canBePickedUp);
+		par1NBTTagCompound.setDouble("damage", this.damage);
+	}
+	
+	/**
+	 * returns if this entity triggers Block.onEntityWalking on the blocks they
+	 * walk on. used for spiders and wolves to prevent them from trampling crops
+	 */
+	@Override
+	protected boolean canTriggerWalking() {
+		return false;
+	}
+	
+	@Override
+	protected void entityInit() {
+		this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));
+	}
+=====================================================================
+Found a 10 line (84 tokens) duplication in the following files: 
+Starting at line 84 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NetHandler.java
+Starting at line 97 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NetHandler.java
+
+			double oz, double radius, byte packetID, byte[] data) {
+		byte[] pkt_data = new byte[data.length + 1];
+		pkt_data[0] = packetID;
+		for (int i = 0; i < data.length; i++) {
+			pkt_data[(i + 1)] = data[i];
+		}
+		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data),
+				ChannelLabel);
+		packet.setTarget(Side.CLIENT);
+		Channel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dimension, ox,
+=====================================================================
+Found a 11 line (83 tokens) duplication in the following files: 
+Starting at line 67 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\modelrender\ItemRendererSizeable.java
+Starting at line 56 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\modelrender\ItemRendererScaled.java
+
+		}
+		GL11.glScalef(f, f, f);
+		
+		IIcon icon = stack.getItem().getIcon(stack, 0);
+		Tessellator tessellator = Tessellator.instance;
+		ItemRenderer.renderItemIn2D(tessellator, icon.getMaxU(), icon.getMinV(),
+				icon.getMinU(), icon.getMaxV(), icon.getIconWidth(),
+				icon.getIconHeight(), 0.0625F);
+		GL11.glPopMatrix();
+	}
+}
+=====================================================================
+Found a 20 line (83 tokens) duplication in the following files: 
+Starting at line 523 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 532 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 536 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		par1NBTTagCompound.setByte("inData", (byte) this.inData);
+		par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+		par1NBTTagCompound.setByte("pickup", (byte) this.canBePickedUp);
+		par1NBTTagCompound.setDouble("damage", this.damage);
+	}
+	
+	/**
+	 * returns if this entity triggers Block.onEntityWalking on the blocks they
+	 * walk on. used for spiders and wolves to prevent them from trampling crops
+	 */
+	@Override
+	protected boolean canTriggerWalking() {
+		return false;
+	}
+	
+	@Override
+	protected void entityInit() {
+		this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));
+	}
+}
+=====================================================================
+Found a 19 line (82 tokens) duplication in the following files: 
+Starting at line 538 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 523 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 532 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+		par1NBTTagCompound.setByte("shake", (byte) EntityWKunai.kunaiShake);
+		par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+		par1NBTTagCompound.setByte("pickup", (byte) this.canBePickedUp);
+		par1NBTTagCompound.setDouble("damage", this.damage);
+	}
+	
+	/**
+	 * returns if this entity triggers Block.onEntityWalking on the blocks they
+	 * walk on. used for spiders and wolves to prevent them from trampling crops
+	 */
+	@Override
+	protected boolean canTriggerWalking() {
+		return false;
+	}
+	
+	@Override
+	protected void entityInit() {
+		this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));
+	}
+=====================================================================
+Found a 9 line (79 tokens) duplication in the following files: 
+Starting at line 84 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NetHandler.java
+Starting at line 97 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NetHandler.java
+Starting at line 109 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NetHandler.java
+
+			double oz, double radius, byte packetID, byte[] data) {
+		byte[] pkt_data = new byte[data.length + 1];
+		pkt_data[0] = packetID;
+		for (int i = 0; i < data.length; i++) {
+			pkt_data[(i + 1)] = data[i];
+		}
+		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data),
+				ChannelLabel);
+		packet.setTarget(Side.CLIENT);
+=====================================================================
+Found a 14 line (70 tokens) duplication in the following files: 
+Starting at line 11 of N:\Kody\Narutocraft-PL_Mod\build\tmp\makeStart\GradleStartServer.java
+Starting at line 100 of N:\Kody\Narutocraft-PL_Mod\build\tmp\makeStart\GradleStart.java
+
+        bounce("cpw.mods.fml.relauncher.ServerLaunchWrapper", args);
+    }
+    
+    private static void bounce(String mainClass, String[] args)
+    {
+        try {
+            System.gc();
+            Class.forName(mainClass).getDeclaredMethod("main", String[].class).invoke(null, new Object[] {args});
+        }
+        catch (Exception e)
+        {
+            Throwables.propagate(e);
+        }
+    }
+=====================================================================
+Found a 7 line (66 tokens) duplication in the following files: 
+Starting at line 154 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NetHandler.java
+Starting at line 175 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NetHandler.java
+
+			double x, double y, double z, World world, ItemStack spellStack) {
+		DataWriter writer = new DataWriter().add(x).add(y).add(z);
+		if (spellStack != null) {
+			writer.add(true).add(spellStack);
+		} else {
+			writer.add(false);
+		}
+=====================================================================
+Found a 3 line (65 tokens) duplication in the following files: 
+Starting at line 501 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 518 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 487 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 504 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 495 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 512 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 499 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 516 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		float f3 = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
+		this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f3) * 180.0D) / Math.PI);
+=====================================================================
+Found a 17 line (62 tokens) duplication in the following files: 
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\UraRenge.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\OmoteRenge.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\KosaHo.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\KageBuyo.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\Hirudora.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\AsaKujaku.java
+Starting at line 13 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\ShunshinNoJutsu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\OdamaRasengan.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\NawanukeNoJutsu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\NanKaizou.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Meisaigakure.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\KuchiyoseRashomon.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Kai.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\HariJizo.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\FukimiHari.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Enmakugire.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\ChioOdamaRasengan.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\SaikanChushutsuNoJutsu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\Ranshinsho.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\InyuShometsu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\Dokugiri.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\ChakuraNoMesu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\RaigenRaikochu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\Koukongarasu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\KokuangyoNoJutsu.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\Haykkaroran.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\fuuinjutsu\JikukanKekkai.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\fuuinjutsu\Byakugo.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Yosakugiri.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\SamuraiSabreTechnique.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Omotegiri.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\MikazukiKiri.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Issen.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Iaido.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Hadan.java
+Starting at line 14 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\FumaNinken.java
+
+		super(JutsuEnum.URARENGE);
+		chackraConsumption = 5;
+	}
+	
+	@Override
+	public void activateJutsu() {
+		super.activateJutsu();
+		this.player.addPotionEffect(new PotionEffect(10, 10));
+		// this.setPotionEffect("Invisible");
+	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+			EntityPlayer par3EntityPlayer) {
+		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
+	}
+}
+=====================================================================
+Found a 10 line (60 tokens) duplication in the following files: 
+Starting at line 200 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 200 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+			--EntityWKunai.kunaiShake;
+		}
+		
+		if (this.inGround) {
+			int j = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
+			
+			if ((block == this.field_145790_g) && (j == this.inData)) {
+				++this.ticksInGround;
+				
+				if (this.ticksInGround == 20) // 1200 = 60s
+=====================================================================
+Found a 15 line (58 tokens) duplication in the following files: 
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\UraRenge.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\OmoteRenge.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\KosaHo.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\KageBuyo.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\Hirudora.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\taijutsu\AsaKujaku.java
+Starting at line 15 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\ShunshinNoJutsu.java
+Starting at line 18 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Rasengan.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\OdamaRasengan.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\NawanukeNoJutsu.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\NanKaizou.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Meisaigakure.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\KuchiyoseRashomon.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Kai.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\HariJizo.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\FukimiHari.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Enmakugire.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\ChioOdamaRasengan.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\SaikanChushutsuNoJutsu.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\Ranshinsho.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\InyuShometsu.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\Dokugiri.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\iryojutsu\ChakuraNoMesu.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\RaigenRaikochu.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\Koukongarasu.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\KokuangyoNoJutsu.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\genjutsu\Haykkaroran.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\fuuinjutsu\JikukanKekkai.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\fuuinjutsu\Byakugo.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Yosakugiri.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\SamuraiSabreTechnique.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Omotegiri.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\MikazukiKiri.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Issen.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Iaido.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\Hadan.java
+Starting at line 16 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\bukijutsu\FumaNinken.java
+
+	}
+	
+	@Override
+	public void activateJutsu() {
+		super.activateJutsu();
+		this.player.addPotionEffect(new PotionEffect(10, 10));
+		// this.setPotionEffect("Invisible");
+	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+			EntityPlayer par3EntityPlayer) {
+		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
+	}
+}
+=====================================================================
+Found a 9 line (58 tokens) duplication in the following files: 
+Starting at line 201 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 198 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+		}
+		
+		if (this.inGround) {
+			int j = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
+			
+			if ((block == this.field_145790_g) && (j == this.inData)) {
+				++this.ticksInGround;
+				
+				if (this.ticksInGround == 20) // 1200 = 60s
+=====================================================================
+Found a 7 line (55 tokens) duplication in the following files: 
+Starting at line 147 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 147 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		if (!this.worldObj.isRemote && this.inGround && (EntityWKunai.kunaiShake <= 0)) {
+			boolean flag = (this.canBePickedUp == 1)
+					|| ((this.canBePickedUp == 2) && par1EntityPlayer.capabilities.isCreativeMode);
+			
+			if ((this.canBePickedUp == 1)
+					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(
+							RegWeapons.WKunai, 1))) {
+=====================================================================
+Found a 13 line (53 tokens) duplication in the following files: 
+Starting at line 135 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 132 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 135 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+	public double getDamage() {
+		return this.damage;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getShadowSize() {
+		return 0.0F;
+	}
+	
+	@Override
+	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
+		if (!this.worldObj.isRemote && this.inGround && (EntityWKunai.kunaiShake <= 0)) {
+=====================================================================
+Found a 7 line (53 tokens) duplication in the following files: 
+Starting at line 147 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 144 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 147 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		if (!this.worldObj.isRemote && this.inGround && (EntityWKunai.kunaiShake <= 0)) {
+			boolean flag = (this.canBePickedUp == 1)
+					|| ((this.canBePickedUp == 2) && par1EntityPlayer.capabilities.isCreativeMode);
+			
+			if ((this.canBePickedUp == 1)
+					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(
+							RegWeapons.WKunai, 1))) {
+=====================================================================
+Found a 8 line (52 tokens) duplication in the following files: 
+Starting at line 35 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsResponse.java
+Starting at line 84 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+
+		this.data = new int[PlayerSkillsAtrributes.arraySize];
+		for (int v = 0; v < this.data.length; v++) {
+			this.data[v] = buf.readInt();
+		}
+	}
+	
+	@Override
+	public void toBytes(ByteBuf buf) {
+=====================================================================
+Found a 13 line (51 tokens) duplication in the following files: 
+Starting at line 135 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 129 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 132 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+	public double getDamage() {
+		return this.damage;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public float getShadowSize() {
+		return 0.0F;
+	}
+	
+	@Override
+	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
+		if (!this.worldObj.isRemote && this.inGround && (EntityWKunai.kunaiShake <= 0)) {
+=====================================================================
+Found a 7 line (50 tokens) duplication in the following files: 
+Starting at line 147 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 141 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 144 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 147 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		if (!this.worldObj.isRemote && this.inGround && (EntityWKunai.kunaiShake <= 0)) {
+			boolean flag = (this.canBePickedUp == 1)
+					|| ((this.canBePickedUp == 2) && par1EntityPlayer.capabilities.isCreativeMode);
+			
+			if ((this.canBePickedUp == 1)
+					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(
+							RegWeapons.WKunai, 1))) {
+=====================================================================
+Found a 7 line (48 tokens) duplication in the following files: 
+Starting at line 315 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\mobs\bijuu\ModelKyuubi.java
+Starting at line 73 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\model\ModelKunai.java
+
+		setRotation(this.p9T2, -0.5759587F, 0F, -1.818137F);
+	}
+	
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4,
+			float f5) {
+		super.render(entity, f, f1, f2, f3, f4, f5);
+=====================================================================
+Found a 9 line (48 tokens) duplication in the following files: 
+Starting at line 65 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 57 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 62 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 61 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+	public EntityWKunai(World par1World, double par2, double par4, double par6) {
+		super(par1World);
+		this.renderDistanceWeight = 10.0D;
+		this.setSize(0.5F, 0.5F);
+		this.setPosition(par2, par4, par6);
+		this.yOffset = 0.0F;
+	}
+	
+	public EntityWKunai(World par1World, EntityLivingBase par2EntityLivingBase,
+=====================================================================
+Found a 10 line (46 tokens) duplication in the following files: 
+Starting at line 13 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\WKunai.java
+Starting at line 15 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\Kunai.java
+
+		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
+		this.maxStackSize = 16;
+	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+			EntityPlayer par3EntityPlayer) {
+		
+		if (par3EntityPlayer.capabilities.isCreativeMode
+				|| par3EntityPlayer.inventory.consumeInventoryItem(RegWeapons.WKunai)) {
+=====================================================================
+Found a 7 line (43 tokens) duplication in the following files: 
+Starting at line 78 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 84 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 90 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 96 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 102 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+
+		for (SkillTreeEntry entry : this.ninjutsuTree) {
+			if (!entry.enabled) {
+				this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
+						.getJutsu())));
+			}
+		}
+		for (SkillTreeEntry entry : this.genjutsuTree) {
+=====================================================================
+Found a 6 line (43 tokens) duplication in the following files: 
+Starting at line 40 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaTab.java
+Starting at line 55 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaButton.java
+
+			TextureManager manager = Minecraft.getMinecraft().renderEngine;
+			manager.bindTexture(manager.getResourceLocation(1));
+			// RENDER ITEMS
+			
+			drawTexturedModelRectFromIcon(this.xPosition + 2, this.yPosition + 2,
+					this.icon, 16, 16);
+=====================================================================
+Found a 25 line (43 tokens) duplication in the following files: 
+Starting at line 46 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaTab.java
+Starting at line 75 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaButton.java
+
+			this.mouseDragged(p_146112_1_, p_146112_2_, p_146112_3_);
+			/*
+			 * int l = 14737632;
+			 * if (packedFGColour != 0) { l = packedFGColour; } else if
+			 * (!this.enabled) { l = 10526880; } else if (this.field_146123_n) {
+			 * l = 16777120; }
+			 * this.drawCenteredString(fontrenderer, this.displayString,
+			 * this.xPosition + this.width / 2, this.yPosition + (this.height -
+			 * 8) / 2, l);
+			 */
+		}
+	}
+	
+	@Override
+	protected int getHoverState(boolean p_146114_1_) {
+		byte b0 = 1;
+		
+		if (!this.enabled) {
+			b0 = 0;
+		} else if (p_146114_1_) {
+			b0 = 2;
+		}
+		return b0;
+	}
+}
+=====================================================================
+Found a 5 line (42 tokens) duplication in the following files: 
+Starting at line 22 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\WKunai.java
+Starting at line 22 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\Shuriken.java
+Starting at line 22 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\Senbon.java
+Starting at line 27 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\Kunai.java
+
+				|| par3EntityPlayer.inventory.consumeInventoryItem(RegWeapons.WKunai)) {
+			par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F,
+					0.4F / ((itemRand.nextFloat() * 0.4F) + 0.8F));
+			if (!par2World.isRemote) {
+				par2World.spawnEntityInWorld(new EntityWKunai(par2World,
+=====================================================================
+Found a 3 line (39 tokens) duplication in the following files: 
+Starting at line 39 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PlayerTracker.java
+Starting at line 271 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PlayerTracker.java
+
+		this.aals = new TreeMap<String, Integer>();
+		this.clls = new TreeMap<String, String>();
+		this.cldm = new TreeMap<String, Integer>();
+=====================================================================
+Found a 9 line (38 tokens) duplication in the following files: 
+Starting at line 32 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 32 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+
+public class EntityWKunai extends Entity implements IProjectile {
+	private int			d			= -1;
+	private int			e			= -1;
+	private int			f			= -1;
+	private Block		field_145790_g;
+	private int			inData;
+	private boolean		inGround;
+	public int			canBePickedUp;
+	public static int	kunaiShake;
+=====================================================================
+Found a 3 line (38 tokens) duplication in the following files: 
+Starting at line 121 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 123 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 114 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 116 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 118 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 120 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 117 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 119 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		this.motionX = -MathHelper.sin((this.rotationYaw / 180.0F) * (float) Math.PI)
+				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
+		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
+=====================================================================
+Found a 5 line (38 tokens) duplication in the following files: 
+Starting at line 127 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 132 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+
+		this.treeEntries = instance.getTree(SkillTrees.NINJUTSU);
+		for (SkillTreeEntry st_entry : this.treeEntries) {
+			IJutsu jutsu = st_entry.getJutsu();
+			if ((jutsu != null) && (jutsu == part)) { return st_entry; }
+		}
+=====================================================================
+Found a 8 line (37 tokens) duplication in the following files: 
+Starting at line 22 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\creativetabs\NCPLMainTab.java
+Starting at line 22 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\creativetabs\JutsuTab.java
+
+	public NCPLMainTab(int par1, String par2Str) {
+		super(par1, par2Str);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ItemStack getIconItemStack() {
+		return (new ItemStack(JutsuEnum.SHARINGAN.getJutsu()));
+=====================================================================
+Found a 9 line (36 tokens) duplication in the following files: 
+Starting at line 36 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 46 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 56 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 66 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 105 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 129 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+
+			this.data.writeByte(value);
+		}
+		catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+	
+	public DataWriter add(byte[] value) {
+=====================================================================
+Found a 6 line (36 tokens) duplication in the following files: 
+Starting at line 201 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 191 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 198 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 201 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		}
+		
+		if (this.inGround) {
+			int j = this.worldObj.getBlockMetadata(this.d, this.e, this.f);
+			
+			if ((block == this.field_145790_g) && (j == this.inData)) {
+=====================================================================
+Found a 3 line (36 tokens) duplication in the following files: 
+Starting at line 226 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 233 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 215 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 222 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 222 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 229 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 225 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 232 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+					this.posX + this.motionX, this.posY + this.motionY,
+					this.posZ + this.motionZ);
+=====================================================================
+Found a 3 line (36 tokens) duplication in the following files: 
+Starting at line 295 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 357 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 284 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 344 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 291 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 351 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 294 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 354 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
+							+ (this.motionY * this.motionY)
+							+ (this.motionZ * this.motionZ));
+=====================================================================
+Found a 6 line (36 tokens) duplication in the following files: 
+Starting at line 78 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 84 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 90 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 96 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 102 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+Starting at line 108 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\skilltrees\SkillTreeManager.java
+
+		for (SkillTreeEntry entry : this.ninjutsuTree) {
+			if (!entry.enabled) {
+				this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
+						.getJutsu())));
+			}
+		}
+=====================================================================
+Found a 5 line (36 tokens) duplication in the following files: 
+Starting at line 100 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\math\Vector3D.java
+Starting at line 107 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\math\Vector3D.java
+
+	public double distanceSqTo(Vector3D target) {
+		double var2 = target.x - this.x;
+		double var4 = target.y - this.y;
+		double var6 = target.z - this.z;
+		return (var2 * var2) + (var4 * var4) + (var6 * var6);
+=====================================================================
+Found a 9 line (35 tokens) duplication in the following files: 
+Starting at line 66 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 76 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+
+			this.data.writeFloat(value);
+		}
+		catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+	
+	public DataWriter add(int value) {
+=====================================================================
+Found a 9 line (35 tokens) duplication in the following files: 
+Starting at line 379 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\mobs\bijuu\ModelKyuubi.java
+Starting at line 95 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\model\ModelKunai.java
+
+	}
+	
+	private void setRotation(ModelRenderer model, float x, float y, float z) {
+		model.rotateAngleX = x;
+		model.rotateAngleY = y;
+		model.rotateAngleZ = z;
+	}
+	
+}
+=====================================================================
+Found a 9 line (34 tokens) duplication in the following files: 
+Starting at line 36 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 46 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 56 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 76 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 105 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 129 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+
+			this.data.writeByte(value);
+		}
+		catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+	
+	public DataWriter add(byte[] value) {
+=====================================================================
+Found a 13 line (34 tokens) duplication in the following files: 
+Starting at line 94 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\JutsuManager.java
+Starting at line 110 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\JutsuManager.java
+
+				if (this.jutsu.isActive()) {
+					this.jutsu.onJutsuUpdate();
+				} else {
+					this.jutsu.setActive(false);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Called after read from NBT.
+	 */
+	public synchronized void loadJutsuEffectsOnPlayer() {
+=====================================================================
+Found a 3 line (33 tokens) duplication in the following files: 
+Starting at line 17 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+Starting at line 36 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+
+				return new PacketNinjaStatsResponse(ExtendedProperties.get(ctx
+						.getServerHandler().playerEntity).psa.getValues());
+			} else if (message.command.equals("set")) {
+=====================================================================
+Found a 9 line (33 tokens) duplication in the following files: 
+Starting at line 36 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 46 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 56 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 66 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 105 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 129 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 139 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+
+			this.data.writeByte(value);
+		}
+		catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+	
+	public DataWriter add(byte[] value) {
+=====================================================================
+Found a 8 line (33 tokens) duplication in the following files: 
+Starting at line 37 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 47 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 57 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 67 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 77 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 90 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 106 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 130 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+
+		}
+		catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+	
+	public DataWriter add(byte[] value) {
+=====================================================================
+Found a 8 line (33 tokens) duplication in the following files: 
+Starting at line 15 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\WKunai.java
+Starting at line 15 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\Shuriken.java
+Starting at line 15 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\Senbon.java
+Starting at line 17 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\Kunai.java
+
+	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+			EntityPlayer par3EntityPlayer) {
+		
+		if (par3EntityPlayer.capabilities.isCreativeMode
+				|| par3EntityPlayer.inventory.consumeInventoryItem(RegWeapons.WKunai)) {
+=====================================================================
+Found a 4 line (33 tokens) duplication in the following files: 
+Starting at line 17 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaTab.java
+Starting at line 18 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaButton.java
+
+	public GuiNinjaTab(int par1, int par2, int par3, IIcon par4) {
+		super(par1, par2, par3, "");
+		this.icon = par4;
+		this.width = 22;
+=====================================================================
+Found a 9 line (31 tokens) duplication in the following files: 
+Starting at line 76 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 139 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+
+			this.data.writeInt(Integer.valueOf(value).intValue());
+		}
+		catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+	
+	public DataWriter add(int[] value) {
+=====================================================================
+Found a 8 line (31 tokens) duplication in the following files: 
+Starting at line 32 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 32 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 33 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+public class EntityWKunai extends Entity implements IProjectile {
+	private int			d			= -1;
+	private int			e			= -1;
+	private int			f			= -1;
+	private Block		field_145790_g;
+	private int			inData;
+	private boolean		inGround;
+	public int			canBePickedUp;
+=====================================================================
+Found a 10 line (31 tokens) duplication in the following files: 
+Starting at line 74 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 103 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 66 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 96 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 71 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 100 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 70 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 99 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+			EntityLivingBase par3EntityLivingBase, float par4, float par5) {
+		super(par1World);
+		this.renderDistanceWeight = 10.0D;
+		this.shootingEntity = par2EntityLivingBase;
+		
+		if (par2EntityLivingBase instanceof EntityPlayer) {
+			this.canBePickedUp = 1;
+		}
+		
+		this.posY = (par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight()) - 0.10000000149011612D;
+=====================================================================
+Found a 4 line (31 tokens) duplication in the following files: 
+Starting at line 20 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\ServerGuiHandler.java
+Starting at line 13 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\ClientGuiHandler.java
+
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x,
+			int y, int z) {
+		if (ID == GuiBasic.GUI_JUTSU_INV) {
+			return new ContainerNCPLPlayer(player, player.inventory,
+=====================================================================
+Found a 8 line (30 tokens) duplication in the following files: 
+Starting at line 90 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+Starting at line 140 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\DataWriter.java
+
+		}
+		catch (IOException e) {
+			FMLLog.severe("DataWriter: " + e.getMessage(), new Object[0]);
+		}
+		return this;
+	}
+	
+	public DataWriter add(ItemStack stack) {
+=====================================================================
+Found a 11 line (30 tokens) duplication in the following files: 
+Starting at line 20 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\Sharingan.java
+Starting at line 13 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\jutsu\ninjutsu\KawarimiNoJutsu.java
+
+	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if (!world.isRemote) {
+			
+		}
+		return stack;
+	}
+	
+}
+=====================================================================
+Found a 3 line (29 tokens) duplication in the following files: 
+Starting at line 29 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\render\RenderShuriken.java
+Starting at line 27 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\render\RenderSenbon.java
+
+	public void doRender(Entity par1EntityShuriken, double var2, double var4,
+			double var6, float var8, float var9) {
+		this.model = AdvancedModelLoader.loadModel(this.modelobj);
+=====================================================================
+Found a 2 line (29 tokens) duplication in the following files: 
+Starting at line 179 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 388 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 173 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 374 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 176 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 382 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 179 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 385 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(this.motionX,
+					this.motionZ) * 180.0D) / Math.PI);
+=====================================================================
+Found a 2 line (29 tokens) duplication in the following files: 
+Starting at line 144 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\math\Vector3D.java
+Starting at line 149 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\math\Vector3D.java
+
+		return (float) Math.sqrt((this.x * this.x) + (this.y * this.y)
+				+ (this.z * this.z));
+=====================================================================
+Found a 11 line (29 tokens) duplication in the following files: 
+Starting at line 29 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\creativetabs\NCPLMainTab.java
+Starting at line 29 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\creativetabs\JutsuTab.java
+
+		return (new ItemStack(JutsuEnum.SHARINGAN.getJutsu()));
+	}
+	
+	@Override
+	public Item getTabIconItem() {
+		return this.item;
+	}
+	
+	@Override
+	public String getTranslatedTabLabel() {
+		return "NarutoCraft";
+=====================================================================
+Found a 2 line (27 tokens) duplication in the following files: 
+Starting at line 176 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 517 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 170 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 503 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 173 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 511 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 176 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 515 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F)) {
+			float f = MathHelper.sqrt_double((this.motionX * this.motionX)
+=====================================================================
+Found a 3 line (27 tokens) duplication in the following files: 
+Starting at line 177 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 386 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 171 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 372 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 174 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 380 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 177 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 383 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+			float f = MathHelper.sqrt_double((this.motionX * this.motionX)
+					+ (this.motionZ * this.motionZ));
+			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(this.motionX,
+=====================================================================
+Found a 2 line (27 tokens) duplication in the following files: 
+Starting at line 489 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 491 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 493 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 475 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 477 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 479 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 483 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 485 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 487 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 487 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 489 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 491 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
+				* 0.007499999832361937D * par8;
+=====================================================================
+Found a 3 line (27 tokens) duplication in the following files: 
+Starting at line 139 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 141 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 143 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+
+		this.buttonList.add(new GuiNinjaTab(3, x1 + (22 * 2), this.guiTop - 22,
+				Items.apple.getIconFromDamage(0)));// Jutsu
+		this.buttonList.add(new GuiNinjaTab(4, x1 + (22 * 3), this.guiTop - 22,
+=====================================================================
+Found a 2 line (26 tokens) duplication in the following files: 
+Starting at line 180 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 502 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 519 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 174 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 488 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 505 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 177 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 496 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 513 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 180 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 500 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 517 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+					this.motionZ) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(
+=====================================================================
+Found a 2 line (26 tokens) duplication in the following files: 
+Starting at line 334 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 363 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 321 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 350 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 328 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 357 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 331 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+Starting at line 360 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+						this.playSound("random.bowhit", 1.0F,
+								1.2F / ((this.rand.nextFloat() * 0.2F) + 0.9F));
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 445 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityWKunai.java
+Starting at line 431 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 439 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntitySenbon.java
+Starting at line 442 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+		this.field_145790_g = Block
+				.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
+		this.inData = par1NBTTagCompound.getByte("inData") & 255;
+=====================================================================
+Found a 5 line (26 tokens) duplication in the following files: 
+Starting at line 11 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\ServerGuiHandler.java
+Starting at line 10 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\ClientGuiHandler.java
+
+public class ServerGuiHandler implements IGuiHandler {
+	
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x,
+			int y, int z) {
+=====================================================================
+Found a 3 line (26 tokens) duplication in the following files: 
+Starting at line 135 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 137 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 139 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 141 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 143 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+
+		this.buttonList.add(new GuiNinjaTab(1, x1, this.guiTop - 22, Items.apple
+				.getIconFromDamage(0)));// Jutsu
+		this.buttonList.add(new GuiNinjaTab(2, x1 + 22, this.guiTop - 22, Items.apple
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 228 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PlayerTracker.java
+Starting at line 234 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PlayerTracker.java
+
+			storedExtProps_death.remove(event.player.getDisplayName());
+			
+			ExtendedProperties.For(event.player).loadNBTData(stored);
+		} else if (storedExtProps_dimension.containsKey(event.player.getDisplayName())) {
+=====================================================================
+Found a 3 line (25 tokens) duplication in the following files: 
+Starting at line 17 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+Starting at line 36 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+Starting at line 41 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+
+				return new PacketNinjaStatsResponse(ExtendedProperties.get(ctx
+						.getServerHandler().playerEntity).psa.getValues());
+			} else if (message.command.equals("set")) {
+=====================================================================
+Found a 3 line (25 tokens) duplication in the following files: 
+Starting at line 31 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+Starting at line 38 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\network\PacketNinjaStatsRequest.java
+
+				} else {
+					ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa
+							.setValues(resetValues(message.data));
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 9 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+Starting at line 20 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+Starting at line 31 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+Starting at line 42 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+Starting at line 53 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+Starting at line 64 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+Starting at line 75 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+Starting at line 86 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\libs\UtilityNBTHelper.java
+
+	public static boolean getBoolean(ItemStack itemStack, String keyName) {
+		initNBTTagCompound(itemStack);
+		
+		if (!itemStack.stackTagCompound.hasKey(keyName)) {
+=====================================================================
+Found a 4 line (25 tokens) duplication in the following files: 
+Starting at line 33 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\render\RenderShuriken.java
+Starting at line 34 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\render\RenderSenbon.java
+
+		GL11.glTranslatef((float) var2, (float) var4, (float) var6);
+		FMLClientHandler.instance().getClient().getTextureManager()
+				.bindTexture(this.texture);
+		GL11.glRotatef(
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 28 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityShuriken.java
+Starting at line 33 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\items\weapons\projectiles\entities\EntityKunai.java
+
+public class EntityShuriken extends EntityArrow implements IProjectile {
+	private int		d		= -1;
+	private int		e		= -1;
+	private int		f		= -1;
+	private Block	contactBlock;
+=====================================================================
+Found a 8 line (25 tokens) duplication in the following files: 
+Starting at line 69 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NCPLEventHandler.java
+Starting at line 81 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\handlers\NCPLEventHandler.java
+
+	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
+		/*
+		 * This loadProxyData should be converted so that it is in the
+		 * ClonePlayer event, not the proxy. It works but it is not where it
+		 * belongs
+		 */
+		if (!event.entity.worldObj.isRemote && (event.entity instanceof EntityPlayer)) {
+			ExtendedProperties.loadProxyData((EntityPlayer) event.entity);
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 169 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 171 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+
+					+ this.padLeft, this.guiTop + this.padTop + (9 * 3), 0xddeeee);
+			this.drawString(this.fontRendererObj, "" + props.psa.getStrength(),
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 175 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 177 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+
+					+ this.padLeft, this.guiTop + this.padTop + (9 * 4), 0xddeeee);
+			this.drawString(this.fontRendererObj, "" + props.psa.getResistance(),
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 181 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 183 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+
+					+ this.padLeft, this.guiTop + this.padTop + (9 * 5), 0xddeeee);
+			this.drawString(this.fontRendererObj, "" + props.psa.getDexterity(),
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 207 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 210 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+
+					+ this.padLeft, this.guiTop + this.padTop + (9 * 9), 0xddeeee);
+			this.drawString(this.fontRendererObj,
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 213 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+Starting at line 215 of N:\Kody\Narutocraft-PL_Mod\src\main\java\pl\grm\narutocraft\gui\GuiNinjaStats.java
+
+					+ this.padLeft, this.guiTop + this.padTop + (9 * 10), 0xddeeee);
+			this.drawString(this.fontRendererObj, "" + props.psa.getChakraModifier(),

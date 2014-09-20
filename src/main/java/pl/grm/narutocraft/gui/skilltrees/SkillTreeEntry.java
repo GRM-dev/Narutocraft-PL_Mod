@@ -1,35 +1,26 @@
 package pl.grm.narutocraft.gui.skilltrees;
 
 import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.JutsuTier;
 
 public class SkillTreeEntry {
 	public final int				x;
 	public final int				y;
-	public final SkillTrees			tree;
+	public final SkillTree			tree;
+	public final JutsuTier			tier;
+	public final IJutsu				jutsu;
+	public final int				reqPoints;
 	public final SkillTreeEntry[]	prerequisites;
-	public final int				tier;
-	public boolean					enabled;
-	private IJutsu					jutsu;
+	public EntryStates				entryState;
 	
-	public SkillTreeEntry(int x, int y, SkillTrees tree, SkillTreeEntry[] prerequisites,
-			IJutsu jutsu, boolean enabled) {
+	public SkillTreeEntry(int x, int y, SkillTree tree, IJutsu jutsu, JutsuTier tier,
+			int reqPoints, SkillTreeEntry[] prerequisites) {
 		this.x = x;
 		this.y = y;
 		this.tree = tree;
-		this.prerequisites = prerequisites;
 		this.jutsu = jutsu;
-		this.enabled = enabled;
-		
-		int highestTier = 0;
-		for (SkillTreeEntry entry : prerequisites) {
-			if (entry.tier >= highestTier) {
-				highestTier = entry.tier + 1;
-			}
-		}
-		this.tier = highestTier;
-	}
-	
-	public IJutsu getJutsu() {
-		return this.jutsu;
+		this.tier = tier;
+		this.reqPoints = reqPoints;
+		this.prerequisites = prerequisites;
 	}
 }
