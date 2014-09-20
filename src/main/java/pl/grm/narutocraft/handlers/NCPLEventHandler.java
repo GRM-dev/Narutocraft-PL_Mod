@@ -124,7 +124,7 @@ public class NCPLEventHandler {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			// ExtendedPlayer.get(player).onUpdate();
 			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties
-					.get(player).psa.getChakraRegenBonus())) == 0) {
+					.get(player).psa.getChakraRegenMod())) == 0) {
 				ExtendedProperties.get(player).regenChakra(1);
 			}
 			if (player.isPlayerFullyAsleep()) {

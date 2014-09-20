@@ -115,8 +115,8 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 		
-		this.inventory.readFromNBT(properties);
-		this.jManager.readFromNBT(properties);
+		/*this.inventory.readFromNBT(properties);
+		this.jManager.readFromNBT(properties);*/
 		
 		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));
@@ -157,8 +157,8 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
 		
-		this.inventory.writeToNBT(properties);
-		this.jManager.writeToNBT(properties);
+		/*this.inventory.writeToNBT(properties);
+		this.jManager.writeToNBT(properties);*/
 		
 		properties.setInteger("CurrentChakra", this.player.getDataWatcher()
 				.getWatchableObjectInt(CHAKRA_WATCHER));
