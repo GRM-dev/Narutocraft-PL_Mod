@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.gui.skilltrees;
 
-public enum SkillTree {
+public enum SkillTrees {
 	NONE(
 			0) ,
 	MAIN(
@@ -28,18 +28,18 @@ public enum SkillTree {
 	
 	private int	treeID;
 	
-	private SkillTree(int ID) {
+	private SkillTrees(int ID) {
 		this.treeID = ID;
 	}
 	
-	public static SkillTree getByID(int ID) {
-		for (SkillTree sT : SkillTree.values()) {
+	public static SkillTrees getByID(int ID) {
+		for (SkillTrees sT : SkillTrees.values()) {
 			if (sT.treeID == ID) { return sT; }
 		}
 		return NONE;
 	}
 	
-	public int getID(SkillTree sT) {
+	public int getID(SkillTrees sT) {
 		return this.treeID;
 	}
 }

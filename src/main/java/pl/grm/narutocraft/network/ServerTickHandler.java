@@ -43,7 +43,7 @@ public class ServerTickHandler {
 	}
 	
 	private void gameTick_Start() {
-		if (!MinecraftServer.getServer().getFolderName().equals(lastWorldName)) {
+		if (MinecraftServer.getServer().getFolderName() != lastWorldName) {
 			lastWorldName = MinecraftServer.getServer().getFolderName();
 			this.firstTick = true;
 		}

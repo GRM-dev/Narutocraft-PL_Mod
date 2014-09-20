@@ -3,25 +3,25 @@ package pl.grm.narutocraft.registry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.items.DScroll;
-import pl.grm.narutocraft.items.FScroll;
-import pl.grm.narutocraft.items.KScroll;
-import pl.grm.narutocraft.items.NScroll;
-import pl.grm.narutocraft.items.RScroll;
-import pl.grm.narutocraft.items.SScroll;
+import pl.grm.narutocraft.items.DZwoj;
+import pl.grm.narutocraft.items.FZwoj;
+import pl.grm.narutocraft.items.KZwoj;
+import pl.grm.narutocraft.items.NZwoj;
+import pl.grm.narutocraft.items.RZwoj;
+import pl.grm.narutocraft.items.SZwoj;
 import pl.grm.narutocraft.libs.Materials;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegItems extends NarutoCraft {
 	/** Zwoj - scroll **/
-	public static Item			FZwoj		= new FScroll();
+	public static Item			FZwoj		= new FZwoj();
 	
-	public static Item			KZwoj		= new KScroll();
+	public static Item			KZwoj		= new KZwoj();
 	
-	public static Item			DZwoj		= new DScroll();
-	public static Item			SZwoj		= new SScroll();
-	public static Item			RZwoj		= new RScroll();
-	public static Item			NZwoj		= new NScroll();
+	public static Item			DZwoj		= new DZwoj();
+	public static Item			SZwoj		= new SZwoj();
+	public static Item			RZwoj		= new RZwoj();
+	public static Item			NZwoj		= new NZwoj();
 	
 	public static ArmorMaterial	Bushido		= Materials.armorBUSHIDO;
 	public static ArmorMaterial	Anbu		= Materials.armorANBU;

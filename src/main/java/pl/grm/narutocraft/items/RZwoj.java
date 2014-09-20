@@ -4,11 +4,11 @@ import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.References;
 
-public class DScroll extends Item {
+public class RZwoj extends Item {
 	
-	public DScroll() {
-		this.setUnlocalizedName("DZwoj");
-		this.setTextureName(References.ModTexturePath + "Zwoj Doton");
+	public RZwoj() {
+		this.setUnlocalizedName("RZwoj");
+		this.setTextureName(References.ModTexturePath + "Zwoj Raiton");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}

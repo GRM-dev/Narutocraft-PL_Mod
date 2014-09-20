@@ -14,34 +14,45 @@ public class PacketNinjaStatsRequest implements IMessage {
 		@Override
 		public IMessage onMessage(PacketNinjaStatsRequest message, MessageContext ctx) {
 			if (message.command.equals("get")) {
+				
 				return new PacketNinjaStatsResponse(ExtendedProperties.get(ctx
 						.getServerHandler().playerEntity).psa.getValues());
+				
 			} else if (message.command.equals("set")) {
-				int totalPointsUsed = 0;
-				// Check Strength, Resistance, Dex, Agility
-				totalPointsUsed += (message.data[0] + message.data[1] + message.data[2] + message.data[3]) * 3;
-				// Check Element, max chakra, and regen
-				totalPointsUsed += (message.data[4] + message.data[5] + message.data[6]);
+				PlayerSkillsAtrributes psa = ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa;
+					/*strUpg, agiUpg, dexUpg, resUpg,
+						epmUpg, chaUpg, crbUpg, stbUpg, stfUpg, stgUpg, 
+						stiUpg, stnUpg, sttUpg*/
+				psa.setStrength(psa.getStrength() + message.data[0]);
+				psa.setAgility(psa.getAgility() + message.data[1]);
+				psa.setDexterity(psa.getDexterity() + message.data[2]);
+				psa.setResistance(psa.getResistance() + message.data[3]);
 				
-				// Check to make sure the proper amount of skill points where
-				// used
-				if (totalPointsUsed <= ((message.data[7] - 1) * PlayerSkillsAtrributes.skillPointsPerLevel)) {
-					ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa
-							.setValues(message.data);
-				} else {
-					ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa
-							.setValues(resetValues(message.data));
-				}
+				psa.setElementPowerMod(psa.getElementPowerMod() + message.data[4]);
+				psa.setMaxChakraMod(psa.getMaxChakraMod() + message.data[5]);
+				psa.setChakraRegenMod(psa.getChakraRegenMod() + message.data[6]);
 				
-				return new PacketNinjaStatsResponse(ExtendedProperties.get(ctx
-						.getServerHandler().playerEntity).psa.getValues());
+				psa.setBukiTreeLevel(psa.getBukiTreeLevel() + message.data[7]);
+				psa.setFuuinTreeLevel(psa.getFuuinTreeLevel() + message.data[8]);
+				psa.setGenTreeLevel(psa.getGenTreeLevel() + message.data[9]);
+				psa.setIryoTreeLevel(psa.getIryoTreeLevel() + message.data[10]);
+				psa.setNinTreeLevel(psa.getNinTreeLevel() + message.data[11]);
+				psa.setTaiTreeLevel(psa.getTaiTreeLevel() + message.data[12]);
+				psa.skillPoints = message.data[13];
+							
+				
+				return new PacketNinjaStatsResponse(psa.getValues());
 			} else if (message.command.equals("reset")) {
+				
 				ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa
 						.setValues(resetValues(message.data));
 				return new PacketNinjaStatsResponse(ExtendedProperties.get(ctx
 						.getServerHandler().playerEntity).psa.getValues());
+				
 			} else {
+				
 				return null;
+				
 			}
 			
 		}
@@ -78,12 +89,24 @@ public class PacketNinjaStatsRequest implements IMessage {
 		this.data = values;
 	}
 	
+	public PacketNinjaStatsRequest(String command) {
+		this.command = command;
+	}
+	
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		this.command = ByteBufUtils.readUTF8String(buf);
 		this.data = new int[PlayerSkillsAtrributes.arraySize];
 		for (int v = 0; v < this.data.length; v++) {
-			this.data[v] = buf.readInt();
+			try
+			{
+				this.data[v] = buf.readInt();
+			}
+			catch (IndexOutOfBoundsException e)
+			{
+				break;
+			}
+			
 		}
 	}
 	
