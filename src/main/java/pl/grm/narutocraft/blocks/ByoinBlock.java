@@ -11,8 +11,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ByoinBlock extends Block {
 	@SideOnly(Side.CLIENT)
-	protected IIcon	blockIcon;
-	
 	public ByoinBlock() {
 		super(Material.rock);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
