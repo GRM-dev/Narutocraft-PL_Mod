@@ -1,7 +1,11 @@
 package pl.grm.narutocraft.handlers;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
+import net.minecraft.server.MinecraftServer;
+import pl.grm.narutocraft.commands.NCCommandRefreshChekra;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 /**
  * FML Event Handler
@@ -9,8 +13,11 @@ import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
  * @author Admaster
  */
 public class NCPLFMLEventHandler {
-	@SubscribeEvent
-	public void onRenderTick(RenderTickEvent event) {
-		
+	@EventHandler
+	public void serverStart(FMLServerStartingEvent event) {
+		MinecraftServer server = MinecraftServer.getServer();
+		ICommandManager command = server.getCommandManager();
+		ServerCommandManager manager = (ServerCommandManager) command;
+		manager.registerCommand(new NCCommandRefreshChekra());
 	}
 }

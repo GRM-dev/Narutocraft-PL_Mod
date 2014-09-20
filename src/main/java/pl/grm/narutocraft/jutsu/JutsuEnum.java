@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.jutsu;
 
-import pl.grm.narutocraft.gui.skilltrees.SkillTrees;
+import pl.grm.narutocraft.gui.skilltrees.SkillTree;
 import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;
 import pl.grm.narutocraft.jutsu.bukijutsu.Hadan;
 import pl.grm.narutocraft.jutsu.bukijutsu.Iaido;
@@ -41,218 +41,242 @@ import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
 import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
 import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
 
+// TODO add Tiers to Jutsus.
 public enum JutsuEnum {
 	NONE(
 			5600,
 			"None",
 			null,
-			SkillTrees.NONE) ,
+			SkillTree.NONE,
+			JutsuTier.NONE) ,
 	MEISAIGAKURE(
 			5601,
 			"Meisaigakure",
 			Meisaigakure.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.B) ,
 	KAWARIMINOJUTSU(
 			5625,
 			"KawarimiNoJutsu",
 			KawarimiNoJutsu.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	FUMANINKEN(
 			5602,
 			"Fuma Ninken",
 			FumaNinken.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	HADAN(
 			5603,
 			"Hadan",
 			Hadan.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	IAIDO(
 			5604,
 			"Iaido",
 			Iaido.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	ISSEN(
 			5605,
 			"Issen",
 			Issen.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	MIKAZUKIKIRI(
 			5606,
 			"Mikazuki Kiri",
 			MikazukiKiri.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	OMOTEGIRI(
 			5607,
 			"Omotegiri",
 			Omotegiri.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	SAMURAISABRETECHNIQUE(
 			5608,
 			"SamuraiSabreTechnique",
 			SamuraiSabreTechnique.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	YOSAKUGIRI(
 			5609,
 			"Yosakugiri",
 			Yosakugiri.class,
-			SkillTrees.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU) ,
 	BYAKUGO(
 			5610,
 			"Byakugo",
 			Byakugo.class,
-			SkillTrees.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU) ,
 	JIKUKANKEKKAI(
 			5611,
 			"Jikukan Kekkai",
 			JikukanKekkai.class,
-			SkillTrees.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU) ,
 	HAYKKARORAN(
 			5612,
 			"Haykkaroran",
 			Haykkaroran.class,
-			SkillTrees.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU) ,
 	KOKUANGYONOJUTSU(
 			5613,
 			"Kokuangyo No Jutsu",
 			KokuangyoNoJutsu.class,
-			SkillTrees.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU) ,
 	KOUKONGARASU(
 			5614,
-			"Koukongarasuê",
+			"Koukongarasu",
 			Koukongarasu.class,
-			SkillTrees.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU) ,
 	RAIGENRAIKOCHU(
 			5615,
 			"RaigenRaikochu",
 			RaigenRaikochu.class,
-			SkillTrees.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU) ,
 	CHAKURANOMESU(
 			5616,
 			"Chakura No Mesu",
 			ChakuraNoMesu.class,
-			SkillTrees.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU) ,
 	DOKUGIRI(
 			5617,
 			"Dokugiri",
 			Dokugiri.class,
-			SkillTrees.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU) ,
 	INYUSHOMETSU(
 			5618,
 			"InyuShometsu",
 			InyuShometsu.class,
-			SkillTrees.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU) ,
 	RANSHINSHO(
 			5619,
 			"Ranshinsho",
 			Ranshinsho.class,
-			SkillTrees.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU) ,
 	SAIKANCHUSHUTSUNOJUTSU(
 			5620,
 			"Saikan Chushutsu No Jutsu",
 			SaikanChushutsuNoJutsu.class,
-			SkillTrees.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU) ,
 	ENMAKUGIRE(
 			5621,
 			"Enmakugire",
 			Enmakugire.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	FUKIMIHARI(
 			5622,
 			"FukimiHari",
 			FukimiHari.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	HARIJIZO(
 			5623,
 			"HariJizo",
 			HariJizo.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	KAI(
 			5624,
 			"Kai",
 			Kai.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	KUCHIYOSERASHOMON(
 			5626,
 			"Kuchiyose Rashomon",
 			KuchiyoseRashomon.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	NANKAIZOU(
 			5627,
 			"Nan Kaizou",
 			NanKaizou.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	NAWANUKENOJUTSU(
 			5628,
 			"Nawanuke No Jutsu",
 			NawanukeNoJutsu.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.D) ,
 	RASENGAN(
 			5629,
 			"Rasengan",
 			Rasengan.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.B) ,
 	ODAMARASENGAN(
 			5630,
 			"OdamaRasengan",
 			OdamaRasengan.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.A) ,
 	CHIOODAMARASENGAN(
 			5631,
 			"ChioOdamaRasengan",
 			ChioOdamaRasengan.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	SHARINGAN(
 			5632,
 			"Sharingan",
 			Sharingan.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	SHUNSHINNOJUTSU(
 			5633,
 			"ShunshinNoJutsu",
 			ShunshinNoJutsu.class,
-			SkillTrees.NINJUTSU) ,
+			SkillTree.NINJUTSU) ,
 	ASAKUJAKU(
 			5634,
 			"Asa Kujaku",
 			AsaKujaku.class,
-			SkillTrees.TAIJUTSU) ,
+			SkillTree.TAIJUTSU) ,
 	HIRUDORA(
 			5635,
 			"Hirudora",
 			Hirudora.class,
-			SkillTrees.TAIJUTSU) ,
+			SkillTree.TAIJUTSU) ,
 	KAGEBUYO(
 			5636,
 			"Kage Buyo",
 			KageBuyo.class,
-			SkillTrees.TAIJUTSU) ,
+			SkillTree.TAIJUTSU) ,
 	KOSAHO(
 			5637,
 			"KosaHo",
 			KosaHo.class,
-			SkillTrees.TAIJUTSU) ,
+			SkillTree.TAIJUTSU) ,
 	OMOTERENGE(
 			5638,
 			"Omote Renge",
 			OmoteRenge.class,
-			SkillTrees.TAIJUTSU) ,
+			SkillTree.TAIJUTSU) ,
 	URARENGE(
 			5639,
 			"Ura Renge",
 			UraRenge.class,
-			SkillTrees.TAIJUTSU);
+			SkillTree.TAIJUTSU);
 	
 	private int						jutsuID;
-	private SkillTrees				jutsuType;
+	private SkillTree				jutsuTree;
 	private String					jutsuName;
 	private Class<? extends Jutsu>	jutsuClass;
+	private JutsuTier				tier;
 	
-	JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTrees jutsuType) {
+	/**
+	 * Create Enum with params from enum constants.
+	 * 
+	 * @param ID
+	 * @param name
+	 * @param jutsu
+	 * @param jutsuType
+	 * @param tier
+	 */
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
+			SkillTree jutsuType, JutsuTier tier) {
+		this(ID, name, jutsu, jutsuType);
+		this.tier = tier;
+	}
+	
+	// TODO to delete after adding Tiers to all jutsu. Remember about assigns.
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
+			SkillTree jutsuType) {
 		this.jutsuID = ID;
 		this.jutsuName = name;
 		this.jutsuClass = jutsu;
-		this.jutsuType = jutsuType;
+		this.jutsuTree = jutsuType;
 	}
 	
 	public static JutsuEnum getByID(int ID) {
@@ -264,7 +288,7 @@ public enum JutsuEnum {
 	
 	public static JutsuEnum getByName(String name) {
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
-			if (jutsu.jutsuName == name) { return jutsu; }
+			if (jutsu.jutsuName.equals(name)) { return jutsu; }
 		}
 		return NONE;
 	}
@@ -279,17 +303,20 @@ public enum JutsuEnum {
 			jutsu = this.jutsuClass.newInstance();
 		}
 		catch (InstantiationException | IllegalAccessException e) {
-			System.out.println("LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOL");
 			e.printStackTrace();
 		}
 		return jutsu;
 	}
 	
-	public SkillTrees getJutsuType() {
-		return this.jutsuType;
+	public SkillTree getJutsuType() {
+		return this.jutsuTree;
 	}
 	
 	public String getName() {
 		return this.jutsuName;
+	}
+	
+	public JutsuTier getTier() {
+		return this.tier;
 	}
 }

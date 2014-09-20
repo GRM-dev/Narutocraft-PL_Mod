@@ -18,11 +18,11 @@ public class Kubiki extends SwordMain {
 		super(Materials.metalshinobi);
 	}
 	
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer,
 			List par3List, boolean par4) {
-		// TODO Auto-generated method stub
 		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
 		par3List.add("Blood from foes stored: "
 				+ UtilityNBTHelper.getInt(par1ItemStack, References.ModTag + "kBlood"));

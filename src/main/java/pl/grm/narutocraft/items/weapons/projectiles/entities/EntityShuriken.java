@@ -32,8 +32,6 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 	private Block	contactBlock;
 	private int		inData;
 	public boolean	inGround;
-	public int		canBePickedUp;
-	public Entity	shootingEntity;
 	private int		ticksInGround;
 	private int		ticksInAir;
 	private double	damage	= 2.0D;

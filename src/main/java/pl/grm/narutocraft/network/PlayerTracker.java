@@ -190,7 +190,7 @@ public class PlayerTracker {
 		if (hasAA(event.player)) {
 			NetHandler.INSTANCE.requestClientAuras((EntityPlayerMP) event.player);
 		}
-		int[] disabledSkills = SkillTreeManager.instance.getDisabledJutsusIDs();
+		int[] disabledSkills = SkillTreeManager.instance.getLockedJutsusIDs();
 		
 		DataWriter writer = new DataWriter();
 		// writer.add(NarutoCraft.config.getSkillTreeTierCap())
