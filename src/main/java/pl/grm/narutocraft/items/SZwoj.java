@@ -4,11 +4,11 @@ import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.References;
 
-public class FScroll extends Item {
+public class SZwoj extends Item {
 	
-	public FScroll() {
-		this.setUnlocalizedName("FZwoj");
-		this.setTextureName(References.ModTexturePath + "Zwoj Fuuton");
+	public SZwoj() {
+		this.setUnlocalizedName("SZwoj");
+		this.setTextureName(References.ModTexturePath + "Zwoj Suiton");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}

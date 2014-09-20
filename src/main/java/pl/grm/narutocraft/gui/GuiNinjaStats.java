@@ -254,18 +254,30 @@ public class GuiNinjaStats extends GuiContainer {
 			this.drawString(this.fontRendererObj, "" + props.psa.getResistance(),
 					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop
 							+ (9 * 4), 0xddeeee);
+			if (resUpg > 0)
+				this.drawString(this.fontRendererObj, "+ " + resUpg,
+						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
+								+ (9 * 3), 0x73ff9b);
 			
 			this.drawString(this.fontRendererObj, "Dexterity: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 5), 0xddeeee);
 			this.drawString(this.fontRendererObj, "" + props.psa.getDexterity(),
 					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop
 							+ (9 * 5), 0xddeeee);
+			if (dexUpg > 0)
+				this.drawString(this.fontRendererObj, "+ " + dexUpg,
+						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
+								+ (9 * 3), 0x73ff9b);
 			
 			this.drawString(this.fontRendererObj, "Agility: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 6), 0xddeeee);
 			this.drawString(this.fontRendererObj, "" + props.psa.getAgility(),
 					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop
 							+ (9 * 6), 0xddeeee);
+			if (agiUpg > 0)
+				this.drawString(this.fontRendererObj, "+ " + agiUpg,
+						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
+								+ (9 * 3), 0x73ff9b);
 			
 			// Level up Controls
 			if (props.psa.skillPoints >= 2) {
