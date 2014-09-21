@@ -12,17 +12,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
-public class NCCommandRefreshChekra extends CommandBase 
+public class NCCommandLevelUp extends CommandBase 
 {
 
 	@Override
 	public String getCommandName() {
-		return "regenChakra";
+		return "ninLvlUp";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender var1) {
-		return "/regenChakra Regenerates all of the player's Chakra";
+		return "/ninLvlUp Ninja Up.. Wait that's not right.";
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class NCCommandRefreshChekra extends CommandBase
 		EntityPlayer player = (EntityPlayer) var1;
 		// Turn the sender into a player entity
 
-		ExtendedProperties.get(player).replenishChakra();
+		ExtendedProperties.get(player).psa.levelUp(ExtendedProperties.get(player).psa.getXpCap());
 		}
 	}
 	

@@ -13,11 +13,5 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
  * @author Admaster
  */
 public class NCPLFMLEventHandler {
-	@EventHandler
-	public void serverStart(FMLServerStartingEvent event) {
-		MinecraftServer server = MinecraftServer.getServer();
-		ICommandManager command = server.getCommandManager();
-		ServerCommandManager manager = (ServerCommandManager) command;
-		manager.registerCommand(new NCCommandRefreshChekra());
-	}
+	
 }
