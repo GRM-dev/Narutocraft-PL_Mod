@@ -14,7 +14,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
  */
 public class NCPLFMLEventHandler {
 	@EventHandler
-	public void serverStart(FMLServerStartingEvent event) {
+	public void serverStart(@SuppressWarnings("unused")
+	FMLServerStartingEvent event) {
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager command = server.getCommandManager();
 		ServerCommandManager manager = (ServerCommandManager) command;

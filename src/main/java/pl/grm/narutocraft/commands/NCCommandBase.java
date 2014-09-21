@@ -33,11 +33,12 @@ public class NCCommandBase implements ICommand {
 	}
 	
 	@Override
-	public void processCommand(ICommandSender var1, String[] var2) {
-		NCCommandExecutor commandExecutor = new NCCommandExecutor(var1, var2);
-		if (var2.length == 0) {
-			commandExecutor.showHelp();
-		} else if (var2.length > 0) {
+	public void processCommand(ICommandSender commSender, String[] args) {
+		NCCommandExecutor commandExecutor;
+		if (args.length == 0) {
+			commandExecutor = new NCCommandExecutor(commSender);
+		} else if (args.length > 0) {
+			commandExecutor = new NCCommandExecutor(commSender, args);
 			commandExecutor.executeCommand();
 		}
 	}
@@ -57,5 +58,4 @@ public class NCCommandBase implements ICommand {
 	public boolean isUsernameIndex(String[] var1, int var2) {
 		return false;
 	}
-	
 }
