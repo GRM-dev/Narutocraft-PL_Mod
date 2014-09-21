@@ -222,7 +222,6 @@ public class GuiNinjaStats extends GuiContainer {
 		
 		int x1 = this.guiLeft;
 		int x2 = (this.guiLeft + this.xSize) - (22);
-		int x3 = (x2 + x1) / 2;
 		
 		// Controls
 		// Tabs
@@ -362,7 +361,7 @@ public class GuiNinjaStats extends GuiContainer {
 			//Jutsu
 			this.drawString(this.fontRendererObj, "Jutsu Training (3 points)", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 13), 0xddeeee);
-			this.drawString(this.fontRendererObj, "Buki: ", this.guiLeft
+			this.drawString(this.fontRendererObj, "Bukijutsu: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 14), 0xddeeee);
 			this.drawString(this.fontRendererObj,
 					"" + props.psa.getBukiTreeLevel(), this.guiLeft + this.padLeft
@@ -372,7 +371,7 @@ public class GuiNinjaStats extends GuiContainer {
 						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
 								+ (9 * 14), 0x73ff9b);
 			
-			this.drawString(this.fontRendererObj, "Fuuin: ", this.guiLeft
+			this.drawString(this.fontRendererObj, "Fuuinjutsu: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 15), 0xddeeee);
 			this.drawString(this.fontRendererObj, "" + props.psa.getFuuinTreeLevel(),
 					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop
@@ -382,7 +381,7 @@ public class GuiNinjaStats extends GuiContainer {
 						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
 								+ (9 * 15), 0x73ff9b);
 			
-			this.drawString(this.fontRendererObj, "Gen: ", this.guiLeft
+			this.drawString(this.fontRendererObj, "Genjutsu: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 16), 0xddeeee);
 			this.drawString(this.fontRendererObj, "" + props.psa.getGenTreeLevel(),
 					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop
@@ -392,7 +391,7 @@ public class GuiNinjaStats extends GuiContainer {
 						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
 								+ (9 * 16), 0x73ff9b);
 			
-			this.drawString(this.fontRendererObj, "Iryo: ", this.guiLeft
+			this.drawString(this.fontRendererObj, "Iryojutsu: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 17), 0xddeeee);
 			this.drawString(this.fontRendererObj,
 					"" + props.psa.getIryoTreeLevel(), this.guiLeft + this.padLeft
@@ -402,7 +401,7 @@ public class GuiNinjaStats extends GuiContainer {
 						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
 								+ (9 * 17), 0x73ff9b);
 			
-			this.drawString(this.fontRendererObj, "Nin: ", this.guiLeft
+			this.drawString(this.fontRendererObj, "Ninjutsu: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 18), 0xddeeee);
 			this.drawString(this.fontRendererObj, "" + props.psa.getNinTreeLevel(),
 					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop
@@ -412,7 +411,7 @@ public class GuiNinjaStats extends GuiContainer {
 						this.guiLeft + this.padLeft + 125, this.guiTop + this.padTop
 								+ (9 * 18), 0x73ff9b);
 			
-			this.drawString(this.fontRendererObj, "Tai: ", this.guiLeft
+			this.drawString(this.fontRendererObj, "Taijutsu: ", this.guiLeft
 					+ this.padLeft, this.guiTop + this.padTop + (9 * 19), 0xddeeee);
 			this.drawString(this.fontRendererObj, "" + props.psa.getTaiTreeLevel(),
 					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop
