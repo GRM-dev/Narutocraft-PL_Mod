@@ -7,11 +7,11 @@ import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import pl.grm.narutocraft.gui.skilltrees.SkillTreeEntry;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.ExtendedProperties;
+import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class JutsuManager {
@@ -122,16 +122,16 @@ public class JutsuManager {
 	}
 	
 	public SkillTreeEntry getJutsu(String name) {
-		Integer ID = JutsuEnum.getByName(name).getID();
+		Integer ID = JutsuEnum.getByName(name).getJutsuID();
 		if (ID == null) { return null; }
 		return this.registeredEntries.get(ID);
 	}
 	
 	public int getJutsuID(IJutsu jutsu) {
-		return jutsu.getJutsuProps()[0];
+		return jutsu.getJutsuProps().getJutsuID();
 	}
 	
 	public int getJutsuID(JutsuEnum jutsuListElem) {
-		return jutsuListElem.getID();
+		return jutsuListElem.getJutsuID();
 	}
 }

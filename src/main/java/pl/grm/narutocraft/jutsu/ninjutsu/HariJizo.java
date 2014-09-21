@@ -12,7 +12,6 @@ public class HariJizo extends Jutsu implements IJutsu {
 	
 	public HariJizo() {
 		super(JutsuEnum.HARIJIZO);
-		chackraConsumption = 5;
 	}
 	
 	@Override

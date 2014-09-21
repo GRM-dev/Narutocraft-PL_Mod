@@ -12,7 +12,6 @@ public class Iaido extends Jutsu implements IJutsu {
 	
 	public Iaido() {
 		super(JutsuEnum.IAIDO);
-		chackraConsumption = 5;
 	}
 	
 	@Override

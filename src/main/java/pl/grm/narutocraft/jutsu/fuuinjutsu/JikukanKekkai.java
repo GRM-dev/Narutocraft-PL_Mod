@@ -12,7 +12,6 @@ public class JikukanKekkai extends Jutsu implements IJutsu {
 	
 	public JikukanKekkai() {
 		super(JutsuEnum.JIKUKANKEKKAI);
-		chackraConsumption = 5;
 	}
 	
 	@Override

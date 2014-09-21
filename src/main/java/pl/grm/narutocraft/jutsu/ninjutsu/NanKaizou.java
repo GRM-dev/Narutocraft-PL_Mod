@@ -12,7 +12,6 @@ public class NanKaizou extends Jutsu implements IJutsu {
 	
 	public NanKaizou() {
 		super(JutsuEnum.NANKAIZOU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

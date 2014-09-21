@@ -12,7 +12,6 @@ public class KosaHo extends Jutsu implements IJutsu {
 	
 	public KosaHo() {
 		super(JutsuEnum.KOSAHO);
-		chackraConsumption = 5;
 	}
 	
 	@Override

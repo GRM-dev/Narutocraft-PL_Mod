@@ -11,7 +11,6 @@ public class ShunshinNoJutsu extends Jutsu {
 	
 	public ShunshinNoJutsu() {
 		super(JutsuEnum.SHUNSHINNOJUTSU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

@@ -12,7 +12,6 @@ public class Haykkaroran extends Jutsu implements IJutsu {
 	
 	public Haykkaroran() {
 		super(JutsuEnum.HAYKKARORAN);
-		chackraConsumption = 5;
 	}
 	
 	@Override

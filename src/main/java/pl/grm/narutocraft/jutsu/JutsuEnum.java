@@ -1,6 +1,5 @@
 package pl.grm.narutocraft.jutsu;
 
-import pl.grm.narutocraft.gui.skilltrees.SkillTree;
 import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;
 import pl.grm.narutocraft.jutsu.bukijutsu.Hadan;
 import pl.grm.narutocraft.jutsu.bukijutsu.Iaido;
@@ -40,6 +39,7 @@ import pl.grm.narutocraft.jutsu.taijutsu.KageBuyo;
 import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
 import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
 import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
+import pl.grm.narutocraft.skilltrees.SkillTree;
 
 // TODO add Tiers to Jutsus.
 public enum JutsuEnum {
@@ -48,13 +48,19 @@ public enum JutsuEnum {
 			"None",
 			null,
 			SkillTree.NONE,
-			JutsuTier.NONE) ,
+			JutsuTier.NONE,
+			0,
+			0,
+			0) ,
 	MEISAIGAKURE(
 			5601,
 			"Meisaigakure",
 			Meisaigakure.class,
 			SkillTree.NINJUTSU,
-			JutsuTier.B) ,
+			JutsuTier.B,
+			120,
+			360,
+			20) ,
 	KAWARIMINOJUTSU(
 			5625,
 			"KawarimiNoJutsu",
@@ -254,6 +260,9 @@ public enum JutsuEnum {
 	private String					jutsuName;
 	private Class<? extends Jutsu>	jutsuClass;
 	private JutsuTier				tier;
+	private long					duration;
+	private long					cooldown;
+	private int						chakraConsumption;
 	
 	/**
 	 * Create Enum with params from enum constants.
@@ -263,7 +272,20 @@ public enum JutsuEnum {
 	 * @param jutsu
 	 * @param jutsuType
 	 * @param tier
+	 * @param duration
+	 * @param cooldown
+	 * @param chakraConsumption
 	 */
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
+			SkillTree jutsuType, JutsuTier tier, long duration, long cooldown,
+			int chakraConsumption) {
+		this(ID, name, jutsu, jutsuType, tier);
+		this.duration = duration;
+		this.cooldown = cooldown;
+		this.chakraConsumption = chakraConsumption;
+	}
+	
+	// TODO Also to delete like below one
 	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
 			SkillTree jutsuType, JutsuTier tier) {
 		this(ID, name, jutsu, jutsuType);
@@ -279,6 +301,34 @@ public enum JutsuEnum {
 		this.jutsuTree = jutsuType;
 	}
 	
+	public int getJutsuID() {
+		return this.jutsuID;
+	}
+	
+	public SkillTree getJutsuTree() {
+		return this.jutsuTree;
+	}
+	
+	public int getChakraConsumption() {
+		return this.chakraConsumption;
+	}
+	
+	public String getJutsuName() {
+		return this.jutsuName;
+	}
+	
+	public Class<? extends Jutsu> getJutsuClass() {
+		return this.jutsuClass;
+	}
+	
+	public long getDuration() {
+		return this.duration;
+	}
+	
+	public long getCooldown() {
+		return this.cooldown;
+	}
+	
 	public static JutsuEnum getByID(int ID) {
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
 			if (jutsu.jutsuID == ID) { return jutsu; }
@@ -291,10 +341,6 @@ public enum JutsuEnum {
 			if (jutsu.jutsuName.equals(name)) { return jutsu; }
 		}
 		return NONE;
-	}
-	
-	public int getID() {
-		return this.jutsuID;
 	}
 	
 	public Jutsu getJutsu() {

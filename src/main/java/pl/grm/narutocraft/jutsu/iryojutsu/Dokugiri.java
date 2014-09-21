@@ -12,7 +12,6 @@ public class Dokugiri extends Jutsu implements IJutsu {
 	
 	public Dokugiri() {
 		super(JutsuEnum.DOKUGIRI);
-		chackraConsumption = 5;
 	}
 	
 	@Override

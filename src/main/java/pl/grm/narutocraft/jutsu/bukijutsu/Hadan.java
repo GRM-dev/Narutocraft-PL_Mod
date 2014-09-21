@@ -12,7 +12,6 @@ public class Hadan extends Jutsu implements IJutsu {
 	
 	public Hadan() {
 		super(JutsuEnum.HADAN);
-		chackraConsumption = 5;
 	}
 	
 	@Override

@@ -12,7 +12,6 @@ public class RaigenRaikochu extends Jutsu implements IJutsu {
 	
 	public RaigenRaikochu() {
 		super(JutsuEnum.RAIGENRAIKOCHU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

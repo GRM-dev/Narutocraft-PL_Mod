@@ -12,7 +12,6 @@ public class MikazukiKiri extends Jutsu implements IJutsu {
 	
 	public MikazukiKiri() {
 		super(JutsuEnum.MIKAZUKIKIRI);
-		chackraConsumption = 5;
 	}
 	
 	@Override

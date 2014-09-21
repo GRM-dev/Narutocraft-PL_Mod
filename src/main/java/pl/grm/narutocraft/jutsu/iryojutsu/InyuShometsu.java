@@ -12,7 +12,6 @@ public class InyuShometsu extends Jutsu implements IJutsu {
 	
 	public InyuShometsu() {
 		super(JutsuEnum.INYUSHOMETSU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

@@ -26,27 +26,23 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class Jutsu extends Item implements IJutsu {
-	public static String	textureLoc			= References.JUTSUTEXTURELOC;
-	private CreativeTabs	tabToDisplayOn		= NarutoCraft.mTabJutsu;
-	private int				maxDamage;
-	private Item			containerItem;
-	private String			potionEffect;
-	private String			unlocalizedName;
-	protected int			chackraConsumption	= 0;
-	protected int			jutsuID;
-	protected boolean		activated			= false;
-	protected int[]			jutsuProps;
-	protected int			totalDuration, passDuration;
-	protected JutsuEnum		myInstance;
-	protected ItemStack		stack;
-	protected World			world;
-	protected EntityPlayer	player;
+	public static String		textureLoc		= References.JUTSUTEXTURELOC;
+	private CreativeTabs		tabToDisplayOn	= NarutoCraft.mTabJutsu;
+	private int					maxDamage;
+	private Item				containerItem;
+	private String				potionEffect;
+	protected JutsuProperties	jutsuProps;
+	protected JutsuEnum			myInstance;
+	protected ItemStack			stack;
+	protected World				world;
+	protected EntityPlayer		player;
 	
 	public Jutsu(JutsuEnum jutsu) {
 		this.myInstance = jutsu;
-		this.setUnlocalizedName(this.myInstance.getName());
+		this.jutsuProps = new JutsuProperties(myInstance.getJutsuID(),
+				this.myInstance.getName(), 0, this.myInstance.getDuration(),
+				this.myInstance.getChakraConsumption(), false);
 		this.setTextureName(textureLoc + this.myInstance.getName());
-		this.jutsuID = this.myInstance.getID();
 	}
 	
 	@Override
@@ -67,7 +63,7 @@ public abstract class Jutsu extends Item implements IJutsu {
 	
 	public void consumeChackra(EntityPlayer player, int value) {
 		ExtendedProperties props = ExtendedProperties.get(player);
-		if (props.getCurrentChakra() < this.chackraConsumption) {
+		if (props.getCurrentChakra() < this.jutsuProps.getChakraConsumption()) {
 			setActive(false);
 		} else {
 			ExtendedProperties.get(player).consumeChakra(value);
@@ -125,8 +121,8 @@ public abstract class Jutsu extends Item implements IJutsu {
 		return false;
 	}
 	
-	public int getChackraConsumption() {
-		return this.chackraConsumption;
+	public long getChackraConsumption() {
+		return this.jutsuProps.getChakraConsumption();
 	}
 	
 	@Override
@@ -304,7 +300,7 @@ public abstract class Jutsu extends Item implements IJutsu {
 	}
 	
 	@Override
-	public int[] getJutsuProps() {
+	public JutsuProperties getJutsuProps() {
 		return this.jutsuProps;
 	}
 	
@@ -321,8 +317,8 @@ public abstract class Jutsu extends Item implements IJutsu {
 		return 0;
 	}
 	
-	public int getPassDuration() {
-		return this.passDuration;
+	public long getPassDuration() {
+		return this.jutsuProps.getPassDuration();
 	}
 	
 	@Override
@@ -384,18 +380,18 @@ public abstract class Jutsu extends Item implements IJutsu {
 		p_150895_3_.add(new ItemStack(p_150895_1_, 1, 0));
 	}
 	
-	public int getTotalDuration() {
-		return this.totalDuration;
+	public long getTotalDuration() {
+		return this.jutsuProps.getTotalDuration();
 	}
 	
 	@Override
 	public String getUnlocalizedName() {
-		return "item." + this.unlocalizedName;
+		return "item." + this.jutsuProps.getUnlocalizedName();
 	}
 	
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
-		return "item." + this.unlocalizedName;
+		return "item." + this.jutsuProps.getUnlocalizedName();
 	}
 	
 	@Override
@@ -428,7 +424,7 @@ public abstract class Jutsu extends Item implements IJutsu {
 	
 	@Override
 	public boolean isActive() {
-		return this.activated;
+		return this.jutsuProps.isActivated();
 	}
 	
 	@Override
@@ -592,9 +588,8 @@ public abstract class Jutsu extends Item implements IJutsu {
 	
 	@Override
 	public void onJutsuUpdate() {
-		this.passDuration++;
-		this.updateJutsuProperties();
-		if (this.passDuration > this.totalDuration) {
+		jutsuProps.setPassDuration(this.jutsuProps.getPassDuration() + 1);
+		if (this.jutsuProps.getPassDuration() > this.jutsuProps.getTotalDuration()) {
 			this.jutsuEnd();
 		}
 	}
@@ -652,7 +647,7 @@ public abstract class Jutsu extends Item implements IJutsu {
 	}
 	
 	public void setActive(boolean activated) {
-		this.activated = activated;
+		this.jutsuProps.setActivated(activated);
 	}
 	
 	@Override
@@ -715,30 +710,17 @@ public abstract class Jutsu extends Item implements IJutsu {
 	}
 	
 	@Override
-	public Item setUnlocalizedName(String par1Str) {
-		this.unlocalizedName = par1Str;
-		return this;
-	}
-	
-	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldRotateAroundWhenRendering() {
 		return false;
-	}
-	
-	public void updateJutsuProperties() {
-		this.jutsuProps[0] = this.jutsuID;
-		this.jutsuProps[1] = this.totalDuration;
-		this.jutsuProps[2] = this.passDuration;
-		this.jutsuProps[3] = this.chackraConsumption;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected String getIconString() {
 		return this.iconString == null ? "MISSING_ICON_ITEM_"
-				+ itemRegistry.getIDForObject(this) + "_" + this.unlocalizedName
-				: this.iconString;
+				+ itemRegistry.getIDForObject(this) + "_"
+				+ this.jutsuProps.getUnlocalizedName() : this.iconString;
 	}
 	
 	@Override

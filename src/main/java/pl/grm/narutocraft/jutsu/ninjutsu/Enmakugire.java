@@ -12,7 +12,6 @@ public class Enmakugire extends Jutsu implements IJutsu {
 	
 	public Enmakugire() {
 		super(JutsuEnum.ENMAKUGIRE);
-		chackraConsumption = 5;
 	}
 	
 	@Override

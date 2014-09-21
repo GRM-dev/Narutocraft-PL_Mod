@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui.skilltrees;
+package pl.grm.narutocraft.skilltrees;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class SkillTreeManager {
 			if (entry != null) {
 				entry.entryState = EntryStates.LOCKED;
 				FMLLog.info("", new Object[]{JutsuManager.instance.getJutsu(entry.jutsu
-						.getJutsuProps()[0])});
+						.getJutsuProps().getJutsuID())});
 			} else {
 				FMLLog.warning("", new Object[0]);
 			}

@@ -12,7 +12,6 @@ public class FukimiHari extends Jutsu implements IJutsu {
 	
 	public FukimiHari() {
 		super(JutsuEnum.FUKIMIHARI);
-		chackraConsumption = 5;
 	}
 	
 	@Override

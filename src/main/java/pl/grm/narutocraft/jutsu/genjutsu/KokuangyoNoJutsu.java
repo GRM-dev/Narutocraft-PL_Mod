@@ -12,7 +12,6 @@ public class KokuangyoNoJutsu extends Jutsu implements IJutsu {
 	
 	public KokuangyoNoJutsu() {
 		super(JutsuEnum.KOKUANGYONOJUTSU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

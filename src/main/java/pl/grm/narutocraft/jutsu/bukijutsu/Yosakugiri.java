@@ -12,7 +12,6 @@ public class Yosakugiri extends Jutsu implements IJutsu {
 	
 	public Yosakugiri() {
 		super(JutsuEnum.YOSAKUGIRI);
-		chackraConsumption = 5;
 	}
 	
 	@Override

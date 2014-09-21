@@ -12,7 +12,6 @@ public class Kai extends Jutsu implements IJutsu {
 	
 	public Kai() {
 		super(JutsuEnum.KAI);
-		chackraConsumption = 5;
 	}
 	
 	@Override

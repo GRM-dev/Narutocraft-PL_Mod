@@ -12,7 +12,6 @@ public class FumaNinken extends Jutsu implements IJutsu {
 	
 	public FumaNinken() {
 		super(JutsuEnum.FUMANINKEN);
-		chackraConsumption = 5;
 	}
 	
 	@Override

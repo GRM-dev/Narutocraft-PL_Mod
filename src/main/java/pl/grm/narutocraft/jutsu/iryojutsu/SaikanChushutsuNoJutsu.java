@@ -12,7 +12,6 @@ public class SaikanChushutsuNoJutsu extends Jutsu implements IJutsu {
 	
 	public SaikanChushutsuNoJutsu() {
 		super(JutsuEnum.SAIKANCHUSHUTSUNOJUTSU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

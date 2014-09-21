@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui.skilltrees;
+package pl.grm.narutocraft.skilltrees;
 
 public enum SkillTree {
 	NONE(

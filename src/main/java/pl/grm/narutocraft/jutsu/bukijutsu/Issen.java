@@ -12,7 +12,6 @@ public class Issen extends Jutsu implements IJutsu {
 	
 	public Issen() {
 		super(JutsuEnum.ISSEN);
-		chackraConsumption = 5;
 	}
 	
 	@Override
