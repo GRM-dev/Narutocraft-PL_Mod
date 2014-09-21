@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui.skilltrees;
+package pl.grm.narutocraft.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

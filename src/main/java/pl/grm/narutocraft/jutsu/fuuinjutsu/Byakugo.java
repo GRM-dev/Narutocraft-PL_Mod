@@ -12,7 +12,6 @@ public class Byakugo extends Jutsu implements IJutsu {
 	
 	public Byakugo() {
 		super(JutsuEnum.BYAKUGO);
-		chackraConsumption = 5;
 	}
 	
 	@Override

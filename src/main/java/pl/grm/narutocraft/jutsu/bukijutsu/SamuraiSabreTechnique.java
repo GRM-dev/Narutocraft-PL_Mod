@@ -12,7 +12,6 @@ public class SamuraiSabreTechnique extends Jutsu implements IJutsu {
 	
 	public SamuraiSabreTechnique() {
 		super(JutsuEnum.SAMURAISABRETECHNIQUE);
-		chackraConsumption = 5;
 	}
 	
 	@Override

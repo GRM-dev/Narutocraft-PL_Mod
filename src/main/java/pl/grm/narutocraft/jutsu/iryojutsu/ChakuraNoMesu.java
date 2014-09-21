@@ -12,7 +12,6 @@ public class ChakuraNoMesu extends Jutsu implements IJutsu {
 	
 	public ChakuraNoMesu() {
 		super(JutsuEnum.CHAKURANOMESU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

@@ -12,7 +12,6 @@ public class AsaKujaku extends Jutsu implements IJutsu {
 	
 	public AsaKujaku() {
 		super(JutsuEnum.ASAKUJAKU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

@@ -12,7 +12,6 @@ public class NawanukeNoJutsu extends Jutsu implements IJutsu {
 	
 	public NawanukeNoJutsu() {
 		super(JutsuEnum.NAWANUKENOJUTSU);
-		chackraConsumption = 5;
 	}
 	
 	@Override

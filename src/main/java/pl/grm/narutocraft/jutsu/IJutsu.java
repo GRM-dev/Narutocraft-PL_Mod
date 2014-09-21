@@ -1,6 +1,5 @@
 package pl.grm.narutocraft.jutsu;
 
-
 public interface IJutsu {
 	/**
 	 * Initialize Jutsu when activated
@@ -10,7 +9,7 @@ public interface IJutsu {
 	/**
 	 * @return List of Jutsu Props
 	 */
-	public int[] getJutsuProps();
+	public JutsuProperties getJutsuProps();
 	
 	/**
 	 * Check if Jutsu is Active

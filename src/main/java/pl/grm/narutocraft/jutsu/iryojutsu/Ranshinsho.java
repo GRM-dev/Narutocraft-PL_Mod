@@ -12,7 +12,6 @@ public class Ranshinsho extends Jutsu implements IJutsu {
 	
 	public Ranshinsho() {
 		super(JutsuEnum.RANSHINSHO);
-		chackraConsumption = 5;
 	}
 	
 	@Override

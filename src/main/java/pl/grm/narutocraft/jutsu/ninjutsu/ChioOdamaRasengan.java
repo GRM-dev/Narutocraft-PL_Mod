@@ -12,7 +12,6 @@ public class ChioOdamaRasengan extends Jutsu implements IJutsu {
 	
 	public ChioOdamaRasengan() {
 		super(JutsuEnum.CHIOODAMARASENGAN);
-		chackraConsumption = 5;
 	}
 	
 	@Override

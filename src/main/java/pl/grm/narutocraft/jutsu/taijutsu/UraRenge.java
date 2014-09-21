@@ -12,7 +12,6 @@ public class UraRenge extends Jutsu implements IJutsu {
 	
 	public UraRenge() {
 		super(JutsuEnum.URARENGE);
-		chackraConsumption = 5;
 	}
 	
 	@Override

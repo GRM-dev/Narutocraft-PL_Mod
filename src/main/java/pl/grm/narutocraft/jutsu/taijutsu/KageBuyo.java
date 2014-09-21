@@ -12,7 +12,6 @@ public class KageBuyo extends Jutsu implements IJutsu {
 	
 	public KageBuyo() {
 		super(JutsuEnum.KAGEBUYO);
-		chackraConsumption = 5;
 	}
 	
 	@Override

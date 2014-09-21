@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui.skilltrees;
+package pl.grm.narutocraft.skilltrees;
 
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.JutsuTier;

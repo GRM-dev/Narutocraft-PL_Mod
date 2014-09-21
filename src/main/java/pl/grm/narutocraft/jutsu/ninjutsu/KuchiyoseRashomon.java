@@ -12,7 +12,6 @@ public class KuchiyoseRashomon extends Jutsu implements IJutsu {
 	
 	public KuchiyoseRashomon() {
 		super(JutsuEnum.KUCHIYOSERASHOMON);
-		chackraConsumption = 5;
 	}
 	
 	@Override

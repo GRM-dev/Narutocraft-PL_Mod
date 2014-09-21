@@ -12,7 +12,6 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	
 	public Meisaigakure() {
 		super(JutsuEnum.MEISAIGAKURE);
-		chackraConsumption = 5;
 	}
 	
 	@Override

@@ -12,7 +12,6 @@ public class Hirudora extends Jutsu implements IJutsu {
 	
 	public Hirudora() {
 		super(JutsuEnum.HIRUDORA);
-		chackraConsumption = 5;
 	}
 	
 	@Override

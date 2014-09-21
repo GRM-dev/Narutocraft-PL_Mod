@@ -12,7 +12,6 @@ public class OmoteRenge extends Jutsu implements IJutsu {
 	
 	public OmoteRenge() {
 		super(JutsuEnum.OMOTERENGE);
-		chackraConsumption = 5;
 	}
 	
 	@Override
