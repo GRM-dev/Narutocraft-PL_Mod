@@ -49,6 +49,8 @@ public class ProxyCommon {
 	
 	public void registerSound() {}
 	
+	public void registerCommands() {}
+	
 	private WorldServer[] getWorldServers() {
 		return FMLServerHandler.instance().getServer().worldServers;
 	}

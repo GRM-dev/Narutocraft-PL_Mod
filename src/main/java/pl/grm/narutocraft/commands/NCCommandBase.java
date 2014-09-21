@@ -5,10 +5,8 @@ import java.util.List;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
 
-public class NCCommandRefreshChekra implements ICommand {
+public class NCCommandBase implements ICommand {
 	
 	@Override
 	public int compareTo(Object arg0) {
@@ -18,27 +16,30 @@ public class NCCommandRefreshChekra implements ICommand {
 	
 	@Override
 	public String getCommandName() {
-		return "regChakra";
+		return "narutocraft";
 	}
 	
 	@Override
 	public String getCommandUsage(ICommandSender var1) {
-		return "Chakra regenerates.";
+		return "Command executed.";
 	}
 	
 	@Override
 	public List<String> getCommandAliases() {
 		List<String> aliases = new ArrayList<String>();
-		aliases.add("refreshChakra");
-		aliases.add("refch");
+		aliases.add("ncpl");
+		aliases.add("nc");
 		return aliases;
 	}
 	
 	@Override
 	public void processCommand(ICommandSender var1, String[] var2) {
-		EntityPlayer player = (EntityPlayer) var1;
-		player.addChatMessage(new ChatComponentText("Sample: [Check]"));
-		
+		NCCommandExecutor commandExecutor = new NCCommandExecutor(var1, var2);
+		if (var2.length == 0) {
+			commandExecutor.showHelp();
+		} else if (var2.length > 0) {
+			commandExecutor.executeCommand();
+		}
 	}
 	
 	@Override

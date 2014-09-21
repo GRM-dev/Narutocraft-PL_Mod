@@ -1,8 +1,10 @@
 package pl.grm.narutocraft;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import pl.grm.narutocraft.commands.NCCommandBase;
 import pl.grm.narutocraft.gui.chakrabar.GuiChakraBar;
 import pl.grm.narutocraft.handlers.SoundHandler;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
@@ -76,5 +78,10 @@ public class ProxyClient extends ProxyCommon {
 	@Override
 	public void registerSound() {
 		MinecraftForge.EVENT_BUS.register(new SoundHandler());
+	}
+	
+	@Override
+	public void registerCommands() {
+		ClientCommandHandler.instance.registerCommand(new NCCommandBase());
 	}
 }

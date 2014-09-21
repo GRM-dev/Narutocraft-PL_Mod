@@ -91,6 +91,7 @@ public class NarutoCraft {
 		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();
+		proxy.registerCommands();
 	}
 	
 	/** preInit */
