@@ -36,6 +36,8 @@ public class SkillTreeManager {
 		clearTrees();
 		
 		RegisterEntry(JutsuEnum.MEISAIGAKURE, 300, 45, 12, new SkillTreeEntry[0]);
+		RegisterEntry(JutsuEnum.ODAMARASENGAN, 200, 100, 10, new SkillTreeEntry(
+				JutsuEnum.RASENGAN));
 		// RegisterEntry(JutsuManager.instance.getJutsu("PhysicalDamage"), 300,
 		// 90, SkillTrees.Offense, TreePointTypes.BLUE,
 		// new SkillTreeEntry[]{JutsuManager.instance
@@ -82,6 +84,7 @@ public class SkillTreeManager {
 				SkillTree.JUTSU);
 	}
 	
+	// TODO check if work
 	private void loadPrerequisites(SkillTree tree, SkillTreeEntry... prerequisites) {
 		this.locatedPrerequisites = new ArrayList<SkillTreeEntry>();
 		if ((prerequisites != null) && (prerequisites.length > 0)) {

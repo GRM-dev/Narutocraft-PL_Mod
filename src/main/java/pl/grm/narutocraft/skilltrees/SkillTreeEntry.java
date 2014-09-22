@@ -1,17 +1,19 @@
 package pl.grm.narutocraft.skilltrees;
 
 import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 
 public class SkillTreeEntry {
-	public final int				x;
-	public final int				y;
-	public final SkillTree			tree;
-	public final JutsuTier			tier;
-	public final IJutsu				jutsu;
-	public final int				points;
-	public final SkillTreeEntry[]	prerequisites;
-	public EntryStates				entryState;
+	public int				x;
+	public int				y;
+	public SkillTree		tree;
+	public JutsuTier		tier;
+	public IJutsu			jutsu;
+	public int				points;
+	public SkillTreeEntry[]	prerequisites;
+	public EntryStates		entryState;
+	public JutsuEnum		reqJutsu;
 	
 	/**
 	 * @param x
@@ -38,5 +40,10 @@ public class SkillTreeEntry {
 		this.tier = tier;
 		this.points = points;
 		this.prerequisites = prerequisites;
+	}
+	
+	public SkillTreeEntry(JutsuEnum rasengan) {
+		this.reqJutsu = rasengan;
+		
 	}
 }
