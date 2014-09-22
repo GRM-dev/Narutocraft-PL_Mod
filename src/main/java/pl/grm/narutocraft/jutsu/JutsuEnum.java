@@ -348,9 +348,13 @@ public enum JutsuEnum {
 		try {
 			jutsu = this.jutsuClass.newInstance();
 		}
-		catch (InstantiationException | IllegalAccessException e) {
+		catch (InstantiationException e) {
 			e.printStackTrace();
 		}
+		catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
 		return jutsu;
 	}
 	

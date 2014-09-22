@@ -17,6 +17,11 @@ buildscript {
 
 apply plugin: 'forge'
 
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+ENV = System.getenv()
+
 version = "1.7.2-1147-0.5"
 group= "pl.grm.narutocraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "NarutoCraft_Mod"
