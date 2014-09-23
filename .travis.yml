@@ -13,7 +13,7 @@ env:
  global:
    -TERM=dumb
    -COVERITY_SCAN_TOKEN="ZU0ijB/2FBTHkCmit2G3vKAlTHsXhgk9MkBpsY0KpxMFQl3WLxKXoh6SAIE7Vt7voayjANaDX4M51DToyiSWlYEllu2ShOnNN2rrsouhAMpPzHN9r5mzjXbx44UmnnAaFo4DUa05xIwhMhzs4l17+DBNGVOVVoe/ziGilV097jk="
-   -secure: "ZU0ijB/2FBTHkCmit2G3vKAlTHsXhgk9MkBpsY0KpxMFQl3WLxKXoh6SAIE7Vt7voayjANaDX4M51DToyiSWlYEllu2ShOnNN2rrsouhAMpPzHN9r5mzjXbx44UmnnAaFo4DUa05xIwhMhzs4l17+DBNGVOVVoe/ziGilV097jk="
+   -secure="ZU0ijB/2FBTHkCmit2G3vKAlTHsXhgk9MkBpsY0KpxMFQl3WLxKXoh6SAIE7Vt7voayjANaDX4M51DToyiSWlYEllu2ShOnNN2rrsouhAMpPzHN9r5mzjXbx44UmnnAaFo4DUa05xIwhMhzs4l17+DBNGVOVVoe/ziGilV097jk="
 
 addons:
   coverity_scan:
