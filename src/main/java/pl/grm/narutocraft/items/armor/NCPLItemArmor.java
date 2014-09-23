@@ -28,7 +28,7 @@ public class NCPLItemArmor extends ItemArmor {
 	 * Create Armor Item
 	 *
 	 * @param armormaterial
-	 *            materia³ zbroi
+	 *            material zbroi
 	 * @param ID
 	 *            ID armora
 	 * @param placement
@@ -65,15 +65,15 @@ public class NCPLItemArmor extends ItemArmor {
 				this.setTextureName(References.ModTexturePath + "armor/boots"
 						+ itemTextureName);
 				break;
+			default :
+				break;
 		}
 	}
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		if (this.armorSlot != 2) {
-			return "narutocraft:textures/model/" + this.modelTexture + "_1.png";
-		} else {
-			return "narutocraft:textures/model/" + this.modelTexture + "_2.png";
-		}
+		if (this.armorSlot != 2) { return "narutocraft:textures/model/"
+				+ this.modelTexture + "_1.png"; }
+		return "narutocraft:textures/model/" + this.modelTexture + "_2.png";
 	}
 }

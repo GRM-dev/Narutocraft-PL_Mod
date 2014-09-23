@@ -3,11 +3,12 @@ package pl.grm.narutocraft.items.weapons.projectiles.entities.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 
 /**
- * Model of {@link EntityLunai}
+ * Model of {@link EntityKunai}
  *
- * @author Admaster
+ * @author Natsuro
  */
 public class ModelKunai extends ModelBase {
 	ModelRenderer	Pivot;
@@ -94,6 +95,8 @@ public class ModelKunai extends ModelBase {
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
 	
+	// TODO add rotation functions
+	@SuppressWarnings("static-method")
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;

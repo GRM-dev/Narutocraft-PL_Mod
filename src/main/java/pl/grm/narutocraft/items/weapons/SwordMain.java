@@ -32,14 +32,11 @@ public class SwordMain extends Item {
 	
 	@Override
 	public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_) {
-		if (p_150893_2_ == Blocks.web) {
-			return 15.0F;
-		} else {
-			Material material = p_150893_2_.getMaterial();
-			return (material != Material.plants) && (material != Material.vine)
-					&& (material != Material.coral) && (material != Material.leaves)
-					&& (material != Material.gourd) ? 1.0F : 1.5F;
-		}
+		if (p_150893_2_ == Blocks.web) { return 15.0F; }
+		Material material = p_150893_2_.getMaterial();
+		return (material != Material.plants) && (material != Material.vine)
+				&& (material != Material.coral) && (material != Material.leaves)
+				&& (material != Material.gourd) ? 1.0F : 1.5F;
 	}
 	
 	@Override

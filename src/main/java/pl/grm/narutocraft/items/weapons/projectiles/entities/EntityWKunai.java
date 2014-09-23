@@ -558,6 +558,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 	protected void onImpact(MovingObjectPosition movingobjectposition) {
 		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ,
 				this.explevel, false);
+		System.out.println(movingobjectposition.hitInfo);
 		this.setDead();
 	}
 }

@@ -11,6 +11,7 @@ import pl.grm.narutocraft.items.weapons.MSamuraja;
 import pl.grm.narutocraft.items.weapons.Nunchaku;
 import pl.grm.narutocraft.items.weapons.RKatana;
 import pl.grm.narutocraft.items.weapons.Raitanto;
+import pl.grm.narutocraft.items.weapons.Scalpel;
 import pl.grm.narutocraft.items.weapons.Wakizashi;
 import pl.grm.narutocraft.items.weapons.ZRekawica;
 import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
@@ -96,6 +97,10 @@ public class RegWeapons extends RegItems {
 												"ChioRyuuGatana").setTextureName(
 												References.ModTexturePath
 														+ "weapons/ChioRyuuGatana");
+	public static Item	Scalpel			= new Scalpel().setUnlocalizedName("Skalpel")
+												.setTextureName(
+														References.ModTexturePath
+																+ "weapons/Scalpel");
 	
 	public static void regWeaponsList() {
 		registerItem(Kunai, "Kunai");
@@ -114,5 +119,6 @@ public class RegWeapons extends RegItems {
 		registerItem(ZRekawica, "ZRekawica");
 		registerItem(Nunchaku, "Nunchaku");
 		registerItem(ChioRyuuGatana, "ChioRyuuGatana");
+		registerItem(Scalpel, "Skalpel");
 	}
 }
