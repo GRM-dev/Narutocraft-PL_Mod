@@ -8,12 +8,12 @@ import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiKiri;
 import pl.grm.narutocraft.jutsu.bukijutsu.Omotegiri;
 import pl.grm.narutocraft.jutsu.bukijutsu.SamuraiSabreTechnique;
 import pl.grm.narutocraft.jutsu.bukijutsu.Yosakugiri;
-import pl.grm.narutocraft.jutsu.fuuinjutsu.Byakugo;
 import pl.grm.narutocraft.jutsu.fuuinjutsu.JikukanKekkai;
 import pl.grm.narutocraft.jutsu.genjutsu.Haykkaroran;
 import pl.grm.narutocraft.jutsu.genjutsu.KokuangyoNoJutsu;
 import pl.grm.narutocraft.jutsu.genjutsu.Koukongarasu;
 import pl.grm.narutocraft.jutsu.genjutsu.RaigenRaikochu;
+import pl.grm.narutocraft.jutsu.iryojutsu.Byakugo;
 import pl.grm.narutocraft.jutsu.iryojutsu.ChakuraNoMesu;
 import pl.grm.narutocraft.jutsu.iryojutsu.Dokugiri;
 import pl.grm.narutocraft.jutsu.iryojutsu.InyuShometsu;
@@ -51,6 +51,7 @@ public enum JutsuEnum {
 			JutsuTier.NONE,
 			0,
 			0,
+			0,
 			0) ,
 	MEISAIGAKURE(
 			5601,
@@ -60,7 +61,8 @@ public enum JutsuEnum {
 			JutsuTier.B,
 			120,
 			360,
-			20) ,
+			20,
+			0) ,
 	KAWARIMINOJUTSU(
 			5625,
 			"KawarimiNoJutsu",
@@ -70,133 +72,262 @@ public enum JutsuEnum {
 			5602,
 			"Fuma Ninken",
 			FumaNinken.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.D,
+			20,
+			60,
+			5,
+			0) ,
 	HADAN(
 			5603,
 			"Hadan",
 			Hadan.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.A,
+			20,
+			60,
+			50,
+			0) ,
 	IAIDO(
 			5604,
 			"Iaido",
 			Iaido.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.S,
+			10,
+			60,
+			100,
+			0) ,
 	ISSEN(
 			5605,
 			"Issen",
 			Issen.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.B,
+			0,
+			0,
+			30,
+			20) ,
 	MIKAZUKIKIRI(
 			5606,
 			"Mikazuki Kiri",
 			MikazukiKiri.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.C,
+			30,
+			50,
+			25,
+			0) ,
 	OMOTEGIRI(
 			5607,
 			"Omotegiri",
 			Omotegiri.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.D,
+			20,
+			60,
+			10,
+			0) ,
 	SAMURAISABRETECHNIQUE(
 			5608,
 			"SamuraiSabreTechnique",
 			SamuraiSabreTechnique.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.C,
+			0,
+			120,
+			15,
+			0) ,
 	YOSAKUGIRI(
 			5609,
 			"Yosakugiri",
 			Yosakugiri.class,
-			SkillTree.BUKIJUTSU) ,
+			SkillTree.BUKIJUTSU,
+			JutsuTier.C,
+			0,
+			60,
+			20,
+			0) ,
 	BYAKUGO(
 			5610,
 			"Byakugo",
 			Byakugo.class,
-			SkillTree.FUUINJUTSU) ,
+			SkillTree.IRYOJUTSU,
+			JutsuTier.S,
+			0,
+			600,
+			40,
+			0) ,
 	JIKUKANKEKKAI(
 			5611,
 			"Jikukan Kekkai",
 			JikukanKekkai.class,
-			SkillTree.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU,
+			JutsuTier.A,
+			600,
+			86400,
+			200,
+			0) ,
 	HAYKKARORAN(
 			5612,
 			"Haykkaroran",
 			Haykkaroran.class,
-			SkillTree.FUUINJUTSU) ,
+			SkillTree.GENJUTSU,
+			JutsuTier.B,
+			0,
+			60,
+			15,
+			0) ,
 	KOKUANGYONOJUTSU(
 			5613,
 			"Kokuangyo No Jutsu",
 			KokuangyoNoJutsu.class,
-			SkillTree.FUUINJUTSU) ,
+			SkillTree.FUUINJUTSU,
+			JutsuTier.D,
+			30,
+			30,
+			10,
+			0) ,
 	KOUKONGARASU(
 			5614,
 			"Koukongarasu",
 			Koukongarasu.class,
-			SkillTree.FUUINJUTSU) ,
+			SkillTree.GENJUTSU,
+			JutsuTier.B,
+			0,
+			1800,
+			30,
+			0) ,
 	RAIGENRAIKOCHU(
 			5615,
 			"RaigenRaikochu",
 			RaigenRaikochu.class,
-			SkillTree.FUUINJUTSU) ,
+			SkillTree.GENJUTSU,
+			JutsuTier.C,
+			0,
+			50,
+			5,
+			0) ,
 	CHAKURANOMESU(
 			5616,
 			"Chakura No Mesu",
 			ChakuraNoMesu.class,
-			SkillTree.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU,
+			JutsuTier.C,
+			15,
+			180,
+			15,
+			0) ,
 	DOKUGIRI(
 			5617,
 			"Dokugiri",
 			Dokugiri.class,
-			SkillTree.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU,
+			JutsuTier.C,
+			0,
+			240,
+			10,
+			0) ,
 	INYUSHOMETSU(
 			5618,
 			"InyuShometsu",
 			InyuShometsu.class,
-			SkillTree.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU,
+			JutsuTier.B,
+			0,
+			300,
+			10,
+			0) ,
 	RANSHINSHO(
 			5619,
 			"Ranshinsho",
 			Ranshinsho.class,
-			SkillTree.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU,
+			JutsuTier.B,
+			30,
+			300,
+			25,
+			0) ,
 	SAIKANCHUSHUTSUNOJUTSU(
 			5620,
 			"Saikan Chushutsu No Jutsu",
 			SaikanChushutsuNoJutsu.class,
-			SkillTree.IRYOJUTSU) ,
+			SkillTree.IRYOJUTSU,
+			JutsuTier.D,
+			0,
+			120,
+			5,
+			0) ,
 	ENMAKUGIRE(
 			5621,
 			"Enmakugire",
 			Enmakugire.class,
-			SkillTree.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.C,
+			15,
+			60,
+			10,
+			0) ,
 	FUKIMIHARI(
 			5622,
 			"FukimiHari",
 			FukimiHari.class,
-			SkillTree.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.C,
+			0,
+			5,
+			5,
+			0) ,
 	HARIJIZO(
 			5623,
 			"HariJizo",
 			HariJizo.class,
-			SkillTree.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.B,
+			30,
+			180,
+			5,
+			0) ,
 	KAI(
 			5624,
 			"Kai",
 			Kai.class,
-			SkillTree.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.D,
+			0,
+			30,
+			4,
+			0) ,
 	KUCHIYOSERASHOMON(
 			5626,
 			"Kuchiyose Rashomon",
 			KuchiyoseRashomon.class,
-			SkillTree.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.A,
+			60,
+			600,
+			29,
+			0) ,
 	NANKAIZOU(
 			5627,
 			"Nan Kaizou",
 			NanKaizou.class,
-			SkillTree.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.C,
+			0,
+			60,
+			7,
+			0) ,
 	NAWANUKENOJUTSU(
 			5628,
 			"Nawanuke No Jutsu",
 			NawanukeNoJutsu.class,
 			SkillTree.NINJUTSU,
-			JutsuTier.D) ,
+			JutsuTier.D,
+			0,
+			0,
+			0,
+			0) ,
 	RASENGAN(
 			5629,
 			"Rasengan",
@@ -223,37 +354,68 @@ public enum JutsuEnum {
 			5633,
 			"ShunshinNoJutsu",
 			ShunshinNoJutsu.class,
-			SkillTree.NINJUTSU) ,
+			SkillTree.NINJUTSU,
+			JutsuTier.D) ,
 	ASAKUJAKU(
 			5634,
 			"Asa Kujaku",
 			AsaKujaku.class,
-			SkillTree.TAIJUTSU) ,
+			SkillTree.TAIJUTSU,
+			JutsuTier.A,
+			0,
+			120,
+			0,
+			4) ,
 	HIRUDORA(
 			5635,
 			"Hirudora",
 			Hirudora.class,
-			SkillTree.TAIJUTSU) ,
+			SkillTree.TAIJUTSU,
+			JutsuTier.S,
+			0,
+			86400,
+			0,
+			65) ,
 	KAGEBUYO(
 			5636,
 			"Kage Buyo",
 			KageBuyo.class,
-			SkillTree.TAIJUTSU) ,
+			SkillTree.TAIJUTSU,
+			JutsuTier.D,
+			0,
+			20,
+			0,
+			5) ,
 	KOSAHO(
 			5637,
 			"KosaHo",
 			KosaHo.class,
-			SkillTree.TAIJUTSU) ,
+			SkillTree.TAIJUTSU,
+			JutsuTier.C,
+			0,
+			1,
+			0,
+			0) ,
 	OMOTERENGE(
 			5638,
 			"Omote Renge",
 			OmoteRenge.class,
-			SkillTree.TAIJUTSU) ,
+			SkillTree.TAIJUTSU,
+			JutsuTier.B,
+			0,
+			50,
+			0,
+			13) ,
 	URARENGE(
 			5639,
 			"Ura Renge",
 			UraRenge.class,
-			SkillTree.TAIJUTSU);
+			SkillTree.TAIJUTSU,
+			JutsuTier.A,
+			0,
+			86400,
+			0,
+			50);
 	
 	private int						jutsuID;
 	private SkillTree				jutsuTree;
@@ -263,36 +425,24 @@ public enum JutsuEnum {
 	private long					duration;
 	private long					cooldown;
 	private int						chakraConsumption;
+	private int						damage;
 	
-	/**
-	 * Create Enum with params from enum constants.
-	 * 
-	 * @param ID
-	 * @param name
-	 * @param jutsu
-	 * @param jutsuType
-	 * @param tier
-	 * @param duration
-	 * @param cooldown
-	 * @param chakraConsumption
-	 */
 	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
 			SkillTree jutsuType, JutsuTier tier, long duration, long cooldown,
-			int chakraConsumption) {
+			int chakraConsumption, int damage) {
 		this(ID, name, jutsu, jutsuType, tier);
 		this.duration = duration;
 		this.cooldown = cooldown;
 		this.chakraConsumption = chakraConsumption;
+		this.setDamage(damage);
 	}
 	
-	// TODO Also to delete like below one
 	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
 			SkillTree jutsuType, JutsuTier tier) {
 		this(ID, name, jutsu, jutsuType);
 		this.tier = tier;
 	}
 	
-	// TODO to delete after adding Tiers to all jutsu. Remember about assigns.
 	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
 			SkillTree jutsuType) {
 		this.jutsuID = ID;
@@ -368,5 +518,13 @@ public enum JutsuEnum {
 	
 	public JutsuTier getTier() {
 		return this.tier;
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 }

@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.jutsu.fuuinjutsu;
+package pl.grm.narutocraft.jutsu.iryojutsu;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
