@@ -1,15 +1,19 @@
 package pl.grm.narutocraft;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
 import pl.grm.narutocraft.creativetabs.JutsuTab;
 import pl.grm.narutocraft.creativetabs.NCPLMainTab;
 import pl.grm.narutocraft.handlers.ClientGuiHandler;
 import pl.grm.narutocraft.handlers.JutsuEventsHandler;
-import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.handlers.KeyInputHandler;
 import pl.grm.narutocraft.handlers.NCPLEventHandler;
 import pl.grm.narutocraft.handlers.NCPLFMLEventHandler;
+import pl.grm.narutocraft.jutsu.JutsuManager;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import pl.grm.narutocraft.network.PacketExample;
@@ -73,29 +77,32 @@ public class NarutoCraft {
 		RegRecipes.regRecipesList();
 	}
 	
-	/** Init */
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		RegEntities.RegEntitiesList();
-		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new ClientGuiHandler());
-		proxy.registerSound();
-	}
-	
-	/** Load */
-	@EventHandler
-	public void load(FMLPostInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
-		FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
-		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
-		proxy.registerRenderInfomation();
-		proxy.registerRenderThings();
-		proxy.registerCommands();
-	}
-	
 	/** preInit */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		Potion[] potionTypes = null;
+		for (Field f : Potion.class.getDeclaredFields()) {
+			f.setAccessible(true);
+			try {
+				if (f.getName().equals("potionTypes")
+						|| f.getName().equals("field_76425_a")) {
+					Field modfield = Field.class.getDeclaredField("modifiers");
+					modfield.setAccessible(true);
+					modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
+					
+					potionTypes = (Potion[]) f.get(null);
+					final Potion[] newPotionTypes = new Potion[256];
+					System.arraycopy(potionTypes, 0, newPotionTypes, 0,
+							potionTypes.length);
+					f.set(null, newPotionTypes);
+				}
+			}
+			catch (Exception e) {
+				System.err.println("Severe error, please report this to the mod author:");
+				System.err.println(e);
+			}
+		}
+		
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
 		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
 				PacketExample.class, this.packetId++, Side.SERVER);
@@ -116,5 +123,25 @@ public class NarutoCraft {
 		proxy.registerRenderThings();
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();
+	}
+	
+	/** Init */
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		RegEntities.RegEntitiesList();
+		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new ClientGuiHandler());
+		proxy.registerSound();
+	}
+	
+	/** Load */
+	@EventHandler
+	public void load(FMLPostInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
+		FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
+		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
+		proxy.registerRenderInfomation();
+		proxy.registerRenderThings();
+		proxy.registerCommands();
 	}
 }

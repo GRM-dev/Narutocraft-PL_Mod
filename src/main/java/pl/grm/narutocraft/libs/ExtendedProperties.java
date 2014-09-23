@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.ProxyCommon;
 import pl.grm.narutocraft.gui.JutsuInv;
-import pl.grm.narutocraft.handlers.JutsuManager;
+import pl.grm.narutocraft.jutsu.JutsuManager;
 import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {

@@ -25,11 +25,11 @@ public class RegEntities extends NarutoCraft {
 		id++;
 		
 		EntityRegistry.registerModEntity(EntityKyuubi.class, "Kyuubi", id,
-				NarutoCraft.instance, 80, 1, true);
+				NarutoCraft.instance, 90, 1, true);
 		id++;
+		// TODO Normal summons sometimes spawn. (After making summons.
 		// EntityRegistry.addSpawn(EntityKyuubi.class, 2, 0, 1,
 		// EnumCreatureType.creature, BiomeGenBase.biomeList);//change the
 		// values to vary the spawn rarity, biome, etc.
-		
 	}
 }

@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.handlers;
+package pl.grm.narutocraft.jutsu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,9 +7,6 @@ import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import cpw.mods.fml.common.registry.GameRegistry;

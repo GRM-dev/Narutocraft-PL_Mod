@@ -12,3 +12,14 @@ script: ./gradlew build -S
 env:
  global:
    -TERM=dumb
+   - secure: "ZU0ijB/2FBTHkCmit2G3vKAlTHsXhgk9MkBpsY0KpxMFQl3WLxKXoh6SAIE7Vt7voayjANaDX4M51DToyiSWlYEllu2ShOnNN2rrsouhAMpPzHN9r5mzjXbx44UmnnAaFo4DUa05xIwhMhzs4l17+DBNGVOVVoe/ziGilV097jk="
+   
+addons:
+  coverity_scan:
+    project:
+      name: "GRM-Group/Narutocraft-PL_Mod"
+      description: "Forge Mod 1.7.2 1147 dev"
+    notification_email: mizyn24@gmail.com
+    build_command_prepend: "./gradlew setupCIWorkspace -S"
+    build_command:   "./gradlew build -S"
+    branch_pattern: master

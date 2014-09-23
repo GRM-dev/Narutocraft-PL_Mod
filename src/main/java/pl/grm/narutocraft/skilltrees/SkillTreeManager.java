@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.JutsuManager;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import cpw.mods.fml.common.FMLLog;

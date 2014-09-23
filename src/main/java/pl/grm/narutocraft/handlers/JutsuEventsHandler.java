@@ -1,5 +1,6 @@
 package pl.grm.narutocraft.handlers;
 
+import pl.grm.narutocraft.jutsu.JutsuManager;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
