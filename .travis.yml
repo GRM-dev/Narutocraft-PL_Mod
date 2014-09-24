@@ -5,9 +5,13 @@ jdk:
 
 before_install:
  - chmod +x gradlew
+ - ./gradlew check
+ 
 
 install: ./gradlew setupCIWorkspace -S
 script: ./gradlew build -S
+
+
     
 branches:
   only:
