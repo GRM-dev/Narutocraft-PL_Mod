@@ -5,7 +5,7 @@ Travis Build State:
 [![Build Status](https://travis-ci.org/GRM-Group/Narutocraft-PL_Mod.svg?branch=master)](https://travis-ci.org/GRM-Group/Narutocraft-PL_Mod)
 
 Jenkins Build:
-[![Build Status](http://grm.ccs.pl:8080/buildStatus/icon?job=NarutoCraft-Pl_Mod)](http://grm.ccs.pl:8080/job/NarutoCraft-Pl_Mod/)
+[![Build Status](http://jenkins.grm.ccs.pl/buildStatus/icon?job=NarutoCraft_Mod)](http://jenkins.grm.ccs.pl/job/NarutoCraft_Mod/)
 
 ===================
 
