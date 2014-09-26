@@ -18,7 +18,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String		EXT_PROP_NAME		= "NCPLExtPlayer";
 	private final EntityPlayer		player;
 	public final JutsuInv			inventory			= new JutsuInv();
-	public JutsuManager				jManager;
+	public JutsuManager				jManager			= new JutsuManager();
 	public PlayerSkillsAtrributes	psa					= new PlayerSkillsAtrributes();
 	private int						maxChakra;
 	private int						AuraIndex;
@@ -112,23 +112,41 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	}
 	
 	@Override
+	public final void saveNBTData(NBTTagCompound compound) {
+		NBTTagCompound properties = new NBTTagCompound();
+		// this.inventory.writeToNBT(properties);
+		this.jManager.writeToNBT(properties);
+		properties.setInteger("CurrentChakra", this.player.getDataWatcher()
+				.getWatchableObjectInt(CHAKRA_WATCHER));
+		properties.setInteger("MaxChakra", this.maxChakra);
+		
+		// New PSA data saving
+		properties.setIntArray("psaStats", this.psa.getValues());
+		// Save stats
+		/*
+		 * NBTTagList stats = new NBTTagList();
+		 * for (int i = 0; i < psa.getValues().length; ++i) { NBTTagCompound
+		 * stat = new NBTTagCompound(); stat.setInteger("psaStat" + i,
+		 * psa.getValues()[i]); stats.appendTag(stat); }
+		 * properties.setTag("psaStats", stats);
+		 */
+		compound.setTag(EXT_PROP_NAME, properties);
+	}
+	
+	@Override
 	public final void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
-		
-		/*this.inventory.readFromNBT(properties);
-		this.jManager.readFromNBT(properties);*/
-		
+		// this.inventory.readFromNBT(properties);
+		this.jManager.readFromNBT(properties);
 		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));
 		this.maxChakra = properties.getInteger("MaxChakra");
 		
-		/*
-		 * NBTTagList stats = properties .getTagList("psaStats",
-		 * properties.getId()); int[] statList = new int[stats.tagCount()]; for
-		 * (int i = 0; i < stats.tagCount(); ++i) { NBTTagCompound stat =
-		 * stats.getCompoundTagAt(i); statList[i] = stat.getInteger("psaStat" +
-		 * i); }
-		 */
+		// NBTTagList stats = properties .getTagList("psaStats",
+		// properties.getId()); int[] statList = new int[stats.tagCount()]; for
+		// (int i = 0; i < stats.tagCount(); ++i) { NBTTagCompound stat =
+		// stats.getCompoundTagAt(i); statList[i] = stat.getInteger("psaStat" +
+		// i); }
 		// New PSA loading
 		this.psa.setValues(properties.getIntArray("psaStats"));
 		
@@ -151,30 +169,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	 */
 	public final void replenishChakra() {
 		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER, this.maxChakra);
-	}
-	
-	@Override
-	public final void saveNBTData(NBTTagCompound compound) {
-		NBTTagCompound properties = new NBTTagCompound();
-		
-		/*this.inventory.writeToNBT(properties);
-		this.jManager.writeToNBT(properties);*/
-		
-		properties.setInteger("CurrentChakra", this.player.getDataWatcher()
-				.getWatchableObjectInt(CHAKRA_WATCHER));
-		properties.setInteger("MaxChakra", this.maxChakra);
-		
-		// New PSA data saving
-		properties.setIntArray("psaStats", this.psa.getValues());
-		// Save stats
-		/*
-		 * NBTTagList stats = new NBTTagList();
-		 * for (int i = 0; i < psa.getValues().length; ++i) { NBTTagCompound
-		 * stat = new NBTTagCompound(); stat.setInteger("psaStat" + i,
-		 * psa.getValues()[i]); stats.appendTag(stat); }
-		 * properties.setTag("psaStats", stats);
-		 */
-		compound.setTag(EXT_PROP_NAME, properties);
 	}
 	
 	public final void setCurrentChakra(int value) {
