@@ -8,9 +8,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * Create Creative Tab
+ * Creative Tab for Jutsus
  */
-public class JutsuTab extends CreativeTabs {
+public class NCJutsuTab extends CreativeTabs {
 	private Item	item;
 	
 	/**
@@ -19,7 +19,7 @@ public class JutsuTab extends CreativeTabs {
 	 * @param par2Str
 	 *            Tab Name
 	 */
-	public JutsuTab(int par1, String par2Str) {
+	public NCJutsuTab(int par1, String par2Str) {
 		super(par1, par2Str);
 	}
 	

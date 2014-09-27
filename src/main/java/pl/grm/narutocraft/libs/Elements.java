@@ -26,7 +26,6 @@ public enum Elements {
 			new Color(0x0080FF));
 	
 	private int		ID;
-	
 	private Color	color;
 	
 	private Elements(int ID, Color color) {
@@ -56,19 +55,31 @@ public enum Elements {
 		return new Elements[]{KATON, FUUTON, RAITON, DOTON, SUITON};
 	}
 	
+	/**
+	 * @return Color of element
+	 */
 	public Color getColor() {
 		return this.color;
 	}
 	
+	/**
+	 * @return ID of element
+	 */
 	public int getID() {
 		return this.ID;
 	}
 	
+	/**
+	 * @return stronger element
+	 */
 	public Elements getStrongerElement() {
 		if (this.getID() == 5) { return Elements.getById(1); }
 		return Elements.getById(this.ID++);
 	}
 	
+	/**
+	 * @return weaker element
+	 */
 	public Elements getWeakerElement() {
 		if (this.getID() == 1) { return Elements.getById(5); }
 		return Elements.getById(this.ID--);

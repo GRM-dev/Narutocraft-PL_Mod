@@ -1,7 +1,7 @@
 /**
- * Main/Start package of mod
+ * Main/Start package of mod containing main mod class and proxies
  */
 /**
- * @author Admaster
+ * @author GRM-Group
  */
 package pl.grm.narutocraft;

@@ -4,9 +4,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
+/**
+ * Materials to items and armors in mod.
+ */
 public class Materials {
-	// ("nazwa",harvest level [0-3], ilosc uzyc [diamond 1561], sila klocki
-	// [8.0F], sila byty [3.0F+4], enchantowanie [10])
+	// ("name",harvest level [0-3], number of uses [diamond 1561], strength
+	// against blocks [8.0F], Strength entities [3.0F+4], enchantment [10])
 	public static Item.ToolMaterial	stal			= EnumHelper.addToolMaterial("STAL",
 															1, 400, 4F, 0F, 2);
 	public static Item.ToolMaterial	stal2			= EnumHelper.addToolMaterial("STAL2",

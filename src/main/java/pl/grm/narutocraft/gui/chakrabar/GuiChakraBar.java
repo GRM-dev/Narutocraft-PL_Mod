@@ -12,16 +12,14 @@ import pl.grm.narutocraft.libs.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
+/**
+ * GUI showing current chakra on HUD
+ */
 public class GuiChakraBar extends Gui {
 	private Minecraft				mc;
 	private final ResourceLocation	texture	= new ResourceLocation("narutocraft",
 													"textures/gui/chakra_bar3.png");
-	
 	public int						barW	= 54, barH = 9;
-	
-	public GuiChakraBar() {
-		
-	}
 	
 	public GuiChakraBar(Minecraft mc) {
 		super();

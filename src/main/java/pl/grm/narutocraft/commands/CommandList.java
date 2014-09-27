@@ -1,5 +1,8 @@
 package pl.grm.narutocraft.commands;
 
+/**
+ * The enum of Commands containing it's aliasses.
+ */
 public enum CommandList {
 	HELP(
 			"help") ,

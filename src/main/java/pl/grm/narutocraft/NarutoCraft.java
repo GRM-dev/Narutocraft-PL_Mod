@@ -6,8 +6,8 @@ import java.lang.reflect.Modifier;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
-import pl.grm.narutocraft.creativetabs.JutsuTab;
-import pl.grm.narutocraft.creativetabs.NCPLMainTab;
+import pl.grm.narutocraft.creativetabs.NCJutsuTab;
+import pl.grm.narutocraft.creativetabs.NCMainTab;
 import pl.grm.narutocraft.handlers.ClientGuiHandler;
 import pl.grm.narutocraft.handlers.JutsuEventsHandler;
 import pl.grm.narutocraft.handlers.KeyInputHandler;
@@ -40,15 +40,18 @@ import cpw.mods.fml.relauncher.Side;
 
 @Mod(
 		modid = References.MODID,
-		version = References.VERSION)
+		version = References.VERSION,
+		name = References.NAME)
 /**
- * Main class
+ * Main class of mod
  */
 public class NarutoCraft {
 	@SidedProxy(
 			clientSide = References.Client,
 			serverSide = References.Common)
+	/** Proxy */
 	public static ProxyCommon			proxy;
+	/** Config Handler */
 	public static ConfigurationHandler	config;
 	/** Create mod instance */
 	@Instance(References.MODID)
@@ -56,11 +59,12 @@ public class NarutoCraft {
 	/** Packet Channel */
 	public static SimpleNetworkWrapper	netHandler;
 	private int							packetId		= 0;
-	/** Create Creative Tabs named NarutoCraft Mod and Jutsu's */
-	public static CreativeTabs			mTabNarutoCraft	= new NCPLMainTab(
+	/** NarutoCraft Mod Creative Tab */
+	public static CreativeTabs			mTabNarutoCraft	= new NCMainTab(
 																CreativeTabs.getNextID(),
 																"NarutoCraftMod");
-	public static CreativeTabs			mTabJutsu		= new JutsuTab(
+	/** Jutsu Creative Tab */
+	public static CreativeTabs			mTabJutsu		= new NCJutsuTab(
 																CreativeTabs.getNextID(),
 																"NarutoCraftMod Jutsu's");
 	
@@ -73,11 +77,11 @@ public class NarutoCraft {
 		RegItems.regItemsList();
 		RegWeapons.regWeaponsList();
 		RegArmor.regArmorList();
-		JutsuManager.regJutsusList();
 		RegRecipes.regRecipesList();
+		JutsuManager.regJutsusList();
 	}
 	
-	/** preInit */
+	/** preInit event */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		Potion[] potionTypes = null;
@@ -106,7 +110,6 @@ public class NarutoCraft {
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
 		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
 				PacketExample.class, this.packetId++, Side.SERVER);
-		// Register Ninja Stat Handling packets
 		netHandler.registerMessage(
 				PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
 				PacketNinjaStatsRequest.class, this.packetId++, Side.SERVER);
@@ -125,7 +128,7 @@ public class NarutoCraft {
 		config.readConfig();
 	}
 	
-	/** Init */
+	/** Init event */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		RegEntities.RegEntitiesList();
@@ -134,7 +137,7 @@ public class NarutoCraft {
 		proxy.registerSound();
 	}
 	
-	/** Load */
+	/** Load event */
 	@EventHandler
 	public void load(FMLPostInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
