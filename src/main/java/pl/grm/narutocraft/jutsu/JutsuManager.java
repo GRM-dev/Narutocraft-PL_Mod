@@ -32,8 +32,9 @@ public class JutsuManager {
 	 */
 	public static void regJutsusList() {
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
-			if (jutsu != JutsuEnum.NONE && jutsu != null)
+			if (jutsu != JutsuEnum.NONE && jutsu != null) {
 				registerJutsu(jutsu);
+			}
 		}
 	}
 	

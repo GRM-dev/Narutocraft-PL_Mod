@@ -29,8 +29,7 @@ public enum CommandList {
 		String lowerCaseCommandName = commandName.toLowerCase();
 		for (CommandList command : CommandList.values()) {
 			for (String name : command.commands) {
-				if (name.equals(lowerCaseCommandName))
-					return command;
+				if (name.equals(lowerCaseCommandName)) { return command; }
 			}
 		}
 		return HELP;

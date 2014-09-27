@@ -1,7 +1,6 @@
 package pl.grm.narutocraft.commands;
 
 public abstract class NCSubCommand {
-	
 	private String[]	args;
 	private CommandList	commands;
 	
@@ -10,6 +9,8 @@ public abstract class NCSubCommand {
 		if (args.length > 0) {
 			if (args.length == 1) {
 				subCommandHelp();
+			} else {
+				// TODO make link to executor methods
 			}
 		}
 	}

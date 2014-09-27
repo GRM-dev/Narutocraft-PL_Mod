@@ -19,6 +19,7 @@ import cpw.mods.fml.common.network.FMLNetworkEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.server.FMLServerHandler;
 
+@Deprecated
 public class PacketProcessorServer {
 	public EntityLivingBase getEntityByID(int entityID) {
 		return NarutoCraft.proxy.getEntityByID(entityID);
@@ -71,8 +72,8 @@ public class PacketProcessorServer {
 			return;
 		}
 		catch (Throwable t) {
-			FMLLog.severe("Ars Magica >> Server Packet Failed to Handle!", new Object[0]);
-			FMLLog.severe("Ars Magica >> Packet Type: " + packetID, new Object[0]);
+			FMLLog.severe("NarutoCraft >> Server Packet Failed to Handle!", new Object[0]);
+			FMLLog.severe("NarutoCraft>> Packet Type: " + packetID, new Object[0]);
 			t.printStackTrace();
 		}
 		finally {
