@@ -123,8 +123,11 @@ public class NCPLEventHandler {
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			// ExtendedPlayer.get(player).onUpdate();
+			// TODO impliment moveSpeed update in ExtProps
+			if (event.entity.worldObj.getWorldTime() % 30 == 0)
+				ExtendedProperties.get(player).setMaxChakra(false);
 			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties
-					.get(player).psa.getChakraRegenMod())) == 0) {
+					.get(player).psa.getChakraRegenMod())) == 0) {				
 				ExtendedProperties.get(player).regenChakra(1);
 			}
 			if (player.isPlayerFullyAsleep()) {

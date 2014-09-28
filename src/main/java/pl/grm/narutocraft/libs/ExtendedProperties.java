@@ -1,12 +1,15 @@
 package pl.grm.narutocraft.libs;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.ProxyCommon;
@@ -20,7 +23,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final JutsuInv			inventory			= new JutsuInv();
 	public JutsuManager				jManager			= new JutsuManager();
 	public PlayerSkillsAtrributes	psa					= new PlayerSkillsAtrributes();
-	private int						maxChakra;
+	private int						maxChakra, maxChakraCap = 500, maxChakraBase = 50;
 	private int						AuraIndex;
 	private int						AuraBehaviour;
 	private float					AuraScale;
@@ -36,7 +39,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
-		this.maxChakra = 50;
+		this.maxChakra = maxChakraBase;
 		this.player.getDataWatcher().addObject(CHAKRA_WATCHER, this.maxChakra);
 	}
 	
@@ -176,8 +179,24 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 				value > 0 ? (value < this.maxChakra ? value : this.maxChakra) : 0);
 	}
 	
+	/** Sets the max chakra the player can have
+	 * @param amount what number + maxChakraBonus the max chakra will be NOTE: only works if overridden
+	 * @param overrideBaseValue this will use the amount if true, else it will only update the baseChakra + bonus Chakra **/
+	public final void setMaxChakra(int amount, boolean overrideBaseValue) {
+		if (overrideBaseValue)
+			this.maxChakra = MathHelper.clamp_int(amount + psa.getMaxChakraMod(), 0, maxChakraCap);
+		else
+			this.maxChakra = MathHelper.clamp_int(maxChakraBase + psa.getMaxChakraMod(), 0, maxChakraCap);		
+	}
+	
+	/** Force set the maxChakra + bonus **/
 	public final void setMaxChakra(int amount) {
-		this.maxChakra = (amount > 0 ? amount : 0);
+		setMaxChakra(amount,true);		
+	}
+	
+	/** This is basically an update max chakra method **/
+	public final void setMaxChakra(boolean overrideBaseValue) {
+		setMaxChakra(0,false);		
 	}
 	
 	public void updateAuraData(int index, int behaviour, float scale, float alpha,
@@ -192,5 +211,21 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		this.AuraColor = color;
 		this.AuraQuantity = quantity;
 		this.AuraSpeed = speed;
+	}
+	
+	public void updateMoveSpeed()
+	{
+		PlayerCapabilities pc = player.capabilities;
+		try {
+			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
+			walkSpeed.setAccessible(true);
+			walkSpeed.setFloat(pc, MathHelper.clamp_float(0.1F + ((float) psa.getAgility() / 142), 0.04f, 0.3f));
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
 	}
 }
