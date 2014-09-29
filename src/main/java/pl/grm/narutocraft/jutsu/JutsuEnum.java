@@ -65,12 +65,12 @@ public enum JutsuEnum {
 			0) ,
 	KAWARIMINOJUTSU(
 			5625,
-			"KawarimiNoJutsu",
+			"Kawarimi No Jutsu",
 			KawarimiNoJutsu.class,
 			SkillTree.NINJUTSU) ,
 	FUMANINKEN(
 			5602,
-			"Fuma Ninken",
+			"FumaNinken",
 			FumaNinken.class,
 			SkillTree.BUKIJUTSU,
 			JutsuTier.D,
@@ -130,7 +130,7 @@ public enum JutsuEnum {
 			0) ,
 	SAMURAISABRETECHNIQUE(
 			5608,
-			"SamuraiSabreTechnique",
+			"Samurai Sabre Technique",
 			SamuraiSabreTechnique.class,
 			SkillTree.BUKIJUTSU,
 			JutsuTier.C,
@@ -200,7 +200,7 @@ public enum JutsuEnum {
 			0) ,
 	RAIGENRAIKOCHU(
 			5615,
-			"RaigenRaikochu",
+			"Raigen Raikochu",
 			RaigenRaikochu.class,
 			SkillTree.GENJUTSU,
 			JutsuTier.C,
@@ -342,7 +342,7 @@ public enum JutsuEnum {
 			JutsuTier.A) ,
 	CHIOODAMARASENGAN(
 			5631,
-			"ChioOdamaRasengan",
+			"ChioOdama Rasengan",
 			ChioOdamaRasengan.class,
 			SkillTree.NINJUTSU) ,
 	SHARINGAN(
@@ -352,7 +352,7 @@ public enum JutsuEnum {
 			SkillTree.NINJUTSU) ,
 	SHUNSHINNOJUTSU(
 			5633,
-			"ShunshinNoJutsu",
+			"Shunshin No Jutsu",
 			ShunshinNoJutsu.class,
 			SkillTree.NINJUTSU,
 			JutsuTier.D) ,
@@ -388,7 +388,7 @@ public enum JutsuEnum {
 			5) ,
 	KOSAHO(
 			5637,
-			"KosaHo",
+			"Kosa Ho",
 			KosaHo.class,
 			SkillTree.TAIJUTSU,
 			JutsuTier.C,

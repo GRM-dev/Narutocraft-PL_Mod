@@ -49,7 +49,7 @@ public class RegWeapons extends RegItems {
 														References.ModTexturePath
 																+ "weapons/Raitanto");
 	public static Item	KaMiecz			= new KaMiecz()
-												.setUnlocalizedName("KaMiecz")
+												.setUnlocalizedName("KamienyMiecz")
 												.setTextureName(
 														References.ModTexturePath
 																+ "weapons/Kamienny Miecz");
@@ -96,7 +96,7 @@ public class RegWeapons extends RegItems {
 	public static Item	ChioRyuuGatana	= new ChioRyuuGatana().setUnlocalizedName(
 												"ChioRyuuGatana").setTextureName(
 												References.ModTexturePath
-														+ "weapons/ChioRyuuGatana");
+														+ "weapons/Chio-RyuuGatana");
 	public static Item	Scalpel			= new Scalpel().setUnlocalizedName("Skalpel")
 												.setTextureName(
 														References.ModTexturePath
