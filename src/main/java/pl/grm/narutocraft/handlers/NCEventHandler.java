@@ -23,7 +23,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
  *
  * @author Admaster
  */
-public class NCPLEventHandler {
+public class NCEventHandler {
 	
 	/** Attack and Defense Bonus **/
 	@SubscribeEvent(
@@ -123,8 +123,31 @@ public class NCPLEventHandler {
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			// ExtendedPlayer.get(player).onUpdate();
+			if (ExtendedProperties.get(player).ninjaRun && player.isSneaking())
+			{
+				if (event.entity.worldObj.getWorldTime() % 30 == 0)
+				{
+					if (!ExtendedProperties.get(player).consumeChakra(1))
+					{
+						ExtendedProperties.get(player).ninjaRun = false;
+					}					
+				}
+				if (player.capabilities.getWalkSpeed() == 0.1f)
+				{
+					ExtendedProperties.get(player).updateMoveSpeed();
+				}
+			}
+			else
+			{
+				if (player.capabilities.getWalkSpeed() != 0.1f)
+				{
+					ExtendedProperties.get(player).resetMoveSpeed();
+				}
+			}
+			if (event.entity.worldObj.getWorldTime() % 30 == 0)
+				ExtendedProperties.get(player).setMaxChakra(false);
 			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties
-					.get(player).psa.getChakraRegenMod())) == 0) {
+					.get(player).psa.getChakraRegenMod())) == 0) {				
 				ExtendedProperties.get(player).regenChakra(1);
 			}
 			if (player.isPlayerFullyAsleep()) {

@@ -12,9 +12,20 @@ public enum EntryStates {
 	ACTIVATED(
 			4);
 	
-	private int	i;
+	private int	stateID;
 	
-	private EntryStates(int i) {
-		this.i = i;
+	private EntryStates(int stateID) {
+		this.stateID = stateID;
+	}
+	
+	public int getIStateID() {
+		return stateID;
+	}
+	
+	public static EntryStates getByID(int ID) {
+		for (EntryStates state : EntryStates.values()) {
+			if (state.stateID == ID) { return state; }
+		}
+		return null;
 	}
 }

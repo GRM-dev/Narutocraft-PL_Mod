@@ -24,7 +24,7 @@ targetCompatibility = JavaVersion.VERSION_1_7
 
 ENV = System.getenv()
 
-version = "1.7.2-1147-0.9"
+version = "1.7.2-1147-0.6"
 group= "pl.grm.narutocraft"
 archivesBaseName = "NarutoCraft_Mod"
 

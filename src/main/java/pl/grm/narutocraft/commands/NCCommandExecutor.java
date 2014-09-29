@@ -9,7 +9,7 @@ public class NCCommandExecutor {
 	private ICommandSender	commSender;
 	private String[]		params;
 	private EntityPlayer	player;
-	private CommandList		subCommand;
+	private CommandAliases	subCommand;
 	private int				paramCount;
 	private NCSubCommand	subsubComm;
 	
@@ -17,7 +17,7 @@ public class NCCommandExecutor {
 		this.commSender = commSender;
 		if (commSender instanceof EntityPlayer) {
 			player = (EntityPlayer) commSender;
-			showHelp(false);
+			new NCCommandHelp(params, player).showHelp(false);
 		}
 	}
 	
@@ -26,7 +26,7 @@ public class NCCommandExecutor {
 		paramCount = params.length;
 		if (paramCount > 0) {
 			this.params = params;
-			subCommand = CommandList.getByName(params[0]);
+			subCommand = CommandAliases.getByName(params[0]);
 		}
 	}
 	
@@ -34,14 +34,14 @@ public class NCCommandExecutor {
 		switch (subCommand) {
 			case HELP :
 				player.addChatMessage(new ChatComponentText("Bad Command!"));
-				showHelp(true);
+				new NCCommandHelp(params, player).showHelp(true);
 				break;
 			case LEVELUP :
 				levelUP();
 				break;
 			case CHAKRA :
 				subsubComm = new NCChakraCommands(params);
-				subsubComm.SubCommands();
+				subsubComm.subCommands();
 				break;
 			default :
 				break;
@@ -50,14 +50,6 @@ public class NCCommandExecutor {
 	
 	private void replChakra() {
 		ExtendedProperties.get(player).replenishChakra();
-	}
-	
-	public void showHelp(boolean withParams) {
-		if (withParams) {
-			player.addChatMessage(new ChatComponentText("Your Command: " + params[0]));
-		} else {
-			player.addChatMessage(new ChatComponentText("No parameters."));
-		}
 	}
 	
 	private void levelUP() {

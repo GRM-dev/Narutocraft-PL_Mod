@@ -46,13 +46,11 @@ public class Kubiki extends SwordMain {
 		if ((par2World.getWorldTime() % 65) == 0) {
 			int storedBlood = UtilityNBTHelper.getInt(par1ItemStack, References.ModTag
 					+ "kBlood");
-			if (storedBlood >= 3) {
-				if (par1ItemStack.isItemDamaged()) {
-					par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
-					storedBlood -= 3;
-					UtilityNBTHelper.setInteger(par1ItemStack, References.ModTag
-							+ "kBlood", storedBlood);
-				}
+			if (storedBlood >= 3 && par1ItemStack.isItemDamaged()) {
+				par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
+				storedBlood -= 3;
+				UtilityNBTHelper.setInteger(par1ItemStack, References.ModTag + "kBlood",
+						storedBlood);
 			}
 		}
 	}

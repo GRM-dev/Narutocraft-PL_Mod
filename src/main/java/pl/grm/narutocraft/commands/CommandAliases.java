@@ -1,6 +1,9 @@
 package pl.grm.narutocraft.commands;
 
-public enum CommandList {
+/**
+ * The enum of Commands containing it's aliasses.
+ */
+public enum CommandAliases {
 	HELP(
 			"help") ,
 	LEVELUP(
@@ -10,11 +13,14 @@ public enum CommandList {
 			"chakra") ,
 	CHAKRA_REPLENISH(
 			"replenish",
-			"repl");
+			"repl") ,
+	STATS(
+			"stats",
+			"stat");
 	
 	private String[]	commands;
 	
-	private CommandList(String... command) {
+	private CommandAliases(String... command) {
 		this.commands = command;
 	}
 	
@@ -22,12 +28,11 @@ public enum CommandList {
 		return commands;
 	}
 	
-	public static CommandList getByName(String commandName) {
+	public static CommandAliases getByName(String commandName) {
 		String lowerCaseCommandName = commandName.toLowerCase();
-		for (CommandList command : CommandList.values()) {
+		for (CommandAliases command : CommandAliases.values()) {
 			for (String name : command.commands) {
-				if (name.equals(lowerCaseCommandName))
-					return command;
+				if (name.equals(lowerCaseCommandName)) { return command; }
 			}
 		}
 		return HELP;

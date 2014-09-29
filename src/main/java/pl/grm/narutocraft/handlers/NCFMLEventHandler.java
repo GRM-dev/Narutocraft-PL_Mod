@@ -12,7 +12,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
  *
  * @author Admaster
  */
-public class NCPLFMLEventHandler {
+public class NCFMLEventHandler {
 	@EventHandler
 	public void serverStart(@SuppressWarnings("unused")
 	FMLServerStartingEvent event) {

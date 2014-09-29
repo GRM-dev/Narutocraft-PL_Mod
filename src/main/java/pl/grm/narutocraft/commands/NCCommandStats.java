@@ -7,7 +7,7 @@ public class NCCommandStats extends NCSubCommand {
 	}
 	
 	@Override
-	public void SubCommands() {
+	public void subCommands() {
 		// TODO Auto-generated method stub
 		
 	}

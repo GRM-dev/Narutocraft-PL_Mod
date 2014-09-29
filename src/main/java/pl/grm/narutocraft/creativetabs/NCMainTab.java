@@ -10,7 +10,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Create Creative Tab
  */
-public class NCPLMainTab extends CreativeTabs {
+public class NCMainTab extends CreativeTabs {
 	private Item	item;
 	
 	/**
@@ -19,7 +19,7 @@ public class NCPLMainTab extends CreativeTabs {
 	 * @param par2Str
 	 *            Tab Name
 	 */
-	public NCPLMainTab(int par1, String par2Str) {
+	public NCMainTab(int par1, String par2Str) {
 		super(par1, par2Str);
 	}
 	

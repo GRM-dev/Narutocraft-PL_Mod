@@ -39,7 +39,7 @@ public enum SkillTree {
 		return NONE;
 	}
 	
-	public int getID(SkillTree sT) {
+	public int getID() {
 		return this.treeID;
 	}
 }

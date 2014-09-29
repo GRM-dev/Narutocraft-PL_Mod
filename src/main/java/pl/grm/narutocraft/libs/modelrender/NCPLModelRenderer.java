@@ -47,17 +47,15 @@ public class NCPLModelRenderer extends ModelRenderer {
 			GL11.glTranslatef(this.offsetX, this.offsetY, this.offsetZ);
 			int var2;
 			if ((this.rotateAngleX == 0.0F) && (this.rotateAngleY == 0.0F)
-					&& (this.rotateAngleZ == 0.0F)) {
-				if ((this.rotationPointX == 0.0F) && (this.rotationPointY == 0.0F)
-						&& (this.rotationPointZ == 0.0F)) {
-					GL11.glCallList(this.displayList);
-					renderCustomModels(par1);
-					if (this.childModels != null) {
-						for (var2 = 0; var2 < this.childModels.size();) {
-							((NCPLModelRenderer) this.childModels.get(var2)).render(par1);
-							var2++;
-							continue;
-						}
+					&& (this.rotateAngleZ == 0.0F) && (this.rotationPointX == 0.0F)
+					&& (this.rotationPointY == 0.0F) && (this.rotationPointZ == 0.0F)) {
+				GL11.glCallList(this.displayList);
+				renderCustomModels(par1);
+				if (this.childModels != null) {
+					for (var2 = 0; var2 < this.childModels.size();) {
+						((NCPLModelRenderer) this.childModels.get(var2)).render(par1);
+						var2++;
+						continue;
 					}
 				}
 			}

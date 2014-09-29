@@ -1,7 +1,6 @@
 package pl.grm.narutocraft.network;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.TreeMap;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -98,17 +97,6 @@ public class PlayerTracker {
 		}
 		HashMap<Integer, ItemStack> soulboundItems = new HashMap<Integer, ItemStack>();
 		
-		int slotCount = 0;
-		// for (ItemStack stack : player.inventory.mainInventory) {
-		// int soulbound_level = EnchantmentHelper.func_77506_a(
-		// NCPLEnchantments.soulbound.effectId, stack);
-		// if (soulbound_level > 0) {
-		// soulboundItems.put(Integer.valueOf(slotCount), stack.copy());
-		// player.inventory.setInventorySlotContents(slotCount, null);
-		// }
-		// slotCount++;
-		// }
-		slotCount = 0;
 		for (ItemStack stack : player.inventory.armorInventory) {
 			// {
 			// int soulbound_level = EnchantmentHelper.getEnchantmentLevel(
@@ -167,16 +155,6 @@ public class PlayerTracker {
 	public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		if (!event.player.worldObj.isRemote) {
 			storeExtendedPlayerForDimensionChange(event.player);
-			List<?> list = event.player.worldObj.loadedEntityList;
-			// for (Object o : list) {
-			// if (((o instanceof EntityLivingBase))
-			// && (EntityUtilities.isSummon((EntityLivingBase) o))
-			// && (EntityUtilities.getOwner((EntityLivingBase) o) ==
-			// event.player
-			// .getEntityId())) {
-			// ((EntityLivingBase) o).setDead();
-			// }
-			// }
 		}
 	}
 	
@@ -190,7 +168,7 @@ public class PlayerTracker {
 		if (hasAA(event.player)) {
 			NetHandler.INSTANCE.requestClientAuras((EntityPlayerMP) event.player);
 		}
-		int[] disabledSkills = SkillTreeManager.instance.getLockedJutsusIDs();
+		SkillTreeManager.instance.getLockedJutsusIDs();
 		
 		DataWriter writer = new DataWriter();
 		// writer.add(NarutoCraft.config.getSkillTreeTierCap())
@@ -206,18 +184,7 @@ public class PlayerTracker {
 	
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-		if (!event.player.worldObj.isRemote) {
-			List<?> list = event.player.worldObj.loadedEntityList;
-			// for (Object o : list) {
-			// if (((o instanceof EntityLivingBase))
-			// && (EntityUtilities.isSummon((EntityLivingBase) o))
-			// && (EntityUtilities.getOwner((EntityLivingBase) o) ==
-			// event.player
-			// .getEntityId())) {
-			// ((EntityLivingBase) o).setDead();
-			// }
-			// }
-		}
+		if (!event.player.worldObj.isRemote) {}
 	}
 	
 	@SubscribeEvent
@@ -236,15 +203,13 @@ public class PlayerTracker {
 			ExtendedProperties.For(event.player).loadNBTData(stored);
 		}
 		if (spellKnowledgeStorage_death.containsKey(event.player.getDisplayName())) {
-			NBTTagCompound stored = spellKnowledgeStorage_death.get(event.player
-					.getDisplayName());
+			spellKnowledgeStorage_death.get(event.player.getDisplayName());
 			spellKnowledgeStorage_death.remove(event.player.getDisplayName());
 			
 			// Jutsu.For(event.player).loadNBTData(stored);
 		} else if (jutsuKnowledgeStorage_dimension.containsKey(event.player
 				.getDisplayName())) {
-			NBTTagCompound stored = jutsuKnowledgeStorage_dimension.get(event.player
-					.getDisplayName());
+			jutsuKnowledgeStorage_dimension.get(event.player.getDisplayName());
 			jutsuKnowledgeStorage_dimension.remove(event.player.getDisplayName());
 			
 			// Jutsu.For(event.player).loadNBTData(stored);
@@ -295,12 +260,16 @@ public class PlayerTracker {
 						try {
 							cdm = Integer.parseInt(vals[2]);
 						}
-						catch (Throwable t) {}
+						catch (Throwable t) {
+							throw new Error(t.getMessage());
+						}
 						this.cldm.put(vals[0].toLowerCase(), Integer.valueOf(cdm));
 					}
 				}
 			}
 		}
-		catch (Throwable t) {}
+		catch (Throwable t) {
+			throw new Error(t.getMessage());
+		}
 	}
 }

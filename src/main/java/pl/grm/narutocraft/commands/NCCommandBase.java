@@ -3,14 +3,18 @@ package pl.grm.narutocraft.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.WrongUsageException;
 
-public class NCCommandBase implements ICommand {
+/**
+ * Registered at forge input/output command stream.
+ */
+public class NCCommandBase extends CommandBase implements ICommand {
 	
 	@Override
 	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -21,7 +25,7 @@ public class NCCommandBase implements ICommand {
 	
 	@Override
 	public String getCommandUsage(ICommandSender var1) {
-		return "Command executed.";
+		return "commands.ncpl";
 	}
 	
 	@Override
@@ -37,6 +41,7 @@ public class NCCommandBase implements ICommand {
 		NCCommandExecutor commandExecutor;
 		if (args.length == 0) {
 			commandExecutor = new NCCommandExecutor(commSender);
+			throw new WrongUsageException("commands.ncpl.usage", new Object[0]);
 		} else if (args.length > 0) {
 			commandExecutor = new NCCommandExecutor(commSender, args);
 			commandExecutor.executeCommand();

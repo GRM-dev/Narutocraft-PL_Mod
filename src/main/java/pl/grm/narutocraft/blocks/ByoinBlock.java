@@ -9,6 +9,9 @@ import pl.grm.narutocraft.libs.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * Hospital block. You cure when you stand on it.
+ */
 public class ByoinBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	public ByoinBlock() {
