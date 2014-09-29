@@ -36,6 +36,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public float					TK_Distance			= 8.0F;
 	public static final int			CHAKRA_WATCHER		= 20;
 	public static List<int[]>		activeJutsus		= new ArrayList<int[]>();
+	public boolean 					ninjaRun			= false;
 	
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
@@ -220,6 +221,22 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
 			walkSpeed.setAccessible(true);
 			walkSpeed.setFloat(pc, MathHelper.clamp_float(0.1F + ((float) psa.getAgility() / 142), 0.04f, 0.3f));
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void resetMoveSpeed()
+	{
+		PlayerCapabilities pc = player.capabilities;
+		try {
+			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
+			walkSpeed.setAccessible(true);
+			walkSpeed.setFloat(pc, 0.1f);
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
