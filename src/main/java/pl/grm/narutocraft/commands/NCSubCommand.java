@@ -1,21 +1,23 @@
 package pl.grm.narutocraft.commands;
 
 public abstract class NCSubCommand {
-	private String[]	args;
-	private CommandList	commands;
+	private String[]		args;
+	private CommandAliases	commands;
 	
 	public NCSubCommand(String[] args) {
 		this.args = args;
-		if (args.length > 0) {
+		if (args != null) {
 			if (args.length == 1) {
 				subCommandHelp();
 			} else {
-				// TODO make link to executor methods
+				subCommands();
 			}
+		} else {
+			subCommandHelp();
 		}
 	}
 	
-	public abstract void SubCommands();
+	public abstract void subCommands();
 	
 	public abstract void subCommandHelp();
 }

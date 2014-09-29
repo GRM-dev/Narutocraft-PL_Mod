@@ -23,7 +23,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
  *
  * @author Admaster
  */
-public class NCPLEventHandler {
+public class NCEventHandler {
 	
 	/** Attack and Defense Bonus **/
 	@SubscribeEvent(

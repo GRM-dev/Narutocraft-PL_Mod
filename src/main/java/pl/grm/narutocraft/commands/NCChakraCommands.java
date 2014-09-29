@@ -6,7 +6,7 @@ public class NCChakraCommands extends NCSubCommand {
 	}
 	
 	@Override
-	public void SubCommands() {
+	public void subCommands() {
 		// TODO Auto-generated method stub
 		
 	}
