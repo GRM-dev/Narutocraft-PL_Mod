@@ -11,12 +11,13 @@ import pl.grm.narutocraft.creativetabs.NCMainTab;
 import pl.grm.narutocraft.handlers.ClientGuiHandler;
 import pl.grm.narutocraft.handlers.JutsuEventsHandler;
 import pl.grm.narutocraft.handlers.KeyInputHandler;
-import pl.grm.narutocraft.handlers.NCPLEventHandler;
-import pl.grm.narutocraft.handlers.NCPLFMLEventHandler;
+import pl.grm.narutocraft.handlers.NCEventHandler;
+import pl.grm.narutocraft.handlers.NCFMLEventHandler;
 import pl.grm.narutocraft.jutsu.JutsuManager;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import pl.grm.narutocraft.network.PacketExample;
+import pl.grm.narutocraft.network.PacketNinjaRun;
 import pl.grm.narutocraft.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
 import pl.grm.narutocraft.registry.RegArmor;
@@ -93,7 +94,6 @@ public class NarutoCraft {
 					Field modfield = Field.class.getDeclaredField("modifiers");
 					modfield.setAccessible(true);
 					modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-					
 					potionTypes = (Potion[]) f.get(null);
 					final Potion[] newPotionTypes = new Potion[256];
 					System.arraycopy(potionTypes, 0, newPotionTypes, 0,
@@ -114,16 +114,12 @@ public class NarutoCraft {
 				PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
 				PacketNinjaStatsRequest.class, this.packetId++, Side.SERVER);
 		netHandler.registerMessage(
+				PacketNinjaRun.PacketNinjaRunHandler.class,
+				PacketNinjaRun.class, this.packetId++, Side.SERVER);
+		netHandler.registerMessage(
 				PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
 				PacketNinjaStatsResponse.class, this.packetId++, Side.CLIENT);
 		
-		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
-		FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
-		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
-		
-		proxy.registerRendering();
-		proxy.registerRenderInfomation();
-		proxy.registerRenderThings();
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();
 	}
@@ -140,8 +136,8 @@ public class NarutoCraft {
 	/** Load event */
 	@EventHandler
 	public void load(FMLPostInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(new NCPLEventHandler());
-		FMLCommonHandler.instance().bus().register(new NCPLFMLEventHandler());
+		MinecraftForge.EVENT_BUS.register(new NCEventHandler());
+		FMLCommonHandler.instance().bus().register(new NCFMLEventHandler());
 		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();

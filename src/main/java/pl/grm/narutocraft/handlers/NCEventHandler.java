@@ -1,13 +1,9 @@
 package pl.grm.narutocraft.handlers;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -27,7 +23,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
  *
  * @author Admaster
  */
-public class NCPLEventHandler {
+public class NCEventHandler {
 	
 	/** Attack and Defense Bonus **/
 	@SubscribeEvent(
@@ -127,10 +123,15 @@ public class NCPLEventHandler {
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			// ExtendedPlayer.get(player).onUpdate();
-			if (ExtendedProperties.get(player).ninjaRun)
+			if (ExtendedProperties.get(player).ninjaRun && player.isSneaking())
 			{
-				player.setSneaking(true);
-				player.setSprinting(true);
+				if (event.entity.worldObj.getWorldTime() % 30 == 0)
+				{
+					if (!ExtendedProperties.get(player).consumeChakra(1))
+					{
+						ExtendedProperties.get(player).ninjaRun = false;
+					}					
+				}
 				if (player.capabilities.getWalkSpeed() == 0.1f)
 				{
 					ExtendedProperties.get(player).updateMoveSpeed();
@@ -147,7 +148,7 @@ public class NCPLEventHandler {
 				ExtendedProperties.get(player).setMaxChakra(false);
 			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties
 					.get(player).psa.getChakraRegenMod())) == 0) {				
-				ExtendedProperties.get(player).regenChakra(1);				
+				ExtendedProperties.get(player).regenChakra(1);
 			}
 			if (player.isPlayerFullyAsleep()) {
 				System.out.println("After a full night's rest, you feel refreshed!");

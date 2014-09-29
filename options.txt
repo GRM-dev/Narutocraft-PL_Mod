@@ -1,10 +1,10 @@
 invertYMouse:false
 mouseSensitivity:0.5
 fov:0.0
-gamma:0.0
+gamma:1.0
 saturation:0.0
 renderDistance:12
-guiScale:0
+guiScale:2
 particles:0
 bobView:true
 anaglyph3d:false
@@ -73,9 +73,7 @@ key_key.hotbar.9:10
 key_Previous Jutsu:24
 key_Next Jutsu:25
 key_Jutsu Panel:23
-key_Previous Jutsu:24
-key_Next Jutsu:25
-key_Jutsu Panel:23
+key_Ninja Sprint:33
 soundCategory_master:1.0
 soundCategory_music:1.0
 soundCategory_record:1.0

@@ -220,7 +220,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		try {
 			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
 			walkSpeed.setAccessible(true);
-			walkSpeed.setFloat(pc, MathHelper.clamp_float(0.1F + ((float) psa.getAgility() / 142), 0.04f, 0.3f));
+			walkSpeed.setFloat(pc, MathHelper.clamp_float(0.45F + ((float) psa.getAgility() / 31), 0.04f, 1.5f));
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
