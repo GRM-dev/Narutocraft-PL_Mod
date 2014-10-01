@@ -1,25 +1,34 @@
 package pl.grm.narutocraft.commands.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ServerCommandManager;
+import net.minecraftforge.client.ClientCommandHandler;
 
 public class NCCommandExecutor {
-	private ServerCommandManager		manager;
-	private List<CommandEnum>			commands;
+	private ServerCommandManager		sManager;
+	private ClientCommandHandler		cManager;
+	private List<CommandEnum>			commands	= new ArrayList<CommandEnum>();
 	private Map<String, NCCommandBase>	ncCommandsMap;
 	
 	public NCCommandExecutor(ServerCommandManager manager,
 			Map<String, NCCommandBase> ncCommandsMap) {
-		this.manager = manager;
+		this.sManager = manager;
 		this.ncCommandsMap = ncCommandsMap;
 	}
 	
-	public void setupCommands() {
-		for (CommandEnum comm : commands) {
-			if (comm.getType() == 1) {
+	public NCCommandExecutor(ClientCommandHandler manager,
+			Map<String, NCCommandBase> ncCommandsMap) {
+		this.cManager = manager;
+		this.ncCommandsMap = ncCommandsMap;
+	}
+	
+	public void setupCommands(boolean both) {
+		for (CommandEnum comm : CommandEnum.values()) { // TODO init List
+			if (comm.isExecutve()) {
 				String name = comm.getName();
 				ICommand instance = null;
 				try {
@@ -34,8 +43,21 @@ public class NCCommandExecutor {
 					e.printStackTrace();
 				}
 				ncCommandsMap.put(name, (NCCommandBase) instance);
-				manager.registerCommand(instance);
+				commands.add(comm);
+				if (both) {
+					setupClientCommand(instance);
+				} else {
+					setupServerCommand(instance);
+				}
 			}
 		}
+	}
+	
+	private void setupServerCommand(ICommand instance) {
+		sManager.registerCommand(instance);
+	}
+	
+	private void setupClientCommand(ICommand instance) {
+		cManager.registerCommand(instance);
 	}
 }

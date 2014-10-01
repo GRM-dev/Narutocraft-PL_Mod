@@ -8,18 +8,20 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 /**
  * FML Event Handler
- *
- * @author Admaster
  */
 public class NCFMLEventHandler {
+	/**
+	 * Register commands on Server Start
+	 * 
+	 * @param event
+	 *            "unused"
+	 */
 	@EventHandler
-	public void serverStart(@SuppressWarnings("unused")
-	FMLServerStartingEvent event) {
+	public void serverStart(FMLServerStartingEvent event) {
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager command = server.getCommandManager();
 		ServerCommandManager manager = (ServerCommandManager) command;
 		NCCommandHandler commandHandler = new NCCommandHandler(manager);
-		commandHandler.registerCommands();
-		
+		commandHandler.registerCommands(false);
 	}
 }

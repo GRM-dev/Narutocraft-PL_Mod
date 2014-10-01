@@ -4,50 +4,63 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.command.ICommand;
+import pl.grm.narutocraft.commands.NCChakraCommands;
+import pl.grm.narutocraft.commands.NCCommandChakraReplenish;
 import pl.grm.narutocraft.commands.NCCommandHelp;
+import pl.grm.narutocraft.commands.NCCommandLevelUp;
+import pl.grm.narutocraft.commands.NCCommandStats;
 
 /**
  * The enum of Commands containing it's aliasses.
+ * All should be lover cases.
  */
 public enum CommandEnum {
 	HELP(
-			1,
+			true,
+			true,
 			"help",
 			NCCommandHelp.class) ,
 	LEVELUP(
-			1,
+			true,
+			true,
 			"levelup",
+			NCCommandLevelUp.class,
 			"lvlup") ,
 	CHAKRA(
-			0,
-			"chakra") ,
+			false,
+			true,
+			"chakra",
+			NCChakraCommands.class) ,
 	CHAKRA_REPLENISH(
-			1,
+			true,
+			true,
 			"replenish",
+			NCCommandChakraReplenish.class,
 			"repl") ,
 	STATS(
-			0,
+			true,
+			true,
 			"stats",
+			NCCommandStats.class,
 			"stat");
 	
 	private List<String>					aliases	= new ArrayList<String>();
-	private int								type;
+	private boolean							executive;
+	private boolean							client;
+	
 	private String							name;
 	private Class<? extends NCCommandBase>	command;
 	
-	private CommandEnum(int type, String name, String... aliases) {
-		this.type = type;
+	private CommandEnum(boolean executive, boolean client, String name,
+			Class<? extends NCCommandBase> command, String... aliases) {
+		this.client = client;
+		this.command = command;
+		this.executive = executive;
 		this.name = name;
 		this.aliases.add(name);
 		for (String alias : aliases) {
 			this.aliases.add(alias);
 		}
-	}
-	
-	private CommandEnum(int type, String name, Class<? extends NCCommandBase> command,
-			String... aliases) {
-		this(type, name, aliases);
-		this.command = command;
 	}
 	
 	public static CommandEnum getByName(String commandName) {
@@ -60,8 +73,12 @@ public enum CommandEnum {
 		return HELP;
 	}
 	
-	public int getType() {
-		return this.type;
+	public boolean isExecutve() {
+		return this.executive;
+	}
+	
+	public boolean isClient() {
+		return this.client;
 	}
 	
 	public String getName() {

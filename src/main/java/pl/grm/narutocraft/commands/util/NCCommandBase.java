@@ -24,7 +24,7 @@ public abstract class NCCommandBase extends CommandBase implements ICommand {
 	
 	@Override
 	public String getCommandUsage(ICommandSender var1) {
-		return "commands.ncpl";
+		return "Test Msg";
 	}
 	
 	@Override
@@ -54,8 +54,5 @@ public abstract class NCCommandBase extends CommandBase implements ICommand {
 		return false;
 	}
 	
-	public void subCommands() {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void subCommands();
 }
