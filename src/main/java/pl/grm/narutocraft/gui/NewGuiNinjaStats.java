@@ -25,8 +25,8 @@ public class NewGuiNinjaStats extends GuiScreen {
 	
 	public String s;
 	
-	int posX = (this.width - xSizeOfTexture) / 2;
-	int posY = (this.height - ySizeOfTexture) / 2;
+	int posX = (this.width - xSizeOfTexture) / 2 + 200;
+	int posY = (this.height - ySizeOfTexture) / 2 + 200;
 
 	public NewGuiNinjaStats(EntityPlayer player)
 	{
@@ -65,7 +65,7 @@ public class NewGuiNinjaStats extends GuiScreen {
 		switch(button.id)
 		{
 			case 0: 
-				this.mc.displayGuiScreen(new GuiBukijutsu(this));
+				this.mc.displayGuiScreen(new GuiJutsu(this));
 			default:
 		}
 	}

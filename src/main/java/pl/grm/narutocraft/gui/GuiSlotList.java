@@ -58,8 +58,6 @@ public class GuiSlotList extends GuiSlot {
 	@Override
 	protected void drawSlot(int var1, int var2, int var3, int var4,
 			Tessellator var5, int var6, int var7) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
