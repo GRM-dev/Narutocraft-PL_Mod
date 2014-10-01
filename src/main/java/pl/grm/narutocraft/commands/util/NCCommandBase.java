@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.commands;
+package pl.grm.narutocraft.commands.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,11 @@ import java.util.List;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.WrongUsageException;
 
 /**
  * Registered at forge input/output command stream.
  */
-public class NCCommandBase extends CommandBase implements ICommand {
+public abstract class NCCommandBase extends CommandBase implements ICommand {
 	
 	@Override
 	public int compareTo(Object arg0) {
@@ -25,7 +24,7 @@ public class NCCommandBase extends CommandBase implements ICommand {
 	
 	@Override
 	public String getCommandUsage(ICommandSender var1) {
-		return "commands.ncpl";
+		return "Test Msg";
 	}
 	
 	@Override
@@ -37,16 +36,7 @@ public class NCCommandBase extends CommandBase implements ICommand {
 	}
 	
 	@Override
-	public void processCommand(ICommandSender commSender, String[] args) {
-		NCCommandExecutor commandExecutor;
-		if (args.length == 0) {
-			commandExecutor = new NCCommandExecutor(commSender);
-			throw new WrongUsageException("commands.ncpl.usage", new Object[0]);
-		} else if (args.length > 0) {
-			commandExecutor = new NCCommandExecutor(commSender, args);
-			commandExecutor.executeCommand();
-		}
-	}
+	public abstract void processCommand(ICommandSender commSender, String[] args);
 	
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender var1) {
@@ -63,4 +53,6 @@ public class NCCommandBase extends CommandBase implements ICommand {
 	public boolean isUsernameIndex(String[] var1, int var2) {
 		return false;
 	}
+	
+	public abstract void subCommands();
 }

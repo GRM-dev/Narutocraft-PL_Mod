@@ -1,7 +1,4 @@
 /**
- *
- */
-/**
- * @author _Admaster
+ * Configuration classes
  */
 package pl.grm.narutocraft.libs.config;

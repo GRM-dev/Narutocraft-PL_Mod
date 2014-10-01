@@ -34,11 +34,12 @@ public class KeyInputHandler {
 			FMLNetworkHandler.openGui(player, NarutoCraft.instance, 3, player.worldObj,
 					(int) player.posX, (int) player.posY, (int) player.posZ);
 		}
-		if (KeyBindings.NRun.isPressed())
-		{
+		if (KeyBindings.NRun.isPressed()) {
 			EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
-			ExtendedProperties.get(player).ninjaRun = ExtendedProperties.get(player).ninjaRun == true ? false : true;
-			NarutoCraft.netHandler.sendToServer(new PacketNinjaRun(ExtendedProperties.get(player).ninjaRun));
+			ExtendedProperties.get(player).ninjaRun = ExtendedProperties.get(player).ninjaRun == true
+					? false : true;
+			NarutoCraft.netHandler.sendToServer(new PacketNinjaRun(ExtendedProperties
+					.get(player).ninjaRun));
 		}
 	}
 }

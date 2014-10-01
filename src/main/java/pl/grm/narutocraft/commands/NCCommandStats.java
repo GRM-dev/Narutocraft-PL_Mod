@@ -1,10 +1,9 @@
 package pl.grm.narutocraft.commands;
 
-public class NCCommandStats extends NCSubCommand {
-	public NCCommandStats(String[] args) {
-		super(args);
-		// TODO Auto-generated constructor stub
-	}
+import pl.grm.narutocraft.commands.util.NCCommandBase;
+import net.minecraft.command.ICommandSender;
+
+public class NCCommandStats extends NCCommandBase {
 	
 	@Override
 	public void subCommands() {
@@ -13,9 +12,8 @@ public class NCCommandStats extends NCSubCommand {
 	}
 	
 	@Override
-	public void subCommandHelp() {
+	public void processCommand(ICommandSender commSender, String[] args) {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }

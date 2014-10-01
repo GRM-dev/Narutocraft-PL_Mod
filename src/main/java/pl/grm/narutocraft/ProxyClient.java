@@ -4,8 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import pl.grm.narutocraft.commands.NCCommandBase;
 import pl.grm.narutocraft.gui.chakrabar.GuiChakraBar;
+import pl.grm.narutocraft.handlers.NCCommandHandler;
 import pl.grm.narutocraft.handlers.SoundHandler;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
@@ -82,6 +82,8 @@ public class ProxyClient extends ProxyCommon {
 	
 	@Override
 	public void registerCommands() {
-		ClientCommandHandler.instance.registerCommand(new NCCommandBase());
+		ClientCommandHandler manager = ClientCommandHandler.instance;
+		NCCommandHandler commandHandler = new NCCommandHandler(manager);
+		commandHandler.registerCommands(true);
 	}
 }
