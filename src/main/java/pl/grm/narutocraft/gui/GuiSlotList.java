@@ -8,24 +8,19 @@ public class GuiSlotList extends GuiSlot {
 
 	protected Minecraft mc;
 	protected int slotHeight;
-	private NewGuiNinjaStats gui;
+	private GuiNinjaStats gui;
 	private String[] strings;
 
 
 	
-	public GuiSlotList(NewGuiNinjaStats gui)
+	public GuiSlotList(GuiNinjaStats guiNinjaStats)
 	{
-		super(gui.mc,gui.width,gui.height,32,gui.height,24);
-		this.slotHeight = 24;
-		this.mc = gui.mc;
-		this.gui = gui;
+		super(guiNinjaStats.mc,guiNinjaStats.getSizeX(),guiNinjaStats.getSizeY(),guiNinjaStats.getTop(),guiNinjaStats.getSizeY(),24);
+		this.left = guiNinjaStats.getLeft();
+		this.mc = guiNinjaStats.mc;
+		this.gui = guiNinjaStats;
 		strings = new String[]{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"};
 
-	}
-	
-	public GuiSlotList(Minecraft par1Minecraft, int par2, int par3, int par4,
-			int par5, int par6) {
-		super(par1Minecraft, par2, par3, par4, par5, par6);
 	}
 
 	@Override
@@ -37,7 +32,7 @@ public class GuiSlotList extends GuiSlot {
 	protected void elementClicked(int var1, boolean var2, int var3, int var4) {
 		if (var2)//twice
 		{
-			this.gui.setString(strings[var1]);
+			//this.gui.setString(strings[var1]);
 			 this.mc.displayGuiScreen(gui);
 
 		}
@@ -58,6 +53,7 @@ public class GuiSlotList extends GuiSlot {
 	@Override
 	protected void drawSlot(int var1, int var2, int var3, int var4,
 			Tessellator var5, int var6, int var7) {
+		this.gui.drawCenteredString(gui.getFontRenderer(),strings[var1], this.gui.width / 2, var3 + 1, 16777215);
 	}
 
 }

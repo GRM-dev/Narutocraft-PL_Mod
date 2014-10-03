@@ -6,14 +6,16 @@ import net.minecraft.util.StringTranslate;
 
 public class GuiJutsu extends GuiScreen {
 
-	protected NewGuiNinjaStats parentGui;
+	protected GuiNinjaStats parentGui;
 	
 	protected GuiSlotList list;
 	
-	public GuiJutsu (NewGuiNinjaStats parent)
+	public GuiJutsu (GuiNinjaStats guiNinjaStats)
 	{
-		this.parentGui = parent;
-		this.list = new GuiSlotList(parent);
+		this.parentGui = guiNinjaStats;
+		this.list = new GuiSlotList(guiNinjaStats);
+		width = 150;
+		height = 150;
 	}
 	
 	@Override
