@@ -16,7 +16,7 @@ public class RegArmor extends RegItems {
 	public static final ItemArmor	legsBushido		= (ItemArmor) (new NCPLItemArmor(
 															Bushido, 4, 2, "Test",
 															"BushidoArmor"))
-															.setUnlocalizedName("leggingsBushido");
+															.setUnlocalizedName("legginsBushido");
 	public static final ItemArmor	bootsBushido	= (ItemArmor) (new NCPLItemArmor(
 															Bushido, 4, 3, "Test",
 															"BushidoArmor"))
@@ -56,7 +56,7 @@ public class RegArmor extends RegItems {
 															.setUnlocalizedName("legginsSuna");
 	public static final ItemArmor	helmetAkatsuki	= (ItemArmor) (new NCPLItemArmor(
 															Akatsuki, 4, 0))
-															.setUnlocalizedName("helmentAkatsuki");
+															.setUnlocalizedName("helmetAkatsuki");
 	public static final ItemArmor	plateAkatsuki	= (ItemArmor) (new NCPLItemArmor(
 															Akatsuki, 4, 1))
 															.setUnlocalizedName("plateAkatsuki");
