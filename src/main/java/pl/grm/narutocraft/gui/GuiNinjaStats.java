@@ -1,6 +1,7 @@
 package pl.grm.narutocraft.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,6 +44,7 @@ public class GuiNinjaStats extends GuiContainer {
 				break;
 			case 1 : // jutsu
 				this.jutsuMenu = true;
+				this.mc.displayGuiScreen(new GuiJutsu(this));
 				this.jutsuPage = 0;
 				break;
 			case 2 : // jutsu
@@ -442,6 +444,31 @@ public class GuiNinjaStats extends GuiContainer {
 			this.buttonList.add(new GuiButton(15, this.guiLeft + this.padLeft + 50,
 					this.guiTop + this.padTop + (9 * 20), 50, 20, "Reset"));
 		}
+	}
+	
+	public FontRenderer getFontRenderer()
+	{
+		return this.fontRendererObj;
+	}
+	
+	public int getTop()
+	{
+		return guiTop;
+	}
+	
+	public int getLeft()
+	{
+		return guiLeft;
+	}
+	
+	public int getSizeX()
+	{
+		return xSize;
+	}
+	
+	public int getSizeY()
+	{
+		return ySize;
 	}
 	
 	/** Keyboard Clicks **/

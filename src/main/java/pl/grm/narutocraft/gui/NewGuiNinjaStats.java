@@ -3,6 +3,7 @@ package pl.grm.narutocraft.gui;
 import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.libs.References;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,7 @@ public class NewGuiNinjaStats extends GuiScreen {
 	
 	public String s;
 	
-	int posX = (this.width - xSizeOfTexture) / 2 + 200;
+	int posX = (this.width - xSizeOfTexture) / 2 + Minecraft.getMinecraft().displayWidth / 2;
 	int posY = (this.height - ySizeOfTexture) / 2 + 200;
 
 	public NewGuiNinjaStats(EntityPlayer player)
@@ -65,7 +66,7 @@ public class NewGuiNinjaStats extends GuiScreen {
 		switch(button.id)
 		{
 			case 0: 
-				this.mc.displayGuiScreen(new GuiJutsu(this));
+				//this.mc.displayGuiScreen(new GuiJutsu(this));
 			default:
 		}
 	}
