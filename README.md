@@ -1,5 +1,6 @@
 Narutocraft-PL_Mod
 ==================
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/GRM-Group/Narutocraft-PL_Mod?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Last Build Status:
 [![Build Status](http://jenkins.grm.ccs.pl/job/NarutoCraft_Mod/badge/icon)](http://jenkins.grm.ccs.pl/job/NarutoCraft_Mod/)
