@@ -1,10 +1,10 @@
-package pl.grm.narutocraft.items;
+package pl.grm.narutocraft.jutsu;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class TestItems {
+public class TestJutsu {
 	
 	@Test
 	public void test() {

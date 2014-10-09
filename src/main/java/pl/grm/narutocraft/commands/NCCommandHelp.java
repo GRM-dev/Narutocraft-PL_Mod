@@ -10,7 +10,6 @@ public class NCCommandHelp extends NCCommandBase {
 	private EntityPlayer	player;
 	private String[]		args;
 	
-	@Override
 	public void subCommands() {
 		// TODO Auto-generated method stub
 	}

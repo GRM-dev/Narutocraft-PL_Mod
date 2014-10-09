@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.libs;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 

@@ -11,7 +11,6 @@ public class NCCommandLevelUp extends NCCommandBase {
 		
 	}
 	
-	@Override
 	public void subCommands() {
 		// TODO Auto-generated method stub
 		
