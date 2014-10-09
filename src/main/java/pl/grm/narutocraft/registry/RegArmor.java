@@ -34,25 +34,25 @@ public class RegArmor extends RegItems {
 															Anbu, 4, 0))
 															.setUnlocalizedName("HelmetAnbu4");
 	public static final ItemArmor	plateAnbu		= (ItemArmor) (new NCPLItemArmor(
-															Anbu, 4, 1))
+															Anbu, 4, 1, "AnbuArmor"))
 															.setUnlocalizedName("plateAnbu");
 	public static final ItemArmor	legsAnbu		= (ItemArmor) (new NCPLItemArmor(
-															Anbu, 4, 2))
+															Anbu, 4, 2, "AnbuArmor"))
 															.setUnlocalizedName("legginsAnbu");
 	public static final ItemArmor	bootsAnbu		= (ItemArmor) (new NCPLItemArmor(
-															Anbu, 4, 3))
+															Anbu, 4, 3, "AnbuArmor"))
 															.setUnlocalizedName("bootsAnbu");
 	public static final ItemArmor	plateKiri		= (ItemArmor) (new NCPLItemArmor(
-															Kiri, 4, 2))
+															Kiri, 4, 1, "KiriArmor"))
 															.setUnlocalizedName("plateKiri");
 	public static final ItemArmor	legsKiri		= (ItemArmor) (new NCPLItemArmor(
-															Kiri, 4, 3))
+															Kiri, 4, 2, "KiriArmor"))
 															.setUnlocalizedName("legginsKiri");
 	public static final ItemArmor	plateSuna		= (ItemArmor) (new NCPLItemArmor(
-															Suna, 4, 3))
+															Suna, 4, 1, "SunaArmor"))
 															.setUnlocalizedName("plateSuna");
 	public static final ItemArmor	legsSuna		= (ItemArmor) (new NCPLItemArmor(
-															Suna, 4, 3))
+															Suna, 4, 2, "SunaArmor"))
 															.setUnlocalizedName("legginsSuna");
 	public static final ItemArmor	helmetAkatsuki	= (ItemArmor) (new NCPLItemArmor(
 															Akatsuki, 4, 0))
