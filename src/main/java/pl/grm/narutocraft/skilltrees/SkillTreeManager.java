@@ -135,6 +135,21 @@ public class SkillTreeManager {
 		}
 	}
 	
+	private void clearTrees() {
+		this.ninjutsuTree.clear();
+		this.genjutsuTree.clear();
+		this.bukijutsuTree.clear();
+		this.fuuinjutsuTree.clear();
+		this.iryojutsuTree.clear();
+		this.taijutsuTree.clear();
+	}
+	
+	private boolean isSkillLocked(SkillTreeEntry component) {
+		SkillTreeEntry entry = getJutsuTreeEntry(component);
+		if (entry == null) { return false; }
+		return entry.entryState == EntryStates.UNLOCKED;
+	}
+	
 	public int[] getLockedJutsusIDs() {
 		this.disableds = new ArrayList<Integer>();
 		for (SkillTreeEntry entry : this.ninjutsuTree) {
@@ -222,18 +237,15 @@ public class SkillTreeManager {
 		return this.safeCopy;
 	}
 	
-	private void clearTrees() {
-		this.ninjutsuTree.clear();
-		this.genjutsuTree.clear();
-		this.bukijutsuTree.clear();
-		this.fuuinjutsuTree.clear();
-		this.iryojutsuTree.clear();
-		this.taijutsuTree.clear();
+	public Map<Integer, SkillTree> getSkillPointTypeList() {
+		return this.skillPointTypeList;
 	}
 	
-	private boolean isSkillLocked(SkillTreeEntry component) {
-		SkillTreeEntry entry = getJutsuTreeEntry(component);
-		if (entry == null) { return false; }
-		return entry.entryState == EntryStates.UNLOCKED;
+	public ArrayList<SkillTreeEntry> getTreeListing() {
+		return this.treeListing;
+	}
+	
+	public ArrayList<SkillTreeEntry> getTreeEntries() {
+		return this.treeEntries;
 	}
 }

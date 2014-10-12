@@ -42,8 +42,7 @@ public class SkillTreeEntry {
 		this.prerequisites = prerequisites;
 	}
 	
-	public SkillTreeEntry(JutsuEnum rasengan) {
-		this.reqJutsu = rasengan;
-		
+	public SkillTreeEntry(JutsuEnum reqJutsu) {
+		this.reqJutsu = reqJutsu;
 	}
 }
