@@ -50,7 +50,7 @@ public class JutsuProperties {
 		this.activated = activated;
 	}
 	
-	public int getJutsuID() {
+	public int getID() {
 		return this.jutsuID;
 	}
 	

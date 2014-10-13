@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
@@ -28,6 +29,7 @@ public class JutsuManager {
 	
 	public JutsuManager() {
 		this.registeredEntries = new HashMap<Integer, SkillTreeEntry>();
+		ExtendedProperties.jutsuList = new HashMap<Integer, IJutsu>();
 	}
 	
 	/**
@@ -44,17 +46,19 @@ public class JutsuManager {
 	/**
 	 * Add jutsu to GameRegistry.
 	 * 
-	 * @param jutsu
+	 * @param jutsuE
 	 */
-	public static void registerJutsu(JutsuEnum jutsu) {
-		GameRegistry.registerItem(jutsu.getJutsu(), jutsu.getName());
+	private static void registerJutsu(JutsuEnum jutsuE) {
+		IJutsu jutsu = jutsuE.getJutsu();
+		GameRegistry.registerItem((Item) jutsu, jutsuE.getName());
 		count++;
-		System.out.println(count);
+		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
+		System.out.println("Dodano " + count + " Jutsu.");
+		System.out.println("Na liscie: " + ExtendedProperties.jutsuList.size());
 	}
 	
 	public void readFromNBT(NBTTagCompound compound) {
-		NBTTagList jutsus = compound.getTagList("JutsuManager",
-				Constants.NBT.TAG_COMPOUND); // compound.getId(
+		NBTTagList jutsus = compound.getTagList("JutsuManager", Constants.NBT.TAG_COMPOUND); // compound.getId(
 		int jCount = jutsus.tagCount();
 		System.out.println("JCount: " + jCount);
 		if (jutsus != null) {
@@ -128,7 +132,7 @@ public class JutsuManager {
 	}
 	
 	public int getJutsuID(IJutsu jutsu) {
-		return jutsu.getJutsuProps().getJutsuID();
+		return jutsu.getJutsuProps().getID();
 	}
 	
 	public int getJutsuID(JutsuEnum jutsuListElem) {

@@ -25,7 +25,7 @@ public class GuiNinjaTab extends GuiButton {
 	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_) {
 		if (this.visible) {
 			FontRenderer fontrenderer = p_146112_1_.fontRenderer;
-			p_146112_1_.getTextureManager().bindTexture(References.ninjaWidgets);
+			p_146112_1_.getTextureManager().bindTexture(References.ninjaWidgetsPath);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			this.field_146123_n = (p_146112_2_ >= this.xPosition)
 					&& (p_146112_3_ >= this.yPosition)

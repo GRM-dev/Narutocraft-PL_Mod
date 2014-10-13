@@ -451,11 +451,32 @@ public enum JutsuEnum {
 		this.jutsuTree = jutsuType;
 	}
 	
+	public static JutsuEnum getByID(int ID) {
+		for (JutsuEnum jutsu : JutsuEnum.values()) {
+			if (jutsu.jutsuID == ID) { return jutsu; }
+		}
+		return NONE;
+	}
+	
+	public static JutsuEnum getByName(String name) {
+		for (JutsuEnum jutsu : JutsuEnum.values()) {
+			if (jutsu.jutsuName.equals(name)) { return jutsu; }
+		}
+		return NONE;
+	}
+	
+	public static JutsuEnum getByIJutsu(IJutsu iJutsu) {
+		for (JutsuEnum jutsu : JutsuEnum.values()) {
+			if (jutsu.jutsuClass.equals(iJutsu)) { return jutsu; }
+		}
+		return NONE;
+	}
+	
 	public int getJutsuID() {
 		return this.jutsuID;
 	}
 	
-	public SkillTree getJutsuTree() {
+	public SkillTree getTree() {
 		return this.jutsuTree;
 	}
 	
@@ -479,20 +500,6 @@ public enum JutsuEnum {
 		return this.cooldown;
 	}
 	
-	public static JutsuEnum getByID(int ID) {
-		for (JutsuEnum jutsu : JutsuEnum.values()) {
-			if (jutsu.jutsuID == ID) { return jutsu; }
-		}
-		return NONE;
-	}
-	
-	public static JutsuEnum getByName(String name) {
-		for (JutsuEnum jutsu : JutsuEnum.values()) {
-			if (jutsu.jutsuName.equals(name)) { return jutsu; }
-		}
-		return NONE;
-	}
-	
 	public Jutsu getJutsu() {
 		Jutsu jutsu = null;
 		try {
@@ -506,10 +513,6 @@ public enum JutsuEnum {
 		}
 		
 		return jutsu;
-	}
-	
-	public SkillTree getJutsuType() {
-		return this.jutsuTree;
 	}
 	
 	public String getName() {

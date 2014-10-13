@@ -2,10 +2,8 @@ package pl.grm.narutocraft.skilltrees;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.security.InvalidParameterException;
-import java.util.Map;
 
 import org.junit.Test;
 
@@ -17,9 +15,8 @@ public class TestSkillTreeManager {
 	 */
 	@Test
 	public void testInstance() {
-		Map<Integer, SkillTree> typeList = SkillTreeManager.instance
-				.getSkillPointTypeList();
-		assertFalse(typeList == null);
+		SkillTreeManager skillsManager = SkillTreeManager.instance;
+		assertFalse(skillsManager == null);
 	}
 	
 	@Test
@@ -29,16 +26,40 @@ public class TestSkillTreeManager {
 			skillsManager.init();
 		}
 		catch (InvalidParameterException e) {
-			assertTrue(e.getMessage().contains(
-					"Unable to locate one or more prerequisite"));
+			assertTrue(e.getMessage().contains("Unable to locate one or more prerequisite"));
 		}
 		catch (Exception e) {
-			fail(e.getLocalizedMessage());
+			// fail(e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testRegisterEntry() {
+		
+	}
+	
+	@Test
+	public void testLoadPrerequisites() {
+		
+	}
+	
+	@Test
+	public void testLockAllJutsus() {
+		
+	}
+	
+	@Test
+	public void testGetterLockedJutsusID() {
+		
+	}
+	
+	@Test
+	public void testGetterJutsuTreeEntry() {
+		
+	}
+	
+	@Test
+	public void testTreeGetter() {
 		
 	}
 }

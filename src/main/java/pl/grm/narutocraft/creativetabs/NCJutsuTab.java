@@ -1,37 +1,32 @@
 package pl.grm.narutocraft.creativetabs;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import pl.grm.narutocraft.libs.ExtendedProperties;
+import pl.grm.narutocraft.libs.References;
 
 /**
  * Creative Tab for Jutsus
  */
 public class NCJutsuTab extends CreativeTabs {
-	private Item	item;
-	
 	/**
-	 * @param par1
+	 * @param id
 	 *            Creative Tab Id
-	 * @param par2Str
+	 * @param unlocalizedName
 	 *            Tab Name
 	 */
-	public NCJutsuTab(int par1, String par2Str) {
-		super(par1, par2Str);
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public ItemStack getIconItemStack() {
-		return (new ItemStack(JutsuEnum.RASENGAN.getJutsu()));
+	public NCJutsuTab(int id, String unlocalizedName) {
+		super(id, unlocalizedName);
+		this.setBackgroundImageName(References.GuiTexturePath + "cTabGui2.png");
 	}
 	
 	@Override
 	public Item getTabIconItem() {
-		return this.item;
+		System.out.println(ExtendedProperties.jutsuList.size());
+		// return (Item)
+		// ExtendedProperties.jutsuList.get(JutsuEnum.RASENGAN.getJutsuID());
+		return Items.apple;
 	}
 	
 	@Override
@@ -39,4 +34,8 @@ public class NCJutsuTab extends CreativeTabs {
 		return "NarutoCraft Jutsu's";
 	}
 	
+	@Override
+	public boolean hasSearchBar() {
+		return true;
+	}
 }

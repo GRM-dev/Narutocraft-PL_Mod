@@ -4,6 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.libs.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,6 +22,7 @@ public class NCMainTab extends CreativeTabs {
 	 */
 	public NCMainTab(int par1, String par2Str) {
 		super(par1, par2Str);
+		this.setBackgroundImageName(References.GuiTexturePath + "cTabGui1.png");
 	}
 	
 	@Override
@@ -39,4 +41,8 @@ public class NCMainTab extends CreativeTabs {
 		return "NarutoCraft";
 	}
 	
+	@Override
+	public boolean hasSearchBar() {
+		return true;
+	}
 }

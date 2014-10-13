@@ -26,7 +26,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class Jutsu extends Item implements IJutsu {
-	public static String		textureLoc		= References.JUTSUTEXTURELOC;
+	public static String		textureLoc		= References.JutsuTexturePath;
 	private CreativeTabs		tabToDisplayOn	= NarutoCraft.mTabJutsu;
 	private int					maxDamage;
 	private Item				containerItem;

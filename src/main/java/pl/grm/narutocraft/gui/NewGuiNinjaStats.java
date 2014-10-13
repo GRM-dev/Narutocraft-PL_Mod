@@ -41,7 +41,7 @@ public class NewGuiNinjaStats extends GuiScreen {
 		
 		//TODO remove jutsu page reference
 		this.mc.renderEngine.bindTexture(this.jutsuMenu
-				? References.jutsuGUI[this.jutsuPage] : References.stats);
+				? References.jutsuGUI[this.jutsuPage] : References.statsPath);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		
 		drawTexturedModalRect(posX, posY, 0, 0, xSizeOfTexture, ySizeOfTexture);

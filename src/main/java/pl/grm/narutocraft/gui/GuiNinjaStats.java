@@ -216,7 +216,7 @@ public class GuiNinjaStats extends GuiContainer {
 		
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.jutsuMenu
-				? References.jutsuGUI[this.jutsuPage] : References.stats);
+				? References.jutsuGUI[this.jutsuPage] : References.statsPath);
 		drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
 		this.buttonList.clear();
@@ -254,7 +254,7 @@ public class GuiNinjaStats extends GuiContainer {
 						+ props.psa.skillPoints, this.guiLeft + this.padLeft, this.guiTop
 						+ this.padTop, 0xddeeee);
 			}
-			Minecraft.getMinecraft().renderEngine.bindTexture(References.ninjaWidgets);
+			Minecraft.getMinecraft().renderEngine.bindTexture(References.ninjaWidgetsPath);
 			drawTexturedModalRect(this.guiLeft + 132, (this.guiTop + this.padTop) - 7,
 					66, 0, 39, 4);
 			drawTexturedModalRect(this.guiLeft + 132, (this.guiTop + this.padTop) - 7,

@@ -3,6 +3,7 @@ package pl.grm.narutocraft.libs;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,28 +16,30 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.ProxyCommon;
 import pl.grm.narutocraft.gui.JutsuInv;
 import pl.grm.narutocraft.handlers.JutsuManager;
+import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
-	public final static String		EXT_PROP_NAME		= "NCPLExtPlayer";
-	private final EntityPlayer		player;
-	public final JutsuInv			inventory			= new JutsuInv();
-	public JutsuManager				jManager			= new JutsuManager();
-	public PlayerSkillsAtrributes	psa					= new PlayerSkillsAtrributes();
-	private int						maxChakra, maxChakraCap = 500, maxChakraBase = 50;
-	private int						AuraIndex;
-	private int						AuraBehaviour;
-	private float					AuraScale;
-	private float					AuraAlpha;
-	private boolean					AuraColorRandomize	= true;
-	private boolean					AuraColorDefault	= true;
-	private int						AuraColor;
-	private int						AuraQuantity;
-	private float					AuraSpeed;
-	public float					TK_Distance			= 8.0F;
-	public static final int			CHAKRA_WATCHER		= 20;
-	public static List<int[]>		activeJutsus		= new ArrayList<int[]>();
-	public boolean 					ninjaRun			= false;
+	public final static String			EXT_PROP_NAME		= "NCPLExtPlayer";
+	private final EntityPlayer			player;
+	public final JutsuInv				inventory			= new JutsuInv();
+	public JutsuManager					jManager			= new JutsuManager();
+	public PlayerSkillsAtrributes		psa					= new PlayerSkillsAtrributes();
+	private int							maxChakra, maxChakraCap = 500, maxChakraBase = 50;
+	private int							AuraIndex;
+	private int							AuraBehaviour;
+	private float						AuraScale;
+	private float						AuraAlpha;
+	private boolean						AuraColorRandomize	= true;
+	private boolean						AuraColorDefault	= true;
+	private int							AuraColor;
+	private int							AuraQuantity;
+	private float						AuraSpeed;
+	public float						TK_Distance			= 8.0F;
+	public static final int				CHAKRA_WATCHER		= 20;
+	public static List<int[]>			activeJutsus		= new ArrayList<int[]>();
+	public static Map<Integer, IJutsu>	jutsuList;
+	public boolean						ninjaRun			= false;
 	
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
@@ -61,8 +64,8 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	}
 	
 	public static final void register(EntityPlayer player) {
-		player.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME,
-				new ExtendedProperties(player));
+		player.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME, new ExtendedProperties(
+				player));
 	}
 	
 	public static final void saveProxyData(EntityPlayer player) {
@@ -120,8 +123,8 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		NBTTagCompound properties = new NBTTagCompound();
 		// this.inventory.writeToNBT(properties);
 		this.jManager.writeToNBT(properties);
-		properties.setInteger("CurrentChakra", this.player.getDataWatcher()
-				.getWatchableObjectInt(CHAKRA_WATCHER));
+		properties.setInteger("CurrentChakra",
+				this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", this.maxChakra);
 		
 		// New PSA data saving
@@ -155,8 +158,8 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		this.psa.setValues(properties.getIntArray("psaStats"));
 		
 		System.out.println("[NCPL Chakra] Chakra from NBT: "
-				+ this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER)
-				+ "/" + this.maxChakra);
+				+ this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER) + "/"
+				+ this.maxChakra);
 	}
 	
 	/**
@@ -180,29 +183,36 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 				value > 0 ? (value < this.maxChakra ? value : this.maxChakra) : 0);
 	}
 	
-	/** Sets the max chakra the player can have
-	 * @param amount what number + maxChakraBonus the max chakra will be NOTE: only works if overridden
-	 * @param overrideBaseValue this will use the amount if true, else it will only update the baseChakra + bonus Chakra **/
+	/**
+	 * Sets the max chakra the player can have
+	 * 
+	 * @param amount
+	 *            what number + maxChakraBonus the max chakra will be NOTE: only
+	 *            works if overridden
+	 * @param overrideBaseValue
+	 *            this will use the amount if true, else it will only update the
+	 *            baseChakra + bonus Chakra
+	 **/
 	public final void setMaxChakra(int amount, boolean overrideBaseValue) {
 		if (overrideBaseValue)
 			this.maxChakra = MathHelper.clamp_int(amount + psa.getMaxChakraMod(), 0, maxChakraCap);
 		else
-			this.maxChakra = MathHelper.clamp_int(maxChakraBase + psa.getMaxChakraMod(), 0, maxChakraCap);		
+			this.maxChakra = MathHelper.clamp_int(maxChakraBase + psa.getMaxChakraMod(), 0,
+					maxChakraCap);
 	}
 	
 	/** Force set the maxChakra + bonus **/
 	public final void setMaxChakra(int amount) {
-		setMaxChakra(amount,true);		
+		setMaxChakra(amount, true);
 	}
 	
 	/** This is basically an update max chakra method **/
 	public final void setMaxChakra(boolean overrideBaseValue) {
-		setMaxChakra(0,false);		
+		setMaxChakra(0, false);
 	}
 	
 	public void updateAuraData(int index, int behaviour, float scale, float alpha,
-			boolean randomColor, boolean defaultColor, int color, int quantity,
-			float speed) {
+			boolean randomColor, boolean defaultColor, int color, int quantity, float speed) {
 		this.AuraIndex = index;
 		this.AuraBehaviour = behaviour;
 		this.AuraScale = scale;
@@ -214,34 +224,39 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		this.AuraSpeed = speed;
 	}
 	
-	public void updateMoveSpeed()
-	{
+	public void updateMoveSpeed() {
 		PlayerCapabilities pc = player.capabilities;
 		try {
 			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
 			walkSpeed.setAccessible(true);
-			walkSpeed.setFloat(pc, MathHelper.clamp_float(0.45F + ((float) psa.getAgility() / 31), 0.04f, 1.5f));
-		} catch (IllegalArgumentException | IllegalAccessException e) {
+			walkSpeed.setFloat(pc,
+					MathHelper.clamp_float(0.45F + ((float) psa.getAgility() / 31), 0.04f, 1.5f));
+		}
+		catch (IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
+		}
+		catch (NoSuchFieldException e) {
 			e.printStackTrace();
-		} catch (SecurityException e) {
+		}
+		catch (SecurityException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void resetMoveSpeed()
-	{
+	public void resetMoveSpeed() {
 		PlayerCapabilities pc = player.capabilities;
 		try {
 			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
 			walkSpeed.setAccessible(true);
 			walkSpeed.setFloat(pc, 0.1f);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
+		}
+		catch (IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
+		}
+		catch (NoSuchFieldException e) {
 			e.printStackTrace();
-		} catch (SecurityException e) {
+		}
+		catch (SecurityException e) {
 			e.printStackTrace();
 		}
 	}
