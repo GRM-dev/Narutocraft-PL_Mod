@@ -61,13 +61,11 @@ public class NarutoCraft {
 	public static SimpleNetworkWrapper	netHandler;
 	private int							packetId		= 0;
 	/** NarutoCraft Mod Creative Tab */
-	public static CreativeTabs			mTabNarutoCraft	= new NCMainTab(
-																CreativeTabs.getNextID(),
+	public static CreativeTabs			mTabNarutoCraft	= new NCMainTab(CreativeTabs.getNextID(),
 																"NarutoCraftMod");
 	/** Jutsu Creative Tab */
-	public static CreativeTabs			mTabJutsu		= new NCJutsuTab(
-																CreativeTabs.getNextID(),
-																"NarutoCraftMod Jutsu's");
+	public static CreativeTabs			mTabJutsu		= new NCJutsuTab(CreativeTabs.getNextID(),
+																"NC Jutsu's");
 	
 	/**
 	 * Constructor to Registry Lists of mod elements
@@ -89,15 +87,13 @@ public class NarutoCraft {
 		for (Field f : Potion.class.getDeclaredFields()) {
 			f.setAccessible(true);
 			try {
-				if (f.getName().equals("potionTypes")
-						|| f.getName().equals("field_76425_a")) {
+				if (f.getName().equals("potionTypes") || f.getName().equals("field_76425_a")) {
 					Field modfield = Field.class.getDeclaredField("modifiers");
 					modfield.setAccessible(true);
 					modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
 					potionTypes = (Potion[]) f.get(null);
 					final Potion[] newPotionTypes = new Potion[256];
-					System.arraycopy(potionTypes, 0, newPotionTypes, 0,
-							potionTypes.length);
+					System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
 					f.set(null, newPotionTypes);
 				}
 			}
@@ -108,16 +104,13 @@ public class NarutoCraft {
 		}
 		
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
-		netHandler.registerMessage(PacketExample.PacketExampleHandler.class,
-				PacketExample.class, this.packetId++, Side.SERVER);
-		netHandler.registerMessage(
-				PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
+		netHandler.registerMessage(PacketExample.PacketExampleHandler.class, PacketExample.class,
+				this.packetId++, Side.SERVER);
+		netHandler.registerMessage(PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
 				PacketNinjaStatsRequest.class, this.packetId++, Side.SERVER);
-		netHandler.registerMessage(
-				PacketNinjaRun.PacketNinjaRunHandler.class,
+		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class,
 				PacketNinjaRun.class, this.packetId++, Side.SERVER);
-		netHandler.registerMessage(
-				PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
+		netHandler.registerMessage(PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
 				PacketNinjaStatsResponse.class, this.packetId++, Side.CLIENT);
 		
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());

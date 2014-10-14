@@ -3,13 +3,15 @@ package pl.grm.narutocraft.creativetabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.ExtendedProperties;
-import pl.grm.narutocraft.libs.References;
 
 /**
  * Creative Tab for Jutsus
  */
 public class NCJutsuTab extends CreativeTabs {
+	private int	iconJutsuID	= JutsuEnum.RASENGAN.getJutsuID();
+	
 	/**
 	 * @param id
 	 *            Creative Tab Id
@@ -18,20 +20,21 @@ public class NCJutsuTab extends CreativeTabs {
 	 */
 	public NCJutsuTab(int id, String unlocalizedName) {
 		super(id, unlocalizedName);
-		this.setBackgroundImageName(References.GuiTexturePath + "cTabGui2.png");
+		this.setBackgroundImageName("item_search.png");
 	}
 	
 	@Override
 	public Item getTabIconItem() {
-		System.out.println(ExtendedProperties.jutsuList.size());
-		// return (Item)
-		// ExtendedProperties.jutsuList.get(JutsuEnum.RASENGAN.getJutsuID());
+		if (ExtendedProperties.jutsuList.containsKey(iconJutsuID)) {
+			Item item = (Item) ExtendedProperties.jutsuList.get(iconJutsuID);
+			return item;
+		}
 		return Items.apple;
 	}
 	
 	@Override
 	public String getTranslatedTabLabel() {
-		return "NarutoCraft Jutsu's";
+		return "NC Jutsu's";
 	}
 	
 	@Override

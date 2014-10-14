@@ -18,18 +18,19 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class JutsuManager {
 	public static JutsuManager						instance		= new JutsuManager();
-	private int										jutsuID, durationLeft;
+	private int										jutsuID;
 	private Jutsu									jutsu;
 	private Iterator<int[]>							iterator;
 	private final HashMap<Integer, SkillTreeEntry>	registeredEntries;
 	private int[]									elem;
 	private static int								count			= 0;
 	private List<int[]>								activeJutsus	= new ArrayList<int[]>();
-	private int[]									jutsuLine;
 	
 	public JutsuManager() {
 		this.registeredEntries = new HashMap<Integer, SkillTreeEntry>();
-		ExtendedProperties.jutsuList = new HashMap<Integer, IJutsu>();
+		if (ExtendedProperties.jutsuList == null) {
+			ExtendedProperties.jutsuList = new HashMap<Integer, IJutsu>();
+		}
 	}
 	
 	/**
@@ -53,8 +54,11 @@ public class JutsuManager {
 		GameRegistry.registerItem((Item) jutsu, jutsuE.getName());
 		count++;
 		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
-		System.out.println("Dodano " + count + " Jutsu.");
-		System.out.println("Na liscie: " + ExtendedProperties.jutsuList.size());
+		if (count == ExtendedProperties.jutsuList.size()) {
+			System.out.println("Added " + jutsu.getJutsuProps().getID() + " Jutsu.");
+		} else {
+			System.out.println("Smth wrong with registerinh Jutsu");
+		}
 	}
 	
 	public void readFromNBT(NBTTagCompound compound) {
@@ -93,7 +97,6 @@ public class JutsuManager {
 			while (this.iterator.hasNext()) {
 				this.elem = this.iterator.next();
 				this.jutsuID = this.elem[0];
-				this.durationLeft = this.elem[1];
 				
 				if (this.jutsu.isActive()) {
 					this.jutsu.onJutsuUpdate();
