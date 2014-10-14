@@ -22,7 +22,7 @@ public class RegArmor extends RegItems {
 															"BushidoArmor"))
 															.setUnlocalizedName("bootsBushido");
 	public static final ItemArmor	helmetAnbu1		= (ItemArmor) (new NCPLItemArmor(
-															Anbu, 4, 0))
+															Anbu, 4, 0, "MaskaANBU_1"))
 															.setUnlocalizedName("helmetAnbu1");
 	public static final ItemArmor	helmetAnbu2		= (ItemArmor) (new NCPLItemArmor(
 															Anbu, 4, 0))
@@ -57,6 +57,12 @@ public class RegArmor extends RegItems {
 	public static final ItemArmor	helmetAkatsuki	= (ItemArmor) (new NCPLItemArmor(
 															Akatsuki, 4, 0))
 															.setUnlocalizedName("helmetAkatsuki");
+	public static final ItemArmor	helmetAkatsuki2	= (ItemArmor) (new NCPLItemArmor(
+															Akatsuki, 4, 0))
+															.setUnlocalizedName("helmetAkatsuki2");
+	public static final ItemArmor	helmetAkatsuki3	= (ItemArmor) (new NCPLItemArmor(
+															Akatsuki, 4, 0))
+															.setUnlocalizedName("helmetAkatsuki3");
 	public static final ItemArmor	plateAkatsuki	= (ItemArmor) (new NCPLItemArmor(
 															Akatsuki, 4, 1))
 															.setUnlocalizedName("plateAkatsuki");
@@ -66,6 +72,9 @@ public class RegArmor extends RegItems {
 	public static final ItemArmor	plateAkatsuki3	= (ItemArmor) (new NCPLItemArmor(
 															Akatsuki, 4, 1))
 															.setUnlocalizedName("plateAkatsuki3");
+	public static final ItemArmor	plateAkatsuki4	= (ItemArmor) (new NCPLItemArmor(
+															Akatsuki, 4, 1))
+															.setUnlocalizedName("plateAkatsuki4");
 	public static final ItemArmor	legsAkatsuki	= (ItemArmor) (new NCPLItemArmor(
 															Akatsuki, 4, 2))
 															.setUnlocalizedName("legginsAkatsuki");
@@ -90,9 +99,12 @@ public class RegArmor extends RegItems {
 		registerItem(plateSuna, "PlateSuna");
 		registerItem(legsSuna, "LegsSuna");
 		registerItem(helmetAkatsuki, "HelmetAkatsuki");
+		registerItem(helmetAkatsuki2, "HelmetAkatsuki");
+		registerItem(helmetAkatsuki3, "HelmetAkatsuki");
 		registerItem(plateAkatsuki, "PlateAkatsuki");
 		registerItem(plateAkatsuki2, "PlateAkatsuki2");
 		registerItem(plateAkatsuki3, "PlateAkatsuki3");
+		registerItem(plateAkatsuki4, "PlateAkatsuki4");
 		registerItem(legsAkatsuki, "LegsAkatsuki");
 		registerItem(bootsAkatsuki, "BootsAkatsuki");
 	}
