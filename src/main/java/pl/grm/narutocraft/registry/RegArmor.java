@@ -99,8 +99,8 @@ public class RegArmor extends RegItems {
 		registerItem(plateSuna, "PlateSuna");
 		registerItem(legsSuna, "LegsSuna");
 		registerItem(helmetAkatsuki, "HelmetAkatsuki");
-		registerItem(helmetAkatsuki2, "HelmetAkatsuki");
-		registerItem(helmetAkatsuki3, "HelmetAkatsuki");
+		registerItem(helmetAkatsuki2, "HelmetAkatsuki2");
+		registerItem(helmetAkatsuki3, "HelmetAkatsuki3");
 		registerItem(plateAkatsuki, "PlateAkatsuki");
 		registerItem(plateAkatsuki2, "PlateAkatsuki2");
 		registerItem(plateAkatsuki3, "PlateAkatsuki3");
