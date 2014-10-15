@@ -464,9 +464,8 @@ public enum JutsuEnum {
 	 * @param chakraConsumption
 	 * @param damage
 	 */
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
-			SkillTreeEnum jutsuType, JutsuTier tier, long duration, long cooldown,
-			int chakraConsumption, int damage) {
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTreeEnum jutsuType,
+			JutsuTier tier, long duration, long cooldown, int chakraConsumption, int damage) {
 		this.duration = duration;
 		this.cooldown = cooldown;
 		this.chakraConsumption = chakraConsumption;
@@ -548,8 +547,8 @@ public enum JutsuEnum {
 	 *
 	 * @return Jutsu
 	 */
-	public Jutsu getJutsu() {
-		Jutsu jutsu = null;
+	public IJutsu getJutsu() {
+		IJutsu jutsu = null;
 		try {                 // TODO add exception handling
 			jutsu = this.jutsuClass.newInstance();
 		}

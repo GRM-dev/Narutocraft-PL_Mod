@@ -1,6 +1,5 @@
 package pl.grm.narutocraft.skilltrees;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -69,17 +68,16 @@ public class SkillTreeManager {
 	 * @param prerequisites
 	 * @return SkillTreeEntry
 	 */
-	public SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y,
-			int requiredPoints, SkillTreeEntry... prerequisites) {
+	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y, int requiredPoints,
+			SkillTreeEntry... prerequisites) {
 		SkillTreeEnum tree = jutsuElem.getTree();
 		JutsuTier tier = jutsuElem.getTier();
 		SkillTreeEntry newEntry;
-		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree,
-				prerequisites);
-		
-		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier,
-				requiredPoints, prerequisitesList);
-		this.getTreefromTreeMap(tree).addEntry(newEntry);
+		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree, prerequisites);
+		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier, requiredPoints,
+				prerequisitesList);
+		selectTreefromTreeMap(tree);
+		this.selectedTree.addEntry(newEntry);
 		return newEntry;
 	}
 	
@@ -87,10 +85,9 @@ public class SkillTreeManager {
 	 * @param tree
 	 * @return tree from trees of tree ;)
 	 */
-	public SkillTree getTreefromTreeMap(SkillTreeEnum tree) {
+	public void selectTreefromTreeMap(SkillTreeEnum tree) {
 		int id = tree.getID();
 		selectedTree = trees.get(id);
-		return selectedTree;
 	}
 	
 	/**
@@ -111,10 +108,11 @@ public class SkillTreeManager {
 					break;
 				}
 			}
-			if (prerequisitesList.size() == 0) { throw new InvalidParameterException(
-					String.format(
-							"Unable to locate one or more prerequisite jutsu in the specified tree (%s).",
-							new Object[]{tree.toString()})); }
+			if (prerequisitesList.size() == 0) {
+				String.format(
+						"Unable to locate one or more prerequisite jutsu in the specified tree (%s).",
+						new Object[]{tree.toString()});
+			}
 		}
 		return prerequisitesList;
 	}
@@ -131,8 +129,8 @@ public class SkillTreeManager {
 			while (itEntry.hasNext()) {
 				SkillTreeEntry entry = itEntry.nextEntry();
 				if (entry.getEntryState() == EntryStates.UNLOCKED) {
-					this.disableds.add(Integer.valueOf(JutsuManager.instance
-							.getJutsuID(entry.getJutsu())));
+					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
+							.getJutsu())));
 				}
 			}
 		}
@@ -229,7 +227,7 @@ public class SkillTreeManager {
 		return this.safeCopy;
 	}
 	
-	public SkillTree getTreeListing() {
+	public SkillTree getSelectedTree() {
 		return this.selectedTree;
 	}
 }

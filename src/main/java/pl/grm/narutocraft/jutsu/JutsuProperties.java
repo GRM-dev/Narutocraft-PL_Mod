@@ -18,6 +18,35 @@ public class JutsuProperties {
 		this.activated = activated;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + this.jutsuID;
+		result = prime * result
+				+ ((this.unlocalizedName == null) ? 0 : this.unlocalizedName.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		JutsuProperties other = (JutsuProperties) obj;
+		if (this.jutsuID != other.jutsuID)
+			return false;
+		if (this.unlocalizedName == null) {
+			if (other.unlocalizedName != null)
+				return false;
+		} else if (!this.unlocalizedName.equals(other.unlocalizedName))
+			return false;
+		return true;
+	}
+	
 	public long getPassDuration() {
 		return this.passDuration;
 	}

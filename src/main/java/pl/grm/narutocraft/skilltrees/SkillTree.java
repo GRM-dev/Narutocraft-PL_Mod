@@ -47,7 +47,10 @@ public class SkillTree implements Cloneable {
 	}
 	
 	public SkillTreeEntry getEntry(int jutsuID) {
-		// TODO Auto-generated method stub
+		if (entryMap.containsKey(jutsuID)) {
+			SkillTreeEntry entry = entryMap.get(jutsuID);
+			return entry;
+		}
 		return null;
 	}
 	

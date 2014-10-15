@@ -12,13 +12,14 @@ import pl.grm.narutocraft.jutsu.JutsuEnum;
 
 public class TestSkillTreeManager {
 	SkillTreeManager	skillsManager;
+	JutsuEnum			jutsu	= JutsuEnum.RASENGAN;
 	
 	/**
 	 * fail if typeList=null
 	 */
 	@Test
 	public void testInstance() {
-		SkillTreeManager skillsManager = SkillTreeManager.instance;
+		skillsManager = SkillTreeManager.instance;
 		assertFalse(skillsManager == null);
 	}
 	
@@ -29,8 +30,7 @@ public class TestSkillTreeManager {
 			skillsManager.init();
 		}
 		catch (InvalidParameterException e) {
-			assertTrue(e.getMessage().contains(
-					"Unable to locate one or more prerequisite"));
+			assertTrue(e.getMessage().contains("Unable to locate one or more prerequisite"));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,15 +40,13 @@ public class TestSkillTreeManager {
 	
 	@Test
 	public void testRegisterEntry() {
-		JutsuEnum jutsu = JutsuEnum.RASENGAN;
 		skillsManager = SkillTreeManager.instance;
 		skillsManager.init();
 		if (skillsManager.getEntry(jutsu) != null) {
 			SkillTreeEntry entry = skillsManager.getEntry(JutsuEnum.RASENGAN);
-			if (entry.getJutsu() != jutsu.getJutsu()) {
-				fail("Not equal Jutsu: "
-						+ entry.getJutsu().getJutsuProps().getUnlocalizedName()
-						+ "and should be: " + jutsu.getJutsuName());
+			if (!entry.getJutsu().getJutsuProps().equals(jutsu.getJutsu().getJutsuProps())) {
+				fail("Not equal Jutsu: " + entry.getJutsu().getJutsuProps().getUnlocalizedName()
+						+ ". Should be: " + jutsu.getJutsuName());
 			}
 		} else {
 			fail("Entry empty!");
@@ -59,12 +57,13 @@ public class TestSkillTreeManager {
 	public void testLoadPrerequisites() {
 		skillsManager = SkillTreeManager.instance;
 		skillsManager.init();
-		SkillTree tree = skillsManager.getTreefromTreeMap(SkillTreeEnum.NINJUTSU);
+		skillsManager.selectTreefromTreeMap(SkillTreeEnum.NINJUTSU);
+		SkillTree tree = skillsManager.getSelectedTree();
 		// if(tree.containsKey())
 	}
 	
 	@Test
-	public void testLockAllJutsus() {
+	public void testLockAllEntries() {
 		
 	}
 	

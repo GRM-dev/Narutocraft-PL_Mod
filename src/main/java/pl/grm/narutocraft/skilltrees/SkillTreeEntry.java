@@ -9,7 +9,7 @@ import pl.grm.narutocraft.jutsu.JutsuTier;
 public class SkillTreeEntry {
 	private int					x;
 	private int					y;
-	private SkillTreeEnum			tree;
+	private SkillTreeEnum		tree;
 	private JutsuTier			tier;
 	private IJutsu				jutsu;
 	private int					points;
@@ -24,7 +24,7 @@ public class SkillTreeEntry {
 	 *            y position.
 	 * @param tree
 	 *            SkillTree type.
-	 * @param jutsu
+	 * @param iJutsu
 	 *            Jutsu of IJutsu Interface.
 	 * @param tier
 	 *            which Tier it is.
@@ -33,12 +33,12 @@ public class SkillTreeEntry {
 	 * @param prerequisites
 	 *            what entry should be unlocked before this.
 	 */
-	public SkillTreeEntry(int x, int y, SkillTreeEnum tree, IJutsu jutsu, JutsuTier tier, int points,
-			ArrayList<SkillTreeEntry> prerequisites) {
+	public SkillTreeEntry(int x, int y, SkillTreeEnum tree, IJutsu iJutsu, JutsuTier tier,
+			int points, ArrayList<SkillTreeEntry> prerequisites) {
 		this.x = x;
 		this.y = y;
 		this.tree = tree;
-		this.jutsu = jutsu;
+		this.jutsu = iJutsu;
 		this.tier = tier;
 		this.points = points;
 		convertAndSavePrerequisites(prerequisites);
