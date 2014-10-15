@@ -42,7 +42,7 @@ public class SkillTreeEntry {
 		this.tier = tier;
 		this.points = points;
 		convertAndSavePrerequisites(prerequisites);
-		convertAndSaveReqJutsu();
+		extractRequiredJutsus();
 	}
 	
 	/**
@@ -53,14 +53,20 @@ public class SkillTreeEntry {
 	 */
 	private void convertAndSavePrerequisites(ArrayList<SkillTreeEntry> prerequisites) {
 		this.prerequisites = prerequisites.toArray(new SkillTreeEntry[prerequisites.size()]);
-		
 	}
 	
-	private void convertAndSaveReqJutsu() {
-		for (SkillTreeEntry skillTreeEntry : prerequisites) {
-			IJutsu jutsuTemp = skillTreeEntry.getJutsu();
-			JutsuEnum jutsuE = JutsuEnum.getByIJutsu(jutsuTemp);
-			this.reqJutsu = jutsuE;
+	/**
+	 * Extracts Jutsus from prerequisites.
+	 */
+	private void extractRequiredJutsus() {
+		if (prerequisites.length == 0) {
+			this.reqJutsu = null;
+		} else {
+			for (SkillTreeEntry skillTreeEntry : prerequisites) {
+				IJutsu jutsuTemp = skillTreeEntry.getJutsu();
+				JutsuEnum jutsuE = JutsuEnum.getByIJutsu(jutsuTemp);
+				this.reqJutsu = jutsuE;
+			}
 		}
 	}
 	

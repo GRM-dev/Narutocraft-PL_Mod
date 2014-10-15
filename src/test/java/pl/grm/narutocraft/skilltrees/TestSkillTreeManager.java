@@ -2,6 +2,7 @@ package pl.grm.narutocraft.skilltrees;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.security.InvalidParameterException;
 
@@ -29,7 +30,8 @@ public class TestSkillTreeManager {
 			assertTrue(e.getMessage().contains("Unable to locate one or more prerequisite"));
 		}
 		catch (Exception e) {
-			// fail(e.getMessage());
+			e.printStackTrace();
+			fail(e.getMessage() + " with " + e.getStackTrace());
 		}
 	}
 	

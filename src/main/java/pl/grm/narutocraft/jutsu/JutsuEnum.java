@@ -427,9 +427,8 @@ public enum JutsuEnum {
 	private int						chakraConsumption;
 	private int						damage;
 	
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
-			SkillTree jutsuType, JutsuTier tier, long duration, long cooldown,
-			int chakraConsumption, int damage) {
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTree jutsuType,
+			JutsuTier tier, long duration, long cooldown, int chakraConsumption, int damage) {
 		this(ID, name, jutsu, jutsuType, tier);
 		this.duration = duration;
 		this.cooldown = cooldown;
@@ -437,14 +436,13 @@ public enum JutsuEnum {
 		this.setDamage(damage);
 	}
 	
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
-			SkillTree jutsuType, JutsuTier tier) {
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTree jutsuType,
+			JutsuTier tier) {
 		this(ID, name, jutsu, jutsuType);
 		this.tier = tier;
 	}
 	
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
-			SkillTree jutsuType) {
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTree jutsuType) {
 		this.jutsuID = ID;
 		this.jutsuName = name;
 		this.jutsuClass = jutsu;
@@ -467,7 +465,9 @@ public enum JutsuEnum {
 	
 	public static JutsuEnum getByIJutsu(IJutsu iJutsu) {
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
-			if (jutsu.jutsuClass.equals(iJutsu)) { return jutsu; }
+			if (jutsu != NONE) {
+				if (jutsu.jutsuClass.equals(iJutsu)) { return jutsu; }
+			}
 		}
 		return NONE;
 	}

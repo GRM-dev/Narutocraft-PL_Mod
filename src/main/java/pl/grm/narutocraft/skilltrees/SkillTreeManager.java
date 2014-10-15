@@ -36,18 +36,37 @@ public class SkillTreeManager {
 		}
 	}
 	
+	/**
+	 * Initialize all trees with entries.
+	 */
 	public void init() {
 		clearTrees();
 		registerAllEntries();
 		ConfigurationHandler.saveJutsus();
 	}
 	
+	/**
+	 * Resgisters All Entries.
+	 */
 	private void registerAllEntries() {
 		RegisterEntry(JutsuEnum.MEISAIGAKURE, 300, 45, 12);
 		RegisterEntry(JutsuEnum.RASENGAN, 200, 100, 10);
 		RegisterEntry(JutsuEnum.ODAMARASENGAN, 200, 100, 10, getEntry(JutsuEnum.RASENGAN));
 	}
 	
+	/**
+	 * Create SkillTreeEntry with specified params.
+	 * 
+	 * @param jutsuElem
+	 * @param x
+	 *            x position
+	 * @param y
+	 *            y position
+	 * @param requiredPoints
+	 *            Points required to unlock
+	 * @param prerequisites
+	 * @return SkillTreeEntry
+	 */
 	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y, int requiredPoints,
 			SkillTreeEntry... prerequisites) {
 		SkillTree tree = jutsuElem.getTree();
@@ -57,26 +76,17 @@ public class SkillTreeManager {
 		
 		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier, requiredPoints,
 				prerequisitesList);
-		this.getTreefromTreeMap(tree).put(newEntry.getJutsu().getJutsuProps().getID(),
-				newEntry);
+		this.getTreefromTreeMap(tree).put(newEntry.getJutsu().getJutsuProps().getID(), newEntry);
 		return newEntry;
 	}
 	
+	/**
+	 * @param tree
+	 * @return tree from trees of tree ;)
+	 */
 	public HashMap<Integer, SkillTreeEntry> getTreefromTreeMap(SkillTree tree) {
-		Iterator<Entry<Integer, HashMap<Integer, SkillTreeEntry>>> itTree = trees.entrySet()
-				.iterator();
-		while (itTree.hasNext()) {
-			Entry<Integer, HashMap<Integer, SkillTreeEntry>> entryT = itTree.next();
-			Iterator<Entry<Integer, SkillTreeEntry>> itEntry = entryT.getValue().entrySet()
-					.iterator();
-			while (itEntry.hasNext()) {
-				Entry<Integer, SkillTreeEntry> entryE = itEntry.next();
-				SkillTreeEntry entry = entryE.getValue();
-				if (entry.getTree() == tree) {
-					this.selectedTree = entryT.getValue();
-				}
-			}
-		}
+		int id = tree.getID();
+		selectedTree = trees.get(id);
 		return selectedTree;
 	}
 	
@@ -91,7 +101,6 @@ public class SkillTreeManager {
 			SkillTreeEntry... prerequisites) {
 		ArrayList<SkillTreeEntry> prerequisitesList = new ArrayList<SkillTreeEntry>();
 		HashMap<Integer, SkillTreeEntry> treeTemp = trees.get(tree.getID());
-		
 		if ((prerequisites != null) && (prerequisites.length > 0)) {
 			for (SkillTreeEntry prerequisite : prerequisites) {
 				if (treeTemp.containsKey(prerequisite.getJutsu().getJutsuProps().getID())) {
@@ -106,6 +115,9 @@ public class SkillTreeManager {
 		return prerequisitesList;
 	}
 	
+	/**
+	 * @return array of locked jutsus ID
+	 */
 	public int[] getLockedJutsusIDs() {
 		this.disableds = new ArrayList<Integer>();
 		Iterator<Entry<Integer, HashMap<Integer, SkillTreeEntry>>> itTree = trees.entrySet()
@@ -133,7 +145,7 @@ public class SkillTreeManager {
 	/**
 	 * Locks all jutsu in all trees.
 	 * 
-	 * @param disabledJutsus
+	 * @param disabledJutsusIDs
 	 */
 	public void lockJustThisEntries(int[] disabledJutsusIDs) {
 		unlockAllEntries();
@@ -152,6 +164,9 @@ public class SkillTreeManager {
 		}
 	}
 	
+	/**
+	 * Unlocks All Entries in all trees.
+	 */
 	public void unlockAllEntries() {
 		Iterator<Entry<Integer, HashMap<Integer, SkillTreeEntry>>> itTree = trees.entrySet()
 				.iterator();
@@ -167,7 +182,10 @@ public class SkillTreeManager {
 		}
 	}
 	
-	private void clearTrees() {
+	/**
+	 * Clears all trees.
+	 */
+	public void clearTrees() {
 		Iterator<Entry<Integer, HashMap<Integer, SkillTreeEntry>>> itTree = trees.entrySet()
 				.iterator();
 		while (itTree.hasNext()) {
