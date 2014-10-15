@@ -15,23 +15,25 @@ import cpw.mods.fml.common.FMLLog;
 
 public class SkillTreeManager {
 	/** Only one instance of this manager should be in mod. */
-	public static SkillTreeManager							instance	= new SkillTreeManager();
+	public static SkillTreeManager	instance	= new SkillTreeManager();
 	/** The map of tree lists with eachEntries. Integer=treeID */
-	private Map<Integer, HashMap<Integer, SkillTreeEntry>>	trees;
+	private Map<Integer, SkillTree>	trees;
 	/** Disabled Entries(Jutsus) */
-	private ArrayList<Integer>								disableds;
+	private ArrayList<Integer>		disableds;
 	/** Safe copy of tree to get with only read permission */
-	private HashMap<Integer, SkillTreeEntry>				safeCopy;
+	private SkillTree				safeCopy;
 	/** Selected Tree */
-	private HashMap<Integer, SkillTreeEntry>				selectedTree;
-	/** Entries of selectedTree. */
-	private HashMap<Integer, SkillTreeEntry>				treeEntries;
+	private SkillTree				selectedTree;
 	
 	private SkillTreeManager() {
-		this.trees = new HashMap<Integer, HashMap<Integer, SkillTreeEntry>>();
-		for (SkillTree skillTree : SkillTree.values()) {
-			if (skillTree.getID() != 0) {
-				trees.put(skillTree.getID(), skillTree.getTreeList());
+		if (trees == null) {
+			this.trees = new HashMap<Integer, SkillTree>();
+			for (SkillTreeEnum skillTreeConst : SkillTreeEnum.values()) {
+				int treeID = skillTreeConst.getID();
+				if (treeID != 0) {
+					SkillTree skillTree = new SkillTree(treeID);
+					trees.put(treeID, skillTree);
+				}
 			}
 		}
 	}
@@ -67,16 +69,17 @@ public class SkillTreeManager {
 	 * @param prerequisites
 	 * @return SkillTreeEntry
 	 */
-	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y, int requiredPoints,
-			SkillTreeEntry... prerequisites) {
-		SkillTree tree = jutsuElem.getTree();
+	public SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y,
+			int requiredPoints, SkillTreeEntry... prerequisites) {
+		SkillTreeEnum tree = jutsuElem.getTree();
 		JutsuTier tier = jutsuElem.getTier();
 		SkillTreeEntry newEntry;
-		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree, prerequisites);
+		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree,
+				prerequisites);
 		
-		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier, requiredPoints,
-				prerequisitesList);
-		this.getTreefromTreeMap(tree).put(newEntry.getJutsu().getJutsuProps().getID(), newEntry);
+		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier,
+				requiredPoints, prerequisitesList);
+		this.getTreefromTreeMap(tree).addEntry(newEntry);
 		return newEntry;
 	}
 	
@@ -84,7 +87,7 @@ public class SkillTreeManager {
 	 * @param tree
 	 * @return tree from trees of tree ;)
 	 */
-	public HashMap<Integer, SkillTreeEntry> getTreefromTreeMap(SkillTree tree) {
+	public SkillTree getTreefromTreeMap(SkillTreeEnum tree) {
 		int id = tree.getID();
 		selectedTree = trees.get(id);
 		return selectedTree;
@@ -97,20 +100,21 @@ public class SkillTreeManager {
 	 * @param prerequisites
 	 * @return
 	 */
-	private ArrayList<SkillTreeEntry> convertEntryPrerequisites(SkillTree tree,
+	private ArrayList<SkillTreeEntry> convertEntryPrerequisites(SkillTreeEnum tree,
 			SkillTreeEntry... prerequisites) {
 		ArrayList<SkillTreeEntry> prerequisitesList = new ArrayList<SkillTreeEntry>();
-		HashMap<Integer, SkillTreeEntry> treeTemp = trees.get(tree.getID());
+		SkillTree treeTemp = trees.get(tree.getID());
 		if ((prerequisites != null) && (prerequisites.length > 0)) {
 			for (SkillTreeEntry prerequisite : prerequisites) {
-				if (treeTemp.containsKey(prerequisite.getJutsu().getJutsuProps().getID())) {
+				if (treeTemp.contains(prerequisite)) {
 					prerequisitesList.add(prerequisite);
 					break;
 				}
 			}
-			if (prerequisitesList.size() == 0) { throw new InvalidParameterException(String.format(
-					"Unable to locate one or more prerequisite jutsu in the specified tree (%s).",
-					new Object[]{tree.toString()})); }
+			if (prerequisitesList.size() == 0) { throw new InvalidParameterException(
+					String.format(
+							"Unable to locate one or more prerequisite jutsu in the specified tree (%s).",
+							new Object[]{tree.toString()})); }
 		}
 		return prerequisitesList;
 	}
@@ -120,18 +124,15 @@ public class SkillTreeManager {
 	 */
 	public int[] getLockedJutsusIDs() {
 		this.disableds = new ArrayList<Integer>();
-		Iterator<Entry<Integer, HashMap<Integer, SkillTreeEntry>>> itTree = trees.entrySet()
-				.iterator();
+		Iterator<Entry<Integer, SkillTree>> itTree = trees.entrySet().iterator();
 		while (itTree.hasNext()) {
-			Entry<Integer, HashMap<Integer, SkillTreeEntry>> entryT = itTree.next();
-			Iterator<Entry<Integer, SkillTreeEntry>> itEntry = entryT.getValue().entrySet()
-					.iterator();
+			Entry<Integer, SkillTree> entryT = itTree.next();
+			SkillTree itEntry = entryT.getValue();
 			while (itEntry.hasNext()) {
-				Entry<Integer, SkillTreeEntry> entryE = itEntry.next();
-				SkillTreeEntry entry = entryE.getValue();
+				SkillTreeEntry entry = itEntry.nextEntry();
 				if (entry.getEntryState() == EntryStates.UNLOCKED) {
-					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
-							.getJutsu())));
+					this.disableds.add(Integer.valueOf(JutsuManager.instance
+							.getJutsuID(entry.getJutsu())));
 				}
 			}
 		}
@@ -168,15 +169,12 @@ public class SkillTreeManager {
 	 * Unlocks All Entries in all trees.
 	 */
 	public void unlockAllEntries() {
-		Iterator<Entry<Integer, HashMap<Integer, SkillTreeEntry>>> itTree = trees.entrySet()
-				.iterator();
+		Iterator<Entry<Integer, SkillTree>> itTree = trees.entrySet().iterator();
 		while (itTree.hasNext()) {
-			Entry<Integer, HashMap<Integer, SkillTreeEntry>> entryT = itTree.next();
-			Iterator<Entry<Integer, SkillTreeEntry>> itEntry = entryT.getValue().entrySet()
-					.iterator();
+			Entry<Integer, SkillTree> entryT = itTree.next();
+			SkillTree itEntry = entryT.getValue();
 			while (itEntry.hasNext()) {
-				Entry<Integer, SkillTreeEntry> entryE = itEntry.next();
-				SkillTreeEntry entry = entryE.getValue();
+				SkillTreeEntry entry = itEntry.nextEntry();
 				entry.setEntryState(EntryStates.UNLOCKED);
 			}
 		}
@@ -186,13 +184,12 @@ public class SkillTreeManager {
 	 * Clears all trees.
 	 */
 	public void clearTrees() {
-		Iterator<Entry<Integer, HashMap<Integer, SkillTreeEntry>>> itTree = trees.entrySet()
-				.iterator();
+		Iterator<Entry<Integer, SkillTree>> itTree = trees.entrySet().iterator();
 		while (itTree.hasNext()) {
-			Entry<Integer, HashMap<Integer, SkillTreeEntry>> entryT = itTree.next();
-			entryT.getValue().clear();
+			Entry<Integer, SkillTree> entryT = itTree.next();
+			SkillTree itEntry = entryT.getValue();
+			itEntry.clearTree();
 		}
-		
 	}
 	
 	private boolean isSkillLocked(SkillTreeEntry entry) {
@@ -203,10 +200,10 @@ public class SkillTreeManager {
 	
 	public SkillTreeEntry getEntry(JutsuEnum jutsu) {
 		int jutsuID = jutsu.getJutsuID();
-		SkillTree treeType = jutsu.getTree();
+		SkillTreeEnum treeType = jutsu.getTree();
 		int treeID = treeType.getID();
-		HashMap<Integer, SkillTreeEntry> treeTemp = trees.get(treeID);
-		SkillTreeEntry entry = treeTemp.get(jutsuID);
+		SkillTree treeTemp = trees.get(treeID);
+		SkillTreeEntry entry = treeTemp.getEntry(jutsuID);
 		return entry;
 	}
 	
@@ -214,23 +211,25 @@ public class SkillTreeManager {
 		int entryID = entry.getJutsu().getJutsuProps().getID();
 		int treeID = entry.getTree().getID();
 		if (trees.containsKey(treeID)) {
-			HashMap<Integer, SkillTreeEntry> tree = trees.get(treeID);
-			if (tree.containsKey(entryID)) { return tree.get(entryID); }
+			SkillTree tree = trees.get(treeID);
+			if (tree.contains(entryID)) { return tree.getEntry(entryID); }
 		}
 		return null;
 	}
 	
-	public HashMap<Integer, SkillTreeEntry> getTree(SkillTree tree) {
-		this.safeCopy = new HashMap<Integer, SkillTreeEntry>();
-		this.safeCopy.putAll(trees.get(tree.getID()));
+	public SkillTree getTree(SkillTreeEnum tree) {
+		SkillTree skillTree = trees.get(tree.getID());
+		try {
+			this.safeCopy = (SkillTree) skillTree.clone();
+		}
+		catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return this.safeCopy;
 	}
 	
-	public HashMap<Integer, SkillTreeEntry> getTreeListing() {
+	public SkillTree getTreeListing() {
 		return this.selectedTree;
-	}
-	
-	public HashMap<Integer, SkillTreeEntry> getTreeEntries() {
-		return this.treeEntries;
 	}
 }

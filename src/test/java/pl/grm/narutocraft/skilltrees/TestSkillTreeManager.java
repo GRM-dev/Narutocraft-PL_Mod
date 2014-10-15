@@ -8,6 +8,8 @@ import java.security.InvalidParameterException;
 
 import org.junit.Test;
 
+import pl.grm.narutocraft.jutsu.JutsuEnum;
+
 public class TestSkillTreeManager {
 	SkillTreeManager	skillsManager;
 	
@@ -27,7 +29,8 @@ public class TestSkillTreeManager {
 			skillsManager.init();
 		}
 		catch (InvalidParameterException e) {
-			assertTrue(e.getMessage().contains("Unable to locate one or more prerequisite"));
+			assertTrue(e.getMessage().contains(
+					"Unable to locate one or more prerequisite"));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -37,12 +40,27 @@ public class TestSkillTreeManager {
 	
 	@Test
 	public void testRegisterEntry() {
-		
+		JutsuEnum jutsu = JutsuEnum.RASENGAN;
+		skillsManager = SkillTreeManager.instance;
+		skillsManager.init();
+		if (skillsManager.getEntry(jutsu) != null) {
+			SkillTreeEntry entry = skillsManager.getEntry(JutsuEnum.RASENGAN);
+			if (entry.getJutsu() != jutsu.getJutsu()) {
+				fail("Not equal Jutsu: "
+						+ entry.getJutsu().getJutsuProps().getUnlocalizedName()
+						+ "and should be: " + jutsu.getJutsuName());
+			}
+		} else {
+			fail("Entry empty!");
+		}
 	}
 	
 	@Test
 	public void testLoadPrerequisites() {
-		
+		skillsManager = SkillTreeManager.instance;
+		skillsManager.init();
+		SkillTree tree = skillsManager.getTreefromTreeMap(SkillTreeEnum.NINJUTSU);
+		// if(tree.containsKey())
 	}
 	
 	@Test

@@ -19,7 +19,6 @@ import pl.grm.narutocraft.jutsu.iryojutsu.Dokugiri;
 import pl.grm.narutocraft.jutsu.iryojutsu.InyuShometsu;
 import pl.grm.narutocraft.jutsu.iryojutsu.Ranshinsho;
 import pl.grm.narutocraft.jutsu.iryojutsu.SaikanChushutsuNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.ChioOdamaRasengan;
 import pl.grm.narutocraft.jutsu.ninjutsu.Enmakugire;
 import pl.grm.narutocraft.jutsu.ninjutsu.FukimiHari;
 import pl.grm.narutocraft.jutsu.ninjutsu.HariJizo;
@@ -39,15 +38,14 @@ import pl.grm.narutocraft.jutsu.taijutsu.KageBuyo;
 import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
 import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
 import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
-import pl.grm.narutocraft.skilltrees.SkillTree;
+import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
-// TODO add Tiers to Jutsus.
 public enum JutsuEnum {
 	NONE(
 			5600,
 			"None",
 			null,
-			SkillTree.NONE,
+			SkillTreeEnum.NONE,
 			JutsuTier.NONE,
 			0,
 			0,
@@ -57,7 +55,7 @@ public enum JutsuEnum {
 			5601,
 			"Meisaigakure",
 			Meisaigakure.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.B,
 			120,
 			360,
@@ -67,12 +65,18 @@ public enum JutsuEnum {
 			5625,
 			"Kawarimi No Jutsu",
 			KawarimiNoJutsu.class,
-			SkillTree.NINJUTSU) ,
+			SkillTreeEnum.NINJUTSU,
+			JutsuTier.D,
+			0,
+			0,
+			0,
+			0) // TODO set right values
+	,
 	FUMANINKEN(
 			5602,
 			"FumaNinken",
 			FumaNinken.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.D,
 			20,
 			60,
@@ -82,7 +86,7 @@ public enum JutsuEnum {
 			5603,
 			"Hadan",
 			Hadan.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.A,
 			20,
 			60,
@@ -92,7 +96,7 @@ public enum JutsuEnum {
 			5604,
 			"Iaido",
 			Iaido.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.S,
 			10,
 			60,
@@ -102,7 +106,7 @@ public enum JutsuEnum {
 			5605,
 			"Issen",
 			Issen.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.B,
 			0,
 			0,
@@ -112,7 +116,7 @@ public enum JutsuEnum {
 			5606,
 			"Mikazuki Kiri",
 			MikazukiKiri.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.C,
 			30,
 			50,
@@ -122,7 +126,7 @@ public enum JutsuEnum {
 			5607,
 			"Omotegiri",
 			Omotegiri.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.D,
 			20,
 			60,
@@ -132,7 +136,7 @@ public enum JutsuEnum {
 			5608,
 			"Samurai Sabre Technique",
 			SamuraiSabreTechnique.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.C,
 			0,
 			120,
@@ -142,7 +146,7 @@ public enum JutsuEnum {
 			5609,
 			"Yosakugiri",
 			Yosakugiri.class,
-			SkillTree.BUKIJUTSU,
+			SkillTreeEnum.BUKIJUTSU,
 			JutsuTier.C,
 			0,
 			60,
@@ -152,7 +156,7 @@ public enum JutsuEnum {
 			5610,
 			"Byakugo",
 			Byakugo.class,
-			SkillTree.IRYOJUTSU,
+			SkillTreeEnum.IRYOJUTSU,
 			JutsuTier.S,
 			0,
 			600,
@@ -162,7 +166,7 @@ public enum JutsuEnum {
 			5611,
 			"Jikukan Kekkai",
 			JikukanKekkai.class,
-			SkillTree.FUUINJUTSU,
+			SkillTreeEnum.FUUINJUTSU,
 			JutsuTier.A,
 			600,
 			86400,
@@ -172,7 +176,7 @@ public enum JutsuEnum {
 			5612,
 			"Haykkaroran",
 			Haykkaroran.class,
-			SkillTree.GENJUTSU,
+			SkillTreeEnum.GENJUTSU,
 			JutsuTier.B,
 			0,
 			60,
@@ -182,7 +186,7 @@ public enum JutsuEnum {
 			5613,
 			"Kokuangyo No Jutsu",
 			KokuangyoNoJutsu.class,
-			SkillTree.FUUINJUTSU,
+			SkillTreeEnum.FUUINJUTSU,
 			JutsuTier.D,
 			30,
 			30,
@@ -192,7 +196,7 @@ public enum JutsuEnum {
 			5614,
 			"Koukongarasu",
 			Koukongarasu.class,
-			SkillTree.GENJUTSU,
+			SkillTreeEnum.GENJUTSU,
 			JutsuTier.B,
 			0,
 			1800,
@@ -202,7 +206,7 @@ public enum JutsuEnum {
 			5615,
 			"Raigen Raikochu",
 			RaigenRaikochu.class,
-			SkillTree.GENJUTSU,
+			SkillTreeEnum.GENJUTSU,
 			JutsuTier.C,
 			0,
 			50,
@@ -212,7 +216,7 @@ public enum JutsuEnum {
 			5616,
 			"Chakura No Mesu",
 			ChakuraNoMesu.class,
-			SkillTree.IRYOJUTSU,
+			SkillTreeEnum.IRYOJUTSU,
 			JutsuTier.C,
 			15,
 			180,
@@ -222,7 +226,7 @@ public enum JutsuEnum {
 			5617,
 			"Dokugiri",
 			Dokugiri.class,
-			SkillTree.IRYOJUTSU,
+			SkillTreeEnum.IRYOJUTSU,
 			JutsuTier.C,
 			0,
 			240,
@@ -232,7 +236,7 @@ public enum JutsuEnum {
 			5618,
 			"InyuShometsu",
 			InyuShometsu.class,
-			SkillTree.IRYOJUTSU,
+			SkillTreeEnum.IRYOJUTSU,
 			JutsuTier.B,
 			0,
 			300,
@@ -242,7 +246,7 @@ public enum JutsuEnum {
 			5619,
 			"Ranshinsho",
 			Ranshinsho.class,
-			SkillTree.IRYOJUTSU,
+			SkillTreeEnum.IRYOJUTSU,
 			JutsuTier.B,
 			30,
 			300,
@@ -252,7 +256,7 @@ public enum JutsuEnum {
 			5620,
 			"Saikan Chushutsu No Jutsu",
 			SaikanChushutsuNoJutsu.class,
-			SkillTree.IRYOJUTSU,
+			SkillTreeEnum.IRYOJUTSU,
 			JutsuTier.D,
 			0,
 			120,
@@ -262,7 +266,7 @@ public enum JutsuEnum {
 			5621,
 			"Enmakugire",
 			Enmakugire.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.C,
 			15,
 			60,
@@ -272,7 +276,7 @@ public enum JutsuEnum {
 			5622,
 			"FukimiHari",
 			FukimiHari.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.C,
 			0,
 			5,
@@ -282,7 +286,7 @@ public enum JutsuEnum {
 			5623,
 			"HariJizo",
 			HariJizo.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.B,
 			30,
 			180,
@@ -292,7 +296,7 @@ public enum JutsuEnum {
 			5624,
 			"Kai",
 			Kai.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.D,
 			0,
 			30,
@@ -302,7 +306,7 @@ public enum JutsuEnum {
 			5626,
 			"Kuchiyose Rashomon",
 			KuchiyoseRashomon.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.A,
 			60,
 			600,
@@ -312,7 +316,7 @@ public enum JutsuEnum {
 			5627,
 			"Nan Kaizou",
 			NanKaizou.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.C,
 			0,
 			60,
@@ -322,45 +326,66 @@ public enum JutsuEnum {
 			5628,
 			"Nawanuke No Jutsu",
 			NawanukeNoJutsu.class,
-			SkillTree.NINJUTSU,
+			SkillTreeEnum.NINJUTSU,
 			JutsuTier.D,
 			0,
 			0,
-			0,
+			2,
 			0) ,
 	RASENGAN(
 			5629,
 			"Rasengan",
 			Rasengan.class,
-			SkillTree.NINJUTSU,
-			JutsuTier.B) ,
+			SkillTreeEnum.NINJUTSU,
+			JutsuTier.B,
+			0,
+			0,
+			0,
+			0) // TODO set right values
+	,
 	ODAMARASENGAN(
 			5630,
 			"OdamaRasengan",
 			OdamaRasengan.class,
-			SkillTree.NINJUTSU,
-			JutsuTier.A) ,
-	CHIOODAMARASENGAN(
-			5631,
-			"ChioOdama Rasengan",
-			ChioOdamaRasengan.class,
-			SkillTree.NINJUTSU) ,
+			SkillTreeEnum.NINJUTSU,
+			JutsuTier.A,
+			0,
+			0,
+			0,
+			0) // TODO set right values
+	,
+	// CHIOODAMARASENGAN(
+	// 5631,
+	// "ChioOdama Rasengan",
+	// ChioOdamaRasengan.class,
+	// SkillTreeEnum.NINJUTSU,JutsuTier.) ,
 	SHARINGAN(
 			5632,
 			"Sharingan",
 			Sharingan.class,
-			SkillTree.NINJUTSU) ,
+			SkillTreeEnum.NINJUTSU,
+			JutsuTier.C,
+			0,
+			0,
+			0,
+			0) // TODO set right values
+	,
 	SHUNSHINNOJUTSU(
 			5633,
 			"Shunshin No Jutsu",
 			ShunshinNoJutsu.class,
-			SkillTree.NINJUTSU,
-			JutsuTier.D) ,
+			SkillTreeEnum.NINJUTSU,
+			JutsuTier.D,
+			0,
+			0,
+			0,
+			0) // TODO set right values
+	,
 	ASAKUJAKU(
 			5634,
 			"Asa Kujaku",
 			AsaKujaku.class,
-			SkillTree.TAIJUTSU,
+			SkillTreeEnum.TAIJUTSU,
 			JutsuTier.A,
 			0,
 			120,
@@ -370,7 +395,7 @@ public enum JutsuEnum {
 			5635,
 			"Hirudora",
 			Hirudora.class,
-			SkillTree.TAIJUTSU,
+			SkillTreeEnum.TAIJUTSU,
 			JutsuTier.S,
 			0,
 			86400,
@@ -380,7 +405,7 @@ public enum JutsuEnum {
 			5636,
 			"Kage Buyo",
 			KageBuyo.class,
-			SkillTree.TAIJUTSU,
+			SkillTreeEnum.TAIJUTSU,
 			JutsuTier.D,
 			0,
 			20,
@@ -390,7 +415,7 @@ public enum JutsuEnum {
 			5637,
 			"Kosa Ho",
 			KosaHo.class,
-			SkillTree.TAIJUTSU,
+			SkillTreeEnum.TAIJUTSU,
 			JutsuTier.C,
 			0,
 			1,
@@ -400,7 +425,7 @@ public enum JutsuEnum {
 			5638,
 			"Omote Renge",
 			OmoteRenge.class,
-			SkillTree.TAIJUTSU,
+			SkillTreeEnum.TAIJUTSU,
 			JutsuTier.B,
 			0,
 			50,
@@ -410,7 +435,7 @@ public enum JutsuEnum {
 			5639,
 			"Ura Renge",
 			UraRenge.class,
-			SkillTree.TAIJUTSU,
+			SkillTreeEnum.TAIJUTSU,
 			JutsuTier.A,
 			0,
 			86400,
@@ -418,37 +443,44 @@ public enum JutsuEnum {
 			50);
 	
 	private int						jutsuID;
-	private SkillTree				jutsuTree;
 	private String					jutsuName;
 	private Class<? extends Jutsu>	jutsuClass;
+	private SkillTreeEnum			jutsuTree;
 	private JutsuTier				tier;
 	private long					duration;
 	private long					cooldown;
 	private int						chakraConsumption;
 	private int						damage;
 	
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTree jutsuType,
-			JutsuTier tier, long duration, long cooldown, int chakraConsumption, int damage) {
-		this(ID, name, jutsu, jutsuType, tier);
+	/**
+	 * @param ID
+	 * @param name
+	 * @param jutsu
+	 * @param jutsuType
+	 * @param tier
+	 * @param duration
+	 * @param cooldown
+	 * @param chakraConsumption
+	 * @param damage
+	 */
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
+			SkillTreeEnum jutsuType, JutsuTier tier, long duration, long cooldown,
+			int chakraConsumption, int damage) {
 		this.duration = duration;
 		this.cooldown = cooldown;
 		this.chakraConsumption = chakraConsumption;
-		this.setDamage(damage);
-	}
-	
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTree jutsuType,
-			JutsuTier tier) {
-		this(ID, name, jutsu, jutsuType);
+		this.damage = damage;
 		this.tier = tier;
-	}
-	
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTree jutsuType) {
 		this.jutsuID = ID;
 		this.jutsuName = name;
 		this.jutsuClass = jutsu;
 		this.jutsuTree = jutsuType;
 	}
 	
+	/**
+	 * @param ID
+	 * @return JutsuEnum containing ID
+	 */
 	public static JutsuEnum getByID(int ID) {
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
 			if (jutsu.jutsuID == ID) { return jutsu; }
@@ -456,6 +488,10 @@ public enum JutsuEnum {
 		return NONE;
 	}
 	
+	/**
+	 * @param name
+	 * @return JutsuEnum containg name
+	 */
 	public static JutsuEnum getByName(String name) {
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
 			if (jutsu.jutsuName.equals(name)) { return jutsu; }
@@ -463,6 +499,12 @@ public enum JutsuEnum {
 		return NONE;
 	}
 	
+	/**
+	 * Returns iJustsu containg this Enum Constant
+	 * 
+	 * @param iJutsu
+	 * @return JutsuEnum containing specified IJutsu
+	 */
 	public static JutsuEnum getByIJutsu(IJutsu iJutsu) {
 		for (JutsuEnum jutsu : JutsuEnum.values()) {
 			if (jutsu != NONE) {
@@ -476,7 +518,7 @@ public enum JutsuEnum {
 		return this.jutsuID;
 	}
 	
-	public SkillTree getTree() {
+	public SkillTreeEnum getTree() {
 		return this.jutsuTree;
 	}
 	
@@ -500,9 +542,14 @@ public enum JutsuEnum {
 		return this.cooldown;
 	}
 	
+	/**
+	 * Create and return Instance of class from enum constants
+	 *
+	 * @return Jutsu
+	 */
 	public Jutsu getJutsu() {
 		Jutsu jutsu = null;
-		try {
+		try {                 // TODO add exception handling
 			jutsu = this.jutsuClass.newInstance();
 		}
 		catch (InstantiationException e) {
@@ -511,7 +558,6 @@ public enum JutsuEnum {
 		catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
 		return jutsu;
 	}
 	
@@ -525,9 +571,5 @@ public enum JutsuEnum {
 	
 	public int getDamage() {
 		return damage;
-	}
-	
-	public void setDamage(int damage) {
-		this.damage = damage;
 	}
 }

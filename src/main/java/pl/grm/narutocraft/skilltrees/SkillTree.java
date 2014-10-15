@@ -1,60 +1,63 @@
 package pl.grm.narutocraft.skilltrees;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public enum SkillTree {
-	NONE(
-			0) ,
-	MAIN(
-			1) ,
-	TRAINING(
-			2) ,
-	PLAYERATTRIBUTES(
-			3) ,
-	JUTSU(
-			4) ,
-	CLANJUTSU(
-			5) ,
-	NINJUTSU(
-			6) ,
-	GENJUTSU(
-			7) ,
-	FUUINJUTSU(
-			8) ,
-	TAIJUTSU(
-			9) ,
-	BUKIJUTSU(
-			10) ,
-	IRYOJUTSU(
-			11);
+public class SkillTree implements Cloneable {
+	/** Entries of Tree. */
+	private Map<Integer, SkillTreeEntry>	entryMap;
+	private int								treeID;
 	
-	private int										treeID;
-	private final HashMap<Integer, SkillTreeEntry>	treeEntryList;
-	
-	private SkillTree(int ID) {
-		this.treeID = ID;
-		treeEntryList = new HashMap<Integer, SkillTreeEntry>();
-	}
-	
-	public static SkillTree getByID(int ID) {
-		for (SkillTree sT : SkillTree.values()) {
-			if (sT.treeID == ID) { return sT; }
+	public SkillTree(int treeID) {
+		this.treeID = treeID;
+		if (entryMap == null) {
+			entryMap = new HashMap<Integer, SkillTreeEntry>();
 		}
-		return NONE;
 	}
 	
-	public static SkillTree getByTree(HashMap<Integer, SkillTreeEntry> treeEntries) {
-		for (SkillTree sT : SkillTree.values()) {
-			if (sT.treeEntryList == treeEntries) { return sT; }
+	public void addEntry(SkillTreeEntry entry) {
+		int ID = entry.getJutsu().getJutsuProps().getID();
+		if (!entryMap.containsKey(ID)) {
+			entryMap.put(ID, entry);
 		}
-		return NONE;
 	}
 	
-	public int getID() {
-		return this.treeID;
+	public int getTreeID() {
+		return treeID;
 	}
 	
-	public HashMap<Integer, SkillTreeEntry> getTreeList() {
-		return treeEntryList;
+	public boolean contains(SkillTreeEntry prerequisite) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public SkillTreeEntry nextEntry() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public void clearTree() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public SkillTreeEntry getEntry(int jutsuID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public boolean contains(int entryID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }
