@@ -68,8 +68,8 @@ public enum JutsuEnum {
 			SkillTreeEnum.NINJUTSU,
 			JutsuTier.D,
 			0,
-			0,
-			0,
+			60,
+			10,
 			0) // TODO set right values
 	,
 	FUMANINKEN(
@@ -338,10 +338,10 @@ public enum JutsuEnum {
 			Rasengan.class,
 			SkillTreeEnum.NINJUTSU,
 			JutsuTier.B,
-			0,
-			0,
-			0,
-			0) // TODO set right values
+			2,
+			10,
+			40,
+			25)    // TODO set right values
 	,
 	ODAMARASENGAN(
 			5630,
@@ -349,16 +349,17 @@ public enum JutsuEnum {
 			OdamaRasengan.class,
 			SkillTreeEnum.NINJUTSU,
 			JutsuTier.A,
-			0,
-			0,
-			0,
-			0) // TODO set right values
+			5,
+			30,
+			65,
+			35) // TODO set right values
 	,
 	// CHIOODAMARASENGAN(
 	// 5631,
-	// "ChioOdama Rasengan",
+	// "ChioOdamaRasengan",
 	// ChioOdamaRasengan.class,
-	// SkillTreeEnum.NINJUTSU,JutsuTier.) ,
+	// SkillTreeEnum.NINJUTSU,
+	// JutsuTier.A) ,
 	SHARINGAN(
 			5632,
 			"Sharingan",

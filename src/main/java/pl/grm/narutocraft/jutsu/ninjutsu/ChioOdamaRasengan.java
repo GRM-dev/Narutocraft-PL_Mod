@@ -11,7 +11,7 @@ import pl.grm.narutocraft.jutsu.JutsuEnum;
 public class ChioOdamaRasengan extends Jutsu implements IJutsu {
 	
 	public ChioOdamaRasengan() {
-		super(JutsuEnum.CHIOODAMARASENGAN);
+		super(JutsuEnum.NONE);
 	}
 	
 	@Override
