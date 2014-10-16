@@ -22,28 +22,19 @@ public class SkillTree implements Cloneable {
 		}
 	}
 	
-	public int getTreeID() {
-		return treeID;
-	}
-	
-	public boolean contains(SkillTreeEntry prerequisite) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public SkillTreeEntry nextEntry() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public void clearTree() {
-		// TODO Auto-generated method stub
-		
+		entryMap.clear();
+	}
+	
+	public boolean contains(SkillTreeEntry entry) {
+		int id = entry.getJutsu().getJutsuProps().getID();
+		if (entryMap.containsKey(id)) { return true; }
+		return false;
+	}
+	
+	public boolean contains(int entryID) {
+		if (entryMap.containsKey(entryID)) { return true; }
+		return false;
 	}
 	
 	public SkillTreeEntry getEntry(int jutsuID) {
@@ -54,9 +45,12 @@ public class SkillTree implements Cloneable {
 		return null;
 	}
 	
-	public boolean contains(int entryID) {
-		// TODO Auto-generated method stub
-		return false;
+	public int getTreeID() {
+		return treeID;
+	}
+
+	public Map<Integer, SkillTreeEntry> getEntryMap() {
+		return entryMap;
 	}
 	
 	@Override

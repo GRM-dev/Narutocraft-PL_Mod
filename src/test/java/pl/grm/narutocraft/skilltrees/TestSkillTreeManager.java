@@ -60,25 +60,26 @@ public class TestSkillTreeManager {
 		skillsManager.selectTreefromTreeMap(SkillTreeEnum.NINJUTSU);
 		SkillTree tree = skillsManager.getSelectedTree();
 		// if(tree.containsKey())
+		// TODO test method impl
 	}
 	
 	@Test
 	public void testLockAllEntries() {
-		
+		// TODO test method impl
 	}
 	
 	@Test
 	public void testGetterLockedJutsusID() {
-		
+		// TODO test method impl
 	}
 	
 	@Test
 	public void testGetterJutsuTreeEntry() {
-		
+		// TODO test method impl
 	}
 	
 	@Test
 	public void testTreeGetter() {
-		
+		// TODO test method impl
 	}
 }

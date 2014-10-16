@@ -1,6 +1,7 @@
 pl.grm.narutocraft
 pl.grm.narutocraft.blocks
 pl.grm.narutocraft.commands
+pl.grm.narutocraft.commands.util
 pl.grm.narutocraft.creativetabs
 pl.grm.narutocraft.gui
 pl.grm.narutocraft.gui.chakrabar

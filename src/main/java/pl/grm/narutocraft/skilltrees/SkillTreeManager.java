@@ -122,12 +122,15 @@ public class SkillTreeManager {
 	 */
 	public int[] getLockedJutsusIDs() {
 		this.disableds = new ArrayList<Integer>();
-		Iterator<Entry<Integer, SkillTree>> itTree = trees.entrySet().iterator();
-		while (itTree.hasNext()) {
-			Entry<Integer, SkillTree> entryT = itTree.next();
-			SkillTree itEntry = entryT.getValue();
-			while (itEntry.hasNext()) {
-				SkillTreeEntry entry = itEntry.nextEntry();
+		Iterator<Entry<Integer, SkillTree>> itTrees = trees.entrySet().iterator();
+		while (itTrees.hasNext()) {
+			Entry<Integer, SkillTree> entryT = itTrees.next();
+			SkillTree tree = entryT.getValue();
+			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
+					.iterator();
+			while (itTree.hasNext()) {
+				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
+				SkillTreeEntry entry = entryE.getValue();
 				if (entry.getEntryState() == EntryStates.UNLOCKED) {
 					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
 							.getJutsu())));
@@ -167,12 +170,15 @@ public class SkillTreeManager {
 	 * Unlocks All Entries in all trees.
 	 */
 	public void unlockAllEntries() {
-		Iterator<Entry<Integer, SkillTree>> itTree = trees.entrySet().iterator();
-		while (itTree.hasNext()) {
-			Entry<Integer, SkillTree> entryT = itTree.next();
-			SkillTree itEntry = entryT.getValue();
-			while (itEntry.hasNext()) {
-				SkillTreeEntry entry = itEntry.nextEntry();
+		Iterator<Entry<Integer, SkillTree>> itTrees = trees.entrySet().iterator();
+		while (itTrees.hasNext()) {
+			Entry<Integer, SkillTree> entryT = itTrees.next();
+			SkillTree tree = entryT.getValue();
+			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
+					.iterator();
+			while (itTree.hasNext()) {
+				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
+				SkillTreeEntry entry = entryE.getValue();
 				entry.setEntryState(EntryStates.UNLOCKED);
 			}
 		}
