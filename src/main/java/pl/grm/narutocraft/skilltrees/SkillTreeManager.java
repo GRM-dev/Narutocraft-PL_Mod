@@ -10,9 +10,6 @@ import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
-
-import com.sun.media.jfxmedia.logging.Logger;
-
 import cpw.mods.fml.common.FMLLog;
 
 /**
@@ -74,15 +71,14 @@ public class SkillTreeManager {
 	 * @param prerequisites
 	 * @return SkillTreeEntry
 	 */
-	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y,
-			int requiredPoints, SkillTreeEntry... prerequisites) {
+	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y, int requiredPoints,
+			SkillTreeEntry... prerequisites) {
 		SkillTreeEnum tree = jutsuElem.getTree();
 		JutsuTier tier = jutsuElem.getTier();
 		SkillTreeEntry newEntry;
-		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree,
-				prerequisites);
-		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier,
-				requiredPoints, prerequisitesList);
+		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree, prerequisites);
+		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier, requiredPoints,
+				prerequisitesList);
 		selectTreefromTreeMap(tree);
 		this.selectedTree.addEntry(newEntry);
 		return newEntry;
@@ -133,14 +129,14 @@ public class SkillTreeManager {
 		while (itTrees.hasNext()) {
 			Entry<Integer, SkillTree> entryT = itTrees.next();
 			SkillTree tree = entryT.getValue();
-			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap()
-					.entrySet().iterator();
+			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
+					.iterator();
 			while (itTree.hasNext()) {
 				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
 				SkillTreeEntry entry = entryE.getValue();
 				if (entry.getEntryState() == EntryStates.UNLOCKED) {
-					this.disableds.add(Integer.valueOf(JutsuManager.instance
-							.getJutsuID(entry.getJutsu())));
+					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
+							.getJutsu())));
 				}
 			}
 		}
@@ -180,8 +176,8 @@ public class SkillTreeManager {
 		while (itTrees.hasNext()) {
 			Entry<Integer, SkillTree> entryT = itTrees.next();
 			SkillTree tree = entryT.getValue();
-			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap()
-					.entrySet().iterator();
+			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
+					.iterator();
 			while (itTree.hasNext()) {
 				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
 				SkillTreeEntry entry = entryE.getValue();
@@ -255,7 +251,7 @@ public class SkillTreeManager {
 			this.safeCopy = (SkillTree) skillTree.clone();
 		}
 		catch (CloneNotSupportedException e) {
-			Logger.logMsg(1, "Error with cloning skillTree");
+			FMLLog.warning("Error with cloning skillTree");
 			e.printStackTrace();
 		}
 		return this.safeCopy;
