@@ -10,8 +10,14 @@ import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
+
+import com.sun.media.jfxmedia.logging.Logger;
+
 import cpw.mods.fml.common.FMLLog;
 
+/**
+ * Manager of Jutsu SkillTrees
+ */
 public class SkillTreeManager {
 	/** Only one instance of this manager should be in mod. */
 	public static SkillTreeManager	instance	= new SkillTreeManager();
@@ -47,7 +53,7 @@ public class SkillTreeManager {
 	}
 	
 	/**
-	 * Resgisters All Entries.
+	 * Registers All Entries.
 	 */
 	private void registerAllEntries() {
 		RegisterEntry(JutsuEnum.MEISAIGAKURE, 300, 45, 12);
@@ -68,14 +74,15 @@ public class SkillTreeManager {
 	 * @param prerequisites
 	 * @return SkillTreeEntry
 	 */
-	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y, int requiredPoints,
-			SkillTreeEntry... prerequisites) {
+	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y,
+			int requiredPoints, SkillTreeEntry... prerequisites) {
 		SkillTreeEnum tree = jutsuElem.getTree();
 		JutsuTier tier = jutsuElem.getTier();
 		SkillTreeEntry newEntry;
-		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree, prerequisites);
-		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier, requiredPoints,
-				prerequisitesList);
+		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree,
+				prerequisites);
+		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier,
+				requiredPoints, prerequisitesList);
 		selectTreefromTreeMap(tree);
 		this.selectedTree.addEntry(newEntry);
 		return newEntry;
@@ -126,22 +133,22 @@ public class SkillTreeManager {
 		while (itTrees.hasNext()) {
 			Entry<Integer, SkillTree> entryT = itTrees.next();
 			SkillTree tree = entryT.getValue();
-			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
-					.iterator();
+			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap()
+					.entrySet().iterator();
 			while (itTree.hasNext()) {
 				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
 				SkillTreeEntry entry = entryE.getValue();
 				if (entry.getEntryState() == EntryStates.UNLOCKED) {
-					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
-							.getJutsu())));
+					this.disableds.add(Integer.valueOf(JutsuManager.instance
+							.getJutsuID(entry.getJutsu())));
 				}
 			}
 		}
-		int[] toReturn = new int[this.disableds.size()];
+		int[] disabledsAmount = new int[this.disableds.size()];
 		for (int i = 0; i < this.disableds.size(); i++) {
-			toReturn[i] = this.disableds.get(i).intValue();
+			disabledsAmount[i] = this.disableds.get(i).intValue();
 		}
-		return toReturn;
+		return disabledsAmount;
 	}
 	
 	/**
@@ -149,11 +156,10 @@ public class SkillTreeManager {
 	 * 
 	 * @param disabledJutsusIDs
 	 */
-	public void lockJustThisEntries(int[] disabledJutsusIDs) {
+	public void lockEntries(int[] disabledJutsusIDs) {
 		unlockAllEntries();
-		
 		for (int id : disabledJutsusIDs) {
-			SkillTreeEntry entry = getEntryInTree(JutsuManager.instance.getJutsu(id));
+			SkillTreeEntry entry = getEntry(JutsuManager.instance.getJutsu(id));
 			if (entry != null) {
 				entry.setEntryState(EntryStates.LOCKED);
 				FMLLog.info(
@@ -161,7 +167,7 @@ public class SkillTreeManager {
 						new Object[]{JutsuManager.instance.getJutsu(entry.getJutsu()
 								.getJutsuProps().getID())});
 			} else {
-				FMLLog.warning("", new Object[0]);
+				FMLLog.warning("Entry read problem. Entry exists?", new Object[0]);
 			}
 		}
 	}
@@ -174,8 +180,8 @@ public class SkillTreeManager {
 		while (itTrees.hasNext()) {
 			Entry<Integer, SkillTree> entryT = itTrees.next();
 			SkillTree tree = entryT.getValue();
-			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
-					.iterator();
+			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap()
+					.entrySet().iterator();
 			while (itTree.hasNext()) {
 				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
 				SkillTreeEntry entry = entryE.getValue();
@@ -196,22 +202,38 @@ public class SkillTreeManager {
 		}
 	}
 	
-	private boolean isSkillLocked(SkillTreeEntry entry) {
-		SkillTreeEntry treeT = getEntryInTree(entry);
-		if (treeT == null) { return false; }
-		return treeT.getEntryState() == EntryStates.UNLOCKED;
+	/**
+	 * @param entryPar
+	 * @return
+	 */
+	public boolean isEntryLocked(SkillTreeEntry entryPar) {
+		SkillTreeEntry entry = getEntry(entryPar);
+		if (entry == null) { return false; }
+		return entry.getEntryState() == EntryStates.UNLOCKED;
 	}
 	
+	/**
+	 * Returns reference to entry in tree
+	 * 
+	 * @param jutsu
+	 * @return Entry from tree
+	 */
 	public SkillTreeEntry getEntry(JutsuEnum jutsu) {
 		int jutsuID = jutsu.getJutsuID();
 		SkillTreeEnum treeType = jutsu.getTree();
 		int treeID = treeType.getID();
-		SkillTree treeTemp = trees.get(treeID);
-		SkillTreeEntry entry = treeTemp.getEntry(jutsuID);
+		SkillTree tree = trees.get(treeID);
+		SkillTreeEntry entry = tree.getEntry(jutsuID);
 		return entry;
 	}
 	
-	public SkillTreeEntry getEntryInTree(SkillTreeEntry entry) {
+	/**
+	 * Returns reference to entry in tree
+	 * 
+	 * @param entry
+	 * @return Entry from tree
+	 */
+	public SkillTreeEntry getEntry(SkillTreeEntry entry) {
 		int entryID = entry.getJutsu().getJutsuProps().getID();
 		int treeID = entry.getTree().getID();
 		if (trees.containsKey(treeID)) {
@@ -221,18 +243,27 @@ public class SkillTreeManager {
 		return null;
 	}
 	
+	/**
+	 * Gets tree reference from Tree Listing
+	 * 
+	 * @param tree
+	 * @return
+	 */
 	public SkillTree getTree(SkillTreeEnum tree) {
 		SkillTree skillTree = trees.get(tree.getID());
 		try {
 			this.safeCopy = (SkillTree) skillTree.clone();
 		}
 		catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
+			Logger.logMsg(1, "Error with cloning skillTree");
 			e.printStackTrace();
 		}
 		return this.safeCopy;
 	}
 	
+	/**
+	 * @return selected SkillTree
+	 */
 	public SkillTree getSelectedTree() {
 		return this.selectedTree;
 	}
