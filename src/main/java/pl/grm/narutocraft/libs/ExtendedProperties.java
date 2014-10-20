@@ -20,26 +20,23 @@ import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
-	public final static String			EXT_PROP_NAME		= "NCPLExtPlayer";
+	public final static String			EXT_PROP_NAME	= "NCPLExtPlayer";
 	private final EntityPlayer			player;
-	public final JutsuInv				inventory			= new JutsuInv();
-	public JutsuManager					jManager			= new JutsuManager();
-	public PlayerSkillsAtrributes		psa					= new PlayerSkillsAtrributes();
+	public final JutsuInv				inventory		= new JutsuInv();
+	private JutsuManager				jManager		= JutsuManager.instance;
+	public PlayerSkillsAtrributes		psa				= new PlayerSkillsAtrributes();
 	private int							maxChakra, maxChakraCap = 500, maxChakraBase = 50;
 	private int							AuraIndex;
 	private int							AuraBehaviour;
 	private float						AuraScale;
 	private float						AuraAlpha;
-	private boolean						AuraColorRandomize	= true;
-	private boolean						AuraColorDefault	= true;
 	private int							AuraColor;
 	private int							AuraQuantity;
 	private float						AuraSpeed;
-	public float						TK_Distance			= 8.0F;
-	public static final int				CHAKRA_WATCHER		= 20;
-	public static List<int[]>			activeJutsus		= new ArrayList<int[]>();
+	private static final int			CHAKRA_WATCHER	= 20;
+	public static List<int[]>			activeJutsus	= new ArrayList<int[]>();
 	public static Map<Integer, IJutsu>	jutsuList;
-	public boolean						ninjaRun			= false;
+	public boolean						ninjaRun		= false;
 	
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
@@ -96,8 +93,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		writer.add(this.AuraBehaviour);
 		writer.add(this.AuraScale);
 		writer.add(this.AuraAlpha);
-		writer.add(this.AuraColorRandomize);
-		writer.add(this.AuraColorDefault);
 		writer.add(this.AuraColor);
 		writer.add(this.AuraQuantity);
 		writer.add(this.AuraSpeed);
@@ -217,8 +212,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		this.AuraBehaviour = behaviour;
 		this.AuraScale = scale;
 		this.AuraAlpha = alpha;
-		this.AuraColorRandomize = randomColor;
-		this.AuraColorDefault = defaultColor;
 		this.AuraColor = color;
 		this.AuraQuantity = quantity;
 		this.AuraSpeed = speed;

@@ -19,9 +19,7 @@ public class ContainerNull extends Container {
 	}
 	
 	@Override
-	public void putStackInSlot(int par1, ItemStack par2ItemStack) {
-		
-	}
+	public void putStackInSlot(int par1, ItemStack par2ItemStack) {}
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {

@@ -62,10 +62,6 @@ public class PacketProcessorServer {
 				case 27 :
 					handleSyncJutsuKnowledge(remaining, player);
 					break;
-				case 39 :
-					ExtendedProperties.For(player).TK_Distance = new DataReader(remaining)
-							.getFloat();
-					break;
 				case 16 :
 					handleExpropOperation(remaining, player);
 			}
@@ -135,8 +131,7 @@ public class PacketProcessorServer {
 		writer.add(entity.getEntityId());
 		writer.add(expropData);
 		
-		NetHandler.INSTANCE
-				.sendPacketToClientPlayer(player, (byte) 31, writer.generate());
+		NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 31, writer.generate());
 	}
 	
 	private void handleSpellBookChangeActiveSlot(byte[] data, EntityPlayerMP player) {
@@ -170,8 +165,8 @@ public class PacketProcessorServer {
 		int quantity = rdr.getInt();
 		float speed = rdr.getFloat();
 		
-		ExtendedProperties.For(player).updateAuraData(index, behaviour, scale, alpha,
-				randomColor, defaultColor, color, quantity, speed);
+		ExtendedProperties.For(player).updateAuraData(index, behaviour, scale, alpha, randomColor,
+				defaultColor, color, quantity, speed);
 	}
 	
 	private void handleSyncJutsuKnowledge(byte[] data, EntityPlayerMP player) {

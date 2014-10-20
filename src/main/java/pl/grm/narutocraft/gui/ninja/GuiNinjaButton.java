@@ -11,6 +11,9 @@ import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.libs.References;
 
+/**
+ * Button to mod GUIs
+ */
 public class GuiNinjaButton extends GuiButton {
 	private IIcon	icon;
 	private String	type;
@@ -29,7 +32,8 @@ public class GuiNinjaButton extends GuiButton {
 		this.height = 7;
 	}
 	
-	// TODO I'd prefer this to use Icons, which it does. But as of 19/09/2014 Jutsu are not giving up their Icons.
+	// TODO I'd prefer this to use Icons, which it does. But as of 19/09/2014
+	// Jutsu are not giving up their Icons.
 	@Override
 	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_) {
 		if (this.visible) {
@@ -46,12 +50,12 @@ public class GuiNinjaButton extends GuiButton {
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			if (this.type != null) {
 				if (this.type.equals("plus")) {
-					this.drawTexturedModalRect(this.xPosition, this.yPosition, k == 1 ? 0
-							: 7, 42, 7, 7);
+					this.drawTexturedModalRect(this.xPosition, this.yPosition, k == 1 ? 0 : 7, 42,
+							7, 7);
 				}
 			} else {
-				this.drawTexturedModalRect(this.xPosition, this.yPosition, k == 1 ? 0
-						: 20, 22, 20, 20);
+				this.drawTexturedModalRect(this.xPosition, this.yPosition, k == 1 ? 0 : 20, 22, 20,
+						20);
 				if (this.icon != null) {
 					TextureManager manager = Minecraft.getMinecraft().renderEngine;
 					manager.bindTexture(manager.getResourceLocation(1));

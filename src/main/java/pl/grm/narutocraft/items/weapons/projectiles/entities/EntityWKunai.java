@@ -123,8 +123,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 		this.motionZ = MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI)
 				* MathHelper.cos((this.rotationPitch / 180.0F) * (float) Math.PI);
 		this.motionY = (-MathHelper.sin((this.rotationPitch / 180.0F) * (float) Math.PI));
-		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, par3 * 1.5F,
-				1.0F);
+		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, par3 * 1.5F, 1.0F);
 	}
 	
 	@Override
@@ -155,9 +154,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 			}
 			
 			if (flag) {
-				this.playSound(
-						"random.pop",
-						0.2F,
+				this.playSound("random.pop", 0.2F,
 						(((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F) + 1.0F) * 2.0F);
 				par1EntityPlayer.onItemPickup(this, 1);
 				this.setDead();
@@ -178,20 +175,19 @@ public class EntityWKunai extends Entity implements IProjectile {
 					+ (this.motionZ * this.motionZ));
 			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(this.motionX,
 					this.motionZ) * 180.0D) / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(
-					this.motionY, f) * 180.0D) / Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(this.motionY, f) * 180.0D) / Math.PI);
 		}
 		
 		Block block = this.worldObj.getBlock(this.d, this.e, this.f);
 		
 		if (block.getMaterial() != Material.air) {
 			block.setBlockBoundsBasedOnState(this.worldObj, this.d, this.e, this.f);
-			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBoxFromPool(
-					this.worldObj, this.d, this.e, this.f);
+			AxisAlignedBB axisalignedbb = block.getCollisionBoundingBoxFromPool(this.worldObj,
+					this.d, this.e, this.f);
 			
 			if ((axisalignedbb != null)
-					&& axisalignedbb.isVecInside(this.worldObj.getWorldVec3Pool()
-							.getVecFromPool(this.posX, this.posY, this.posZ))) {
+					&& axisalignedbb.isVecInside(this.worldObj.getWorldVec3Pool().getVecFromPool(
+							this.posX, this.posY, this.posZ))) {
 				this.inGround = true;
 			}
 		}
@@ -221,31 +217,27 @@ public class EntityWKunai extends Entity implements IProjectile {
 			}
 		} else {
 			++this.ticksInAir;
-			Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX,
-					this.posY, this.posZ);
-			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
-					this.posX + this.motionX, this.posY + this.motionY,
-					this.posZ + this.motionZ);
-			MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(
-					vec31, vec3, false, true, false);
-			vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY,
+			Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY,
 					this.posZ);
-			vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
-					this.posX + this.motionX, this.posY + this.motionY,
-					this.posZ + this.motionZ);
+			Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX,
+					this.posY + this.motionY, this.posZ + this.motionZ);
+			MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(vec31, vec3,
+					false, true, false);
+			vec31 = this.worldObj.getWorldVec3Pool()
+					.getVecFromPool(this.posX, this.posY, this.posZ);
+			vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX,
+					this.posY + this.motionY, this.posZ + this.motionZ);
 			
 			if (movingobjectposition != null) {
 				vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(
-						movingobjectposition.hitVec.xCoord,
-						movingobjectposition.hitVec.yCoord,
+						movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord,
 						movingobjectposition.hitVec.zCoord);
 			}
 			
 			Entity entity = null;
 			@SuppressWarnings("rawtypes")
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this,
-					this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ)
-							.expand(1.0D, 1.0D, 1.0D));
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox
+					.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 			double d0 = 0.0D;
 			int i;
 			float f1;
@@ -257,8 +249,8 @@ public class EntityWKunai extends Entity implements IProjectile {
 						&& ((entity1 != this.shootingEntity) || (this.ticksInAir >= 5))) {
 					f1 = 0.3F;
 					AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
-					MovingObjectPosition movingobjectposition1 = axisalignedbb1
-							.calculateIntercept(vec31, vec3);
+					MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(
+							vec31, vec3);
 					
 					if (movingobjectposition1 != null) {
 						double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
@@ -275,8 +267,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 				movingobjectposition = new MovingObjectPosition(entity);
 			}
 			
-			if ((movingobjectposition != null)
-					&& (movingobjectposition.entityHit != null)
+			if ((movingobjectposition != null) && (movingobjectposition.entityHit != null)
 					&& (movingobjectposition.entityHit instanceof EntityPlayer)) {
 				EntityPlayer entityplayer = (EntityPlayer) movingobjectposition.entityHit;
 				
@@ -293,8 +284,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 			if (movingobjectposition != null) {
 				if (movingobjectposition.entityHit != null) {
 					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
-							+ (this.motionY * this.motionY)
-							+ (this.motionZ * this.motionZ));
+							+ (this.motionY * this.motionY) + (this.motionZ * this.motionZ));
 					int k = MathHelper.ceiling_double_int(f2 * this.damage);
 					
 					/*
@@ -307,8 +297,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 					if (this.shootingEntity == null) {
 						damagesource = DamSource.causeWKunaiDamage(this, this);
 					} else {
-						damagesource = DamSource.causeWKunaiDamage(this,
-								this.shootingEntity);
+						damagesource = DamSource.causeWKunaiDamage(this, this.shootingEntity);
 					}
 					
 					this.onImpact(movingobjectposition);
@@ -355,8 +344,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 					this.motionY = ((float) (movingobjectposition.hitVec.yCoord - this.posY));
 					this.motionZ = ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
 					f2 = MathHelper.sqrt_double((this.motionX * this.motionX)
-							+ (this.motionY * this.motionY)
-							+ (this.motionZ * this.motionZ));
+							+ (this.motionY * this.motionY) + (this.motionZ * this.motionZ));
 					this.posX -= (this.motionX / f2) * 0.05000000074505806D;
 					this.posY -= (this.motionY / f2) * 0.05000000074505806D;
 					this.posZ -= (this.motionZ / f2) * 0.05000000074505806D;
@@ -366,8 +354,8 @@ public class EntityWKunai extends Entity implements IProjectile {
 					EntityWKunai.kunaiShake = 0;
 					
 					if (this.field_145790_g.getMaterial() != Material.air) {
-						this.field_145790_g.onEntityCollidedWithBlock(this.worldObj,
-								this.d, this.e, this.f, this);
+						this.field_145790_g.onEntityCollidedWithBlock(this.worldObj, this.d,
+								this.e, this.f, this);
 					}
 				}
 			}
@@ -413,11 +401,9 @@ public class EntityWKunai extends Entity implements IProjectile {
 			if (this.isInWater()) {
 				for (int l = 0; l < 4; ++l) {
 					f4 = 0.25F;
-					this.worldObj.spawnParticle("bubble",
-							this.posX - (this.motionX * f4), this.posY
-									- (this.motionY * f4), this.posZ
-									- (this.motionZ * f4), this.motionX, this.motionY,
-							this.motionZ);
+					this.worldObj.spawnParticle("bubble", this.posX - (this.motionX * f4),
+							this.posY - (this.motionY * f4), this.posZ - (this.motionZ * f4),
+							this.motionX, this.motionY, this.motionZ);
 				}
 				
 				f3 = 0.8F;
@@ -442,8 +428,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 		this.e = par1NBTTagCompound.getShort("yTile");
 		this.f = par1NBTTagCompound.getShort("zTile");
 		this.ticksInGround = par1NBTTagCompound.getShort("life");
-		this.field_145790_g = Block
-				.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
+		this.field_145790_g = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
 		this.inData = par1NBTTagCompound.getByte("inData") & 255;
 		EntityWKunai.kunaiShake = par1NBTTagCompound.getByte("shake") & 255;
 		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
@@ -469,8 +454,8 @@ public class EntityWKunai extends Entity implements IProjectile {
 	 */
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void setPositionAndRotation2(double par1, double par3, double par5,
-			float par7, float par8, int par9) {
+	public void setPositionAndRotation2(double par1, double par3, double par5, float par7,
+			float par8, int par9) {
 		this.setPosition(par1, par3, par5);
 		this.setRotation(par7, par8);
 	}
@@ -480,8 +465,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 	 * direction.
 	 */
 	@Override
-	public void setThrowableHeading(double par1, double par3, double par5, float par7,
-			float par8) {
+	public void setThrowableHeading(double par1, double par3, double par5, float par7, float par8) {
 		float f2 = MathHelper.sqrt_double((par1 * par1) + (par3 * par3) + (par5 * par5));
 		par1 /= f2;
 		par3 /= f2;
@@ -532,8 +516,7 @@ public class EntityWKunai extends Entity implements IProjectile {
 		par1NBTTagCompound.setShort("yTile", (short) this.e);
 		par1NBTTagCompound.setShort("zTile", (short) this.f);
 		par1NBTTagCompound.setShort("life", (short) this.ticksInGround);
-		par1NBTTagCompound.setByte("inTile",
-				(byte) Block.getIdFromBlock(this.field_145790_g));
+		par1NBTTagCompound.setByte("inTile", (byte) Block.getIdFromBlock(this.field_145790_g));
 		par1NBTTagCompound.setByte("inData", (byte) this.inData);
 		par1NBTTagCompound.setByte("shake", (byte) EntityWKunai.kunaiShake);
 		par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
@@ -555,10 +538,13 @@ public class EntityWKunai extends Entity implements IProjectile {
 		this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));
 	}
 	
-	protected void onImpact(MovingObjectPosition movingobjectposition) {
-		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ,
-				this.explevel, false);
-		System.out.println(movingobjectposition.hitInfo);
+	/**
+	 * Makes an operation on hitting entity.
+	 * 
+	 * @param movingobjectposition
+	 */
+	private void onImpact(MovingObjectPosition movingobjectposition) {
+		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explevel, false);
 		this.setDead();
 	}
 }

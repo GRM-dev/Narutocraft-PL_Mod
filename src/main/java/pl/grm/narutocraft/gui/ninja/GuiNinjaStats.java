@@ -5,11 +5,12 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 
 import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.PlayerSkillsAtrributes;
 import pl.grm.narutocraft.libs.References;
@@ -27,7 +28,6 @@ public class GuiNinjaStats extends GuiContainer {
 	
 	public GuiNinjaStats(EntityPlayer player) {
 		super(new ContainerNull());
-		
 		this.player = player;
 		this.xSize = this.jutsuMenu ? 210 : 256;
 		this.ySize = this.jutsuMenu ? 210 : 256;
@@ -137,6 +137,8 @@ public class GuiNinjaStats extends GuiContainer {
 				sttUpg++;
 				ExtendedProperties.get(this.player).psa.skillPoints -= 3;
 				break;
+			default :
+				break;
 		}
 	}
 	
@@ -195,6 +197,7 @@ public class GuiNinjaStats extends GuiContainer {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		this.xSize = this.jutsuMenu ? 210 : 256;
@@ -213,21 +216,29 @@ public class GuiNinjaStats extends GuiContainer {
 		
 		// Controls
 		// Tabs
-		this.buttonList.add(new GuiNinjaTab(0, x2, this.guiTop - 22, Items.apple
-				.getIconFromDamage(0)));// Stats page
+		this.buttonList.add(new GuiNinjaTab(0, x2, this.guiTop - 22,
+				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.HADAN.getJutsuID()))
+						.getIconFromDamage(0)));// Stats
+												// page
 		
-		this.buttonList.add(new GuiNinjaTab(1, x1, this.guiTop - 22, Items.apple
-				.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(2, x1 + 22, this.guiTop - 22, Items.apple
-				.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(3, x1 + (22 * 2), this.guiTop - 22, Items.apple
-				.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(4, x1 + (22 * 3), this.guiTop - 22, Items.apple
-				.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(5, x1 + (22 * 4), this.guiTop - 22, Items.apple
-				.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(6, x1 + (22 * 5), this.guiTop - 22, Items.apple
-				.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(1, x1, this.guiTop - 22,
+				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.HADAN.getJutsuID()))
+						.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(2, x1 + 22, this.guiTop - 22,
+				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.BYAKUGO.getJutsuID()))
+						.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(3, x1 + (22 * 2), this.guiTop - 22,
+				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.FUKIMIHARI.getJutsuID()))
+						.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(4, x1 + (22 * 3), this.guiTop - 22,
+				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.RANSHINSHO.getJutsuID()))
+						.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(5, x1 + (22 * 4), this.guiTop - 22,
+				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.YOSAKUGIRI.getJutsuID()))
+						.getIconFromDamage(0)));
+		this.buttonList.add(new GuiNinjaTab(6, x1 + (22 * 5), this.guiTop - 22,
+				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.ENMAKUGIRE.getJutsuID()))
+						.getIconFromDamage(0)));
 		
 		// Stats
 		ExtendedProperties props = ExtendedProperties.get(this.player);
