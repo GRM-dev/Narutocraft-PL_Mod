@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraft.libs.ExtendedProperties;
+import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 

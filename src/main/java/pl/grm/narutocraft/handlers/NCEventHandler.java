@@ -13,8 +13,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
+import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 

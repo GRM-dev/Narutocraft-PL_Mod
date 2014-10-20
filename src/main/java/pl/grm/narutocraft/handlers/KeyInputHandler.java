@@ -2,10 +2,10 @@ package pl.grm.narutocraft.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.libs.config.KeyBindings;
 import pl.grm.narutocraft.network.PacketExample;
 import pl.grm.narutocraft.network.PacketNinjaRun;
+import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;

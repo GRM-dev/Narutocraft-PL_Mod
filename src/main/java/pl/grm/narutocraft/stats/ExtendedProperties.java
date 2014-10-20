@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs;
+package pl.grm.narutocraft.stats;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

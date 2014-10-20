@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.math;
+package pl.grm.narutocraft.libs.math;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;

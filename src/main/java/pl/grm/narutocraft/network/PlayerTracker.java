@@ -8,8 +8,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import pl.grm.narutocraft.handlers.NetHandler;
-import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.skilltrees.SkillTreeManager;
+import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 

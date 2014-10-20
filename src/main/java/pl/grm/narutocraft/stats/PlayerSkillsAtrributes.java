@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs;
+package pl.grm.narutocraft.stats;
 
 public class PlayerSkillsAtrributes {
 	public static int	arraySize			= 17;

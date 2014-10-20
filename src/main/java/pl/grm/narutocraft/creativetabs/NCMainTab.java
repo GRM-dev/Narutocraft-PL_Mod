@@ -4,7 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.libs.ExtendedProperties;
+import pl.grm.narutocraft.stats.ExtendedProperties;
 
 /**
  * Create Creative Tab

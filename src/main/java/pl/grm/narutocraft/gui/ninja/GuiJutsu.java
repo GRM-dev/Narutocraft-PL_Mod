@@ -4,9 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 
 public class GuiJutsu extends GuiScreen {
-	
 	protected GuiNinjaStats	parentGui;
-	
 	protected GuiSlotList	list;
 	
 	public GuiJutsu(GuiNinjaStats guiNinjaStats) {
@@ -20,7 +18,6 @@ public class GuiJutsu extends GuiScreen {
 	@Override
 	public void initGui() {
 		this.buttonList.add(new GuiButton(0, 25, this.height - 38, 120, 20, "Done"));
-		
 	}
 	
 	@Override
@@ -29,6 +26,8 @@ public class GuiJutsu extends GuiScreen {
 			switch (par1GuiButton.id) {
 				case 0 :
 					this.mc.displayGuiScreen(this.parentGui);
+				default :
+					break;
 			}
 		}
 	}
@@ -39,5 +38,4 @@ public class GuiJutsu extends GuiScreen {
 		super.drawScreen(par1, par2, par3);
 		
 	}
-	
 }

@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import pl.grm.narutocraft.math.Vector3D;
+import pl.grm.narutocraft.libs.math.Vector3D;
 import pl.grm.narutocraft.network.DataWriter;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;

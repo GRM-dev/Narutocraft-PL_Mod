@@ -12,8 +12,8 @@ import net.minecraftforge.common.util.Constants;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.libs.ExtendedProperties;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
+import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class JutsuManager {

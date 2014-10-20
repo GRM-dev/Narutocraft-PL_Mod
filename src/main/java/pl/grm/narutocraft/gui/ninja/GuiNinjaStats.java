@@ -11,10 +11,10 @@ import org.lwjgl.opengl.GL11;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.libs.ExtendedProperties;
-import pl.grm.narutocraft.libs.PlayerSkillsAtrributes;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.network.PacketNinjaStatsRequest;
+import pl.grm.narutocraft.stats.ExtendedProperties;
+import pl.grm.narutocraft.stats.PlayerSkillsAtrributes;
 
 public class GuiNinjaStats extends GuiContainer {
 	private EntityPlayer	player;
@@ -194,7 +194,6 @@ public class GuiNinjaStats extends GuiContainer {
 		stnUpg = 0;
 		sttUpg = 0;
 		ExtendedProperties.get(player).psa.skillPoints = totalSkillPoints - totalSkillPointsUsed;
-		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -202,15 +201,15 @@ public class GuiNinjaStats extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		this.xSize = this.jutsuMenu ? 210 : 256;
 		this.ySize = this.jutsuMenu ? 210 : 256;
-		
+		ExtendedProperties props = ExtendedProperties.get(this.player);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.jutsuMenu
 				? References.jutsuGUILocation[this.jutsuPage] : References.statsPath);
+		
 		drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		
 		this.buttonList.clear();
-		// Start with main control buttons
 		
+		// Start with main control buttons
 		int x1 = this.guiLeft;
 		int x2 = (this.guiLeft + this.xSize) - (22);
 		
@@ -218,9 +217,7 @@ public class GuiNinjaStats extends GuiContainer {
 		// Tabs
 		this.buttonList.add(new GuiNinjaTab(0, x2, this.guiTop - 22,
 				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.HADAN.getJutsuID()))
-						.getIconFromDamage(0)));// Stats
-												// page
-		
+						.getIconFromDamage(0)));
 		this.buttonList.add(new GuiNinjaTab(1, x1, this.guiTop - 22,
 				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.HADAN.getJutsuID()))
 						.getIconFromDamage(0)));
@@ -241,7 +238,6 @@ public class GuiNinjaStats extends GuiContainer {
 						.getIconFromDamage(0)));
 		
 		// Stats
-		ExtendedProperties props = ExtendedProperties.get(this.player);
 		if (!this.jutsuMenu) {
 			this.drawString(this.fontRendererObj, "Ninja Level: " + props.psa.getNinjaLevel(),
 					this.guiLeft + this.padLeft, (this.guiTop + this.padTop) - 9, 0xddeeee);
@@ -404,7 +400,6 @@ public class GuiNinjaStats extends GuiContainer {
 				this.buttonList.add(new GuiNinjaButton(21, this.guiLeft + this.padLeft + 145,
 						this.guiTop + this.padTop + (9 * 19), "plus"));
 			}
-			
 			this.buttonList.add(new GuiButton(14, this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 20), 50, 20, "Save"));
 			this.buttonList.add(new GuiButton(15, this.guiLeft + this.padLeft + 50, this.guiTop

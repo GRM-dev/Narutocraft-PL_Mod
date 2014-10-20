@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.math;
+package pl.grm.narutocraft.libs.math;
 
 public class Matrix4 {
 	float[]	mat;
