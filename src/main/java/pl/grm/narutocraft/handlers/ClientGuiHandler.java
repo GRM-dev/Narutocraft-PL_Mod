@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.gui.GuiBase;
 import pl.grm.narutocraft.gui.GuiJutsuInvContainer;
-import pl.grm.narutocraft.gui.GuiNinjaStats;
+import pl.grm.narutocraft.gui.ninja.GuiNinjaStats;
 import pl.grm.narutocraft.libs.ExtendedProperties;
 
 public class ClientGuiHandler extends ServerGuiHandler {

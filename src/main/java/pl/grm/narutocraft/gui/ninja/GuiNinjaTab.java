@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui;
+package pl.grm.narutocraft.gui.ninja;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui;
+package pl.grm.narutocraft.gui.ninja;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
