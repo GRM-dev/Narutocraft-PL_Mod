@@ -202,7 +202,7 @@ public class GuiNinjaStats extends GuiContainer {
 		
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.jutsuMenu
-				? References.jutsuGUI[this.jutsuPage] : References.statsPath);
+				? References.jutsuGUILocation[this.jutsuPage] : References.statsPath);
 		drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
 		this.buttonList.clear();
