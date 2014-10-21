@@ -28,6 +28,12 @@ public class RegItems extends NarutoCraft {
 	public static ArmorMaterial	Kiri		= Materials.armorKIRI;
 	public static ArmorMaterial	Suna		= Materials.armorSUNA;
 	public static ArmorMaterial	Akatsuki	= Materials.armorAKATSUKI;
+	public static ArmorMaterial	Iwa			= Materials.armorIWA;
+	public static ArmorMaterial	Konoha		= Materials.armorKONOHA;
+	public static ArmorMaterial	Oto			= Materials.armorOTO;
+	public static ArmorMaterial	Old			= Materials.armorOLD;
+	public static ArmorMaterial	Kumo		= Materials.armorKUMO;
+	public static ArmorMaterial	Ryuu		= Materials.armorRYUU;
 	
 	// public static int renderBushidoArmor = proxy.addArmor("Bushido");
 	// public static Item = new (id+);
