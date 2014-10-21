@@ -76,4 +76,38 @@ public class Materials {
 	public static ArmorMaterial		armorAKATSUKI	= EnumHelper.addArmorMaterial(
 															"AKATSUKI", 47, new int[]{
 			3, 8, 6, 3										}, 10);
+	public static ArmorMaterial		armorIWA		= EnumHelper
+															.addArmorMaterial(
+																	"IWA",
+																	48,
+																	new int[]{3, 8, 6, 3},
+																	10);
+	public static ArmorMaterial		armorKONOHA		= EnumHelper.addArmorMaterial(
+															"KONOHA", 48, new int[]{
+			3, 8, 6, 3										}, 10);
+	public static ArmorMaterial		armorOTO		= EnumHelper
+															.addArmorMaterial(
+																	"OTO",
+																	48,
+																	new int[]{3, 8, 6, 3},
+																	10);
+	public static ArmorMaterial		armorOLD		= EnumHelper
+															.addArmorMaterial(
+																	"OLD",
+																	48,
+																	new int[]{3, 8, 6, 3},
+																	10);
+	public static ArmorMaterial		armorKUMO		= EnumHelper
+															.addArmorMaterial(
+																	"KUMO",
+																	48,
+																	new int[]{3, 8, 6, 3},
+																	10);
+	public static ArmorMaterial		armorRYUU		= EnumHelper
+															.addArmorMaterial(
+																	"RYUU",
+																	48,
+																	new int[]{3, 8, 6, 3},
+																	10);
+	
 }
