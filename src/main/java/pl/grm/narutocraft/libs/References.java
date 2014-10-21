@@ -1,6 +1,10 @@
 package pl.grm.narutocraft.libs;
 
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.stats.ExtendedProperties;
 
 /**
  * Parameters/References to mod constants and info
@@ -33,4 +37,10 @@ public class References {
 																				+ "NinjaGuiWidgets.png");
 	/** GUI IDs */
 	public static final int					STATS				= 1, OPTS = 2, SKILL_TREE = 3;
+	
+	public static IIcon getIconFromJutsu(JutsuEnum jutsuE) {
+		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsuE.getJutsuID()))
+				.getIconFromDamage(0);
+		return icon;
+	}
 }

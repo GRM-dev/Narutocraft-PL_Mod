@@ -3,8 +3,8 @@ package pl.grm.narutocraft.handlers;
 import net.minecraft.entity.player.EntityPlayer;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.config.KeyBindings;
-import pl.grm.narutocraft.network.PacketExample;
-import pl.grm.narutocraft.network.PacketNinjaRun;
+import pl.grm.narutocraft.libs.network.PacketExample;
+import pl.grm.narutocraft.libs.network.PacketNinjaRun;
 import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -38,8 +38,8 @@ public class KeyInputHandler {
 			EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
 			ExtendedProperties.get(player).ninjaRun = ExtendedProperties.get(player).ninjaRun == true
 					? false : true;
-			NarutoCraft.netHandler.sendToServer(new PacketNinjaRun(ExtendedProperties
-					.get(player).ninjaRun));
+			NarutoCraft.netHandler.sendToServer(new PacketNinjaRun(
+					ExtendedProperties.get(player).ninjaRun));
 		}
 	}
 }

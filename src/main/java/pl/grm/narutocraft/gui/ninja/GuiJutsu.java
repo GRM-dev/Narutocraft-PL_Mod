@@ -36,6 +36,5 @@ public class GuiJutsu extends GuiScreen {
 	public void drawScreen(int par1, int par2, float par3) {
 		this.list.drawScreen(par1, par2, par3);
 		super.drawScreen(par1, par2, par3);
-		
 	}
 }

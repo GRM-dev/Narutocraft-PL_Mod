@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.libs.math.Vector3D;
-import pl.grm.narutocraft.network.DataWriter;
+import pl.grm.narutocraft.libs.network.DataWriter;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.FMLEventChannel;
@@ -36,8 +36,7 @@ public class NetHandler {
 			Channel.register(proc);
 			FMLCommonHandler.instance().bus().register(proc);
 		} else {
-			FMLLog.info("NarutoCraft >> redundant call to register channels.",
-					new Object[0]);
+			FMLLog.info("NarutoCraft >> redundant call to register channels.", new Object[0]);
 		}
 	}
 	
@@ -56,8 +55,7 @@ public class NetHandler {
 		sendPacketToClientPlayer(player, (byte) 17, new byte[0]);
 	}
 	
-	public void sendCapabilityChangePacket(EntityPlayerMP player, int capability,
-			boolean state) {
+	public void sendCapabilityChangePacket(EntityPlayerMP player, int capability, boolean state) {
 		DataWriter writer = new DataWriter();
 		writer.add(capability);
 		writer.add(state);
@@ -65,8 +63,7 @@ public class NetHandler {
 		sendPacketToClientPlayer(player, (byte) 55, writer.generate());
 	}
 	
-	public void sendCompendiumUnlockPacket(EntityPlayerMP player, String id,
-			boolean isCategory) {
+	public void sendCompendiumUnlockPacket(EntityPlayerMP player, String id, boolean isCategory) {
 		DataWriter writer = new DataWriter();
 		writer.add(id);
 		writer.add(isCategory);
@@ -80,18 +77,17 @@ public class NetHandler {
 		sendPacketToServer((byte) 16, writer.generate());
 	}
 	
-	public void sendPacketToAllClientsNear(int dimension, double ox, double oy,
-			double oz, double radius, byte packetID, byte[] data) {
+	public void sendPacketToAllClientsNear(int dimension, double ox, double oy, double oz,
+			double radius, byte packetID, byte[] data) {
 		byte[] pkt_data = new byte[data.length + 1];
 		pkt_data[0] = packetID;
 		for (int i = 0; i < data.length; i++) {
 			pkt_data[(i + 1)] = data[i];
 		}
-		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data),
-				ChannelLabel);
+		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data), ChannelLabel);
 		packet.setTarget(Side.CLIENT);
-		Channel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dimension, ox,
-				oy, oz, radius));
+		Channel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dimension, ox, oy, oz,
+				radius));
 	}
 	
 	public void sendPacketToClientPlayer(EntityPlayerMP player, byte packetID, byte[] data) {
@@ -100,8 +96,7 @@ public class NetHandler {
 		for (int i = 0; i < data.length; i++) {
 			pkt_data[(i + 1)] = data[i];
 		}
-		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data),
-				ChannelLabel);
+		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data), ChannelLabel);
 		packet.setTarget(Side.CLIENT);
 		Channel.sendTo(packet, player);
 	}
@@ -113,8 +108,7 @@ public class NetHandler {
 		for (int i = 0; i < data.length; i++) {
 			pkt_data[(i + 1)] = data[i];
 		}
-		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data),
-				ChannelLabel);
+		FMLProxyPacket packet = new FMLProxyPacket(Unpooled.copiedBuffer(pkt_data), ChannelLabel);
 		packet.setTarget(Side.SERVER);
 		Channel.sendToServer(packet);
 	}
@@ -129,8 +123,8 @@ public class NetHandler {
 		sendPacketToServer((byte) 53, writer.generate());
 	}
 	
-	public void sendPowerResponseToClient(NBTTagCompound powerData,
-			EntityPlayerMP player, TileEntity te) {
+	public void sendPowerResponseToClient(NBTTagCompound powerData, EntityPlayerMP player,
+			TileEntity te) {
 		DataWriter writer = new DataWriter();
 		writer.add((byte) 1);
 		writer.add(powerData);
@@ -150,8 +144,8 @@ public class NetHandler {
 		sendPacketToClientPlayer(player, (byte) 49, new byte[0]);
 	}
 	
-	public void sendSpellApplyEffectToAllAround(EntityLivingBase caster, Entity target,
-			double x, double y, double z, World world, ItemStack spellStack) {
+	public void sendSpellApplyEffectToAllAround(EntityLivingBase caster, Entity target, double x,
+			double y, double z, World world, ItemStack spellStack) {
 		DataWriter writer = new DataWriter().add(x).add(y).add(z);
 		if (spellStack != null) {
 			writer.add(true).add(spellStack);
@@ -165,8 +159,7 @@ public class NetHandler {
 				writer.generate());
 	}
 	
-	public void sendSpellbookSlotChange(EntityPlayerMP player, int inventoryIndex,
-			int subID) {
+	public void sendSpellbookSlotChange(EntityPlayerMP player, int inventoryIndex, int subID) {
 		sendPacketToServer((byte) 14,
 				new DataWriter().add(subID).add(player.getEntityId()).add(inventoryIndex)
 						.generate());
@@ -187,8 +180,8 @@ public class NetHandler {
 	public void sendVelocityAddPacket(World world, EntityLivingBase target, double velX,
 			double velY, double velZ) {
 		if (world.isRemote) { return; }
-		byte[] data = new DataWriter().add(target.getEntityId()).add(velX).add(velY)
-				.add(velZ).generate();
+		byte[] data = new DataWriter().add(target.getEntityId()).add(velX).add(velY).add(velZ)
+				.generate();
 		
 		sendPacketToAllClientsNear(world.provider.dimensionId, target.posX, target.posY,
 				target.posZ, 50.0D, (byte) 7, data);

@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.network.PacketNinjaStatsResponse;
+import pl.grm.narutocraft.libs.network.PacketNinjaStatsResponse;
 import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -92,8 +92,7 @@ public class NCEventHandler {
 			ExtendedProperties prop = ExtendedProperties.get((EntityPlayer) event.source
 					.getEntity());
 			prop.psa.levelUp((int) event.entityLiving.getMaxHealth() / 3);
-			NarutoCraft.netHandler.sendTo(
-					new PacketNinjaStatsResponse(prop.psa.getValues()),
+			NarutoCraft.netHandler.sendTo(new PacketNinjaStatsResponse(prop.psa.getValues()),
 					(EntityPlayerMP) event.source.getEntity());
 		}
 	}
@@ -101,13 +100,12 @@ public class NCEventHandler {
 	@SubscribeEvent
 	public void onLivingFallEvent(LivingFallEvent event) {
 		if (event.entity instanceof EntityPlayer) {
-			ExtendedProperties props = ExtendedProperties
-					.get((EntityPlayer) event.entity);
+			ExtendedProperties props = ExtendedProperties.get((EntityPlayer) event.entity);
 			if ((event.distance > 3.0F) && (props.getCurrentChakra() > 0)) {
 				System.out.println("[EVENT] Fall distance: " + event.distance);
 				System.out.println("[EVENT] Current chakra: " + props.getCurrentChakra());
-				float reduceby = props.getCurrentChakra() < (event.distance - 3.0F)
-						? props.getCurrentChakra() : (event.distance - 3.0F);
+				float reduceby = props.getCurrentChakra() < (event.distance - 3.0F) ? props
+						.getCurrentChakra() : (event.distance - 3.0F);
 				event.distance -= reduceby;
 				
 				props.consumeChakra((int) reduceby);
@@ -123,31 +121,24 @@ public class NCEventHandler {
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			// ExtendedPlayer.get(player).onUpdate();
-			if (ExtendedProperties.get(player).ninjaRun && player.isSneaking())
-			{
-				if (event.entity.worldObj.getWorldTime() % 30 == 0)
-				{
-					if (!ExtendedProperties.get(player).consumeChakra(1))
-					{
+			if (ExtendedProperties.get(player).ninjaRun && player.isSneaking()) {
+				if (event.entity.worldObj.getWorldTime() % 30 == 0) {
+					if (!ExtendedProperties.get(player).consumeChakra(1)) {
 						ExtendedProperties.get(player).ninjaRun = false;
-					}					
+					}
 				}
-				if (player.capabilities.getWalkSpeed() == 0.1f)
-				{
+				if (player.capabilities.getWalkSpeed() == 0.1f) {
 					ExtendedProperties.get(player).updateMoveSpeed();
 				}
-			}
-			else
-			{
-				if (player.capabilities.getWalkSpeed() != 0.1f)
-				{
+			} else {
+				if (player.capabilities.getWalkSpeed() != 0.1f) {
 					ExtendedProperties.get(player).resetMoveSpeed();
 				}
 			}
 			if (event.entity.worldObj.getWorldTime() % 30 == 0)
 				ExtendedProperties.get(player).setMaxChakra(false);
-			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties
-					.get(player).psa.getChakraRegenMod())) == 0) {				
+			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties.get(player).psa
+					.getChakraRegenMod())) == 0) {
 				ExtendedProperties.get(player).regenChakra(1);
 			}
 			if (player.isPlayerFullyAsleep()) {
@@ -163,13 +154,11 @@ public class NCEventHandler {
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			ItemStack heldItem = player.getHeldItem();
-			if ((heldItem != null)
-					&& (heldItem.getItem() == JutsuEnum.KAWARIMINOJUTSU.getJutsu())) // Testing
+			if ((heldItem != null) && (heldItem.getItem() == JutsuEnum.KAWARIMINOJUTSU.getJutsu())) // Testing
 			{
 				player.capabilities.allowFlying = true;
 			} else {
-				player.capabilities.allowFlying = player.capabilities.isCreativeMode
-						? true : false;
+				player.capabilities.allowFlying = player.capabilities.isCreativeMode ? true : false;
 			}
 		}
 	}
@@ -180,8 +169,7 @@ public class NCEventHandler {
 		if (event.wasDeath) {
 			if (!event.entityPlayer.worldObj.isRemote) {
 				ExtendedProperties deadPlayer = ExtendedProperties.get(event.original);
-				ExtendedProperties clonePlayer = ExtendedProperties
-						.get(event.entityPlayer);
+				ExtendedProperties clonePlayer = ExtendedProperties.get(event.entityPlayer);
 				clonePlayer.psa.setValues(deadPlayer.psa.getValues());
 			}
 		}
@@ -195,8 +183,8 @@ public class NCEventHandler {
 	public void onPlayerJoin(EntityJoinWorldEvent e) {
 		if ((e.entity instanceof EntityPlayer) && !e.world.isRemote) {
 			NarutoCraft.netHandler.sendTo(
-					new PacketNinjaStatsResponse(ExtendedProperties
-							.get((EntityPlayer) e.entity).psa.getValues()),
+					new PacketNinjaStatsResponse(
+							ExtendedProperties.get((EntityPlayer) e.entity).psa.getValues()),
 					(EntityPlayerMP) e.entity);
 		}
 	}

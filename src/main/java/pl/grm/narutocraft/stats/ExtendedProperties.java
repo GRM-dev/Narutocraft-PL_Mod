@@ -17,7 +17,7 @@ import pl.grm.narutocraft.ProxyCommon;
 import pl.grm.narutocraft.gui.JutsuInv;
 import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.network.DataWriter;
+import pl.grm.narutocraft.libs.network.DataWriter;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String			EXT_PROP_NAME	= "NCPLExtPlayer";

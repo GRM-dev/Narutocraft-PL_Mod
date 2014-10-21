@@ -11,10 +11,10 @@ import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.libs.References;
 
-public class GuiNinjaTab extends GuiButton {
+public class GuiNinjaTabButton extends GuiButton {
 	private IIcon	icon;
 	
-	public GuiNinjaTab(int par1, int par2, int par3, IIcon par4) {
+	public GuiNinjaTabButton(int par1, int par2, int par3, IIcon par4) {
 		super(par1, par2, par3, "");
 		this.icon = par4;
 		this.width = 22;

@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.network;
+package pl.grm.narutocraft.libs.network;
 
 import io.netty.buffer.ByteBuf;
 import pl.grm.narutocraft.stats.ExtendedProperties;

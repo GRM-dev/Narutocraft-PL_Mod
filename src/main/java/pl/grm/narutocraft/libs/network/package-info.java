@@ -4,4 +4,4 @@
 /**
  * @author _Admaster
  */
-package pl.grm.narutocraft.network;
+package pl.grm.narutocraft.libs.network;

@@ -9,10 +9,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.References;
-import pl.grm.narutocraft.network.PacketNinjaStatsRequest;
+import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.stats.ExtendedProperties;
 import pl.grm.narutocraft.stats.PlayerSkillsAtrributes;
 
@@ -33,11 +32,24 @@ public class GuiNinjaStats extends GuiContainer {
 		this.ySize = this.jutsuMenu ? 210 : 256;
 	}
 	
-	/** Button Clicks **/
+	/**
+	 * Button Clicks
+	 * <p>
+	 * Tabs id 0-6, Stats and then the 6 Jutsu types
+	 **/
 	@Override
 	protected void actionPerformed(GuiButton button) {
-		// Tabs 0 - 6, Stats and then the 6 Jutsu types
-		switch (button.id) {
+		if (button.id < 7) {
+			actionSwitchPage(button.id);
+		} else if (button.id < 15) {
+			actionStatUp(button.id);
+		} else {
+			actionOther(button.id);
+		}
+	}
+	
+	private void actionSwitchPage(int id) {
+		switch (id) {
 			case 0 : // Stats
 				this.jutsuMenu = false;
 				break;
@@ -66,47 +78,61 @@ public class GuiNinjaStats extends GuiContainer {
 				this.jutsuMenu = true;
 				this.jutsuPage = 5;
 				break;
+			default :
+				break;
+		}
+	}
+	
+	private void actionStatUp(int id) {
+		PlayerSkillsAtrributes psa = ExtendedProperties.get(this.player).psa;
+		switch (id) {
 			case 7 : // increase Strength
 				strUpg += 1;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 2;
+				psa.skillPoints -= 2;
 				break;
 			case 8 : // increase Resist
 				resUpg += 1;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 2;
+				psa.skillPoints -= 2;
 				break;
 			case 9 : // increase Dex
 				dexUpg += 1;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 2;
+				psa.skillPoints -= 2;
 				break;
 			case 10 : // increase Agi
 				agiUpg += 1;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 2;
+				psa.skillPoints -= 2;
 				break;
 			case 11 : // increase elm
 				epmUpg += 1;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 1;
+				psa.skillPoints -= 1;
 				break;
 			case 12 : // increase mcha
 				chaUpg += 1;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 1;
+				psa.skillPoints -= 1;
 				break;
 			case 13 : // increase char
-				if (ExtendedProperties.get(this.player).psa.getChakraRegenMod() + crbUpg < 75) {
+				if (psa.getChakraRegenMod() + crbUpg < 75) {
 					crbUpg += 1;
-					ExtendedProperties.get(this.player).psa.skillPoints -= 1;
+					psa.skillPoints -= 1;
 				}
 				break;
+			default :
+				break;
+		}
+	}
+	
+	private void actionOther(int id) {
+		PlayerSkillsAtrributes psa = ExtendedProperties.get(this.player).psa;
+		switch (id) {
 			case 14 : // send changes
 				int[] upgradeStats = new int[]{
 						strUpg, agiUpg, dexUpg, resUpg, epmUpg, chaUpg, crbUpg, stbUpg, stfUpg,
-						stgUpg, stiUpg, stnUpg, sttUpg,
-						ExtendedProperties.get(player).psa.skillPoints};
+						stgUpg, stiUpg, stnUpg, sttUpg, psa.skillPoints};
 				if (canSaveData()) {
 					NarutoCraft.netHandler.sendToServer(new PacketNinjaStatsRequest("set",
 							upgradeStats));
 					resetData();
 				}
-				
 				break;
 			case 15 : // reset all
 				// NarutoCraft.netHandler.sendToServer(new
@@ -115,27 +141,27 @@ public class GuiNinjaStats extends GuiContainer {
 				break;
 			case 16 :
 				stbUpg++;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 3;
+				psa.skillPoints -= 3;
 				break;
 			case 17 :
 				stfUpg++;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 3;
+				psa.skillPoints -= 3;
 				break;
 			case 18 :
 				stgUpg++;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 3;
+				psa.skillPoints -= 3;
 				break;
 			case 19 :
 				stiUpg++;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 3;
+				psa.skillPoints -= 3;
 				break;
 			case 20 :
 				stnUpg++;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 3;
+				psa.skillPoints -= 3;
 				break;
 			case 21 :
 				sttUpg++;
-				ExtendedProperties.get(this.player).psa.skillPoints -= 3;
+				psa.skillPoints -= 3;
 				break;
 			default :
 				break;
@@ -164,22 +190,20 @@ public class GuiNinjaStats extends GuiContainer {
 	}
 	
 	private void resetData() {
-		PlayerSkillsAtrributes ppsa = ExtendedProperties.get(player).psa;
-		int totalSkillPoints = (ppsa.getNinjaLevel() - 1)
+		PlayerSkillsAtrributes psa = ExtendedProperties.get(player).psa;
+		int totalSkillPoints = (psa.getNinjaLevel() - 1)
 				* PlayerSkillsAtrributes.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
-		
 		// Stats
-		totalSkillPointsUsed += (ppsa.getStrength() + ppsa.getAgility() + ppsa.getDexterity() + ppsa
+		totalSkillPointsUsed += (psa.getStrength() + psa.getAgility() + psa.getDexterity() + psa
 				.getResistance()) * 2;
 		// Training/Main
-		totalSkillPointsUsed += (ppsa.getElementPowerMod() + ppsa.getMaxChakraMod() + ppsa
+		totalSkillPointsUsed += (psa.getElementPowerMod() + psa.getMaxChakraMod() + psa
 				.getChakraRegenMod());
 		// Jutsu
-		totalSkillPointsUsed += (ppsa.getBukiTreeLevel() + ppsa.getFuuinTreeLevel()
-				+ ppsa.getGenTreeLevel() + ppsa.getIryoTreeLevel() + ppsa.getNinTreeLevel() + ppsa
+		totalSkillPointsUsed += (psa.getBukiTreeLevel() + psa.getFuuinTreeLevel()
+				+ psa.getGenTreeLevel() + psa.getIryoTreeLevel() + psa.getNinTreeLevel() + psa
 				.getTaiTreeLevel()) * 3;
-		
 		strUpg = 0;
 		agiUpg = 0;
 		dexUpg = 0;
@@ -193,9 +217,12 @@ public class GuiNinjaStats extends GuiContainer {
 		stiUpg = 0;
 		stnUpg = 0;
 		sttUpg = 0;
-		ExtendedProperties.get(player).psa.skillPoints = totalSkillPoints - totalSkillPointsUsed;
+		psa.skillPoints = totalSkillPoints - totalSkillPointsUsed;
 	}
 	
+	/**
+	 * Draws Background of GUI
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
@@ -214,28 +241,21 @@ public class GuiNinjaStats extends GuiContainer {
 		int x2 = (this.guiLeft + this.xSize) - (22);
 		
 		// Controls
-		// Tabs
-		this.buttonList.add(new GuiNinjaTab(0, x2, this.guiTop - 22,
-				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.HADAN.getJutsuID()))
-						.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(1, x1, this.guiTop - 22,
-				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.HADAN.getJutsuID()))
-						.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(2, x1 + 22, this.guiTop - 22,
-				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.BYAKUGO.getJutsuID()))
-						.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(3, x1 + (22 * 2), this.guiTop - 22,
-				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.FUKIMIHARI.getJutsuID()))
-						.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(4, x1 + (22 * 3), this.guiTop - 22,
-				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.RANSHINSHO.getJutsuID()))
-						.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(5, x1 + (22 * 4), this.guiTop - 22,
-				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.YOSAKUGIRI.getJutsuID()))
-						.getIconFromDamage(0)));
-		this.buttonList.add(new GuiNinjaTab(6, x1 + (22 * 5), this.guiTop - 22,
-				((Jutsu) ExtendedProperties.jutsuList.get(JutsuEnum.ENMAKUGIRE.getJutsuID()))
-						.getIconFromDamage(0)));
+		// Tabs buttons
+		this.buttonList.add(new GuiNinjaTabButton(0, x2, this.guiTop - 22, References
+				.getIconFromJutsu(JutsuEnum.HADAN)));
+		this.buttonList.add(new GuiNinjaTabButton(1, x1, this.guiTop - 22, References
+				.getIconFromJutsu(JutsuEnum.KAI)));
+		this.buttonList.add(new GuiNinjaTabButton(2, x1 + 22, this.guiTop - 22, References
+				.getIconFromJutsu(JutsuEnum.BYAKUGO)));
+		this.buttonList.add(new GuiNinjaTabButton(3, x1 + (22 * 2), this.guiTop - 22, References
+				.getIconFromJutsu(JutsuEnum.FUKIMIHARI)));
+		this.buttonList.add(new GuiNinjaTabButton(4, x1 + (22 * 3), this.guiTop - 22, References
+				.getIconFromJutsu(JutsuEnum.RANSHINSHO)));
+		this.buttonList.add(new GuiNinjaTabButton(5, x1 + (22 * 4), this.guiTop - 22, References
+				.getIconFromJutsu(JutsuEnum.YOSAKUGIRI)));
+		this.buttonList.add(new GuiNinjaTabButton(6, x1 + (22 * 5), this.guiTop - 22, References
+				.getIconFromJutsu(JutsuEnum.ENMAKUGIRE)));
 		
 		// Stats
 		if (!this.jutsuMenu) {
@@ -251,40 +271,44 @@ public class GuiNinjaStats extends GuiContainer {
 					(props.psa.getCurrentXp() * 39) / props.psa.getXpCap(), 4);
 			
 			// Stats
-			this.drawString(this.fontRendererObj, "Stats (2 points)", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 2), 0xddeeee);
-			this.drawString(this.fontRendererObj, "Strength: ", this.guiLeft + this.padLeft,
+			this.drawDefaultString("Stats (2 points)", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 2), 0xddeeee);
+			this.drawDefaultString("Strength: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 3), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getStrength(), this.guiLeft + this.padLeft + 110,
 					this.guiTop + this.padTop + (9 * 3), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getStrength(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 3), 0xddeeee);
-			if (strUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + strUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 3), 0x73ff9b);
+			if (strUpg > 0) {
+				this.drawDefaultString("+ " + strUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 3), 0x73ff9b);
+			}
 			
-			this.drawString(this.fontRendererObj, "Resistance: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 4), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getResistance(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 4), 0xddeeee);
-			if (resUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + resUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 4), 0x73ff9b);
+			this.drawDefaultString("Resistance: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 4), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getResistance(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 4), 0xddeeee);
+			if (resUpg > 0) {
+				this.drawDefaultString("+ " + resUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 4), 0x73ff9b);
+			}
 			
-			this.drawString(this.fontRendererObj, "Dexterity: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 5), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getDexterity(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 5), 0xddeeee);
-			if (dexUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + dexUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 5), 0x73ff9b);
+			this.drawDefaultString("Dexterity: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 5), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getDexterity(),
+					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop + (9 * 5),
+					0xddeeee);
+			if (dexUpg > 0) {
+				this.drawDefaultString("+ " + dexUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 5), 0x73ff9b);
+			}
 			
-			this.drawString(this.fontRendererObj, "Agility: ", this.guiLeft + this.padLeft,
+			this.drawDefaultString("Agility: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 6), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getAgility(), this.guiLeft + this.padLeft + 110,
 					this.guiTop + this.padTop + (9 * 6), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getAgility(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 6), 0xddeeee);
-			if (agiUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + agiUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 6), 0x73ff9b);
-			
+			if (agiUpg > 0) {
+				this.drawDefaultString("+ " + agiUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 6), 0x73ff9b);
+			}
 			// Level up Controls
 			if (props.psa.skillPoints >= 2) {
 				this.buttonList.add(new GuiNinjaButton(7, this.guiLeft + this.padLeft + 145,
@@ -296,34 +320,33 @@ public class GuiNinjaStats extends GuiContainer {
 				this.buttonList.add(new GuiNinjaButton(10, this.guiLeft + this.padLeft + 145,
 						this.guiTop + this.padTop + (9 * 6), "plus"));
 			}
-			
 			// Training/Main
-			this.drawString(this.fontRendererObj, "Training (1 point)",
-					this.guiLeft + this.padLeft, this.guiTop + this.padTop + (9 * 8), 0xddeeee);
-			this.drawString(this.fontRendererObj, "Element Power: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 9), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getElementPowerMod(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 9), 0xddeeee);
-			if (epmUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + epmUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 9), 0x73ff9b);
-			
-			this.drawString(this.fontRendererObj, "Max Chakra Bonus: ",
-					this.guiLeft + this.padLeft, this.guiTop + this.padTop + (9 * 10), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getMaxChakraMod(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 10), 0xddeeee);
-			if (chaUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + chaUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 10), 0x73ff9b);
-			
-			this.drawString(this.fontRendererObj, "Chakra Regen Bonus: ", this.guiLeft
-					+ this.padLeft, this.guiTop + this.padTop + (9 * 11), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getChakraRegenMod(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 11), 0xddeeee);
-			if (crbUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + crbUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 11), 0x73ff9b);
-			
+			this.drawDefaultString("Training (1 point)", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 8), 0xddeeee);
+			this.drawDefaultString("Element Power: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 9), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getElementPowerMod(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 9), 0xddeeee);
+			if (epmUpg > 0) {
+				this.drawDefaultString("+ " + epmUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 9), 0x73ff9b);
+			}
+			this.drawDefaultString("Max Chakra Bonus: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 10), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getMaxChakraMod(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 10), 0xddeeee);
+			if (chaUpg > 0) {
+				this.drawDefaultString("+ " + chaUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 10), 0x73ff9b);
+			}
+			this.drawDefaultString("Chakra Regen Bonus: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 11), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getChakraRegenMod(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 11), 0xddeeee);
+			if (crbUpg > 0) {
+				this.drawDefaultString("+ " + crbUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 11), 0x73ff9b);
+			}
 			// Level up Controls
 			if (props.psa.skillPoints >= 1) {
 				this.buttonList.add(new GuiNinjaButton(11, this.guiLeft + this.padLeft + 145,
@@ -333,58 +356,57 @@ public class GuiNinjaStats extends GuiContainer {
 				this.buttonList.add(new GuiNinjaButton(13, this.guiLeft + this.padLeft + 145,
 						this.guiTop + this.padTop + (9 * 11), "plus"));
 			}
-			
 			// Jutsu
-			this.drawString(this.fontRendererObj, "Jutsu Training (3 points)", this.guiLeft
-					+ this.padLeft, this.guiTop + this.padTop + (9 * 13), 0xddeeee);
-			this.drawString(this.fontRendererObj, "Bukijutsu: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 14), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getBukiTreeLevel(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 14), 0xddeeee);
-			if (stbUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + stbUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 14), 0x73ff9b);
-			
-			this.drawString(this.fontRendererObj, "Fuuinjutsu: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 15), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getFuuinTreeLevel(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 15), 0xddeeee);
-			if (stfUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + stfUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 15), 0x73ff9b);
-			
-			this.drawString(this.fontRendererObj, "Genjutsu: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 16), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getGenTreeLevel(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 16), 0xddeeee);
-			if (stgUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + stgUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 16), 0x73ff9b);
-			
-			this.drawString(this.fontRendererObj, "Iryojutsu: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 17), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getIryoTreeLevel(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 17), 0xddeeee);
-			if (stiUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + stiUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 17), 0x73ff9b);
-			
-			this.drawString(this.fontRendererObj, "Ninjutsu: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 18), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getNinTreeLevel(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 18), 0xddeeee);
-			if (stnUpg > 0)
+			this.drawDefaultString("Jutsu Training (3 points)", this.guiLeft + this.padLeft,
+					this.guiTop + this.padTop + (9 * 13), 0xddeeee);
+			this.drawDefaultString("Bukijutsu: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 14), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getBukiTreeLevel(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 14), 0xddeeee);
+			if (stbUpg > 0) {
+				this.drawDefaultString("+ " + stbUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 14), 0x73ff9b);
+			}
+			this.drawDefaultString("Fuuinjutsu: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 15), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getFuuinTreeLevel(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 15), 0xddeeee);
+			if (stfUpg > 0) {
+				this.drawDefaultString("+ " + stfUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 15), 0x73ff9b);
+			}
+			this.drawDefaultString("Genjutsu: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 16), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getGenTreeLevel(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 16), 0xddeeee);
+			if (stgUpg > 0) {
+				this.drawDefaultString("+ " + stgUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 16), 0x73ff9b);
+			}
+			this.drawDefaultString("Iryojutsu: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 17), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getIryoTreeLevel(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 17), 0xddeeee);
+			if (stiUpg > 0) {
+				this.drawDefaultString("+ " + stiUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 17), 0x73ff9b);
+			}
+			this.drawDefaultString("Ninjutsu: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 18), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getNinTreeLevel(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 18), 0xddeeee);
+			if (stnUpg > 0) {
 				this.drawString(this.fontRendererObj, "+ " + stnUpg, this.guiLeft + this.padLeft
 						+ 125, this.guiTop + this.padTop + (9 * 18), 0x73ff9b);
-			
-			this.drawString(this.fontRendererObj, "Taijutsu: ", this.guiLeft + this.padLeft,
-					this.guiTop + this.padTop + (9 * 19), 0xddeeee);
-			this.drawString(this.fontRendererObj, "" + props.psa.getTaiTreeLevel(), this.guiLeft
-					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 19), 0xddeeee);
-			if (sttUpg > 0)
-				this.drawString(this.fontRendererObj, "+ " + sttUpg, this.guiLeft + this.padLeft
-						+ 125, this.guiTop + this.padTop + (9 * 19), 0x73ff9b);
-			
+			}
+			this.drawDefaultString("Taijutsu: ", this.guiLeft + this.padLeft, this.guiTop
+					+ this.padTop + (9 * 19), 0xddeeee);
+			this.drawDefaultString("" + props.psa.getTaiTreeLevel(), this.guiLeft + this.padLeft
+					+ 110, this.guiTop + this.padTop + (9 * 19), 0xddeeee);
+			if (sttUpg > 0) {
+				this.drawDefaultString("+ " + sttUpg, this.guiLeft + this.padLeft + 125,
+						this.guiTop + this.padTop + (9 * 19), 0x73ff9b);
+			}
 			// Level up Controls
 			if (props.psa.skillPoints >= 3) {
 				this.buttonList.add(new GuiNinjaButton(16, this.guiLeft + this.padLeft + 145,
@@ -405,6 +427,10 @@ public class GuiNinjaStats extends GuiContainer {
 			this.buttonList.add(new GuiButton(15, this.guiLeft + this.padLeft + 50, this.guiTop
 					+ this.padTop + (9 * 20), 50, 20, "Reset"));
 		}
+	}
+	
+	private void drawDefaultString(String text, int x, int y, int color) {
+		this.drawString(this.fontRendererObj, text, x, y, color);
 	}
 	
 	public FontRenderer getFontRenderer() {

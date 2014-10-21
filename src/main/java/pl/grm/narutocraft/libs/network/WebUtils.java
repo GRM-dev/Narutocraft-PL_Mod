@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.network;
+package pl.grm.narutocraft.libs.network;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

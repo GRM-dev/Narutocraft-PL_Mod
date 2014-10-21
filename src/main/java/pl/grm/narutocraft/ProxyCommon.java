@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldServer;
-import pl.grm.narutocraft.network.PlayerTracker;
+import pl.grm.narutocraft.libs.network.PlayerTracker;
 import cpw.mods.fml.server.FMLServerHandler;
 
 public class ProxyCommon {
