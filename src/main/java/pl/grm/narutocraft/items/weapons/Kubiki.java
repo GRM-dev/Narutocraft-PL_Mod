@@ -7,9 +7,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import pl.grm.narutocraft.libs.Materials;
-import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.UtilityNBTHelper;
+import pl.grm.narutocraft.libs.config.Materials;
+import pl.grm.narutocraft.libs.config.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

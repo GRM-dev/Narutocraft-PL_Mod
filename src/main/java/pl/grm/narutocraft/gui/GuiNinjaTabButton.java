@@ -9,7 +9,7 @@ import net.minecraft.util.IIcon;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 
 public class GuiNinjaTabButton extends GuiButton {
 	private IIcon	icon;

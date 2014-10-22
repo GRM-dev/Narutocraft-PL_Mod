@@ -8,7 +8,7 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 import cpw.mods.fml.client.FMLClientHandler;
 
 /**

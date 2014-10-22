@@ -9,7 +9,7 @@ import pl.grm.narutocraft.items.KScroll;
 import pl.grm.narutocraft.items.NScroll;
 import pl.grm.narutocraft.items.RScroll;
 import pl.grm.narutocraft.items.SScroll;
-import pl.grm.narutocraft.libs.Materials;
+import pl.grm.narutocraft.libs.config.Materials;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegItems extends NarutoCraft {

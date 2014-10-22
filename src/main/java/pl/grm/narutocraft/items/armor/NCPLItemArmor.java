@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 
 /**
  * Adds Armor items

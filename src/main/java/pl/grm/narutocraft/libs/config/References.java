@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs;
+package pl.grm.narutocraft.libs.config;
 
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;

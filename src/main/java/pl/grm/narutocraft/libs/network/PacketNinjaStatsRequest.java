@@ -9,20 +9,25 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketNinjaStatsRequest implements IMessage {
+	private String	command;
+	private int[]	data;
+	
 	public static class PacketNinjaStatsRequestHandler implements IMessageHandler<PacketNinjaStatsRequest, IMessage> {
 		
 		@Override
 		public IMessage onMessage(PacketNinjaStatsRequest message, MessageContext ctx) {
 			if (message.command.equals("get")) {
-				
-				return new PacketNinjaStatsResponse(ExtendedProperties.get(ctx
-						.getServerHandler().playerEntity).psa.getValues());
+				return new PacketNinjaStatsResponse(
+						ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa.getValues());
 				
 			} else if (message.command.equals("set")) {
-				PlayerSkillsAtrributes psa = ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa;
-					/*strUpg, agiUpg, dexUpg, resUpg,
-						epmUpg, chaUpg, crbUpg, stbUpg, stfUpg, stgUpg, 
-						stiUpg, stnUpg, sttUpg*/
+				PlayerSkillsAtrributes psa = ExtendedProperties
+						.get(ctx.getServerHandler().playerEntity).psa;
+				/*
+				 * strUpg, agiUpg, dexUpg, resUpg,
+				 * epmUpg, chaUpg, crbUpg, stbUpg, stfUpg, stgUpg,
+				 * stiUpg, stnUpg, sttUpg
+				 */
 				psa.setStrength(psa.getStrength() + message.data[0]);
 				psa.setAgility(psa.getAgility() + message.data[1]);
 				psa.setDexterity(psa.getDexterity() + message.data[2]);
@@ -39,22 +44,16 @@ public class PacketNinjaStatsRequest implements IMessage {
 				psa.setNinTreeLevel(psa.getNinTreeLevel() + message.data[11]);
 				psa.setTaiTreeLevel(psa.getTaiTreeLevel() + message.data[12]);
 				psa.skillPoints = message.data[13];
-							
 				
 				return new PacketNinjaStatsResponse(psa.getValues());
 			} else if (message.command.equals("reset")) {
-				
 				ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa
 						.setValues(resetValues(message.data));
-				return new PacketNinjaStatsResponse(ExtendedProperties.get(ctx
-						.getServerHandler().playerEntity).psa.getValues());
-				
+				return new PacketNinjaStatsResponse(
+						ExtendedProperties.get(ctx.getServerHandler().playerEntity).psa.getValues());
 			} else {
-				
 				return null;
-				
 			}
-			
 		}
 		
 		private int[] resetValues(int[] oldData) {
@@ -68,16 +67,10 @@ public class PacketNinjaStatsRequest implements IMessage {
 			resetValues[4] = 0;
 			resetValues[5] = 0;
 			resetValues[6] = 0;
-			resetValues[10] = (resetValues[7] - 1)
-					* PlayerSkillsAtrributes.skillPointsPerLevel;
+			resetValues[10] = (resetValues[7] - 1) * PlayerSkillsAtrributes.skillPointsPerLevel;
 			return resetValues;
 		}
-		
 	}
-	
-	private String	command;
-	
-	private int[]	data;
 	
 	// Need a empty constructor just for the network registry to use
 	public PacketNinjaStatsRequest() {
@@ -98,15 +91,12 @@ public class PacketNinjaStatsRequest implements IMessage {
 		this.command = ByteBufUtils.readUTF8String(buf);
 		this.data = new int[PlayerSkillsAtrributes.arraySize];
 		for (int v = 0; v < this.data.length; v++) {
-			try
-			{
+			try {
 				this.data[v] = buf.readInt();
 			}
-			catch (IndexOutOfBoundsException e)
-			{
+			catch (IndexOutOfBoundsException e) {
 				break;
 			}
-			
 		}
 	}
 	

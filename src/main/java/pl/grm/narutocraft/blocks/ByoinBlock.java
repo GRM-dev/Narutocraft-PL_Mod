@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

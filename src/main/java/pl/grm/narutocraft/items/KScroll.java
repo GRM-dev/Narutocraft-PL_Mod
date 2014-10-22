@@ -2,7 +2,7 @@ package pl.grm.narutocraft.items;
 
 import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 
 public class KScroll extends Item {
 	

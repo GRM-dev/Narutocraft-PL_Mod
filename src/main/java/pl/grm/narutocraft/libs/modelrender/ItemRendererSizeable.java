@@ -9,8 +9,8 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.UtilityNBTHelper;
+import pl.grm.narutocraft.libs.config.References;
 
 public class ItemRendererSizeable implements IItemRenderer {
 	private float	scale	= 0;

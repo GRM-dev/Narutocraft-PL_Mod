@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.items.weapons;
 
-import pl.grm.narutocraft.libs.Materials;
+import pl.grm.narutocraft.libs.config.Materials;
 
 public class ZRekawica extends SwordMain {
 	public ZRekawica() {

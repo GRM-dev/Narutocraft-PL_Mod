@@ -13,7 +13,7 @@ import pl.grm.narutocraft.gui.GuiNinjaButton;
 import pl.grm.narutocraft.gui.GuiNinjaTabButton;
 import pl.grm.narutocraft.gui.jutsu.GuiJutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.stats.ExtendedProperties;
 import pl.grm.narutocraft.stats.PlayerSkillsAtrributes;

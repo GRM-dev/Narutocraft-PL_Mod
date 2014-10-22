@@ -9,17 +9,15 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketNinjaStatsResponse implements IMessage {
+	private int[]	data;
+	
 	public static class PacketNinjaStatsResponseHandler implements IMessageHandler<PacketNinjaStatsResponse, IMessage> {
 		@Override
 		public IMessage onMessage(PacketNinjaStatsResponse message, MessageContext ctx) {
-			ExtendedProperties.get(Minecraft.getMinecraft().thePlayer).psa
-					.setValues(message.data);
+			ExtendedProperties.get(Minecraft.getMinecraft().thePlayer).psa.setValues(message.data);
 			return null;
 		}
-		
 	}
-	
-	private int[]	data;
 	
 	// Need a empty constructor just for the network registry to use
 	public PacketNinjaStatsResponse() {

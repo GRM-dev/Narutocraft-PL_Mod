@@ -22,7 +22,8 @@ public class ServerGuiHandler implements IGuiHandler {
 	
 	public void showUICustomizationScreen(EntityPlayerMP player) {
 		if (!player.worldObj.isRemote) {
-			NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 37, new byte[0]);
+			// NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 37,
+			// new byte[0]);
 		}
 	}
 }

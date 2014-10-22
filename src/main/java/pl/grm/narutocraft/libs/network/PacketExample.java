@@ -7,14 +7,17 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketExample implements IMessage {
+	private int		exampleInt		= 0;
+	private float	exampleFloat	= 0f;
+	private String	exampleString	= "";
+	
 	public static class PacketExampleHandler implements IMessageHandler<PacketExample, IMessage> {
 		
 		@Override
 		public IMessage onMessage(PacketExample message, MessageContext ctx) {
-			System.out.println(String.format("Received %d %f %s from %s",
-					message.exampleInt, message.exampleFloat, message.exampleString,
+			System.out.println(String.format("Received %d %f %s from %s", message.exampleInt,
+					message.exampleFloat, message.exampleString,
 					ctx.getServerHandler().playerEntity.getDisplayName()));
-			
 			// the return is null because there is no response.
 			return null;
 			/*
@@ -25,13 +28,7 @@ public class PacketExample implements IMessage {
 			 * PacketResponse takes just a String
 			 */
 		}
-		
 	}
-	
-	private int		exampleInt		= 0;
-	private float	exampleFloat	= 0f;
-	
-	private String	exampleString	= "";
 	
 	// Need a empty constructor just for the network registry to use
 	public PacketExample() {

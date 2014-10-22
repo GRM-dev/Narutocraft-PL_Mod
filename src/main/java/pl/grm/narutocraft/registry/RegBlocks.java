@@ -6,7 +6,7 @@ import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.blocks.ByoinBlock;
 import pl.grm.narutocraft.blocks.CustomPane;
 import pl.grm.narutocraft.blocks.CustomCarpet;
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegBlocks extends NarutoCraft {

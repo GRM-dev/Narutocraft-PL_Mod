@@ -2,7 +2,7 @@ package pl.grm.narutocraft.gui.stats;
 
 import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

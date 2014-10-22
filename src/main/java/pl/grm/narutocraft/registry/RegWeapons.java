@@ -18,7 +18,7 @@ import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
 import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
 import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
 import pl.grm.narutocraft.items.weapons.projectiles.WKunai;
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 
 public class RegWeapons extends RegItems {
 	public static Item	Kunai			= new Kunai()

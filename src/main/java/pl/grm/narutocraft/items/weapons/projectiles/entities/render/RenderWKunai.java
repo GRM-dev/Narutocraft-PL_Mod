@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
-import pl.grm.narutocraft.libs.References;
+import pl.grm.narutocraft.libs.config.References;
 
 /**
  * @author Admaster

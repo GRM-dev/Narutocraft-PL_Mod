@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.libs;
+package pl.grm.narutocraft.libs.config;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
