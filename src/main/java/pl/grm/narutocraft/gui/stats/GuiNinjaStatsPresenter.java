@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui.ninja;
+package pl.grm.narutocraft.gui.stats;
 
 import net.minecraft.entity.player.EntityPlayer;
 import pl.grm.narutocraft.NarutoCraft;

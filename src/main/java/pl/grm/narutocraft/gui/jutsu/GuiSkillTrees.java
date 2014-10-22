@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui;
+package pl.grm.narutocraft.gui.jutsu;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

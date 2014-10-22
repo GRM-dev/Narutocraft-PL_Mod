@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui.ninja;
+package pl.grm.narutocraft.gui.stats;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -9,6 +9,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
 
 import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.gui.GuiNinjaButton;
+import pl.grm.narutocraft.gui.GuiNinjaTabButton;
+import pl.grm.narutocraft.gui.jutsu.GuiJutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.References;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;

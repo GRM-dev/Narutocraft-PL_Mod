@@ -1,5 +1,7 @@
-package pl.grm.narutocraft.gui.ninja;
+package pl.grm.narutocraft.gui.jutsu;
 
+import pl.grm.narutocraft.gui.stats.GuiNinjaStatsView;
+import pl.grm.narutocraft.gui.stats.GuiSlotList;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 

@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui;
+package pl.grm.narutocraft.gui.stats;
 
 import org.lwjgl.opengl.GL11;
 

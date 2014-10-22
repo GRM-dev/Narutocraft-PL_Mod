@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.gui.ninja;
+package pl.grm.narutocraft.gui.stats;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiSlot;
