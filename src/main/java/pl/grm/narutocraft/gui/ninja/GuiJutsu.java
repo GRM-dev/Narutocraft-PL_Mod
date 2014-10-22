@@ -4,10 +4,10 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 
 public class GuiJutsu extends GuiScreen {
-	protected GuiNinjaStats	parentGui;
+	protected GuiNinjaStatsView	parentGui;
 	protected GuiSlotList	list;
 	
-	public GuiJutsu(GuiNinjaStats guiNinjaStats) {
+	public GuiJutsu(GuiNinjaStatsView guiNinjaStats) {
 		this.parentGui = guiNinjaStats;
 		this.list = new GuiSlotList(guiNinjaStats);
 		width = 150;

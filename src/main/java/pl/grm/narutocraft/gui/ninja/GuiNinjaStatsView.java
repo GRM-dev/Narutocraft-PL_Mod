@@ -15,7 +15,7 @@ import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.stats.ExtendedProperties;
 import pl.grm.narutocraft.stats.PlayerSkillsAtrributes;
 
-public class GuiNinjaStats extends GuiContainer {
+public class GuiNinjaStatsView extends GuiContainer {
 	private EntityPlayer	player;
 	private int				padLeft		= 44, padTop = 27;
 	private Boolean			jutsuMenu	= false;
@@ -25,7 +25,7 @@ public class GuiNinjaStats extends GuiContainer {
 	private int				stbUpg		= 0, stfUpg = 0, stgUpg = 0, stiUpg = 0, stnUpg = 0,
 			sttUpg = 0;
 	
-	public GuiNinjaStats(EntityPlayer player) {
+	public GuiNinjaStatsView(EntityPlayer player) {
 		super(new ContainerNull());
 		this.player = player;
 		this.xSize = this.jutsuMenu ? 210 : 256;

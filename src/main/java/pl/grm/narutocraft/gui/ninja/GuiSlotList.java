@@ -6,10 +6,10 @@ import net.minecraft.client.renderer.Tessellator;
 
 public class GuiSlotList extends GuiSlot {
 	protected Minecraft		mc;
-	private GuiNinjaStats	gui;
+	private GuiNinjaStatsView	gui;
 	private String[]		strings;
 	
-	public GuiSlotList(GuiNinjaStats guiNinjaStats) {
+	public GuiSlotList(GuiNinjaStatsView guiNinjaStats) {
 		super(guiNinjaStats.mc, guiNinjaStats.getSizeX(), guiNinjaStats.getSizeY(), guiNinjaStats
 				.getTop(), guiNinjaStats.getSizeY(), 24);
 		this.left = guiNinjaStats.getLeft();
