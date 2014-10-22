@@ -57,8 +57,8 @@ public class TestSkillTreeManager {
 	public void testLoadPrerequisites() {
 		skillsManager = SkillTreeManager.instance;
 		skillsManager.init();
-		skillsManager.selectTreefromTreeMap(SkillTreeEnum.NINJUTSU);
-		SkillTree tree = skillsManager.getSelectedTree();
+		SkillTree tree = skillsManager.getTreefromTreeMap(SkillTreeEnum.NINJUTSU);
+		
 		// if(tree.containsKey())
 		// TODO test method impl
 	}

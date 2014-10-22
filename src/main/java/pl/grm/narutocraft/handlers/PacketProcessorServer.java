@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.world.WorldServer;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.items.ItemJutsuBook;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.libs.network.DataReader;
 import pl.grm.narutocraft.libs.network.DataWriter;
@@ -56,14 +55,11 @@ public class PacketProcessorServer {
 				case 31 :
 					handleRequestBetaParticles(remaining, player);
 					break;
-				case 14 :
-					handleSpellBookChangeActiveSlot(remaining, player);
-					break;
 				case 27 :
 					handleSyncJutsuKnowledge(remaining, player);
 					break;
-				case 16 :
-					handleExpropOperation(remaining, player);
+				default :
+					break;
 			}
 			return;
 		}
@@ -97,11 +93,6 @@ public class PacketProcessorServer {
 		}
 	}
 	
-	private void handleExpropOperation(byte[] data, EntityPlayerMP player) {
-		// ExtendedPlayer.For(player).performRemoteOp(
-		// new DataReader(data, false).getInt());
-	}
-	
 	private void handleMagicLevelUp(byte[] data, EntityPlayerMP player) {}
 	
 	private void handlePossibleClientExpropDesync(byte[] data) {
@@ -124,7 +115,7 @@ public class PacketProcessorServer {
 		int entityID = rdr.getInt();
 		EntityLivingBase entity = getEntityByID(entityID);
 		if ((player == null) || (entity == null) || (!(entity instanceof EntityPlayer))) { return; }
-		if (!NarutoCraft.proxy.playerTracker.hasAA((EntityPlayer) entity)) { return; }
+		if (NarutoCraft.proxy != null) { return; }
 		byte[] expropData = ExtendedProperties.For(entity).getAuraData();
 		
 		DataWriter writer = new DataWriter();
@@ -134,26 +125,9 @@ public class PacketProcessorServer {
 		NetHandler.INSTANCE.sendPacketToClientPlayer(player, (byte) 31, writer.generate());
 	}
 	
-	private void handleSpellBookChangeActiveSlot(byte[] data, EntityPlayerMP player) {
-		DataReader rdr = new DataReader(data, false);
-		byte subID = rdr.getByte();
-		int entityID = rdr.getInt();
-		int inventorySlot = rdr.getInt();
-		
-		ItemStack stack = player.inventory.getStackInSlot(inventorySlot);
-		if ((stack == null) || (!(stack.getItem() instanceof ItemJutsuBook))) { return; }
-		// int newIndex = 0;
-		// if (subID == 0) {
-		// newIndex = RegItems.jutsuBook.SetNextSlot(stack);
-		// } else if (subID == 1) {
-		// newIndex = RegItems.jutsuBook.SetPrevSlot(stack);
-		// } else {
-		// }
-	}
-	
 	private void handleSyncBetaParticles(byte[] data, EntityPlayerMP player) {
 		DataReader rdr = new DataReader(data, false);
-		if ((player == null) || (!NarutoCraft.proxy.playerTracker.hasAA(player))) { return; }
+		if ((player == null)) { return; }
 		int index = rdr.getInt();
 		int behaviour = rdr.getInt();
 		float scale = rdr.getFloat();

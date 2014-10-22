@@ -7,12 +7,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldServer;
-import pl.grm.narutocraft.libs.network.PlayerTracker;
 import cpw.mods.fml.server.FMLServerHandler;
 
 public class ProxyCommon {
 	private static final Map<String, NBTTagCompound>	extendedEntityData	= new HashMap<String, NBTTagCompound>();
-	public PlayerTracker								playerTracker;
 	
 	public static NBTTagCompound getEntityData(String name) {
 		return extendedEntityData.remove(name);

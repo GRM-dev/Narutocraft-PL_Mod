@@ -43,7 +43,6 @@ public class NCEventHandler {
 				}
 			}
 		}
-		
 		// Defense
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
@@ -51,6 +50,7 @@ public class NCEventHandler {
 		}
 	}
 	
+	/** on Entity construct action */
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
 		if ((event.entity instanceof EntityPlayer)
@@ -65,6 +65,7 @@ public class NCEventHandler {
 		
 	}
 	
+	/** on Entity Join World action */
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
 		/*
@@ -77,6 +78,7 @@ public class NCEventHandler {
 		}
 	}
 	
+	/** on Living Death action */
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event) {
 		/*
@@ -97,6 +99,7 @@ public class NCEventHandler {
 		}
 	}
 	
+	/** on Living Fall action */
 	@SubscribeEvent
 	public void onLivingFallEvent(LivingFallEvent event) {
 		if (event.entity instanceof EntityPlayer) {
@@ -115,7 +118,7 @@ public class NCEventHandler {
 		}
 	}
 	
-	/** Refresh chakra by sleeping, and normal chakra regen **/
+	/** on Living Update action **/
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event) {
 		if (event.entity instanceof EntityPlayer) {
@@ -148,7 +151,7 @@ public class NCEventHandler {
 		}
 	}
 	
-	/** Testing flight by holding jutsu **/
+	/** on Living Update action */
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event) {
 		if (event.entity instanceof EntityPlayer) {

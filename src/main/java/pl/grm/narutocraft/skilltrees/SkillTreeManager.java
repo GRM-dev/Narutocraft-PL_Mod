@@ -24,8 +24,6 @@ public class SkillTreeManager {
 	private ArrayList<Integer>		disableds;
 	/** Safe copy of tree to get with only read permission */
 	private SkillTree				safeCopy;
-	/** Selected Tree */
-	private SkillTree				selectedTree;
 	
 	private SkillTreeManager() {
 		if (trees == null) {
@@ -79,18 +77,19 @@ public class SkillTreeManager {
 		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree, prerequisites);
 		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier, requiredPoints,
 				prerequisitesList);
-		selectTreefromTreeMap(tree);
-		this.selectedTree.addEntry(newEntry);
+		getTreefromTreeMap(tree).addEntry(newEntry);
 		return newEntry;
 	}
 	
 	/**
+	 * Gets tree reference to tree from Map of Trees
+	 * 
 	 * @param tree
-	 * @return tree from trees of tree ;)
+	 * @return tree from Map of trees
 	 */
-	public void selectTreefromTreeMap(SkillTreeEnum tree) {
+	public SkillTree getTreefromTreeMap(SkillTreeEnum tree) {
 		int id = tree.getID();
-		selectedTree = trees.get(id);
+		return trees.get(id);
 	}
 	
 	/**
@@ -118,33 +117,6 @@ public class SkillTreeManager {
 			}
 		}
 		return prerequisitesList;
-	}
-	
-	/**
-	 * @return array of locked jutsus ID
-	 */
-	public int[] getLockedJutsusIDs() {
-		this.disableds = new ArrayList<Integer>();
-		Iterator<Entry<Integer, SkillTree>> itTrees = trees.entrySet().iterator();
-		while (itTrees.hasNext()) {
-			Entry<Integer, SkillTree> entryT = itTrees.next();
-			SkillTree tree = entryT.getValue();
-			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
-					.iterator();
-			while (itTree.hasNext()) {
-				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
-				SkillTreeEntry entry = entryE.getValue();
-				if (entry.getEntryState() == EntryStates.UNLOCKED) {
-					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
-							.getJutsu())));
-				}
-			}
-		}
-		int[] disabledsAmount = new int[this.disableds.size()];
-		for (int i = 0; i < this.disableds.size(); i++) {
-			disabledsAmount[i] = this.disableds.get(i).intValue();
-		}
-		return disabledsAmount;
 	}
 	
 	/**
@@ -199,13 +171,54 @@ public class SkillTreeManager {
 	}
 	
 	/**
+	 * Clears specified tree
+	 * 
+	 * @param tree
+	 */
+	public void clearTree(SkillTree tree) {
+		int id = tree.getTreeID();
+		if (trees.containsKey(id)) {
+			trees.get(id).clearTree();
+		}
+	}
+	
+	/**
+	 * Checks if entry is locked.
+	 * 
 	 * @param entryPar
-	 * @return
+	 * @return true if locked
 	 */
 	public boolean isEntryLocked(SkillTreeEntry entryPar) {
 		SkillTreeEntry entry = getEntry(entryPar);
 		if (entry == null) { return false; }
 		return entry.getEntryState() == EntryStates.UNLOCKED;
+	}
+	
+	/**
+	 * @return array of locked jutsus ID
+	 */
+	public int[] getLockedJutsusIDs() {
+		this.disableds = new ArrayList<Integer>();
+		Iterator<Entry<Integer, SkillTree>> itTrees = trees.entrySet().iterator();
+		while (itTrees.hasNext()) {
+			Entry<Integer, SkillTree> entryT = itTrees.next();
+			SkillTree tree = entryT.getValue();
+			Iterator<Entry<Integer, SkillTreeEntry>> itTree = tree.getEntryMap().entrySet()
+					.iterator();
+			while (itTree.hasNext()) {
+				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
+				SkillTreeEntry entry = entryE.getValue();
+				if (entry.getEntryState() == EntryStates.UNLOCKED) {
+					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry
+							.getJutsu())));
+				}
+			}
+		}
+		int[] disabledsAmount = new int[this.disableds.size()];
+		for (int i = 0; i < this.disableds.size(); i++) {
+			disabledsAmount[i] = this.disableds.get(i).intValue();
+		}
+		return disabledsAmount;
 	}
 	
 	/**
@@ -255,12 +268,5 @@ public class SkillTreeManager {
 			e.printStackTrace();
 		}
 		return this.safeCopy;
-	}
-	
-	/**
-	 * @return selected SkillTree
-	 */
-	public SkillTree getSelectedTree() {
-		return this.selectedTree;
 	}
 }
