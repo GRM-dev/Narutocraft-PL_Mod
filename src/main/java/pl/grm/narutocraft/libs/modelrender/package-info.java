@@ -1,7 +1,4 @@
 /**
- *
- */
-/**
- * @author _Admaster
+ * Item Model Renderers
  */
 package pl.grm.narutocraft.libs.modelrender;

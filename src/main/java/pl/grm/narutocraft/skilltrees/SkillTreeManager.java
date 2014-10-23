@@ -97,7 +97,7 @@ public class SkillTreeManager {
 	 * 
 	 * @param tree
 	 * @param prerequisites
-	 * @return
+	 * @return ArrayList of {@link SkillTreeEntry}
 	 */
 	private ArrayList<SkillTreeEntry> convertEntryPrerequisites(SkillTreeEnum tree,
 			SkillTreeEntry... prerequisites) {
@@ -240,7 +240,7 @@ public class SkillTreeManager {
 	 * Returns reference to entry in tree
 	 * 
 	 * @param entry
-	 * @return Entry from tree
+	 * @return {@link SkillTreeEntry} from {@link SkillTree}
 	 */
 	public SkillTreeEntry getEntry(SkillTreeEntry entry) {
 		int entryID = entry.getJutsu().getJutsuProps().getID();
@@ -256,7 +256,7 @@ public class SkillTreeManager {
 	 * Gets tree reference from Tree Listing
 	 * 
 	 * @param tree
-	 * @return
+	 * @return {@link SkillTree}
 	 */
 	public SkillTree getTree(SkillTreeEnum tree) {
 		SkillTree skillTree = trees.get(tree.getID());

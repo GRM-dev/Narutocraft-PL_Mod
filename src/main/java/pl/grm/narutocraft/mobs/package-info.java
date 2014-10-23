@@ -1,7 +1,4 @@
 /**
- *
- */
-/**
- * @author Lukasz
+ * Mobs classes
  */
 package pl.grm.narutocraft.mobs;

@@ -5,6 +5,9 @@ import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+/**
+ * NinjaAtrributes use {@link Attributes}
+ */
 public class NinjaAtrributes {
 	public static int				skillPointsPerLevel	= 5;
 	
