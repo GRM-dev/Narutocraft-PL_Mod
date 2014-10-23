@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.commands;
+package pl.grm.narutocraft.test.commands;
 
 import static org.junit.Assert.fail;
 import net.minecraft.command.ICommand;

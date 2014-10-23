@@ -14,14 +14,12 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.ProxyCommon;
-import pl.grm.narutocraft.gui.JutsuInv;
 import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.IJutsu;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String			EXT_PROP_NAME	= "NCPLExtPlayer";
 	private final EntityPlayer			player;
-	public final JutsuInv				inventory		= new JutsuInv();
 	private JutsuManager				jManager		= JutsuManager.instance;
 	public PlayerSkillsAtrributes		psa				= new PlayerSkillsAtrributes();
 	private int							maxChakra, maxChakraCap = 500, maxChakraBase = 50;
@@ -44,7 +42,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public void init(Entity entity, World world) {
 		
 	}
-
+	
 	@Override
 	public final void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
@@ -66,7 +64,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		 */
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
-
+	
 	@Override
 	public final void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
@@ -88,7 +86,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 				+ this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER) + "/"
 				+ this.maxChakra);
 	}
-
+	
 	public static final void loadProxyData(EntityPlayer player) {
 		ExtendedProperties playerData = ExtendedProperties.get(player);
 		NBTTagCompound savedData = ProxyCommon.getEntityData(getSaveKey(player));
@@ -130,7 +128,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void resetMoveSpeed() {
 		PlayerCapabilities pc = player.capabilities;
 		try {
@@ -148,7 +146,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Consumes chakra
 	 *
@@ -160,7 +158,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		setCurrentChakra(getCurrentChakra() - value);
 		return sufficient;
 	}
-
+	
 	/**
 	 * Add amount of chakra to currentChakra.
 	 *
@@ -180,7 +178,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final int getCurrentChakra() {
 		return this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER);
 	}
-
+	
 	/**
 	 * Sets current Chakra to value
 	 * 
@@ -212,7 +210,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final int getMaxChakra() {
 		return this.maxChakra;
 	}
-
+	
 	/** Force set the maxChakra + bonus **/
 	public final void setMaxChakra(int amount) {
 		setMaxChakra(amount, true);

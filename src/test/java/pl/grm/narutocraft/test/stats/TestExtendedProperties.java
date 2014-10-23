@@ -1,8 +1,8 @@
-package pl.grm.narutocraft.items;
+package pl.grm.narutocraft.test.stats;
 
 import org.junit.Test;
 
-public class TestItems {
+public class TestExtendedProperties {
 	
 	@Test
 	public void test() {

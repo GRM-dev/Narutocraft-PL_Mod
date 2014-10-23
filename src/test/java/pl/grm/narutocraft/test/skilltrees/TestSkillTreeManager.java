@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.skilltrees;
+package pl.grm.narutocraft.test.skilltrees;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +9,10 @@ import java.security.InvalidParameterException;
 import org.junit.Test;
 
 import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.skilltrees.SkillTree;
+import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
+import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
+import pl.grm.narutocraft.skilltrees.SkillTreeManager;
 
 public class TestSkillTreeManager {
 	SkillTreeManager	skillsManager;

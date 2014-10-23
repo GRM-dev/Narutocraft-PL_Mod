@@ -1,8 +1,8 @@
-package pl.grm.narutocraft.libs;
+package pl.grm.narutocraft.test.libs;
 
 import org.junit.Test;
 
-public class TestPlayerSkillsAttributes {
+public class TestReferences {
 	
 	@Test
 	public void test() {

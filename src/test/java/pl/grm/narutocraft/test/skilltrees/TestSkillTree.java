@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.skilltrees;
+package pl.grm.narutocraft.test.skilltrees;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -10,6 +10,9 @@ import org.junit.Test;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.jutsu.ninjutsu.Meisaigakure;
+import pl.grm.narutocraft.skilltrees.SkillTree;
+import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
+import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
 public class TestSkillTree {
 	
