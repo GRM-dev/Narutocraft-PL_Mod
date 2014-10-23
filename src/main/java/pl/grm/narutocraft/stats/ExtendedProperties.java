@@ -20,9 +20,12 @@ import pl.grm.narutocraft.jutsu.IJutsu;
 public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String			EXT_PROP_NAME	= "NCPLExtPlayer";
 	private final EntityPlayer			player;
+	/** Jutsu Manager Instance */
 	private JutsuManager				jManager		= JutsuManager.instance;
 	public PlayerSkillsAtrributes		psa				= new PlayerSkillsAtrributes();
-	private int							maxChakra, maxChakraCap = 500, maxChakraBase = 50;
+	private NinjaAtrributes				ninAttrs		= new NinjaAtrributes();
+	private NinjaStats					ninStats		= new NinjaStats();
+	private int							maxChakra, maxChakraCap = 500, chakraBase = 50;
 	private static final int			CHAKRA_WATCHER	= 20;
 	public static List<int[]>			activeJutsus	= new ArrayList<int[]>();
 	public static Map<Integer, IJutsu>	jutsuList;
@@ -30,7 +33,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
-		this.maxChakra = maxChakraBase;
+		this.maxChakra = chakraBase;
 		this.player.getDataWatcher().addObject(CHAKRA_WATCHER, this.maxChakra);
 	}
 	
@@ -46,45 +49,34 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	@Override
 	public final void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
-		// this.inventory.writeToNBT(properties);
+		
 		this.jManager.writeToNBT(properties);
 		properties.setInteger("CurrentChakra",
 				this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", this.maxChakra);
+		// this.ninAttrs.writoToNBT(properties);
+		// this.ninStats.writoToNBT(properties);
+		properties.setIntArray("psaStats", this.psa.getValues()); // TODO delete
+																	// when new
+																	// ready
 		
-		// New PSA data saving
-		properties.setIntArray("psaStats", this.psa.getValues());
-		// Save stats
-		/*
-		 * NBTTagList stats = new NBTTagList();
-		 * for (int i = 0; i < psa.getValues().length; ++i) { NBTTagCompound
-		 * stat = new NBTTagCompound(); stat.setInteger("psaStat" + i,
-		 * psa.getValues()[i]); stats.appendTag(stat); }
-		 * properties.setTag("psaStats", stats);
-		 */
 		compound.setTag(EXT_PROP_NAME, properties);
 	}
 	
 	@Override
 	public final void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
-		// this.inventory.readFromNBT(properties);
+		
 		this.jManager.readFromNBT(properties);
 		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));
 		this.maxChakra = properties.getInteger("MaxChakra");
+		// this.ninAttrs.readFromNBT(properties);
+		// this.ninStats.readFromNBT(properties);
+		this.psa.setValues(properties.getIntArray("psaStats")); // TODO delete
+																// when new
+																// ready
 		
-		// NBTTagList stats = properties .getTagList("psaStats",
-		// properties.getId()); int[] statList = new int[stats.tagCount()]; for
-		// (int i = 0; i < stats.tagCount(); ++i) { NBTTagCompound stat =
-		// stats.getCompoundTagAt(i); statList[i] = stat.getInteger("psaStat" +
-		// i); }
-		// New PSA loading
-		this.psa.setValues(properties.getIntArray("psaStats"));
-		
-		System.out.println("[NCPL Chakra] Chakra from NBT: "
-				+ this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER) + "/"
-				+ this.maxChakra);
 	}
 	
 	public static final void loadProxyData(EntityPlayer player) {
@@ -95,15 +87,15 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		}
 	}
 	
-	public static final void register(EntityPlayer player) {
-		player.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME, new ExtendedProperties(
-				player));
-	}
-	
 	public static final void saveProxyData(EntityPlayer player) {
 		NBTTagCompound savedData = new NBTTagCompound();
 		ExtendedProperties.get(player).saveNBTData(savedData);
 		ProxyCommon.storeEntityData(getSaveKey(player), savedData);
+	}
+	
+	public static final void register(EntityPlayer player) {
+		player.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME, new ExtendedProperties(
+				player));
 	}
 	
 	private static final String getSaveKey(EntityPlayer player) {
@@ -203,7 +195,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		if (overrideBaseValue)
 			this.maxChakra = MathHelper.clamp_int(amount + psa.getMaxChakraMod(), 0, maxChakraCap);
 		else
-			this.maxChakra = MathHelper.clamp_int(maxChakraBase + psa.getMaxChakraMod(), 0,
+			this.maxChakra = MathHelper.clamp_int(chakraBase + psa.getMaxChakraMod(), 0,
 					maxChakraCap);
 	}
 	

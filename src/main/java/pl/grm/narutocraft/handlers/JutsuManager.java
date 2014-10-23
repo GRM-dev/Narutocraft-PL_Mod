@@ -61,19 +61,6 @@ public class JutsuManager {
 		}
 	}
 	
-	public void readFromNBT(NBTTagCompound compound) {
-		NBTTagList jutsus = compound.getTagList("JutsuManager", Constants.NBT.TAG_COMPOUND); // compound.getId(
-		int jCount = jutsus.tagCount();
-		System.out.println("JCount: " + jCount);
-		if (jutsus != null) {
-			for (int i = 0; i < jCount; i++) {
-				NBTTagCompound jutsu = jutsus.getCompoundTagAt(jCount);
-				this.activeJutsus.add(jutsu.getIntArray("Jutsu" + i));
-			}
-		}
-		ExtendedProperties.activeJutsus = this.activeJutsus;
-	}
-	
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList jutsuList = new NBTTagList();
 		this.activeJutsus = ExtendedProperties.activeJutsus;
@@ -85,6 +72,19 @@ public class JutsuManager {
 			}
 		}
 		compound.setTag("JutsuManager", jutsuList);
+	}
+
+	public void readFromNBT(NBTTagCompound compound) {
+		NBTTagList jutsus = compound.getTagList("JutsuManager", Constants.NBT.TAG_COMPOUND); // compound.getId(
+		int jCount = jutsus.tagCount();
+		System.out.println("JCount: " + jCount);
+		if (jutsus != null) {
+			for (int i = 0; i < jCount; i++) {
+				NBTTagCompound jutsu = jutsus.getCompoundTagAt(jCount);
+				this.activeJutsus.add(jutsu.getIntArray("Jutsu" + i));
+			}
+		}
+		ExtendedProperties.activeJutsus = this.activeJutsus;
 	}
 	
 	/**
