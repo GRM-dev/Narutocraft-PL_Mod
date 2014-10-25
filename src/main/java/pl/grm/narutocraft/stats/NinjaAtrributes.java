@@ -38,7 +38,8 @@ public class NinjaAtrributes {
 	}
 	
 	public void readFromNBT(NBTTagCompound properties) {
-		NBTTagList tagList = properties.getTagList(NBTCompoundName, Constants.NBT.TAG_COMPOUND);
+		NBTTagList tagList = properties.getTagList(NBTCompoundName,
+				Constants.NBT.TAG_COMPOUND);
 		int amount = tagList.tagCount();
 		if (amount > 0) {
 			for (int i = 0; i < amount; i++) {
@@ -76,17 +77,17 @@ public class NinjaAtrributes {
 	}
 	
 	public int getAgility() {
-		Integer param = attributes.get(Attributes.STRENGHT.getSName());
+		Integer param = attributes.get(Attributes.AGILITY.getSName());
 		return param;
 	}
 	
 	public int getDexterity() {
-		Integer param = attributes.get(Attributes.STRENGHT.getSName());
+		Integer param = attributes.get(Attributes.DEXTERITY.getSName());
 		return param;
 	}
 	
 	public int getResistance() {
-		Integer param = attributes.get(Attributes.STRENGHT.getSName());
+		Integer param = attributes.get(Attributes.RESISTANCE.getSName());
 		return param;
 	}
 	
@@ -102,6 +103,41 @@ public class NinjaAtrributes {
 	
 	public int getChakraRegenMod() {
 		Integer param = attributes.get(Attributes.STRENGHT.getSName());
+		return param;
+	}
+	
+	public int getStamina() {
+		Integer param = attributes.get(Attributes.STAMINA.getSName());
+		return param;
+	}
+	
+	public int getWillPower() {
+		Integer param = attributes.get(Attributes.WILLPOWER.getSName());
+		return param;
+	}
+	
+	public int getLife() {
+		Integer param = attributes.get(Attributes.LIFE.getSName());
+		return param;
+	}
+	
+	public int getThrow() {
+		Integer param = attributes.get(Attributes.THROW.getSName());
+		return param;
+	}
+	
+	public int getAlertness() {
+		Integer param = attributes.get(Attributes.ALERTNESS.getSName());
+		return param;
+	}
+	
+	public int getCharisma() {
+		Integer param = attributes.get(Attributes.CHARISMA.getSName());
+		return param;
+	}
+	
+	public int getLuck() {
+		Integer param = attributes.get(Attributes.LUCK.getSName());
 		return param;
 	}
 	

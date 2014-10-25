@@ -16,6 +16,35 @@ public enum Attributes {
 	RESISTANCE(
 			"Resistance",
 			"res",
+			0) ,
+	
+	STAMINA(
+			"Stamina",
+			"sta",
+			0) ,
+	WILLPOWER(
+			"WillPower",
+			"will",
+			0) ,
+	LIFE(
+			"Life",
+			"hp",
+			0) ,
+	THROW(
+			"Throw",
+			"throw",
+			0) ,
+	ALERTNESS(
+			"Alertness",
+			"alert",
+			0) ,
+	CHARISMA(
+			"Charisma",
+			"cha",
+			0) ,
+	LUCK(
+			"Luck",
+			"luck",
 			0);
 	
 	private String	name;
