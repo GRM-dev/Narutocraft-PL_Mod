@@ -2,9 +2,11 @@ package pl.grm.narutocraft.skilltrees;
 
 import java.util.ArrayList;
 
+import net.minecraft.util.IIcon;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.jutsu.JutsuTier;
+import pl.grm.narutocraft.libs.config.References;
 
 public class SkillTreeEntry {
 	private int					x;
@@ -16,6 +18,7 @@ public class SkillTreeEntry {
 	private SkillTreeEntry[]	prerequisites;
 	private EntryStates			entryState;
 	private JutsuEnum			reqJutsu;
+	private IIcon				icon;
 	
 	/**
 	 * @param x
@@ -39,6 +42,7 @@ public class SkillTreeEntry {
 		this.y = y;
 		this.tree = tree;
 		this.jutsu = iJutsu;
+		this.icon = References.getIconFromJutsu(jutsu);
 		this.tier = tier;
 		this.points = points;
 		convertAndSavePrerequisites(prerequisites);
@@ -108,5 +112,9 @@ public class SkillTreeEntry {
 	
 	public void setEntryState(EntryStates entryState) {
 		this.entryState = entryState;
+	}
+	
+	public IIcon getIcon() {
+		return icon;
 	}
 }

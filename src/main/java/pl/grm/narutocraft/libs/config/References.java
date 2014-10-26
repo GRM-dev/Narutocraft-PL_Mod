@@ -2,6 +2,7 @@ package pl.grm.narutocraft.libs.config;
 
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.player.ExtendedProperties;
@@ -40,6 +41,12 @@ public class References {
 	
 	public static IIcon getIconFromJutsu(JutsuEnum jutsuE) {
 		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsuE.getJutsuID()))
+				.getIconFromDamage(0);
+		return icon;
+	}
+	
+	public static IIcon getIconFromJutsu(IJutsu jutsu) {
+		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsu.getJutsuProps().getID()))
 				.getIconFromDamage(0);
 		return icon;
 	}
