@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.jutsu.JutsuTier;
@@ -14,6 +15,7 @@ import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
 public class TestSkillTreeEntry {
+	JutsuManager	jM	= new JutsuManager();
 	
 	@Test
 	public void testSTEntry() {

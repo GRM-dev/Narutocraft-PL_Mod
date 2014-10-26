@@ -46,7 +46,9 @@ public class References {
 	}
 	
 	public static IIcon getIconFromJutsu(IJutsu jutsu) {
-		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsu.getJutsuProps().getID()))
+		IIcon icon;
+		if (!ExtendedProperties.jutsuList.containsKey((jutsu.getJutsuProps().getID()))) { return null; }
+		icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsu.getJutsuProps().getID()))
 				.getIconFromDamage(0);
 		return icon;
 	}

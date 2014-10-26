@@ -8,6 +8,7 @@ import java.security.InvalidParameterException;
 
 import org.junit.Test;
 
+import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.skilltrees.SkillTree;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
@@ -16,6 +17,7 @@ import pl.grm.narutocraft.skilltrees.SkillTreeManager;
 
 public class TestSkillTreeManager {
 	SkillTreeManager	skillsManager;
+	JutsuManager		jM		= new JutsuManager();
 	JutsuEnum			jutsu	= JutsuEnum.RASENGAN;
 	
 	/**
