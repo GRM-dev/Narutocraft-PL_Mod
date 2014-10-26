@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.stats;
+package pl.grm.narutocraft.player;
 
 /**
  * Other statistics than attributes like level of player, base level, etc.

@@ -11,12 +11,12 @@ import org.lwjgl.opengl.GL11;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.gui.GuiNinjaButton;
 import pl.grm.narutocraft.gui.GuiNinjaTabButton;
-import pl.grm.narutocraft.gui.jutsu.GuiJutsu;
+import pl.grm.narutocraft.gui.skilltrees.GuiJutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
-import pl.grm.narutocraft.stats.ExtendedProperties;
-import pl.grm.narutocraft.stats.PlayerSkillsAtrributes;
+import pl.grm.narutocraft.player.ExtendedProperties;
+import pl.grm.narutocraft.player.PlayerSkillsAtrributes;
 
 public class GuiNinjaStatsView extends GuiContainer {
 	private EntityPlayer	player;

@@ -3,8 +3,8 @@ package pl.grm.narutocraft.gui.stats;
 import net.minecraft.entity.player.EntityPlayer;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
-import pl.grm.narutocraft.stats.ExtendedProperties;
-import pl.grm.narutocraft.stats.PlayerSkillsAtrributes;
+import pl.grm.narutocraft.player.ExtendedProperties;
+import pl.grm.narutocraft.player.PlayerSkillsAtrributes;
 
 public class GuiNinjaStatsPresenter {
 	private EntityPlayer	player;

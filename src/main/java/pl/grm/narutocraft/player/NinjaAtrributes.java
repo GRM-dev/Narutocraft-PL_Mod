@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.stats;
+package pl.grm.narutocraft.player;
 
 import java.util.HashMap;
 import java.util.Iterator;

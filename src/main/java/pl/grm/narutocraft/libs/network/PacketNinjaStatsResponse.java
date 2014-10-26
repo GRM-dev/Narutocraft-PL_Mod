@@ -2,8 +2,8 @@ package pl.grm.narutocraft.libs.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import pl.grm.narutocraft.stats.ExtendedProperties;
-import pl.grm.narutocraft.stats.PlayerSkillsAtrributes;
+import pl.grm.narutocraft.player.ExtendedProperties;
+import pl.grm.narutocraft.player.PlayerSkillsAtrributes;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;

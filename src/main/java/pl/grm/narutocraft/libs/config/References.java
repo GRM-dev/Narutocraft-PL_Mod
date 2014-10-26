@@ -4,7 +4,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.stats.ExtendedProperties;
+import pl.grm.narutocraft.player.ExtendedProperties;
 
 /**
  * Parameters/References to mod constants and info

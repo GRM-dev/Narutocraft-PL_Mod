@@ -1,21 +1,33 @@
 package pl.grm.narutocraft.test.stats;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import pl.grm.narutocraft.stats.Attributes;
-import pl.grm.narutocraft.stats.NinjaAtrributes;
+import pl.grm.narutocraft.player.Attributes;
+import pl.grm.narutocraft.player.NinjaAtrributes;
 
-public class TestPlayerSkillsAttributes {
+public class TestNinjaAttributes {
 	NinjaAtrributes	att;
 	
 	@Test
 	public void testCreatingAndFillingMapWithAttrbts() {
 		att = new NinjaAtrributes();
 		assertFalse("No Attributes map declared!", att.getAttValues() == null);
-		assertFalse("Empty map!", att.getAttValues().isEmpty());
+		assertThat(att.getAttValues().isEmpty(), is(false));
+	}
+	
+	@Test
+	public void testWritoToNBT() {
+		// fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testReadFromNBT() {
+		// fail("Not yet implemented");
 	}
 	
 	@Test

@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.stats;
+package pl.grm.narutocraft.player;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -22,13 +22,18 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	private final EntityPlayer			player;
 	/** Jutsu Manager Instance */
 	private JutsuManager				jManager		= JutsuManager.instance;
+	@Deprecated
 	public PlayerSkillsAtrributes		psa				= new PlayerSkillsAtrributes();
 	private NinjaAtrributes				ninAttrs		= new NinjaAtrributes();
 	private NinjaStats					ninStats		= new NinjaStats();
+	@Deprecated
+	// TODO take to stats
 	private int							maxChakra, maxChakraCap = 500, chakraBase = 50;
 	private static final int			CHAKRA_WATCHER	= 20;
 	public static List<int[]>			activeJutsus	= new ArrayList<int[]>();
 	public static Map<Integer, IJutsu>	jutsuList;
+	@Deprecated
+	// TODO move to stats
 	public boolean						ninjaRun		= false;
 	
 	public ExtendedProperties(EntityPlayer player) {

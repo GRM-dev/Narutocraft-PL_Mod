@@ -12,18 +12,15 @@ import net.minecraftforge.common.util.Constants;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.player.ExtendedProperties;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
-import pl.grm.narutocraft.stats.ExtendedProperties;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class JutsuManager {
 	public static JutsuManager						instance		= new JutsuManager();
-	private int										jutsuID;
 	private Jutsu									jutsu;
 	private Iterator<int[]>							iterator;
 	private final HashMap<Integer, SkillTreeEntry>	registeredEntries;
-	private int[]									elem;
-	private static int								count			= 0;
 	private List<int[]>								activeJutsus	= new ArrayList<int[]>();
 	
 	public JutsuManager() {
@@ -52,13 +49,7 @@ public class JutsuManager {
 	private static void registerJutsu(JutsuEnum jutsuE) {
 		IJutsu jutsu = jutsuE.getJutsu();
 		GameRegistry.registerItem((Item) jutsu, jutsuE.getName());
-		count++;
 		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
-		if (count == ExtendedProperties.jutsuList.size()) {
-			System.out.println("Added " + jutsu.getJutsuProps().getID() + " Jutsu.");
-		} else {
-			System.out.println("Smth wrong with registerinh Jutsu");
-		}
 	}
 	
 	public void writeToNBT(NBTTagCompound compound) {
@@ -67,21 +58,20 @@ public class JutsuManager {
 		if (!this.activeJutsus.isEmpty()) {
 			for (int[] jutsu : activeJutsus) {
 				NBTTagCompound tag = new NBTTagCompound();
-				tag.setIntArray("JutsuID: " + jutsu[0], jutsu);
+				tag.setIntArray("Jutsu:" + jutsu[0], jutsu);
 				jutsuList.appendTag(tag);
 			}
 		}
 		compound.setTag("JutsuManager", jutsuList);
 	}
-
+	
 	public void readFromNBT(NBTTagCompound compound) {
-		NBTTagList jutsus = compound.getTagList("JutsuManager", Constants.NBT.TAG_COMPOUND); // compound.getId(
-		int jCount = jutsus.tagCount();
-		System.out.println("JCount: " + jCount);
+		NBTTagList jutsus = compound.getTagList("JutsuManager", Constants.NBT.TAG_COMPOUND);
+		int amount = jutsus.tagCount();
 		if (jutsus != null) {
-			for (int i = 0; i < jCount; i++) {
-				NBTTagCompound jutsu = jutsus.getCompoundTagAt(jCount);
-				this.activeJutsus.add(jutsu.getIntArray("Jutsu" + i));
+			for (int i = 0; i < amount; i++) {
+				NBTTagCompound jutsu = jutsus.getCompoundTagAt(i);
+				this.activeJutsus.add(jutsu.getIntArray("Jutsu:" + i));
 			}
 		}
 		ExtendedProperties.activeJutsus = this.activeJutsus;
@@ -95,9 +85,7 @@ public class JutsuManager {
 		if (!this.activeJutsus.isEmpty()) {
 			this.iterator = this.activeJutsus.iterator();
 			while (this.iterator.hasNext()) {
-				this.elem = this.iterator.next();
-				this.jutsuID = this.elem[0];
-				
+				this.iterator.next();
 				if (this.jutsu.isActive()) {
 					this.jutsu.onJutsuUpdate();
 				} else {
@@ -113,7 +101,7 @@ public class JutsuManager {
 	public synchronized void loadJutsuEffectsOnPlayer() {
 		if (!ExtendedProperties.activeJutsus.isEmpty()) {
 			while (this.iterator.hasNext()) {
-				this.elem = this.activeJutsus.iterator().next();
+				this.activeJutsus.iterator().next();
 				if (this.jutsu.isActive()) {
 					this.jutsu.onJutsuUpdate();
 				} else {

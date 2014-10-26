@@ -1,4 +1,4 @@
 /**
  * Statistics, player attributes
  */
-package pl.grm.narutocraft.stats;
+package pl.grm.narutocraft.player;

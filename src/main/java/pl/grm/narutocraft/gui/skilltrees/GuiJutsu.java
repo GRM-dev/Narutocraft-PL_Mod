@@ -1,13 +1,13 @@
-package pl.grm.narutocraft.gui.jutsu;
+package pl.grm.narutocraft.gui.skilltrees;
 
-import pl.grm.narutocraft.gui.stats.GuiNinjaStatsView;
-import pl.grm.narutocraft.gui.stats.GuiSlotList;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import pl.grm.narutocraft.gui.stats.GuiNinjaStatsView;
+import pl.grm.narutocraft.gui.stats.GuiSlotList;
 
 public class GuiJutsu extends GuiScreen {
-	protected GuiNinjaStatsView	parentGui;
-	protected GuiSlotList	list;
+	private GuiNinjaStatsView	parentGui;
+	private GuiSlotList			list;
 	
 	public GuiJutsu(GuiNinjaStatsView guiNinjaStats) {
 		this.parentGui = guiNinjaStats;

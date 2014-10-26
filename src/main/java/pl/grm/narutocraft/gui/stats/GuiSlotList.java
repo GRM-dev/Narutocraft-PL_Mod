@@ -5,9 +5,9 @@ import net.minecraft.client.gui.GuiSlot;
 import net.minecraft.client.renderer.Tessellator;
 
 public class GuiSlotList extends GuiSlot {
-	protected Minecraft		mc;
+	private Minecraft			mc;
 	private GuiNinjaStatsView	gui;
-	private String[]		strings;
+	private String[]			strings;
 	
 	public GuiSlotList(GuiNinjaStatsView guiNinjaStats) {
 		super(guiNinjaStats.mc, guiNinjaStats.getSizeX(), guiNinjaStats.getSizeY(), guiNinjaStats
