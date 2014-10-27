@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.test.stats;
+package pl.grm.narutocraft.test.player;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

@@ -20,8 +20,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Event Handler of NCPL mod
- *
- * @author Admaster
  */
 public class NCEventHandler {
 	
@@ -110,10 +108,7 @@ public class NCEventHandler {
 				float reduceby = props.getCurrentChakra() < (event.distance - 3.0F) ? props
 						.getCurrentChakra() : (event.distance - 3.0F);
 				event.distance -= reduceby;
-				
 				props.consumeChakra((int) reduceby);
-				
-				System.out.println("[EVENT] Adjusted fall distance: " + event.distance);
 			}
 		}
 	}
