@@ -1,6 +1,8 @@
 package pl.grm.narutocraft.test.skilltrees;
 
-import static org.junit.Assert.assertFalse;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class TestSkillTreeEntry {
 			fail(e.getMessage());
 		}
 		SkillTreeEntry[] reqs = entry.getPrerequisites();
-		assertFalse("reqs empty?", reqs.length == 0);
-		assertFalse("jutsu null?", entry.getReqJutsu() == null);
+		assertThat(reqs.length, not(0));
+		assertThat(entry.getReqJutsu(), notNullValue());
 	}
 }
