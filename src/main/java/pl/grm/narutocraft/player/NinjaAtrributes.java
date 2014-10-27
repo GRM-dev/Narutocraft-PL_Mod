@@ -38,8 +38,7 @@ public class NinjaAtrributes {
 	}
 	
 	public void readFromNBT(NBTTagCompound properties) {
-		NBTTagList tagList = properties.getTagList(NBTCompoundName,
-				Constants.NBT.TAG_COMPOUND);
+		NBTTagList tagList = properties.getTagList(NBTCompoundName, Constants.NBT.TAG_COMPOUND);
 		int amount = tagList.tagCount();
 		if (amount > 0) {
 			for (int i = 0; i < amount; i++) {

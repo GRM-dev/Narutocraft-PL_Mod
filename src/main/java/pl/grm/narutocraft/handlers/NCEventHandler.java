@@ -1,7 +1,6 @@
 package pl.grm.narutocraft.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
@@ -11,9 +10,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.libs.network.PacketNinjaStatsResponse;
 import pl.grm.narutocraft.player.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -35,16 +32,16 @@ public class NCEventHandler {
 				
 				if (event.source.getDamageType() == "player")// physical attack
 				{
-					event.ammount += ExtendedProperties.get(player).psa.getStrength() * 0.15f;
+					event.ammount += ExtendedProperties.get(player).getNinAttrs().getStrength() * 0.15f;
 				} else if (event.source.getDamageType() == "arrow") {
-					event.ammount += ExtendedProperties.get(player).psa.getDexterity() * 0.15f;
+					event.ammount += ExtendedProperties.get(player).getNinAttrs().getDexterity() * 0.15f;
 				}
 			}
 		}
 		// Defense
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
-			event.ammount -= ExtendedProperties.get(player).psa.getResistance() * 0.25f;
+			event.ammount -= ExtendedProperties.get(player).getNinAttrs().getResistance() * 0.25f;
 		}
 	}
 	
@@ -91,9 +88,12 @@ public class NCEventHandler {
 		if (event.source.getEntity() instanceof EntityPlayer) {
 			ExtendedProperties prop = ExtendedProperties.get((EntityPlayer) event.source
 					.getEntity());
-			prop.psa.levelUp((int) event.entityLiving.getMaxHealth() / 3);
-			NarutoCraft.netHandler.sendTo(new PacketNinjaStatsResponse(prop.psa.getValues()),
-					(EntityPlayerMP) event.source.getEntity());
+			prop.getNinStats().levelUp((int) event.entityLiving.getMaxHealth() / 3);
+			// TODO add stats or attr instead of psa
+			// FIXME getValues not exists for both types
+			// NarutoCraft.netHandler.sendTo(new
+			// PacketNinjaStatsResponse(prop.getNinStats()
+			// .getValues()), (EntityPlayerMP) event.source.getEntity());
 		}
 	}
 	
@@ -135,8 +135,8 @@ public class NCEventHandler {
 			}
 			if (event.entity.worldObj.getWorldTime() % 30 == 0)
 				ExtendedProperties.get(player).setMaxChakra(false);
-			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties.get(player).psa
-					.getChakraRegenMod())) == 0) {
+			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties.get(player)
+					.getNinAttrs().getChakraRegenMod())) == 0) {
 				ExtendedProperties.get(player).regenChakra(1);
 			}
 			if (player.isPlayerFullyAsleep()) {
@@ -168,7 +168,8 @@ public class NCEventHandler {
 			if (!event.entityPlayer.worldObj.isRemote) {
 				ExtendedProperties deadPlayer = ExtendedProperties.get(event.original);
 				ExtendedProperties clonePlayer = ExtendedProperties.get(event.entityPlayer);
-				clonePlayer.psa.setValues(deadPlayer.psa.getValues());
+				// FIXME method getValues not exists
+				// clonePlayer.psa.setValues(deadPlayer.psa.getValues());
 			}
 		}
 	}
@@ -180,10 +181,11 @@ public class NCEventHandler {
 	@SubscribeEvent
 	public void onPlayerJoin(EntityJoinWorldEvent e) {
 		if ((e.entity instanceof EntityPlayer) && !e.world.isRemote) {
-			NarutoCraft.netHandler.sendTo(
-					new PacketNinjaStatsResponse(
-							ExtendedProperties.get((EntityPlayer) e.entity).psa.getValues()),
-					(EntityPlayerMP) e.entity);
+			// FIXME as other fixers
+			// NarutoCraft.netHandler.sendTo(
+			// new PacketNinjaStatsResponse(
+			// ExtendedProperties.get((EntityPlayer) e.entity).psa.getValues()),
+			// (EntityPlayerMP) e.entity);
 		}
 	}
 }
