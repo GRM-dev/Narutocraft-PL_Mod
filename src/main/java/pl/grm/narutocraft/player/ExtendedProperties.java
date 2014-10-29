@@ -25,7 +25,9 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	private NinjaAtrributes				ninAttrs		= new NinjaAtrributes();
 	private NinjaStats					ninStats		= new NinjaStats();
 	private static final int			CHAKRA_WATCHER	= 20;
+	/** List of activated buff jutsus */
 	public static List<int[]>			activeJutsus	= new ArrayList<int[]>();
+	/** The list of all jutsu initialized by JutsuManager */
 	public static Map<Integer, IJutsu>	jutsuList;
 	public boolean						ninjaRun		= false;
 	
@@ -40,7 +42,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	@Override
 	public final void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
-		
 		this.jManager.writeToNBT(properties);
 		properties.setInteger("CurrentChakra",
 				this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER));
@@ -53,7 +54,6 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	@Override
 	public final void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
-		
 		this.jManager.readFromNBT(properties);
 		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
 				properties.getInteger("CurrentChakra"));

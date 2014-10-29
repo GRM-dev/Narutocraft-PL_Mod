@@ -2,6 +2,10 @@ package pl.grm.narutocraft.test.player;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants;
 
 import org.junit.Test;
 
@@ -19,12 +23,35 @@ public class TestNinjaAttributes {
 	
 	@Test
 	public void testWritoToNBT() {
-		// fail("Not yet implemented");
+		String name = null;
+		boolean found = false;
+		att = new NinjaAtrributes();
+		NBTTagCompound compound = new NBTTagCompound();
+		att.writoToNBT(compound);
+		NBTTagList tagList = compound.getTagList("NinjaAttributes", Constants.NBT.TAG_COMPOUND);
+		NBTTagCompound n = tagList.getCompoundTagAt(1);
+		assertThat(n, notNullValue());
+		
+		for (Attributes att : Attributes.values()) {
+			name = att.getSName();
+			if (n.hasKey(name)) {
+				found = true;
+			}
+		}
+		assertThat(found, is(true));
 	}
 	
 	@Test
 	public void testReadFromNBT() {
-		// fail("Not yet implemented");
+		String name = null;
+		att = new NinjaAtrributes();
+		int value = att.getAgility();
+		NBTTagCompound compound = new NBTTagCompound();
+		att.writoToNBT(compound);
+		att.setAgility(5);
+		assertThat(att.getAgility(), is(5));
+		att.readFromNBT(compound);
+		assertThat(att.getAgility(), is(value));
 	}
 	
 	@Test
