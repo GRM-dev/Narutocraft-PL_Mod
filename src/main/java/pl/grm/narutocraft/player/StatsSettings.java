@@ -5,7 +5,7 @@ package pl.grm.narutocraft.player;
  * <p>
  * When base value than its name = " ".
  */
-public enum Stats {
+public enum StatsSettings {
 	ARMOR_BASE(
 			" ",
 			"armor_base",
@@ -39,7 +39,7 @@ public enum Stats {
 			"hp_base",
 			10) ,
 	HP_MAX(
-			" ",
+			"Max HP",
 			"hp_max",
 			20000) ,
 	HP_REGEN_TICK(
@@ -51,11 +51,11 @@ public enum Stats {
 			"levelup_point",
 			5) ,
 	NINJA_LEVEL_MAX(
-			" ",
+			"Max ",
 			"ninja_level_max",
 			200) ,
 	RESISTANCE_MAX(
-			" ",
+			"Max ",
 			"resistance_max",
 			80);
 	
@@ -63,7 +63,7 @@ public enum Stats {
 	private int		baseValue;
 	private String	sName;
 	
-	private Stats(String name, String sName, int baseValue) {
+	private StatsSettings(String name, String sName, int baseValue) {
 		this.name = name;
 		this.sName = sName;
 		this.baseValue = baseValue;
@@ -79,6 +79,5 @@ public enum Stats {
 	
 	public String getSName() {
 		return sName;
-		
 	}
 }

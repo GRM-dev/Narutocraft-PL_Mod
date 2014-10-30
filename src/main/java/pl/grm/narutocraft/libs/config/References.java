@@ -37,16 +37,20 @@ public class References {
 																		GuiTexturePath
 																				+ "NinjaGuiWidgets.png");
 	/** GUI IDs */
-	public static final int					STATS				= 1, OPTS = 2, SKILL_TREE = 3;
+	public static final int					OPTS				= 1, STATS = 2, SKILL_TREE = 3,
+			SETTS = 4;
 	
 	public static IIcon getIconFromJutsu(JutsuEnum jutsuE) {
+		if (!ExtendedProperties.jutsuList.containsKey((jutsuE.getJutsuID()))) { return null; }
 		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsuE.getJutsuID()))
 				.getIconFromDamage(0);
 		return icon;
 	}
 	
 	public static IIcon getIconFromJutsu(IJutsu jutsu) {
-		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsu.getJutsuProps().getID()))
+		IIcon icon;
+		if (!ExtendedProperties.jutsuList.containsKey((jutsu.getJutsuProps().getID()))) { return null; }
+		icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsu.getJutsuProps().getID()))
 				.getIconFromDamage(0);
 		return icon;
 	}

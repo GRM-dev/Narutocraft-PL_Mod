@@ -1,4 +1,4 @@
-package pl.grm.narutocraft.test.stats;
+package pl.grm.narutocraft.test.player;
 
 import org.junit.Test;
 

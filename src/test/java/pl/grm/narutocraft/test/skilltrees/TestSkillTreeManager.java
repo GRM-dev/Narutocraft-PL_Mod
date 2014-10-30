@@ -1,13 +1,16 @@
 package pl.grm.narutocraft.test.skilltrees;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.fail;
 
 import java.security.InvalidParameterException;
 
 import org.junit.Test;
 
+import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
 import pl.grm.narutocraft.skilltrees.SkillTree;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
@@ -16,15 +19,13 @@ import pl.grm.narutocraft.skilltrees.SkillTreeManager;
 
 public class TestSkillTreeManager {
 	SkillTreeManager	skillsManager;
+	JutsuManager		jM		= new JutsuManager();
 	JutsuEnum			jutsu	= JutsuEnum.RASENGAN;
 	
-	/**
-	 * fail if typeList=null
-	 */
 	@Test
 	public void testInstance() {
 		skillsManager = SkillTreeManager.instance;
-		assertFalse(skillsManager == null);
+		assertThat(skillsManager, notNullValue());
 	}
 	
 	@Test
@@ -34,7 +35,7 @@ public class TestSkillTreeManager {
 			skillsManager.init();
 		}
 		catch (InvalidParameterException e) {
-			assertTrue(e.getMessage().contains("Unable to locate one or more prerequisite"));
+			assertThat(e.getMessage(), containsString("Unable to locate one or more prerequisite"));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -46,15 +47,9 @@ public class TestSkillTreeManager {
 	public void testRegisterEntry() {
 		skillsManager = SkillTreeManager.instance;
 		skillsManager.init();
-		if (skillsManager.getEntry(jutsu) != null) {
-			SkillTreeEntry entry = skillsManager.getEntry(JutsuEnum.RASENGAN);
-			if (!entry.getJutsu().getJutsuProps().equals(jutsu.getJutsu().getJutsuProps())) {
-				fail("Not equal Jutsu: " + entry.getJutsu().getJutsuProps().getUnlocalizedName()
-						+ ". Should be: " + jutsu.getJutsuName());
-			}
-		} else {
-			fail("Entry empty!");
-		}
+		assertThat(skillsManager.getEntry(jutsu), notNullValue());
+		SkillTreeEntry entry = skillsManager.getEntry(JutsuEnum.RASENGAN);
+		assertThat(entry.getJutsu().getJutsuProps(), is(jutsu.getJutsu().getJutsuProps()));
 	}
 	
 	@Test

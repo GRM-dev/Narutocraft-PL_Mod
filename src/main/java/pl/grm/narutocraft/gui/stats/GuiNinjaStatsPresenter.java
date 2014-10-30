@@ -2,13 +2,15 @@ package pl.grm.narutocraft.gui.stats;
 
 import net.minecraft.entity.player.EntityPlayer;
 import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.libs.config.BaseValues;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.PlayerSkillsAtrributes;
+import pl.grm.narutocraft.player.NinjaAtrributes;
+import pl.grm.narutocraft.player.NinjaStats;
 
 public class GuiNinjaStatsPresenter {
 	private EntityPlayer	player;
-
+	
 	private Boolean			jutsuMenu	= false;
 	private int				jutsuPage	= 0;
 	private int				strUpg		= 0, agiUpg = 0, dexUpg = 0, resUpg = 0, epmUpg = 0,
@@ -20,8 +22,7 @@ public class GuiNinjaStatsPresenter {
 		this.player = player;
 	}
 	
-	public void actionHandler(int id)
-	{
+	public void actionHandler(int id) {
 		if (id < 7) {
 			actionSwitchPage(id);
 		} else if (id < 15) {
@@ -38,7 +39,7 @@ public class GuiNinjaStatsPresenter {
 				break;
 			case 1 : // jutsu
 				this.jutsuMenu = true;
-				//this.mc.displayGuiScreen(new GuiJutsu(this));
+				// this.mc.displayGuiScreen(new GuiJutsu(this));
 				this.jutsuPage = 0;
 				break;
 			case 2 : // jutsu
@@ -67,36 +68,36 @@ public class GuiNinjaStatsPresenter {
 	}
 	
 	private void actionStatUp(int id) {
-		PlayerSkillsAtrributes psa = ExtendedProperties.get(this.player).psa;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
 		switch (id) {
 			case 7 : // increase Strength
 				strUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 8 : // increase Resist
 				resUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 9 : // increase Dex
 				dexUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 10 : // increase Agi
 				agiUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 11 : // increase elm
 				epmUpg += 1;
-				psa.skillPoints -= 1;
+				stats.setSkillPoints(stats.getSkillPoints() - 1);
 				break;
 			case 12 : // increase mcha
 				chaUpg += 1;
-				psa.skillPoints -= 1;
+				stats.setSkillPoints(stats.getSkillPoints() - 1);
 				break;
 			case 13 : // increase char
-				if (psa.getChakraRegenMod() + crbUpg < 75) {
+				if (stats.getChakraModifier() + crbUpg < 75) {
 					crbUpg += 1;
-					psa.skillPoints -= 1;
+					stats.setSkillPoints(stats.getSkillPoints() - 1);
 				}
 				break;
 			default :
@@ -105,12 +106,12 @@ public class GuiNinjaStatsPresenter {
 	}
 	
 	private void actionOther(int id) {
-		PlayerSkillsAtrributes psa = ExtendedProperties.get(this.player).psa;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
 		switch (id) {
 			case 14 : // send changes
 				int[] upgradeStats = new int[]{
 						strUpg, agiUpg, dexUpg, resUpg, epmUpg, chaUpg, crbUpg, stbUpg, stfUpg,
-						stgUpg, stiUpg, stnUpg, sttUpg, psa.skillPoints};
+						stgUpg, stiUpg, stnUpg, sttUpg, stats.getSkillPoints()};
 				if (canSaveData()) {
 					NarutoCraft.netHandler.sendToServer(new PacketNinjaStatsRequest("set",
 							upgradeStats));
@@ -124,27 +125,27 @@ public class GuiNinjaStatsPresenter {
 				break;
 			case 16 :
 				stbUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 17 :
 				stfUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 18 :
 				stgUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 19 :
 				stiUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 20 :
 				stnUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 21 :
 				sttUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			default :
 				break;
@@ -152,40 +153,41 @@ public class GuiNinjaStatsPresenter {
 	}
 	
 	private boolean canSaveData() {
-		PlayerSkillsAtrributes ppsa = ExtendedProperties.get(player).psa;
-		int totalSkillPoints = (ppsa.getNinjaLevel() - 1)
-				* PlayerSkillsAtrributes.skillPointsPerLevel;
-		int totalSkillPointsUsed = 0;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
+		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
+		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
+		int totalSkillPointsUsed = 0;
 		// Stats
-		totalSkillPointsUsed += (ppsa.getStrength() + strUpg + ppsa.getAgility() + agiUpg
-				+ ppsa.getDexterity() + dexUpg + ppsa.getResistance() + resUpg) * 2;
+		totalSkillPointsUsed += (attrb.getStrength() + strUpg + attrb.getAgility() + agiUpg
+				+ attrb.getDexterity() + dexUpg + attrb.getResistance() + resUpg) * 2;
 		// Training/Main
-		totalSkillPointsUsed += (ppsa.getElementPowerMod() + epmUpg + ppsa.getMaxChakraMod()
-				+ chaUpg + ppsa.getChakraRegenMod() + crbUpg);
+		totalSkillPointsUsed += (attrb.getElementPowerMod() + epmUpg + attrb.getMaxChakraMod()
+				+ chaUpg + attrb.getChakraRegenMod() + crbUpg);
 		// Jutsu
-		totalSkillPointsUsed += (ppsa.getBukiTreeLevel() + stbUpg + ppsa.getFuuinTreeLevel()
-				+ stfUpg + ppsa.getGenTreeLevel() + stgUpg + ppsa.getIryoTreeLevel() + stiUpg
-				+ ppsa.getNinTreeLevel() + stnUpg + ppsa.getTaiTreeLevel() + sttUpg) * 3;
+		totalSkillPointsUsed += (stats.getBukiTreeLevel() + stbUpg + stats.getFuuinTreeLevel()
+				+ stfUpg + stats.getGenTreeLevel() + stgUpg + stats.getIryoTreeLevel() + stiUpg
+				+ stats.getNinTreeLevel() + stnUpg + stats.getTaiTreeLevel() + sttUpg) * 3;
 		if (totalSkillPointsUsed <= totalSkillPoints) { return true; }
 		
 		return false;
 	}
 	
 	private void resetData() {
-		PlayerSkillsAtrributes psa = ExtendedProperties.get(player).psa;
-		int totalSkillPoints = (psa.getNinjaLevel() - 1)
-				* PlayerSkillsAtrributes.skillPointsPerLevel;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
+		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		
+		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
 		// Stats
-		totalSkillPointsUsed += (psa.getStrength() + psa.getAgility() + psa.getDexterity() + psa
+		totalSkillPointsUsed += (attrb.getStrength() + attrb.getAgility() + attrb.getDexterity() + attrb
 				.getResistance()) * 2;
 		// Training/Main
-		totalSkillPointsUsed += (psa.getElementPowerMod() + psa.getMaxChakraMod() + psa
-				.getChakraRegenMod());
+		totalSkillPointsUsed += (stats.getElementPowerModifier() + stats.getChakraModifier() + stats
+				.getChakraRegenBonus());
 		// Jutsu
-		totalSkillPointsUsed += (psa.getBukiTreeLevel() + psa.getFuuinTreeLevel()
-				+ psa.getGenTreeLevel() + psa.getIryoTreeLevel() + psa.getNinTreeLevel() + psa
+		totalSkillPointsUsed += (stats.getBukiTreeLevel() + stats.getFuuinTreeLevel()
+				+ stats.getGenTreeLevel() + stats.getIryoTreeLevel() + stats.getNinTreeLevel() + stats
 				.getTaiTreeLevel()) * 3;
 		strUpg = 0;
 		agiUpg = 0;
@@ -200,6 +202,6 @@ public class GuiNinjaStatsPresenter {
 		stiUpg = 0;
 		stnUpg = 0;
 		sttUpg = 0;
-		psa.skillPoints = totalSkillPoints - totalSkillPointsUsed;
+		stats.setSkillPoints(totalSkillPoints - totalSkillPointsUsed);
 	}
 }

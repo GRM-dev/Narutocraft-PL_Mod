@@ -11,18 +11,27 @@ import net.minecraftforge.common.util.Constants;
 import pl.grm.narutocraft.libs.config.BaseValues;
 
 /**
- * NinjaStats use {@link Stats}
+ * NinjaStats use {@link StatsSettings}
  */
 public class NinjaStats {
-	private static final String		NBTCompoundName		= "NinjaAttributes";
-	private int						skillPointsPerLevel	= BaseValues.skillPointsPerLevel;
+	private static final String		NBTCompoundName			= "NinjaAttributes";
+	private int						skillPointsPerLevel		= BaseValues.skillPointsPerLevel;
 	private Map<String, Integer>	stats;
 	
-	private int						currentNinjaXp		= 0, ninjaXpLevelUpCap = 15;
-	private int						skillPoints			= 0, ninjaLevel = 1;
-	private int						skillTreeBukiLevel	= 0, skillTreeFuuinLevel = 0,
-			skillTreeGenLevel = 0, skillTreeIryoLevel = 0, skillTreeNinLevel = 0,
-			skillTreeTaiLevel = 0;
+	private int						currentNinjaXp			= 0;
+	private int						ninjaXpLevelUpCap		= 15;
+	private int						skillPoints				= 0;
+	private int						ninjaLevel				= 1;
+	private int						skillTreeBukiLevel		= 0;
+	private int						skillTreeFuuinLevel		= 0;
+	private int						skillTreeGenLevel		= 0;
+	private int						skillTreeIryoLevel		= 0;
+	private int						skillTreeNinLevel		= 0;
+	private int						skillTreeTaiLevel		= 0;
+	private int						maxChakra				= BaseValues.chakraBase;
+	private int						chakraModifier			= 0;
+	private int						chakraRegenBonus		= 0;
+	private int						elementPowerModifier	= 0;
 	
 	public NinjaStats() {
 		this.stats = new HashMap<String, Integer>();
@@ -50,7 +59,7 @@ public class NinjaStats {
 			for (int i = 0; i < amount; i++) {
 				NBTTagCompound tag = tagList.getCompoundTagAt(i);
 				if (!tag.hasNoTags()) {
-					for (Stats stat : Stats.values()) {
+					for (StatsSettings stat : StatsSettings.values()) {
 						String name = stat.getSName();
 						if (tag.hasKey(name)) {
 							int value = tag.getInteger(name);
@@ -101,8 +110,112 @@ public class NinjaStats {
 		return this.currentNinjaXp;
 	}
 	
+	public int getChakraModifier() {
+		return this.chakraModifier;
+	}
+	
+	public void setChakraModifier(int chakraModifier) {
+		this.chakraModifier = chakraModifier;
+	}
+	
+	public int getChakraRegenBonus() {
+		return this.chakraRegenBonus;
+	}
+	
+	public void setChakraRegenBonus(int chakraRegenBonus) {
+		this.chakraRegenBonus = chakraRegenBonus;
+	}
+	
 	public int getXpCap() {
 		return this.ninjaXpLevelUpCap;
+	}
+	
+	public int getSkillPointsPerLevel() {
+		return this.skillPointsPerLevel;
+	}
+	
+	public void setSkillPointsPerLevel(int skillPointsPerLevel) {
+		this.skillPointsPerLevel = skillPointsPerLevel;
+	}
+	
+	public int getCurrentNinjaXp() {
+		return this.currentNinjaXp;
+	}
+	
+	public void setCurrentNinjaXp(int currentNinjaXp) {
+		this.currentNinjaXp = currentNinjaXp;
+	}
+	
+	public int getNinjaXpLevelUpCap() {
+		return this.ninjaXpLevelUpCap;
+	}
+	
+	public void setNinjaXpLevelUpCap(int ninjaXpLevelUpCap) {
+		this.ninjaXpLevelUpCap = ninjaXpLevelUpCap;
+	}
+	
+	public int getSkillPoints() {
+		return this.skillPoints;
+	}
+	
+	public void setSkillPoints(int skillPoints) {
+		this.skillPoints = skillPoints;
+	}
+	
+	public int getSkillTreeBukiLevel() {
+		return this.skillTreeBukiLevel;
+	}
+	
+	public void setSkillTreeBukiLevel(int skillTreeBukiLevel) {
+		this.skillTreeBukiLevel = skillTreeBukiLevel;
+	}
+	
+	public int getSkillTreeFuuinLevel() {
+		return this.skillTreeFuuinLevel;
+	}
+	
+	public void setSkillTreeFuuinLevel(int skillTreeFuuinLevel) {
+		this.skillTreeFuuinLevel = skillTreeFuuinLevel;
+	}
+	
+	public int getSkillTreeGenLevel() {
+		return this.skillTreeGenLevel;
+	}
+	
+	public void setSkillTreeGenLevel(int skillTreeGenLevel) {
+		this.skillTreeGenLevel = skillTreeGenLevel;
+	}
+	
+	public int getSkillTreeIryoLevel() {
+		return this.skillTreeIryoLevel;
+	}
+	
+	public void setSkillTreeIryoLevel(int skillTreeIryoLevel) {
+		this.skillTreeIryoLevel = skillTreeIryoLevel;
+	}
+	
+	public int getSkillTreeNinLevel() {
+		return this.skillTreeNinLevel;
+	}
+	
+	public void setSkillTreeNinLevel(int skillTreeNinLevel) {
+		this.skillTreeNinLevel = skillTreeNinLevel;
+	}
+	
+	public int getSkillTreeTaiLevel() {
+		return this.skillTreeTaiLevel;
+	}
+	
+	public void setSkillTreeTaiLevel(int skillTreeTaiLevel) {
+		this.skillTreeTaiLevel = skillTreeTaiLevel;
+	}
+	
+	public Map<String, Integer> getStats() {
+		return this.stats;
+	}
+	
+	public void setNinjaLevel(int ninjaLevel) {
+		this.ninjaLevel = ninjaLevel;
 	}
 	
 	public int getNinjaLevel() {
@@ -155,5 +268,21 @@ public class NinjaStats {
 	
 	public void setTaiTreeLevel(int v) {
 		this.skillTreeTaiLevel = v;
+	}
+	
+	public int getMaxChakra() {
+		return maxChakra;
+	}
+	
+	public void setMaxChakra(int maxChakra) {
+		this.maxChakra = maxChakra;
+	}
+	
+	public int getElementPowerModifier() {
+		return elementPowerModifier;
+	}
+	
+	public void setElementPowerModifier(int elementPowerModifier) {
+		this.elementPowerModifier = elementPowerModifier;
 	}
 }

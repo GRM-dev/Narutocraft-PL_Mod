@@ -38,8 +38,7 @@ public class NinjaAtrributes {
 	}
 	
 	public void readFromNBT(NBTTagCompound properties) {
-		NBTTagList tagList = properties.getTagList(NBTCompoundName,
-				Constants.NBT.TAG_COMPOUND);
+		NBTTagList tagList = properties.getTagList(NBTCompoundName, Constants.NBT.TAG_COMPOUND);
 		int amount = tagList.tagCount();
 		if (amount > 0) {
 			for (int i = 0; i < amount; i++) {
@@ -62,15 +61,6 @@ public class NinjaAtrributes {
 		return attributes;
 	}
 	
-	/**
-	 * Takes an Int Array
-	 * Best used with getValues, harder to mess up
-	 **/
-	public void setValues(int[] values) {
-		
-	}
-	
-	// Getters
 	public int getStrength() {
 		Integer param = attributes.get(Attributes.STRENGHT.getSName());
 		return param;
@@ -91,6 +81,7 @@ public class NinjaAtrributes {
 		return param;
 	}
 	
+	// TODO as its setters
 	public int getElementPowerMod() {
 		Integer param = attributes.get(Attributes.STRENGHT.getSName());
 		return param;
@@ -141,23 +132,23 @@ public class NinjaAtrributes {
 		return param;
 	}
 	
-	// Setters
 	public void setStrength(int v) {
 		attributes.put(Attributes.STRENGHT.getSName(), v);
 	}
 	
 	public void setAgility(int v) {
-		attributes.put(Attributes.STRENGHT.getSName(), v);
+		attributes.put(Attributes.AGILITY.getSName(), v);
 	}
 	
 	public void setDexterity(int v) {
-		attributes.put(Attributes.STRENGHT.getSName(), v);
+		attributes.put(Attributes.DEXTERITY.getSName(), v);
 	}
 	
 	public void setResistance(int v) {
-		attributes.put(Attributes.STRENGHT.getSName(), v);
+		attributes.put(Attributes.RESISTANCE.getSName(), v);
 	}
 	
+	// TODO move to stats?
 	public void setElementPowerMod(int v) {
 		attributes.put(Attributes.STRENGHT.getSName(), v);
 	}

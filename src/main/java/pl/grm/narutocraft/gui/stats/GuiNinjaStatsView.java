@@ -13,10 +13,12 @@ import pl.grm.narutocraft.gui.GuiNinjaButton;
 import pl.grm.narutocraft.gui.GuiNinjaTabButton;
 import pl.grm.narutocraft.gui.skilltrees.GuiJutsu;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.libs.config.BaseValues;
 import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.PlayerSkillsAtrributes;
+import pl.grm.narutocraft.player.NinjaAtrributes;
+import pl.grm.narutocraft.player.NinjaStats;
 
 public class GuiNinjaStatsView extends GuiContainer {
 	private EntityPlayer	player;
@@ -89,36 +91,36 @@ public class GuiNinjaStatsView extends GuiContainer {
 	}
 	
 	private void actionStatUp(int id) {
-		PlayerSkillsAtrributes psa = ExtendedProperties.get(this.player).psa;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
 		switch (id) {
 			case 7 : // increase Strength
 				strUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 8 : // increase Resist
 				resUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 9 : // increase Dex
 				dexUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 10 : // increase Agi
 				agiUpg += 1;
-				psa.skillPoints -= 2;
+				stats.setSkillPoints(stats.getSkillPoints() - 2);
 				break;
 			case 11 : // increase elm
 				epmUpg += 1;
-				psa.skillPoints -= 1;
+				stats.setSkillPoints(stats.getSkillPoints() - 1);
 				break;
 			case 12 : // increase mcha
 				chaUpg += 1;
-				psa.skillPoints -= 1;
+				stats.setSkillPoints(stats.getSkillPoints() - 1);
 				break;
 			case 13 : // increase char
-				if (psa.getChakraRegenMod() + crbUpg < 75) {
+				if (stats.getChakraRegenBonus() + crbUpg < 75) {
 					crbUpg += 1;
-					psa.skillPoints -= 1;
+					stats.setSkillPoints(stats.getSkillPoints() - 1);
 				}
 				break;
 			default :
@@ -127,12 +129,12 @@ public class GuiNinjaStatsView extends GuiContainer {
 	}
 	
 	private void actionOther(int id) {
-		PlayerSkillsAtrributes psa = ExtendedProperties.get(this.player).psa;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
 		switch (id) {
 			case 14 : // send changes
 				int[] upgradeStats = new int[]{
 						strUpg, agiUpg, dexUpg, resUpg, epmUpg, chaUpg, crbUpg, stbUpg, stfUpg,
-						stgUpg, stiUpg, stnUpg, sttUpg, psa.skillPoints};
+						stgUpg, stiUpg, stnUpg, sttUpg, stats.getSkillPoints()};
 				if (canSaveData()) {
 					NarutoCraft.netHandler.sendToServer(new PacketNinjaStatsRequest("set",
 							upgradeStats));
@@ -146,27 +148,27 @@ public class GuiNinjaStatsView extends GuiContainer {
 				break;
 			case 16 :
 				stbUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 17 :
 				stfUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 18 :
 				stgUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 19 :
 				stiUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 20 :
 				stnUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			case 21 :
 				sttUpg++;
-				psa.skillPoints -= 3;
+				stats.setSkillPoints(stats.getSkillPoints() - 3);
 				break;
 			default :
 				break;
@@ -174,40 +176,41 @@ public class GuiNinjaStatsView extends GuiContainer {
 	}
 	
 	private boolean canSaveData() {
-		PlayerSkillsAtrributes ppsa = ExtendedProperties.get(player).psa;
-		int totalSkillPoints = (ppsa.getNinjaLevel() - 1)
-				* PlayerSkillsAtrributes.skillPointsPerLevel;
-		int totalSkillPointsUsed = 0;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
+		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
+		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
+		int totalSkillPointsUsed = 0;
 		// Stats
-		totalSkillPointsUsed += (ppsa.getStrength() + strUpg + ppsa.getAgility() + agiUpg
-				+ ppsa.getDexterity() + dexUpg + ppsa.getResistance() + resUpg) * 2;
+		totalSkillPointsUsed += (attrb.getStrength() + strUpg + attrb.getAgility() + agiUpg
+				+ attrb.getDexterity() + dexUpg + attrb.getResistance() + resUpg) * 2;
 		// Training/Main
-		totalSkillPointsUsed += (ppsa.getElementPowerMod() + epmUpg + ppsa.getMaxChakraMod()
-				+ chaUpg + ppsa.getChakraRegenMod() + crbUpg);
+		totalSkillPointsUsed += (attrb.getElementPowerMod() + epmUpg + attrb.getMaxChakraMod()
+				+ chaUpg + attrb.getChakraRegenMod() + crbUpg);
 		// Jutsu
-		totalSkillPointsUsed += (ppsa.getBukiTreeLevel() + stbUpg + ppsa.getFuuinTreeLevel()
-				+ stfUpg + ppsa.getGenTreeLevel() + stgUpg + ppsa.getIryoTreeLevel() + stiUpg
-				+ ppsa.getNinTreeLevel() + stnUpg + ppsa.getTaiTreeLevel() + sttUpg) * 3;
+		totalSkillPointsUsed += (stats.getBukiTreeLevel() + stbUpg + stats.getFuuinTreeLevel()
+				+ stfUpg + stats.getGenTreeLevel() + stgUpg + stats.getIryoTreeLevel() + stiUpg
+				+ stats.getNinTreeLevel() + stnUpg + stats.getTaiTreeLevel() + sttUpg) * 3;
 		if (totalSkillPointsUsed <= totalSkillPoints) { return true; }
 		
 		return false;
 	}
 	
 	private void resetData() {
-		PlayerSkillsAtrributes psa = ExtendedProperties.get(player).psa;
-		int totalSkillPoints = (psa.getNinjaLevel() - 1)
-				* PlayerSkillsAtrributes.skillPointsPerLevel;
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
+		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		
+		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
 		// Stats
-		totalSkillPointsUsed += (psa.getStrength() + psa.getAgility() + psa.getDexterity() + psa
+		totalSkillPointsUsed += (attrb.getStrength() + attrb.getAgility() + attrb.getDexterity() + attrb
 				.getResistance()) * 2;
 		// Training/Main
-		totalSkillPointsUsed += (psa.getElementPowerMod() + psa.getMaxChakraMod() + psa
-				.getChakraRegenMod());
+		totalSkillPointsUsed += (stats.getElementPowerModifier() + stats.getChakraModifier() + stats
+				.getChakraRegenBonus());
 		// Jutsu
-		totalSkillPointsUsed += (psa.getBukiTreeLevel() + psa.getFuuinTreeLevel()
-				+ psa.getGenTreeLevel() + psa.getIryoTreeLevel() + psa.getNinTreeLevel() + psa
+		totalSkillPointsUsed += (stats.getBukiTreeLevel() + stats.getFuuinTreeLevel()
+				+ stats.getGenTreeLevel() + stats.getIryoTreeLevel() + stats.getNinTreeLevel() + stats
 				.getTaiTreeLevel()) * 3;
 		strUpg = 0;
 		agiUpg = 0;
@@ -222,7 +225,7 @@ public class GuiNinjaStatsView extends GuiContainer {
 		stiUpg = 0;
 		stnUpg = 0;
 		sttUpg = 0;
-		psa.skillPoints = totalSkillPoints - totalSkillPointsUsed;
+		stats.setSkillPoints(totalSkillPoints - totalSkillPointsUsed);
 	}
 	
 	/**
@@ -233,14 +236,15 @@ public class GuiNinjaStatsView extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		this.xSize = this.jutsuMenu ? 210 : 256;
 		this.ySize = this.jutsuMenu ? 210 : 256;
-		ExtendedProperties props = ExtendedProperties.get(this.player);
+		
+		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
+		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.jutsuMenu
 				? References.jutsuGUILocation[this.jutsuPage] : References.statsPath);
-		
 		drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		this.buttonList.clear();
-		
 		// Start with main control buttons
 		int x1 = this.guiLeft;
 		int x2 = (this.guiLeft + this.xSize) - (22);
@@ -264,23 +268,23 @@ public class GuiNinjaStatsView extends GuiContainer {
 		
 		// Stats
 		if (!this.jutsuMenu) {
-			this.drawString(this.fontRendererObj, "Ninja Level: " + props.psa.getNinjaLevel(),
+			this.drawString(this.fontRendererObj, "Ninja Level: " + stats.getNinjaLevel(),
 					this.guiLeft + this.padLeft, (this.guiTop + this.padTop) - 9, 0xddeeee);
-			if (props.psa.skillPoints > 0) {
-				this.drawString(this.fontRendererObj, "Skill Points: " + props.psa.skillPoints,
+			if (stats.getSkillPoints() > 0) {
+				this.drawString(this.fontRendererObj, "Skill Points: " + stats.getSkillPoints(),
 						this.guiLeft + this.padLeft, this.guiTop + this.padTop, 0xddeeee);
 			}
 			Minecraft.getMinecraft().renderEngine.bindTexture(References.ninjaWidgetsPath);
 			drawTexturedModalRect(this.guiLeft + 132, (this.guiTop + this.padTop) - 7, 66, 0, 39, 4);
 			drawTexturedModalRect(this.guiLeft + 132, (this.guiTop + this.padTop) - 7, 66, 4,
-					(props.psa.getCurrentXp() * 39) / props.psa.getXpCap(), 4);
+					(stats.getCurrentXp() * 39) / stats.getXpCap(), 4);
 			
 			// Stats
 			this.drawDefaultString("Stats (2 points)", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 2), 0xddeeee);
 			this.drawDefaultString("Strength: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 3), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getStrength(), this.guiLeft + this.padLeft + 110,
+			this.drawDefaultString("" + attrb.getStrength(), this.guiLeft + this.padLeft + 110,
 					this.guiTop + this.padTop + (9 * 3), 0xddeeee);
 			if (strUpg > 0) {
 				this.drawDefaultString("+ " + strUpg, this.guiLeft + this.padLeft + 125,
@@ -289,8 +293,8 @@ public class GuiNinjaStatsView extends GuiContainer {
 			
 			this.drawDefaultString("Resistance: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 4), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getResistance(), this.guiLeft + this.padLeft
-					+ 110, this.guiTop + this.padTop + (9 * 4), 0xddeeee);
+			this.drawDefaultString("" + attrb.getResistance(), this.guiLeft + this.padLeft + 110,
+					this.guiTop + this.padTop + (9 * 4), 0xddeeee);
 			if (resUpg > 0) {
 				this.drawDefaultString("+ " + resUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 4), 0x73ff9b);
@@ -298,9 +302,8 @@ public class GuiNinjaStatsView extends GuiContainer {
 			
 			this.drawDefaultString("Dexterity: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 5), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getDexterity(),
-					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop + (9 * 5),
-					0xddeeee);
+			this.drawDefaultString("" + attrb.getDexterity(), this.guiLeft + this.padLeft + 110,
+					this.guiTop + this.padTop + (9 * 5), 0xddeeee);
 			if (dexUpg > 0) {
 				this.drawDefaultString("+ " + dexUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 5), 0x73ff9b);
@@ -308,14 +311,14 @@ public class GuiNinjaStatsView extends GuiContainer {
 			
 			this.drawDefaultString("Agility: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 6), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getAgility(), this.guiLeft + this.padLeft + 110,
+			this.drawDefaultString("" + attrb.getAgility(), this.guiLeft + this.padLeft + 110,
 					this.guiTop + this.padTop + (9 * 6), 0xddeeee);
 			if (agiUpg > 0) {
 				this.drawDefaultString("+ " + agiUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 6), 0x73ff9b);
 			}
 			// Level up Controls
-			if (props.psa.skillPoints >= 2) {
+			if (stats.getSkillPoints() >= 2) {
 				this.buttonList.add(new GuiNinjaButton(7, this.guiLeft + this.padLeft + 145,
 						this.guiTop + this.padTop + (9 * 3), "plus"));
 				this.buttonList.add(new GuiNinjaButton(8, this.guiLeft + this.padLeft + 145,
@@ -330,15 +333,15 @@ public class GuiNinjaStatsView extends GuiContainer {
 					+ this.padTop + (9 * 8), 0xddeeee);
 			this.drawDefaultString("Element Power: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 9), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getElementPowerMod(), this.guiLeft + this.padLeft
-					+ 110, this.guiTop + this.padTop + (9 * 9), 0xddeeee);
+			this.drawDefaultString("" + stats.getElementPowerModifier(), this.guiLeft
+					+ this.padLeft + 110, this.guiTop + this.padTop + (9 * 9), 0xddeeee);
 			if (epmUpg > 0) {
 				this.drawDefaultString("+ " + epmUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 9), 0x73ff9b);
 			}
 			this.drawDefaultString("Max Chakra Bonus: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 10), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getMaxChakraMod(), this.guiLeft + this.padLeft
+			this.drawDefaultString("" + stats.getChakraModifier(), this.guiLeft + this.padLeft
 					+ 110, this.guiTop + this.padTop + (9 * 10), 0xddeeee);
 			if (chaUpg > 0) {
 				this.drawDefaultString("+ " + chaUpg, this.guiLeft + this.padLeft + 125,
@@ -346,14 +349,14 @@ public class GuiNinjaStatsView extends GuiContainer {
 			}
 			this.drawDefaultString("Chakra Regen Bonus: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 11), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getChakraRegenMod(), this.guiLeft + this.padLeft
+			this.drawDefaultString("" + stats.getChakraRegenBonus(), this.guiLeft + this.padLeft
 					+ 110, this.guiTop + this.padTop + (9 * 11), 0xddeeee);
 			if (crbUpg > 0) {
 				this.drawDefaultString("+ " + crbUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 11), 0x73ff9b);
 			}
 			// Level up Controls
-			if (props.psa.skillPoints >= 1) {
+			if (stats.getSkillPoints() >= 1) {
 				this.buttonList.add(new GuiNinjaButton(11, this.guiLeft + this.padLeft + 145,
 						this.guiTop + this.padTop + (9 * 9), "plus"));
 				this.buttonList.add(new GuiNinjaButton(12, this.guiLeft + this.padLeft + 145,
@@ -366,15 +369,16 @@ public class GuiNinjaStatsView extends GuiContainer {
 					this.guiTop + this.padTop + (9 * 13), 0xddeeee);
 			this.drawDefaultString("Bukijutsu: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 14), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getBukiTreeLevel(), this.guiLeft + this.padLeft
-					+ 110, this.guiTop + this.padTop + (9 * 14), 0xddeeee);
+			this.drawDefaultString("" + stats.getBukiTreeLevel(),
+					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop + (9 * 14),
+					0xddeeee);
 			if (stbUpg > 0) {
 				this.drawDefaultString("+ " + stbUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 14), 0x73ff9b);
 			}
 			this.drawDefaultString("Fuuinjutsu: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 15), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getFuuinTreeLevel(), this.guiLeft + this.padLeft
+			this.drawDefaultString("" + stats.getFuuinTreeLevel(), this.guiLeft + this.padLeft
 					+ 110, this.guiTop + this.padTop + (9 * 15), 0xddeeee);
 			if (stfUpg > 0) {
 				this.drawDefaultString("+ " + stfUpg, this.guiLeft + this.padLeft + 125,
@@ -382,38 +386,39 @@ public class GuiNinjaStatsView extends GuiContainer {
 			}
 			this.drawDefaultString("Genjutsu: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 16), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getGenTreeLevel(), this.guiLeft + this.padLeft
-					+ 110, this.guiTop + this.padTop + (9 * 16), 0xddeeee);
+			this.drawDefaultString("" + stats.getGenTreeLevel(), this.guiLeft + this.padLeft + 110,
+					this.guiTop + this.padTop + (9 * 16), 0xddeeee);
 			if (stgUpg > 0) {
 				this.drawDefaultString("+ " + stgUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 16), 0x73ff9b);
 			}
 			this.drawDefaultString("Iryojutsu: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 17), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getIryoTreeLevel(), this.guiLeft + this.padLeft
-					+ 110, this.guiTop + this.padTop + (9 * 17), 0xddeeee);
+			this.drawDefaultString("" + stats.getIryoTreeLevel(),
+					this.guiLeft + this.padLeft + 110, this.guiTop + this.padTop + (9 * 17),
+					0xddeeee);
 			if (stiUpg > 0) {
 				this.drawDefaultString("+ " + stiUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 17), 0x73ff9b);
 			}
 			this.drawDefaultString("Ninjutsu: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 18), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getNinTreeLevel(), this.guiLeft + this.padLeft
-					+ 110, this.guiTop + this.padTop + (9 * 18), 0xddeeee);
+			this.drawDefaultString("" + stats.getNinTreeLevel(), this.guiLeft + this.padLeft + 110,
+					this.guiTop + this.padTop + (9 * 18), 0xddeeee);
 			if (stnUpg > 0) {
 				this.drawString(this.fontRendererObj, "+ " + stnUpg, this.guiLeft + this.padLeft
 						+ 125, this.guiTop + this.padTop + (9 * 18), 0x73ff9b);
 			}
 			this.drawDefaultString("Taijutsu: ", this.guiLeft + this.padLeft, this.guiTop
 					+ this.padTop + (9 * 19), 0xddeeee);
-			this.drawDefaultString("" + props.psa.getTaiTreeLevel(), this.guiLeft + this.padLeft
-					+ 110, this.guiTop + this.padTop + (9 * 19), 0xddeeee);
+			this.drawDefaultString("" + stats.getTaiTreeLevel(), this.guiLeft + this.padLeft + 110,
+					this.guiTop + this.padTop + (9 * 19), 0xddeeee);
 			if (sttUpg > 0) {
 				this.drawDefaultString("+ " + sttUpg, this.guiLeft + this.padLeft + 125,
 						this.guiTop + this.padTop + (9 * 19), 0x73ff9b);
 			}
 			// Level up Controls
-			if (props.psa.skillPoints >= 3) {
+			if (stats.getSkillPoints() >= 3) {
 				this.buttonList.add(new GuiNinjaButton(16, this.guiLeft + this.padLeft + 145,
 						this.guiTop + this.padTop + (9 * 14), "plus"));
 				this.buttonList.add(new GuiNinjaButton(17, this.guiLeft + this.padLeft + 145,
