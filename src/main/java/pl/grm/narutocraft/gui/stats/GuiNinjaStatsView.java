@@ -28,6 +28,8 @@ public class GuiNinjaStatsView extends GuiContainer {
 	private int				stbUpg		= 0, stfUpg = 0, stgUpg = 0, stiUpg = 0, stnUpg = 0,
 			sttUpg = 0;
 	
+	private int startTop = 0, startLeft = 0;
+	
 	public GuiNinjaStatsView(EntityPlayer player) {
 		super(new ContainerNull());
 		this.player = player;
