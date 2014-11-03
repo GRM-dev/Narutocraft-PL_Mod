@@ -17,7 +17,7 @@ import pl.grm.narutocraft.libs.config.BaseValues;
 import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.NinjaAtrributes;
+import pl.grm.narutocraft.player.NinjaAttributes;
 import pl.grm.narutocraft.player.NinjaStats;
 
 public class GuiNinjaStatsView extends GuiContainer {
@@ -177,7 +177,7 @@ public class GuiNinjaStatsView extends GuiContainer {
 	
 	private boolean canSaveData() {
 		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
-		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		NinjaAttributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
 		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
@@ -198,7 +198,7 @@ public class GuiNinjaStatsView extends GuiContainer {
 	
 	private void resetData() {
 		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
-		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		NinjaAttributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
 		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
@@ -238,7 +238,7 @@ public class GuiNinjaStatsView extends GuiContainer {
 		this.ySize = this.jutsuMenu ? 210 : 256;
 		
 		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
-		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		NinjaAttributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.jutsuMenu

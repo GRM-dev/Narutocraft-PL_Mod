@@ -5,7 +5,7 @@ import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.config.BaseValues;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.NinjaAtrributes;
+import pl.grm.narutocraft.player.NinjaAttributes;
 import pl.grm.narutocraft.player.NinjaStats;
 
 public class GuiNinjaStatsPresenter {
@@ -154,7 +154,7 @@ public class GuiNinjaStatsPresenter {
 	
 	private boolean canSaveData() {
 		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
-		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		NinjaAttributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
 		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
@@ -175,7 +175,7 @@ public class GuiNinjaStatsPresenter {
 	
 	private void resetData() {
 		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
-		NinjaAtrributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
+		NinjaAttributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
 		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;

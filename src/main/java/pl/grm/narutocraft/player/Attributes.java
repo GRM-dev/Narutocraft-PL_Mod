@@ -1,8 +1,8 @@
 package pl.grm.narutocraft.player;
 
 public enum Attributes {
-	STRENGHT(
-			"Strenght",
+	STRENGTH(
+			"Strength",
 			"str",
 			0) ,
 	AGILITY(

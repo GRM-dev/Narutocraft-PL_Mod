@@ -22,7 +22,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	private final EntityPlayer			player;
 	/** Jutsu Manager Instance */
 	private JutsuManager				jManager		= JutsuManager.instance;
-	private NinjaAtrributes				ninAttrs		= new NinjaAtrributes();
+	private NinjaAttributes				ninAttrs		= new NinjaAttributes();
 	private NinjaStats					ninStats		= new NinjaStats();
 	private static final int			CHAKRA_WATCHER	= 20;
 	/** List of activated buff jutsus */
@@ -192,7 +192,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 		return this.jManager;
 	}
 	
-	public NinjaAtrributes getNinAttrs() {
+	public NinjaAttributes getNinAttrs() {
 		return this.ninAttrs;
 	}
 	
