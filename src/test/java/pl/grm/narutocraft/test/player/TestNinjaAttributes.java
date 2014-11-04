@@ -10,14 +10,14 @@ import net.minecraftforge.common.util.Constants;
 import org.junit.Test;
 
 import pl.grm.narutocraft.player.Attributes;
-import pl.grm.narutocraft.player.NinjaAtrributes;
+import pl.grm.narutocraft.player.NinjaAttributes;
 
 public class TestNinjaAttributes {
-	NinjaAtrributes	att;
+	NinjaAttributes	att;
 	
 	@Test
 	public void testCreatingAndFillingMapWithAttrbts() {
-		att = new NinjaAtrributes();
+		att = new NinjaAttributes();
 		assertThat(att.getAttValues().isEmpty(), is(false));
 	}
 	
@@ -25,7 +25,7 @@ public class TestNinjaAttributes {
 	public void testWritoToNBT() {
 		String name = null;
 		boolean found = false;
-		att = new NinjaAtrributes();
+		att = new NinjaAttributes();
 		NBTTagCompound compound = new NBTTagCompound();
 		att.writoToNBT(compound);
 		NBTTagList tagList = compound.getTagList("NinjaAttributes", Constants.NBT.TAG_COMPOUND);
@@ -44,7 +44,7 @@ public class TestNinjaAttributes {
 	@Test
 	public void testReadFromNBT() {
 		String name = null;
-		att = new NinjaAtrributes();
+		att = new NinjaAttributes();
 		int value = att.getAgility();
 		NBTTagCompound compound = new NBTTagCompound();
 		att.writoToNBT(compound);
@@ -56,10 +56,10 @@ public class TestNinjaAttributes {
 	
 	@Test
 	public void testSettersAndGetters() {
-		att = new NinjaAtrributes();
+		att = new NinjaAttributes();
 		int v1 = 5, v2 = 8;
 		att.setStrength(v1);
-		v2 = att.getAttValues().get(Attributes.STRENGHT.getSName()).intValue();
+		v2 = att.getAttValues().get(Attributes.STRENGTH.getSName()).intValue();
 		assertThat(v1, is(v2));
 		v2 = att.getStrength();
 		assertThat(v1, is(v2));
