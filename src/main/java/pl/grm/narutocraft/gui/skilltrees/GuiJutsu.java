@@ -3,15 +3,14 @@ package pl.grm.narutocraft.gui.skilltrees;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import pl.grm.narutocraft.gui.stats.GuiNinjaStatsView;
-import pl.grm.narutocraft.gui.stats.GuiSlotList;
 
 public class GuiJutsu extends GuiScreen {
 	private GuiNinjaStatsView	parentGui;
-	private GuiSlotList			list;
+	//private GuiSlotList			list;
 	
 	public GuiJutsu(GuiNinjaStatsView guiNinjaStats) {
 		this.parentGui = guiNinjaStats;
-		this.list = new GuiSlotList(guiNinjaStats);
+		//this.list = new GuiSlotList(guiNinjaStats);
 		width = 150;
 		height = 150;
 	}
@@ -36,7 +35,7 @@ public class GuiJutsu extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int par1, int par2, float par3) {
-		this.list.drawScreen(par1, par2, par3);
+		//this.list.drawScreen(par1, par2, par3);
 		super.drawScreen(par1, par2, par3);
 	}
 }
