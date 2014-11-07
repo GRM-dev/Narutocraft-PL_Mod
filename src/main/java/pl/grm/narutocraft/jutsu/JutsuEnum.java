@@ -452,6 +452,7 @@ public enum JutsuEnum {
 	private long					cooldown;
 	private int						chakraConsumption;
 	private int						damage;
+	private boolean					buffType;
 	
 	/**
 	 * @param ID
@@ -571,5 +572,13 @@ public enum JutsuEnum {
 	
 	public int getDamage() {
 		return damage;
+	}
+	
+	public SkillTreeEnum getJutsuTree() {
+		return this.jutsuTree;
+	}
+	
+	public boolean isBuffType() {
+		return this.buffType;
 	}
 }

@@ -8,23 +8,24 @@ import java.util.HashMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import pl.grm.narutocraft.jutsu.IJutsu;
 import cpw.mods.fml.common.FMLLog;
 
 public class BuffList {
-	private static HashMap<Integer, Class>				classesForBuffID;
-	private static final HashMap<Integer, BuffEffect>	utilityBuffs	= new HashMap();
-	private static final ArrayList<NCPotion>			ncPotions		= new ArrayList();
+	private static HashMap<Integer, Class<IJutsu>>		classesForBuffID;
+	private static final HashMap<Integer, BuffEffect>	utilityBuffs	= new HashMap<Integer, BuffEffect>();
+	private static final ArrayList<NCPotion>			ncPotions		= new ArrayList<NCPotion>();
 	
 	public static void Init() {
-		classesForBuffID = new HashMap();
+		classesForBuffID = new HashMap<Integer, Class<IJutsu>>();
 		try {
 			ExtendPotionsArray();
-			int numBuffs = Potion.potionTypes.length;
 		}
 		catch (Throwable t) {
 			FMLLog.severe("NarutoCraft >> Jutsu Buffs failed to initialize!", new Object[0]);
 			t.printStackTrace();
 		}
+		
 	}
 	
 	public static void Instantiate() {
