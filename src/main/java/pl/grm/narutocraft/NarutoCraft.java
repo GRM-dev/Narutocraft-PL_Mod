@@ -16,10 +16,9 @@ import pl.grm.narutocraft.handlers.NCEventHandler;
 import pl.grm.narutocraft.handlers.NCFMLEventHandler;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import pl.grm.narutocraft.libs.config.References;
-import pl.grm.narutocraft.libs.network.PacketExample;
+import pl.grm.narutocraft.libs.network.PacketNinjaAttr;
+import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
 import pl.grm.narutocraft.libs.network.PacketNinjaRun;
-import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
-import pl.grm.narutocraft.libs.network.PacketNinjaStatsResponse;
 import pl.grm.narutocraft.registry.RegArmor;
 import pl.grm.narutocraft.registry.RegBlocks;
 import pl.grm.narutocraft.registry.RegEntities;
@@ -104,14 +103,14 @@ public class NarutoCraft {
 		}
 		
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
-		netHandler.registerMessage(PacketExample.PacketExampleHandler.class, PacketExample.class,
-				this.packetId++, Side.SERVER);
-		netHandler.registerMessage(PacketNinjaStatsRequest.PacketNinjaStatsRequestHandler.class,
-				PacketNinjaStatsRequest.class, this.packetId++, Side.SERVER);
+		//Server Packets
+		netHandler.registerMessage(PacketNinjaAttr.PacketNinjaAttrHandler.class,
+				PacketNinjaAttr.class, this.packetId++, Side.SERVER);
 		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class,
 				PacketNinjaRun.class, this.packetId++, Side.SERVER);
-		netHandler.registerMessage(PacketNinjaStatsResponse.PacketNinjaStatsResponseHandler.class,
-				PacketNinjaStatsResponse.class, this.packetId++, Side.CLIENT);
+		//Client Side Packets
+		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class,
+				PacketNinjaAttrSync.class, this.packetId++, Side.CLIENT);
 		
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();

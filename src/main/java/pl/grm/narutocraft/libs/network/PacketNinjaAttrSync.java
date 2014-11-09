@@ -1,42 +1,33 @@
 package pl.grm.narutocraft.libs.network;
 
-import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.NinjaAttributes;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import pl.grm.narutocraft.player.ExtendedProperties;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketNinjaAttr implements IMessage {
+public class PacketNinjaAttrSync implements IMessage {
 	private String[] info;
-	private int command = 1;//0 is set, 1 is get
 	
-	public static class PacketNinjaAttrHandler implements IMessageHandler<PacketNinjaAttr, IMessage> {
+	public static class PacketNinjaAttrSyncHandler implements IMessageHandler<PacketNinjaAttrSync, IMessage> {
 		
 		@Override
-		public IMessage onMessage(PacketNinjaAttr message, MessageContext ctx) {
-			// TODO update
-			if (message.command == 0)
-			{
-				NinjaAttributes na = ExtendedProperties.get(ctx.getServerHandler().playerEntity).getNinAttrs();
-				na.setInfo(message.info);
-				return null;
-			}
-			else
-			return new PacketNinjaAttrSync(message.info);
+		public IMessage onMessage(PacketNinjaAttrSync message, MessageContext ctx) {
+			ExtendedProperties.get(Minecraft.getMinecraft().thePlayer).getNinAttrs().setInfo(message.info);
+			return null;
 		}
 	}
 	
 	// Need a empty constructor just for the network registry to use
-	public PacketNinjaAttr() {
+	public PacketNinjaAttrSync() {
 		
 	}
 	
 	//The command is changed to "set" because there is information to be used
-	public PacketNinjaAttr(String[] info) {
+	public PacketNinjaAttrSync(String[] info) {
 		this.info = info;
-		this.command = 0;
 	}
 	
 	@Override

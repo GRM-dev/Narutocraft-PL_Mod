@@ -1,6 +1,7 @@
 package pl.grm.narutocraft.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
@@ -10,7 +11,9 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
 import pl.grm.narutocraft.player.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -170,6 +173,7 @@ public class NCEventHandler {
 				ExtendedProperties clonePlayer = ExtendedProperties.get(event.entityPlayer);
 				// FIXME method getValues not exists
 				// clonePlayer.psa.setValues(deadPlayer.psa.getValues());
+				clonePlayer.getNinAttrs().setInfo(deadPlayer.getNinAttrs().getInfo());
 			}
 		}
 	}
@@ -181,6 +185,10 @@ public class NCEventHandler {
 	@SubscribeEvent
 	public void onPlayerJoin(EntityJoinWorldEvent e) {
 		if ((e.entity instanceof EntityPlayer) && !e.world.isRemote) {
+			NarutoCraft.netHandler.sendTo(
+					 new PacketNinjaAttrSync(
+					 ExtendedProperties.get((EntityPlayer) e.entity).getNinAttrs().getInfo()),
+					 (EntityPlayerMP) e.entity);
 			// FIXME as other fixers
 			// NarutoCraft.netHandler.sendTo(
 			// new PacketNinjaStatsResponse(

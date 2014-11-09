@@ -35,7 +35,10 @@ public class NinjaStats {
 	
 	public NinjaStats() {
 		this.stats = new HashMap<String, Integer>();
-		
+		for (Stats stat : Stats.values())
+		{
+			this.stats.put(stat.getSName(), stat.getBaseValue());
+		}
 	}
 	
 	public void writoToNBT(NBTTagCompound properties) {
@@ -73,49 +76,51 @@ public class NinjaStats {
 	
 	/** This is used to add xp, it also handles leveling up **/
 	public void levelUp(int xpGained) {
-		if ((this.currentNinjaXp + xpGained) >= this.ninjaXpLevelUpCap) {
-			int xpTotal = this.currentNinjaXp + xpGained;
-			if (xpTotal > this.ninjaXpLevelUpCap) {
-				this.currentNinjaXp = xpTotal - this.ninjaXpLevelUpCap;
-			} else {
-				this.currentNinjaXp = 0;
+		int currentXp = stats.get(Stats.NINJAXP.getSName());
+		int xpCap = stats.get(Stats.NINJAXPCAP.getSName());
+		if (currentXp + xpGained >= xpCap)
+		{
+			int ninjaLevel = stats.get(Stats.NINLEVEL.getSName());
+			int skillPoints =  stats.get(Stats.SKILLPOINTS.getSName());
+			int xpTotal = currentXp + xpGained;
+			if (xpTotal > xpCap)
+			{
+				currentXp = xpTotal - xpCap;
 			}
-			this.ninjaLevel++;
-			this.skillPoints += skillPointsPerLevel;
-			// Cap increases by 75% more
-			this.ninjaXpLevelUpCap = (int) (this.ninjaXpLevelUpCap * 1.75f);
-		} else {
-			this.currentNinjaXp += xpGained;
+			else
+			{
+				currentXp = 0;
+			}
+			ninjaLevel++;
+			skillPoints += skillPointsPerLevel;
+			xpCap = (int) (xpCap * 1.75);
+			stats.put(Stats.NINJALEVEL.getSName(), ninjaLevel);
+			stats.put(Stats.SKILLPOINTS.getSName(), skillPoints);
+			stats.put(Stats.NINJAXPCAP.getSName(), xpCap);
 		}
+		else
+		{
+			currentXp += xpGained;
+		}
+		stats.put(Stats.NINJAXP.getSName(), currentXp);
 	}
-	
-	/**
-	 * Takes an Int Array
-	 * Best used with getValues, harder to mess up
-	 **/
-	public void setValues(int[] values) {
-		this.ninjaLevel = values[7];
-		this.currentNinjaXp = values[8];
-		this.ninjaXpLevelUpCap = values[9];
-		this.skillPoints = values[10];
-		this.skillTreeBukiLevel = values[11];
-		this.skillTreeFuuinLevel = values[12];
-		this.skillTreeGenLevel = values[13];
-		this.skillTreeIryoLevel = values[14];
-		this.skillTreeNinLevel = values[15];
-		this.skillTreeTaiLevel = values[16];
-	}
-	
+
 	public int getCurrentXp() {
-		return this.currentNinjaXp;
+		return this.stats.get(Stats.NINJAXP.getSName());
+	}
+	
+	public void setCurrentXp(int xp)
+	{
+		this.stats.put(Stats.NINJAXP.getSName(), xp);
+		this.levelUp(0);//Just to update the level incase of large set.
 	}
 	
 	public int getChakraModifier() {
-		return this.chakraModifier;
+		return this.stats.get(Stats.CHAKRAMOD.getSName());
 	}
 	
 	public void setChakraModifier(int chakraModifier) {
-		this.chakraModifier = chakraModifier;
+		this.stats.put(Stats.CHAKRAMOD.getSName(), chakraModifier);
 	}
 	
 	public int getChakraRegenBonus() {
@@ -285,4 +290,30 @@ public class NinjaStats {
 	public void setElementPowerModifier(int elementPowerModifier) {
 		this.elementPowerModifier = elementPowerModifier;
 	}
+	
+	//For Networking
+		public String[] getInfo()
+		{
+			String[] info = new String[stats.size()];
+			Iterator<Entry<String, Integer>> iterator = stats.entrySet().iterator();
+			int index = 0;
+			while (iterator.hasNext()) {
+				Entry<String, Integer> entry = iterator.next();
+				String name = entry.getKey();
+				Integer value = entry.getValue();
+				info[index] = name + ":" + value;
+				index++;
+			}
+			return info;
+		}
+		
+		public void setInfo(String[] info)
+		{
+			String[] splitInfo;
+			for (String i : info) 
+			{
+				splitInfo = i.split(":");			
+				stats.put(splitInfo[0], Integer.parseInt(splitInfo[1]));
+			}
+		}
 }
