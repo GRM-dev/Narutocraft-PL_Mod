@@ -516,10 +516,11 @@ public enum JutsuEnum {
 	 * @param cooldown
 	 * @param chakraConsumption
 	 * @param damage
+	 * @param bufftype
 	 */
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu,
-			SkillTreeEnum jutsuType, JutsuTier tier, long duration, long cooldown,
-			int chakraConsumption, int damage, boolean bufftype) {
+	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTreeEnum jutsuType,
+			JutsuTier tier, long duration, long cooldown, int chakraConsumption, int damage,
+			boolean bufftype) {
 		this.duration = duration;
 		this.cooldown = cooldown;
 		this.chakraConsumption = chakraConsumption;
@@ -529,7 +530,7 @@ public enum JutsuEnum {
 		this.jutsuName = name;
 		this.jutsuClass = jutsu;
 		this.jutsuTree = jutsuType;
-		this.buffType = buffType;
+		this.buffType = bufftype;
 	}
 	
 	/**

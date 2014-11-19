@@ -14,7 +14,7 @@ public class NCPotion extends Potion {
 	}
 	
 	public void setTextureSheet(String texturesheet) {
-		this.potionTexture = new ResourceLocation("arsmagica2", texturesheet);
+		this.potionTexture = new ResourceLocation("nc", texturesheet);
 	}
 	
 	@SideOnly(Side.CLIENT)
