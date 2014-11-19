@@ -4,27 +4,15 @@ public interface IJutsu {
 	/**
 	 * Initialize Jutsu when activated
 	 */
-	public void activateJutsu();
-	
-	/**
-	 * @return List of Jutsu Props
-	 */
-	public JutsuProperties getJutsuProps();
-	
-	/**
-	 * Check if Jutsu is Active
-	 *
-	 * @return true if Jutsu is activated.
-	 */
-	public boolean isActive();
-	
-	/**
-	 * Called on Jutsu end.
-	 */
-	public void jutsuEnd();
+	public void onJutsuActivation();
 	
 	/**
 	 * Method invoked by JutsuEvent every Player Tick.
 	 */
 	public void onJutsuUpdate();
+	
+	/**
+	 * Called on Jutsu end.
+	 */
+	public void onJutsuEnd();
 }

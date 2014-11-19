@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
@@ -47,8 +46,8 @@ public class JutsuManager {
 	 * @param jutsuE
 	 */
 	private static void registerJutsu(JutsuEnum jutsuE) {
-		IJutsu jutsu = jutsuE.getJutsu();
-		GameRegistry.registerItem((Item) jutsu, jutsuE.getName());
+		Jutsu jutsu = (Jutsu) jutsuE.getJutsu();
+		GameRegistry.registerItem(jutsu, jutsuE.getName());
 		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
 	}
 	
@@ -123,7 +122,7 @@ public class JutsuManager {
 	}
 	
 	public int getJutsuID(IJutsu jutsu) {
-		return jutsu.getJutsuProps().getID();
+		return ((Jutsu) jutsu).getJutsuProps().getID();
 	}
 	
 	public int getJutsuID(JutsuEnum jutsuListElem) {

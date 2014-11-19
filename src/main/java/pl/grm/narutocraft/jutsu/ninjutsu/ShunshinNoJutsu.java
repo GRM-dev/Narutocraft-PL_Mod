@@ -14,8 +14,8 @@ public class ShunshinNoJutsu extends Jutsu {
 	}
 	
 	@Override
-	public void activateJutsu() {
-		super.activateJutsu();
+	public void onJutsuActivation() {
+		super.onJutsuActivation();
 		this.player.addPotionEffect(new PotionEffect(10, 10));
 		// this.setPotionEffect("Invisible");
 	}

@@ -20,6 +20,7 @@ public abstract class Jutsu extends Item implements IJutsu {
 	public static String		textureLoc		= References.JutsuTexturePath;
 	private CreativeTabs		tabToDisplayOn	= NarutoCraft.mTabJutsu;
 	protected int				maxDamage;
+	protected int				chackraOnActivation;
 	protected JutsuProperties	jutsuProps;
 	protected JutsuEnum			myInstance;
 	protected ItemStack			stack;
@@ -34,22 +35,58 @@ public abstract class Jutsu extends Item implements IJutsu {
 	}
 	
 	@Override
-	public void activateJutsu() {
+	public void onJutsuActivation() {
 		this.setActive(true);
+		consumeChackra(player, chackraOnActivation);
+	}
+	
+	public JutsuProperties getJutsuProps() {
+		return this.jutsuProps;
+	}
+	
+	public boolean consumeChackra(EntityPlayer player, int value) {
+		ExtendedProperties props = ExtendedProperties.get(player);
+		if (props.getCurrentChakra() < this.jutsuProps.getChakraConsumption()) {
+			setActive(false);
+			return false;
+		}
+		ExtendedProperties.get(player).consumeChakra(value);
+		return true;
+	}
+	
+	/**
+	 * Check if Jutsu is Active
+	 *
+	 * @return true if Jutsu is activated.
+	 */
+	public boolean isActive() {
+		return this.jutsuProps.isActivated();
+	}
+	
+	@Override
+	public void onJutsuUpdate() {
+		jutsuProps.setPassDuration(this.jutsuProps.getPassDuration() + 1);
+		if (this.jutsuProps.getPassDuration() > this.jutsuProps.getTotalDuration()) {
+			this.onJutsuEnd();
+		}
+	}
+	
+	@Override
+	public void onJutsuEnd() {
+		this.setActive(false);
+	}
+	
+	public int getChackraOnActivation() {
+		return this.chackraOnActivation;
+	}
+	
+	public void setChackraOnActivation(int chackraOnActivation) {
+		this.chackraOnActivation = chackraOnActivation;
 	}
 	
 	@Override
 	public boolean canItemEditBlocks() {
 		return false;
-	}
-	
-	public void consumeChackra(EntityPlayer player, int value) {
-		ExtendedProperties props = ExtendedProperties.get(player);
-		if (props.getCurrentChakra() < this.jutsuProps.getChakraConsumption()) {
-			setActive(false);
-		} else {
-			ExtendedProperties.get(player).consumeChakra(value);
-		}
 	}
 	
 	public long getChackraConsumption() {
@@ -65,11 +102,6 @@ public abstract class Jutsu extends Item implements IJutsu {
 	@Override
 	public int getEntityLifespan(ItemStack itemStack, World world) {
 		return 6000;
-	}
-	
-	@Override
-	public JutsuProperties getJutsuProps() {
-		return this.jutsuProps;
 	}
 	
 	@Override
@@ -98,11 +130,6 @@ public abstract class Jutsu extends Item implements IJutsu {
 	}
 	
 	@Override
-	public boolean isActive() {
-		return this.jutsuProps.isActivated();
-	}
-	
-	@Override
 	public boolean isDamageable() {
 		return false;
 	}
@@ -128,11 +155,6 @@ public abstract class Jutsu extends Item implements IJutsu {
 	}
 	
 	@Override
-	public void jutsuEnd() {
-		this.setActive(false);
-	}
-	
-	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
 			EntityPlayer par3EntityPlayer) {
 		this.stack = par1ItemStack;
@@ -140,17 +162,9 @@ public abstract class Jutsu extends Item implements IJutsu {
 		this.player = par3EntityPlayer;
 		
 		if (!this.world.isRemote) {
-			this.activateJutsu();
+			this.onJutsuActivation();
 		}
 		return this.stack;
-	}
-	
-	@Override
-	public void onJutsuUpdate() {
-		jutsuProps.setPassDuration(this.jutsuProps.getPassDuration() + 1);
-		if (this.jutsuProps.getPassDuration() > this.jutsuProps.getTotalDuration()) {
-			this.jutsuEnd();
-		}
 	}
 	
 	public void setActive(boolean activated) {
