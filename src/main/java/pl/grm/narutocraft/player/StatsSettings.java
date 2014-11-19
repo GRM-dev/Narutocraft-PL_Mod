@@ -59,9 +59,13 @@ public enum StatsSettings {
 			"resistance_max",
 			80);
 	
-	private String	name;
-	private int		baseValue;
-	private String	sName;
+	private String		name;
+	private int			baseValue;
+	private String		sName;
+	public static int	chakraBase			= 50;
+	public static int	maxChakraCap		= 500;
+	public static int	ninjaXpLevelUpCap	= 15;
+	public static int	skillPointsPerLevel	= 5;
 	
 	private StatsSettings(String name, String sName, int baseValue) {
 		this.name = name;

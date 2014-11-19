@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.jutsu.ninjutsu.Meisaigakure;
 import pl.grm.narutocraft.skilltrees.SkillTree;
@@ -51,7 +51,7 @@ public class TestSkillTree {
 		setupEntry();
 		sTree.addEntry(entry);
 		assertTrue("There is no this entry or method contsins broken.",
-				sTree.contains(JutsuEnum.MEISAIGAKURE.getJutsuID()));
+				sTree.contains(JutsuParams.MEISAIGAKURE.getJutsuID()));
 	}
 	
 	private void setupEntry() {

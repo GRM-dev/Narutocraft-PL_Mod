@@ -1,7 +1,7 @@
 package pl.grm.narutocraft.libs.network;
 
 import io.netty.buffer.ByteBuf;
-import pl.grm.narutocraft.libs.config.BaseValues;
+import pl.grm.narutocraft.player.StatsSettings;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -62,7 +62,7 @@ public class PacketNinjaStatsRequest implements IMessage {
 			resetValues[4] = 0;
 			resetValues[5] = 0;
 			resetValues[6] = 0;
-			resetValues[10] = (resetValues[7] - 1) * BaseValues.skillPointsPerLevel;
+			resetValues[10] = (resetValues[7] - 1) * StatsSettings.skillPointsPerLevel;
 			return resetValues;
 		}
 	}

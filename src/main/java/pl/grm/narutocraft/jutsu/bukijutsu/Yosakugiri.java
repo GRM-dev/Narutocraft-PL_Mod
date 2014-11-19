@@ -6,12 +6,12 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 
 public class Yosakugiri extends Jutsu implements IJutsu {
 	
 	public Yosakugiri() {
-		super(JutsuEnum.YOSAKUGIRI);
+		super(JutsuParams.YOSAKUGIRI);
 	}
 	
 	@Override

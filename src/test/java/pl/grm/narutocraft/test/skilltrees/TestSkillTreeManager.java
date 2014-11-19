@@ -11,7 +11,8 @@ import java.security.InvalidParameterException;
 import org.junit.Test;
 
 import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.skilltrees.SkillTree;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
@@ -20,7 +21,7 @@ import pl.grm.narutocraft.skilltrees.SkillTreeManager;
 public class TestSkillTreeManager {
 	SkillTreeManager	skillsManager;
 	JutsuManager		jM		= new JutsuManager();
-	JutsuEnum			jutsu	= JutsuEnum.RASENGAN;
+	JutsuParams			jutsu	= JutsuParams.RASENGAN;
 	
 	@Test
 	public void testInstance() {
@@ -48,8 +49,8 @@ public class TestSkillTreeManager {
 		skillsManager = SkillTreeManager.instance;
 		skillsManager.init();
 		assertThat(skillsManager.getEntry(jutsu), notNullValue());
-		SkillTreeEntry entry = skillsManager.getEntry(JutsuEnum.RASENGAN);
-		assertThat(entry.getJutsu().getJutsuProps(), is(jutsu.getJutsu().getJutsuProps()));
+		SkillTreeEntry entry = skillsManager.getEntry(JutsuParams.RASENGAN);
+		assertThat(entry.getJutsu().getJutsuProps(), is(((Jutsu) jutsu.getJutsu()).getJutsuProps()));
 	}
 	
 	@Test

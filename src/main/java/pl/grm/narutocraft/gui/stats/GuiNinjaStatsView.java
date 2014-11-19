@@ -12,13 +12,13 @@ import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.gui.GuiNinjaButton;
 import pl.grm.narutocraft.gui.GuiNinjaTabButton;
 import pl.grm.narutocraft.gui.skilltrees.GuiJutsu;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
-import pl.grm.narutocraft.libs.config.BaseValues;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
 import pl.grm.narutocraft.player.ExtendedProperties;
 import pl.grm.narutocraft.player.NinjaAttributes;
 import pl.grm.narutocraft.player.NinjaStats;
+import pl.grm.narutocraft.player.StatsSettings;
 
 public class GuiNinjaStatsView extends GuiContainer {
 	private EntityPlayer	player;
@@ -179,7 +179,7 @@ public class GuiNinjaStatsView extends GuiContainer {
 		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
 		NinjaAttributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
-		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
+		int totalSkillPoints = (stats.getNinjaLevel() - 1) * StatsSettings.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
 		// Stats
 		totalSkillPointsUsed += (attrb.getStrength() + strUpg + attrb.getAgility() + agiUpg
@@ -200,7 +200,7 @@ public class GuiNinjaStatsView extends GuiContainer {
 		NinjaStats stats = ExtendedProperties.get(this.player).getNinStats();
 		NinjaAttributes attrb = ExtendedProperties.get(this.player).getNinAttrs();
 		
-		int totalSkillPoints = (stats.getNinjaLevel() - 1) * BaseValues.skillPointsPerLevel;
+		int totalSkillPoints = (stats.getNinjaLevel() - 1) * StatsSettings.skillPointsPerLevel;
 		int totalSkillPointsUsed = 0;
 		// Stats
 		totalSkillPointsUsed += (attrb.getStrength() + attrb.getAgility() + attrb.getDexterity() + attrb
@@ -252,19 +252,19 @@ public class GuiNinjaStatsView extends GuiContainer {
 		// Controls
 		// Tabs buttons
 		this.buttonList.add(new GuiNinjaTabButton(0, x2, this.guiTop - 22, References
-				.getIconFromJutsu(JutsuEnum.HADAN)));
+				.getIconFromJutsu(JutsuParams.HADAN)));
 		this.buttonList.add(new GuiNinjaTabButton(1, x1, this.guiTop - 22, References
-				.getIconFromJutsu(JutsuEnum.KAI)));
+				.getIconFromJutsu(JutsuParams.KAI)));
 		this.buttonList.add(new GuiNinjaTabButton(2, x1 + 22, this.guiTop - 22, References
-				.getIconFromJutsu(JutsuEnum.BYAKUGO)));
+				.getIconFromJutsu(JutsuParams.BYAKUGO)));
 		this.buttonList.add(new GuiNinjaTabButton(3, x1 + (22 * 2), this.guiTop - 22, References
-				.getIconFromJutsu(JutsuEnum.FUKIMIHARI)));
+				.getIconFromJutsu(JutsuParams.FUKIMIHARI)));
 		this.buttonList.add(new GuiNinjaTabButton(4, x1 + (22 * 3), this.guiTop - 22, References
-				.getIconFromJutsu(JutsuEnum.RANSHINSHO)));
+				.getIconFromJutsu(JutsuParams.RANSHINSHO)));
 		this.buttonList.add(new GuiNinjaTabButton(5, x1 + (22 * 4), this.guiTop - 22, References
-				.getIconFromJutsu(JutsuEnum.YOSAKUGIRI)));
+				.getIconFromJutsu(JutsuParams.YOSAKUGIRI)));
 		this.buttonList.add(new GuiNinjaTabButton(6, x1 + (22 * 5), this.guiTop - 22, References
-				.getIconFromJutsu(JutsuEnum.ENMAKUGIRE)));
+				.getIconFromJutsu(JutsuParams.ENMAKUGIRE)));
 		
 		// Stats
 		if (!this.jutsuMenu) {

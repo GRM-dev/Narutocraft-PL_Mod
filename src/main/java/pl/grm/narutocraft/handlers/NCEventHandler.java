@@ -12,7 +12,7 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
 import pl.grm.narutocraft.player.ExtendedProperties;
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -155,7 +155,7 @@ public class NCEventHandler {
 		if (event.entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.entity;
 			ItemStack heldItem = player.getHeldItem();
-			if ((heldItem != null) && (heldItem.getItem() == JutsuEnum.KAWARIMINOJUTSU.getJutsu())) // Testing
+			if ((heldItem != null) && (heldItem.getItem() == JutsuParams.KAWARIMINOJUTSU.getJutsu())) // Testing
 			{
 				player.capabilities.allowFlying = true;
 			} else {

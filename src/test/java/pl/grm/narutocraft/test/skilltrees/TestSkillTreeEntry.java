@@ -11,7 +11,8 @@ import org.junit.Test;
 
 import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
@@ -23,14 +24,14 @@ public class TestSkillTreeEntry {
 	public void testSTEntry() {
 		int x = 5, y = 5;
 		SkillTreeEnum sTree = SkillTreeEnum.NONE;
-		IJutsu jutsu = JutsuEnum.ODAMARASENGAN.getJutsu();
+		IJutsu jutsu = JutsuParams.ODAMARASENGAN.getJutsu();
 		JutsuTier tier = JutsuTier.D;
 		int points = 10;
 		ArrayList<SkillTreeEntry> req = new ArrayList<SkillTreeEntry>();
-		req.add(new SkillTreeEntry(x, y, sTree, jutsu, tier, points, req));
+		req.add(new SkillTreeEntry(x, y, sTree, (Jutsu) jutsu, tier, points, req));
 		SkillTreeEntry entry = null;
 		try {
-			entry = new SkillTreeEntry(x, y, sTree, jutsu, tier, points, req);
+			entry = new SkillTreeEntry(x, y, sTree, (Jutsu) jutsu, tier, points, req);
 		}
 		catch (Exception e) {
 			fail(e.getMessage());

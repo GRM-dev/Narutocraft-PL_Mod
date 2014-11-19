@@ -15,7 +15,6 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import pl.grm.narutocraft.ProxyCommon;
 import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.libs.config.BaseValues;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String			EXT_PROP_NAME	= "NCPLExtPlayer";
@@ -180,11 +179,11 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public final void setMaxChakra(int amount, boolean overrideBaseValue) {
 		if (overrideBaseValue) {
 			ninStats.setMaxChakra(MathHelper.clamp_int(amount + ninStats.getChakraModifier(), 0,
-					BaseValues.maxChakraCap));
+					StatsSettings.maxChakraCap));
 		} else {
 			ninStats.setMaxChakra(MathHelper.clamp_int(
-					BaseValues.chakraBase + ninStats.getChakraModifier(), 0,
-					BaseValues.maxChakraCap));
+					StatsSettings.chakraBase + ninStats.getChakraModifier(), 0,
+					StatsSettings.maxChakraCap));
 		}
 	}
 	

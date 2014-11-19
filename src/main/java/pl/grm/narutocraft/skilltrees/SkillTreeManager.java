@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import cpw.mods.fml.common.FMLLog;
@@ -51,9 +52,9 @@ public class SkillTreeManager {
 	 * Registers All Entries.
 	 */
 	private void registerAllEntries() {
-		RegisterEntry(JutsuEnum.MEISAIGAKURE, 300, 45, 12);
-		RegisterEntry(JutsuEnum.RASENGAN, 200, 100, 10);
-		RegisterEntry(JutsuEnum.ODAMARASENGAN, 200, 100, 10, getEntry(JutsuEnum.RASENGAN));
+		RegisterEntry(JutsuParams.MEISAIGAKURE, 300, 45, 12);
+		RegisterEntry(JutsuParams.RASENGAN, 200, 100, 10);
+		RegisterEntry(JutsuParams.ODAMARASENGAN, 200, 100, 10, getEntry(JutsuParams.RASENGAN));
 	}
 	
 	/**
@@ -69,14 +70,14 @@ public class SkillTreeManager {
 	 * @param prerequisites
 	 * @return SkillTreeEntry
 	 */
-	private SkillTreeEntry RegisterEntry(JutsuEnum jutsuElem, int x, int y, int requiredPoints,
+	private SkillTreeEntry RegisterEntry(JutsuParams jutsuElem, int x, int y, int requiredPoints,
 			SkillTreeEntry... prerequisites) {
 		SkillTreeEnum tree = jutsuElem.getTree();
 		JutsuTier tier = jutsuElem.getTier();
 		SkillTreeEntry newEntry;
 		ArrayList<SkillTreeEntry> prerequisitesList = convertEntryPrerequisites(tree, prerequisites);
-		newEntry = new SkillTreeEntry(x, y, tree, jutsuElem.getJutsu(), tier, requiredPoints,
-				prerequisitesList);
+		newEntry = new SkillTreeEntry(x, y, tree, (Jutsu) jutsuElem.getJutsu(), tier,
+				requiredPoints, prerequisitesList);
 		getTreefromTreeMap(tree).addEntry(newEntry);
 		return newEntry;
 	}
@@ -227,7 +228,7 @@ public class SkillTreeManager {
 	 * @param jutsu
 	 * @return Entry from tree
 	 */
-	public SkillTreeEntry getEntry(JutsuEnum jutsu) {
+	public SkillTreeEntry getEntry(JutsuParams jutsu) {
 		int jutsuID = jutsu.getJutsuID();
 		SkillTreeEnum treeType = jutsu.getTree();
 		int treeID = treeType.getID();

@@ -41,7 +41,7 @@ import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
 import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
-public enum JutsuEnum {
+public enum JutsuParams {
 	NONE(
 			5600,
 			"None",
@@ -508,17 +508,27 @@ public enum JutsuEnum {
 	
 	/**
 	 * @param ID
+	 *            Unique ID of Jutsu
 	 * @param name
+	 *            Name of Jutsu
 	 * @param jutsu
+	 *            Class of Jutsu
 	 * @param jutsuType
+	 *            Specifies the jutsu tree
 	 * @param tier
+	 *            Tier of Jutsu
 	 * @param duration
+	 *            Duration of Jutsu. If set 0 than onClick one time use
 	 * @param cooldown
+	 *            Cooldown of jutsu
 	 * @param chakraConsumption
+	 *            How many chakra jutsu should consume
 	 * @param damage
+	 *            Damage dealt by Jutsu
 	 * @param bufftype
+	 *            is jutsu the buff
 	 */
-	private JutsuEnum(int ID, String name, Class<? extends Jutsu> jutsu, SkillTreeEnum jutsuType,
+	private JutsuParams(int ID, String name, Class<? extends Jutsu> jutsu, SkillTreeEnum jutsuType,
 			JutsuTier tier, long duration, long cooldown, int chakraConsumption, int damage,
 			boolean bufftype) {
 		this.duration = duration;
@@ -537,8 +547,8 @@ public enum JutsuEnum {
 	 * @param ID
 	 * @return JutsuEnum containing ID
 	 */
-	public static JutsuEnum getByID(int ID) {
-		for (JutsuEnum jutsu : JutsuEnum.values()) {
+	public static JutsuParams getByID(int ID) {
+		for (JutsuParams jutsu : JutsuParams.values()) {
 			if (jutsu.jutsuID == ID) { return jutsu; }
 		}
 		return NONE;
@@ -548,8 +558,8 @@ public enum JutsuEnum {
 	 * @param name
 	 * @return JutsuEnum containg name
 	 */
-	public static JutsuEnum getByName(String name) {
-		for (JutsuEnum jutsu : JutsuEnum.values()) {
+	public static JutsuParams getByName(String name) {
+		for (JutsuParams jutsu : JutsuParams.values()) {
 			if (jutsu.jutsuName.equals(name)) { return jutsu; }
 		}
 		return NONE;
@@ -561,8 +571,8 @@ public enum JutsuEnum {
 	 * @param iJutsu
 	 * @return JutsuEnum containing specified IJutsu
 	 */
-	public static JutsuEnum getByIJutsu(IJutsu iJutsu) {
-		for (JutsuEnum jutsu : JutsuEnum.values()) {
+	public static JutsuParams getByIJutsu(IJutsu iJutsu) {
+		for (JutsuParams jutsu : JutsuParams.values()) {
 			if (jutsu != NONE) {
 				if (jutsu.jutsuClass.equals(iJutsu)) { return jutsu; }
 			}

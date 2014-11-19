@@ -2,9 +2,8 @@ package pl.grm.narutocraft.libs.config;
 
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.player.ExtendedProperties;
 
 /**
@@ -40,14 +39,14 @@ public class References {
 	public static final int					OPTS				= 1, STATS = 2, SKILL_TREE = 3,
 			SETTS = 4;
 	
-	public static IIcon getIconFromJutsu(JutsuEnum jutsuE) {
+	public static IIcon getIconFromJutsu(JutsuParams jutsuE) {
 		if (!ExtendedProperties.jutsuList.containsKey((jutsuE.getJutsuID()))) { return null; }
 		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsuE.getJutsuID()))
 				.getIconFromDamage(0);
 		return icon;
 	}
 	
-	public static IIcon getIconFromJutsu(IJutsu jutsu) {
+	public static IIcon getIconFromJutsu(Jutsu jutsu) {
 		IIcon icon;
 		if (!ExtendedProperties.jutsuList.containsKey((jutsu.getJutsuProps().getID()))) { return null; }
 		icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsu.getJutsuProps().getID()))

@@ -3,14 +3,14 @@ package pl.grm.narutocraft.creativetabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.player.ExtendedProperties;
 
 /**
  * Creative Tab for Jutsus
  */
 public class NCJutsuTab extends CreativeTabs {
-	private int	iconJutsuID	= JutsuEnum.RASENGAN.getJutsuID();
+	private int	iconJutsuID	= JutsuParams.RASENGAN.getJutsuID();
 	
 	/**
 	 * @param id

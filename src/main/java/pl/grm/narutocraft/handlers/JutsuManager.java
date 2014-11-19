@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.player.ExtendedProperties;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -33,8 +33,8 @@ public class JutsuManager {
 	 * Iterate over JutsuEnum and calls regitster method
 	 */
 	public static void regJutsusList() {
-		for (JutsuEnum jutsu : JutsuEnum.values()) {
-			if (jutsu != JutsuEnum.NONE && jutsu != null) {
+		for (JutsuParams jutsu : JutsuParams.values()) {
+			if (jutsu != JutsuParams.NONE && jutsu != null) {
 				registerJutsu(jutsu);
 			}
 		}
@@ -45,7 +45,7 @@ public class JutsuManager {
 	 * 
 	 * @param jutsuE
 	 */
-	private static void registerJutsu(JutsuEnum jutsuE) {
+	private static void registerJutsu(JutsuParams jutsuE) {
 		Jutsu jutsu = (Jutsu) jutsuE.getJutsu();
 		GameRegistry.registerItem(jutsu, jutsuE.getName());
 		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
@@ -116,7 +116,7 @@ public class JutsuManager {
 	}
 	
 	public SkillTreeEntry getJutsu(String name) {
-		Integer ID = JutsuEnum.getByName(name).getJutsuID();
+		Integer ID = JutsuParams.getByName(name).getJutsuID();
 		if (ID == null) { return null; }
 		return this.registeredEntries.get(ID);
 	}
@@ -125,7 +125,7 @@ public class JutsuManager {
 		return ((Jutsu) jutsu).getJutsuProps().getID();
 	}
 	
-	public int getJutsuID(JutsuEnum jutsuListElem) {
+	public int getJutsuID(JutsuParams jutsuListElem) {
 		return jutsuListElem.getJutsuID();
 	}
 }

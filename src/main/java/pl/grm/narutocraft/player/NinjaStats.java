@@ -8,16 +8,13 @@ import java.util.Map.Entry;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-import pl.grm.narutocraft.libs.config.BaseValues;
 
 /**
  * NinjaStats use {@link StatsSettings}
  */
 public class NinjaStats {
 	private static final String		NBTCompoundName			= "NinjaAttributes";
-	private int						skillPointsPerLevel		= BaseValues.skillPointsPerLevel;
-	private Map<String, Integer>	stats;
-	
+	private int						skillPointsPerLevel		= StatsSettings.skillPointsPerLevel;
 	private int						currentNinjaXp			= 0;
 	private int						ninjaXpLevelUpCap		= 15;
 	private int						skillPoints				= 0;
@@ -28,15 +25,15 @@ public class NinjaStats {
 	private int						skillTreeIryoLevel		= 0;
 	private int						skillTreeNinLevel		= 0;
 	private int						skillTreeTaiLevel		= 0;
-	private int						maxChakra				= BaseValues.chakraBase;
+	private int						maxChakra				= StatsSettings.chakraBase * 20;
 	private int						chakraModifier			= 0;
 	private int						chakraRegenBonus		= 0;
 	private int						elementPowerModifier	= 0;
+	private Map<String, Integer>	stats;
 	
 	public NinjaStats() {
 		this.stats = new HashMap<String, Integer>();
-		for (Stats stat : Stats.values())
-		{
+		for (Stats stat : Stats.values()) {
 			this.stats.put(stat.getSName(), stat.getBaseValue());
 		}
 	}
@@ -78,17 +75,13 @@ public class NinjaStats {
 	public void levelUp(int xpGained) {
 		int currentXp = stats.get(Stats.NINJAXP.getSName());
 		int xpCap = stats.get(Stats.NINJAXPCAP.getSName());
-		if (currentXp + xpGained >= xpCap)
-		{
+		if (currentXp + xpGained >= xpCap) {
 			int ninjaLevel = stats.get(Stats.NINLEVEL.getSName());
-			int skillPoints =  stats.get(Stats.SKILLPOINTS.getSName());
+			int skillPoints = stats.get(Stats.SKILLPOINTS.getSName());
 			int xpTotal = currentXp + xpGained;
-			if (xpTotal > xpCap)
-			{
+			if (xpTotal > xpCap) {
 				currentXp = xpTotal - xpCap;
-			}
-			else
-			{
+			} else {
 				currentXp = 0;
 			}
 			ninjaLevel++;
@@ -97,22 +90,42 @@ public class NinjaStats {
 			stats.put(Stats.NINJALEVEL.getSName(), ninjaLevel);
 			stats.put(Stats.SKILLPOINTS.getSName(), skillPoints);
 			stats.put(Stats.NINJAXPCAP.getSName(), xpCap);
-		}
-		else
-		{
+		} else {
 			currentXp += xpGained;
 		}
 		stats.put(Stats.NINJAXP.getSName(), currentXp);
 	}
-
+	
+	// For Networking
+	public String[] getInfo() {
+		String[] info = new String[stats.size()];
+		Iterator<Entry<String, Integer>> iterator = stats.entrySet().iterator();
+		int index = 0;
+		while (iterator.hasNext()) {
+			Entry<String, Integer> entry = iterator.next();
+			String name = entry.getKey();
+			Integer value = entry.getValue();
+			info[index] = name + ":" + value;
+			index++;
+		}
+		return info;
+	}
+	
+	public void setInfo(String[] info) {
+		String[] splitInfo;
+		for (String i : info) {
+			splitInfo = i.split(":");
+			stats.put(splitInfo[0], Integer.parseInt(splitInfo[1]));
+		}
+	}
+	
 	public int getCurrentXp() {
 		return this.stats.get(Stats.NINJAXP.getSName());
 	}
 	
-	public void setCurrentXp(int xp)
-	{
+	public void setCurrentXp(int xp) {
 		this.stats.put(Stats.NINJAXP.getSName(), xp);
-		this.levelUp(0);//Just to update the level incase of large set.
+		this.levelUp(0);// Just to update the level in case of large set.
 	}
 	
 	public int getChakraModifier() {
@@ -290,30 +303,4 @@ public class NinjaStats {
 	public void setElementPowerModifier(int elementPowerModifier) {
 		this.elementPowerModifier = elementPowerModifier;
 	}
-	
-	//For Networking
-		public String[] getInfo()
-		{
-			String[] info = new String[stats.size()];
-			Iterator<Entry<String, Integer>> iterator = stats.entrySet().iterator();
-			int index = 0;
-			while (iterator.hasNext()) {
-				Entry<String, Integer> entry = iterator.next();
-				String name = entry.getKey();
-				Integer value = entry.getValue();
-				info[index] = name + ":" + value;
-				index++;
-			}
-			return info;
-		}
-		
-		public void setInfo(String[] info)
-		{
-			String[] splitInfo;
-			for (String i : info) 
-			{
-				splitInfo = i.split(":");			
-				stats.put(splitInfo[0], Integer.parseInt(splitInfo[1]));
-			}
-		}
 }

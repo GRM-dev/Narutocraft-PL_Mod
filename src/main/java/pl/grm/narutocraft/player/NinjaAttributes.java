@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
 /**
- * NinjaAtrributes use {@link Attributes}
+ * NinjaAtrributes use {@link Attributes} such as strength, dexterity, etc.
  */
 public class NinjaAttributes {
 	private static final String		NBTCompoundName	= "NinjaAttributes";
@@ -56,6 +56,29 @@ public class NinjaAttributes {
 		}
 	}
 	
+	// For Networking
+	public String[] getInfo() {
+		String[] info = new String[attributes.size()];
+		Iterator<Entry<String, Integer>> iterator = attributes.entrySet().iterator();
+		int index = 0;
+		while (iterator.hasNext()) {
+			Entry<String, Integer> entry = iterator.next();
+			String name = entry.getKey();
+			Integer value = entry.getValue();
+			info[index] = name + ":" + value;
+			index++;
+		}
+		return info;
+	}
+
+	public void setInfo(String[] info) {
+		String[] splitInfo;
+		for (String i : info) {
+			splitInfo = i.split(":");
+			attributes.put(splitInfo[0], Integer.parseInt(splitInfo[1]));
+		}
+	}
+
 	/** Returns a Map of attributes values */
 	public Map<String, Integer> getAttValues() {
 		return attributes;
@@ -159,31 +182,5 @@ public class NinjaAttributes {
 	
 	public void setChakraRegenMod(int v) {
 		attributes.put(Attributes.STRENGTH.getSName(), v);
-	}
-	
-	//For Networking
-	public String[] getInfo()
-	{
-		String[] info = new String[attributes.size()];
-		Iterator<Entry<String, Integer>> iterator = attributes.entrySet().iterator();
-		int index = 0;
-		while (iterator.hasNext()) {
-			Entry<String, Integer> entry = iterator.next();
-			String name = entry.getKey();
-			Integer value = entry.getValue();
-			info[index] = name + ":" + value;
-			index++;
-		}
-		return info;
-	}
-	
-	public void setInfo(String[] info)
-	{
-		String[] splitInfo;
-		for (String i : info) 
-		{
-			splitInfo = i.split(":");			
-			attributes.put(splitInfo[0], Integer.parseInt(splitInfo[1]));
-		}
 	}
 }

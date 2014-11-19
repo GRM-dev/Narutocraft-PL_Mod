@@ -22,16 +22,16 @@ public abstract class Jutsu extends Item implements IJutsu {
 	protected int				maxDamage;
 	protected int				chackraOnActivation;
 	protected JutsuProperties	jutsuProps;
-	protected JutsuEnum			myInstance;
+	protected JutsuParams			jutsuParams;
 	protected ItemStack			stack;
 	protected World				world;
 	protected EntityPlayer		player;
 	
-	public Jutsu(JutsuEnum jutsu) {
-		this.myInstance = jutsu;
-		this.jutsuProps = new JutsuProperties(myInstance.getJutsuID(), this.myInstance.getName(),
-				0, this.myInstance.getDuration(), this.myInstance.getChakraConsumption(), false);
-		this.setTextureName(textureLoc + this.myInstance.getName());
+	public Jutsu(JutsuParams jutsuParams) {
+		this.jutsuParams = jutsuParams;
+		this.jutsuProps = new JutsuProperties(jutsuParams.getJutsuID(), this.jutsuParams.getName(),
+				0, this.jutsuParams.getDuration(), this.jutsuParams.getChakraConsumption(), false);
+		this.setTextureName(textureLoc + this.jutsuParams.getName());
 	}
 	
 	@Override

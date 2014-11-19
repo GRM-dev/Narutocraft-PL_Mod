@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import net.minecraft.util.IIcon;
 import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.JutsuEnum;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuParams;
 import pl.grm.narutocraft.jutsu.JutsuTier;
 import pl.grm.narutocraft.libs.config.References;
 
@@ -13,11 +14,11 @@ public class SkillTreeEntry {
 	private int					y;
 	private SkillTreeEnum		tree;
 	private JutsuTier			tier;
-	private IJutsu				jutsu;
+	private Jutsu				jutsu;
 	private int					points;
 	private SkillTreeEntry[]	prerequisites;
 	private EntryStates			entryState;
-	private JutsuEnum			reqJutsu;
+	private JutsuParams			reqJutsu;
 	private IIcon				icon;
 	
 	/**
@@ -27,7 +28,7 @@ public class SkillTreeEntry {
 	 *            y position.
 	 * @param tree
 	 *            SkillTree type.
-	 * @param iJutsu
+	 * @param jutsu
 	 *            Jutsu of IJutsu Interface.
 	 * @param tier
 	 *            which Tier it is.
@@ -36,12 +37,12 @@ public class SkillTreeEntry {
 	 * @param prerequisites
 	 *            what entry should be unlocked before this.
 	 */
-	public SkillTreeEntry(int x, int y, SkillTreeEnum tree, IJutsu iJutsu, JutsuTier tier,
+	public SkillTreeEntry(int x, int y, SkillTreeEnum tree, Jutsu jutsu, JutsuTier tier,
 			int points, ArrayList<SkillTreeEntry> prerequisites) {
 		this.x = x;
 		this.y = y;
 		this.tree = tree;
-		this.jutsu = iJutsu;
+		this.jutsu = jutsu;
 		this.icon = References.getIconFromJutsu(jutsu);
 		this.tier = tier;
 		this.points = points;
@@ -68,7 +69,7 @@ public class SkillTreeEntry {
 		} else {
 			for (SkillTreeEntry skillTreeEntry : prerequisites) {
 				IJutsu jutsuTemp = skillTreeEntry.getJutsu();
-				JutsuEnum jutsuE = JutsuEnum.getByIJutsu(jutsuTemp);
+				JutsuParams jutsuE = JutsuParams.getByIJutsu(jutsuTemp);
 				this.reqJutsu = jutsuE;
 			}
 		}
@@ -90,7 +91,7 @@ public class SkillTreeEntry {
 		return this.tier;
 	}
 	
-	public IJutsu getJutsu() {
+	public Jutsu getJutsu() {
 		return this.jutsu;
 	}
 	
@@ -106,7 +107,7 @@ public class SkillTreeEntry {
 		return this.entryState;
 	}
 	
-	public JutsuEnum getReqJutsu() {
+	public JutsuParams getReqJutsu() {
 		return this.reqJutsu;
 	}
 	
