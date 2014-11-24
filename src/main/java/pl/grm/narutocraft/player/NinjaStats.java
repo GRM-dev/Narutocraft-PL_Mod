@@ -111,6 +111,7 @@ public class NinjaStats {
 		return info;
 	}
 	
+	// For Networking
 	public void setInfo(String[] info) {
 		String[] splitInfo;
 		for (String i : info) {
@@ -145,7 +146,7 @@ public class NinjaStats {
 	}
 	
 	public int getXpCap() {
-		return this.ninjaXpLevelUpCap;
+		return this.stats.get(Stats.NINJAXPCAP.getSName());
 	}
 	
 	public int getSkillPointsPerLevel() {
@@ -156,24 +157,8 @@ public class NinjaStats {
 		this.skillPointsPerLevel = skillPointsPerLevel;
 	}
 	
-	public int getCurrentNinjaXp() {
-		return this.currentNinjaXp;
-	}
-	
-	public void setCurrentNinjaXp(int currentNinjaXp) {
-		this.currentNinjaXp = currentNinjaXp;
-	}
-	
-	public int getNinjaXpLevelUpCap() {
-		return this.ninjaXpLevelUpCap;
-	}
-	
-	public void setNinjaXpLevelUpCap(int ninjaXpLevelUpCap) {
-		this.ninjaXpLevelUpCap = ninjaXpLevelUpCap;
-	}
-	
 	public int getSkillPoints() {
-		return this.skillPoints;
+		return this.stats.get(Stats.SKILLPOINTS.getSName());
 	}
 	
 	public void setSkillPoints(int skillPoints) {

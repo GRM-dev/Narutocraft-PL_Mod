@@ -71,6 +71,7 @@ public class NinjaAttributes {
 		return info;
 	}
 
+	// For Networking
 	public void setInfo(String[] info) {
 		String[] splitInfo;
 		for (String i : info) {
