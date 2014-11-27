@@ -3,6 +3,7 @@ package pl.grm.narutocraft.libs.buffs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import pl.grm.narutocraft.libs.config.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -13,15 +14,30 @@ public class NCPotion extends Potion {
 		super(par1, par2, par3);
 	}
 	
-	public void setTextureSheet(String texturesheet) {
-		this.potionTexture = new ResourceLocation("nc", texturesheet);
-	}
-	
+	@Override
 	@SideOnly(Side.CLIENT)
-	public int func_76392_e() {
+	public int getStatusIconIndex() {
 		if (this.potionTexture != null) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(this.potionTexture);
 		}
 		return super.getStatusIconIndex();
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasStatusIcon() {
+		setTextureSheet("buffs_1.png");
+		Minecraft.getMinecraft().renderEngine.bindTexture(this.potionTexture);
+		return true;
+	}
+	
+	public void setTextureSheet(String texturesheet) {
+		this.potionTexture = new ResourceLocation(References.GUI_TEXTURE_PATH + texturesheet);
+	}
+	
+	@Override
+	protected Potion setIconIndex(int par1, int par2) {
+		super.setIconIndex(par1, par2);
+		return this;
 	}
 }

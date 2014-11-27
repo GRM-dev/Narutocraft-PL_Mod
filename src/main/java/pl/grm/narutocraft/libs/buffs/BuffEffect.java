@@ -9,11 +9,15 @@ import pl.grm.narutocraft.ProxyCommon;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public abstract class BuffEffect extends PotionEffect {
-	protected boolean		InitialApplication;
-	protected boolean		HasNotified;
-	protected Random		rand;
-	private static float	maxExtendDuration	= 900.0F;
+	protected boolean	InitialApplication;
+	protected boolean	HasNotified;
+	protected Random	rand;
 	
+	/**
+	 * @param buffID
+	 * @param duration
+	 * @param amplifier
+	 */
 	public BuffEffect(int buffID, int duration, int amplifier) {
 		super(buffID, duration, amplifier > 0 ? amplifier - 1 : amplifier);
 		this.InitialApplication = true;
@@ -21,18 +25,13 @@ public abstract class BuffEffect extends PotionEffect {
 		this.rand = new Random();
 	}
 	
-	public static boolean ExtendDuration(PotionEffect pe) {
-		int newDuration = pe.getDuration() + 2;
-		if (newDuration <= maxExtendDuration) { return SetDuration(pe, newDuration); }
-		return false;
-	}
+	protected abstract String jutsuBuffName();
 	
-	public static boolean SetDuration(PotionEffect pe, int duration) {
-		// pe.duration = duration; //FIXME duration not visible
-		return true;
-	}
+	public abstract void startEffect(EntityLivingBase paramEntityLivingBase);
 	
-	public static boolean SetAmplifier(PotionEffect pe, int amplifier) {
+	public abstract void stopEffect(EntityLivingBase paramEntityLivingBase);
+	
+	public static boolean setAmplifier(PotionEffect pe, int amplifier) {
 		ReflectionHelper.setPrivateValue(PotionEffect.class, pe, Integer.valueOf(amplifier), 2);
 		return true;
 	}
@@ -40,10 +39,6 @@ public abstract class BuffEffect extends PotionEffect {
 	public boolean shouldNotify() {
 		return true;
 	}
-	
-	public abstract void applyEffect(EntityLivingBase paramEntityLivingBase);
-	
-	public abstract void stopEffect(EntityLivingBase paramEntityLivingBase);
 	
 	private void effectEnding(EntityLivingBase entityliving) {
 		stopEffect(entityliving);
@@ -66,7 +61,7 @@ public abstract class BuffEffect extends PotionEffect {
 	public boolean onUpdate(EntityLivingBase entityliving) {
 		if (this.InitialApplication) {
 			this.InitialApplication = false;
-			applyEffect(entityliving);
+			startEffect(entityliving);
 		} else if (getDuration() <= 1) {
 			effectEnding(entityliving);
 		} else if ((getDuration() / 20 < 5) && (!this.HasNotified) && (shouldNotify())
@@ -83,8 +78,6 @@ public abstract class BuffEffect extends PotionEffect {
 		if (k > 0) { return i % k == 0; }
 		return true;
 	}
-	
-	protected abstract String jutsuBuffName();
 	
 	@Override
 	public String getEffectName() {

@@ -19,21 +19,21 @@ public class References {
 	public static final String				Client				= "pl.grm.narutocraft.ProxyClient";
 	public static final String				Common				= "pl.grm.narutocraft.ProxyCommon";
 	public static final String				ModTexturePath		= "narutocraft:";
-	public static final String				GuiTexturePath		= ModTexturePath + "textures/gui/";
+	public static final String				GUI_TEXTURE_PATH		= ModTexturePath + "textures/gui/";
 	public static final String				ModTag				= "narutocraft:";
 	public static final String				JutsuTexturePath	= ModTag + "jutsu/";
 	public static final ResourceLocation[]	jutsuGUILocation	= new ResourceLocation[]{
-			new ResourceLocation(GuiTexturePath + "JutsuPage1.png"),
-			new ResourceLocation(GuiTexturePath + "JutsuPage2.png"),
-			new ResourceLocation(GuiTexturePath + "JutsuPage3.png"),
-			new ResourceLocation(GuiTexturePath + "JutsuPage4.png"),
-			new ResourceLocation(GuiTexturePath + "JutsuPage5.png"),
-			new ResourceLocation(GuiTexturePath + "JutsuPage6.png")};
+			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage1.png"),
+			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage2.png"),
+			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage3.png"),
+			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage4.png"),
+			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage5.png"),
+			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage6.png")};
 	public static final ResourceLocation	statsPath			= new ResourceLocation(
-																		GuiTexturePath
+																		GUI_TEXTURE_PATH
 																				+ "SkillPoints.png");
 	public static final ResourceLocation	ninjaWidgetsPath	= new ResourceLocation(
-																		GuiTexturePath
+																		GUI_TEXTURE_PATH
 																				+ "NinjaGuiWidgets.png");
 	/** GUI IDs */
 	public static final int					OPTS				= 1, STATS = 2, SKILL_TREE = 3,

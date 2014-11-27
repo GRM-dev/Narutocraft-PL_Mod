@@ -1,5 +1,9 @@
 package pl.grm.narutocraft.jutsu;
 
+/**
+ * Properties of jutsu:
+ * ID, durations,chakra consumption, name, ...
+ */
 public class JutsuProperties {
 	private int		jutsuID;
 	private long	passDuration;
@@ -8,6 +12,16 @@ public class JutsuProperties {
 	private String	unlocalizedName;
 	private boolean	activated;
 	
+	/**
+	 * Properties of jutsu
+	 * 
+	 * @param jutsuID
+	 * @param unlocalizedName
+	 * @param passDuration
+	 * @param totalDuration
+	 * @param chakraConsumption
+	 * @param activated
+	 */
 	public JutsuProperties(int jutsuID, String unlocalizedName, long passDuration,
 			long totalDuration, long chakraConsumption, boolean activated) {
 		this.jutsuID = jutsuID;

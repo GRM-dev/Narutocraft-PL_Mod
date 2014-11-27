@@ -2,11 +2,11 @@ package pl.grm.narutocraft.jutsu.ninjutsu;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.jutsu.IJutsu;
 import pl.grm.narutocraft.jutsu.Jutsu;
 import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.libs.buffs.testEff;
 
 public class Meisaigakure extends Jutsu implements IJutsu {
 	
@@ -17,7 +17,7 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	@Override
 	public void onJutsuActivation() {
 		super.onJutsuActivation();
-		this.player.addPotionEffect(new PotionEffect(10, 10));
+		this.player.addPotionEffect(new testEff(30, 100, 0));
 		// this.setPotionEffect("Invisible");
 	}
 	
