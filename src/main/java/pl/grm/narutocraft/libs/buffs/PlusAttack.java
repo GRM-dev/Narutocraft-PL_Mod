@@ -15,7 +15,7 @@ public class PlusAttack extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "PlusAttack";
 	}
 	
 	@Override

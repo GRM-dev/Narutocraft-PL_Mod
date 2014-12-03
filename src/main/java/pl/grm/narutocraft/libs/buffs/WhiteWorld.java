@@ -15,7 +15,7 @@ public class WhiteWorld extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "WhiteWorld";
 	}
 	
 	@Override

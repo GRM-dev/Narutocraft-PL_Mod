@@ -15,7 +15,7 @@ public class Change extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "Change";
 	}
 	
 	@Override

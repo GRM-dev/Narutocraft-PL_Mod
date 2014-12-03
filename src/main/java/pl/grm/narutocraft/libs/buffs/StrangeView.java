@@ -15,7 +15,7 @@ public class StrangeView extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "StrangeView";
 	}
 	
 	@Override

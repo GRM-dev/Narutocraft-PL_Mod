@@ -15,7 +15,7 @@ public class Confusion extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "Confusion";
 	}
 	
 	@Override

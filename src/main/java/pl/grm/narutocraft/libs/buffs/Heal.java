@@ -15,7 +15,7 @@ public class Heal extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "Heal";
 	}
 	
 	@Override

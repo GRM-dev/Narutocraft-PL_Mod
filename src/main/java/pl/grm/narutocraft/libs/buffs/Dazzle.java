@@ -15,7 +15,7 @@ public class Dazzle extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "Dazzle";
 	}
 	
 	@Override

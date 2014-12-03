@@ -15,7 +15,7 @@ public class Invisible extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "Invisible";
 	}
 	
 	@Override

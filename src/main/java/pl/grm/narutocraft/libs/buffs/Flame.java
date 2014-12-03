@@ -15,7 +15,7 @@ public class Flame extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "Flame";
 	}
 	
 	@Override

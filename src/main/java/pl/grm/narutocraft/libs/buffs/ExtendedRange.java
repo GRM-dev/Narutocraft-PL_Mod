@@ -15,7 +15,7 @@ public class ExtendedRange extends BuffEffect {
 	
 	@Override
 	protected String jutsuBuffName() {
-		return "test";
+		return "ExtendedRange";
 	}
 	
 	@Override
