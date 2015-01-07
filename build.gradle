@@ -87,8 +87,8 @@ pmd {
   sourceSets = [sourceSets.main]
   reportsDir = file("$project.buildDir/reports/pmd")
   ruleSets = [
-    "basic",
-    "braces"
+    "java-basic",
+    "java-braces"
   ]
 }
 
