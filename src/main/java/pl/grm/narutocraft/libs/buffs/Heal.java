@@ -19,5 +19,7 @@ public class Heal extends BuffEffect {
 	}
 	
 	@Override
-	public void startEffect(EntityLivingBase paramEntityLivingBase) {}
+	public void startEffect(EntityLivingBase paramEntityLivingBase) {
+		 
+	}
 }

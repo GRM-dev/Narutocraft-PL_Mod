@@ -1,6 +1,7 @@
 package pl.grm.narutocraft.libs.buffs;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 
 @Deprecated
 // TODO to delete after creating real ones. This is just scheme
@@ -19,5 +20,7 @@ public class Invisible extends BuffEffect {
 	}
 	
 	@Override
-	public void startEffect(EntityLivingBase paramEntityLivingBase) {}
+	public void startEffect(EntityLivingBase paramEntityLivingBase){
+		
+	}
 }

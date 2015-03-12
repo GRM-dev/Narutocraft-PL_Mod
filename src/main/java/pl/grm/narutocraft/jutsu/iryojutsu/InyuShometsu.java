@@ -17,13 +17,20 @@ public class InyuShometsu extends Jutsu implements IJutsu {
 	@Override
 	public void onJutsuActivation() {
 		super.onJutsuActivation();
-		this.player.addPotionEffect(new PotionEffect(10, 10));
-		// this.setPotionEffect("Invisible");
+		player.addPotionEffect(new PotionEffect(10, 40));
+		 this.setPotionEffect("Heal"); //Fix Me
+	
 	}
 	
+	
+		
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
 			EntityPlayer par3EntityPlayer) {
+		
+
+		
+			
 		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
 	}
 }
