@@ -1,17 +1,14 @@
 package pl.grm.narutocraft.items.weapons;
 
-import java.util.List;
+import java.util.*;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import pl.grm.narutocraft.libs.UtilityNBTHelper;
-import pl.grm.narutocraft.libs.config.Materials;
-import pl.grm.narutocraft.libs.config.References;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
+import net.minecraftforge.fml.relauncher.*;
+import pl.grm.narutocraft.libs.*;
+import pl.grm.narutocraft.libs.config.*;
 
 public class Kubiki extends SwordMain {
 	public Kubiki() {

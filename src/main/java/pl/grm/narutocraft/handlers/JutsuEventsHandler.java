@@ -1,8 +1,8 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraft.entity.player.*;
+import net.minecraftforge.fml.common.eventhandler.*;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class JutsuEventsHandler {
 	JutsuManager	jH	= new JutsuManager();

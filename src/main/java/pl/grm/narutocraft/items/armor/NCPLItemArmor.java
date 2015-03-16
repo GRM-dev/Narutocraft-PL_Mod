@@ -1,10 +1,8 @@
 package pl.grm.narutocraft.items.armor;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.config.References;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import pl.grm.narutocraft.*;
 
 /**
  * Adds Armor items
@@ -19,8 +17,7 @@ public class NCPLItemArmor extends ItemArmor {
 		this(armormaterial, ID, placement, "Test");
 	}
 	
-	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement,
-			String modelTextureName) {
+	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement, String modelTextureName) {
 		this(armormaterial, ID, placement, "Test", modelTextureName);
 	}
 	
@@ -47,33 +44,33 @@ public class NCPLItemArmor extends ItemArmor {
 		this.setMaxStackSize(1);
 		this.armorSlot = placement;
 		this.modelTexture = modelTextureName;
-		
-		switch (placement) {
-			case 0 :
-				this.setTextureName(References.ModTexturePath + "armor/helmet"
-						+ itemTextureName);
-				break;
-			case 1 :
-				this.setTextureName(References.ModTexturePath + "armor/chestplate"
-						+ itemTextureName);
-				break;
-			case 2 :
-				this.setTextureName(References.ModTexturePath + "armor/pants"
-						+ itemTextureName);
-				break;
-			case 3 :
-				this.setTextureName(References.ModTexturePath + "armor/boots"
-						+ itemTextureName);
-				break;
-			default :
-				break;
-		}
+		// FIXME for 1.8 textureName placement
+		// switch (placement) {
+		// case 0 :
+		// this.setTextureName(References.ModTexturePath + "armor/helmet"
+		// + itemTextureName);
+		// break;
+		// case 1 :
+		// this.setTextureName(References.ModTexturePath + "armor/chestplate"
+		// + itemTextureName);
+		// break;
+		// case 2 :
+		// this.setTextureName(References.ModTexturePath + "armor/pants"
+		// + itemTextureName);
+		// break;
+		// case 3 :
+		// this.setTextureName(References.ModTexturePath + "armor/boots"
+		// + itemTextureName);
+		// break;
+		// default :
+		// break;
+		// }
 	}
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		if (this.armorSlot != 2) { return "narutocraft:textures/model/"
-				+ this.modelTexture + "_1.png"; }
+		if (this.armorSlot != 2) { return "narutocraft:textures/model/" + this.modelTexture
+				+ "_1.png"; }
 		return "narutocraft:textures/model/" + this.modelTexture + "_2.png";
 	}
 }

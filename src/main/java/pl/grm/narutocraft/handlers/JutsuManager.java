@@ -1,19 +1,13 @@
 package pl.grm.narutocraft.handlers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.nbt.*;
+import net.minecraftforge.common.util.*;
+import net.minecraftforge.fml.common.registry.*;
+import pl.grm.narutocraft.jutsu.*;
+import pl.grm.narutocraft.player.*;
+import pl.grm.narutocraft.skilltrees.*;
 
 public class JutsuManager {
 	public static JutsuManager						instance		= new JutsuManager();

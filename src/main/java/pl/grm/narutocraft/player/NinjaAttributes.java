@@ -1,13 +1,10 @@
 package pl.grm.narutocraft.player;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants;
+import net.minecraft.nbt.*;
+import net.minecraftforge.common.util.*;
 
 /**
  * NinjaAtrributes use {@link Attributes} such as strength, dexterity, etc.

@@ -1,20 +1,17 @@
 package pl.grm.narutocraft.player;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.*;
+import java.util.*;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.PlayerCapabilities;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
-import net.minecraftforge.common.IExtendedEntityProperties;
-import pl.grm.narutocraft.ProxyCommon;
-import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.IJutsu;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraftforge.common.*;
+import pl.grm.narutocraft.*;
+import pl.grm.narutocraft.handlers.*;
+import pl.grm.narutocraft.jutsu.*;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
 	public final static String			EXT_PROP_NAME	= "NCPLExtPlayer";
@@ -81,7 +78,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	}
 	
 	private static final String getSaveKey(EntityPlayer player) {
-		return player.getCommandSenderName() + ":" + EXT_PROP_NAME;
+		return player.getCommandSenderEntity().getName() + ":" + EXT_PROP_NAME;
 	}
 	
 	public void updateMoveSpeed() {

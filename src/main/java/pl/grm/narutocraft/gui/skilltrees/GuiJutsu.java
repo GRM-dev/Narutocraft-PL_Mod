@@ -1,8 +1,7 @@
 package pl.grm.narutocraft.gui.skilltrees;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import pl.grm.narutocraft.gui.stats.GuiNinjaStatsView;
+import net.minecraft.client.gui.*;
+import pl.grm.narutocraft.gui.stats.*;
 
 public class GuiJutsu extends GuiScreen {
 	private GuiNinjaStatsView	parentGui;

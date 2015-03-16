@@ -1,17 +1,12 @@
 package pl.grm.narutocraft.skilltrees;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
-import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.jutsu.JutsuTier;
-import pl.grm.narutocraft.libs.config.ConfigurationHandler;
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.*;
+import pl.grm.narutocraft.handlers.*;
+import pl.grm.narutocraft.jutsu.*;
+import pl.grm.narutocraft.libs.config.*;
 
 /**
  * Manager of Jutsu SkillTrees

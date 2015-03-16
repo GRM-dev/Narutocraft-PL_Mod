@@ -1,10 +1,9 @@
 package pl.grm.narutocraft.libs.config;
 
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.settings.*;
+import net.minecraftforge.fml.client.registry.*;
 
-import org.lwjgl.input.Keyboard;
-
-import cpw.mods.fml.client.registry.ClientRegistry;
+import org.lwjgl.input.*;
 
 public class KeyBindings {
 	public static KeyBinding	Jutsu;

@@ -1,12 +1,9 @@
 package pl.grm.narutocraft.libs.network;
 
-import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.NinjaAttributes;
-import io.netty.buffer.ByteBuf;
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.*;
+import net.minecraftforge.fml.common.network.*;
+import net.minecraftforge.fml.common.network.simpleimpl.*;
+import pl.grm.narutocraft.player.*;
 
 public class PacketNinjaAttr implements IMessage {
 	private String[] info;

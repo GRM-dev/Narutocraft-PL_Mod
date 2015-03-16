@@ -1,10 +1,9 @@
 package pl.grm.narutocraft.commands;
 
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import pl.grm.narutocraft.commands.util.NCCommandBase;
+import net.minecraft.command.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.util.*;
+import pl.grm.narutocraft.commands.util.*;
 
 public class NCCommandHelp extends NCCommandBase {
 	private EntityPlayer	player;
@@ -22,7 +21,7 @@ public class NCCommandHelp extends NCCommandBase {
 		
 	}
 	
-	public void showHelp(boolean withParams) {
+	public void showHelp(boolean withParams) throws WrongUsageException {
 		if (withParams) {
 			player.addChatMessage(new ChatComponentText("Your Command: " + args[0]));
 		} else {
@@ -33,7 +32,13 @@ public class NCCommandHelp extends NCCommandBase {
 	
 	@Override
 	public void processCommand(ICommandSender commSender, String[] args) {
-		showHelp(false);
+		try {
+			showHelp(false);
+		}
+		catch (WrongUsageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

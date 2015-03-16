@@ -1,14 +1,10 @@
 package pl.grm.narutocraft.jutsu.ninjutsu;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.World;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.libs.buffs.Invisible;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
+import net.minecraft.world.*;
+import pl.grm.narutocraft.jutsu.*;
 
 
 public class Meisaigakure extends Jutsu implements IJutsu {

@@ -1,14 +1,9 @@
 package pl.grm.narutocraft.commands.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import net.minecraft.command.ICommand;
-import pl.grm.narutocraft.commands.NCChakraCommands;
-import pl.grm.narutocraft.commands.NCCommandChakraReplenish;
-import pl.grm.narutocraft.commands.NCCommandHelp;
-import pl.grm.narutocraft.commands.NCCommandLevelUp;
-import pl.grm.narutocraft.commands.NCCommandStats;
+import net.minecraft.command.*;
+import pl.grm.narutocraft.commands.*;
 
 /**
  * The enum of Commands containing it's aliasses.

@@ -1,7 +1,6 @@
 package pl.grm.narutocraft.libs.buffs;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraft.entity.*;
 
 @Deprecated
 // TODO to delete after creating real ones. This is just scheme

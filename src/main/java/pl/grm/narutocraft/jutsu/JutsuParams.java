@@ -1,45 +1,12 @@
 package pl.grm.narutocraft.jutsu;
 
-import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;
-import pl.grm.narutocraft.jutsu.bukijutsu.Hadan;
-import pl.grm.narutocraft.jutsu.bukijutsu.Iaido;
-import pl.grm.narutocraft.jutsu.bukijutsu.Issen;
-import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiKiri;
-import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiNoMai;
-import pl.grm.narutocraft.jutsu.bukijutsu.Omotegiri;
-import pl.grm.narutocraft.jutsu.bukijutsu.SamuraiSabreTechnique;
-import pl.grm.narutocraft.jutsu.bukijutsu.Yosakugiri;
-import pl.grm.narutocraft.jutsu.fuuinjutsu.JikukanKekkai;
-import pl.grm.narutocraft.jutsu.genjutsu.Haykkaroran;
-import pl.grm.narutocraft.jutsu.genjutsu.KokuangyoNoJutsu;
-import pl.grm.narutocraft.jutsu.genjutsu.Koukongarasu;
-import pl.grm.narutocraft.jutsu.genjutsu.RaigenRaikochu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Byakugo;
-import pl.grm.narutocraft.jutsu.iryojutsu.ChakuraNoMesu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Dokugiri;
-import pl.grm.narutocraft.jutsu.iryojutsu.InyuShometsu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Ranshinsho;
-import pl.grm.narutocraft.jutsu.iryojutsu.SaikanChushutsuNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.Enmakugire;
-import pl.grm.narutocraft.jutsu.ninjutsu.FukimiHari;
-import pl.grm.narutocraft.jutsu.ninjutsu.HariJizo;
-import pl.grm.narutocraft.jutsu.ninjutsu.Kai;
-import pl.grm.narutocraft.jutsu.ninjutsu.KawarimiNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.KuchiyoseRashomon;
-import pl.grm.narutocraft.jutsu.ninjutsu.Meisaigakure;
-import pl.grm.narutocraft.jutsu.ninjutsu.NanKaizou;
-import pl.grm.narutocraft.jutsu.ninjutsu.NawanukeNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.OdamaRasengan;
-import pl.grm.narutocraft.jutsu.ninjutsu.Rasengan;
-import pl.grm.narutocraft.jutsu.ninjutsu.Sharingan;
-import pl.grm.narutocraft.jutsu.ninjutsu.ShunshinNoJutsu;
-import pl.grm.narutocraft.jutsu.taijutsu.AsaKujaku;
-import pl.grm.narutocraft.jutsu.taijutsu.Hirudora;
-import pl.grm.narutocraft.jutsu.taijutsu.KageBuyo;
-import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
-import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
-import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
-import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
+import pl.grm.narutocraft.jutsu.bukijutsu.*;
+import pl.grm.narutocraft.jutsu.fuuinjutsu.*;
+import pl.grm.narutocraft.jutsu.genjutsu.*;
+import pl.grm.narutocraft.jutsu.iryojutsu.*;
+import pl.grm.narutocraft.jutsu.ninjutsu.*;
+import pl.grm.narutocraft.jutsu.taijutsu.*;
+import pl.grm.narutocraft.skilltrees.*;
 
 public enum JutsuParams {
 	NONE(

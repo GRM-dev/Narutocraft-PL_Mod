@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.items.weapons;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 
 public class Scalpel extends Item {
 	

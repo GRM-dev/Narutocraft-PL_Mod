@@ -1,16 +1,11 @@
 package pl.grm.narutocraft.registry;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.items.DScroll;
-import pl.grm.narutocraft.items.FScroll;
-import pl.grm.narutocraft.items.KScroll;
-import pl.grm.narutocraft.items.NScroll;
-import pl.grm.narutocraft.items.RScroll;
-import pl.grm.narutocraft.items.SScroll;
-import pl.grm.narutocraft.libs.config.Materials;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.*;
+import pl.grm.narutocraft.*;
+import pl.grm.narutocraft.items.*;
+import pl.grm.narutocraft.libs.config.*;
 
 public class RegItems extends NarutoCraft {
 	/** Zwoj - scroll **/

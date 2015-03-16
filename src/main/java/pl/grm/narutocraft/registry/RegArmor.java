@@ -1,7 +1,7 @@
 package pl.grm.narutocraft.registry;
 
-import net.minecraft.item.ItemArmor;
-import pl.grm.narutocraft.items.armor.NCPLItemArmor;
+import net.minecraft.item.*;
+import pl.grm.narutocraft.items.armor.*;
 
 public class RegArmor extends RegItems {
 	public static final ItemArmor	helmetBushido	= (ItemArmor) (new NCPLItemArmor(

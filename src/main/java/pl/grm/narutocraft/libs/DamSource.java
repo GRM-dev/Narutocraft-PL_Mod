@@ -1,12 +1,8 @@
 package pl.grm.narutocraft.libs;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.*;
 
 public class DamSource extends DamageSource {
 	

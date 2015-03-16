@@ -1,11 +1,10 @@
 package pl.grm.narutocraft.commands.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.command.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.util.*;
 
 /**
  * Registered at forge input/output command stream.
@@ -34,20 +33,13 @@ public class NCBaseCommand extends NCCommandBase {
 	@Override
 	public void processCommand(ICommandSender commSender, String[] args) {
 		executor = new NCCommandExecutor(commSender, args);
-		((EntityPlayer) commSender).addChatMessage(new ChatComponentText(
-				"Available commands:"));
+		((EntityPlayer) commSender).addChatMessage(new ChatComponentText("Available commands:"));
 		executor.processCommand();
 	}
 	
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender var1) {
 		return true;
-	}
-	
-	@SuppressWarnings("rawtypes")
-	@Override
-	public List addTabCompletionOptions(ICommandSender var1, String[] var2) {
-		return null;
 	}
 	
 	@Override

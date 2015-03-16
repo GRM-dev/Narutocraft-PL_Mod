@@ -1,16 +1,10 @@
 package pl.grm.narutocraft.handlers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ServerCommandManager;
-import net.minecraftforge.client.ClientCommandHandler;
-import pl.grm.narutocraft.commands.util.CommandEnum;
-import pl.grm.narutocraft.commands.util.NCCommandBase;
-import pl.grm.narutocraft.commands.util.NCCommandExecutor;
+import net.minecraft.command.*;
+import net.minecraftforge.client.*;
+import pl.grm.narutocraft.commands.util.*;
 
 public class NCCommandHandler {
 	private Map<String, NCCommandBase>	ncCommandsMap;

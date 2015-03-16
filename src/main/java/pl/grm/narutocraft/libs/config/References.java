@@ -1,10 +1,6 @@
 package pl.grm.narutocraft.libs.config;
 
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.player.ExtendedProperties;
+import net.minecraft.util.*;
 
 /**
  * Parameters/References to mod constants and info
@@ -19,7 +15,7 @@ public class References {
 	public static final String				Client				= "pl.grm.narutocraft.ProxyClient";
 	public static final String				Common				= "pl.grm.narutocraft.ProxyCommon";
 	public static final String				ModTexturePath		= "narutocraft:";
-	public static final String				GUI_TEXTURE_PATH		= ModTexturePath + "textures/gui/";
+	public static final String				GUI_TEXTURE_PATH	= ModTexturePath + "textures/gui/";
 	public static final String				ModTag				= "narutocraft:";
 	public static final String				JutsuTexturePath	= ModTag + "jutsu/";
 	public static final ResourceLocation[]	jutsuGUILocation	= new ResourceLocation[]{
@@ -38,19 +34,4 @@ public class References {
 	/** GUI IDs */
 	public static final int					OPTS				= 1, STATS = 2, SKILL_TREE = 3,
 			SETTS = 4;
-	
-	public static IIcon getIconFromJutsu(JutsuParams jutsuE) {
-		if (!ExtendedProperties.jutsuList.containsKey((jutsuE.getJutsuID()))) { return null; }
-		IIcon icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsuE.getJutsuID()))
-				.getIconFromDamage(0);
-		return icon;
-	}
-	
-	public static IIcon getIconFromJutsu(Jutsu jutsu) {
-		IIcon icon;
-		if (!ExtendedProperties.jutsuList.containsKey((jutsu.getJutsuProps().getID()))) { return null; }
-		icon = ((Jutsu) ExtendedProperties.jutsuList.get(jutsu.getJutsuProps().getID()))
-				.getIconFromDamage(0);
-		return icon;
-	}
 }

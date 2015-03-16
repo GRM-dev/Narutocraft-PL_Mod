@@ -1,7 +1,7 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
+import net.minecraft.entity.*;
+import net.minecraft.world.*;
 
 public class SoundHandler {
 	public static void onEntityPlay(String name, World world, Entity entity,

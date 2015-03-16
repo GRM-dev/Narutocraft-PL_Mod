@@ -1,12 +1,11 @@
 package pl.grm.narutocraft.items.weapons.projectiles;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
-import pl.grm.narutocraft.registry.RegWeapons;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
+import pl.grm.narutocraft.*;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.*;
+import pl.grm.narutocraft.registry.*;
 
 public class Senbon extends Item {
 	public Senbon() {

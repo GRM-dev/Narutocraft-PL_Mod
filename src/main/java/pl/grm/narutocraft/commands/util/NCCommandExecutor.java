@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.commands.util;
 
-import net.minecraft.command.ICommandSender;
+import net.minecraft.command.*;
 
 public class NCCommandExecutor {
 	private ICommandSender	commSender;

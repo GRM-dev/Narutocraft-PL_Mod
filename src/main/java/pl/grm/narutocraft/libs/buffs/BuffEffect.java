@@ -1,12 +1,11 @@
 package pl.grm.narutocraft.libs.buffs;
 
-import java.util.Random;
+import java.util.*;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.PotionEffect;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.ProxyCommon;
-import cpw.mods.fml.relauncher.ReflectionHelper;
+import net.minecraft.entity.*;
+import net.minecraft.potion.*;
+import net.minecraftforge.fml.relauncher.*;
+import pl.grm.narutocraft.*;
 
 public abstract class BuffEffect extends PotionEffect {
 	protected boolean	InitialApplication;
