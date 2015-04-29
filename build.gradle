@@ -21,7 +21,7 @@ apply plugin: 'pmd'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = "1.8-1334-0.7"
+version = "1.8-1397-0.8"
 group= "pl.grm.narutocraft"
 archivesBaseName = "NarutoCraft_Mod"
 
