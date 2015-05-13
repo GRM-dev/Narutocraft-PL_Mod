@@ -1,8 +1,8 @@
 package pl.grm.narutocraft.items.weapons.projectiles;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
 
 public interface IProjectileCast {
 	

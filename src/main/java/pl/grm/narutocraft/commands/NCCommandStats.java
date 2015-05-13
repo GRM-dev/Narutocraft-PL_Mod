@@ -1,7 +1,7 @@
 package pl.grm.narutocraft.commands;
 
-import net.minecraft.command.ICommandSender;
-import pl.grm.narutocraft.commands.util.NCCommandBase;
+import net.minecraft.command.*;
+import pl.grm.narutocraft.commands.util.*;
 
 public class NCCommandStats extends NCCommandBase {
 	

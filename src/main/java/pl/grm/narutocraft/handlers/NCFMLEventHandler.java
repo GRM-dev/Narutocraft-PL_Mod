@@ -1,10 +1,9 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.command.ICommandManager;
-import net.minecraft.command.ServerCommandManager;
-import net.minecraft.server.MinecraftServer;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraft.command.*;
+import net.minecraft.server.*;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.*;
 
 /**
  * FML Event Handler

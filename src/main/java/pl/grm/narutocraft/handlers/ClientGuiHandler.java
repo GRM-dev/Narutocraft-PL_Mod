@@ -1,9 +1,9 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import pl.grm.narutocraft.gui.stats.GuiNinjaStatsView;
-import pl.grm.narutocraft.libs.config.References;
+import net.minecraft.entity.player.*;
+import net.minecraft.world.*;
+import pl.grm.narutocraft.gui.stats.*;
+import pl.grm.narutocraft.libs.config.*;
 
 public class ClientGuiHandler extends ServerGuiHandler {
 	

@@ -1,8 +1,7 @@
 package pl.grm.narutocraft.gui.skilltrees;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.gui.*;
+import net.minecraft.entity.player.*;
 
 public class GuiSkillTrees extends GuiScreen {
 	int						xSize	= 210, ySize = 246;

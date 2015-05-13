@@ -1,19 +1,16 @@
 package pl.grm.narutocraft.gui;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.*;
 
 public class JutsuInv implements IInventory {
 	private final String	name		= "Jutsu Panel";
 	private final String	tagName		= "JutsuPanel";
 	public static final int	INV_SIZE	= 5;
 	private ItemStack[]		inventory	= new ItemStack[INV_SIZE];
-	
-	@Override
-	public void closeInventory() {}
 	
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
@@ -34,7 +31,7 @@ public class JutsuInv implements IInventory {
 	}
 	
 	@Override
-	public String getInventoryName() {
+	public String getName() {
 		return this.name;
 	}
 	
@@ -63,7 +60,7 @@ public class JutsuInv implements IInventory {
 	}
 	
 	@Override
-	public boolean hasCustomInventoryName() {
+	public boolean hasCustomName() {
 		return this.name.length() > 0;
 	}
 	
@@ -84,15 +81,11 @@ public class JutsuInv implements IInventory {
 	@Override
 	public void markDirty() {
 		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			if ((this.getStackInSlot(i) != null)
-					&& (this.getStackInSlot(i).stackSize == 0)) {
+			if ((this.getStackInSlot(i) != null) && (this.getStackInSlot(i).stackSize == 0)) {
 				this.setInventorySlotContents(i, null);
 			}
 		}
 	}
-	
-	@Override
-	public void openInventory() {}
 	
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList items = compound.getTagList(this.tagName, compound.getId());
@@ -127,5 +120,47 @@ public class JutsuInv implements IInventory {
 			}
 		}
 		compound.setTag(this.tagName, items);
+	}
+	
+	@Override
+	public IChatComponent getDisplayName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public void openInventory(EntityPlayer playerIn) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void closeInventory(EntityPlayer playerIn) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public int getField(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public void setField(int id, int value) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public int getFieldCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
 	}
 }

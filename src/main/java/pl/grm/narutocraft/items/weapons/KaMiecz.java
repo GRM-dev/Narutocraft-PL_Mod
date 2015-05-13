@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.items.weapons;
 
-import pl.grm.narutocraft.libs.config.Materials;
+import pl.grm.narutocraft.libs.config.*;
 
 public class KaMiecz extends SwordMain {
 	public KaMiecz() {

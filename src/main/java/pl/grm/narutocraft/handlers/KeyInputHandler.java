@@ -1,14 +1,14 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.config.KeyBindings;
-import pl.grm.narutocraft.libs.network.PacketNinjaRun;
-import pl.grm.narutocraft.player.ExtendedProperties;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import net.minecraft.entity.player.*;
+import net.minecraftforge.fml.client.*;
+import net.minecraftforge.fml.common.eventhandler.*;
+import net.minecraftforge.fml.common.gameevent.*;
+import net.minecraftforge.fml.common.network.internal.*;
+import pl.grm.narutocraft.*;
+import pl.grm.narutocraft.libs.config.*;
+import pl.grm.narutocraft.libs.network.*;
+import pl.grm.narutocraft.player.*;
 
 /**
  * gets keyboard button presses form {@link KeyBindings}

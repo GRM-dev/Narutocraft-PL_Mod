@@ -1,36 +1,39 @@
 package pl.grm.narutocraft.items.weapons.projectiles.entities.render;
 
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
 
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.*;
 
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.*;
 import pl.grm.narutocraft.libs.config.References;
 
 /**
  * @author Admaster
  */
 public class RenderWKunai extends Render {
+	public RenderWKunai(RenderManager p_i46179_1_) {
+		super(p_i46179_1_);
+		// TODO Auto-generated constructor stub
+	}
+	
 	final ResourceLocation	texture	= new ResourceLocation(References.ModTexturePath
 											+ "textures/model/WKunai.png");
 	
 	@Override
-	public void doRender(Entity par1EntityKunai, double var2, double var4, double var6,
-			float var8, float var9) {
+	public void doRender(Entity par1EntityKunai, double var2, double var4, double var6, float var8,
+			float var9) {
 		this.bindTexture(this.texture);
-		Tessellator tessellator = Tessellator.instance;
+		WorldRenderer modelRenderer = Tessellator.getInstance().getWorldRenderer();
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) var2, (float) var4, (float) var6);
 		GL11.glRotatef(
 				(par1EntityKunai.prevRotationYaw + ((par1EntityKunai.rotationYaw - par1EntityKunai.prevRotationYaw) * var9)) - 90.0F,
 				0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(
-				par1EntityKunai.prevRotationPitch
-						+ ((par1EntityKunai.rotationPitch - par1EntityKunai.prevRotationPitch) * var9),
+		GL11.glRotatef(par1EntityKunai.prevRotationPitch
+				+ ((par1EntityKunai.rotationPitch - par1EntityKunai.prevRotationPitch) * var9),
 				0.0F, 0.0F, 1.0F);
 		byte b0 = 0;
 		float f2 = 0.0F;
@@ -52,28 +55,28 @@ public class RenderWKunai extends Render {
 		GL11.glScalef(f10, f10, f10);
 		GL11.glTranslatef(-4.0F, 0.0F, 0.0F);
 		GL11.glNormal3f(f10, 0.0F, 0.0F);
-		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f8);
-		tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f8);
-		tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f9);
-		tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f9);
-		tessellator.draw();
+		modelRenderer.startDrawingQuads();
+		modelRenderer.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f8);
+		modelRenderer.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f8);
+		modelRenderer.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f9);
+		modelRenderer.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f9);
+		modelRenderer.draw();
 		GL11.glNormal3f(-f10, 0.0F, 0.0F);
-		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f8);
-		tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f8);
-		tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f9);
-		tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f9);
-		tessellator.draw();
+		modelRenderer.startDrawingQuads();
+		modelRenderer.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f8);
+		modelRenderer.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f8);
+		modelRenderer.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f9);
+		modelRenderer.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f9);
+		modelRenderer.draw();
 		for (int i = 0; i < 4; i++) {
 			GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
 			GL11.glNormal3f(0.0F, 0.0F, f10);
-			tessellator.startDrawingQuads();
-			tessellator.addVertexWithUV(-8.0D, -2.0D, 0.0D, f2, f4);
-			tessellator.addVertexWithUV(8.0D, -2.0D, 0.0D, f3, f4);
-			tessellator.addVertexWithUV(8.0D, 2.0D, 0.0D, f3, f5);
-			tessellator.addVertexWithUV(-8.0D, 2.0D, 0.0D, f2, f5);
-			tessellator.draw();
+			modelRenderer.startDrawingQuads();
+			modelRenderer.addVertexWithUV(-8.0D, -2.0D, 0.0D, f2, f4);
+			modelRenderer.addVertexWithUV(8.0D, -2.0D, 0.0D, f3, f4);
+			modelRenderer.addVertexWithUV(8.0D, 2.0D, 0.0D, f3, f5);
+			modelRenderer.addVertexWithUV(-8.0D, 2.0D, 0.0D, f2, f5);
+			modelRenderer.draw();
 		}
 		GL11.glDisable(32826);
 		GL11.glPopMatrix();

@@ -1,10 +1,10 @@
 package pl.grm.narutocraft.creativetabs;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.player.ExtendedProperties;
+import net.minecraft.creativetab.*;
+import net.minecraft.init.*;
+import net.minecraft.item.*;
+import pl.grm.narutocraft.jutsu.*;
+import pl.grm.narutocraft.player.*;
 
 /**
  * Creative Tab for Jutsus

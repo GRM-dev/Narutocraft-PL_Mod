@@ -1,15 +1,12 @@
 package pl.grm.narutocraft.libs.buffs;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.lang.reflect.*;
+import java.util.*;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import cpw.mods.fml.common.FMLLog;
+import net.minecraft.entity.*;
+import net.minecraft.potion.*;
+import net.minecraftforge.fml.common.*;
+import pl.grm.narutocraft.jutsu.*;
 
 public class BuffList {
 	private static HashMap<Integer, Class<IJutsu>>		classesForBuffID;

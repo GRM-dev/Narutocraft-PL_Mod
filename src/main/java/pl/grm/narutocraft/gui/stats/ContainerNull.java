@@ -1,9 +1,8 @@
 package pl.grm.narutocraft.gui.stats;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
 
 public class ContainerNull extends Container {
 	public ContainerNull() {}

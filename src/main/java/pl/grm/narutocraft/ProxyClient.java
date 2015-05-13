@@ -1,34 +1,24 @@
 package pl.grm.narutocraft;
 
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
-import pl.grm.narutocraft.gui.chakrabar.GuiChakraBar;
-import pl.grm.narutocraft.handlers.NCCommandHandler;
-import pl.grm.narutocraft.handlers.SoundHandler;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderKunai;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderSenbon;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderWKunai;
-import pl.grm.narutocraft.libs.buffs.BuffList;
-import pl.grm.narutocraft.libs.config.KeyBindings;
-import pl.grm.narutocraft.libs.modelrender.ItemRendererSizeable;
-import pl.grm.narutocraft.mobs.bijuu.EntityKyuubi;
-import pl.grm.narutocraft.mobs.bijuu.ModelKyuubi;
-import pl.grm.narutocraft.mobs.bijuu.RenderKyuubi;
-import pl.grm.narutocraft.registry.RegWeapons;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.*;
+import net.minecraftforge.client.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.fml.client.registry.*;
+import pl.grm.narutocraft.gui.chakrabar.*;
+import pl.grm.narutocraft.handlers.*;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.*;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.render.*;
+import pl.grm.narutocraft.libs.buffs.*;
+import pl.grm.narutocraft.libs.config.*;
+import pl.grm.narutocraft.mobs.bijuu.*;
 
 public class ProxyClient extends ProxyCommon {
 	
 	@Override
-	public int addArmor(String armor) {
-		return RenderingRegistry.addNewArmourRendererPrefix(armor);
+	public void registerCommands() {
+		ClientCommandHandler manager = ClientCommandHandler.instance;
+		NCCommandHandler commandHandler = new NCCommandHandler(manager);
+		commandHandler.registerCommands(true);
 	}
 	
 	@Override
@@ -47,18 +37,22 @@ public class ProxyClient extends ProxyCommon {
 		// Scaled Items
 		// MinecraftForgeClient.registerItemRenderer(item, new
 		// ItemRendererScaled(.75f)); .75f is about 2x
-		MinecraftForgeClient
-				.registerItemRenderer(RegWeapons.Kubiki, new ItemRendererSizeable(0.7f));
-		MinecraftForgeClient.registerItemRenderer(RegWeapons.ChioRyuuGatana,
-				new ItemRendererSizeable(0.7f));
-		MinecraftForgeClient.registerItemRenderer(RegWeapons.Raitanto, new ItemRendererSizeable(
-				0.7f));
+		// MinecraftForgeClient
+		// .registerItemRenderer(RegWeapons.Kubiki, new
+		// ItemRendererSizeable(0.7f));
+		// MinecraftForgeClient.registerItemRenderer(RegWeapons.ChioRyuuGatana,
+		// new ItemRendererSizeable(0.7f));
+		// MinecraftForgeClient.registerItemRenderer(RegWeapons.Raitanto, new
+		// ItemRendererSizeable(
+		// 0.7f));
 		// Projectiles:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
-		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySenbon.class, new RenderSenbon());
-		RenderingRegistry
-				.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken());
+		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai(
+				Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySenbon.class, new RenderSenbon(
+				Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken(
+				Minecraft.getMinecraft().getRenderManager()));
 		// Mobs:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(
 				new ModelKyuubi(), 5.5F));
@@ -76,12 +70,5 @@ public class ProxyClient extends ProxyCommon {
 	@Override
 	public void registerSound() {
 		MinecraftForge.EVENT_BUS.register(new SoundHandler());
-	}
-	
-	@Override
-	public void registerCommands() {
-		ClientCommandHandler manager = ClientCommandHandler.instance;
-		NCCommandHandler commandHandler = new NCCommandHandler(manager);
-		commandHandler.registerCommands(true);
 	}
 }

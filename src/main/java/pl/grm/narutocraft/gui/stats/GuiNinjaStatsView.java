@@ -1,26 +1,16 @@
 package pl.grm.narutocraft.gui.stats;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.inventory.*;
+import net.minecraft.entity.player.*;
 
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.input.*;
+import org.lwjgl.opengl.*;
 
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.gui.GuiNinjaButton;
-import pl.grm.narutocraft.gui.GuiNinjaTabButton;
-import pl.grm.narutocraft.gui.skilltrees.GuiJutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.gui.*;
 import pl.grm.narutocraft.libs.config.References;
-import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
-import pl.grm.narutocraft.player.Attributes;
-import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.NinjaAttributes;
-import pl.grm.narutocraft.player.NinjaStats;
-import pl.grm.narutocraft.player.StatsSettings;
+import pl.grm.narutocraft.player.*;
 
 public class GuiNinjaStatsView extends GuiContainer {
 	private EntityPlayer	player;

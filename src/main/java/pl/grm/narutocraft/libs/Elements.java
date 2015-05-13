@@ -1,6 +1,6 @@
 package pl.grm.narutocraft.libs;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Contains elements and their linkage.

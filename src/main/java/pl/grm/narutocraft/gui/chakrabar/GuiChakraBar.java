@@ -1,16 +1,15 @@
 package pl.grm.narutocraft.gui.chakrabar;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.fml.common.eventhandler.*;
 
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.*;
 
-import pl.grm.narutocraft.player.ExtendedProperties;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import pl.grm.narutocraft.player.*;
 
 /**
  * GUI showing current chakra on HUD
@@ -57,11 +56,11 @@ public class GuiChakraBar extends Gui {
 		drawTexturedModalRect(xPos, yPos, 0, this.barH, chakrabarwidth, this.barH);
 		String s = "Chakra " + props.getCurrentChakra() + "/" + props.getNinStats().getMaxChakra();
 		yPos += this.barH + 2;
-		this.mc.fontRenderer.drawString(s, xPos + 1, yPos, 0);
-		this.mc.fontRenderer.drawString(s, xPos - 1, yPos, 0);
-		this.mc.fontRenderer.drawString(s, xPos, yPos + 1, 0);
-		this.mc.fontRenderer.drawString(s, xPos, yPos - 1, 0);
-		this.mc.fontRenderer.drawString(s, xPos, yPos, 8453920);
+		this.mc.fontRendererObj.drawString(s, xPos + 1, yPos, 0);
+		this.mc.fontRendererObj.drawString(s, xPos - 1, yPos, 0);
+		this.mc.fontRendererObj.drawString(s, xPos, yPos + 1, 0);
+		this.mc.fontRendererObj.drawString(s, xPos, yPos - 1, 0);
+		this.mc.fontRendererObj.drawString(s, xPos, yPos, 8453920);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthMask(true);

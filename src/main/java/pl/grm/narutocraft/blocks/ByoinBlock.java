@@ -1,35 +1,20 @@
 package pl.grm.narutocraft.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.config.References;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+import net.minecraftforge.fml.relauncher.*;
+import pl.grm.narutocraft.*;
 
 /**
  * Hospital block. You cure when you stand on it.
  */
 public class ByoinBlock extends Block {
+	
 	@SideOnly(Side.CLIENT)
 	public ByoinBlock() {
 		super(Material.rock);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
-		this.setBlockName("byoin");
+		this.setUnlocalizedName("byoin");
 	}
 	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIcon(int side, int meta) {
-		return this.blockIcon;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister icon) {
-		this.blockIcon = icon.registerIcon(References.ModTexturePath
-				+ this.getUnlocalizedName().substring(5));
-	}
 }

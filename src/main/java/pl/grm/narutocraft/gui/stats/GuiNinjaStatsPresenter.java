@@ -1,12 +1,9 @@
 package pl.grm.narutocraft.gui.stats;
 
-import net.minecraft.entity.player.EntityPlayer;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.libs.network.PacketNinjaStatsRequest;
-import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.player.NinjaAttributes;
-import pl.grm.narutocraft.player.NinjaStats;
-import pl.grm.narutocraft.player.StatsSettings;
+import net.minecraft.entity.player.*;
+import pl.grm.narutocraft.*;
+import pl.grm.narutocraft.libs.network.*;
+import pl.grm.narutocraft.player.*;
 
 public class GuiNinjaStatsPresenter {
 	private EntityPlayer	player;

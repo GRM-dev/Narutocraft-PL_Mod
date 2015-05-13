@@ -1,19 +1,19 @@
 package pl.grm.narutocraft.mobs.bijuu;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.*;
+import net.minecraft.client.model.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
 
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.*;
 
 public class RenderKyuubi extends RenderLiving {
 	private static final ResourceLocation	Kyuubi_Texture	= new ResourceLocation(
 																	"narutocraft:textures/entity/Kyuubi.png");
 	
 	public RenderKyuubi(ModelBase par1ModelBase, float par2) {
-		super(par1ModelBase, par2);
+		super(Minecraft.getMinecraft().getRenderManager(), par1ModelBase, par2);
 	}
 	
 	@Override

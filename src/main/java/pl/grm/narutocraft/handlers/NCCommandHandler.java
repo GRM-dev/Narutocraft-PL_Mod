@@ -13,30 +13,30 @@ import pl.grm.narutocraft.commands.util.NCCommandBase;
 import pl.grm.narutocraft.commands.util.NCCommandExecutor;
 
 public class NCCommandHandler {
-	private Map<String, NCCommandBase>	ncCommandsMap;
-	private NCCommandExecutor			executor;
-	private ServerCommandManager		sManager;
-	private ClientCommandHandler		cManager;
-	private List<CommandEnum>			commands	= new ArrayList<CommandEnum>();
-	
+	private Map<String, NCCommandBase> ncCommandsMap;
+	private NCCommandExecutor executor;
+	private ServerCommandManager sManager;
+	private ClientCommandHandler cManager;
+	private List<CommandEnum> commands = new ArrayList<CommandEnum>();
+
 	public NCCommandHandler() {
-		ncCommandsMap = new HashMap<>();
+		ncCommandsMap = new HashMap<String, NCCommandBase>();
 	}
-	
+
 	public NCCommandHandler(ServerCommandManager manager) {
 		this();
 		this.sManager = manager;
 	}
-	
+
 	public NCCommandHandler(ClientCommandHandler manager) {
 		this();
 		this.cManager = manager;
 	}
-	
+
 	public void registerCommands(boolean both) {
 		setupCommands(both);
 	}
-	
+
 	public void setupCommands(boolean both) {
 		for (CommandEnum comm : CommandEnum.values()) {
 			if (comm.isExecutve()) {
@@ -44,13 +44,9 @@ public class NCCommandHandler {
 				ICommand instance = null;
 				try {
 					instance = comm.getInstance();
-				}
-				catch (InstantiationException e) {
-					// TODO Auto-generated catch block
+				} catch (InstantiationException e) {
 					e.printStackTrace();
-				}
-				catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
+				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
 				ncCommandsMap.put(name, (NCCommandBase) instance);
@@ -63,17 +59,17 @@ public class NCCommandHandler {
 			}
 		}
 	}
-	
+
 	private void setupServerCommand(ICommand instance) {
 		sManager.registerCommand(instance);
 	}
-	
+
 	private void setupClientCommand(ICommand instance) {
 		cManager.registerCommand(instance);
 	}
-	
+
 	public Map<String, NCCommandBase> getNCCommandsMap() {
 		return this.ncCommandsMap;
 	}
-	
+
 }

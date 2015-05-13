@@ -1,22 +1,18 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EntityDamageSource;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.*;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
-import pl.grm.narutocraft.player.ExtendedProperties;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.event.entity.player.*;
+import net.minecraftforge.fml.common.eventhandler.*;
+import pl.grm.narutocraft.*;
+import pl.grm.narutocraft.jutsu.*;
+import pl.grm.narutocraft.libs.network.*;
+import pl.grm.narutocraft.player.*;
 
 /**
  * Event Handler of NCPL mod

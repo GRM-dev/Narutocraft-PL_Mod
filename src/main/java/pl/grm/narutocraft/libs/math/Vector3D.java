@@ -1,10 +1,9 @@
 package pl.grm.narutocraft.libs.math;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
+import net.minecraft.entity.*;
+import net.minecraft.nbt.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.util.*;
 
 public class Vector3D {
 	public float	x;
@@ -24,9 +23,9 @@ public class Vector3D {
 	}
 	
 	public Vector3D(TileEntity tile) {
-		this.x = tile.xCoord;
-		this.y = tile.yCoord;
-		this.z = tile.zCoord;
+		this.x = tile.getPos().getX();
+		this.y = tile.getPos().getY();
+		this.z = tile.getPos().getZ();
 	}
 	
 	public Vector3D(Vec3 vec) {
@@ -141,8 +140,7 @@ public class Vector3D {
 	}
 	
 	public float length() {
-		return (float) Math.sqrt((this.x * this.x) + (this.y * this.y)
-				+ (this.z * this.z));
+		return (float) Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
 	}
 	
 	public float lengthPow2() {
@@ -201,7 +199,7 @@ public class Vector3D {
 	}
 	
 	public Vec3 toVec3D() {
-		return Vec3.createVectorHelper(this.x, this.y, this.z);
+		return new Vec3(this.x, this.y, this.z);
 	}
 	
 	public void writeToNBT(NBTTagCompound compound) {

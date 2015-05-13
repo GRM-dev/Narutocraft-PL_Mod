@@ -1,9 +1,8 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.world.World;
-import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.entity.player.*;
+import net.minecraft.world.*;
+import net.minecraftforge.fml.common.network.*;
 
 public class ServerGuiHandler implements IGuiHandler {
 	

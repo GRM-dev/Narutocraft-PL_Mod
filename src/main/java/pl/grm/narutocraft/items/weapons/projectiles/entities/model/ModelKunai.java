@@ -1,9 +1,8 @@
 package pl.grm.narutocraft.items.weapons.projectiles.entities.model;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
+import net.minecraft.client.model.*;
+import net.minecraft.entity.*;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.*;
 
 /**
  * Model of {@link EntityKunai}

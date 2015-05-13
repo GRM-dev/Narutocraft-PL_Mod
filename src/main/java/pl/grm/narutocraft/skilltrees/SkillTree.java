@@ -1,7 +1,6 @@
 package pl.grm.narutocraft.skilltrees;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * SkillTree containing its Entries(Jutsus)
