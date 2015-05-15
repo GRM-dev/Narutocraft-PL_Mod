@@ -16,17 +16,17 @@ import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
 public class TestSkillTree {
-	
-	private SkillTree		sTree;
-	private SkillTreeEntry	entry;
-	private JutsuManager	manager	= new JutsuManager();
-	
+
+	private SkillTree sTree;
+	private SkillTreeEntry entry;
+	private JutsuManager manager = new JutsuManager();
+
 	@Test
 	public void testConstructor() {
 		sTree = new SkillTree(0);
 		assertTrue(sTree.getEntryMap() != null);
 	}
-	
+
 	@Test
 	public void testAddEntry() {
 		sTree = new SkillTree(0);
@@ -36,7 +36,7 @@ public class TestSkillTree {
 			fail("Entry input != output!");
 		}
 	}
-	
+
 	@Test
 	public void testContains1() {
 		sTree = new SkillTree(0);
@@ -44,7 +44,7 @@ public class TestSkillTree {
 		sTree.addEntry(entry);
 		assertTrue("There is no this entry or method contsins broken.", sTree.contains(entry));
 	}
-	
+
 	@Test
 	public void testContains2() {
 		sTree = new SkillTree(0);
@@ -53,7 +53,7 @@ public class TestSkillTree {
 		assertTrue("There is no this entry or method contsins broken.",
 				sTree.contains(JutsuParams.MEISAIGAKURE.getJutsuID()));
 	}
-	
+
 	private void setupEntry() {
 		entry = new SkillTreeEntry(2, 2, SkillTreeEnum.NONE, new Meisaigakure(), JutsuTier.A, 15,
 				new ArrayList<SkillTreeEntry>());

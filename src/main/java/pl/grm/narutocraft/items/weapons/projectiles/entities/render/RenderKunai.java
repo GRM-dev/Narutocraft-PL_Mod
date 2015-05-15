@@ -1,14 +1,16 @@
 package pl.grm.narutocraft.items.weapons.projectiles.entities.render;
 
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.GL11;
 
-import pl.grm.narutocraft.items.weapons.projectiles.entities.*;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 import pl.grm.narutocraft.libs.config.References;
 
 /**
@@ -17,18 +19,16 @@ import pl.grm.narutocraft.libs.config.References;
  * @author Admaster
  */
 public class RenderKunai extends Render {
-	
+
 	public RenderKunai() {
 		super(Minecraft.getMinecraft().getRenderManager());
 		// TODO Auto-generated constructor stub
 	}
-	
-	final ResourceLocation	texture	= new ResourceLocation(References.ModTexturePath
-											+ "textures/model/Kunai.png");
-	
+
+	final ResourceLocation texture = new ResourceLocation(References.ModTexturePath + "textures/model/Kunai.png");
+
 	@Override
-	public void doRender(Entity par1EntityKunai, double var2, double var4, double var6, float var8,
-			float var9) {
+	public void doRender(Entity par1EntityKunai, double var2, double var4, double var6, float var8, float var9) {
 		this.bindTexture(this.texture);
 		WorldRenderer worldRenderer = Tessellator.getInstance().getWorldRenderer();
 		GL11.glPushMatrix();
@@ -37,8 +37,7 @@ public class RenderKunai extends Render {
 				(par1EntityKunai.prevRotationYaw + ((par1EntityKunai.rotationYaw - par1EntityKunai.prevRotationYaw) * var9)) - 90.0F,
 				0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(par1EntityKunai.prevRotationPitch
-				+ ((par1EntityKunai.rotationPitch - par1EntityKunai.prevRotationPitch) * var9),
-				0.0F, 0.0F, 1.0F);
+				+ ((par1EntityKunai.rotationPitch - par1EntityKunai.prevRotationPitch) * var9), 0.0F, 0.0F, 1.0F);
 		byte b0 = 0;
 		float f2 = 0.0F;
 		float f3 = 0.5F;
@@ -85,16 +84,16 @@ public class RenderKunai extends Render {
 		GL11.glDisable(32826);
 		GL11.glPopMatrix();
 	}
-	
+
 	public void renderSpecial() {
 		GL11.glScalef(0.4F, 0.4F, 0.4F);
 		GL11.glTranslatef(-0.4F, 0.5F, 0.1F);
 	}
-	
+
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
-		
+
 		return null;
 	}
-	
+
 }

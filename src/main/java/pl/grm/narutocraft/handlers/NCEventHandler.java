@@ -1,34 +1,37 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.*;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.event.entity.player.*;
-import net.minecraftforge.fml.common.eventhandler.*;
-import pl.grm.narutocraft.*;
-import pl.grm.narutocraft.jutsu.*;
-import pl.grm.narutocraft.libs.network.*;
-import pl.grm.narutocraft.player.*;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
+import pl.grm.narutocraft.player.ExtendedProperties;
 
 /**
  * Event Handler of NCPL mod
  */
 public class NCEventHandler {
-	
+
 	/** Attack and Defense Bonus **/
-	@SubscribeEvent(
-			priority = EventPriority.HIGHEST)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onDamage(LivingHurtEvent event) {
 		// Offense
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource source = (EntityDamageSource) event.source;
 			if (source.getEntity() instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) source.getEntity();
-				
+
 				if (event.source.getDamageType() == "player")// physical attack
 				{
 					event.ammount += ExtendedProperties.get(player).getNinAttrs().getStrength() * 0.15f;
@@ -43,22 +46,21 @@ public class NCEventHandler {
 			event.ammount -= ExtendedProperties.get(player).getNinAttrs().getResistance() * 0.25f;
 		}
 	}
-	
+
 	/** on Entity construct action */
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event) {
-		if ((event.entity instanceof EntityPlayer)
-				&& (ExtendedProperties.get((EntityPlayer) event.entity) == null)) {
+		if ((event.entity instanceof EntityPlayer) && (ExtendedProperties.get((EntityPlayer) event.entity) == null)) {
 			ExtendedProperties.register((EntityPlayer) event.entity);
 		}
 		if ((event.entity instanceof EntityPlayer)
 				&& (event.entity.getExtendedProperties(ExtendedProperties.EXT_PROP_NAME) == null)) {
-			event.entity.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME,
-					new ExtendedProperties((EntityPlayer) event.entity));
+			event.entity.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME, new ExtendedProperties(
+					(EntityPlayer) event.entity));
 		}
-		
+
 	}
-	
+
 	/** on Entity Join World action */
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
@@ -71,7 +73,7 @@ public class NCEventHandler {
 			ExtendedProperties.loadProxyData((EntityPlayer) event.entity);
 		}
 	}
-	
+
 	/** on Living Death action */
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event) {
@@ -85,8 +87,7 @@ public class NCEventHandler {
 		}
 		// Adding XP when Killing an enemy, plus update client
 		if (event.source.getEntity() instanceof EntityPlayer) {
-			ExtendedProperties prop = ExtendedProperties.get((EntityPlayer) event.source
-					.getEntity());
+			ExtendedProperties prop = ExtendedProperties.get((EntityPlayer) event.source.getEntity());
 			prop.getNinStats().levelUp((int) event.entityLiving.getMaxHealth() / 3);
 			// TODO add stats or attr instead of psa
 			// FIXME getValues not exists for both types
@@ -95,7 +96,7 @@ public class NCEventHandler {
 			// .getValues()), (EntityPlayerMP) event.source.getEntity());
 		}
 	}
-	
+
 	/** on Living Fall action */
 	@SubscribeEvent
 	public void onLivingFallEvent(LivingFallEvent event) {
@@ -104,14 +105,15 @@ public class NCEventHandler {
 			if ((event.distance > 3.0F) && (props.getCurrentChakra() > 0)) {
 				System.out.println("[EVENT] Fall distance: " + event.distance);
 				System.out.println("[EVENT] Current chakra: " + props.getCurrentChakra());
-				float reduceby = props.getCurrentChakra() < (event.distance - 3.0F) ? props
-						.getCurrentChakra() : (event.distance - 3.0F);
+				float reduceby = props.getCurrentChakra() < (event.distance - 3.0F)
+						? props.getCurrentChakra()
+						: (event.distance - 3.0F);
 				event.distance -= reduceby;
 				props.consumeChakra((int) reduceby);
 			}
 		}
 	}
-	
+
 	/** on Living Update action **/
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event) {
@@ -132,10 +134,9 @@ public class NCEventHandler {
 					ExtendedProperties.get(player).resetMoveSpeed();
 				}
 			}
-			if (event.entity.worldObj.getWorldTime() % 30 == 0)
-				ExtendedProperties.get(player).setMaxChakra(false);
-			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties.get(player)
-					.getNinAttrs().getChakraRegenMod())) == 0) {
+			if (event.entity.worldObj.getWorldTime() % 30 == 0) ExtendedProperties.get(player).setMaxChakra(false);
+			if ((event.entity.worldObj.getWorldTime() % (150 - ExtendedProperties.get(player).getNinAttrs()
+					.getChakraRegenMod())) == 0) {
 				ExtendedProperties.get(player).regenChakra(1);
 			}
 			if (player.isPlayerFullyAsleep()) {
@@ -144,7 +145,7 @@ public class NCEventHandler {
 			}
 		}
 	}
-	
+
 	/** on Living Update action */
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event) {
@@ -159,7 +160,7 @@ public class NCEventHandler {
 			}
 		}
 	}
-	
+
 	/** When player dies, ninja stats transfer over **/
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.Clone event) {
@@ -173,7 +174,7 @@ public class NCEventHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * When a player joins game, changes from Overworld to Nether or End update
 	 * client info
@@ -181,10 +182,8 @@ public class NCEventHandler {
 	@SubscribeEvent
 	public void onPlayerJoin(EntityJoinWorldEvent e) {
 		if ((e.entity instanceof EntityPlayer) && !e.world.isRemote) {
-			NarutoCraft.netHandler.sendTo(
-					 new PacketNinjaAttrSync(
-					 ExtendedProperties.get((EntityPlayer) e.entity).getNinAttrs().getInfo()),
-					 (EntityPlayerMP) e.entity);
+			NarutoCraft.netHandler.sendTo(new PacketNinjaAttrSync(ExtendedProperties.get((EntityPlayer) e.entity)
+					.getNinAttrs().getInfo()), (EntityPlayerMP) e.entity);
 			// FIXME as other fixers
 			// NarutoCraft.netHandler.sendTo(
 			// new PacketNinjaStatsResponse(

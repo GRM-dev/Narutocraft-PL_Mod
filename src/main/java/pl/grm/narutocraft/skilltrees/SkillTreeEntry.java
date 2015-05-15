@@ -1,20 +1,24 @@
 package pl.grm.narutocraft.skilltrees;
 
-import java.util.*;
+import java.util.ArrayList;
 
-import pl.grm.narutocraft.jutsu.*;
+import pl.grm.narutocraft.jutsu.IJutsu;
+import pl.grm.narutocraft.jutsu.Jutsu;
+import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.jutsu.JutsuTier;
 
 public class SkillTreeEntry {
-	private int					x;
-	private int					y;
-	private SkillTreeEnum		tree;
-	private JutsuTier			tier;
-	private Jutsu				jutsu;
-	private int					points;
-	private SkillTreeEntry[]	prerequisites;
-	private EntryStates			entryState;
-	private JutsuParams			reqJutsu;
-	
+
+	private int x;
+	private int y;
+	private SkillTreeEnum tree;
+	private JutsuTier tier;
+	private Jutsu jutsu;
+	private int points;
+	private SkillTreeEntry[] prerequisites;
+	private EntryStates entryState;
+	private JutsuParams reqJutsu;
+
 	/**
 	 * @param x
 	 *            x position.
@@ -31,8 +35,8 @@ public class SkillTreeEntry {
 	 * @param prerequisites
 	 *            what entry should be unlocked before this.
 	 */
-	public SkillTreeEntry(int x, int y, SkillTreeEnum tree, Jutsu jutsu, JutsuTier tier,
-			int points, ArrayList<SkillTreeEntry> prerequisites) {
+	public SkillTreeEntry(int x, int y, SkillTreeEnum tree, Jutsu jutsu, JutsuTier tier, int points,
+			ArrayList<SkillTreeEntry> prerequisites) {
 		this.x = x;
 		this.y = y;
 		this.tree = tree;
@@ -42,7 +46,7 @@ public class SkillTreeEntry {
 		convertAndSavePrerequisites(prerequisites);
 		extractRequiredJutsus();
 	}
-	
+
 	/**
 	 * Converts ArrayList of Prerequisites to Array and save to prerequisites
 	 * Array.
@@ -52,7 +56,7 @@ public class SkillTreeEntry {
 	private void convertAndSavePrerequisites(ArrayList<SkillTreeEntry> prerequisites) {
 		this.prerequisites = prerequisites.toArray(new SkillTreeEntry[prerequisites.size()]);
 	}
-	
+
 	/**
 	 * Extracts Jutsus from prerequisites.
 	 */
@@ -67,43 +71,43 @@ public class SkillTreeEntry {
 			}
 		}
 	}
-	
+
 	public int getX() {
 		return this.x;
 	}
-	
+
 	public int getY() {
 		return this.y;
 	}
-	
+
 	public SkillTreeEnum getTree() {
 		return this.tree;
 	}
-	
+
 	public JutsuTier getTier() {
 		return this.tier;
 	}
-	
+
 	public Jutsu getJutsu() {
 		return this.jutsu;
 	}
-	
+
 	public int getPoints() {
 		return this.points;
 	}
-	
+
 	public SkillTreeEntry[] getPrerequisites() {
 		return this.prerequisites;
 	}
-	
+
 	public EntryStates getEntryState() {
 		return this.entryState;
 	}
-	
+
 	public JutsuParams getReqJutsu() {
 		return this.reqJutsu;
 	}
-	
+
 	public void setEntryState(EntryStates entryState) {
 		this.entryState = entryState;
 	}

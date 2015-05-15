@@ -10,9 +10,7 @@ public class PacketNinjaAttrSync implements IMessage {
 
 	private String[] info;
 
-	public static class PacketNinjaAttrSyncHandler
-			implements
-				IMessageHandler<PacketNinjaAttrSync, IMessage> {
+	public static class PacketNinjaAttrSyncHandler implements IMessageHandler<PacketNinjaAttrSync, IMessage> {
 
 		@Override
 		public IMessage onMessage(PacketNinjaAttrSync message, MessageContext ctx) {

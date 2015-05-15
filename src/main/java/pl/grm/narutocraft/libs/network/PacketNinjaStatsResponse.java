@@ -1,12 +1,16 @@
 package pl.grm.narutocraft.libs.network;
 
-import io.netty.buffer.*;
-import net.minecraftforge.fml.common.network.simpleimpl.*;
+import io.netty.buffer.ByteBuf;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketNinjaStatsResponse implements IMessage {
-	private int[]	data;
-	
+
+	private int[] data;
+
 	public static class PacketNinjaStatsResponseHandler implements IMessageHandler<PacketNinjaStatsResponse, IMessage> {
+
 		@Override
 		public IMessage onMessage(PacketNinjaStatsResponse message, MessageContext ctx) {
 			// FIXME update
@@ -14,16 +18,16 @@ public class PacketNinjaStatsResponse implements IMessage {
 			return null;
 		}
 	}
-	
+
 	// Need a empty constructor just for the network registry to use
 	public PacketNinjaStatsResponse() {
-		
+
 	}
-	
+
 	public PacketNinjaStatsResponse(int[] values) {
 		this.data = values;
 	}
-	
+
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		// FIXME
@@ -32,7 +36,7 @@ public class PacketNinjaStatsResponse implements IMessage {
 			this.data[v] = buf.readInt();
 		}
 	}
-	
+
 	@Override
 	public void toBytes(ByteBuf buf) {
 		for (int v : this.data) {

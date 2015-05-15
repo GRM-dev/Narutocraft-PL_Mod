@@ -18,13 +18,11 @@ public class RegBlocks extends NarutoCraft {
 
 	public static void regBlocksList() {
 		byoinBlock = new ByoinBlock();
-		shoji = new CustomPane(References.ModTexturePath + "shoji",
-				References.ModTexturePath + "shoji_top", Material.wood, false)
-				.setCreativeTab(mTabNarutoCraft);
+		shoji = new CustomPane(References.ModTexturePath + "shoji", References.ModTexturePath + "shoji_top",
+				Material.wood, false).setCreativeTab(mTabNarutoCraft);
 		tatami = new CustomCarpet().setCreativeTab(mTabNarutoCraft);
 
-		GameRegistry.registerBlock(byoinBlock,
-				byoinBlock.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(byoinBlock, byoinBlock.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(shoji, shoji.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(tatami, tatami.getUnlocalizedName().substring(5));
 		// TODO lang files need to translate shoji and tatami

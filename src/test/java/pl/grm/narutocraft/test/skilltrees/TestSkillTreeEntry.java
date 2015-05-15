@@ -18,8 +18,9 @@ import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
 public class TestSkillTreeEntry {
-	JutsuManager	jM	= new JutsuManager();
-	
+
+	JutsuManager jM = new JutsuManager();
+
 	@Test
 	public void testSTEntry() {
 		int x = 5, y = 5;

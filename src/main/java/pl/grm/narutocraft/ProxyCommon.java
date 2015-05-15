@@ -1,14 +1,17 @@
 package pl.grm.narutocraft;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import net.minecraft.entity.*;
-import net.minecraft.nbt.*;
-import net.minecraft.world.*;
-import net.minecraftforge.fml.server.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.server.FMLServerHandler;
 
 public class ProxyCommon {
-	private static final Map<String, NBTTagCompound>	extendedEntityData	= new HashMap<String, NBTTagCompound>();
+
+	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
 
 	public static NBTTagCompound getEntityData(String name) {
 		return extendedEntityData.remove(name);

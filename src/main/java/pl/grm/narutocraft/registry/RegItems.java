@@ -44,15 +44,8 @@ public class RegItems extends NarutoCraft {
 	}
 
 	protected static void registerRendererToItem(Item item, String name) {
-		Minecraft
-				.getMinecraft()
-				.getRenderItem()
-				.getItemModelMesher()
-				.register(
-						item,
-						0,
-						new ModelResourceLocation(References.ModTexturePath + name,
-								"inventory"));
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+				.register(item, 0, new ModelResourceLocation(References.ModTexturePath + name, "inventory"));
 	}
 
 	public static void regItemsList() {

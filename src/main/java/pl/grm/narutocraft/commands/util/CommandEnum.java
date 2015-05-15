@@ -1,53 +1,34 @@
 package pl.grm.narutocraft.commands.util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import net.minecraft.command.*;
-import pl.grm.narutocraft.commands.*;
+import net.minecraft.command.ICommand;
+import pl.grm.narutocraft.commands.NCChakraCommands;
+import pl.grm.narutocraft.commands.NCCommandChakraReplenish;
+import pl.grm.narutocraft.commands.NCCommandHelp;
+import pl.grm.narutocraft.commands.NCCommandLevelUp;
+import pl.grm.narutocraft.commands.NCCommandStats;
 
 /**
- * The enum of Commands containing it's aliasses.
- * All should be lover cases.
+ * The enum of Commands containing it's aliasses. All should be lover cases.
  */
 public enum CommandEnum {
-	HELP(
-			true,
-			true,
-			"help",
-			NCCommandHelp.class) ,
-	LEVELUP(
-			true,
-			true,
-			"levelup",
-			NCCommandLevelUp.class,
-			"lvlup") ,
-	CHAKRA(
-			false,
-			true,
-			"chakra",
-			NCChakraCommands.class) ,
-	CHAKRA_REPLENISH(
-			true,
-			true,
-			"replenish",
-			NCCommandChakraReplenish.class,
-			"repl") ,
-	STATS(
-			true,
-			true,
-			"stats",
-			NCCommandStats.class,
-			"stat");
-	
-	private List<String>					aliases	= new ArrayList<String>();
-	private boolean							executive;
-	private boolean							client;
-	
-	private String							name;
-	private Class<? extends NCCommandBase>	command;
-	
-	private CommandEnum(boolean executive, boolean client, String name,
-			Class<? extends NCCommandBase> command, String... aliases) {
+	HELP(true, true, "help", NCCommandHelp.class),
+	LEVELUP(true, true, "levelup", NCCommandLevelUp.class, "lvlup"),
+	CHAKRA(false, true, "chakra", NCChakraCommands.class),
+	CHAKRA_REPLENISH(true, true, "replenish", NCCommandChakraReplenish.class, "repl"),
+	STATS(true, true, "stats", NCCommandStats.class, "stat");
+
+	private List<String> aliases = new ArrayList<String>();
+	private boolean executive;
+	private boolean client;
+
+	private String name;
+	private Class<? extends NCCommandBase> command;
+
+	private CommandEnum(boolean executive, boolean client, String name, Class<? extends NCCommandBase> command,
+			String... aliases) {
 		this.client = client;
 		this.command = command;
 		this.executive = executive;
@@ -57,7 +38,7 @@ public enum CommandEnum {
 			this.aliases.add(alias);
 		}
 	}
-	
+
 	public static CommandEnum getByName(String commandName) {
 		String lowerCaseCommandName = commandName.toLowerCase();
 		for (CommandEnum command : CommandEnum.values()) {
@@ -67,27 +48,27 @@ public enum CommandEnum {
 		}
 		return HELP;
 	}
-	
+
 	public boolean isExecutve() {
 		return this.executive;
 	}
-	
+
 	public boolean isClient() {
 		return this.client;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public Class<? extends NCCommandBase> getCommand() {
 		return this.command;
 	}
-	
+
 	public List<String> getAliases() {
 		return aliases;
 	}
-	
+
 	public ICommand getInstance() throws InstantiationException, IllegalAccessException {
 		if (command != null) {
 			ICommand instance = command.newInstance();

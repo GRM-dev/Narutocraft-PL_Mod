@@ -1,16 +1,19 @@
 package pl.grm.narutocraft.libs.network;
 
-import io.netty.buffer.*;
-import net.minecraftforge.fml.common.network.*;
-import net.minecraftforge.fml.common.network.simpleimpl.*;
-import pl.grm.narutocraft.player.*;
+import io.netty.buffer.ByteBuf;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import pl.grm.narutocraft.player.StatsSettings;
 
 public class PacketNinjaStatsRequest implements IMessage {
-	private String	command;
-	private int[]	data;
-	
+
+	private String command;
+	private int[] data;
+
 	public static class PacketNinjaStatsRequestHandler implements IMessageHandler<PacketNinjaStatsRequest, IMessage> {
-		
+
 		@Override
 		public IMessage onMessage(PacketNinjaStatsRequest message, MessageContext ctx) {
 			// TODO update
@@ -48,7 +51,7 @@ public class PacketNinjaStatsRequest implements IMessage {
 			// }
 			return null;
 		}
-		
+
 		private int[] resetValues(int[] oldData) {
 			// These values are to reset all values if someone is 'cheating' aka
 			// memory hacking
@@ -64,21 +67,21 @@ public class PacketNinjaStatsRequest implements IMessage {
 			return resetValues;
 		}
 	}
-	
+
 	// Need a empty constructor just for the network registry to use
 	public PacketNinjaStatsRequest() {
-		
+
 	}
-	
+
 	public PacketNinjaStatsRequest(String command, int[] values) {
 		this.command = command;
 		this.data = values;
 	}
-	
+
 	public PacketNinjaStatsRequest(String command) {
 		this.command = command;
 	}
-	
+
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		this.command = ByteBufUtils.readUTF8String(buf);
@@ -92,7 +95,7 @@ public class PacketNinjaStatsRequest implements IMessage {
 			}
 		}
 	}
-	
+
 	@Override
 	public void toBytes(ByteBuf buf) {
 		ByteBufUtils.writeUTF8String(buf, this.command);

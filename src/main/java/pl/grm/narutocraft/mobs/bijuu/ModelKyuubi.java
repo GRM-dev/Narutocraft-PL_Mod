@@ -1,59 +1,61 @@
 package pl.grm.narutocraft.mobs.bijuu;
 
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelKyuubi extends ModelBase { // ModelQuadruped {
-	ModelRenderer	Body1;
-	ModelRenderer	Body2;
-	ModelRenderer	Neck;
-	ModelRenderer	Head;
-	ModelRenderer	Jaw;
-	ModelRenderer	EarR;
-	ModelRenderer	EarL;
-	ModelRenderer	CheakR;
-	ModelRenderer	CheakL;
-	ModelRenderer	RFClaw1;
-	ModelRenderer	RFClaw2;
-	ModelRenderer	RFClaw3;
-	ModelRenderer	RFClaw4;
-	ModelRenderer	LFClaw1;
-	ModelRenderer	LFClaw2;
-	ModelRenderer	LFClaw3;
-	ModelRenderer	LFClaw4;
-	ModelRenderer	RBClaw1;
-	ModelRenderer	RBClaw2;
-	ModelRenderer	RBClaw3;
-	ModelRenderer	RBClaw4;
-	ModelRenderer	LBClaw1;
-	ModelRenderer	LBClaw2;
-	ModelRenderer	LBClaw3;
-	ModelRenderer	LBClaw4;
-	ModelRenderer	p1T1;
-	ModelRenderer	p1T2;
-	ModelRenderer	p2T1;
-	ModelRenderer	p2T2;
-	ModelRenderer	p3T1;
-	ModelRenderer	p3T2;
-	ModelRenderer	p4T1;
-	ModelRenderer	p4T2;
-	ModelRenderer	p5T1;
-	ModelRenderer	p5T2;
-	ModelRenderer	p6T1;
-	ModelRenderer	p6T2;
-	ModelRenderer	p7T1;
-	ModelRenderer	p7T2;
-	ModelRenderer	p8T1;
-	ModelRenderer	p8T2;
-	ModelRenderer	p9T1;
-	ModelRenderer	p9T2;
-	
+
+	ModelRenderer Body1;
+	ModelRenderer Body2;
+	ModelRenderer Neck;
+	ModelRenderer Head;
+	ModelRenderer Jaw;
+	ModelRenderer EarR;
+	ModelRenderer EarL;
+	ModelRenderer CheakR;
+	ModelRenderer CheakL;
+	ModelRenderer RFClaw1;
+	ModelRenderer RFClaw2;
+	ModelRenderer RFClaw3;
+	ModelRenderer RFClaw4;
+	ModelRenderer LFClaw1;
+	ModelRenderer LFClaw2;
+	ModelRenderer LFClaw3;
+	ModelRenderer LFClaw4;
+	ModelRenderer RBClaw1;
+	ModelRenderer RBClaw2;
+	ModelRenderer RBClaw3;
+	ModelRenderer RBClaw4;
+	ModelRenderer LBClaw1;
+	ModelRenderer LBClaw2;
+	ModelRenderer LBClaw3;
+	ModelRenderer LBClaw4;
+	ModelRenderer p1T1;
+	ModelRenderer p1T2;
+	ModelRenderer p2T1;
+	ModelRenderer p2T2;
+	ModelRenderer p3T1;
+	ModelRenderer p3T2;
+	ModelRenderer p4T1;
+	ModelRenderer p4T2;
+	ModelRenderer p5T1;
+	ModelRenderer p5T2;
+	ModelRenderer p6T1;
+	ModelRenderer p6T2;
+	ModelRenderer p7T1;
+	ModelRenderer p7T2;
+	ModelRenderer p8T1;
+	ModelRenderer p8T2;
+	ModelRenderer p9T1;
+	ModelRenderer p9T2;
+
 	public ModelKyuubi() {
 		// super(20, 0.5F);
 		this.textureWidth = 128;
 		this.textureHeight = 128;
-		
+
 		this.Body1 = new ModelRenderer(this, 0, 0);
 		this.Body1.addBox(0F, 0F, 0F, 12, 8, 22);
 		this.Body1.setRotationPoint(-6F, 4F, 0F);
@@ -313,10 +315,9 @@ public class ModelKyuubi extends ModelBase { // ModelQuadruped {
 		this.p9T2.mirror = true;
 		setRotation(this.p9T2, -0.5759587F, 0F, -1.818137F);
 	}
-	
+
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4,
-			float f5) {
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.Body1.render(f5);
@@ -363,9 +364,9 @@ public class ModelKyuubi extends ModelBase { // ModelQuadruped {
 		this.p9T1.render(f5);
 		this.p9T2.render(f5);
 	}
-	
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4,
-			float f5, float f6, float f7, Entity entity) {
+
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, float f6, float f7,
+			Entity entity) {
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.Head.rotateAngleX = f4 / (180F / (float) Math.PI);
 		this.Head.rotateAngleY = f3 / (180F / (float) Math.PI);
@@ -376,11 +377,11 @@ public class ModelKyuubi extends ModelBase { // ModelQuadruped {
 		this.RBClaw1.rotateAngleX = MathHelper.cos(0) + ((float) Math.PI * 1.4F * f1);
 		this.RBClaw4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
 	}
-	
+
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
-	
+
 }

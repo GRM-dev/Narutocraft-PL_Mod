@@ -19,16 +19,17 @@ import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 import pl.grm.narutocraft.skilltrees.SkillTreeManager;
 
 public class TestSkillTreeManager {
-	SkillTreeManager	skillsManager;
-	JutsuManager		jM		= new JutsuManager();
-	JutsuParams			jutsu	= JutsuParams.RASENGAN;
-	
+
+	SkillTreeManager skillsManager;
+	JutsuManager jM = new JutsuManager();
+	JutsuParams jutsu = JutsuParams.RASENGAN;
+
 	@Test
 	public void testInstance() {
 		skillsManager = SkillTreeManager.instance;
 		assertThat(skillsManager, notNullValue());
 	}
-	
+
 	@Test
 	public void testInitCall() {
 		skillsManager = SkillTreeManager.instance;
@@ -43,7 +44,7 @@ public class TestSkillTreeManager {
 			fail(e.getMessage() + " with " + e.getStackTrace());
 		}
 	}
-	
+
 	@Test
 	public void testRegisterEntry() {
 		skillsManager = SkillTreeManager.instance;
@@ -52,32 +53,32 @@ public class TestSkillTreeManager {
 		SkillTreeEntry entry = skillsManager.getEntry(JutsuParams.RASENGAN);
 		assertThat(entry.getJutsu().getJutsuProps(), is(((Jutsu) jutsu.getJutsu()).getJutsuProps()));
 	}
-	
+
 	@Test
 	public void testLoadPrerequisites() {
 		skillsManager = SkillTreeManager.instance;
 		skillsManager.init();
 		SkillTree tree = skillsManager.getTreefromTreeMap(SkillTreeEnum.NINJUTSU);
-		
+
 		// if(tree.containsKey())
 		// TODO test method impl
 	}
-	
+
 	@Test
 	public void testLockAllEntries() {
 		// TODO test method impl
 	}
-	
+
 	@Test
 	public void testGetterLockedJutsusID() {
 		// TODO test method impl
 	}
-	
+
 	@Test
 	public void testGetterJutsuTreeEntry() {
 		// TODO test method impl
 	}
-	
+
 	@Test
 	public void testTreeGetter() {
 		// TODO test method impl

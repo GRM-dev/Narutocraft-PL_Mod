@@ -1,37 +1,46 @@
 package pl.grm.narutocraft;
 
-import net.minecraft.client.*;
-import net.minecraftforge.client.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.fml.client.registry.*;
-import pl.grm.narutocraft.gui.chakrabar.*;
-import pl.grm.narutocraft.handlers.*;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.*;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.render.*;
-import pl.grm.narutocraft.libs.buffs.*;
-import pl.grm.narutocraft.libs.config.*;
-import pl.grm.narutocraft.mobs.bijuu.*;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import pl.grm.narutocraft.gui.chakrabar.GuiChakraBar;
+import pl.grm.narutocraft.handlers.NCCommandHandler;
+import pl.grm.narutocraft.handlers.SoundHandler;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderSenbon;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderShuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderWKunai;
+import pl.grm.narutocraft.libs.buffs.BuffList;
+import pl.grm.narutocraft.libs.config.KeyBindings;
+import pl.grm.narutocraft.mobs.bijuu.EntityKyuubi;
+import pl.grm.narutocraft.mobs.bijuu.ModelKyuubi;
+import pl.grm.narutocraft.mobs.bijuu.RenderKyuubi;
 
 public class ProxyClient extends ProxyCommon {
-	
+
 	@Override
 	public void registerCommands() {
 		ClientCommandHandler manager = ClientCommandHandler.instance;
 		NCCommandHandler commandHandler = new NCCommandHandler(manager);
 		commandHandler.registerCommands(true);
 	}
-	
+
 	@Override
 	public void registerRenderInfomation() {
-		
+
 	}
-	
+
 	@Override
 	public void registerRendering() {
 		// ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTestContainer.class,
 		// new RenderTestContainer());
 	}
-	
+
 	@Override
 	public void registerRenderThings() {
 		// Scaled Items
@@ -47,15 +56,14 @@ public class ProxyClient extends ProxyCommon {
 		// 0.7f));
 		// Projectiles:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
-		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai(
-				Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySenbon.class, new RenderSenbon(
-				Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken(
-				Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai(Minecraft.getMinecraft()
+				.getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySenbon.class, new RenderSenbon(Minecraft.getMinecraft()
+				.getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken(Minecraft
+				.getMinecraft().getRenderManager()));
 		// Mobs:
-		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(
-				new ModelKyuubi(), 5.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityKyuubi.class, new RenderKyuubi(new ModelKyuubi(), 5.5F));
 		// the last param is the shadow size
 		// GUI:
 		MinecraftForge.EVENT_BUS.register(new GuiChakraBar(Minecraft.getMinecraft()));
@@ -63,7 +71,7 @@ public class ProxyClient extends ProxyCommon {
 		KeyBindings.init();
 		BuffList.setupTextureOverrides();
 	}
-	
+
 	/**
 	 * register the sound event handling class
 	 */

@@ -1,8 +1,9 @@
 package pl.grm.narutocraft.items.armor;
 
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import pl.grm.narutocraft.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import pl.grm.narutocraft.NarutoCraft;
 
 /**
  * Adds Armor items
@@ -10,17 +11,18 @@ import pl.grm.narutocraft.*;
  * @author Admaster
  */
 public class NCPLItemArmor extends ItemArmor {
-	private int		armorSlot	= 0;
-	private String	modelTexture;
-	
+
+	private int armorSlot = 0;
+	private String modelTexture;
+
 	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement) {
 		this(armormaterial, ID, placement, "Test");
 	}
-	
+
 	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement, String modelTextureName) {
 		this(armormaterial, ID, placement, "Test", modelTextureName);
 	}
-	
+
 	/**
 	 * Create Armor Item
 	 *
@@ -37,8 +39,8 @@ public class NCPLItemArmor extends ItemArmor {
 	 *            the base texture name for what is rendered on the player, _1
 	 *            is helm, chest, and boots. _2 is pants.
 	 */
-	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement,
-			String itemTextureName, String modelTextureName) {
+	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement, String itemTextureName,
+			String modelTextureName) {
 		super(armormaterial, ID, placement);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.setMaxStackSize(1);
@@ -66,11 +68,10 @@ public class NCPLItemArmor extends ItemArmor {
 		// break;
 		// }
 	}
-	
+
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		if (this.armorSlot != 2) { return "narutocraft:textures/model/" + this.modelTexture
-				+ "_1.png"; }
+		if (this.armorSlot != 2) { return "narutocraft:textures/model/" + this.modelTexture + "_1.png"; }
 		return "narutocraft:textures/model/" + this.modelTexture + "_2.png";
 	}
 }

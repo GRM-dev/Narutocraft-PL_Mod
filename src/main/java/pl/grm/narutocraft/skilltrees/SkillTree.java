@@ -1,15 +1,17 @@
 package pl.grm.narutocraft.skilltrees;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * SkillTree containing its Entries(Jutsus)
  */
 public class SkillTree implements Cloneable {
+
 	/** Entries of Tree. */
-	private Map<Integer, SkillTreeEntry>	entryMap;
-	private int								treeID;
-	
+	private Map<Integer, SkillTreeEntry> entryMap;
+	private int treeID;
+
 	/**
 	 * @param treeID
 	 */
@@ -19,7 +21,7 @@ public class SkillTree implements Cloneable {
 			entryMap = new HashMap<Integer, SkillTreeEntry>();
 		}
 	}
-	
+
 	/**
 	 * Adds Entry to tree on EntryMap
 	 * 
@@ -31,14 +33,14 @@ public class SkillTree implements Cloneable {
 			entryMap.put(ID, entry);
 		}
 	}
-	
+
 	/**
 	 * Clears Tree
 	 */
 	public void clearTree() {
 		entryMap.clear();
 	}
-	
+
 	/**
 	 * Checks if tree contains specified entry.
 	 * 
@@ -50,7 +52,7 @@ public class SkillTree implements Cloneable {
 		if (entryMap.containsKey(id)) { return true; }
 		return false;
 	}
-	
+
 	/**
 	 * Checks if tree contains specified entryID
 	 * 
@@ -61,7 +63,7 @@ public class SkillTree implements Cloneable {
 		if (entryMap.containsKey(entryID)) { return true; }
 		return false;
 	}
-	
+
 	/**
 	 * @param jutsuID
 	 * @return Entry with specified ID
@@ -73,21 +75,21 @@ public class SkillTree implements Cloneable {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @return tree ID
 	 */
 	public int getTreeID() {
 		return treeID;
 	}
-	
+
 	/**
 	 * @return Map of Entries
 	 */
 	public Map<Integer, SkillTreeEntry> getEntryMap() {
 		return entryMap;
 	}
-	
+
 	/**
 	 * Makes safe copy of tree.
 	 */

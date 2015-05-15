@@ -1,17 +1,18 @@
 package pl.grm.narutocraft.creativetabs;
 
-import net.minecraft.creativetab.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import pl.grm.narutocraft.jutsu.*;
-import pl.grm.narutocraft.player.*;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.player.ExtendedProperties;
 
 /**
  * Create Creative Tab
  */
 public class NCMainTab extends CreativeTabs {
-	private int	iconJutsuID	= JutsuParams.SHARINGAN.getJutsuID();
-	
+
+	private int iconJutsuID = JutsuParams.SHARINGAN.getJutsuID();
+
 	/**
 	 * @param id
 	 *            Creative Tab Id
@@ -21,7 +22,7 @@ public class NCMainTab extends CreativeTabs {
 	public NCMainTab(int id, String unlocalizedName) {
 		super(id, unlocalizedName);
 	}
-	
+
 	@Override
 	public Item getTabIconItem() {
 		if (ExtendedProperties.jutsuList.containsKey(iconJutsuID)) {
@@ -30,7 +31,7 @@ public class NCMainTab extends CreativeTabs {
 		}
 		return Items.apple;
 	}
-	
+
 	@Override
 	public String getTranslatedTabLabel() {
 		return "NarutoCraft";

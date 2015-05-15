@@ -17,6 +17,7 @@ import pl.grm.narutocraft.handlers.JutsuManager;
 import pl.grm.narutocraft.jutsu.IJutsu;
 
 public class ExtendedProperties implements IExtendedEntityProperties {
+
 	public final static String EXT_PROP_NAME = "NCPLExtPlayer";
 	private final EntityPlayer player;
 	/** Jutsu Manager Instance */
@@ -32,20 +33,17 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 
 	public ExtendedProperties(EntityPlayer player) {
 		this.player = player;
-		this.player.getDataWatcher().addObject(CHAKRA_WATCHER,
-				ninStats.getMaxChakra());
+		this.player.getDataWatcher().addObject(CHAKRA_WATCHER, ninStats.getMaxChakra());
 	}
 
 	@Override
-	public void init(Entity entity, World world) {
-	}
+	public void init(Entity entity, World world) {}
 
 	@Override
 	public final void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
 		this.jManager.writeToNBT(properties);
-		properties.setInteger("CurrentChakra", this.player.getDataWatcher()
-				.getWatchableObjectInt(CHAKRA_WATCHER));
+		properties.setInteger("CurrentChakra", this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER));
 		properties.setInteger("MaxChakra", ninStats.getMaxChakra());
 		this.ninAttrs.writoToNBT(properties);
 		this.ninStats.writoToNBT(properties);
@@ -54,11 +52,9 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 
 	@Override
 	public final void loadNBTData(NBTTagCompound compound) {
-		NBTTagCompound properties = (NBTTagCompound) compound
-				.getTag(EXT_PROP_NAME);
+		NBTTagCompound properties = (NBTTagCompound) compound.getTag(EXT_PROP_NAME);
 		this.jManager.readFromNBT(properties);
-		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
-				properties.getInteger("CurrentChakra"));
+		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER, properties.getInteger("CurrentChakra"));
 		ninStats.setMaxChakra(properties.getInteger("MaxChakra"));
 		this.ninAttrs.readFromNBT(properties);
 		this.ninStats.readFromNBT(properties);
@@ -66,8 +62,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 
 	public static final void loadProxyData(EntityPlayer player) {
 		ExtendedProperties playerData = ExtendedProperties.get(player);
-		NBTTagCompound savedData = ProxyCommon
-				.getEntityData(getSaveKey(player));
+		NBTTagCompound savedData = ProxyCommon.getEntityData(getSaveKey(player));
 		if (savedData != null) {
 			playerData.loadNBTData(savedData);
 		}
@@ -80,8 +75,7 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	}
 
 	public static final void register(EntityPlayer player) {
-		player.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME,
-				new ExtendedProperties(player));
+		player.registerExtendedProperties(ExtendedProperties.EXT_PROP_NAME, new ExtendedProperties(player));
 	}
 
 	private static final String getSaveKey(EntityPlayer player) {
@@ -91,18 +85,20 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public void updateMoveSpeed() {
 		PlayerCapabilities pc = player.capabilities;
 		try {
-			Field walkSpeed = PlayerCapabilities.class
-					.getDeclaredField("walkSpeed");
+			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
 			walkSpeed.setAccessible(true);
-			walkSpeed.setFloat(pc, MathHelper.clamp_float(
-					0.45F + ((float) ninAttrs.getAgility() / 31), 0.04f, 1.5f));
-		} catch (NoSuchFieldException e) {
+			walkSpeed.setFloat(pc, MathHelper.clamp_float(0.45F + ((float) ninAttrs.getAgility() / 31), 0.04f, 1.5f));
+		}
+		catch (NoSuchFieldException e) {
 			e.printStackTrace();
-		} catch (SecurityException e) {
+		}
+		catch (SecurityException e) {
 			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		}
+		catch (IllegalArgumentException e) {
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		}
+		catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
@@ -110,17 +106,20 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	public void resetMoveSpeed() {
 		PlayerCapabilities pc = player.capabilities;
 		try {
-			Field walkSpeed = PlayerCapabilities.class
-					.getDeclaredField("walkSpeed");
+			Field walkSpeed = PlayerCapabilities.class.getDeclaredField("walkSpeed");
 			walkSpeed.setAccessible(true);
 			walkSpeed.setFloat(pc, 0.1f);
-		} catch (NoSuchFieldException e) {
+		}
+		catch (NoSuchFieldException e) {
 			e.printStackTrace();
-		} catch (SecurityException e) {
+		}
+		catch (SecurityException e) {
 			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
+		}
+		catch (IllegalArgumentException e) {
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		}
+		catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
@@ -150,13 +149,11 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	 * Sets currentChakra to maxChakra.
 	 */
 	public final void replenishChakra() {
-		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
-				ninStats.getMaxChakra());
+		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER, ninStats.getMaxChakra());
 	}
 
 	public final int getCurrentChakra() {
-		return this.player.getDataWatcher().getWatchableObjectInt(
-				CHAKRA_WATCHER);
+		return this.player.getDataWatcher().getWatchableObjectInt(CHAKRA_WATCHER);
 	}
 
 	/**
@@ -165,10 +162,8 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	 * @param value
 	 */
 	public final void setCurrentChakra(int value) {
-		this.player.getDataWatcher().updateObject(
-				CHAKRA_WATCHER,
-				value > 0 ? (value < ninStats.getMaxChakra() ? value : ninStats
-						.getMaxChakra()) : 0);
+		this.player.getDataWatcher().updateObject(CHAKRA_WATCHER,
+				value > 0 ? (value < ninStats.getMaxChakra() ? value : ninStats.getMaxChakra()) : 0);
 	}
 
 	/**
@@ -183,12 +178,10 @@ public class ExtendedProperties implements IExtendedEntityProperties {
 	 **/
 	public final void setMaxChakra(int amount, boolean overrideBaseValue) {
 		if (overrideBaseValue) {
-			ninStats.setMaxChakra(MathHelper.clamp_int(
-					amount + ninStats.getChakraModifier(), 0,
+			ninStats.setMaxChakra(MathHelper.clamp_int(amount + ninStats.getChakraModifier(), 0,
 					StatsSettings.maxChakraCap));
 		} else {
-			ninStats.setMaxChakra(MathHelper.clamp_int(StatsSettings.chakraBase
-					+ ninStats.getChakraModifier(), 0,
+			ninStats.setMaxChakra(MathHelper.clamp_int(StatsSettings.chakraBase + ninStats.getChakraModifier(), 0,
 					StatsSettings.maxChakraCap));
 		}
 	}

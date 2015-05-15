@@ -1,33 +1,36 @@
 package pl.grm.narutocraft.items.weapons.projectiles.entities;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.fml.relauncher.*;
-import pl.grm.narutocraft.registry.*;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import pl.grm.narutocraft.registry.RegWeapons;
 
 public class EntityShuriken extends EntityArrow implements IProjectile {
-	private int		d		= -1;
-	private int		e		= -1;
-	private int		f		= -1;
-	private Block	contactBlock;
-	private int		inData;
-	public boolean	inGround;
-	private int		ticksInGround;
-	private int		ticksInAir;
-	private double	damage	= 2.0D;
-	
+
+	private int d = -1;
+	private int e = -1;
+	private int f = -1;
+	private Block contactBlock;
+	private int inData;
+	public boolean inGround;
+	private int ticksInGround;
+	private int ticksInAir;
+	private double damage = 2.0D;
+
 	public EntityShuriken(World par1World) {
 		super(par1World);
 		this.renderDistanceWeight = 10.0D;
 		this.setSize(0.5F, 0.5F);
 	}
-	
+
 	/**
 	 * Constructor of entity
 	 *
@@ -46,48 +49,46 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 		this.setSize(0.5F, 0.5F);
 		this.setPosition(par2, par4, par6);
 	}
-	
+
 	public EntityShuriken(World par1World, EntityLivingBase par2EntityLivingBase,
 			EntityLivingBase par3EntityLivingBase, float par4, float par5) {
 		super(par1World);
 		this.renderDistanceWeight = 10.0D;
 		this.shootingEntity = par2EntityLivingBase;
-		
+
 		if (par2EntityLivingBase instanceof EntityPlayer) {
 			this.canBePickedUp = 1;
 		}
-		
+
 		this.posY = (par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight()) - 0.10000000149011612D;
 		double d0 = par3EntityLivingBase.posX - par2EntityLivingBase.posX;
-		double d1 = (par3EntityLivingBase.getBoundingBox().minY + (par3EntityLivingBase.height / 3.0F))
-				- this.posY;
+		double d1 = (par3EntityLivingBase.getBoundingBox().minY + (par3EntityLivingBase.height / 3.0F)) - this.posY;
 		double d2 = par3EntityLivingBase.posZ - par2EntityLivingBase.posZ;
 		double d3 = MathHelper.sqrt_double((d0 * d0) + (d2 * d2));
-		
+
 		if (d3 >= 1.0E-7D) {
 			float f2 = (float) ((Math.atan2(d2, d0) * 180.0D) / Math.PI) - 90.0F;
 			float f3 = (float) (-((Math.atan2(d1, d3) * 180.0D) / Math.PI));
 			double d4 = d0 / d3;
 			double d5 = d2 / d3;
-			this.setLocationAndAngles(par2EntityLivingBase.posX + d4, this.posY,
-					par2EntityLivingBase.posZ + d5, f2, f3);
+			this.setLocationAndAngles(par2EntityLivingBase.posX + d4, this.posY, par2EntityLivingBase.posZ + d5, f2, f3);
 			float f4 = (float) d3 * 0.2F;
 			this.setThrowableHeading(d0, d1 + f4, d2, par4, par5);
 		}
 	}
-	
+
 	public EntityShuriken(World par1World, EntityLivingBase par2EntityLivingBase, float par3) {
 		super(par1World);
 		this.renderDistanceWeight = 10.0D;
 		this.shootingEntity = par2EntityLivingBase;
-		
+
 		if (par2EntityLivingBase instanceof EntityPlayer) {
 			this.canBePickedUp = 1;
 		}
-		
+
 		this.setSize(0.5F, 0.5F);
-		this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY
-				+ par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ,
+		this.setLocationAndAngles(par2EntityLivingBase.posX,
+				par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ,
 				par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
 		this.posX -= MathHelper.cos((this.rotationYaw / 180.0F) * (float) Math.PI) * 0.16F;
 		this.posY -= 0.10000000149011612D;
@@ -100,29 +101,28 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 		this.motionY = (-MathHelper.sin((this.rotationPitch / 180.0F) * (float) Math.PI));
 		this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, par3 * 1.5F, 1.0F);
 	}
-	
+
 	@Override
 	public boolean canAttackWithItem() {
 		return true;
 	}
-	
+
 	@Override
 	public double getDamage() {
 		return this.damage;
 	}
-	
+
 	@Override
 	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer) {
 		if (!this.worldObj.isRemote && this.inGround) {
 			boolean flag = (this.canBePickedUp == 1)
 					|| ((this.canBePickedUp == 2) && par1EntityPlayer.capabilities.isCreativeMode);
-			
+
 			if ((this.canBePickedUp == 1)
-					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(
-							RegWeapons.Shuriken, 1))) {
+					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegWeapons.Shuriken, 1))) {
 				flag = false;
 			}
-			
+
 			if (flag) {
 				this.playSound("random.pop", 0.2F,
 						(((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F) + 1.0F) * 2.0F);
@@ -131,7 +131,7 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 			}
 		}
 	}
-	
+
 	@Override
 	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
 		this.d = par1NBTTagCompound.getShort("xTile");
@@ -141,23 +141,23 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 		this.contactBlock = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
 		this.inData = par1NBTTagCompound.getByte("inData") & 255;
 		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
-		
+
 		if (par1NBTTagCompound.hasKey("damage", 99)) {
 			this.damage = par1NBTTagCompound.getDouble("damage");
 		}
-		
+
 		if (par1NBTTagCompound.hasKey("pickup", 99)) {
 			this.canBePickedUp = par1NBTTagCompound.getByte("pickup");
 		} else if (par1NBTTagCompound.hasKey("player", 99)) {
 			this.canBePickedUp = par1NBTTagCompound.getBoolean("player") ? 1 : 0;
 		}
 	}
-	
+
 	@Override
 	public void setDamage(double par1) {
 		this.damage = par1;
 	}
-	
+
 	/**
 	 * Similar to setArrowHeading, it's point the throwable entity to a x, y, z
 	 * direction.
@@ -168,12 +168,9 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 		par1 /= f2;
 		par3 /= f2;
 		par5 /= f2;
-		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
-				* 0.007499999832361937D * par8;
-		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
-				* 0.007499999832361937D * par8;
-		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1)
-				* 0.007499999832361937D * par8;
+		par1 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * par8;
+		par3 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * par8;
+		par5 += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * par8;
 		par1 *= par7;
 		par3 *= par7;
 		par5 *= par7;
@@ -185,7 +182,7 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 		this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f3) * 180.0D) / Math.PI);
 		this.ticksInGround = 0;
 	}
-	
+
 	/**
 	 * Sets the velocity to the args. Args: x, y, z
 	 */
@@ -195,19 +192,18 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 		this.motionX = par1;
 		this.motionY = par3;
 		this.motionZ = par5;
-		
+
 		if ((this.prevRotationPitch == 0.0F) && (this.prevRotationYaw == 0.0F)) {
 			float f = MathHelper.sqrt_double((par1 * par1) + (par5 * par5));
 			this.prevRotationYaw = this.rotationYaw = (float) ((Math.atan2(par1, par5) * 180.0D) / Math.PI);
 			this.prevRotationPitch = this.rotationPitch = (float) ((Math.atan2(par3, f) * 180.0D) / Math.PI);
 			this.prevRotationPitch = this.rotationPitch;
 			this.prevRotationYaw = this.rotationYaw;
-			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw,
-					this.rotationPitch);
+			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
 			this.ticksInGround = 0;
 		}
 	}
-	
+
 	@Override
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
 		par1NBTTagCompound.setShort("xTile", (short) this.d);
@@ -220,7 +216,7 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 		par1NBTTagCompound.setByte("pickup", (byte) this.canBePickedUp);
 		par1NBTTagCompound.setDouble("damage", this.damage);
 	}
-	
+
 	/**
 	 * returns if this entity triggers Block.onEntityWalking on the blocks they
 	 * walk on. used for spiders and wolves to prevent them from trampling crops
@@ -229,7 +225,7 @@ public class EntityShuriken extends EntityArrow implements IProjectile {
 	protected boolean canTriggerWalking() {
 		return false;
 	}
-	
+
 	@Override
 	protected void entityInit() {
 		this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));

@@ -1,12 +1,13 @@
 package pl.grm.narutocraft.libs.math;
 
 public class Matrix4 {
-	float[]	mat;
-	
+
+	float[] mat;
+
 	public Matrix4() {
 		loadIdentity();
 	}
-	
+
 	public static Matrix4 rotationMat(double angle, Vector3D axis) {
 		axis = axis.copy().normalize();
 		float x = axis.x;
@@ -29,7 +30,7 @@ public class Matrix4 {
 		rotmat.mat[15] = 1.0F;
 		return rotmat;
 	}
-	
+
 	public Matrix4 loadIdentity() {
 		this.mat = new float[16];
 		float tmp35_34 = this.mat[10] = this.mat[15] = 1.0F;
@@ -37,14 +38,11 @@ public class Matrix4 {
 		this.mat[0] = tmp35_34;
 		return this;
 	}
-	
+
 	public Vector3D translate(Vector3D vec) {
-		float x = (vec.x * this.mat[0]) + (vec.y * this.mat[1]) + (vec.z * this.mat[2])
-				+ this.mat[3];
-		float y = (vec.x * this.mat[4]) + (vec.y * this.mat[5]) + (vec.z * this.mat[6])
-				+ this.mat[7];
-		float z = (vec.x * this.mat[8]) + (vec.y * this.mat[9]) + (vec.z * this.mat[10])
-				+ this.mat[11];
+		float x = (vec.x * this.mat[0]) + (vec.y * this.mat[1]) + (vec.z * this.mat[2]) + this.mat[3];
+		float y = (vec.x * this.mat[4]) + (vec.y * this.mat[5]) + (vec.z * this.mat[6]) + this.mat[7];
+		float z = (vec.x * this.mat[8]) + (vec.y * this.mat[9]) + (vec.z * this.mat[10]) + this.mat[11];
 		vec.x = x;
 		vec.y = y;
 		vec.z = z;

@@ -27,10 +27,9 @@ public class References {
 			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage4.png"),
 			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage5.png"),
 			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage6.png")};
-	public static final ResourceLocation statsPath = new ResourceLocation(
-			GUI_TEXTURE_PATH + "SkillPoints.png");
-	public static final ResourceLocation ninjaWidgetsPath = new ResourceLocation(
-			GUI_TEXTURE_PATH + "NinjaGuiWidgets.png");
+	public static final ResourceLocation statsPath = new ResourceLocation(GUI_TEXTURE_PATH + "SkillPoints.png");
+	public static final ResourceLocation ninjaWidgetsPath = new ResourceLocation(GUI_TEXTURE_PATH
+			+ "NinjaGuiWidgets.png");
 	/** GUI IDs */
 	public static final int OPTS = 1, STATS = 2, SKILL_TREE = 3, SETTS = 4;
 }

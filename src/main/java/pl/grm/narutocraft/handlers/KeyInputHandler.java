@@ -1,14 +1,14 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.entity.player.*;
-import net.minecraftforge.fml.client.*;
-import net.minecraftforge.fml.common.eventhandler.*;
-import net.minecraftforge.fml.common.gameevent.*;
-import net.minecraftforge.fml.common.network.internal.*;
-import pl.grm.narutocraft.*;
-import pl.grm.narutocraft.libs.config.*;
-import pl.grm.narutocraft.libs.network.*;
-import pl.grm.narutocraft.player.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
+import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.libs.config.KeyBindings;
+import pl.grm.narutocraft.libs.network.PacketNinjaRun;
+import pl.grm.narutocraft.player.ExtendedProperties;
 
 /**
  * gets keyboard button presses form {@link KeyBindings}
@@ -16,7 +16,7 @@ import pl.grm.narutocraft.player.*;
  * @author Admaster
  */
 public class KeyInputHandler {
-	
+
 	@SubscribeEvent
 	public void onKeyInput(InputEvent.KeyInputEvent event) {
 		if (KeyBindings.PJutsu.isPressed()) {
@@ -28,15 +28,13 @@ public class KeyInputHandler {
 		if (KeyBindings.Jutsu.isPressed()) {
 			System.out.println("Open Panel");
 			EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
-			FMLNetworkHandler.openGui(player, NarutoCraft.instance, 3, player.worldObj,
-					(int) player.posX, (int) player.posY, (int) player.posZ);
+			FMLNetworkHandler.openGui(player, NarutoCraft.instance, 3, player.worldObj, (int) player.posX,
+					(int) player.posY, (int) player.posZ);
 		}
 		if (KeyBindings.NRun.isPressed()) {
 			EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
-			ExtendedProperties.get(player).ninjaRun = ExtendedProperties.get(player).ninjaRun == true
-					? false : true;
-			NarutoCraft.netHandler.sendToServer(new PacketNinjaRun(
-					ExtendedProperties.get(player).ninjaRun));
+			ExtendedProperties.get(player).ninjaRun = ExtendedProperties.get(player).ninjaRun == true ? false : true;
+			NarutoCraft.netHandler.sendToServer(new PacketNinjaRun(ExtendedProperties.get(player).ninjaRun));
 		}
 	}
 }

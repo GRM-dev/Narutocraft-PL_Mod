@@ -13,14 +13,15 @@ import pl.grm.narutocraft.player.Attributes;
 import pl.grm.narutocraft.player.NinjaAttributes;
 
 public class TestNinjaAttributes {
-	NinjaAttributes	att;
-	
+
+	NinjaAttributes att;
+
 	@Test
 	public void testCreatingAndFillingMapWithAttrbts() {
 		att = new NinjaAttributes();
 		assertThat(att.getAttValues().isEmpty(), is(false));
 	}
-	
+
 	@Test
 	public void testWritoToNBT() {
 		String name = null;
@@ -31,7 +32,7 @@ public class TestNinjaAttributes {
 		NBTTagList tagList = compound.getTagList("NinjaAttributes", Constants.NBT.TAG_COMPOUND);
 		NBTTagCompound n = tagList.getCompoundTagAt(1);
 		assertThat(n, notNullValue());
-		
+
 		for (Attributes att : Attributes.values()) {
 			name = att.getSName();
 			if (n.hasKey(name)) {
@@ -40,7 +41,7 @@ public class TestNinjaAttributes {
 		}
 		assertThat(found, is(true));
 	}
-	
+
 	@Test
 	public void testReadFromNBT() {
 		String name = null;
@@ -53,7 +54,7 @@ public class TestNinjaAttributes {
 		att.readFromNBT(compound);
 		assertThat(att.getAgility(), is(value));
 	}
-	
+
 	@Test
 	public void testSettersAndGetters() {
 		att = new NinjaAttributes();
@@ -64,7 +65,7 @@ public class TestNinjaAttributes {
 		v2 = att.getStrength();
 		assertThat(v1, is(v2));
 	}
-	
+
 	@Test
 	public void testLevelUP() {
 		// TODO implementation

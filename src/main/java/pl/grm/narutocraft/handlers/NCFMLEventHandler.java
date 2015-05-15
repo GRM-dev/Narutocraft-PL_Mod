@@ -1,14 +1,16 @@
 package pl.grm.narutocraft.handlers;
 
-import net.minecraft.command.*;
-import net.minecraft.server.*;
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /**
  * FML Event Handler
  */
 public class NCFMLEventHandler {
+
 	/**
 	 * Register commands on Server Start
 	 * 

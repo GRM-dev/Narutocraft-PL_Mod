@@ -52,11 +52,9 @@ public class NarutoCraft {
 	/** Packet Channel */
 	public static SimpleNetworkWrapper netHandler;
 	/** NarutoCraft Mod Creative Tab */
-	public static CreativeTabs mTabNarutoCraft = new NCMainTab(CreativeTabs.getNextID(),
-			"NarutoCraftMod");
+	public static CreativeTabs mTabNarutoCraft = new NCMainTab(CreativeTabs.getNextID(), "NarutoCraftMod");
 	/** Jutsu Creative Tab */
-	public static CreativeTabs mTabJutsu = new NCJutsuTab(CreativeTabs.getNextID(),
-			"NC Jutsu's");
+	public static CreativeTabs mTabJutsu = new NCJutsuTab(CreativeTabs.getNextID(), "NC Jutsu's");
 	private int packetId = 0;
 
 	/**
@@ -102,13 +100,13 @@ public class NarutoCraft {
 
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
 		// Server Packets
-		netHandler.registerMessage(PacketNinjaAttr.PacketNinjaAttrHandler.class,
-				PacketNinjaAttr.class, this.packetId++, Side.SERVER);
-		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class,
-				PacketNinjaRun.class, this.packetId++, Side.SERVER);
+		netHandler.registerMessage(PacketNinjaAttr.PacketNinjaAttrHandler.class, PacketNinjaAttr.class,
+				this.packetId++, Side.SERVER);
+		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class, PacketNinjaRun.class, this.packetId++,
+				Side.SERVER);
 		// Client Side Packets
-		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class,
-				PacketNinjaAttrSync.class, this.packetId++, Side.CLIENT);
+		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class, PacketNinjaAttrSync.class,
+				this.packetId++, Side.CLIENT);
 
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();

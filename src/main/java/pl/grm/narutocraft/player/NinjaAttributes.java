@@ -1,25 +1,29 @@
 package pl.grm.narutocraft.player;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
-import net.minecraft.nbt.*;
-import net.minecraftforge.common.util.*;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants;
 
 /**
  * NinjaAtrributes use {@link Attributes} such as strength, dexterity, etc.
  */
 public class NinjaAttributes {
-	private static final String		NBTCompoundName	= "NinjaAttributes";
-	private Map<String, Integer>	attributes;
-	
+
+	private static final String NBTCompoundName = "NinjaAttributes";
+	private Map<String, Integer> attributes;
+
 	public NinjaAttributes() {
 		this.attributes = new HashMap<String, Integer>();
 		for (Attributes att : Attributes.values()) {
 			this.attributes.put(att.getSName(), att.getBaseValue());
 		}
 	}
-	
+
 	public void writoToNBT(NBTTagCompound properties) {
 		NBTTagList tagList = new NBTTagList();
 		Iterator<Entry<String, Integer>> iterator = attributes.entrySet().iterator();
@@ -33,7 +37,7 @@ public class NinjaAttributes {
 		}
 		properties.setTag(NBTCompoundName, tagList);
 	}
-	
+
 	public void readFromNBT(NBTTagCompound properties) {
 		NBTTagList tagList = properties.getTagList(NBTCompoundName, Constants.NBT.TAG_COMPOUND);
 		int amount = tagList.tagCount();
@@ -52,7 +56,7 @@ public class NinjaAttributes {
 			}
 		}
 	}
-	
+
 	// For Networking
 	public String[] getInfo() {
 		String[] info = new String[attributes.size()];
@@ -81,103 +85,103 @@ public class NinjaAttributes {
 	public Map<String, Integer> getAttValues() {
 		return attributes;
 	}
-	
+
 	public int getStrength() {
 		Integer param = attributes.get(Attributes.STRENGTH.getSName());
 		return param;
 	}
-	
+
 	public int getAgility() {
 		Integer param = attributes.get(Attributes.AGILITY.getSName());
 		return param;
 	}
-	
+
 	public int getDexterity() {
 		Integer param = attributes.get(Attributes.DEXTERITY.getSName());
 		return param;
 	}
-	
+
 	public int getResistance() {
 		Integer param = attributes.get(Attributes.RESISTANCE.getSName());
 		return param;
 	}
-	
+
 	// TODO as its setters
 	public int getElementPowerMod() {
 		Integer param = attributes.get(Attributes.STRENGTH.getSName());
 		return param;
 	}
-	
+
 	public int getMaxChakraMod() {
 		Integer param = attributes.get(Attributes.STRENGTH.getSName());
 		return param;
 	}
-	
+
 	public int getChakraRegenMod() {
 		Integer param = attributes.get(Attributes.STRENGTH.getSName());
 		return param;
 	}
-	
+
 	public int getStamina() {
 		Integer param = attributes.get(Attributes.STAMINA.getSName());
 		return param;
 	}
-	
+
 	public int getWillPower() {
 		Integer param = attributes.get(Attributes.WILLPOWER.getSName());
 		return param;
 	}
-	
+
 	public int getLife() {
 		Integer param = attributes.get(Attributes.LIFE.getSName());
 		return param;
 	}
-	
+
 	public int getThrow() {
 		Integer param = attributes.get(Attributes.THROW.getSName());
 		return param;
 	}
-	
+
 	public int getAlertness() {
 		Integer param = attributes.get(Attributes.ALERTNESS.getSName());
 		return param;
 	}
-	
+
 	public int getCharisma() {
 		Integer param = attributes.get(Attributes.CHARISMA.getSName());
 		return param;
 	}
-	
+
 	public int getLuck() {
 		Integer param = attributes.get(Attributes.LUCK.getSName());
 		return param;
 	}
-	
+
 	public void setStrength(int v) {
 		attributes.put(Attributes.STRENGTH.getSName(), v);
 	}
-	
+
 	public void setAgility(int v) {
 		attributes.put(Attributes.AGILITY.getSName(), v);
 	}
-	
+
 	public void setDexterity(int v) {
 		attributes.put(Attributes.DEXTERITY.getSName(), v);
 	}
-	
+
 	public void setResistance(int v) {
 		attributes.put(Attributes.RESISTANCE.getSName(), v);
 	}
-	
+
 	// TODO move to stats?
 	public void setElementPowerMod(int v) {
 		attributes.put(Attributes.STRENGTH.getSName(), v);
 	}
-	
+
 	public void setMaxChakraMod(int v) {
 		attributes.put(Attributes.STRENGTH.getSName(), v);
 	}
-	
+
 	public void setChakraRegenMod(int v) {
 		attributes.put(Attributes.STRENGTH.getSName(), v);
 	}

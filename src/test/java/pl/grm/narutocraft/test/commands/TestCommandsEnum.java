@@ -8,6 +8,7 @@ import org.junit.Test;
 import pl.grm.narutocraft.commands.util.CommandEnum;
 
 public class TestCommandsEnum {
+
 	@Test
 	public void testEnumInstanceCreation() {
 		Exception ec = null;
@@ -31,8 +32,7 @@ public class TestCommandsEnum {
 						if (ec == null) {
 							fail("Create Instance failed");
 						} else {
-							fail("Create Instance failed. Error:"
-									+ ec.getLocalizedMessage());
+							fail("Create Instance failed. Error:" + ec.getLocalizedMessage());
 						}
 					} else if (instance.getCommandName() == null) {
 						fail("Instance created, but something wrong with (" + name + ")");
@@ -41,12 +41,11 @@ public class TestCommandsEnum {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testEnumStatics() {
 		for (CommandEnum comm : CommandEnum.values()) {
-			if (comm.getName() == null || comm.getDeclaringClass() == null)
-				fail("Empty field in declaration?");
+			if (comm.getName() == null || comm.getDeclaringClass() == null) fail("Empty field in declaration?");
 		}
 	}
 }

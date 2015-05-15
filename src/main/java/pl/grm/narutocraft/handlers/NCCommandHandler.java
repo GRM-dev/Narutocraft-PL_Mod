@@ -13,6 +13,7 @@ import pl.grm.narutocraft.commands.util.NCCommandBase;
 import pl.grm.narutocraft.commands.util.NCCommandExecutor;
 
 public class NCCommandHandler {
+
 	private Map<String, NCCommandBase> ncCommandsMap;
 	private NCCommandExecutor executor;
 	private ServerCommandManager sManager;
@@ -44,9 +45,11 @@ public class NCCommandHandler {
 				ICommand instance = null;
 				try {
 					instance = comm.getInstance();
-				} catch (InstantiationException e) {
+				}
+				catch (InstantiationException e) {
 					e.printStackTrace();
-				} catch (IllegalAccessException e) {
+				}
+				catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
 				ncCommandsMap.put(name, (NCCommandBase) instance);
