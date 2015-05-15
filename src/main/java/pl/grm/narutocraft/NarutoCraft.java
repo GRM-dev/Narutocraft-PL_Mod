@@ -40,6 +40,7 @@ import pl.grm.narutocraft.registry.RegWeapons;
  * Main class of Mod
  */
 public class NarutoCraft {
+
 	@SidedProxy(clientSide = References.Client, serverSide = References.Common)
 	/** Proxy */
 	public static ProxyCommon proxy;
@@ -51,11 +52,11 @@ public class NarutoCraft {
 	/** Packet Channel */
 	public static SimpleNetworkWrapper netHandler;
 	/** NarutoCraft Mod Creative Tab */
-	public static CreativeTabs mTabNarutoCraft = new NCMainTab(
-			CreativeTabs.getNextID(), "NarutoCraftMod");
+	public static CreativeTabs mTabNarutoCraft = new NCMainTab(CreativeTabs.getNextID(),
+			"NarutoCraftMod");
 	/** Jutsu Creative Tab */
-	public static CreativeTabs mTabJutsu = new NCJutsuTab(
-			CreativeTabs.getNextID(), "NC Jutsu's");
+	public static CreativeTabs mTabJutsu = new NCJutsuTab(CreativeTabs.getNextID(),
+			"NC Jutsu's");
 	private int packetId = 0;
 
 	/**
@@ -75,9 +76,10 @@ public class NarutoCraft {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		RegEntities.RegEntitiesList();
+		RegItems.regRenderers();
+		RegBlocks.regRenderers();
 		FMLCommonHandler.instance().bus().register(new KeyInputHandler());
-		NetworkRegistry.INSTANCE.registerGuiHandler(this,
-				new ClientGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new ClientGuiHandler());
 		proxy.registerSound();
 	}
 
@@ -100,14 +102,12 @@ public class NarutoCraft {
 
 		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
 		// Server Packets
-		netHandler.registerMessage(
-				PacketNinjaAttr.PacketNinjaAttrHandler.class,
+		netHandler.registerMessage(PacketNinjaAttr.PacketNinjaAttrHandler.class,
 				PacketNinjaAttr.class, this.packetId++, Side.SERVER);
 		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class,
 				PacketNinjaRun.class, this.packetId++, Side.SERVER);
 		// Client Side Packets
-		netHandler.registerMessage(
-				PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class,
+		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class,
 				PacketNinjaAttrSync.class, this.packetId++, Side.CLIENT);
 
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());

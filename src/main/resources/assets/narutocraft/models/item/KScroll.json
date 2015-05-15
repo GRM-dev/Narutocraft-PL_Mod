@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "RoT:items/silverNugget"
+        "layer0": "narutocraft:items/ScrollKaton"
     },
     "display": {
         "thirdperson": {

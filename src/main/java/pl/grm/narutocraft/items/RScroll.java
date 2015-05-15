@@ -1,14 +1,14 @@
 package pl.grm.narutocraft.items;
 
-import net.minecraft.item.*;
-import pl.grm.narutocraft.*;
+import net.minecraft.item.Item;
+import pl.grm.narutocraft.NarutoCraft;
 
 public class RScroll extends Item {
-	
+
 	public RScroll() {
-		this.setUnlocalizedName("RZwoj");
+		this.setUnlocalizedName("RScroll");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}
-	
+
 }
