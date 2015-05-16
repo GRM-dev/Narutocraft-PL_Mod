@@ -7,7 +7,9 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.items.DScroll;
+import pl.grm.narutocraft.items.EScroll;
 import pl.grm.narutocraft.items.FScroll;
+import pl.grm.narutocraft.items.HScroll;
 import pl.grm.narutocraft.items.KScroll;
 import pl.grm.narutocraft.items.NScroll;
 import pl.grm.narutocraft.items.RScroll;
@@ -22,6 +24,8 @@ public class RegItems extends NarutoCraft {
 	public static Item DScroll = new DScroll();
 	public static Item SScroll = new SScroll();
 	public static Item RScroll = new RScroll();
+	public static Item HScroll = new HScroll();
+	public static Item EScroll = new EScroll();
 	public static Item NScroll = new NScroll();
 
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
@@ -55,11 +59,22 @@ public class RegItems extends NarutoCraft {
 		registerItem(DScroll, "DScroll");
 		registerItem(SScroll, "SScroll");
 		registerItem(RScroll, "RScroll");
+		registerItem(HScroll, "HScroll");
+		registerItem(EScroll, "EScroll");
 		registerItem(NScroll, "NScroll");
 		// registerItem(, "");
 	}
 
 	public static void regRenderers() {
 		registerRendererToItem(KScroll, "KScroll");
+		registerRendererToItem(RScroll, "RScroll");
+		registerRendererToItem(DScroll, "DScroll");
+		registerRendererToItem(FScroll, "FScroll");
+		registerRendererToItem(SScroll, "SScroll");
+		registerRendererToItem(HScroll, "HScroll");
+		registerRendererToItem(EScroll, "EScroll");
+		registerRendererToItem(NScroll, "NScroll");
+		
+		
 	}
 }

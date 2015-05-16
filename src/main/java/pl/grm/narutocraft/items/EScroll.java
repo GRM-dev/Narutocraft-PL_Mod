@@ -3,10 +3,10 @@ package pl.grm.narutocraft.items;
 import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
 
-public class NScroll extends Item {
+public class EScroll extends Item {
 
-	public NScroll() {
-		this.setUnlocalizedName("NScroll");
+	public EScroll() {
+		this.setUnlocalizedName("EScroll");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}
