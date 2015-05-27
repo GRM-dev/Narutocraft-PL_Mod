@@ -2,10 +2,10 @@ package pl.grm.narutocraft.items.weapons;
 
 import pl.grm.narutocraft.libs.config.Materials;
 
-public class ZRekawica extends SwordMain {
+public class IronGlove extends SwordMain {
 
-	public ZRekawica() {
+	public IronGlove() {
 		super(Materials.stal);
-		this.setUnlocalizedName("ZelaznaRekawica");
+		this.setUnlocalizedName("IronGlove");
 	}
 }

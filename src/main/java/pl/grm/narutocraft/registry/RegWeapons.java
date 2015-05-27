@@ -1,5 +1,7 @@
 package pl.grm.narutocraft.registry;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import pl.grm.narutocraft.items.weapons.ChioRyuuGatana;
 import pl.grm.narutocraft.items.weapons.KBushido;
@@ -13,11 +15,12 @@ import pl.grm.narutocraft.items.weapons.RKatana;
 import pl.grm.narutocraft.items.weapons.Raitanto;
 import pl.grm.narutocraft.items.weapons.Scalpel;
 import pl.grm.narutocraft.items.weapons.Wakizashi;
-import pl.grm.narutocraft.items.weapons.ZRekawica;
+import pl.grm.narutocraft.items.weapons.IronGlove;
 import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
 import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
 import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
 import pl.grm.narutocraft.items.weapons.projectiles.WKunai;
+import pl.grm.narutocraft.libs.config.References;
 
 public class RegWeapons extends RegItems {
 
@@ -35,7 +38,7 @@ public class RegWeapons extends RegItems {
 	public static Item RKatana = new RKatana().setUnlocalizedName("RKatana");
 	public static Item Wakizashi = new Wakizashi().setUnlocalizedName("Wakizashi");
 	public static Item MSamuraja = new MSamuraja().setUnlocalizedName("MSamuraja");
-	public static Item ZRekawica = new ZRekawica().setUnlocalizedName("ZRekawica");
+	public static Item IronGlove = new IronGlove().setUnlocalizedName("IronGlove");
 	public static Item Nunchaku = new Nunchaku().setUnlocalizedName("Nunchaku");
 	public static Item ChioRyuuGatana = new ChioRyuuGatana().setUnlocalizedName("ChioRyuuGatana");
 	public static Item Scalpel = new Scalpel().setUnlocalizedName("Skalpel");
@@ -54,9 +57,15 @@ public class RegWeapons extends RegItems {
 		registerItem(RKatana, "RyuuKatana");
 		registerItem(Wakizashi, "Wakizashi");
 		registerItem(MSamuraja, "MSamuraja");
-		registerItem(ZRekawica, "ZRekawica");
+		registerItem(IronGlove, "IronGlove");
 		registerItem(Nunchaku, "Nunchaku");
 		registerItem(ChioRyuuGatana, "ChioRyuuGatana");
 		registerItem(Scalpel, "Skalpel");
 	}
+	
+
+	
+
+	
 }
+
