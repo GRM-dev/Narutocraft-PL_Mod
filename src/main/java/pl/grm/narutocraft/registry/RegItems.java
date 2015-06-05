@@ -14,6 +14,9 @@ import pl.grm.narutocraft.items.KScroll;
 import pl.grm.narutocraft.items.NScroll;
 import pl.grm.narutocraft.items.RScroll;
 import pl.grm.narutocraft.items.SScroll;
+import pl.grm.narutocraft.items.Kurosawa;
+import pl.grm.narutocraft.items.Katana;
+import pl.grm.narutocraft.items.ChioRyuuGatana;
 import pl.grm.narutocraft.libs.config.Materials;
 import pl.grm.narutocraft.libs.config.References;
 
@@ -27,6 +30,10 @@ public class RegItems extends NarutoCraft {
 	public static Item HScroll = new HScroll();
 	public static Item EScroll = new EScroll();
 	public static Item NScroll = new NScroll();
+	public static Item Kurosawa = new Kurosawa().setUnlocalizedName("Kurosawa");
+	public static Item Katana = new Katana().setUnlocalizedName("Katana");
+	public static Item ChioRyuuGatana = new ChioRyuuGatana().setUnlocalizedName("ChioRyuuGatana");
+
 
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;
@@ -62,6 +69,11 @@ public class RegItems extends NarutoCraft {
 		registerItem(HScroll, "HScroll");
 		registerItem(EScroll, "EScroll");
 		registerItem(NScroll, "NScroll");
+		registerItem(Kurosawa, "Kurosawa");
+	    registerItem(Katana, "Katana");
+		registerItem(ChioRyuuGatana, "ChioRyuuGatana");
+	
+		
 		// registerItem(, "");
 	}
 
@@ -74,6 +86,10 @@ public class RegItems extends NarutoCraft {
 		registerRendererToItem(HScroll, "HScroll");
 		registerRendererToItem(EScroll, "EScroll");
 		registerRendererToItem(NScroll, "NScroll");
+		registerRendererToItem(Kurosawa, "Kurosawa");
+        registerRendererToItem(Katana, "Katana");
+        registerRendererToItem(ChioRyuuGatana, "ChioRyuuGatana");
+		
 		
 		
 	}
