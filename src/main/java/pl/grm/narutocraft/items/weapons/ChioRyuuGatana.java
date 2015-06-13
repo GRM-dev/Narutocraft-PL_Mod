@@ -1,6 +1,5 @@
-package pl.grm.narutocraft.items;
+package pl.grm.narutocraft.items.weapons;
 
-import pl.grm.narutocraft.items.weapons.SwordMain;
 import pl.grm.narutocraft.libs.config.Materials;
 
 public class ChioRyuuGatana extends SwordMain {

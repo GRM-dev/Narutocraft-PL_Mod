@@ -2,10 +2,10 @@ package pl.grm.narutocraft.items.weapons;
 
 import pl.grm.narutocraft.libs.config.Materials;
 
-public class KaMiecz extends SwordMain {
+public class SamuraiSword extends SwordMain {
 
-	public KaMiecz() {
-		super(Materials.kamien);
+	public SamuraiSword() {
+		super(Materials.stal3);
 
 	}
 }

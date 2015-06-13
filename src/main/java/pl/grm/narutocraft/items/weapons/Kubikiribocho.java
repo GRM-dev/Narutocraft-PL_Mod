@@ -13,9 +13,9 @@ import pl.grm.narutocraft.libs.UtilityNBTHelper;
 import pl.grm.narutocraft.libs.config.Materials;
 import pl.grm.narutocraft.libs.config.References;
 
-public class Kubiki extends SwordMain {
+public class Kubikiribocho extends SwordMain {
 
-	public Kubiki() {
+	public Kubikiribocho() {
 		super(Materials.metalshinobi);
 	}
 

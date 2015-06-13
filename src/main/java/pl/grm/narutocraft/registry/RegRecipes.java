@@ -20,11 +20,11 @@ public class RegRecipes extends NarutoCraft {
 		GameRegistry.addRecipe(new ItemStack(RegWeapons.Nunchaku, 1), "x  ", " y ", "  x", 'x', diamondStack, 'y',
 				stringStack);
 
-		GameRegistry.addRecipe(new ItemStack(RegWeapons.MSamuraja, 1), "x  ", " y ", "  z", 'x', stickStack, 'y',
-				ironingotStack, 'z', diamondStack);
+	//	GameRegistry.addRecipe(new ItemStack(RegWeapons.MSamuraja, 1), "x  ", " y ", "  z", 'x', stickStack, 'y',
+		//		ironingotStack, 'z', diamondStack);
 
-		GameRegistry.addRecipe(new ItemStack(RegWeapons.KBushido, 1), "x  ", " y ", "  y", 'x', ironingotStack, 'y',
-				diamondStack);
+		/*GameRegistry.addRecipe(new ItemStack(RegWeapons.KBushido, 1), "x  ", " y ", "  y", 'x', ironingotStack, 'y',
+				diamondStack);*/
 		GameRegistry.addRecipe(new ItemStack(RegWeapons.Shuriken, 1), " x ", "xyx", " x ", 'x', ironingotStack, 'y',
 				stickStack);
 

@@ -2,9 +2,9 @@ package pl.grm.narutocraft.items.weapons;
 
 import pl.grm.narutocraft.libs.config.Materials;
 
-public class KBushido extends SwordMain {
+public class BushidoKatana extends SwordMain {
 
-	public KBushido() {
+	public BushidoKatana() {
 		super(Materials.tytan2);
 
 	}
