@@ -11,14 +11,14 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pl.grm.narutocraft.registry.RegWeapons;
+import pl.grm.narutocraft.registry.RegItems;
 
 /**
  * Entity Wybuchajacy Kunai
  *
  * @author Admaster
  */
-public class EntityWKunai extends EntityKunai implements IProjectile {
+public class EntityExplodeKunai extends EntityKunai implements IProjectile {
 
 	private int d = -1;
 	private int e = -1;
@@ -31,7 +31,7 @@ public class EntityWKunai extends EntityKunai implements IProjectile {
 	private double damage = 2.0D;
 	private float explevel = 2.5F;
 
-	public EntityWKunai(World par1World) {
+	public EntityExplodeKunai(World par1World) {
 		super(par1World);
 		this.renderDistanceWeight = 10.0D;
 		this.setSize(0.5F, 0.5F);
@@ -49,11 +49,11 @@ public class EntityWKunai extends EntityKunai implements IProjectile {
 	 * @param par6
 	 *            z
 	 */
-	public EntityWKunai(World par1World, double par2, double par4, double par6) {
+	public EntityExplodeKunai(World par1World, double par2, double par4, double par6) {
 		super(par1World, par2, par4, par6);
 	}
 
-	public EntityWKunai(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase,
+	public EntityExplodeKunai(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase,
 			float par4, float par5) {
 		super(par1World);
 		this.renderDistanceWeight = 10.0D;
@@ -80,7 +80,7 @@ public class EntityWKunai extends EntityKunai implements IProjectile {
 		}
 	}
 
-	public EntityWKunai(World par1World, EntityLivingBase par2EntityLivingBase, float par3) {
+	public EntityExplodeKunai(World par1World, EntityLivingBase par2EntityLivingBase, float par3) {
 		super(par1World);
 		this.renderDistanceWeight = 10.0D;
 		this.shootingEntity = par2EntityLivingBase;
@@ -117,7 +117,7 @@ public class EntityWKunai extends EntityKunai implements IProjectile {
 					|| ((this.canBePickedUp == 2) && par1EntityPlayer.capabilities.isCreativeMode);
 
 			if ((this.canBePickedUp == 1)
-					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegWeapons.WKunai, 1))) {
+					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegItems.ExplodeKunai, 1))) {
 				flag = false;
 			}
 
@@ -138,7 +138,7 @@ public class EntityWKunai extends EntityKunai implements IProjectile {
 		this.ticksInGround = par1NBTTagCompound.getShort("life");
 		this.field_145790_g = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
 		this.inData = par1NBTTagCompound.getByte("inData") & 255;
-		EntityWKunai.kunaiShake = par1NBTTagCompound.getByte("shake") & 255;
+		EntityExplodeKunai.kunaiShake = par1NBTTagCompound.getByte("shake") & 255;
 		this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
 
 		if (par1NBTTagCompound.hasKey("damage", 99)) {
@@ -206,7 +206,7 @@ public class EntityWKunai extends EntityKunai implements IProjectile {
 		par1NBTTagCompound.setShort("life", (short) this.ticksInGround);
 		par1NBTTagCompound.setByte("inTile", (byte) Block.getIdFromBlock(this.field_145790_g));
 		par1NBTTagCompound.setByte("inData", (byte) this.inData);
-		par1NBTTagCompound.setByte("shake", (byte) EntityWKunai.kunaiShake);
+		par1NBTTagCompound.setByte("shake", (byte) EntityExplodeKunai.kunaiShake);
 		par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
 		par1NBTTagCompound.setByte("pickup", (byte) this.canBePickedUp);
 		par1NBTTagCompound.setDouble("damage", this.damage);

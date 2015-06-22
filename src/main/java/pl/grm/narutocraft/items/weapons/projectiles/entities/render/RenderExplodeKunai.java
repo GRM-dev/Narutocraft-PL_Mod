@@ -16,9 +16,9 @@ import pl.grm.narutocraft.libs.config.References;
 /**
  * @author Admaster
  */
-public class RenderWKunai extends Render {
+public class RenderExplodeKunai extends Render {
 
-	public RenderWKunai(RenderManager p_i46179_1_) {
+	public RenderExplodeKunai(RenderManager p_i46179_1_) {
 		super(p_i46179_1_);
 		// TODO Auto-generated constructor stub
 	}

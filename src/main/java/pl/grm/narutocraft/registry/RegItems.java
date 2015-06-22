@@ -27,6 +27,7 @@ import pl.grm.narutocraft.items.weapons.KusariFuuboo;
 import pl.grm.narutocraft.items.weapons.Kusarigama;
 import pl.grm.narutocraft.items.weapons.Kusarigamawithpiston;
 import pl.grm.narutocraft.items.weapons.LightBomb;
+import pl.grm.narutocraft.items.weapons.Mine;
 import pl.grm.narutocraft.items.weapons.Nunchaku;
 import pl.grm.narutocraft.items.weapons.Raitanto;
 import pl.grm.narutocraft.items.weapons.RyuuKatana;
@@ -38,6 +39,17 @@ import pl.grm.narutocraft.items.weapons.StoneSword;
 import pl.grm.narutocraft.items.weapons.TaishouSword;
 import pl.grm.narutocraft.items.weapons.Tanto;
 import pl.grm.narutocraft.items.weapons.Wakizashi;
+import pl.grm.narutocraft.items.weapons.WarKunai;
+import pl.grm.narutocraft.items.weapons.Weights;
+import pl.grm.narutocraft.items.weapons.projectiles.BigShuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.DoubleKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.ExplodeKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.FuumaShuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.KumoShuriken;
+import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
+import pl.grm.narutocraft.items.weapons.projectiles.PoisonedSenbon;
+import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
+import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
 import pl.grm.narutocraft.libs.config.Materials;
 import pl.grm.narutocraft.libs.config.References;
 
@@ -75,8 +87,19 @@ public class RegItems extends NarutoCraft {
     public static Item DoubleKusarigama = new DoubleKusarigama().setUnlocalizedName("DoubleKurasigama");
     public static Item ShellRockMace = new ShellRockMace().setUnlocalizedName("ShellRockMace");
     public static Item Kusarigamawithpiston = new Kusarigamawithpiston().setUnlocalizedName("Kusarigamawithpiston");
-
-
+    public static Item Kunai = new Kunai().setUnlocalizedName("Kunai");
+    public static Item Shuriken = new Shuriken().setUnlocalizedName("Shuriken");
+    public static Item Senbon = new Senbon().setUnlocalizedName("Senbon");
+    public static Item ExplodeKunai = new ExplodeKunai().setUnlocalizedName("ExplodeKunai");
+    public static Item PoisonedSenbon = new PoisonedSenbon().setUnlocalizedName("PoisonedSenbon");
+    public static Item BigShuriken = new BigShuriken().setUnlocalizedName("BigShuriken");
+    public static Item DoubleKunai = new DoubleKunai().setUnlocalizedName("DoubleKunai");
+    public static Item KumoShuriken = new KumoShuriken().setUnlocalizedName("KumoShuriken");
+    public static Item FuumaShuriken = new FuumaShuriken().setUnlocalizedName("FuumaShuriken");
+    public static Item Mine = new Mine().setUnlocalizedName("Mine");
+    public static Item Weights = new Weights().setUnlocalizedName("Weights");
+    public static Item WarKunai = new WarKunai().setUnlocalizedName("WarKunai");
+    
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;
 	public static ArmorMaterial Kiri = Materials.armorKIRI;
@@ -135,6 +158,18 @@ public class RegItems extends NarutoCraft {
 	    registerItem(DoubleKusarigama, "DoubleKusarigama");
 	    registerItem(ShellRockMace, "ShellRockMace");
 	    registerItem(Kusarigamawithpiston, "Kusarigamawithpiston");
+	    registerItem(Kunai , "Kunai");
+	    registerItem(Shuriken, "Shuriken");
+	    registerItem(Senbon, "Senbon");
+	    registerItem(ExplodeKunai, "ExplodeKunai");
+	    registerItem(PoisonedSenbon, "PoisonedSenbon");
+	    registerItem(DoubleKunai, "DoubleKunai");
+	    registerItem(KumoShuriken, "KumoShuriken");
+	    registerItem(FuumaShuriken, "FuumaShuriken");
+	    registerItem(BigShuriken, "BigShuriken");
+	    registerItem(Mine, "Mine");
+	    registerItem(WarKunai, "WarKunai");
+	    registerItem(Weights, "Weights");
 	    
 		
 		// registerItem(, "");
@@ -173,6 +208,18 @@ public class RegItems extends NarutoCraft {
         registerRendererToItem(DoubleKusarigama, "DoubleKusarigama");
         registerRendererToItem(ShellRockMace, "ShellRockMace");
         registerRendererToItem(Kusarigamawithpiston, "Kusarigamawithpiston");
+        registerRendererToItem(Kunai, "Kunai");
+        registerRendererToItem(Shuriken, "Shuriken");
+        registerRendererToItem(ExplodeKunai, "ExplodeKunai");
+        registerRendererToItem(Senbon, "Senbon");
+        registerRendererToItem(BigShuriken, "BigShuriken");
+        registerRendererToItem(FuumaShuriken, "FuumaShuriken");
+        registerRendererToItem(KumoShuriken, "KumoShuriken");
+        registerRendererToItem(DoubleKunai, "DoubleKunai");
+        registerRendererToItem(PoisonedSenbon, "PoisonedSenbon");
+        registerRendererToItem(Mine, "Mine");
+        registerRendererToItem(Weights, "Weights");
+        registerRendererToItem(WarKunai, "WarKunai");
 		
 		
 		

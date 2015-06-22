@@ -10,11 +10,11 @@ import pl.grm.narutocraft.handlers.SoundHandler;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityExplodeKunai;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderKunai;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderSenbon;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderWKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.render.RenderExplodeKunai;
 import pl.grm.narutocraft.libs.buffs.BuffList;
 import pl.grm.narutocraft.libs.config.KeyBindings;
 import pl.grm.narutocraft.mobs.bijuu.EntityKyuubi;
@@ -56,7 +56,7 @@ public class ProxyClient extends ProxyCommon {
 		// 0.7f));
 		// Projectiles:
 		RenderingRegistry.registerEntityRenderingHandler(EntityKunai.class, new RenderKunai());
-		RenderingRegistry.registerEntityRenderingHandler(EntityWKunai.class, new RenderWKunai(Minecraft.getMinecraft()
+		RenderingRegistry.registerEntityRenderingHandler(EntityExplodeKunai.class, new RenderExplodeKunai(Minecraft.getMinecraft()
 				.getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySenbon.class, new RenderSenbon(Minecraft.getMinecraft()
 				.getRenderManager()));

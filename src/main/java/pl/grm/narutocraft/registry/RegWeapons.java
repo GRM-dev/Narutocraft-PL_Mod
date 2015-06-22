@@ -4,30 +4,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import pl.grm.narutocraft.items.weapons.ChioRyuuGatana;
 import pl.grm.narutocraft.items.weapons.IronGlove;
-import pl.grm.narutocraft.items.weapons.Katana;
-import pl.grm.narutocraft.items.weapons.Kurosawa;
-import pl.grm.narutocraft.items.weapons.Nunchaku;
-import pl.grm.narutocraft.items.weapons.RyuuKatana;
-import pl.grm.narutocraft.items.weapons.Raitanto;
-import pl.grm.narutocraft.items.weapons.SamuraiSword;
-import pl.grm.narutocraft.items.weapons.Scalpel;
-import pl.grm.narutocraft.items.weapons.StoneSword;
-import pl.grm.narutocraft.items.weapons.Wakizashi;
-import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
-import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
-import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.WKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.*;
 import pl.grm.narutocraft.libs.config.References;
 
 public class RegWeapons extends RegItems {
 
-	public static Item Kunai = new Kunai().setUnlocalizedName("Kunai").setFull3D();
+	//public static Item Kunai = new Kunai().setUnlocalizedName("Kunai").setFull3D();
 
-	public static Item WKunai = new WKunai().setUnlocalizedName("WybuchowyKunai").setFull3D();
-	public static Item Shuriken = new Shuriken().setUnlocalizedName("Shuriken").setFull3D();
-	public static Item Senbon = new Senbon().setUnlocalizedName("Senbon");
+	//public static Item WKunai = new WKunai().setUnlocalizedName("WybuchowyKunai").setFull3D();
+	//public static Item Shuriken = new Shuriken().setUnlocalizedName("Shuriken").setFull3D();
+	//public static Item Senbon = new Senbon().setUnlocalizedName("Senbon");
 	//public static Item Raitanto = new Raitanto().setUnlocalizedName("Raitanto");
 	//public static Item KaMiecz = new StoneSword().setUnlocalizedName("KamienyMiecz");
 	//public static Item Katana = new Katana().setUnlocalizedName("Katana");
@@ -43,10 +30,10 @@ public class RegWeapons extends RegItems {
 	//public static Item Scalpel = new Scalpel().setUnlocalizedName("Skalpel");
 
 	public static void regWeaponsList() {
-		registerItem(Kunai, "Kunai");
-		registerItem(WKunai, "WybuchowyKunai");
-		registerItem(Shuriken, "Shuriken");
-		registerItem(Senbon, "Senbon");
+		//registerItem(Kunai, "Kunai");
+		//registerItem(WKunai, "WybuchowyKunai");
+		//registerItem(Shuriken, "Shuriken");
+		//registerItem(Senbon, "Senbon");
 		//registerItem(Raitanto, "Raitanto");
 		//registerItem(KaMiecz, "KamiennyMiecz");
 		//registerItem(Katana, "Katana");
