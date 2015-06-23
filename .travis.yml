@@ -1,6 +1,5 @@
 language: java
 jdk:
-  - openjdk8
   - oraclejdk8
 
 before_install:
@@ -10,22 +9,17 @@ before_install:
 
 install: ./gradlew setupCIWorkspace -S
 script: ./gradlew build -S
-    
-branches:
-  only:
-    - master
 
 env:
   global:
-   - secure: "eTcieyght5QLPxURZKo/jj6EXbsYfJ13r2znrao9yvryIyg3tQ97+hRNVmC5J2OIzF6dlQhgWX29QpG67sRLabVOOWHRVfz/UMQHAWesHwaWAnJK0c9fJNDAlNiGSOznzXv+xuNs0d9uBih7FBk/5MrAKvbIqFi951rbtijrxyM="
+   - secure: "g7OKjprx4KjiWuVu4zONYGFQYx0By0N2w6EjWP6hTzVnxV+UoRnc7JagRJkWkCVUcAilJ7LWIMq1N2KQNFDDVoGZkTwAsDQkWYw6g+nWYciDh5RfrjcmLRnGLtWVnXQEh22r2/Vt10p/1ww9k1He4d0CdnEqsuWGsfXjDw3YxNU="
 
 addons:
-   coverity_scan:
-     project:
+  coverity_scan:
+    project:
       name: "GRM-Group/Narutocraft-PL_Mod"
       description: "Build submitted via Travis CI"
-      notification_email: mizyn24@gmail.com
-      build_command_prepend: "mvn clean"
-      build_command:   "mvn -DskipTests=true compile"
-      branch_pattern: coverity_scan
-
+    notification_email: narutocraft@gmail.com
+    build_command_prepend: "./gradlew setupCIWorkspace -S"
+    build_command:   "./gradlew build -S"
+    branch_pattern: coverity_scan

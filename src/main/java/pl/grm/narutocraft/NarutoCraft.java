@@ -2,38 +2,19 @@ package pl.grm.narutocraft;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
-import pl.grm.narutocraft.creativetabs.NCJutsuTab;
-import pl.grm.narutocraft.creativetabs.NCMainTab;
-import pl.grm.narutocraft.handlers.ClientGuiHandler;
-import pl.grm.narutocraft.handlers.JutsuEventsHandler;
-import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.handlers.KeyInputHandler;
-import pl.grm.narutocraft.handlers.NCEventHandler;
-import pl.grm.narutocraft.handlers.NCFMLEventHandler;
+import pl.grm.narutocraft.creativetabs.*;
+import pl.grm.narutocraft.handlers.*;
 import pl.grm.narutocraft.libs.buffs.BuffList;
-import pl.grm.narutocraft.libs.config.ConfigurationHandler;
-import pl.grm.narutocraft.libs.config.References;
-import pl.grm.narutocraft.libs.network.PacketNinjaAttr;
-import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
-import pl.grm.narutocraft.libs.network.PacketNinjaRun;
-import pl.grm.narutocraft.registry.RegArmor;
-import pl.grm.narutocraft.registry.RegBlocks;
-import pl.grm.narutocraft.registry.RegEntities;
-import pl.grm.narutocraft.registry.RegItems;
-import pl.grm.narutocraft.registry.RegMobs;
-import pl.grm.narutocraft.registry.RegRecipes;
-import pl.grm.narutocraft.registry.RegWeapons;
+import pl.grm.narutocraft.libs.config.*;
+import pl.grm.narutocraft.libs.network.*;
+import pl.grm.narutocraft.registry.*;
 
 @Mod(modid = References.MODID, version = References.VERSION, name = References.NAME)
 /**
@@ -70,6 +51,26 @@ public class NarutoCraft {
 		JutsuManager.regJutsusList();
 	}
 
+	/** preInit event */
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		BuffList.Init();
+		BuffList.Instantiate();
+	
+		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
+		// Server Packets
+		netHandler.registerMessage(PacketNinjaAttr.PacketNinjaAttrHandler.class, PacketNinjaAttr.class,
+				this.packetId++, Side.SERVER);
+		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class, PacketNinjaRun.class, this.packetId++,
+				Side.SERVER);
+		// Client Side Packets
+		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class, PacketNinjaAttrSync.class,
+				this.packetId++, Side.CLIENT);
+	
+		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
+		config.readConfig();
+	}
+
 	/** Init event */
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
@@ -90,25 +91,5 @@ public class NarutoCraft {
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();
 		proxy.registerCommands();
-	}
-
-	/** preInit event */
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		BuffList.Init();
-		BuffList.Instantiate();
-
-		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
-		// Server Packets
-		netHandler.registerMessage(PacketNinjaAttr.PacketNinjaAttrHandler.class, PacketNinjaAttr.class,
-				this.packetId++, Side.SERVER);
-		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class, PacketNinjaRun.class, this.packetId++,
-				Side.SERVER);
-		// Client Side Packets
-		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class, PacketNinjaAttrSync.class,
-				this.packetId++, Side.CLIENT);
-
-		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
-		config.readConfig();
 	}
 }
