@@ -19,21 +19,31 @@ import pl.grm.narutocraft.items.weapons.BigKunai;
 import pl.grm.narutocraft.items.weapons.BushidoKatana;
 import pl.grm.narutocraft.items.weapons.ChioRyuuGatana;
 import pl.grm.narutocraft.items.weapons.DoubleKusarigama;
+import pl.grm.narutocraft.items.weapons.Hiramekarei;
+import pl.grm.narutocraft.items.weapons.KabutowariAxe;
+import pl.grm.narutocraft.items.weapons.KabutowariHammer;
 import pl.grm.narutocraft.items.weapons.Kama;
 import pl.grm.narutocraft.items.weapons.Katana;
+import pl.grm.narutocraft.items.weapons.Kiba;
 import pl.grm.narutocraft.items.weapons.Kubikiribocho;
 import pl.grm.narutocraft.items.weapons.Kurosawa;
+import pl.grm.narutocraft.items.weapons.Kusanagi;
+import pl.grm.narutocraft.items.weapons.KusanagiOrochimaru;
 import pl.grm.narutocraft.items.weapons.KusariFuuboo;
 import pl.grm.narutocraft.items.weapons.Kusarigama;
 import pl.grm.narutocraft.items.weapons.Kusarigamawithpiston;
 import pl.grm.narutocraft.items.weapons.LightBomb;
+import pl.grm.narutocraft.items.weapons.LullingBomb;
 import pl.grm.narutocraft.items.weapons.Mine;
+import pl.grm.narutocraft.items.weapons.Nuibari;
 import pl.grm.narutocraft.items.weapons.Nunchaku;
 import pl.grm.narutocraft.items.weapons.Raitanto;
 import pl.grm.narutocraft.items.weapons.RyuuKatana;
+import pl.grm.narutocraft.items.weapons.Samehada;
 import pl.grm.narutocraft.items.weapons.SamuraiSword;
 import pl.grm.narutocraft.items.weapons.Scalpel;
 import pl.grm.narutocraft.items.weapons.ShellRockMace;
+import pl.grm.narutocraft.items.weapons.Shibuki;
 import pl.grm.narutocraft.items.weapons.SmokeBomb;
 import pl.grm.narutocraft.items.weapons.StoneSword;
 import pl.grm.narutocraft.items.weapons.TaishouSword;
@@ -99,6 +109,16 @@ public class RegItems extends NarutoCraft {
     public static Item Mine = new Mine().setUnlocalizedName("Mine");
     public static Item Weights = new Weights().setUnlocalizedName("Weights");
     public static Item WarKunai = new WarKunai().setUnlocalizedName("WarKunai");
+    public static Item LullingBomb = new LullingBomb().setUnlocalizedName("LullingBomb");
+    public static Item Hiramekarei = new Hiramekarei().setUnlocalizedName("Hiramekarei");
+    public static Item KabutowariHammer =  new KabutowariHammer().setUnlocalizedName("KabutowariHammer");
+    public static Item KabutowariAxe = new KabutowariAxe().setUnlocalizedName("KabutowariAxe");
+    public static Item Kiba = new Kiba().setUnlocalizedName("Kiba");
+    public static Item KusanagiOrochimaru = new KusanagiOrochimaru().setUnlocalizedName("KusanagiOrochimaru");
+    public static Item Kusanagi = new Kusanagi().setUnlocalizedName("Kusanagi");
+    public static Item Nuibari = new Nuibari().setUnlocalizedName("Nuibari");
+    public static Item Samehada = new Samehada().setUnlocalizedName("Samehada");
+    public static Item Shibuki = new Shibuki().setUnlocalizedName("Shibuki");
     
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;
@@ -170,6 +190,16 @@ public class RegItems extends NarutoCraft {
 	    registerItem(Mine, "Mine");
 	    registerItem(WarKunai, "WarKunai");
 	    registerItem(Weights, "Weights");
+	    registerItem(Shibuki, "Shibuki");
+	    registerItem(Samehada, "Samehada");
+	    registerItem(Nuibari, "Nuibari");
+	    registerItem(Kusanagi, "Kusanagi");
+	    registerItem(KusanagiOrochimaru, "KusanagiOrochimaru");
+	    registerItem(Kiba, "Kiba");
+	    registerItem(KabutowariAxe, "KabutowariAxe");
+	    registerItem(KabutowariHammer, "KabutowariHammer");
+	    registerItem(Hiramekarei, "Hiramekarei");
+	    registerItem(LullingBomb, "LullingBomb");
 	    
 		
 		// registerItem(, "");
@@ -220,7 +250,16 @@ public class RegItems extends NarutoCraft {
         registerRendererToItem(Mine, "Mine");
         registerRendererToItem(Weights, "Weights");
         registerRendererToItem(WarKunai, "WarKunai");
-		
+		registerRendererToItem(Shibuki, "Shibuki");
+		registerRendererToItem(Samehada, "Samehada");
+		registerRendererToItem(Nuibari, "Nuibari");
+		registerRendererToItem(Kusanagi, "Kusanagi");
+		registerRendererToItem(KusanagiOrochimaru, "KusanagiOrochimaru");
+		registerRendererToItem(Kiba, "Kiba");
+		registerRendererToItem(KabutowariAxe, "KabutowariAxe");
+		registerRendererToItem(KabutowariHammer, "KabutowariHammer");
+		registerRendererToItem(Hiramekarei, "Hiramekarei");
+		registerRendererToItem(LullingBomb, "LullingBomb");
 		
 		
 	}
