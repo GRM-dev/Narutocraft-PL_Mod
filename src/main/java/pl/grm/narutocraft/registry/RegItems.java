@@ -25,6 +25,7 @@ import pl.grm.narutocraft.items.weapons.KabutowariHammer;
 import pl.grm.narutocraft.items.weapons.Kama;
 import pl.grm.narutocraft.items.weapons.Katana;
 import pl.grm.narutocraft.items.weapons.Kiba;
+import pl.grm.narutocraft.items.weapons.Knuckleduster;
 import pl.grm.narutocraft.items.weapons.Kubikiribocho;
 import pl.grm.narutocraft.items.weapons.Kurosawa;
 import pl.grm.narutocraft.items.weapons.Kusanagi;
@@ -34,6 +35,7 @@ import pl.grm.narutocraft.items.weapons.Kusarigama;
 import pl.grm.narutocraft.items.weapons.Kusarigamawithpiston;
 import pl.grm.narutocraft.items.weapons.LightBomb;
 import pl.grm.narutocraft.items.weapons.LullingBomb;
+import pl.grm.narutocraft.items.weapons.Machete;
 import pl.grm.narutocraft.items.weapons.Mine;
 import pl.grm.narutocraft.items.weapons.Nuibari;
 import pl.grm.narutocraft.items.weapons.Nunchaku;
@@ -48,6 +50,7 @@ import pl.grm.narutocraft.items.weapons.SmokeBomb;
 import pl.grm.narutocraft.items.weapons.StoneSword;
 import pl.grm.narutocraft.items.weapons.TaishouSword;
 import pl.grm.narutocraft.items.weapons.Tanto;
+import pl.grm.narutocraft.items.weapons.ThreeProngedKnife;
 import pl.grm.narutocraft.items.weapons.Wakizashi;
 import pl.grm.narutocraft.items.weapons.WarKunai;
 import pl.grm.narutocraft.items.weapons.Weights;
@@ -119,6 +122,10 @@ public class RegItems extends NarutoCraft {
     public static Item Nuibari = new Nuibari().setUnlocalizedName("Nuibari");
     public static Item Samehada = new Samehada().setUnlocalizedName("Samehada");
     public static Item Shibuki = new Shibuki().setUnlocalizedName("Shibuki");
+    public static Item Machete = new Machete().setUnlocalizedName("Machete");
+    public static Item Knuckleduster = new Knuckleduster().setUnlocalizedName("Knuckleduster");
+    public static Item ThreeProngedKnife = new ThreeProngedKnife().setUnlocalizedName("ThreeProngedKnife");
+    
     
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
 	public static ArmorMaterial Anbu = Materials.armorANBU;
@@ -200,6 +207,9 @@ public class RegItems extends NarutoCraft {
 	    registerItem(KabutowariHammer, "KabutowariHammer");
 	    registerItem(Hiramekarei, "Hiramekarei");
 	    registerItem(LullingBomb, "LullingBomb");
+	    registerItem(Machete, "Machete");
+	    registerItem(Knuckleduster, "Knuckleduster");
+	    registerItem(ThreeProngedKnife, "ThreeProngedKnife");
 	    
 		
 		// registerItem(, "");
@@ -260,7 +270,9 @@ public class RegItems extends NarutoCraft {
 		registerRendererToItem(KabutowariHammer, "KabutowariHammer");
 		registerRendererToItem(Hiramekarei, "Hiramekarei");
 		registerRendererToItem(LullingBomb, "LullingBomb");
-		
+		registerRendererToItem(Machete, "Machete");
+		registerRendererToItem(Knuckleduster, "Knuckleduster");
+		registerRendererToItem(ThreeProngedKnife, "ThreeProngedKnife");
 		
 	}
 }
