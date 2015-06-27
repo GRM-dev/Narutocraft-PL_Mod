@@ -15,11 +15,19 @@ import pl.grm.narutocraft.items.NScroll;
 import pl.grm.narutocraft.items.RScroll;
 import pl.grm.narutocraft.items.Rin;
 import pl.grm.narutocraft.items.SScroll;
+import pl.grm.narutocraft.items.armor.HelmetAnbu;
 import pl.grm.narutocraft.items.weapons.BigKunai;
+import pl.grm.narutocraft.items.weapons.BigScroll;
+import pl.grm.narutocraft.items.weapons.Bijuudama;
 import pl.grm.narutocraft.items.weapons.BushidoKatana;
 import pl.grm.narutocraft.items.weapons.ChioRyuuGatana;
 import pl.grm.narutocraft.items.weapons.DoubleKusarigama;
+import pl.grm.narutocraft.items.weapons.ExplosiveNote;
+import pl.grm.narutocraft.items.weapons.FoodMilitaryPill;
 import pl.grm.narutocraft.items.weapons.Hiramekarei;
+import pl.grm.narutocraft.items.weapons.HyuugaSalve;
+import pl.grm.narutocraft.items.weapons.IchirakuRamen;
+import pl.grm.narutocraft.items.weapons.IronGlove;
 import pl.grm.narutocraft.items.weapons.KabutowariAxe;
 import pl.grm.narutocraft.items.weapons.KabutowariHammer;
 import pl.grm.narutocraft.items.weapons.Kama;
@@ -36,10 +44,18 @@ import pl.grm.narutocraft.items.weapons.Kusarigamawithpiston;
 import pl.grm.narutocraft.items.weapons.LightBomb;
 import pl.grm.narutocraft.items.weapons.LullingBomb;
 import pl.grm.narutocraft.items.weapons.Machete;
+import pl.grm.narutocraft.items.weapons.MetalCable;
 import pl.grm.narutocraft.items.weapons.Mine;
+import pl.grm.narutocraft.items.weapons.NarutoMaki;
 import pl.grm.narutocraft.items.weapons.Nuibari;
 import pl.grm.narutocraft.items.weapons.Nunchaku;
+import pl.grm.narutocraft.items.weapons.Pasta;
+import pl.grm.narutocraft.items.weapons.PillWithCoagulatedBlood;
 import pl.grm.narutocraft.items.weapons.Raitanto;
+import pl.grm.narutocraft.items.weapons.Ramen;
+import pl.grm.narutocraft.items.weapons.RikudouStaff;
+import pl.grm.narutocraft.items.weapons.Ringtones;
+import pl.grm.narutocraft.items.weapons.Ryo;
 import pl.grm.narutocraft.items.weapons.RyuuKatana;
 import pl.grm.narutocraft.items.weapons.Samehada;
 import pl.grm.narutocraft.items.weapons.SamuraiSword;
@@ -125,6 +141,23 @@ public class RegItems extends NarutoCraft {
     public static Item Machete = new Machete().setUnlocalizedName("Machete");
     public static Item Knuckleduster = new Knuckleduster().setUnlocalizedName("Knuckleduster");
     public static Item ThreeProngedKnife = new ThreeProngedKnife().setUnlocalizedName("ThreeProngedKnife");
+    public static Item HelmetAnbu = new HelmetAnbu().setUnlocalizedName("HelmetAnbu");
+    public static Item ExplosiveNote = new ExplosiveNote().setUnlocalizedName("ExplosiveNote");
+    public static Item Bijuudama = new Bijuudama().setUnlocalizedName("Bijuudama");
+    public static Item RikudouStaff =  new RikudouStaff().setUnlocalizedName("RikudouStaff");
+    public static Item Ryo = new Ryo().setUnlocalizedName("Ryo");
+    public static Item MetalCable = new MetalCable().setUnlocalizedName("MetalCable");
+    public static Item PillWithCoagulatedBlood = new PillWithCoagulatedBlood().setUnlocalizedName("PillwithCoagulatedBlood");
+    public static Item FoodMilitaryPill = new FoodMilitaryPill().setUnlocalizedName("FoodMilitaryPill");
+    public static Item Ringtones = new Ringtones().setUnlocalizedName("Ringtones");
+    public static Item HyuugaSalve = new HyuugaSalve().setUnlocalizedName("HyuugaSalve");
+    public static Item IronGlove = new IronGlove().setUnlocalizedName("IronGlove");
+    public static Item BigScroll = new BigScroll().setUnlocalizedName("BigScroll");
+    public static Item Ramen = new Ramen().setUnlocalizedName("Ramen");
+    public static Item IchirakuRamen = new IchirakuRamen().setUnlocalizedName("IchirakuRamen");
+    public static Item Pasta = new Pasta().setUnlocalizedName("Pasta");
+    public static Item NarutoMaki = new NarutoMaki().setUnlocalizedName("NarutoMaki");
+    
     
     
 	public static ArmorMaterial Bushido = Materials.armorBUSHIDO;
@@ -210,6 +243,22 @@ public class RegItems extends NarutoCraft {
 	    registerItem(Machete, "Machete");
 	    registerItem(Knuckleduster, "Knuckleduster");
 	    registerItem(ThreeProngedKnife, "ThreeProngedKnife");
+	    registerItem(HelmetAnbu, "HelmetAnbu");
+	    registerItem(ExplosiveNote, "ExplosiveNote");
+	    registerItem(Bijuudama, "Bijuudama");
+	    registerItem(RikudouStaff, "RikudouStaff");
+	    registerItem(Ryo, "Ryo");
+	    registerItem(MetalCable, "MetalCable");
+	    registerItem(PillWithCoagulatedBlood, "PillWithCoagulatedBlood");
+	    registerItem(FoodMilitaryPill, "FoodMilitaryPill");
+	    registerItem(Ringtones, "Ringtones");
+	    registerItem(HyuugaSalve, "HyuugaSalve");
+	    registerItem(IronGlove, "IronGlove");
+	    registerItem(BigScroll, "BigScroll");
+	    registerItem(Ramen, "Ramen");
+	    registerItem(IchirakuRamen, "IchirakuRamen");
+	    registerItem(Pasta, "Pasta");
+	    registerItem(NarutoMaki, "NarutoMaki");
 	    
 		
 		// registerItem(, "");
@@ -273,6 +322,22 @@ public class RegItems extends NarutoCraft {
 		registerRendererToItem(Machete, "Machete");
 		registerRendererToItem(Knuckleduster, "Knuckleduster");
 		registerRendererToItem(ThreeProngedKnife, "ThreeProngedKnife");
+		registerRendererToItem(HelmetAnbu, "HelmetAnbu");
+		registerRendererToItem(ExplosiveNote, "ExplosiveNote");
+	    registerRendererToItem(Bijuudama, "Bijuudama");
+	    registerRendererToItem(RikudouStaff, "RikudouStaff");
+	    registerRendererToItem(Ryo, "Ryo");
+	    registerRendererToItem(MetalCable, "MetalCable");
+	    registerRendererToItem(PillWithCoagulatedBlood, "PillWithCoagulatedBlood");
+	    registerRendererToItem(FoodMilitaryPill, "FoodMilitaryPill");
+	    registerRendererToItem(Ringtones, "Ringtones");
+	    registerRendererToItem(HyuugaSalve, "HyuugaSalve");
+	    registerRendererToItem(IronGlove, "IronGlove");
+	    registerRendererToItem(BigScroll, "BigScroll");
+	    registerRendererToItem(Ramen, "Ramen");
+	    registerRendererToItem(IchirakuRamen, "IchirakuRamen");
+	    registerRendererToItem(Pasta, "Pasta");
+	    registerRendererToItem(NarutoMaki, "NarutoMaki");
 		
 	}
 }

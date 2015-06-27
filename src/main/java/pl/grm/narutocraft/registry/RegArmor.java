@@ -14,8 +14,8 @@ public class RegArmor extends RegItems {
 			.setUnlocalizedName("legginsBushido");
 	public static final ItemArmor bootsBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 3, "Test", "BushidoArmor"))
 			.setUnlocalizedName("bootsBushido");
-	public static final ItemArmor helmetAnbu1 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0, "AnbuArmor"))
-			.setUnlocalizedName("helmetAnbu1");
+	//public static final ItemArmor helmetAnbu = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0, "AnbuArmor"))
+		//	.setUnlocalizedName("helmetAnbu");
 	public static final ItemArmor helmetAnbu2 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0, "Maska ANBU_1"))
 			.setUnlocalizedName("HelmetAnbu2");
 	public static final ItemArmor helmetAnbu3 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0))
@@ -100,7 +100,7 @@ public class RegArmor extends RegItems {
 		registerItem(plateBushido, "PlateBushido");
 		registerItem(legsBushido, "LegsBushido");
 		registerItem(bootsBushido, "BootsBushido");
-		registerItem(helmetAnbu1, "HelmetAnbu");
+		//registerItem(helmetAnbu1, "HelmetAnbu");
 		registerItem(helmetAnbu2, "HelmetAnbu2");
 		registerItem(helmetAnbu3, "HelmetAnbu3");
 		registerItem(helmetAnbu4, "HelmetAnbu4");

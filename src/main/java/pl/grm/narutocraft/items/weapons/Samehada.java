@@ -6,5 +6,6 @@ public class Samehada extends SwordMain{
 public Samehada()
 {
 	super(Materials.stal);
+	this.setUnlocalizedName("Samehada");
 }
 }
