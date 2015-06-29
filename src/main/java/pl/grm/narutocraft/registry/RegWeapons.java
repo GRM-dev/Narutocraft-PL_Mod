@@ -24,7 +24,7 @@ public class RegWeapons extends RegItems {
 	//public static Item RKatana = new RKatana().setUnlocalizedName("RKatana");
 	//public static Item Wakizashi = new Wakizashi().setUnlocalizedName("Wakizashi");
 	//public static Item MSamuraja = new SamuraiSword().setUnlocalizedName("MSamuraja");
-	public static Item IronGlove = new IronGlove().setUnlocalizedName("IronGlove");
+	//public static Item IronGlove = new IronGlove().setUnlocalizedName("IronGlove");
 	//public static Item Nunchaku = new Nunchaku().setUnlocalizedName("Nunchaku");
 	//public static Item ChioRyuuGatana = new ChioRyuuGatana().setUnlocalizedName("ChioRyuuGatana");
 	//public static Item Scalpel = new Scalpel().setUnlocalizedName("Skalpel");
@@ -43,7 +43,7 @@ public class RegWeapons extends RegItems {
 		//registerItem(RKatana, "RyuuKatana");
 		//registerItem(Wakizashi, "Wakizashi");
 		//registerItem(SamuraiSword, "SamuraiSword");
-		registerItem(IronGlove, "IronGlove");
+		//registerItem(IronGlove, "IronGlove");
 		//registerItem(Nunchaku, "Nunchaku");
 		//registerItem(ChioRyuuGatana, "ChioRyuuGatana");
 		//registerItem(Scalpel, "Skalpel");

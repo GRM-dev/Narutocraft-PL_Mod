@@ -147,7 +147,7 @@ public class RegItems extends NarutoCraft {
     public static Item RikudouStaff =  new RikudouStaff().setUnlocalizedName("RikudouStaff");
     public static Item Ryo = new Ryo().setUnlocalizedName("Ryo");
     public static Item MetalCable = new MetalCable().setUnlocalizedName("MetalCable");
-    public static Item PillWithCoagulatedBlood = new PillWithCoagulatedBlood().setUnlocalizedName("PillwithCoagulatedBlood");
+    public static Item PillWithCoagulatedBlood = new PillWithCoagulatedBlood().setUnlocalizedName("PillWithCoagulatedBlood");
     public static Item FoodMilitaryPill = new FoodMilitaryPill().setUnlocalizedName("FoodMilitaryPill");
     public static Item Ringtones = new Ringtones().setUnlocalizedName("Ringtones");
     public static Item HyuugaSalve = new HyuugaSalve().setUnlocalizedName("HyuugaSalve");
