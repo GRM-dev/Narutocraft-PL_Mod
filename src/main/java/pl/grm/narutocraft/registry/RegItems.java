@@ -79,6 +79,26 @@ import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
 import pl.grm.narutocraft.items.weapons.projectiles.PoisonedSenbon;
 import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
 import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
+import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;
+import pl.grm.narutocraft.jutsu.bukijutsu.Hadan;
+import pl.grm.narutocraft.jutsu.bukijutsu.Iaido;
+import pl.grm.narutocraft.jutsu.bukijutsu.Issen;
+import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiKiri;
+import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiNoMai;
+import pl.grm.narutocraft.jutsu.bukijutsu.Omotegiri;
+import pl.grm.narutocraft.jutsu.bukijutsu.SamuraiSabreTechnique;
+import pl.grm.narutocraft.jutsu.bukijutsu.Yosakugiri;
+import pl.grm.narutocraft.jutsu.fuuinjutsu.JikukanKekkai;
+import pl.grm.narutocraft.jutsu.genjutsu.Haykkaroran;
+import pl.grm.narutocraft.jutsu.genjutsu.KokuangyoNoJutsu;
+import pl.grm.narutocraft.jutsu.genjutsu.Koukongarasu;
+import pl.grm.narutocraft.jutsu.genjutsu.RaigenRaikochu;
+import pl.grm.narutocraft.jutsu.taijutsu.AsaKujaku;
+import pl.grm.narutocraft.jutsu.taijutsu.Hirudora;
+import pl.grm.narutocraft.jutsu.taijutsu.KageBuyo;
+import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
+import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
+import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
 import pl.grm.narutocraft.libs.config.Materials;
 import pl.grm.narutocraft.libs.config.References;
 
@@ -157,6 +177,27 @@ public class RegItems extends NarutoCraft {
     public static Item IchirakuRamen = new IchirakuRamen().setUnlocalizedName("IchirakuRamen");
     public static Item Pasta = new Pasta().setUnlocalizedName("Pasta");
     public static Item NarutoMaki = new NarutoMaki().setUnlocalizedName("NarutoMaki");
+    //Jutsus
+    public static Item AsaKujaku = new AsaKujaku().setUnlocalizedName("AsaKujaku");
+    public static Item Hirudora = new Hirudora().setUnlocalizedName("Hirudora");
+    public static Item KageBuyo = new KageBuyo().setUnlocalizedName("KageBuyo");
+    public static Item KosaHo = new KosaHo().setUnlocalizedName("KosaHo");
+    public static Item OmoteRenge =  new OmoteRenge().setUnlocalizedName("OmoteRenge");
+    public static Item UraRenge = new UraRenge().setUnlocalizedName("UraRenge");
+    public static Item FumaNinken = new FumaNinken().setUnlocalizedName("FumaNinken");
+    public static Item Hadan = new Hadan().setUnlocalizedName("Hadan");
+    public static Item Iaido = new Iaido().setUnlocalizedName("Iaido");
+    public static Item Issen = new Issen().setUnlocalizedName("Issen");
+    public static Item MikazukiKiri = new MikazukiKiri().setUnlocalizedName("MikazukiKiri");
+    public static Item MikazukiNoMai = new MikazukiNoMai().setUnlocalizedName("MikazukiNoMai");
+    public static Item Omotegiri = new Omotegiri().setUnlocalizedName("Omotegiri");
+    public static Item SamuraiSabreTechnique = new SamuraiSabreTechnique().setUnlocalizedName("SamuraSabreTechnique");
+    public static Item Yosakugiri = new Yosakugiri().setUnlocalizedName("Yosakugiri");
+    public static Item JikukanKekkai = new JikukanKekkai().setUnlocalizedName("JikukanKekkai");
+    public static Item Haykkaroran = new Haykkaroran().setUnlocalizedName("Haykkaroran");
+    public static Item KokuangyoNoJutsu = new KokuangyoNoJutsu().setUnlocalizedName("KokuangyoNoJutsu");
+    public static Item Koukongarasu = new Koukongarasu().setUnlocalizedName("Koukongarasu");
+    public static Item RaigenRaikochu = new RaigenRaikochu().setUnlocalizedName("RaigenRaikochu");
     
     
     
@@ -259,6 +300,28 @@ public class RegItems extends NarutoCraft {
 	    registerItem(IchirakuRamen, "IchirakuRamen");
 	    registerItem(Pasta, "Pasta");
 	    registerItem(NarutoMaki, "NarutoMaki");
+	    registerItem(AsaKujaku, "AsaKujaku");
+	    registerItem(Hirudora, "Hirudora");
+	    registerItem(KageBuyo, "KageBuyo");
+	    registerItem(KosaHo, "KosaHo");
+	    registerItem(OmoteRenge, "OmoteRenge");
+	    registerItem(UraRenge, "UraRenge");
+	    registerItem(FumaNinken, "FumaNinken");
+	    registerItem(Hadan, "Hadan");
+	    registerItem(Iaido, "Iaido");
+	    registerItem(Issen, "Issen");
+	    registerItem(MikazukiKiri, "MikazukiKiri");
+	    registerItem(MikazukiNoMai, "MikazukiNoMai");
+	    registerItem(Omotegiri, "Omotegiri");
+	    registerItem(SamuraiSabreTechnique, "SamuraiSabreTechnique");
+	    registerItem(Yosakugiri, "Yosakugiri");
+	    registerItem(JikukanKekkai, "JikukanKekkai");
+	    registerItem(Haykkaroran, "Haykkaroran");
+	    registerItem(KokuangyoNoJutsu, "KokuangyoNoJutsu");
+	    registerItem(Koukongarasu,"Koukongarasu");
+	    registerItem(RaigenRaikochu, "RaigenRaikochu");
+	    
+	    
 	    
 		
 		// registerItem(, "");
@@ -338,6 +401,24 @@ public class RegItems extends NarutoCraft {
 	    registerRendererToItem(IchirakuRamen, "IchirakuRamen");
 	    registerRendererToItem(Pasta, "Pasta");
 	    registerRendererToItem(NarutoMaki, "NarutoMaki");
-		
+		registerRendererToItem(AsaKujaku, "AsaKujaku");
+		registerRendererToItem(Hirudora, "Hirudora");
+	    registerRendererToItem(KageBuyo, "KageBuyo");
+	    registerRendererToItem(KosaHo, "KosaHo");
+	    registerRendererToItem(OmoteRenge, "OmoteRenge");
+	    registerRendererToItem(UraRenge, "UraRenge");
+	    registerRendererToItem(FumaNinken, "FumaNinken");
+	    registerRendererToItem(Hadan, "Hadan");
+	    registerRendererToItem(Iaido, "Iaido");
+	    registerRendererToItem(Issen, "Issen");
+	    registerRendererToItem(MikazukiKiri, "MikazukiKiri");
+	    registerRendererToItem(MikazukiNoMai, "MikazukiNoMai");
+	    registerRendererToItem(Omotegiri, "Omotegiri");
+	    registerRendererToItem(SamuraiSabreTechnique, "SamuraiSabreTechnique");
+	    registerRendererToItem(JikukanKekkai, "JikukanKekkai");
+	    registerRendererToItem(Haykkaroran, "Haykkaroran");
+	    registerRendererToItem(KokuangyoNoJutsu, "KokuangyoNoJutsu");
+	    registerRendererToItem(Koukongarasu,"Koukongarasu");
+	    registerRendererToItem(RaigenRaikochu, "RaigenRaikochu");
 	}
 }

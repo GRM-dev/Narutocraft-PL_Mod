@@ -1,13 +1,13 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Knuckleduster"
+        "layer0": "narutocraft:items/jutsu/RaigenRaikochu"
     },
     "display": {
         "thirdperson": {
-            "rotation": [ 0, 90, -35 ],
-            "translation": [ 0.2, 1.3, -2 ],
-            "scale": [ 0.9, 0.9, 0.9 ]
+            "rotation": [ -90, 0, 0 ],
+            "translation": [ 0, 1, -3 ],
+            "scale": [ 1.1, 1.1, 1.1 ]
         },
         "firstperson": {
             "rotation": [ 0, -135, 25 ],
