@@ -18,7 +18,7 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 	@Override
 	public void onJutsuActivation() {
 		super.onJutsuActivation();
-		this.player.addPotionEffect(new PotionEffect(Potion.invisibility.getId(), 2400));
+		//this.player.addPotionEffect(new PotionEffect(Potion.invisibility.getId(), 2400));
 		// this.setPotionEffect("Invisible");
 	}
 

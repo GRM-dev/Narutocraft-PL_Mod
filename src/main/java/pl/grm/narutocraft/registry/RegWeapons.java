@@ -8,7 +8,7 @@ import pl.grm.narutocraft.items.weapons.IronGlove;
 import pl.grm.narutocraft.items.weapons.projectiles.*;
 import pl.grm.narutocraft.libs.config.References;
 
-public class RegWeapons extends RegItems {
+public class RegWeapons  {
 
 	//public static Item Kunai = new Kunai().setUnlocalizedName("Kunai").setFull3D();
 
