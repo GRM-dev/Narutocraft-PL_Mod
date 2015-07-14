@@ -8,6 +8,6 @@ public class RegMobs extends NarutoCraft {
 
 	public static void regMobsList() {
 		// EntityRegistry.registerGlobalEntityID(Entity.class, "Entity", 1);
-		EntityRegistry.registerGlobalEntityID(EntityKyuubi.class, "EntityKyuubi", 4809, 2, 2);
+		EntityRegistry.registerGlobalEntityID(EntityKyuubi.class, "EntityKyuubi", EntityRegistry.findGlobalUniqueEntityId(), 2, 2);
 	}
 }
