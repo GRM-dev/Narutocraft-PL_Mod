@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Kubikiribocho"
+        "layer0": "narutocraft:items/weapons/Kubikiribocho"
     },
     "display": {
         "thirdperson": {

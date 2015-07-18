@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Shuriken"
+        "layer0": "narutocraft:items/weapons/Shuriken"
     },
     "display": {
         "thirdperson": {

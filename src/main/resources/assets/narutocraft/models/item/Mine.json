@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Mine"
+        "layer0": "narutocraft:items/weapons/Mine"
     },
     "display": {
         "thirdperson": {

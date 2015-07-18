@@ -2,7 +2,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/KabutowariAxe"
+        "layer0": "narutocraft:items/weapons/KabutowariAxe"
     },
     "display": {
         "thirdperson": {

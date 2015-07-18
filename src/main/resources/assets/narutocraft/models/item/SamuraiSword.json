@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/SamuraiSword"
+        "layer0": "narutocraft:items/weapons/SamuraiSword"
     },
     "display": {
         "thirdperson": {

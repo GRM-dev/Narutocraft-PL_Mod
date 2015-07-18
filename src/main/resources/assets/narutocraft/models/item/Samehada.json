@@ -2,7 +2,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Samehada"
+        "layer0": "narutocraft:items/weapons/Samehada"
     },
     "display": {
         "thirdperson": {

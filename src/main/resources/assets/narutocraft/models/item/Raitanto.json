@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Raitanto"
+        "layer0": "narutocraft:items/weapons/Raitanto"
     },
     "display": {
         "thirdperson": {

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Kusarigamawithpiston"
+        "layer0": "narutocraft:items/weapons/Kusarigamawithpiston"
     },
     "display": {
         "thirdperson": {

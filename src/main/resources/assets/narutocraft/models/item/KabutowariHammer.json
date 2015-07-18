@@ -2,7 +2,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/KabutowariHammer"
+        "layer0": "narutocraft:items/weapons/KabutowariHammer"
     },
     "display": {
         "thirdperson": {

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ShellRockMace"
+        "layer0": "narutocraft:items/weapons/ShellRockMace"
     },
     "display": {
         "thirdperson": {

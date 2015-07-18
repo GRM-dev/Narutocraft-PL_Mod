@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ExplodeKunai"
+        "layer0": "narutocraft:items/weapons/ExplodeKunai"
     },
     "display": {
         "thirdperson": {

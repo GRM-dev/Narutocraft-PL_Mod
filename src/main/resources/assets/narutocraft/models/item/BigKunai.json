@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/BigKunai"
+        "layer0": "narutocraft:items/weapons/BigKunai"
     },
     "display": {
         "thirdperson": {

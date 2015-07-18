@@ -2,7 +2,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Kiba"
+        "layer0": "narutocraft:items/weapons/Kiba"
     },
     "display": {
         "thirdperson": {

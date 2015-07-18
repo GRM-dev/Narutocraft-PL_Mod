@@ -2,7 +2,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ChioRyuuGatana"
+        "layer0": "narutocraft:items/weapons/ChioRyuuGatana"
     },
     "display": {
         "thirdperson": {

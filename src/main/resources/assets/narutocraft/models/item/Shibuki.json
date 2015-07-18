@@ -2,7 +2,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Shibuki"
+        "layer0": "narutocraft:items/weapons/Shibuki"
     },
     "display": {
         "thirdperson": {

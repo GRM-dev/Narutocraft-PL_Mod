@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Bijuudama"
+        "layer0": "narutocraft:items/weapons/Bijuudama"
     },
     "display": {
         "thirdperson": {

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Kama"
+        "layer0": "narutocraft:items/weapons/Kama"
     },
     "display": {
         "thirdperson": {

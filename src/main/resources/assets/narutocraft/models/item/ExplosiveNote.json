@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ExplosiveNote"
+        "layer0": "narutocraft:items/weapons/ExplosiveNote"
     },
     "display": {
         "thirdperson": {

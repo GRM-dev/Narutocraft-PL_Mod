@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import pl.grm.narutocraft.NarutoCraft;
+import pl.grm.narutocraft.registry.RegArmor;
 
 /**
  * Adds Armor items
@@ -12,16 +13,8 @@ import pl.grm.narutocraft.NarutoCraft;
  */
 public class NCPLItemArmor extends ItemArmor {
 
-	private int armorSlot = 0;
-	private String modelTexture;
-
-	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement) {
-		this(armormaterial, ID, placement, "Test");
-	}
-
-	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement, String modelTextureName) {
-		this(armormaterial, ID, placement, "Test", modelTextureName);
-	}
+	
+	
 
 	/**
 	 * Create Armor Item
@@ -39,39 +32,44 @@ public class NCPLItemArmor extends ItemArmor {
 	 *            the base texture name for what is rendered on the player, _1
 	 *            is helm, chest, and boots. _2 is pants.
 	 */
-	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement, String itemTextureName,
-			String modelTextureName) {
+	public NCPLItemArmor(ArmorMaterial armormaterial, int ID, int placement) {
 		super(armormaterial, ID, placement);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.setMaxStackSize(1);
-		this.armorSlot = placement;
-		this.modelTexture = modelTextureName;
-		// FIXME for 1.8 textureName placement
-		// switch (placement) {
-		// case 0 :
-		// this.setTextureName(References.ModTexturePath + "armor/helmet"
-		// + itemTextureName);
-		// break;
-		// case 1 :
-		// this.setTextureName(References.ModTexturePath + "armor/chestplate"
-		// + itemTextureName);
-		// break;
-		// case 2 :
-		// this.setTextureName(References.ModTexturePath + "armor/pants"
-		// + itemTextureName);
-		// break;
-		// case 3 :
-		// this.setTextureName(References.ModTexturePath + "armor/boots"
-		// + itemTextureName);
-		// break;
-		// default :
-		// break;
-		// }
+		
+		
+		
 	}
 
+	
+
+	
+	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		if (this.armorSlot != 2) { return "narutocraft:textures/model/" + this.modelTexture + "_1.png"; }
-		return "narutocraft:textures/model/" + this.modelTexture + "_2.png";
+		
+		if(stack.getItem() == RegArmor.HelmetRyu)
+		{
+			return "narutocraft:textures/models/armors/RyuArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegArmor.ChestplateRyu)
+		{
+			return "narutocraft:textures/models/armors/RyuArmor_layer_1.png";
+			
+		}
+		else if(stack.getItem() == RegArmor.LegginsRyu)
+		{
+			return "narutocraft:textures/models/armors/RyuArmor_layer_2.png";
+		}
+		else if(stack.getItem() == RegArmor.BootsRyu)
+		{
+			return "narutocraft:textures/models/armors/RyuArmor_layer_1.png";
+		}
+		else
+		{
+			return null;
+		}
+		/*if (this.armorSlot != 2) { return "narutocraft:textures/model/" + this.modelTexture + "_1.png"; }
+		return "narutocraft:textures/model/" + this.modelTexture + "_2.png";*/
 	}
 }

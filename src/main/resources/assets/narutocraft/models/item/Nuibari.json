@@ -2,7 +2,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Nuibari"
+        "layer0": "narutocraft:items/weapons/Nuibari"
     },
     "display": {
         "thirdperson": {

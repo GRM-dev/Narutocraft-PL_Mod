@@ -41,6 +41,6 @@ public class Materials {// TODO null ->texture name in armor materials
 	public static ArmorMaterial armorOTO = EnumHelper.addArmorMaterial("OTO", null, 48, new int[]{3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorOLD = EnumHelper.addArmorMaterial("OLD", null, 48, new int[]{3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorKUMO = EnumHelper.addArmorMaterial("KUMO", null, 48, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorRYUU = EnumHelper.addArmorMaterial("RYUU", null, 48, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorRYUU = EnumHelper.addArmorMaterial("armorRYUU", "narutocraft:textures/models/armor/RyuArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
 
 }

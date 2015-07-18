@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/Senbon"
+        "layer0": "narutocraft:items/weapons/Senbon"
     },
     "display": {
         "thirdperson": {
