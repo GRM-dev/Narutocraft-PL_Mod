@@ -1,13 +1,13 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/DotonScroll"
+        "layer0": "narutocraft:items/BigScroll"
     },
     "display": {
         "thirdperson": {
             "rotation": [ -90, 0, 0 ],
             "translation": [ 0, 1, -3 ],
-            "scale": [ 0.55, 0.55, 0.55 ]
+            "scale": [ 1.1, 1.1, 1.1 ]
         },
         "firstperson": {
             "rotation": [ 0, -135, 25 ],

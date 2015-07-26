@@ -6,16 +6,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.items.DotonScroll;
-import pl.grm.narutocraft.items.EarthScroll;
-import pl.grm.narutocraft.items.FutonScroll;
-import pl.grm.narutocraft.items.HeavenScroll;
-import pl.grm.narutocraft.items.KatonScroll;
-import pl.grm.narutocraft.items.NormalScroll;
-import pl.grm.narutocraft.items.RaitonScroll;
+import pl.grm.narutocraft.items.DScroll;
+import pl.grm.narutocraft.items.EScroll;
+import pl.grm.narutocraft.items.FScroll;
+import pl.grm.narutocraft.items.HScroll;
+import pl.grm.narutocraft.items.KScroll;
+import pl.grm.narutocraft.items.NScroll;
+import pl.grm.narutocraft.items.RScroll;
 import pl.grm.narutocraft.items.Rin;
 import pl.grm.narutocraft.items.Ryo;
-import pl.grm.narutocraft.items.SuitonScroll;
+import pl.grm.narutocraft.items.SScroll;
 import pl.grm.narutocraft.items.armor.NCPLItemArmor;
 import pl.grm.narutocraft.items.weapons.BigKunai;
 import pl.grm.narutocraft.items.weapons.BigScroll;
@@ -167,14 +167,14 @@ public static  Item LegginsRyu =  new NCPLItemArmor(armorRYUU, 0, 2)
 public static  Item BootsRyu =  new NCPLItemArmor(armorRYUU, 0, 3)
 	.setUnlocalizedName("BootsRyu");*/
 	//Items
-	public static Item FutonScroll = new FutonScroll().setUnlocalizedName("FutonScroll");
-	public static Item KatonScroll = new KatonScroll().setUnlocalizedName("KatonScroll");
-	public static Item DotonScroll = new DotonScroll().setUnlocalizedName("DotonScroll");
-	public static Item SuitonScroll = new SuitonScroll().setUnlocalizedName("SuitonScroll");
-	public static Item RaitonScroll = new RaitonScroll().setUnlocalizedName("RaitonScroll");
-	public static Item HeavenScroll = new HeavenScroll().setUnlocalizedName("HeavenScroll");
-	public static Item EarthScroll = new EarthScroll().setUnlocalizedName("EarthScroll");
-	public static Item NormalScroll = new NormalScroll().setUnlocalizedName("NormalScroll");
+	public static Item FScroll = new FScroll().setUnlocalizedName("FutonScroll");
+	public static Item KScroll = new KScroll().setUnlocalizedName("KatonScroll");
+	public static Item DScroll = new DScroll().setUnlocalizedName("DotonScroll");
+	public static Item SScroll = new SScroll().setUnlocalizedName("SuitonScroll");
+	public static Item RScroll = new RScroll().setUnlocalizedName("RaitonScroll");
+	public static Item HScroll = new HScroll().setUnlocalizedName("HeavenScroll");
+	public static Item EScroll = new EScroll().setUnlocalizedName("EarthScroll");
+	public static Item NScroll = new NScroll().setUnlocalizedName("NormalScroll");
 	public static Item Rin = new Rin().setUnlocalizedName("Rin");
 	public static Item Ryo = new Ryo().setUnlocalizedName("Ryo");
 	public static Item Ringtones = new Ringtones().setUnlocalizedName("Ringtones");
@@ -291,14 +291,82 @@ public static  Item BootsRyu =  new NCPLItemArmor(armorRYUU, 0, 3)
 	
 	// public static int renderBushidoArmor = proxy.addArmor("Bushido");
 	// public static Item = new (id+);
-	public static  Item HelmetRyu =   new NCPLItemArmor(Ryuu, 1, 0)
-	.setUnlocalizedName("HelmetRyu");
-public static  Item ChestplateRyu =  new NCPLItemArmor(Ryuu, 1, 1)
-	.setUnlocalizedName("ChestplateRyu");
-public static  Item LegginsRyu =  new NCPLItemArmor(Ryuu, 1, 2)
-	.setUnlocalizedName("LegginsRyu");
-public static  Item BootsRyu =  new NCPLItemArmor(Ryuu, 1, 3)
-	.setUnlocalizedName("BootsRyu");
+	//Armors
+	public static  Item HelmetRyu =   new NCPLItemArmor(Ryuu, 1, 0).setUnlocalizedName("HelmetRyu");
+	public static  Item ChestplateRyu =  new NCPLItemArmor(Ryuu, 1, 1).setUnlocalizedName("ChestplateRyu");
+	public static  Item LegginsRyu =  new NCPLItemArmor(Ryuu, 1, 2).setUnlocalizedName("LegginsRyu");
+	public static  Item BootsRyu =  new NCPLItemArmor(Ryuu, 1, 3).setUnlocalizedName("BootsRyu");
+	public static Item HelmetBushido = new NCPLItemArmor(Bushido, 2, 0).setUnlocalizedName("HelmetBushido");
+	public static Item ChestplateBushido = new NCPLItemArmor(Bushido, 2, 1).setUnlocalizedName("ChestplateBushido");
+	public static Item LegginsBushido = new NCPLItemArmor(Bushido, 2, 2).setUnlocalizedName("LegginsBushido");
+	public static Item BootsBushido = new NCPLItemArmor(Bushido, 2, 3).setUnlocalizedName("BootsBushido");
+	public static Item HelmetAnbu = new NCPLItemArmor(Anbu, 2, 0).setUnlocalizedName("HelmetAnbu");
+	public static Item HelmetAnbu2 = new NCPLItemArmor(Anbu, 2, 0).setUnlocalizedName("HelmetAnbu2");
+	public static Item HelmetAnbu3 = new NCPLItemArmor(Anbu, 2, 0).setUnlocalizedName("HelmetAnbu3");
+	public static Item HelmetAnbu4 = new NCPLItemArmor(Anbu, 2, 0).setUnlocalizedName("HelmetAnbu4");
+	public static Item ChestplateAnbu = new NCPLItemArmor(Anbu, 2, 1).setUnlocalizedName("ChestplateAnbu");
+	public static Item LegginsAnbu = new NCPLItemArmor(Anbu, 2, 2).setUnlocalizedName("LegginsAnbu");
+	public static Item BootsAnbu = new NCPLItemArmor(Anbu, 2, 3).setUnlocalizedName("BootsAnbu");
+	public static  Item ChestplateKiri =  new NCPLItemArmor(Kiri, 4, 1)
+	.setUnlocalizedName("ChestplateKiri");
+public static  Item LegginsKiri =  new NCPLItemArmor(Kiri, 4, 2)
+	.setUnlocalizedName("LegginsKiri");
+public static Item BootsKiri = new NCPLItemArmor(Kiri, 4, 3).setUnlocalizedName("BootsKiri");
+public static  Item ChestplateSuna =  new NCPLItemArmor(Suna, 4, 1)
+	.setUnlocalizedName("ChestplateSuna");
+public static  Item LegginsSuna =  new NCPLItemArmor(Suna, 4, 2)
+	.setUnlocalizedName("LegginsSuna");
+public static Item BootsSuna = new NCPLItemArmor(Suna, 4, 3).setUnlocalizedName("BootsSuna");
+public static  Item HelmetAkatsuki =  new NCPLItemArmor(Akatsuki, 4, 0)
+	.setUnlocalizedName("HelmetAkatsuki");
+public static  Item HelmetAkatsuki2 =  new NCPLItemArmor(Akatsuki, 4, 0)
+	.setUnlocalizedName("HelmetAkatsuki2");
+public static  Item HelmetAkatsuki3 =  new NCPLItemArmor(Akatsuki, 4, 0)
+	.setUnlocalizedName("HelmetAkatsuki3");
+public static  Item ChestplateAkatsuki =  new NCPLItemArmor(Akatsuki, 4, 1)
+	.setUnlocalizedName("ChestplateAkatsuki");
+public static  Item ChestplateAkatsuki2 =  new NCPLItemArmor(Akatsuki, 4, 1)
+	.setUnlocalizedName("ChestplateAkatsuki2");
+public static  Item ChestplateAkatsuki3 =  new NCPLItemArmor(Akatsuki, 4, 1)
+	.setUnlocalizedName("ChestplateAkatsuki3");
+public static  Item ChestplateAkatsuki4 =  new NCPLItemArmor(Akatsuki, 4, 1)
+	.setUnlocalizedName("ChestplateAkatsuki4");
+public static  Item LegginsAkatsuki =  new NCPLItemArmor(Akatsuki, 4, 2)
+	.setUnlocalizedName("LegginsAkatsuki");
+public static  Item BootsAkatsuki =  new NCPLItemArmor(Akatsuki, 4, 3)
+	.setUnlocalizedName("BootsAkatsuki");
+public static  Item ChestplateIwa =  new NCPLItemArmor(Iwa, 4, 1)
+	.setUnlocalizedName("ChestplateIwa");
+public static  Item LegginsIwa =  new NCPLItemArmor(Iwa, 4, 2)
+	.setUnlocalizedName("LegginsIwa");
+public static  Item BootsIwa =  new NCPLItemArmor(Iwa, 4, 3)
+	.setUnlocalizedName("BootsIwa");
+
+public static  Item ChestplateKonoha =  new NCPLItemArmor(Konoha, 4, 1)
+	.setUnlocalizedName("ChestplateKonoha");
+public static  Item LegginsKonoha =  new NCPLItemArmor(Konoha, 4, 2)
+	.setUnlocalizedName("LegginsKonoha");
+public static  Item BootsKonoha =  new NCPLItemArmor(Konoha, 4, 3)
+	.setUnlocalizedName("BootsKonoha");
+public static  Item ChestplateOto =  new NCPLItemArmor(Oto, 4, 1)
+	.setUnlocalizedName("ChestplateOto");
+public static  Item LegginsOto =  new NCPLItemArmor(Oto, 4, 2)
+	.setUnlocalizedName("LegginsOto");
+public static  Item BootsOto =  new NCPLItemArmor(Oto, 4, 3)
+	.setUnlocalizedName("BootsOto");
+public static  Item ChestplateOld =  new NCPLItemArmor(Old, 4, 1)
+	.setUnlocalizedName("ChestplateOld");
+public static  Item LegginsOld =  new NCPLItemArmor(Old, 4, 2)
+	.setUnlocalizedName("LegginsOld");
+public static  Item BootsOld =  new NCPLItemArmor(Old, 4, 3)
+	.setUnlocalizedName("BootsOld");
+public static  Item ChestplateKumo =  new NCPLItemArmor(Kumo, 4, 1)
+	.setUnlocalizedName("ChestplateKumo");
+public static  Item LegginsKumo =  new NCPLItemArmor(Kumo, 4, 2)
+	.setUnlocalizedName("LegginsKumo");
+public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
+	.setUnlocalizedName("BootsKumo");
+
 	protected static void registerItem(Item item, String name) {
 		GameRegistry.registerItem(item, name);
 	}
@@ -319,14 +387,14 @@ public static  Item BootsRyu =  new NCPLItemArmor(Ryuu, 1, 3)
 		// registerItem(, "");
 		
 		//Items
-		registerItem(FutonScroll, "FScroll");
-		registerItem(KatonScroll, "KScroll");
-		registerItem(DotonScroll, "DScroll");
-		registerItem(SuitonScroll, "SScroll");
-		registerItem(RaitonScroll, "RScroll");
-		registerItem(HeavenScroll, "HScroll");
-		registerItem(EarthScroll, "EScroll");
-		registerItem(NormalScroll, "NScroll");
+		registerItem(FScroll, "FScroll");
+		registerItem(KScroll, "KScroll");
+		registerItem(DScroll, "DScroll");
+		registerItem(SScroll, "SScroll");
+		registerItem(RScroll, "RScroll");
+		registerItem(HScroll, "HScroll");
+		registerItem(EScroll, "EScroll");
+		registerItem(NScroll, "NScroll");
 		registerItem(Rin, "Rin");
 		registerItem(Ryo, "Ryo");
 		registerItem(MetalCable, "MetalCable");
@@ -396,6 +464,53 @@ public static  Item BootsRyu =  new NCPLItemArmor(Ryuu, 1, 3)
 		registerItem(Bijuudama, "Bijuudama");
 		registerItem(RikudouStaff, "RikudouStaff");
 		registerItem(IronGlove, "IronGlove");
+		//Armor
+		registerItem(HelmetBushido, "HelmetBushido");
+		registerItem(ChestplateBushido, "ChestplateBushido");
+		registerItem(LegginsBushido, "LegginsBushido");
+		registerItem(BootsBushido, "BootsBushido");
+		registerItem(HelmetRyu, "HelmetRyu");
+		registerItem(ChestplateRyu, "ChestplateRyu");
+		registerItem(LegginsRyu, "LegginsRyu");
+		registerItem(BootsRyu, "BootsRyu");
+		registerItem(HelmetAnbu , "HelmetAnbu");
+		registerItem(HelmetAnbu2, "HelmetAnbu2");
+		registerItem(HelmetAnbu3, "HelmetAnbu3");
+		registerItem(HelmetAnbu4, "HelmetAnbu4");
+		registerItem(ChestplateAnbu, "ChestplateAnbu");
+		registerItem(LegginsAnbu, "LegginsAnbu");
+		registerItem(BootsAnbu, "BootsAnbu");
+		registerItem(ChestplateKiri, "ChestplateKiri");
+		registerItem(LegginsKiri, "LegginsKiri");
+		registerItem(BootsKiri, "BootsKiri");
+		registerItem(ChestplateSuna, "ChestplateSuna");
+		registerItem(LegginsSuna, "LegginsSuna");
+		registerItem(BootsSuna, "BootsSuna");
+		registerItem(HelmetAkatsuki, "HelmetAkatsuki");
+		registerItem(HelmetAkatsuki2, "HelmetAkatsuki2");
+		registerItem(HelmetAkatsuki3, "HelmetAkatsuki3");
+		registerItem(ChestplateAkatsuki, "PlateAkatsuki");
+		registerItem(ChestplateAkatsuki2, "ChestplateAkatsuki2");
+		registerItem(ChestplateAkatsuki3, "ChestplateAkatsuki3");
+		registerItem(ChestplateAkatsuki4, "ChestplateAkatsuki4");
+		registerItem(LegginsAkatsuki, "LegginsAkatsuki");
+		registerItem(BootsAkatsuki, "BootsAkatsuki");
+		registerItem(ChestplateIwa, "ChestplateIwa");
+		registerItem(LegginsIwa, "LegginsIwa");
+		registerItem(BootsIwa, "BootsIwa");
+		registerItem(ChestplateKonoha, "ChestplateKonoha");
+		registerItem(LegginsKonoha, "LegginsKonoha");
+		registerItem(BootsKonoha, "BootsKonoha");
+		registerItem(ChestplateOto, "ChestplateOto");
+		registerItem(LegginsOto, "LegginsOto");
+		registerItem(BootsOto, "BootsOto");
+		registerItem(ChestplateOld, "ChestplateOld");
+		registerItem(LegginsOld, "LegginsOld");
+		registerItem(BootsOld, "BootsOld");
+		registerItem(ChestplateKumo, "ChestplateKumo");
+		registerItem(LegginsKumo, "LegginsKumo");
+		registerItem(BootsKumo, "BootsKumo");
+		
 		
 		
 		/*registerItem(AsaKujaku, "AsaKujaku");
@@ -443,20 +558,17 @@ public static  Item BootsRyu =  new NCPLItemArmor(Ryuu, 1, 3)
 	}
 
 	public static void regRenderers() {
-		//Armors
-		registerItem(HelmetRyu, "HelmetRyu");
-		registerItem(ChestplateRyu, "ChestplateRyu");
-		registerItem(LegginsRyu, "LegginsRyu");
-		registerItem(BootsRyu, "BootsRyu");
+		
+		
 		//Items
-		registerRendererToItem(KatonScroll, "KScroll");
-		registerRendererToItem(RaitonScroll, "RScroll");
-		registerRendererToItem(DotonScroll, "DScroll");
-		registerRendererToItem(FutonScroll, "FScroll");
-		registerRendererToItem(SuitonScroll, "SScroll");
-		registerRendererToItem(HeavenScroll, "HScroll");
-		registerRendererToItem(EarthScroll, "EScroll");
-		registerRendererToItem(NormalScroll, "NScroll");
+		registerRendererToItem(KScroll, "KScroll");
+		registerRendererToItem(RScroll, "RScroll");
+		registerRendererToItem(DScroll, "DScroll");
+		registerRendererToItem(FScroll, "FScroll");
+		registerRendererToItem(SScroll, "SScroll");
+		registerRendererToItem(HScroll, "HScroll");
+		registerRendererToItem(EScroll, "EScroll");
+		registerRendererToItem(NScroll, "NScroll");
 		registerRendererToItem(Rin, "Rin");
 		registerRendererToItem(Ryo, "Ryo");
 		registerRendererToItem(MetalCable, "MetalCable");
@@ -564,9 +676,51 @@ public static  Item BootsRyu =  new NCPLItemArmor(Ryuu, 1, 3)
 		registerRendererToItem(Rasengan, "Rasengan");
 		registerRendererToItem(Sharingan, "Sharingan");
 		registerRendererToItem(ShunshinNoJutsu, "ShunshinNoJutsu");*/
+		//Armors
 		registerRendererToItem(HelmetRyu, "HelmetRyu");
 		registerRendererToItem(ChestplateRyu, "ChestplateRyu");
 		registerRendererToItem(LegginsRyu, "LegginsRyu");
 		registerRendererToItem(BootsRyu, "BootsRyu");
+		registerRendererToItem(HelmetBushido, "HelmetBushido");
+		registerRendererToItem(ChestplateBushido, "ChestplateBushido");
+		registerRendererToItem(LegginsBushido, "LegginsBushido");
+		registerRendererToItem(BootsBushido, "BootsBushido");
+		registerRendererToItem(HelmetAnbu , "HelmetAnbu");
+		registerRendererToItem(HelmetAnbu2, "HelmetAnbu2");
+		registerRendererToItem(HelmetAnbu3, "HelmetAnbu3");
+		registerRendererToItem(HelmetAnbu4, "HelmetAnbu4");
+		registerRendererToItem(ChestplateAnbu, "ChestplateAnbu");
+		registerRendererToItem(LegginsAnbu, "LegginsAnbu");
+		registerRendererToItem(BootsAnbu, "BootsAnbu");
+		registerRendererToItem(ChestplateKiri, "ChestplateKiri");
+		registerRendererToItem(LegginsKiri, "LegginsKiri");
+		registerRendererToItem(BootsKiri, "BootsKiri");
+		registerRendererToItem(ChestplateSuna, "ChestplateSuna");
+		registerRendererToItem(LegginsSuna, "LegginsSuna");
+		registerRendererToItem(BootsSuna, "BootsSuna");
+		registerRendererToItem(HelmetAkatsuki, "HelmetAkatsuki");
+		registerRendererToItem(HelmetAkatsuki2, "HelmetAkatsuki2");
+		registerRendererToItem(HelmetAkatsuki3, "HelmetAkatsuki3");
+		registerRendererToItem(ChestplateAkatsuki, "PlateAkatsuki");
+		registerRendererToItem(ChestplateAkatsuki2, "ChestplateAkatsuki2");
+		registerRendererToItem(ChestplateAkatsuki3, "ChestplateAkatsuki3");
+		registerRendererToItem(ChestplateAkatsuki4, "ChestplateAkatsuki4");
+		registerRendererToItem(LegginsAkatsuki, "LegginsAkatsuki");
+		registerRendererToItem(BootsAkatsuki, "BootsAkatsuki");
+		registerRendererToItem(ChestplateIwa, "ChestplateIwa");
+		registerRendererToItem(LegginsIwa, "LegginsIwa");
+		registerRendererToItem(BootsIwa, "BootsIwa");
+		registerRendererToItem(ChestplateKonoha, "ChestplateKonoha");
+		registerRendererToItem(LegginsKonoha, "LegginsKonoha");
+		registerRendererToItem(BootsKonoha, "BootsKonoha");
+		registerRendererToItem(ChestplateOto, "ChestplateOto");
+		registerRendererToItem(LegginsOto, "LegginsOto");
+		registerRendererToItem(BootsOto, "BootsOto");
+		registerRendererToItem(ChestplateOld, "ChestplateOld");
+		registerRendererToItem(LegginsOld, "LegginsOld");
+		registerRendererToItem(BootsOld, "BootsOld");
+		registerRendererToItem(ChestplateKumo, "ChestplateKumo");
+		registerRendererToItem(LegginsKumo, "LegginsKumo");
+		registerRendererToItem(BootsKumo, "BootsKumo");
 	}
 }

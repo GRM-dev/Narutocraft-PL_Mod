@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/HelmetRyu"
+        "layer0": "narutocraft:items/armor/helmet/HelmetRyu"
     },
     "display": {
         "thirdperson": {

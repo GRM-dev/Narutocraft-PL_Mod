@@ -28,19 +28,19 @@ public class Materials {// TODO null ->texture name in armor materials
 	public static Item.ToolMaterial metalsamurajow = EnumHelper.addToolMaterial("METALSAMURAJOW", 1, 9999, 4F, 11F, 2);
 	public static Item.ToolMaterial kamien = EnumHelper.addToolMaterial("KAMIEN", 1, 2500, 4F, 9F, 2);
 
-	public static ArmorMaterial armorBUSHIDO = EnumHelper.addArmorMaterial("BUSHIDO", null, 33, new int[]{3, 8, 6, 3},
+	public static ArmorMaterial armorBUSHIDO = EnumHelper.addArmorMaterial("armorBUSHIDO", "narutocraft:textures/models/armors/BushidoArmor_layer_1.png", 33, new int[]{3, 8, 6, 3},
 			10);
-	public static ArmorMaterial armorANBU = EnumHelper.addArmorMaterial("ANBU", null, 40, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorKIRI = EnumHelper.addArmorMaterial("KIRI", null, 45, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorSUNA = EnumHelper.addArmorMaterial("SUNA", null, 46, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorAKATSUKI = EnumHelper.addArmorMaterial("AKATSUKI", null, 47,
+	public static ArmorMaterial armorANBU = EnumHelper.addArmorMaterial("armorANBU", "narutocraft:textures/models/armors/AnbuArmor_layer_1.png", 40, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorKIRI = EnumHelper.addArmorMaterial("armorKIRI","narutocraft:textures/models/armors/KiriArmor_layer_1.png" , 45, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorSUNA = EnumHelper.addArmorMaterial("armorSUNA", "narutocraft:textures/models/armors/SunaArmor_layer_1.png", 46, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorAKATSUKI = EnumHelper.addArmorMaterial("armorAKATSUKI", "narutocraft:textures/models/armors/AkatsukiaArmor1_layer_1.png", 47,
 			new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorIWA = EnumHelper.addArmorMaterial("IWA", null, 48, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorIWA = EnumHelper.addArmorMaterial("armorIWA", "narutocraft:textures/models/armors/IwaArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorKONOHA = EnumHelper
 			.addArmorMaterial("KONOHA", null, 48, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorOTO = EnumHelper.addArmorMaterial("OTO", null, 48, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorOLD = EnumHelper.addArmorMaterial("OLD", null, 48, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorKUMO = EnumHelper.addArmorMaterial("KUMO", null, 48, new int[]{3, 8, 6, 3}, 10);
-	public static ArmorMaterial armorRYUU = EnumHelper.addArmorMaterial("armorRYUU", "narutocraft:textures/models/armor/RyuArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorOTO = EnumHelper.addArmorMaterial("armorOTO", "narutocraft:textures/models/armors/OtoArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorOLD = EnumHelper.addArmorMaterial("armorOLD","narutocraft:textures/models/armors/OldArmor_layer_1.png" , 48, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorKUMO = EnumHelper.addArmorMaterial("armorKUMO", "narutocraft:textures/models/armors/KumoArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
+	public static ArmorMaterial armorRYUU = EnumHelper.addArmorMaterial("armorRYUU", "narutocraft:textures/models/armors/RyuArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
 
 }

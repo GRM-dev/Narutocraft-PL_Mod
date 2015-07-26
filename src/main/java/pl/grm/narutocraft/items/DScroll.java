@@ -3,10 +3,10 @@ package pl.grm.narutocraft.items;
 import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
 
-public class DotonScroll extends Item {
+public class DScroll extends Item {
 
-	public DotonScroll() {
-		this.setUnlocalizedName("DScroll");
+	public DScroll() {
+		this.setUnlocalizedName("DotonScroll");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}

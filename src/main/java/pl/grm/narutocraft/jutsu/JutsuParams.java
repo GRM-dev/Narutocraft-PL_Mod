@@ -259,4 +259,6 @@ public enum JutsuParams {
 	public boolean isBuffType() {
 		return this.buffType;
 	}
+
+	
 }

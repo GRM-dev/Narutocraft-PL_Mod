@@ -3,10 +3,10 @@ package pl.grm.narutocraft.items;
 import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
 
-public class FutonScroll extends Item {
+public class KScroll extends Item {
 
-	public FutonScroll() {
-		this.setUnlocalizedName("FScroll");
+	public KScroll() {
+		this.setUnlocalizedName("KatonScroll");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}

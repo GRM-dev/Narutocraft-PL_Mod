@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ChestplateRyu"
+        "layer0": "narutocraft:items/armor/chestplate/ChestplateRyu"
     },
     "display": {
         "thirdperson": {

@@ -6,16 +6,16 @@ import pl.grm.narutocraft.items.armor.NCPLItemArmor;
 
 public class RegArmor extends RegItems {
 
-	public static Item HelmetBushido =  new NCPLItemArmor(Bushido, 4, 0)
-			.setUnlocalizedName("HelmetBushido");
+	//public static Item HelmetBushido =  new NCPLItemArmor(Bushido, 4, 0)
+			//.setUnlocalizedName("HelmetBushido");
 
-	public static  Item ChestplateBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 1)
-			.setUnlocalizedName("ChestplateBushido");
-	public static  Item LegginsBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 2)
-			.setUnlocalizedName("LegginsBushido");
-	public static  Item BootsBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 3)
-			.setUnlocalizedName("BootsBushido");
-	public static  ItemArmor HelmetAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 0)
+	//public static  Item ChestplateBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 1)
+	//		.setUnlocalizedName("ChestplateBushido");
+	//public static  Item LegginsBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 2)
+		//	.setUnlocalizedName("LegginsBushido");
+	//public static  Item BootsBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 3)
+	//		.setUnlocalizedName("BootsBushido");
+	/*public static  ItemArmor HelmetAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 0)
 			.setUnlocalizedName("HelmetAnbu");
 	public static  Item HelmetAnbu2 = (ItemArmor) new NCPLItemArmor(Anbu, 4, 0)
 			.setUnlocalizedName("HelmetAnbu2");
@@ -28,8 +28,8 @@ public class RegArmor extends RegItems {
 	public static  Item LegginsAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 2)
 			.setUnlocalizedName("LegginsAnbu");
 	public static  Item BootsAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 3)
-			.setUnlocalizedName("BootsAnbu");
-	public static  Item ChestplateKiri = (ItemArmor) new NCPLItemArmor(Kiri, 4, 1)
+			.setUnlocalizedName("BootsAnbu");*/
+/*	public static  Item ChestplateKiri = (ItemArmor) new NCPLItemArmor(Kiri, 4, 1)
 			.setUnlocalizedName("ChestplateKiri");
 	public static  Item LegginsKiri = (ItemArmor) new NCPLItemArmor(Kiri, 4, 2)
 			.setUnlocalizedName("LegginsKiri");
@@ -85,7 +85,7 @@ public class RegArmor extends RegItems {
 	public static  Item LegginsKumo = (ItemArmor) new NCPLItemArmor(Kumo, 4, 2)
 			.setUnlocalizedName("LegginsKumo");
 	public static  Item BootsKumo = (ItemArmor) new NCPLItemArmor(Kumo, 4, 3)
-			.setUnlocalizedName("BootsKumo");
+			.setUnlocalizedName("BootsKumo");*/
 	/*public static  Item HelmetRyu =   new NCPLItemArmor(Ryuu, 0, 0)
 			.setUnlocalizedName("HelmetRyu");
 	public static  Item ChestplateRyu =  new NCPLItemArmor(Ryuu, 0, 1)
@@ -97,18 +97,18 @@ public class RegArmor extends RegItems {
 
 	public static void regArmorList() {
 
-		registerItem(HelmetBushido, "HelmetBushido");
-		registerItem(ChestplateBushido, "ChestplateBushido");
-		registerItem(LegginsBushido, "LegginsBushido");
-		registerItem(BootsBushido, "BootsBushido");
-		registerItem(HelmetAnbu, "HelmetAnbu");
-		registerItem(HelmetAnbu2, "HelmetAnbu2");
-		registerItem(HelmetAnbu3, "HelmetAnbu3");
-		registerItem(HelmetAnbu4, "HelmetAnbu4");
-		registerItem(ChestplateAnbu, "ChestplateAnbu");
-		registerItem(LegginsAnbu, "LegginsAnbu");
-		registerItem(BootsAnbu, "BootsAnbu");
-		registerItem(ChestplateKiri, "ChestplateKiri");
+		//registerItem(HelmetBushido, "HelmetBushido");
+		//registerItem(ChestplateBushido, "ChestplateBushido");
+		//registerItem(LegginsBushido, "LegginsBushido");
+		//registerItem(BootsBushido, "BootsBushido");
+		//registerItem(HelmetAnbu, "HelmetAnbu");
+		//registerItem(HelmetAnbu2, "HelmetAnbu2");
+		//registerItem(HelmetAnbu3, "HelmetAnbu3");
+		//registerItem(HelmetAnbu4, "HelmetAnbu4");
+		//registerItem(ChestplateAnbu, "ChestplateAnbu");
+		//registerItem(LegginsAnbu, "LegginsAnbu");
+		//registerItem(BootsAnbu, "BootsAnbu");
+/*		registerItem(ChestplateKiri, "ChestplateKiri");
 		registerItem(LegginsKiri, "LegginsKiri");
 		registerItem(ChestplateSuna, "ChestplateSuna");
 		registerItem(LegginsSuna, "LegginsSuna");
@@ -135,7 +135,7 @@ public class RegArmor extends RegItems {
 		registerItem(BootsOld, "BootsOld");
 		registerItem(ChestplateKumo, "ChestplateKumo");
 		registerItem(LegginsKumo, "LegginsKumo");
-		registerItem(BootsKumo, "BootsKumo");
+		registerItem(BootsKumo, "BootsKumo");*/
 		/*registerItem(HelmetRyu, "HelmetRyu");
 		registerItem(ChestplateRyu, "ChestplateRyu");
 		registerItem(LegginsRyu, "LegginsRyu");

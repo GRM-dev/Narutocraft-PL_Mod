@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/jutsu/Byakugo"
+        "layer0": "narutocraft:items/jutsu/ByakugoJutsu"
     },
     "display": {
         "thirdperson": {

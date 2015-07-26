@@ -3,10 +3,10 @@ package pl.grm.narutocraft.items;
 import net.minecraft.item.Item;
 import pl.grm.narutocraft.NarutoCraft;
 
-public class SuitonScroll extends Item {
+public class HScroll extends Item {
 
-	public SuitonScroll() {
-		this.setUnlocalizedName("SScroll");
+	public HScroll() {
+		this.setUnlocalizedName("Heavencroll");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}

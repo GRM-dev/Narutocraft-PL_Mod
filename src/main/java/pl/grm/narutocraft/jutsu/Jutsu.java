@@ -171,4 +171,5 @@ public abstract class Jutsu extends Item implements IJutsu {
 		this.tabToDisplayOn = par1CreativeTabs;
 		return this;
 	}
+	
 }

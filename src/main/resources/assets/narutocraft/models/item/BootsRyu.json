@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/BootsRyu"
+        "layer0": "narutocraft:items/armor/boots/BootsRyu"
     },
     "display": {
         "thirdperson": {
