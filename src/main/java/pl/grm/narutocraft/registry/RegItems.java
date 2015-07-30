@@ -79,6 +79,7 @@ import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
 import pl.grm.narutocraft.items.weapons.projectiles.PoisonedSenbon;
 import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
 import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
+import pl.grm.narutocraft.jutsu.taijutsu.AsaKujaku;
 import pl.grm.narutocraft.libs.config.Materials;
 import pl.grm.narutocraft.libs.config.References;
 
@@ -89,9 +90,9 @@ public class RegItems extends NarutoCraft {
 
 	
 	// Jutsus
-	/*public static Item AsaKujaku = new AsaKujaku()
-			.setUnlocalizedName("AsaKujaku");
-	public static Item Hirudora = new Hirudora().setUnlocalizedName("Hirudora");
+	//public static Item AsaKujaku = new AsaKujaku()
+		//	.setUnlocalizedName("AsaKujaku");
+/*	public static Item Hirudora = new Hirudora().setUnlocalizedName("Hirudora");
 	public static Item KageBuyo = new KageBuyo().setUnlocalizedName("KageBuyo");
 	public static Item KosaHo = new KosaHo().setUnlocalizedName("KosaHo");
 	public static Item OmoteRenge = new OmoteRenge()
@@ -513,8 +514,8 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		
 		
 		
-		/*registerItem(AsaKujaku, "AsaKujaku");
-		registerItem(Hirudora, "Hirudora");
+		//registerItem(AsaKujaku, "AsaKujaku");
+		/*registerItem(Hirudora, "Hirudora");
 		registerItem(KageBuyo, "KageBuyo");
 		registerItem(KosaHo, "KosaHo");
 		registerItem(OmoteRenge, "OmoteRenge");
@@ -637,8 +638,8 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		registerRendererToItem(IronGlove, "IronGlove");
 		
 		
-		/*registerRendererToItem(AsaKujaku, "AsaKujaku");
-		registerRendererToItem(Hirudora, "Hirudora");
+		//registerRendererToItem(AsaKujaku, "AsaKujaku");
+		/*registerRendererToItem(Hirudora, "Hirudora");
 		registerRendererToItem(KageBuyo, "KageBuyo");
 		registerRendererToItem(KosaHo, "KosaHo");
 		registerRendererToItem(OmoteRenge, "OmoteRenge");
