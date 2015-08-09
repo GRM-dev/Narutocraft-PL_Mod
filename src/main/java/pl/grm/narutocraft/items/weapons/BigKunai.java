@@ -5,8 +5,9 @@ import pl.grm.narutocraft.libs.config.Materials;
 public class BigKunai extends SwordMain {
 
 	public BigKunai() {
-		super(Materials.smoczastal);
-		// TODO Auto-generated constructor stub
+		super(Materials.smoczastal3);
+		this.setMaxDamage(9);
+		
 	}
 
 }

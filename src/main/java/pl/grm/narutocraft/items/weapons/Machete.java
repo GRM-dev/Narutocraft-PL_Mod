@@ -4,6 +4,6 @@ import pl.grm.narutocraft.libs.config.Materials;
 
 public class Machete extends SwordMain{
 public Machete(){
-	super(Materials.stal);
+	super(Materials.tytan6);
 }
 }

@@ -5,7 +5,7 @@ import pl.grm.narutocraft.libs.config.Materials;
 public class Kiba extends SwordMain{
 
 	public Kiba() {
-		super(Materials.stal);
+		super(Materials.metalshinobi);
 		// TODO Auto-generated constructor stub
 	}
 

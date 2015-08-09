@@ -1,25 +1,22 @@
-package pl.grm.narutocraft.items;
+package pl.grm.narutocraft.items.food;
 
+import pl.grm.narutocraft.NarutoCraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import pl.grm.narutocraft.NarutoCraft;
 
-public class EScroll extends Item  {
+public class IchirakuRamen extends ItemFood{
 
-	public EScroll() {
-		this.setUnlocalizedName("EarthScroll");
+	public IchirakuRamen() {
+		super(0, 0.0F, false);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
-		this.maxStackSize = 1;
-		
+		this.setUnlocalizedName("IchirakuRamen");
+		// TODO Auto-generated constructor stub
 	
 	}
-  
-	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-		
-		par3EntityPlayer.killCommand();
+		par3EntityPlayer.heal(20);
 		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
 	}
 

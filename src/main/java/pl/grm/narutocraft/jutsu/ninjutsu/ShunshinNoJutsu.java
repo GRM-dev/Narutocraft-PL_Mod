@@ -22,6 +22,7 @@ public class ShunshinNoJutsu extends Jutsu {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+		
 		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
 	}
 }

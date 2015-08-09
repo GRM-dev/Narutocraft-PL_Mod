@@ -4,6 +4,6 @@ import pl.grm.narutocraft.libs.config.Materials;
 
 public class Shibuki extends SwordMain{
 public Shibuki(){
-	super (Materials.stal);
+	super (Materials.metalshinobi5);
 }
 }

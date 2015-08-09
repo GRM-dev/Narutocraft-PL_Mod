@@ -4,6 +4,6 @@ import pl.grm.narutocraft.libs.config.Materials;
 
 public class Kusarigamawithpiston extends SwordMain{
 public Kusarigamawithpiston(){
-	super(Materials.stal);
+	super(Materials.stal2);
 }
 }

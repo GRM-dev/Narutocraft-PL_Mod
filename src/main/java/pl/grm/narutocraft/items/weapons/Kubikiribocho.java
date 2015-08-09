@@ -16,7 +16,7 @@ import pl.grm.narutocraft.libs.config.References;
 public class Kubikiribocho extends SwordMain {
 
 	public Kubikiribocho() {
-		super(Materials.metalshinobi);
+		super(Materials.metalshinobi4);
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})

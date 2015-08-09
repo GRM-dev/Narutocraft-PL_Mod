@@ -4,6 +4,6 @@ import pl.grm.narutocraft.libs.config.Materials;
 
 public class Kusanagi extends SwordMain{
 public Kusanagi(){
-	super(Materials.stal);
+	super(Materials.metalshinobi5);
 }
 }

@@ -4,6 +4,6 @@ import pl.grm.narutocraft.libs.config.Materials;
 
 public class ShellRockMace  extends SwordMain{
 public ShellRockMace(){
-	super(Materials.stal);
+	super(Materials.smoczastal2);
 }
 }

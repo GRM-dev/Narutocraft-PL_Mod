@@ -7,7 +7,7 @@ public class Rin extends Item {
 	public Rin() {
 		this.setUnlocalizedName("Rin");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
-		this.maxStackSize = 64;
+		this.maxStackSize = 1000;
 	}
 
 }

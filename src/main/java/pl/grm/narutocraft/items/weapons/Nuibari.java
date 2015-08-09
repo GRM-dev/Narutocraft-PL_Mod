@@ -4,6 +4,6 @@ import pl.grm.narutocraft.libs.config.Materials;
 
 public class Nuibari extends SwordMain{
 public Nuibari(){
-	super(Materials.stal);
+	super(Materials.metalshinobi5);
 }
 }

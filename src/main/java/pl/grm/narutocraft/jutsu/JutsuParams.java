@@ -1,5 +1,6 @@
 package pl.grm.narutocraft.jutsu;
 
+import net.minecraft.item.ItemStack;
 import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;
 import pl.grm.narutocraft.jutsu.bukijutsu.Hadan;
 import pl.grm.narutocraft.jutsu.bukijutsu.Iaido;
@@ -39,6 +40,7 @@ import pl.grm.narutocraft.jutsu.taijutsu.KageBuyo;
 import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
 import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
 import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
+import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
 public enum JutsuParams {
@@ -118,6 +120,8 @@ public enum JutsuParams {
 	private int damage;
 	private boolean buffType;
 
+	
+
 	/**
 	 * @param ID
 	 *            Unique ID of Jutsu
@@ -148,9 +152,8 @@ public enum JutsuParams {
 		this.damage = damage;
 		this.tier = tier;
 		this.jutsuID = ID;
-		
 		this.jutsuClass = jutsu;
-		this.jutsuName = name+"Jutsu";
+		this.jutsuName = name;
 		
 		this.jutsuTree = jutsuType;
 		this.buffType = bufftype;
@@ -259,6 +262,7 @@ public enum JutsuParams {
 	public boolean isBuffType() {
 		return this.buffType;
 	}
+	
 
 	
 }

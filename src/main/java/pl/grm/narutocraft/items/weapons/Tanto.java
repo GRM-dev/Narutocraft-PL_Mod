@@ -5,7 +5,7 @@ import pl.grm.narutocraft.libs.config.Materials;
 public class Tanto extends SwordMain {
 
 	public Tanto() {
-		super(Materials.tytan2);
+		super(Materials.tytan5);
 
 	}
 }

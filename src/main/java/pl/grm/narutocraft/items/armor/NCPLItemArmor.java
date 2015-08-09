@@ -100,7 +100,7 @@ public class NCPLItemArmor extends ItemArmor {
 		}
 		else if(stack.getItem() == RegItems.ChestplateAnbu)
 		{
-			return "narutocraft:textures/models/armors/AnbuArmor_layer_1,png";
+			return "narutocraft:textures/models/armors/AnbuArmor_layer_1.png";
 		}
 		else if(stack.getItem() == RegItems.LegginsAnbu)
 		{

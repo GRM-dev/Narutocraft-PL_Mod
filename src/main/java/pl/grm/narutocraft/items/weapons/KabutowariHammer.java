@@ -5,7 +5,7 @@ import pl.grm.narutocraft.libs.config.Materials;
 public class KabutowariHammer extends SwordMain{
 
 	public KabutowariHammer() {
-		super(Materials.stal);
+		super(Materials.metalshinobi);
 		// TODO Auto-generated constructor stub
 	}
 

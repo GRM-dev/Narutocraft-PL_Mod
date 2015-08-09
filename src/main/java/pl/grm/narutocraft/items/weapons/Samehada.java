@@ -5,7 +5,7 @@ import pl.grm.narutocraft.libs.config.Materials;
 public class Samehada extends SwordMain{
 public Samehada()
 {
-	super(Materials.stal);
+	super(Materials.metalsamurajow);
 	this.setUnlocalizedName("Samehada");
 }
 }
