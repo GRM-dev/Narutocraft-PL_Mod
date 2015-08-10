@@ -6,6 +6,7 @@ public class Katana extends SwordMain {
 
 	public Katana() {
 		super(Materials.tytan3);
-
+		this.setAttackDamage(12);
+		this.setMaxDamage(350);
 	}
 }

@@ -6,7 +6,8 @@ public class BigKunai extends SwordMain {
 
 	public BigKunai() {
 		super(Materials.smoczastal3);
-		this.setMaxDamage(9);
+		this.setMaxDamage(1000);
+		this.setAttackDamage(18);
 		
 	}
 

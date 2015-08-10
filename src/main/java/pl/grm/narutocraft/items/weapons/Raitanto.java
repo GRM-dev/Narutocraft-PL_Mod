@@ -6,6 +6,7 @@ public class Raitanto extends SwordMain {
 
 	public Raitanto() {
 		super(Materials.smoczastal4);
-        this.setMaxDamage(10);
+		this.setAttackDamage(20);
+        this.setMaxDamage(750);
 	}
 }

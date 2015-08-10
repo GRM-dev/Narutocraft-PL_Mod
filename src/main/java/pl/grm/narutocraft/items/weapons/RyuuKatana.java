@@ -6,6 +6,8 @@ public class RyuuKatana extends SwordMain {
 
 	public RyuuKatana() {
 		super(Materials.smoczastal);
+		this.setAttackDamage(15);
+		this.setMaxDamage(1500);
 
 	}
 }

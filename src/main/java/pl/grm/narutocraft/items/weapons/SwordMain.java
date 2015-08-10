@@ -1,9 +1,20 @@
 package pl.grm.narutocraft.items.weapons;
 
+import java.util.Random;
+
+import com.google.common.collect.Multimap;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -11,20 +22,32 @@ import pl.grm.narutocraft.NarutoCraft;
 
 public class SwordMain extends Item {
 
-	private float field_150934_a;
-	private final Item.ToolMaterial field_150933_b;
+	private float attackDamage;
+	private final Item.ToolMaterial material;
+	protected Random random = new Random();
+	private boolean canBlock = false;
 
-	public SwordMain(Item.ToolMaterial p_i45356_1_) {
-		this.field_150933_b = p_i45356_1_;
+	public SwordMain(Item.ToolMaterial material) {
+		this.material = material;
 		this.maxStackSize = 1;
-		this.setMaxDamage(p_i45356_1_.getMaxUses());
+		this.setMaxDamage(material.getMaxUses());
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
-		this.field_150934_a = 4.0F + p_i45356_1_.getDamageVsEntity();
+		this.attackDamage = 4.0F + material.getDamageVsEntity();
 	}
 
-	public float func_150931_i() {
-		return this.field_150933_b.getDamageVsEntity();
-	}
+    /**
+     * Returns the amount of damage this item will deal. One heart of damage is equal to 2 damage points.
+     */
+    public float getDamageVsEntity() {
+        return this.material.getDamageVsEntity();
+    }
+    
+    /**
+     * Sets the amount of damage this item will deal. One heart of damage is equal to 2 damage points.
+     */
+    public void setAttackDamage(float attack) {
+    	this.attackDamage = attack;
+    }
 
 	/**
 	 * Return the enchantability factor of the item, most of the time is based
@@ -32,7 +55,7 @@ public class SwordMain extends Item {
 	 */
 	@Override
 	public int getItemEnchantability() {
-		return this.field_150933_b.getEnchantability();
+		return this.material.getEnchantability();
 	}
 
 	/**
@@ -47,7 +70,7 @@ public class SwordMain extends Item {
 	 * Return the name for this tool's material.
 	 */
 	public String getToolMaterialName() {
-		return this.field_150933_b.toString();
+		return this.material.toString();
 	}
 
 	/**
@@ -69,6 +92,18 @@ public class SwordMain extends Item {
 	public boolean isFull3D() {
 		return true;
 	}
+	
+    /**
+     * returns the action that specifies what animation to play when the items is being used
+     */
+    public EnumAction getItemUseAction(ItemStack stack)
+    {
+    	if(canBlock)
+    	{
+    		return EnumAction.BLOCK;
+    	}
+        return EnumAction.NONE;
+    }
 
 	/**
 	 * Called whenever this item is equipped and the right mouse button is
@@ -81,4 +116,20 @@ public class SwordMain extends Item {
 	}
 
 	public void onUpdate() {}
+	
+    /**
+     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
+     */
+	@Override
+    public Multimap getItemAttributeModifiers()
+    {
+        Multimap multimap = super.getItemAttributeModifiers();
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double)this.attackDamage, 0));
+        return multimap;
+    }
+	
+	public void setCanBlock(boolean canBlock)
+	{
+		this.canBlock = canBlock;
+	}
 }

@@ -6,10 +6,8 @@ import pl.grm.narutocraft.libs.config.Materials;
 public class Knuckleduster extends SwordMain{
 	public Knuckleduster(){
 		super(Materials.stal6);
-		this.setUnlocalizedName("Knuckleduster");
-		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
-		this.maxStackSize = 64;
-		
+		this.setAttackDamage(10);
+		this.setMaxDamage(3000);
 	}
 
 }

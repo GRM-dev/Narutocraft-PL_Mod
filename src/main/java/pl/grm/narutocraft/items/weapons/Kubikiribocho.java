@@ -17,6 +17,8 @@ public class Kubikiribocho extends SwordMain {
 
 	public Kubikiribocho() {
 		super(Materials.metalshinobi4);
+		this.setAttackDamage(22);
+		this.setCanBlock(true);
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})

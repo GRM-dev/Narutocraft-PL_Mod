@@ -6,7 +6,8 @@ public class Kama  extends SwordMain{
 
 	public Kama() {
 		super(Materials.stal);
-		
+		this.setAttackDamage(8);
+		this.setMaxDamage(400);		
 	}
 
 }

@@ -6,6 +6,8 @@ public class SamuraiSword extends SwordMain {
 
 	public SamuraiSword() {
 		super(Materials.stal3);
+		this.setAttackDamage(4);
+		this.setMaxDamage(800);
 
 	}
 }

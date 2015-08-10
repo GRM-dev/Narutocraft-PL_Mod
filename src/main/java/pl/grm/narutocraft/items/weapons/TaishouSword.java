@@ -6,7 +6,8 @@ public class TaishouSword extends SwordMain {
 
 	public TaishouSword() {
 		super(Materials.metalshinobi3);
-		// TODO Auto-generated constructor stub
+		this.setAttackDamage(24);
+		this.setMaxDamage(2000);
 	}
 
 }
