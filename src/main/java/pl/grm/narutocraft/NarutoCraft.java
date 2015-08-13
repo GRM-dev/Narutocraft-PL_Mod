@@ -24,6 +24,7 @@ import pl.grm.narutocraft.handlers.NCFMLEventHandler;
 import pl.grm.narutocraft.libs.buffs.BuffList;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import pl.grm.narutocraft.libs.config.References;
+import pl.grm.narutocraft.libs.network.PacketKurosawaAttack;
 import pl.grm.narutocraft.libs.network.PacketNinjaAttr;
 import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
 import pl.grm.narutocraft.libs.network.PacketNinjaRun;
@@ -32,6 +33,7 @@ import pl.grm.narutocraft.registry.RegBlocks;
 import pl.grm.narutocraft.registry.RegEntities;
 import pl.grm.narutocraft.registry.RegItems;
 import pl.grm.narutocraft.registry.RegMobs;
+import pl.grm.narutocraft.registry.RegPotion;
 import pl.grm.narutocraft.registry.RegRecipes;
 import pl.grm.narutocraft.registry.RegWeapons;
 
@@ -70,6 +72,7 @@ public class NarutoCraft {
 		RegArmor.regArmorList();
 		RegRecipes.regRecipesList();
 		JutsuManager.regJutsusList();
+		RegPotion.registerPotions();
 	}
 
 	/** preInit event */
@@ -88,7 +91,9 @@ public class NarutoCraft {
 		netHandler.registerMessage(
 				PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class,
 				PacketNinjaAttrSync.class, this.packetId++, Side.CLIENT);
-
+		
+		netHandler.registerMessage(PacketKurosawaAttack.class, PacketKurosawaAttack.class, this.packetId++, Side.SERVER);
+		
 		config = new ConfigurationHandler(
 				event.getSuggestedConfigurationFile());
 		config.readConfig();
@@ -112,6 +117,7 @@ public class NarutoCraft {
 		MinecraftForge.EVENT_BUS.register(new NCEventHandler());
 		FMLCommonHandler.instance().bus().register(new NCFMLEventHandler());
 		FMLCommonHandler.instance().bus().register(new JutsuEventsHandler());
+		
 		proxy.registerRenderInfomation();
 		proxy.registerRenderThings();
 		proxy.registerCommands();

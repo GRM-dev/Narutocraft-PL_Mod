@@ -6,18 +6,21 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class IchirakuRamen extends ItemFood{
+public class IchirakuRamen extends ItemFood
+{
 
-	public IchirakuRamen() {
-		super(0, 0.0F, false);
+	public IchirakuRamen()
+	{
+		super(20, 1.0F, false);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.setUnlocalizedName("IchirakuRamen");
-		// TODO Auto-generated constructor stub
+		this.setAlwaysEdible();
+	}
 	
+	@Override
+	public void onFoodEaten(ItemStack itemStack, World worldIn, EntityPlayer player)
+	{
+		super.onFoodEaten(itemStack, worldIn, player);
+		if(!worldIn.isRemote)player.heal(20);
 	}
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-		par3EntityPlayer.heal(20);
-		return super.onItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
-	}
-
 }

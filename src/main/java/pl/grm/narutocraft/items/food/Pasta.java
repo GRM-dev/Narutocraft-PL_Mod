@@ -6,17 +6,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import pl.grm.narutocraft.NarutoCraft;
 
-public class Pasta extends ItemFood{
+public class Pasta extends ItemFood
+{
 
-	public Pasta() {
-		super(2, 0.5F, false);
-		// TODO Auto-generated constructor stub
+	public Pasta()
+	{
+		super(2, 0.6F, false);
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.setUnlocalizedName("Pasta");
 		this.setAlwaysEdible();
 	}
-	@Override
-	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-	    super.onFoodEaten(stack, world, player);
-}
 }
