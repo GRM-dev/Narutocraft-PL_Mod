@@ -1,6 +1,7 @@
 package pl.grm.narutocraft.jutsu;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -171,4 +172,6 @@ public abstract class Jutsu extends Item implements IJutsu {
 		this.tabToDisplayOn = par1CreativeTabs;
 		return this;
 	}
+	
+	
 }

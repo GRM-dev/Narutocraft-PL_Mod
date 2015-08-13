@@ -11,6 +11,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pl.grm.narutocraft.registry.RegItems;
 import pl.grm.narutocraft.registry.RegWeapons;
 
 /**
@@ -124,7 +125,7 @@ public class EntitySenbon extends Entity implements IProjectile {
 					|| ((this.canBePickedUp == 2) && par1EntityPlayer.capabilities.isCreativeMode);
 
 			if ((this.canBePickedUp == 1)
-					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegWeapons.Senbon, 1))) {
+					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegItems.Senbon, 1))) {
 				flag = false;
 			}
 

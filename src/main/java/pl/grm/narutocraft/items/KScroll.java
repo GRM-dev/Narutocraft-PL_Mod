@@ -6,7 +6,7 @@ import pl.grm.narutocraft.NarutoCraft;
 public class KScroll extends Item {
 
 	public KScroll() {
-		this.setUnlocalizedName("KScroll");
+		this.setUnlocalizedName("KatonScroll");
 		this.setCreativeTab(NarutoCraft.mTabNarutoCraft);
 		this.maxStackSize = 64;
 	}

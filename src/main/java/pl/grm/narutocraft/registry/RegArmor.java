@@ -1,143 +1,148 @@
 package pl.grm.narutocraft.registry;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import pl.grm.narutocraft.items.armor.NCPLItemArmor;
 
 public class RegArmor extends RegItems {
 
-	public static final ItemArmor helmetBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 0, "Test", "BushidoArmor"))
-			.setUnlocalizedName("helmetBushido");
+	//public static Item HelmetBushido =  new NCPLItemArmor(Bushido, 4, 0)
+			//.setUnlocalizedName("HelmetBushido");
 
-	public static final ItemArmor plateBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 1, "Test", "BushidoArmor"))
-			.setUnlocalizedName("chestplateBushido");
-	public static final ItemArmor legsBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 2, "Test", "BushidoArmor"))
-			.setUnlocalizedName("legginsBushido");
-	public static final ItemArmor bootsBushido = (ItemArmor) (new NCPLItemArmor(Bushido, 4, 3, "Test", "BushidoArmor"))
-			.setUnlocalizedName("bootsBushido");
-	public static final ItemArmor helmetAnbu1 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0, "AnbuArmor"))
-			.setUnlocalizedName("helmetAnbu1");
-	public static final ItemArmor helmetAnbu2 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0, "Maska ANBU_1"))
+	//public static  Item ChestplateBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 1)
+	//		.setUnlocalizedName("ChestplateBushido");
+	//public static  Item LegginsBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 2)
+		//	.setUnlocalizedName("LegginsBushido");
+	//public static  Item BootsBushido = (ItemArmor) new NCPLItemArmor(Bushido, 4, 3)
+	//		.setUnlocalizedName("BootsBushido");
+	/*public static  ItemArmor HelmetAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 0)
+			.setUnlocalizedName("HelmetAnbu");
+	public static  Item HelmetAnbu2 = (ItemArmor) new NCPLItemArmor(Anbu, 4, 0)
 			.setUnlocalizedName("HelmetAnbu2");
-	public static final ItemArmor helmetAnbu3 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0))
+	public static  Item HelmetAnbu3 = (ItemArmor) new NCPLItemArmor(Anbu, 4, 0)
 			.setUnlocalizedName("HelmetAnbu3");
-	public static final ItemArmor helmetAnbu4 = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 0))
+	public static  Item HelmetAnbu4 = (ItemArmor) new NCPLItemArmor(Anbu, 4, 0)
 			.setUnlocalizedName("HelmetAnbu4");
-	public static final ItemArmor plateAnbu = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 1, "AnbuArmor"))
-			.setUnlocalizedName("plateAnbu");
-	public static final ItemArmor legsAnbu = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 2, "AnbuArmor"))
-			.setUnlocalizedName("legginsAnbu");
-	public static final ItemArmor bootsAnbu = (ItemArmor) (new NCPLItemArmor(Anbu, 4, 3, "AnbuArmor"))
-			.setUnlocalizedName("bootsAnbu");
-	public static final ItemArmor plateKiri = (ItemArmor) (new NCPLItemArmor(Kiri, 4, 1, "KiriArmor"))
-			.setUnlocalizedName("plateKiri");
-	public static final ItemArmor legsKiri = (ItemArmor) (new NCPLItemArmor(Kiri, 4, 2, "KiriArmor"))
-			.setUnlocalizedName("legginsKiri");
-	public static final ItemArmor plateSuna = (ItemArmor) (new NCPLItemArmor(Suna, 4, 1, "SunaArmor"))
-			.setUnlocalizedName("plateSuna");
-	public static final ItemArmor legsSuna = (ItemArmor) (new NCPLItemArmor(Suna, 4, 2, "SunaArmor"))
-			.setUnlocalizedName("legginsSuna");
-	public static final ItemArmor helmetAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 0))
-			.setUnlocalizedName("helmetAkatsuki");
-	public static final ItemArmor helmetAkatsuki2 = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 0, "AkatsukiArmor"))
-			.setUnlocalizedName("helmetAkatsuki2");
-	public static final ItemArmor helmetAkatsuki3 = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 0))
-			.setUnlocalizedName("helmetAkatsuki3");
-	public static final ItemArmor plateAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 1, "AkatsukiArmor"))
-			.setUnlocalizedName("plateAkatsuki");
-	public static final ItemArmor plateAkatsuki2 = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 1))
-			.setUnlocalizedName("plateAkatsuki2");
-	public static final ItemArmor plateAkatsuki3 = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 1))
-			.setUnlocalizedName("plateAkatsuki3");
-	public static final ItemArmor plateAkatsuki4 = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 1))
-			.setUnlocalizedName("plateAkatsuki4");
-	public static final ItemArmor legsAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 2, "AkatsukiArmor"))
-			.setUnlocalizedName("legginsAkatsuki");
-	public static final ItemArmor bootsAkatsuki = (ItemArmor) (new NCPLItemArmor(Akatsuki, 4, 3, "AkatsukiArmor"))
-			.setUnlocalizedName("bootsAkatsuki");
-	public static final ItemArmor plateIwa = (ItemArmor) (new NCPLItemArmor(Iwa, 4, 1, "IwaArmor"))
-			.setUnlocalizedName("plateIwa");
-	public static final ItemArmor legsIwa = (ItemArmor) (new NCPLItemArmor(Iwa, 4, 2, "IwaArmor"))
-			.setUnlocalizedName("legginsIwa");
-	public static final ItemArmor bootsIwa = (ItemArmor) (new NCPLItemArmor(Iwa, 4, 3, "IwaArmor"))
-			.setUnlocalizedName("bootsIwa");
+	public static  Item ChestplateAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 1)
+			.setUnlocalizedName("ChestplateAnbu");
+	public static  Item LegginsAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 2)
+			.setUnlocalizedName("LegginsAnbu");
+	public static  Item BootsAnbu = (ItemArmor) new NCPLItemArmor(Anbu, 4, 3)
+			.setUnlocalizedName("BootsAnbu");*/
+/*	public static  Item ChestplateKiri = (ItemArmor) new NCPLItemArmor(Kiri, 4, 1)
+			.setUnlocalizedName("ChestplateKiri");
+	public static  Item LegginsKiri = (ItemArmor) new NCPLItemArmor(Kiri, 4, 2)
+			.setUnlocalizedName("LegginsKiri");
+	public static  Item ChestplateSuna = (ItemArmor) new NCPLItemArmor(Suna, 4, 1)
+			.setUnlocalizedName("ChestplateSuna");
+	public static  Item LegginsSuna = (ItemArmor) new NCPLItemArmor(Suna, 4, 2)
+			.setUnlocalizedName("LegginsSuna");
+	public static  Item HelmetAkatsuki = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 0)
+			.setUnlocalizedName("HelmetAkatsuki");
+	public static  Item HelmetAkatsuki2 = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 0)
+			.setUnlocalizedName("HelmetAkatsuki2");
+	public static  Item HelmetAkatsuki3 = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 0)
+			.setUnlocalizedName("HelmetAkatsuki3");
+	public static  Item ChestplateAkatsuki = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 1)
+			.setUnlocalizedName("ChestplateAkatsuki");
+	public static  Item ChestplateAkatsuki2 = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 1)
+			.setUnlocalizedName("ChestplateAkatsuki2");
+	public static  Item ChestplateAkatsuki3 = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 1)
+			.setUnlocalizedName("ChestplateAkatsuki3");
+	public static  Item ChestplateAkatsuki4 = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 1)
+			.setUnlocalizedName("ChestplateAkatsuki4");
+	public static  Item LegginsAkatsuki = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 2)
+			.setUnlocalizedName("LegginsAkatsuki");
+	public static  Item BootsAkatsuki = (ItemArmor) new NCPLItemArmor(Akatsuki, 4, 3)
+			.setUnlocalizedName("BootsAkatsuki");
+	public static  Item ChestplateIwa = (ItemArmor) new NCPLItemArmor(Iwa, 4, 1)
+			.setUnlocalizedName("ChestplateIwa");
+	public static  Item LegginsIwa = (ItemArmor) new NCPLItemArmor(Iwa, 4, 2)
+			.setUnlocalizedName("LegginsIwa");
+	public static  Item BootsIwa = (ItemArmor) new NCPLItemArmor(Iwa, 4, 3)
+			.setUnlocalizedName("BootsIwa");
 
-	public static final ItemArmor plateKonoha = (ItemArmor) (new NCPLItemArmor(Konoha, 4, 1, "Konoha"))
-			.setUnlocalizedName("plateKonoha");
-	public static final ItemArmor legsKonoha = (ItemArmor) (new NCPLItemArmor(Konoha, 4, 2, "Konoha"))
-			.setUnlocalizedName("legginsKonoha");
-	public static final ItemArmor bootsKonoha = (ItemArmor) (new NCPLItemArmor(Konoha, 4, 3, "Konoha"))
-			.setUnlocalizedName("bootsKonoha");
-	public static final ItemArmor plateOto = (ItemArmor) (new NCPLItemArmor(Oto, 4, 1, "OtoArmor"))
-			.setUnlocalizedName("plateOto");
-	public static final ItemArmor legsOto = (ItemArmor) (new NCPLItemArmor(Oto, 4, 2, "OtoArmor"))
-			.setUnlocalizedName("legginsOto");
-	public static final ItemArmor bootsOto = (ItemArmor) (new NCPLItemArmor(Oto, 4, 3, "OtoArmor"))
-			.setUnlocalizedName("bootsOto");
-	public static final ItemArmor plateOld = (ItemArmor) (new NCPLItemArmor(Old, 4, 1, "PrzodkowArmor"))
-			.setUnlocalizedName("plateOld");
-	public static final ItemArmor legsOld = (ItemArmor) (new NCPLItemArmor(Old, 4, 2, "PrzodkowArmor"))
-			.setUnlocalizedName("legginsOld");
-	public static final ItemArmor bootsOld = (ItemArmor) (new NCPLItemArmor(Old, 4, 3, "PrzodkowArmor"))
-			.setUnlocalizedName("bootsOld");
-	public static final ItemArmor plateKumo = (ItemArmor) (new NCPLItemArmor(Kumo, 4, 1, "KumoArmor"))
-			.setUnlocalizedName("plateKumo");
-	public static final ItemArmor legsKumo = (ItemArmor) (new NCPLItemArmor(Kumo, 4, 2, "KumoArmor"))
-			.setUnlocalizedName("legginsKumo");
-	public static final ItemArmor bootsKumo = (ItemArmor) (new NCPLItemArmor(Kumo, 4, 3, "KumoArmor"))
-			.setUnlocalizedName("bootsKumo");
-	public static final ItemArmor helmetRyu = (ItemArmor) (new NCPLItemArmor(Ryuu, 4, 0, "RyuArmor"))
-			.setUnlocalizedName("helmetRyuu");
-	public static final ItemArmor plateRyu = (ItemArmor) (new NCPLItemArmor(Ryuu, 4, 1, "RyuArmor"))
-			.setUnlocalizedName("plateRyuu");
-	public static final ItemArmor legsRyu = (ItemArmor) (new NCPLItemArmor(Ryuu, 4, 2, "RyuArmor"))
-			.setUnlocalizedName("legginsRyuu");
-	public static final ItemArmor bootsRyu = (ItemArmor) (new NCPLItemArmor(Ryuu, 4, 3, "RyuArmor"))
-			.setUnlocalizedName("bootsRyuu");
+	public static  Item ChestplateKonoha = (ItemArmor) new NCPLItemArmor(Konoha, 4, 1)
+			.setUnlocalizedName("ChestplateKonoha");
+	public static  Item LegginsKonoha = (ItemArmor) new NCPLItemArmor(Konoha, 4, 2)
+			.setUnlocalizedName("LegginsKonoha");
+	public static  Item BootsKonoha = (ItemArmor) new NCPLItemArmor(Konoha, 4, 3)
+			.setUnlocalizedName("BootsKonoha");
+	public static  Item ChestplateOto = (ItemArmor) new NCPLItemArmor(Oto, 4, 1)
+			.setUnlocalizedName("ChestplateOto");
+	public static  Item LegginsOto = (ItemArmor) new NCPLItemArmor(Oto, 4, 2)
+			.setUnlocalizedName("LegginsOto");
+	public static  Item BootsOto = (ItemArmor) new NCPLItemArmor(Oto, 4, 3)
+			.setUnlocalizedName("BootsOto");
+	public static  Item ChestplateOld = (ItemArmor) new NCPLItemArmor(Old, 4, 1)
+			.setUnlocalizedName("ChestplateOld");
+	public static  Item LegginsOld = (ItemArmor) new NCPLItemArmor(Old, 4, 2)
+			.setUnlocalizedName("LegginsOld");
+	public static  Item BootsOld = (ItemArmor) new NCPLItemArmor(Old, 4, 3)
+			.setUnlocalizedName("BootsOld");
+	public static  Item ChestplateKumo = (ItemArmor) new NCPLItemArmor(Kumo, 4, 1)
+			.setUnlocalizedName("ChestplateKumo");
+	public static  Item LegginsKumo = (ItemArmor) new NCPLItemArmor(Kumo, 4, 2)
+			.setUnlocalizedName("LegginsKumo");
+	public static  Item BootsKumo = (ItemArmor) new NCPLItemArmor(Kumo, 4, 3)
+			.setUnlocalizedName("BootsKumo");*/
+	/*public static  Item HelmetRyu =   new NCPLItemArmor(Ryuu, 0, 0)
+			.setUnlocalizedName("HelmetRyu");
+	public static  Item ChestplateRyu =  new NCPLItemArmor(Ryuu, 0, 1)
+			.setUnlocalizedName("ChestplateRyu");
+	public static  Item LegginsRyu =  new NCPLItemArmor(Ryuu, 0, 2)
+			.setUnlocalizedName("LegginsRyu");
+	public static  Item BootsRyu =  new NCPLItemArmor(Ryuu, 0, 3)
+			.setUnlocalizedName("BootsRyu");*/
 
 	public static void regArmorList() {
 
-		registerItem(helmetBushido, "HelmetBushido");
-		registerItem(plateBushido, "PlateBushido");
-		registerItem(legsBushido, "LegsBushido");
-		registerItem(bootsBushido, "BootsBushido");
-		registerItem(helmetAnbu1, "HelmetAnbu");
-		registerItem(helmetAnbu2, "HelmetAnbu2");
-		registerItem(helmetAnbu3, "HelmetAnbu3");
-		registerItem(helmetAnbu4, "HelmetAnbu4");
-		registerItem(plateAnbu, "PlateAnbu");
-		registerItem(legsAnbu, "LegsAnbu");
-		registerItem(bootsAnbu, "BootsAnbu");
-		registerItem(plateKiri, "PlateKiri");
-		registerItem(legsKiri, "LegsKiri");
-		registerItem(plateSuna, "PlateSuna");
-		registerItem(legsSuna, "LegsSuna");
-		registerItem(helmetAkatsuki, "HelmetAkatsuki");
-		registerItem(helmetAkatsuki2, "HelmetAkatsuki2");
-		registerItem(helmetAkatsuki3, "HelmetAkatsuki3");
-		registerItem(plateAkatsuki, "PlateAkatsuki");
-		registerItem(plateAkatsuki2, "PlateAkatsuki2");
-		registerItem(plateAkatsuki3, "PlateAkatsuki3");
-		registerItem(plateAkatsuki4, "PlateAkatsuki4");
-		registerItem(legsAkatsuki, "LegsAkatsuki");
-		registerItem(bootsAkatsuki, "BootsAkatsuki");
-		registerItem(plateIwa, "PlateIwa");
-		registerItem(legsIwa, "LegsIwa");
-		registerItem(bootsIwa, "BootsIwa");
-		registerItem(plateKonoha, "PlateKonoha");
-		registerItem(legsKonoha, "LegsKonoha");
-		registerItem(bootsKonoha, "BootsKonoha");
-		registerItem(plateOto, "PlateOto");
-		registerItem(legsOto, "LegsOto");
-		registerItem(bootsOto, "BootsOto");
-		registerItem(plateOld, "PlateOld");
-		registerItem(legsOld, "LegsOld");
-		registerItem(bootsOld, "BootsOld");
-		registerItem(plateKumo, "PlateKumo");
-		registerItem(legsKumo, "LegsKumo");
-		registerItem(bootsKumo, "BootsKumo");
-		registerItem(helmetRyu, "HelmetRyu");
-		registerItem(plateRyu, "PlateRyu");
-		registerItem(legsRyu, "LegsRyu");
-		registerItem(bootsRyu, "BootsRyu");
+		//registerItem(HelmetBushido, "HelmetBushido");
+		//registerItem(ChestplateBushido, "ChestplateBushido");
+		//registerItem(LegginsBushido, "LegginsBushido");
+		//registerItem(BootsBushido, "BootsBushido");
+		//registerItem(HelmetAnbu, "HelmetAnbu");
+		//registerItem(HelmetAnbu2, "HelmetAnbu2");
+		//registerItem(HelmetAnbu3, "HelmetAnbu3");
+		//registerItem(HelmetAnbu4, "HelmetAnbu4");
+		//registerItem(ChestplateAnbu, "ChestplateAnbu");
+		//registerItem(LegginsAnbu, "LegginsAnbu");
+		//registerItem(BootsAnbu, "BootsAnbu");
+/*		registerItem(ChestplateKiri, "ChestplateKiri");
+		registerItem(LegginsKiri, "LegginsKiri");
+		registerItem(ChestplateSuna, "ChestplateSuna");
+		registerItem(LegginsSuna, "LegginsSuna");
+		registerItem(HelmetAkatsuki, "HelmetAkatsuki");
+		registerItem(HelmetAkatsuki2, "HelmetAkatsuki2");
+		registerItem(HelmetAkatsuki3, "HelmetAkatsuki3");
+		registerItem(ChestplateAkatsuki, "PlateAkatsuki");
+		registerItem(ChestplateAkatsuki2, "ChestplateAkatsuki2");
+		registerItem(ChestplateAkatsuki3, "ChestplateAkatsuki3");
+		registerItem(ChestplateAkatsuki4, "ChestplateAkatsuki4");
+		registerItem(LegginsAkatsuki, "LegginsAkatsuki");
+		registerItem(BootsAkatsuki, "BootsAkatsuki");
+		registerItem(ChestplateIwa, "ChestplateIwa");
+		registerItem(LegginsIwa, "LegginsIwa");
+		registerItem(BootsIwa, "BootsIwa");
+		registerItem(ChestplateKonoha, "ChestplateKonoha");
+		registerItem(LegginsKonoha, "LegginsKonoha");
+		registerItem(BootsKonoha, "BootsKonoha");
+		registerItem(ChestplateOto, "ChestplateOto");
+		registerItem(LegginsOto, "LegginsOto");
+		registerItem(BootsOto, "BootsOto");
+		registerItem(ChestplateOld, "ChestplateOld");
+		registerItem(LegginsOld, "LegginsOld");
+		registerItem(BootsOld, "BootsOld");
+		registerItem(ChestplateKumo, "ChestplateKumo");
+		registerItem(LegginsKumo, "LegginsKumo");
+		registerItem(BootsKumo, "BootsKumo");*/
+		/*registerItem(HelmetRyu, "HelmetRyu");
+		registerItem(ChestplateRyu, "ChestplateRyu");
+		registerItem(LegginsRyu, "LegginsRyu");
+		registerItem(BootsRyu, "BootsRyu");*/
+	//	GameRegistry.registerItem(ChestplateRyu, "ChestplateRyu");
 	}
+	
+	
+	
 }

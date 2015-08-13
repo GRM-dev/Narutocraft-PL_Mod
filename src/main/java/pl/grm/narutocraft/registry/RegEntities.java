@@ -5,7 +5,7 @@ import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityExplodeKunai;
 import pl.grm.narutocraft.mobs.bijuu.EntityKyuubi;
 
 public class RegEntities extends NarutoCraft {
@@ -14,7 +14,7 @@ public class RegEntities extends NarutoCraft {
 		int id = 0;
 		EntityRegistry.registerModEntity(EntityKunai.class, "Kunai", id, NarutoCraft.instance, 80, 1, true);
 		id++;
-		EntityRegistry.registerModEntity(EntityWKunai.class, "WKunai", id, NarutoCraft.instance, 80, 1, true);
+		EntityRegistry.registerModEntity(EntityExplodeKunai.class, "ExplodeKunai", id, NarutoCraft.instance, 80, 1, true);
 		id++;
 		EntityRegistry.registerModEntity(EntitySenbon.class, "Senbon", id, NarutoCraft.instance, 80, 1, true);
 		id++;
