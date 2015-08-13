@@ -24,6 +24,7 @@ import pl.grm.narutocraft.handlers.NCFMLEventHandler;
 import pl.grm.narutocraft.libs.buffs.BuffList;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 import pl.grm.narutocraft.libs.config.References;
+import pl.grm.narutocraft.libs.network.PacketKurosawaAttack;
 import pl.grm.narutocraft.libs.network.PacketNinjaAttr;
 import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
 import pl.grm.narutocraft.libs.network.PacketNinjaRun;
@@ -107,6 +108,8 @@ public class NarutoCraft {
 		// Client Side Packets
 		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class, PacketNinjaAttrSync.class,
 				this.packetId++, Side.CLIENT);
+				
+		netHandler.registerMessage(PacketKurosawaAttack.class, PacketKurosawaAttack.class, this.packetId++, Side.SERVER);
 
 		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
 		config.readConfig();
