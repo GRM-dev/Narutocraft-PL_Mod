@@ -6,7 +6,7 @@ import net.minecraft.util.EntityDamageSourceIndirect;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntitySenbon;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityWKunai;
+import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityExplodeKunai;
 
 public class DamSource extends DamageSource {
 
@@ -26,7 +26,7 @@ public class DamSource extends DamageSource {
 		return (new EntityDamageSourceIndirect("shuriken", entityShuriken, shootingEntity)).setProjectile();
 	}
 
-	public static DamageSource causeWKunaiDamage(EntityWKunai entityWKunai, Entity shootingEntity) {
+	public static DamageSource causeWKunaiDamage(EntityExplodeKunai entityWKunai, Entity shootingEntity) {
 		return (new EntityDamageSourceIndirect("wkunai", entityWKunai, shootingEntity)).setProjectile();
 	}
 

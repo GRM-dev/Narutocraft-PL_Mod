@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ScrollSuiton"
+        "layer0": "narutocraft:items/SuitonScroll"
     },
     "display": {
         "thirdperson": {

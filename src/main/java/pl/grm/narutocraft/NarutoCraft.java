@@ -12,9 +12,25 @@ import net.minecraftforge.fml.relauncher.Side;
 import pl.grm.narutocraft.creativetabs.*;
 import pl.grm.narutocraft.handlers.*;
 import pl.grm.narutocraft.libs.buffs.BuffList;
+<<<<<<< HEAD
+import pl.grm.narutocraft.libs.config.ConfigurationHandler;
+import pl.grm.narutocraft.libs.config.References;
+import pl.grm.narutocraft.libs.network.PacketKurosawaAttack;
+import pl.grm.narutocraft.libs.network.PacketNinjaAttr;
+import pl.grm.narutocraft.libs.network.PacketNinjaAttrSync;
+import pl.grm.narutocraft.libs.network.PacketNinjaRun;
+import pl.grm.narutocraft.registry.RegArmor;
+import pl.grm.narutocraft.registry.RegBlocks;
+import pl.grm.narutocraft.registry.RegEntities;
+import pl.grm.narutocraft.registry.RegItems;
+import pl.grm.narutocraft.registry.RegMobs;
+import pl.grm.narutocraft.registry.RegRecipes;
+import pl.grm.narutocraft.registry.RegWeapons;
+=======
 import pl.grm.narutocraft.libs.config.*;
 import pl.grm.narutocraft.libs.network.*;
 import pl.grm.narutocraft.registry.*;
+>>>>>>> master
 
 @Mod(modid = References.MODID, version = References.VERSION, name = References.NAME)
 /**
@@ -92,4 +108,29 @@ public class NarutoCraft {
 		proxy.registerRenderThings();
 		proxy.registerCommands();
 	}
+<<<<<<< HEAD
+
+	/** preInit event */
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		BuffList.Init();
+		BuffList.Instantiate();
+
+		netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ncplChannel");
+		// Server Packets
+		netHandler.registerMessage(PacketNinjaAttr.PacketNinjaAttrHandler.class, PacketNinjaAttr.class,
+				this.packetId++, Side.SERVER);
+		netHandler.registerMessage(PacketNinjaRun.PacketNinjaRunHandler.class, PacketNinjaRun.class, this.packetId++,
+				Side.SERVER);
+		// Client Side Packets
+		netHandler.registerMessage(PacketNinjaAttrSync.PacketNinjaAttrSyncHandler.class, PacketNinjaAttrSync.class,
+				this.packetId++, Side.CLIENT);
+				
+		netHandler.registerMessage(PacketKurosawaAttack.class, PacketKurosawaAttack.class, this.packetId++, Side.SERVER);
+
+		config = new ConfigurationHandler(event.getSuggestedConfigurationFile());
+		config.readConfig();
+	}
+=======
+>>>>>>> master
 }

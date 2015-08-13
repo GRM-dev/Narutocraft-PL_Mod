@@ -15,11 +15,15 @@ public class Meisaigakure extends Jutsu implements IJutsu {
 		super(JutsuParams.MEISAIGAKURE);
 	}
 
-	@Override
-	public void onJutsuActivation() {
+	
+
+	
+	public void onJutsuActivation(EntityPlayer par1EntityPlayer) {
 		super.onJutsuActivation();
 		this.player.addPotionEffect(new PotionEffect(Potion.invisibility.getId(), 2400));
-		// this.setPotionEffect("Invisible");
+		this.setPotionEffect("Invisible");
+	  
+		
 	}
 
 	@Override

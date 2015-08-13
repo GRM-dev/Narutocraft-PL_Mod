@@ -6,6 +6,7 @@ public class Wakizashi extends SwordMain {
 
 	public Wakizashi() {
 		super(Materials.tytan);
-
+		this.setAttackDamage(10);
+		this.setMaxDamage(300);
 	}
 }

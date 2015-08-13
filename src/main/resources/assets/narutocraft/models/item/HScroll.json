@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ScrollHeaven"
+        "layer0": "narutocraft:items/HeavenScroll"
     },
     "display": {
         "thirdperson": {

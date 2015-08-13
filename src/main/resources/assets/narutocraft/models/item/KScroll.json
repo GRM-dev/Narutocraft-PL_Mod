@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "narutocraft:items/ScrollKaton"
+        "layer0": "narutocraft:items/KatonScroll"
     },
     "display": {
         "thirdperson": {

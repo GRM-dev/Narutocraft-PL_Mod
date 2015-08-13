@@ -11,7 +11,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pl.grm.narutocraft.registry.RegWeapons;
+import pl.grm.narutocraft.registry.RegItems;
 
 /**
  * Kunai
@@ -123,7 +123,7 @@ public class EntityKunai extends EntityArrow implements IProjectile {
 					|| ((this.canBePickedUp == 2) && par1EntityPlayer.capabilities.isCreativeMode);
 
 			if ((this.canBePickedUp == 1)
-					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegWeapons.Kunai, 1))) {
+					&& !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(RegItems.Kunai, 1))) {
 				flag = false;
 			}
 

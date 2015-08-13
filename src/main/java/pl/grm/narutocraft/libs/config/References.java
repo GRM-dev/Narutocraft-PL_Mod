@@ -19,7 +19,7 @@ public class References {
 	public static final String ModTexturePath = "narutocraft:";
 	public static final String GUI_TEXTURE_PATH = ModTexturePath + "textures/gui/";
 	public static final String ModTag = MODID + ":";
-	public static final String JutsuTexturePath = ModTag + "jutsu/";
+	public static final String JutsuTexturePath = ModTag + "textures/items/jutsu/";
 	public static final ResourceLocation[] jutsuGUILocation = new ResourceLocation[]{
 			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage1.png"),
 			new ResourceLocation(GUI_TEXTURE_PATH + "JutsuPage2.png"),

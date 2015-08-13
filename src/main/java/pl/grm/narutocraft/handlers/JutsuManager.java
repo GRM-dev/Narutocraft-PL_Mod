@@ -48,7 +48,7 @@ public class JutsuManager {
 	 */
 	private static void registerJutsu(JutsuParams jutsuE) {
 		Jutsu jutsu = (Jutsu) jutsuE.getJutsu();
-		GameRegistry.registerItem(jutsu, jutsuE.getName());
+		//GameRegistry.registerItem(jutsu, jutsuE.getName());
 		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
 	}
 
