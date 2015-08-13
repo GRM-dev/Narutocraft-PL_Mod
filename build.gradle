@@ -21,12 +21,12 @@ apply plugin: 'pmd'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = "1.8-1397-0.8"
+version = "1.8-1479-0.81"
 group= "pl.grm.narutocraft"
 archivesBaseName = "NarutoCraft_Mod"
 
 minecraft {
-    version = "1.8-11.14.1.1397"
+    version = "1.8-11.14.3.1479"
     runDir = "eclipse"
 }
 
@@ -95,4 +95,8 @@ check << {
       include(name: '**/*.java')
     }
   }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
 }
