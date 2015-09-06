@@ -45,10 +45,20 @@ public class Materials {// TODO null ->texture name in armor materials
 			new int[]{8, 20, 15, 8}, 10);
 	public static ArmorMaterial armorIWA = EnumHelper.addArmorMaterial("armorIWA", "narutocraft:textures/models/armors/IwaArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorKONOHA = EnumHelper
-			.addArmorMaterial("KONOHA", null, 48, new int[]{3, 8, 6, 3}, 10);
+			.addArmorMaterial("armorKONOHA", "narutocraft:textures/models/armors/KonohaArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorOTO = EnumHelper.addArmorMaterial("armorOTO", "narutocraft:textures/models/armors/OtoArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorOLD = EnumHelper.addArmorMaterial("armorOLD","narutocraft:textures/models/armors/OldArmor_layer_1.png" , 48, new int[]{11, 28, 21, 11}, 10);
 	public static ArmorMaterial armorKUMO = EnumHelper.addArmorMaterial("armorKUMO", "narutocraft:textures/models/armors/KumoArmor_layer_1.png", 48, new int[]{3, 8, 6, 3}, 10);
 	public static ArmorMaterial armorRYUU = EnumHelper.addArmorMaterial("armorRYUU", "narutocraft:textures/models/armors/RyuArmor_layer_1.png", 48, new int[]{5, 12, 9, 5}, 10);
-
+	public static ArmorMaterial armorBATTLE = EnumHelper
+			.addArmorMaterial("armorBATTLE", "narutocraft:textures/models/armors/BattleArmor.png", 48, new int[]{5, 12, 9, 5}, 10);
+	public static ArmorMaterial armorOTO2 = EnumHelper
+			.addArmorMaterial("armorOTO2", "narutocraft:textures/models/armors/OtoArmor2_layer_1.png", 48, new int[]{3, 8, 6, 4}, 10);
+	public static ArmorMaterial armorGREEN = EnumHelper .addArmorMaterial("armorGREEN", "narutocraft:textures/models/armors/GreenArmor_layer_1.png", 48, new int[]{2, 6, 5, 2}, 10);
+	public static ArmorMaterial armorBROWN = EnumHelper .addArmorMaterial("armorBROWN", "narutocraft:textures/models/armors/BrownArmor_layer_2.png", 48, new int[]{2, 6, 5, 2}, 10);
+	public static ArmorMaterial armorBLACK = EnumHelper .addArmorMaterial("armorBLACK", "narutocraft:textures/models/armors/BlackArmor_layer_1.png", 48, new int[]{2, 2, 4, 3}, 10);
+	public static ArmorMaterial armorTRAVEL = EnumHelper.addArmorMaterial("armorTRAVEL","narutocraft:textures/models/armors/ProtectHand_layer_1.png", 48, new int[]{1, 5, 5, 3}, 10);
+	public static ArmorMaterial armorGUT = EnumHelper.addArmorMaterial("armorGUT", "narutocraft:textures/models/armors/GutArmor_layer_1.png", 48, new int []{2, 7, 5, 2}, 10);
+	public static ArmorMaterial armorAME = EnumHelper.addArmorMaterial("armorAME", "narutocraft:textures/models/armors/AmeArmor_layer_1.png", 48, new int[]{2, 5, 3, 1}, 10);
+	public static ArmorMaterial armorBLACK2 = EnumHelper.addArmorMaterial("armorBLACK2", "narutocraft:textures/models/armors/LeatherArmor_layer_1", 48, new int[]{2, 7, 3, 2}, 10);
 }

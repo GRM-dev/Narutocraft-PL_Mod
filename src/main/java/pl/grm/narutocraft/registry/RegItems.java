@@ -320,6 +320,15 @@ public static Item Hirudora = new Hirudora().setUnlocalizedName("Hirudora");
 	public static ArmorMaterial Old = Materials.armorOLD;
 	public static ArmorMaterial Kumo = Materials.armorKUMO;
 	public static ArmorMaterial Ryuu = Materials.armorRYUU;
+	public static ArmorMaterial Battle = Materials.armorBATTLE;
+	public static ArmorMaterial Oto2 = Materials.armorOTO2;
+	public static ArmorMaterial Green = Materials.armorGREEN;
+	public static ArmorMaterial Brown = Materials.armorBROWN;
+	public static ArmorMaterial Black = Materials.armorBLACK;
+	public static ArmorMaterial Travel = Materials.armorTRAVEL;
+	public static ArmorMaterial Gut = Materials.armorGUT;
+	public static ArmorMaterial Ame = Materials.armorAME;
+	public static ArmorMaterial Black2 = Materials.armorBLACK2;
 	
 	// public static int renderBushidoArmor = proxy.addArmor("Bushido");
 	// public static Item = new (id+);
@@ -386,6 +395,7 @@ public static  Item LegginsOto =  new NCPLItemArmor(Oto, 4, 2)
 	.setUnlocalizedName("LegginsOto");
 public static  Item BootsOto =  new NCPLItemArmor(Oto, 4, 3)
 	.setUnlocalizedName("BootsOto");
+public static Item OldCollar = new NCPLItemArmor(Old, 4, 0).setUnlocalizedName("OldCollar");
 public static  Item ChestplateOld =  new NCPLItemArmor(Old, 4, 1)
 	.setUnlocalizedName("ChestplateOld");
 public static  Item LegginsOld =  new NCPLItemArmor(Old, 4, 2)
@@ -398,12 +408,34 @@ public static  Item LegginsKumo =  new NCPLItemArmor(Kumo, 4, 2)
 	.setUnlocalizedName("LegginsKumo");
 public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 	.setUnlocalizedName("BootsKumo");
+public static Item HelmetBattle = new NCPLItemArmor(Battle, 4, 0).setUnlocalizedName("HelmetBattle");
+public static Item ChestplateBattle = new NCPLItemArmor(Battle, 4, 1).setUnlocalizedName("ChestplateBattle");
+public static Item LegginsBattle = new NCPLItemArmor(Battle, 4, 2).setUnlocalizedName("LegginsBattle");
+public static Item BootsBattle = new NCPLItemArmor(Battle, 4, 3).setUnlocalizedName("BootsBattle");
+public static Item ChestplateOto2 = new NCPLItemArmor(Oto2, 4, 1).setUnlocalizedName("ChestplateOto2");
+public static Item LegginsOto2 = new NCPLItemArmor(Oto2, 4, 2).setUnlocalizedName("LegginsOto2");
+public static Item BootsOto2 = new NCPLItemArmor(Oto2, 4, 3).setUnlocalizedName("BootsOto2");
+public static Item GreenBlouse = new NCPLItemArmor(Green, 4, 1).setUnlocalizedName("GreenBlouse");
+public static Item LegginsBrown = new NCPLItemArmor(Brown, 4, 2).setUnlocalizedName("LegginsBrown");
+public static Item BlueSandals1 = new NCPLItemArmor(Green, 4, 3).setUnlocalizedName("BlueSandals1");
+public static Item BlackBlouse = new NCPLItemArmor(Black, 4, 1).setUnlocalizedName("BlackBlouse");
+public static Item LegginsBlue = new NCPLItemArmor(Black, 4, 2).setUnlocalizedName("LegginsBlue");
+public static Item BlueSandals2 = new NCPLItemArmor(Black ,4 ,3).setUnlocalizedName("BlueSandals2");
+public static Item HandProtect = new NCPLItemArmor(Travel ,4 , 1).setUnlocalizedName("HandProtect");
+public static Item LegginsTravel = new NCPLItemArmor(Travel, 4, 2).setUnlocalizedName("LegginsTravel");
+public static Item TravelMask = new NCPLItemArmor(Travel, 4, 0).setUnlocalizedName("TravelMask");
+public static Item GutProtect = new NCPLItemArmor(Gut, 4, 1).setUnlocalizedName("GutProtect");
+public static Item LegginsAme = new NCPLItemArmor(Ame, 4, 2).setUnlocalizedName("LegginsAme");
+public static Item BlackCollar = new NCPLItemArmor(Black2, 4, 0).setUnlocalizedName("BlackCollar");
+public static Item LeatherChestplate = new NCPLItemArmor(Black2, 4, 1).setUnlocalizedName("LeatherChestplate");
+public static Item BlackLeggins = new NCPLItemArmor(Black2, 4, 2).setUnlocalizedName("BlackLeggins");
+public static Item BlackSandals = new NCPLItemArmor(Black2, 4, 3).setUnlocalizedName("BlackSandals");
+	
 
-	protected static void registerItem(Item item, String name) {
-		GameRegistry.registerItem(item, name);
-	}
-
-	protected static void registerRendererToItem(Item item, String name) {
+protected static void registerItem(Item item, String name) {
+	GameRegistry.registerItem(item, name);
+}
+protected static void registerRendererToItem(Item item, String name) {
 		Minecraft
 				.getMinecraft()
 				.getRenderItem()
@@ -521,7 +553,7 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		registerItem(HelmetAkatsuki, "HelmetAkatsuki");
 		registerItem(HelmetAkatsuki2, "HelmetAkatsuki2");
 		registerItem(HelmetAkatsuki3, "HelmetAkatsuki3");
-		registerItem(ChestplateAkatsuki, "PlateAkatsuki");
+		registerItem(ChestplateAkatsuki, "ChestplateAkatsuki");
 		registerItem(ChestplateAkatsuki2, "ChestplateAkatsuki2");
 		registerItem(ChestplateAkatsuki3, "ChestplateAkatsuki3");
 		registerItem(ChestplateAkatsuki4, "ChestplateAkatsuki4");
@@ -536,15 +568,35 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		registerItem(ChestplateOto, "ChestplateOto");
 		registerItem(LegginsOto, "LegginsOto");
 		registerItem(BootsOto, "BootsOto");
+		registerItem(OldCollar, "OldCollar");
 		registerItem(ChestplateOld, "ChestplateOld");
 		registerItem(LegginsOld, "LegginsOld");
 		registerItem(BootsOld, "BootsOld");
 		registerItem(ChestplateKumo, "ChestplateKumo");
 		registerItem(LegginsKumo, "LegginsKumo");
 		registerItem(BootsKumo, "BootsKumo");
-		
-		
-		
+		registerItem(HelmetBattle, "HelmetBattle");
+		registerItem(ChestplateBattle, "ChestplateBattle");
+		registerItem(LegginsBattle, "LegginsBattle");
+		registerItem(BootsBattle, "BootsBattle");
+		registerItem(ChestplateOto2, "ChestplateOto2");
+		registerItem(LegginsOto2, "LegginsOto2");
+		registerItem(BootsOto2, "BootsOto2");
+		registerItem(GreenBlouse, "GreenBlouse");
+		registerItem(LegginsBrown, "LegginsBrown");
+		registerItem(BlueSandals1, "BlueSandals1");
+		registerItem(BlackBlouse, "BlackBlouse");
+		registerItem(LegginsBlue, "LegginsBlue");
+		registerItem(BlueSandals2, "BlueSandals2");
+		registerItem(HandProtect, "HandProtect");
+		registerItem(LegginsTravel, "LegginsTravel");
+		registerItem(TravelMask, "TravelMask");
+		registerItem(GutProtect, "GutProtect");
+		registerItem(LegginsAme, "LegginsAme");
+		registerItem(LeatherChestplate, "LeatherChestplate");
+		registerItem(BlackLeggins, "BlackLeggins");
+		registerItem(BlackSandals, "BlackSandals");
+		//Jutsus
 		registerItem(AsaKujaku, "AsaKujaku");
 		registerItem(Hirudora, "Hirudora");
 		registerItem(KageBuyo, "KageBuyo");
@@ -669,6 +721,7 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		registerRendererToItem(IronGlove, "IronGlove");
 		
 		
+		//Jutsus
 		registerRendererToItem(AsaKujaku, "AsaKujaku");
 		registerRendererToItem(Hirudora, "Hirudora");
 		registerRendererToItem(KageBuyo, "KageBuyo");
@@ -708,6 +761,7 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		registerRendererToItem(Rasengan, "Rasengan");
 		registerRendererToItem(Sharingan, "Sharingan");
 		registerRendererToItem(ShunshinNoJutsu, "ShunshinNoJutsu");
+		registerRendererToItem(Yosakugiri, "Yosakugiri");
 		//Armors
 		registerRendererToItem(HelmetRyu, "HelmetRyu");
 		registerRendererToItem(ChestplateRyu, "ChestplateRyu");
@@ -733,7 +787,7 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		registerRendererToItem(HelmetAkatsuki, "HelmetAkatsuki");
 		registerRendererToItem(HelmetAkatsuki2, "HelmetAkatsuki2");
 		registerRendererToItem(HelmetAkatsuki3, "HelmetAkatsuki3");
-		registerRendererToItem(ChestplateAkatsuki, "PlateAkatsuki");
+		registerRendererToItem(ChestplateAkatsuki, "ChestplateAkatsuki");
 		registerRendererToItem(ChestplateAkatsuki2, "ChestplateAkatsuki2");
 		registerRendererToItem(ChestplateAkatsuki3, "ChestplateAkatsuki3");
 		registerRendererToItem(ChestplateAkatsuki4, "ChestplateAkatsuki4");
@@ -748,11 +802,33 @@ public static  Item BootsKumo =  new NCPLItemArmor(Kumo, 4, 3)
 		registerRendererToItem(ChestplateOto, "ChestplateOto");
 		registerRendererToItem(LegginsOto, "LegginsOto");
 		registerRendererToItem(BootsOto, "BootsOto");
+		registerRendererToItem(OldCollar, "OldCollar");
 		registerRendererToItem(ChestplateOld, "ChestplateOld");
 		registerRendererToItem(LegginsOld, "LegginsOld");
 		registerRendererToItem(BootsOld, "BootsOld");
 		registerRendererToItem(ChestplateKumo, "ChestplateKumo");
 		registerRendererToItem(LegginsKumo, "LegginsKumo");
 		registerRendererToItem(BootsKumo, "BootsKumo");
+		registerRendererToItem(HelmetBattle, "HelmetBattle");
+		registerRendererToItem(ChestplateBattle, "ChestplateBattle");
+		registerRendererToItem(LegginsBattle, "LegginsBattle");
+		registerRendererToItem(BootsBattle, "BootsBattle");
+		registerRendererToItem(ChestplateOto2, "ChestplateOto2");
+		registerRendererToItem(LegginsOto2, "LegginsOto2");
+		registerRendererToItem(BootsOto2, "BootsOto2");
+		registerRendererToItem(GreenBlouse, "GreenBlouse");
+		registerRendererToItem(LegginsBrown, "LegginsBrown");
+		registerRendererToItem(BlueSandals1, "BlueSandals1");
+		registerRendererToItem(BlackBlouse, "BlackBlouse");
+		registerRendererToItem(LegginsBlue, "LegginsBlue");
+		registerRendererToItem(BlueSandals2, "BlueSandals2");
+		registerRendererToItem(HandProtect, "HandProtect");
+		registerRendererToItem(LegginsTravel, "LegginsTravel");
+		registerRendererToItem(TravelMask, "TravelMask");
+		registerRendererToItem(GutProtect, "GutProtect");
+		registerRendererToItem(LegginsAme, "LegginsAme");
+		registerRendererToItem(LeatherChestplate, "LeatherChestplate");
+		registerRendererToItem(BlackLeggins, "BlackLeggins");
+		registerRendererToItem(BlackSandals, "BlackSandals");
 	}
 }

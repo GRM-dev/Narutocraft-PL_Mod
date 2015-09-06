@@ -194,6 +194,10 @@ public class NCPLItemArmor extends ItemArmor {
 		{
 			return "narutocraft:textures/models/armors/KumoArmor_layer_1.png";
 		}
+		else if(stack.getItem() == RegItems.OldCollar)
+		{
+			return "narutocraft:textures/models/armors/OldArmor_layer_1.png";
+		}
 		else if(stack.getItem() ==RegItems.ChestplateOld)
 		{
 			return "narutocraft:textures/models/armors/OldArmor_layer_1.png";
@@ -229,6 +233,90 @@ public class NCPLItemArmor extends ItemArmor {
 		else if(stack.getItem() ==RegItems.BootsSuna)
 		{
 			return "narutocraft:textures/models/armors/SunaArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.HelmetBattle)
+		{
+			return "narutocraft:textures/models/armors/BattleArmor_layer_1.png";
+		}
+		else if(stack.getItem()  == RegItems.ChestplateBattle)
+		{
+			return "narutocraft:textures/models/armors/BattleArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.LegginsBattle)
+		{
+			return "narutocraft:textures/models/armors/BattleArmor_layer_2.png";
+		}
+		else if(stack.getItem() == RegItems.BootsBattle)
+		{
+			return "narutocraft:textures/models/armors/BattleArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.ChestplateOto2)
+		{
+			return "narutocraft:textures/models/armors/OtoArmor2_layer_1.png";
+		}
+		else if (stack.getItem() == RegItems.LegginsOto2)
+		{
+			return "narutocraft:textures/models/armors/OtoArmor2_layer_2.png";
+		}
+		else if(stack.getItem() == RegItems.BootsOto2)
+		{
+			return "narutocraft:textures/models/armors/OtoArmor2_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.GreenBlouse)
+		{
+			return "narutocraft:textures/models/armors/GreenArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.LegginsBrown)
+		{
+			return "narutocraft:textures/models/armors/BrownArmor_layer_2.png";
+		}
+		else if(stack.getItem() == RegItems.BlueSandals1)
+		{
+			return "narutocraft:textures/models/armors/GreenArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.BlackBlouse)
+		{
+			return "narutocraft:textures/models/armors/BlackArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.LegginsBlue)
+		{
+			return "narutocraft:textures/models/armors/BlueArmor_layer_2.png";
+		}
+		else if(stack.getItem() == RegItems.BlueSandals2)
+		{
+			return "narutocraft:textures/models/armors/BlackArmor_layer_1.png";	
+		}
+		else if(stack.getItem() == RegItems.HandProtect)
+		{
+			return "narutocraft:textures/models/armors/TravelArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.LegginsTravel)
+		{
+			return "narutocraft:textures/models/armors/TravelArmor_layer_2.png";
+		}
+		else if(stack.getItem() == RegItems.TravelMask)
+		{
+			return "narutocraft:textures/models/armors/TravelArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.GutProtect)
+		{
+			return "narutocraft:textures/models/armors/GutArmor_layer_1.png";
+		}
+		else if(stack.getItem()  ==  RegItems.LegginsAme)
+		{
+			return "narutorcraft:textures/models/armors/AmeArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.LeatherChestplate)
+		{
+			return "narutocraft:textures/models/armors/LeatherArmor_layer_1.png";
+		}
+		else if(stack.getItem() == RegItems.BlackLeggins)
+		{
+			return "narutocraft:textures/models/armors/BlackArmor_layer_2.png";
+		}
+		else if(stack.getItem() == RegItems.BlackSandals)
+		{
+			return "narutocraft:textures/models/armors/LeatherArmor_layer_1.png";
 		}
 		else
 		{
