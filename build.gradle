@@ -1,21 +1,8 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-    }
+
+plugins {
+    id "net.minecraftforge.gradle.forge" version "2.0.1"
 }
 
-apply plugin: 'forge'
 apply plugin: 'pmd'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -26,17 +13,13 @@ group= "pl.grm.narutocraft"
 archivesBaseName = "NarutoCraft_Mod"
 
 minecraft {
-    version = "1.8-11.14.3.1502"
+    version = "1.8-11.14.3.1519"
     runDir = "eclipse"
+	mappings = "snapshot_20141130"
 }
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
 }
@@ -74,27 +57,21 @@ task writePom << {
   }.writeTo("$projectDir/pom.xml")
 }
 
-pmd {
-  ignoreFailures = true
-  sourceSets = [sourceSets.main]
-  reportsDir = file("$project.buildDir/reports/pmd")
-  ruleSets = [
-    "java-basic",
-    "java-braces"
-  ]
-}
+task pmd << {
+println 'Running PMD static code analysis'
+	ant {
+		taskdef(name:'pmd', classname:'net.sourceforge.pmd.ant.PMDTask', classpath: configurations.pmdConf.asPath)
 
-check << {
-  File outDir = new File('build/reports/pmd/')
-  outDir.mkdirs()
-  ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
-    classpath: configurations.pmd.asPath)
-  ant.cpd(minimumTokenCount: '100', format: 'xml',
-    outputFile: new File(outDir , 'cpd.xml')) {
-    fileset(dir: "src/main/java") {
-      include(name: '**/*.java')
-    }
-  }
+		pmd(shortFilenames:'true', failonruleviolation:'true', rulesetfiles:'conf/pmd-rules.xml') {
+			formatter(type:'csv', tofile:'myreport.csv', toConsole:'true')
+			fileset(dir: "src/main/java") {
+				include(name: '**/*.java')
+			}
+			fileset(dir: "src/test/java") {
+				include(name: '**/*.java')
+			}        
+		}
+	}
 }
 
 task wrapper(type: Wrapper) {
