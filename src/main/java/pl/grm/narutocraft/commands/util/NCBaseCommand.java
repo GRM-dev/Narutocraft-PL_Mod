@@ -1,7 +1,6 @@
 package pl.grm.narutocraft.commands.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +14,7 @@ public class NCBaseCommand extends NCCommandBase {
 	private NCCommandExecutor executor;
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "narutocraft";
 	}
 
@@ -25,7 +24,7 @@ public class NCBaseCommand extends NCCommandBase {
 	}
 
 	@Override
-	public List<String> getCommandAliases() {
+	public List<String> getAliases() {
 		List<String> aliases = new ArrayList<String>();
 		aliases.add("ncpl");
 		aliases.add("nc");
@@ -33,14 +32,14 @@ public class NCBaseCommand extends NCCommandBase {
 	}
 
 	@Override
-	public void processCommand(ICommandSender commSender, String[] args) {
+	public void execute(ICommandSender commSender, String[] args) {
 		executor = new NCCommandExecutor(commSender, args);
 		((EntityPlayer) commSender).addChatMessage(new ChatComponentText("Available commands:"));
 		executor.processCommand();
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender var1) {
+	public boolean canCommandSenderUse(ICommandSender var1) {
 		return true;
 	}
 

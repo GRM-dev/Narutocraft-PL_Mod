@@ -1,12 +1,11 @@
 package pl.grm.narutocraft.commands.util;
 
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.ICommandSender;
+import net.minecraft.command.*;
 
 public class NCCommandBase extends CommandBase {
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "narutocraft";
 	}
 
@@ -17,7 +16,7 @@ public class NCCommandBase extends CommandBase {
 	}
 
 	@Override
-	public void processCommand(ICommandSender var1, String[] var2) {
+	public void execute(ICommandSender var1, String[] var2) {
 		// TODO Auto-generated method stub
 
 	}

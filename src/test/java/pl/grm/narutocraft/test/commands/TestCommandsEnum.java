@@ -1,10 +1,10 @@
 package pl.grm.narutocraft.test.commands;
 
 import static org.junit.Assert.fail;
-import net.minecraft.command.ICommand;
 
 import org.junit.Test;
 
+import net.minecraft.command.ICommand;
 import pl.grm.narutocraft.commands.util.CommandEnum;
 
 public class TestCommandsEnum {
@@ -34,7 +34,7 @@ public class TestCommandsEnum {
 						} else {
 							fail("Create Instance failed. Error:" + ec.getLocalizedMessage());
 						}
-					} else if (instance.getCommandName() == null) {
+					} else if (instance.getName() == null) {
 						fail("Instance created, but something wrong with (" + name + ")");
 					}
 				}

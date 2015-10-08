@@ -1,7 +1,6 @@
 package pl.grm.narutocraft.commands;
 
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.WrongUsageException;
+import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import pl.grm.narutocraft.commands.util.NCCommandBase;
@@ -32,7 +31,7 @@ public class NCCommandHelp extends NCCommandBase {
 	}
 
 	@Override
-	public void processCommand(ICommandSender commSender, String[] args) {
+	public void execute(ICommandSender commSender, String[] args) {
 		try {
 			showHelp(false);
 		}
