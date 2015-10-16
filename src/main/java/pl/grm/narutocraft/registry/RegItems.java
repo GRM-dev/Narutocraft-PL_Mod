@@ -329,6 +329,7 @@ public static Item Hirudora = new Hirudora().setUnlocalizedName("Hirudora");
 	public static ArmorMaterial Gut = Materials.armorGUT;
 	public static ArmorMaterial Ame = Materials.armorAME;
 	public static ArmorMaterial Black2 = Materials.armorBLACK2;
+	public static ArmorMaterial Band = Materials.armorBAND;
 	
 	// public static int renderBushidoArmor = proxy.addArmor("Bushido");
 	// public static Item = new (id+);
@@ -430,7 +431,19 @@ public static Item BlackCollar = new NCPLItemArmor(Black2, 4, 0).setUnlocalizedN
 public static Item LeatherChestplate = new NCPLItemArmor(Black2, 4, 1).setUnlocalizedName("LeatherChestplate");
 public static Item BlackLeggins = new NCPLItemArmor(Black2, 4, 2).setUnlocalizedName("BlackLeggins");
 public static Item BlackSandals = new NCPLItemArmor(Black2, 4, 3).setUnlocalizedName("BlackSandals");
-	
+public static Item KonohaBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("KonohaBand");
+public static Item AmeBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("AmeBand");
+public static Item KumoBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("KumoBand");
+public static Item KiriBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("KiriBand");
+public static Item IwaBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("IwaBand");
+public static Item KusaBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("KusaBand");
+public static Item OtoBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("OtoBand");
+public static Item SunaBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("SunaBand");
+public static Item TakiBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("TakiBand");
+public static Item IshiBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("IshiBand");
+public static Item YuBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("YuBand");
+
+
 
 protected static void registerItem(Item item, String name) {
 	GameRegistry.registerItem(item, name);
@@ -521,9 +534,6 @@ protected static void registerRendererToItem(Item item, String name) {
 		registerItem(Machete, "Machete");
 		registerItem(Knuckleduster, "Knuckleduster");
 		registerItem(ThreeProngedKnife, "ThreeProngedKnife");
-		registerItem(HelmetRyu, "HelmetRyu");
-		registerItem(ChestplateRyu, "ChestplateRyu");
-		registerItem(LegginsRyu, "LegginsRyu");
 		registerItem(ExplosiveNote, "ExplosiveNote");
 		registerItem(Bijuudama, "Bijuudama");
 		registerItem(RikudouStaff, "RikudouStaff");
@@ -596,6 +606,17 @@ protected static void registerRendererToItem(Item item, String name) {
 		registerItem(LeatherChestplate, "LeatherChestplate");
 		registerItem(BlackLeggins, "BlackLeggins");
 		registerItem(BlackSandals, "BlackSandals");
+		registerItem(KonohaBand, "KonohaBand");
+		registerItem(AmeBand, "AmeBand");
+		registerItem(KumoBand, "KumoBand");
+		registerItem(KiriBand, "KiriBand");
+		registerItem(IwaBand, "IwaBand");
+		registerItem(KusaBand, "KusaBand");
+		registerItem(OtoBand, "OtoBand");
+		registerItem(SunaBand, "SunaBand");
+		registerItem(TakiBand, "TakiBand");
+		registerItem(IshiBand, "IshiBand");
+		registerItem(YuBand, "YuBand");
 		//Jutsus
 		registerItem(AsaKujaku, "AsaKujaku");
 		registerItem(Hirudora, "Hirudora");
@@ -830,5 +851,16 @@ protected static void registerRendererToItem(Item item, String name) {
 		registerRendererToItem(LeatherChestplate, "LeatherChestplate");
 		registerRendererToItem(BlackLeggins, "BlackLeggins");
 		registerRendererToItem(BlackSandals, "BlackSandals");
+		registerRendererToItem(KonohaBand, "KonohaBand");
+		registerRendererToItem(AmeBand, "AmeBand");
+		registerRendererToItem(KumoBand, "KumoBand");
+		registerRendererToItem(KiriBand, "KiriBand");
+		registerRendererToItem(IwaBand, "IwaBand");
+		registerRendererToItem(KusaBand, "KusaBand");
+		registerRendererToItem(SunaBand, "SunaBand");
+		registerRendererToItem(OtoBand, "OtoBand");
+		registerRendererToItem(TakiBand, "TakiBand");
+		registerRendererToItem(IshiBand, "IshiBand");
+		registerRendererToItem(YuBand, "YuBand");
 	}
 }

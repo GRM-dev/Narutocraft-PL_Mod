@@ -318,6 +318,52 @@ public class NCPLItemArmor extends ItemArmor {
 		{
 			return "narutocraft:textures/models/armors/LeatherArmor_layer_1.png";
 		}
+		
+		else if(stack.getItem() == RegItems.KonohaBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/KonohaBand.png";
+		}
+		else if(stack.getItem() == RegItems.AmeBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/AmeBand.png";
+		}
+		else if(stack.getItem() == RegItems.KumoBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/KumoBand.png";
+		}
+		else if(stack.getItem() == RegItems.KiriBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/KiriBand.png";
+		}
+		else if(stack.getItem() == RegItems.IwaBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/IwaBand.png";
+		}
+		else if(stack.getItem() == RegItems.KusaBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/KusaBand.png";
+		}
+		else if(stack.getItem() == RegItems.OtoBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/OtoBand.png";
+		}
+		else if(stack.getItem() == RegItems.SunaBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/SunaBand.png";
+		}
+		else if(stack.getItem() == RegItems.TakiBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/TakiBand.png";
+		}
+		else if(stack.getItem() == RegItems.IshiBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/IshiBand.png";
+		}
+		else if(stack.getItem() == RegItems.YuBand)
+		{
+			return "narutocraft:textures/models/armors/helmet/YuBand.png";
+		}
+		
 		else
 		{
 			return null;

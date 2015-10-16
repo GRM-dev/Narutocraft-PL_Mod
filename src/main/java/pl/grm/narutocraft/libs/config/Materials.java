@@ -61,4 +61,5 @@ public class Materials {// TODO null ->texture name in armor materials
 	public static ArmorMaterial armorGUT = EnumHelper.addArmorMaterial("armorGUT", "narutocraft:textures/models/armors/GutArmor_layer_1.png", 48, new int []{2, 7, 5, 2}, 10);
 	public static ArmorMaterial armorAME = EnumHelper.addArmorMaterial("armorAME", "narutocraft:textures/models/armors/AmeArmor_layer_1.png", 48, new int[]{2, 5, 3, 1}, 10);
 	public static ArmorMaterial armorBLACK2 = EnumHelper.addArmorMaterial("armorBLACK2", "narutocraft:textures/models/armors/LeatherArmor_layer_1", 48, new int[]{2, 7, 3, 2}, 10);
+	public static ArmorMaterial armorBAND = EnumHelper.addArmorMaterial("armorBAND", "narutocraft:textures/models/armors/helmet/KonohaBand.png", 48, new int[]{3, 7, 3, 2}, 10);
 }
