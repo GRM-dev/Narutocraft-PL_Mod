@@ -1,15 +1,11 @@
 package pl.grm.narutocraft.items.weapons.projectiles.entities.render;
 
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.*;
 import pl.grm.narutocraft.items.weapons.projectiles.entities.EntityKunai;
 import pl.grm.narutocraft.libs.config.References;
 
@@ -32,10 +28,13 @@ public class RenderExplodeKunai extends Render {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) var2, (float) var4, (float) var6);
 		GL11.glRotatef(
-				(par1EntityKunai.prevRotationYaw + ((par1EntityKunai.rotationYaw - par1EntityKunai.prevRotationYaw) * var9)) - 90.0F,
+				(par1EntityKunai.prevRotationYaw
+						+ ((par1EntityKunai.rotationYaw - par1EntityKunai.prevRotationYaw) * var9)) - 90.0F,
 				0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(par1EntityKunai.prevRotationPitch
-				+ ((par1EntityKunai.rotationPitch - par1EntityKunai.prevRotationPitch) * var9), 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(
+				par1EntityKunai.prevRotationPitch
+						+ ((par1EntityKunai.rotationPitch - par1EntityKunai.prevRotationPitch) * var9),
+				0.0F, 0.0F, 1.0F);
 		byte b0 = 0;
 		float f2 = 0.0F;
 		float f3 = 0.5F;
@@ -61,14 +60,14 @@ public class RenderExplodeKunai extends Render {
 		modelRenderer.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f8);
 		modelRenderer.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f9);
 		modelRenderer.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f9);
-		modelRenderer.draw();
+		modelRenderer.finishDrawing();
 		GL11.glNormal3f(-f10, 0.0F, 0.0F);
 		modelRenderer.startDrawingQuads();
 		modelRenderer.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f8);
 		modelRenderer.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f8);
 		modelRenderer.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f9);
 		modelRenderer.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f9);
-		modelRenderer.draw();
+		modelRenderer.finishDrawing();
 		for (int i = 0; i < 4; i++) {
 			GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
 			GL11.glNormal3f(0.0F, 0.0F, f10);
@@ -77,7 +76,7 @@ public class RenderExplodeKunai extends Render {
 			modelRenderer.addVertexWithUV(8.0D, -2.0D, 0.0D, f3, f4);
 			modelRenderer.addVertexWithUV(8.0D, 2.0D, 0.0D, f3, f5);
 			modelRenderer.addVertexWithUV(-8.0D, 2.0D, 0.0D, f2, f5);
-			modelRenderer.draw();
+			modelRenderer.finishDrawing();
 		}
 		GL11.glDisable(32826);
 		GL11.glPopMatrix();

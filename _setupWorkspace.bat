@@ -1,1 +1,1 @@
-cmd.exe /k "gradlew.bat setupDecompWorkspace --refresh-dependencies & pause"
+cmd.exe /k "gradlew.bat setupDecompWorkspace & pause"

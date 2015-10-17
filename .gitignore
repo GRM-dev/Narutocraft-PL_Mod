@@ -29,3 +29,7 @@ run
 /config/
 /options.txt
 /usernamecache.json
+doc/
+
+Narutocraft-PL_Mod_Client.launch
+Narutocraft-PL_Mod_Server.launch

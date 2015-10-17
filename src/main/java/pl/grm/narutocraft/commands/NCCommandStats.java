@@ -11,7 +11,7 @@ public class NCCommandStats extends NCCommandBase {
 	}
 
 	@Override
-	public void processCommand(ICommandSender commSender, String[] args) {
+	public void execute(ICommandSender commSender, String[] args) {
 		// TODO Auto-generated method stub
 
 	}
