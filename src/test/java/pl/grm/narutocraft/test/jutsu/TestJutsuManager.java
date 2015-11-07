@@ -2,13 +2,14 @@ package pl.grm.narutocraft.test.jutsu;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Map;
+
 import org.junit.*;
 
 import net.minecraft.nbt.*;
 import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.jutsu.*;
 import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 
 public class TestJutsuManager {
 
@@ -18,12 +19,12 @@ public class TestJutsuManager {
 	public final void testJutsuManager() {
 		jutsuM = new JutsuManager();
 		assertThat(jutsuM).isNotNull();
-		assertThat(ExtendedProperties.jutsuList).isNotNull();
+		JutsuManager.regJutsusList();
 	}
 
 	@Test
 	public final void testRegJutsusList() {
-		JutsuManager.regJutsusList();
+		assertThat(ExtendedProperties.jutsuList).isNotNull();
 		assertThat(ExtendedProperties.jutsuList).isNotEmpty();
 	}
 
@@ -53,13 +54,18 @@ public class TestJutsuManager {
 
 	@Test
 	public final void testGetJutsuEntryById() {
-		SkillTreeEntry jutsu = jutsuM.getJutsuEntry(JutsuParams.ASAKUJAKU.getJutsuID());
+		Map<Integer, IJutsu> list = ExtendedProperties.jutsuList;
+		int id = JutsuParams.ASAKUJAKU.getJutsuID();
+		if (!list.containsKey(id)) {
+			list.put(id, JutsuParams.ASAKUJAKU.getJutsu());
+		}
+		IJutsu jutsu = jutsuM.getJutsu(id);
 		assertThat(jutsu).isNotNull();
 	}
 
 	@Test
 	public final void testGetJutsuEntryByName() {
-		SkillTreeEntry jutsu = jutsuM.getJutsuEntry(JutsuParams.CHAKURANOMESU.getName());
+		IJutsu jutsu = jutsuM.getJutsu(JutsuParams.CHAKURANOMESU.getName());
 		assertThat(jutsu).isNotNull();
 	}
 }

@@ -1,14 +1,11 @@
 package pl.grm.narutocraft.jutsu;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 import pl.grm.narutocraft.NarutoCraft;
 import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.player.ExtendedProperties;
@@ -37,6 +34,7 @@ public abstract class Jutsu extends Item implements IJutsu {
 		consumeChackra(player, chackraOnActivation);
 	}
 
+	@Override
 	public JutsuProperties getJutsuProps() {
 		return this.jutsuProps;
 	}

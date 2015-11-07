@@ -16,4 +16,6 @@ public interface IJutsu {
 	 * Called on Jutsu end.
 	 */
 	public void onJutsuEnd();
+
+	public JutsuProperties getJutsuProps();
 }

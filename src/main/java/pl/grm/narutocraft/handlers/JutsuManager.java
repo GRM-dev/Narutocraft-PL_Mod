@@ -10,18 +10,15 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import pl.grm.narutocraft.jutsu.*;
 import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.player.ExtendedProperties;
-import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 
 public class JutsuManager {
 
 	public static JutsuManager instance = new JutsuManager();
 	private Jutsu jutsu;
 	private Iterator<int[]> iterator;
-	private final HashMap<Integer, SkillTreeEntry> registeredEntries;
 	private List<int[]> activeJutsus = new ArrayList<int[]>();
 
 	public JutsuManager() {
-		this.registeredEntries = new HashMap<Integer, SkillTreeEntry>();
 		if (ExtendedProperties.jutsuList == null) {
 			ExtendedProperties.jutsuList = new HashMap<Integer, IJutsu>();
 		}
@@ -35,7 +32,13 @@ public class JutsuManager {
 			if (jutsuE != JutsuParams.NONE) {
 				Jutsu jutsu = (Jutsu) jutsuE.getJutsu();
 				if (jutsu != null) {
+					try {
 					registerJutsu(jutsu);
+					}
+					catch (ClassCastException e) {
+						System.out.println("Cannot register jutsu " + jutsuE.getName());
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -47,11 +50,12 @@ public class JutsuManager {
 	 * @param jutsuE
 	 */
 	private static void registerJutsu(Jutsu jutsu) {
+		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
 		GameRegistry.registerItem(jutsu, jutsu.getJutsuProps().getUnlocalizedName());
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(jutsu, 0,
  new ModelResourceLocation(
 				References.ModTexturePath + jutsu.getJutsuProps().getUnlocalizedName(), "inventory"));
-		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
+
 	}
 
 	/**
@@ -123,14 +127,14 @@ public class JutsuManager {
 		}
 	}
 
-	public SkillTreeEntry getJutsuEntry(int id) {
-		SkillTreeEntry component = this.registeredEntries.get(id);
+	public IJutsu getJutsu(int id) {
+		IJutsu component = ExtendedProperties.jutsuList.get(id);
 		return component;
 	}
 
-	public SkillTreeEntry getJutsuEntry(String name) {
+	public IJutsu getJutsu(String name) {
 		int ID = JutsuParams.getByName(name).getJutsuID();
 		if (ID == 0) { return null; }
-		return this.registeredEntries.get(ID);
+		return ExtendedProperties.jutsuList.get(ID);
 	}
 }

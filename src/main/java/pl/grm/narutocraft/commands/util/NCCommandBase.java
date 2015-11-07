@@ -21,4 +21,9 @@ public class NCCommandBase extends CommandBase {
 
 	}
 
+	@Override
+	public int compareTo(Object obj) {
+		return super.compareTo(obj);
+	}
+
 }

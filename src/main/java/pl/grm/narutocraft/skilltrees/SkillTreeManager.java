@@ -121,11 +121,11 @@ public class SkillTreeManager {
 	public void lockEntries(int[] disabledJutsusIDs) {
 		unlockAllEntries();
 		for (int id : disabledJutsusIDs) {
-			SkillTreeEntry entry = getEntry(JutsuManager.instance.getJutsuEntry(id));
+			SkillTreeEntry entry = getEntry(JutsuParams.getByID(id));
 			if (entry != null) {
 				entry.setEntryState(EntryStates.LOCKED);
 				FMLLog.info("Locked",
-						new Object[]{JutsuManager.instance.getJutsuEntry(entry.getJutsu().getJutsuProps().getID())});
+						new Object[]{JutsuManager.instance.getJutsu(entry.getJutsu().getJutsuProps().getID())});
 			} else {
 				FMLLog.warning("Entry read problem. Entry exists?", new Object[0]);
 			}

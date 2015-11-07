@@ -4,7 +4,7 @@ jdk:
 
 before_install:
  - chmod +x gradlew
- - ./gradlew check
+ - ./gradlew check -S
  
 
 install: ./gradlew setupDecompWorkspace -S
@@ -17,7 +17,7 @@ env:
 addons:
   coverity_scan:
     project:
-      name: "GRM-Group/Narutocraft-PL_Mod"
+      name: "GRMdev/Narutocraft-PL_Mod"
       description: "Build submitted via Travis CI"
     notification_email: narutocraft@gmail.com
     build_command_prepend: "./gradlew setupDecompWorkspace -S"

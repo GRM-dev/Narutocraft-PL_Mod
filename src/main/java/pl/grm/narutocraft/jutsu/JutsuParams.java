@@ -149,10 +149,6 @@ public enum JutsuParams {
 		return this.chakraConsumption;
 	}
 
-	public String getJutsuName() {
-		return this.jutsuName;
-	}
-
 	public Class<? extends Jutsu> getJutsuClass() {
 		return this.jutsuClass;
 	}
