@@ -1,56 +1,16 @@
 package pl.grm.narutocraft.jutsu;
 
-import net.minecraft.item.ItemStack;
-import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;
-import pl.grm.narutocraft.jutsu.bukijutsu.Hadan;
-import pl.grm.narutocraft.jutsu.bukijutsu.Iaido;
-import pl.grm.narutocraft.jutsu.bukijutsu.Issen;
-import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiKiri;
-import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiNoMai;
-import pl.grm.narutocraft.jutsu.bukijutsu.Omotegiri;
-import pl.grm.narutocraft.jutsu.bukijutsu.SamuraiSabreTechnique;
-import pl.grm.narutocraft.jutsu.bukijutsu.Yosakugiri;
+import pl.grm.narutocraft.jutsu.bukijutsu.*;
 import pl.grm.narutocraft.jutsu.fuuinjutsu.JikukanKekkai;
-import pl.grm.narutocraft.jutsu.genjutsu.Haykkaroran;
-import pl.grm.narutocraft.jutsu.genjutsu.KokuangyoNoJutsu;
-import pl.grm.narutocraft.jutsu.genjutsu.Koukongarasu;
-import pl.grm.narutocraft.jutsu.genjutsu.RaigenRaikochu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Byakugo;
-import pl.grm.narutocraft.jutsu.iryojutsu.ChakuraNoMesu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Dokugiri;
-import pl.grm.narutocraft.jutsu.iryojutsu.InyuShometsu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Ranshinsho;
-import pl.grm.narutocraft.jutsu.iryojutsu.SaikanChushutsuNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.Enmakugire;
-import pl.grm.narutocraft.jutsu.ninjutsu.FukimiHari;
-import pl.grm.narutocraft.jutsu.ninjutsu.HariJizo;
-import pl.grm.narutocraft.jutsu.ninjutsu.Kai;
-import pl.grm.narutocraft.jutsu.ninjutsu.KawarimiNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.KuchiyoseRashomon;
-import pl.grm.narutocraft.jutsu.ninjutsu.Meisaigakure;
-import pl.grm.narutocraft.jutsu.ninjutsu.NanKaizou;
-import pl.grm.narutocraft.jutsu.ninjutsu.NawanukeNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.OdamaRasengan;
-import pl.grm.narutocraft.jutsu.ninjutsu.Rasengan;
-import pl.grm.narutocraft.jutsu.ninjutsu.Sharingan;
-import pl.grm.narutocraft.jutsu.ninjutsu.ShunshinNoJutsu;
-import pl.grm.narutocraft.jutsu.taijutsu.AsaKujaku;
-import pl.grm.narutocraft.jutsu.taijutsu.Hirudora;
-import pl.grm.narutocraft.jutsu.taijutsu.KageBuyo;
-import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
-import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
-import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
-import pl.grm.narutocraft.libs.config.References;
+import pl.grm.narutocraft.jutsu.genjutsu.*;
+import pl.grm.narutocraft.jutsu.iryojutsu.*;
+import pl.grm.narutocraft.jutsu.ninjutsu.*;
+import pl.grm.narutocraft.jutsu.taijutsu.*;
 import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
 
 public enum JutsuParams {
-	NONE(5600, "None", null, SkillTreeEnum.NONE, JutsuTier.NONE, 0, 0, 0, 0, false),
-	MEISAIGAKURE(5601, "Meisaigakure", Meisaigakure.class, SkillTreeEnum.NINJUTSU, JutsuTier.B, 120, 360, 20, 0, true),
-	KAWARIMINOJUTSU(5625, "KawarimiNoJutsu", KawarimiNoJutsu.class, SkillTreeEnum.NINJUTSU, JutsuTier.D, 0, 60, 10, 0, false) // TODO
-																																// set
-																																// right
-																																// values
-	,
+							NONE(5600, "None", null, SkillTreeEnum.NONE, JutsuTier.NONE, 0, 0, 0, 0, false),
+	MEISAIGAKURE(5601, "Meisaigakure", Meisaigakure.class, SkillTreeEnum.NINJUTSU, JutsuTier.B, 120, 360, 20, 0, true), KAWARIMINOJUTSU(5625, "KawarimiNoJutsu", KawarimiNoJutsu.class, SkillTreeEnum.NINJUTSU, JutsuTier.D, 0, 60, 10, 0, false),
 	FUMANINKEN(5602, "FumaNinken", FumaNinken.class, SkillTreeEnum.BUKIJUTSU, JutsuTier.D, 20, 60, 5, 0, true),
 	HADAN(5603, "Hadan", Hadan.class, SkillTreeEnum.BUKIJUTSU, JutsuTier.A, 20, 60, 50, 0, true),
 	IAIDO(5604, "Iaido", Iaido.class, SkillTreeEnum.BUKIJUTSU, JutsuTier.S, 10, 60, 100, 0, true),
@@ -77,30 +37,11 @@ public enum JutsuParams {
 	KUCHIYOSERASHOMON(5626, "KuchiyoseRashomon", KuchiyoseRashomon.class, SkillTreeEnum.NINJUTSU, JutsuTier.A, 60, 600, 29, 0, false),
 	NANKAIZOU(5627, "NanKaizou", NanKaizou.class, SkillTreeEnum.NINJUTSU, JutsuTier.C, 0, 60, 7, 0, true),
 	NAWANUKENOJUTSU(5628, "NawanukeNoJutsu", NawanukeNoJutsu.class, SkillTreeEnum.NINJUTSU, JutsuTier.D, 0, 0, 2, 0, false),
-	RASENGAN(5629, "Rasengan", Rasengan.class, SkillTreeEnum.NINJUTSU, JutsuTier.B, 2, 10, 40, 25, false) // TODO
-																											// set
-																											// right
-																											// values
-	,
-	ODAMARASENGAN(5630, "OdamaRasengan", OdamaRasengan.class, SkillTreeEnum.NINJUTSU, JutsuTier.A, 5, 30, 65, 35, false)
-	// TODO set right values
-	,
-	// CHIOODAMARASENGAN(
-	// 5631,
-	// "ChioOdamaRasengan",
-	// ChioOdamaRasengan.class,
-	// SkillTreeEnum.NINJUTSU,
-	// JutsuTier.A) ,
-	SHARINGAN(5632, "Sharingan", Sharingan.class, SkillTreeEnum.NINJUTSU, JutsuTier.C, 0, 0, 0, 0, false) // TODO
-																											// set
-																											// right
-																											// values
-	,
-	SHUNSHINNOJUTSU(5633, "ShunshinNoJutsu", ShunshinNoJutsu.class, SkillTreeEnum.NINJUTSU, JutsuTier.D, 0, 0, 0, 0, false) // TODO
-																																// set
-																																// right
-																																// values
-	,
+							RASENGAN(5629, "Rasengan", Rasengan.class, SkillTreeEnum.NINJUTSU, JutsuTier.B, 2, 10, 40, 25, false),
+							ODAMARASENGAN(5630, "OdamaRasengan", OdamaRasengan.class, SkillTreeEnum.NINJUTSU, JutsuTier.A, 5, 30, 65, 35, false),
+							CHIOODAMARASENGAN(5631, "ChioOdamaRasengan", ChioOdamaRasengan.class, SkillTreeEnum.NINJUTSU, JutsuTier.A, 20, 5, 10, 100, false),
+							SHARINGAN(5632, "Sharingan", Sharingan.class, SkillTreeEnum.NINJUTSU, JutsuTier.C, 0, 0, 0, 0, false),
+							SHUNSHINNOJUTSU(5633, "ShunshinNoJutsu", ShunshinNoJutsu.class, SkillTreeEnum.NINJUTSU, JutsuTier.D, 0, 0, 0, 0, false),
 	ASAKUJAKU(5634, "AsaKujaku", AsaKujaku.class, SkillTreeEnum.TAIJUTSU, JutsuTier.A, 0, 120, 0, 4, true),
 	HIRUDORA(5635, "Hirudora", Hirudora.class, SkillTreeEnum.TAIJUTSU, JutsuTier.S, 0, 86400, 0, 65, false),
 	KAGEBUYO(5636, "KageBuyo", KageBuyo.class, SkillTreeEnum.TAIJUTSU, JutsuTier.D, 0, 20, 0, 5, false),
@@ -127,7 +68,7 @@ public enum JutsuParams {
 	 *            Unique ID of Jutsu
 	 * @param name
 	 *            Name of Jutsu
-	 * @param jutsu
+	 * @param jutsuClass
 	 *            Class of Jutsu
 	 * @param jutsuType
 	 *            Specifies the jutsu tree
@@ -144,7 +85,7 @@ public enum JutsuParams {
 	 * @param bufftype
 	 *            is jutsu the buff
 	 */
-	private JutsuParams(int ID,String name , Class<? extends Jutsu> jutsu, SkillTreeEnum jutsuType, JutsuTier tier,
+	private JutsuParams(int ID,String name , Class<? extends Jutsu> jutsuClass, SkillTreeEnum jutsuType, JutsuTier tier,
 			long duration, long cooldown, int chakraConsumption, int damage, boolean bufftype) {
 		this.duration = duration;
 		this.cooldown = cooldown;
@@ -152,7 +93,7 @@ public enum JutsuParams {
 		this.damage = damage;
 		this.tier = tier;
 		this.jutsuID = ID;
-		this.jutsuClass = jutsu;
+		this.jutsuClass = jutsuClass;
 		this.jutsuName = name;
 		
 		this.jutsuTree = jutsuType;
@@ -176,7 +117,7 @@ public enum JutsuParams {
 	 */
 	public static JutsuParams getByName(String name) {
 		for (JutsuParams jutsu : JutsuParams.values()) {
-			if (jutsu.jutsuName.equals(name)) { return jutsu; }
+			if (jutsu.jutsuName.toUpperCase().equals(name.toUpperCase())) { return jutsu; }
 		}
 		return NONE;
 	}

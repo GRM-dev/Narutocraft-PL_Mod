@@ -1,61 +1,50 @@
 package pl.grm.narutocraft.test.skilltrees;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import org.junit.*;
 
-import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.jutsu.JutsuTier;
+import pl.grm.narutocraft.jutsu.*;
 import pl.grm.narutocraft.jutsu.ninjutsu.Meisaigakure;
-import pl.grm.narutocraft.skilltrees.SkillTree;
-import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
-import pl.grm.narutocraft.skilltrees.SkillTreeEnum;
+import pl.grm.narutocraft.skilltrees.*;
 
 public class TestSkillTree {
 
 	private SkillTree sTree;
 	private SkillTreeEntry entry;
-	private JutsuManager manager = new JutsuManager();
+
+	@Before
+	public void setupEntry() {
+		entry = new SkillTreeEntry(2, 2, SkillTreeEnum.NONE, new Meisaigakure(), JutsuTier.A, 15,
+				new ArrayList<SkillTreeEntry>());
+	}
 
 	@Test
 	public void testConstructor() {
 		sTree = new SkillTree(0);
-		assertTrue(sTree.getEntryMap() != null);
+		assertThat(sTree.getEntryMap()).isNotNull();
 	}
 
 	@Test
 	public void testAddEntry() {
 		sTree = new SkillTree(0);
-		setupEntry();
 		sTree.addEntry(entry);
-		if (!sTree.getEntry(entry.getJutsu().getJutsuProps().getID()).equals(entry)) {
-			fail("Entry input != output!");
-		}
+		assertThat(sTree.getEntry(entry.getJutsu().getJutsuProps().getID())).isNotNull().isEqualTo(entry);
 	}
 
 	@Test
 	public void testContains1() {
 		sTree = new SkillTree(0);
-		setupEntry();
 		sTree.addEntry(entry);
-		assertTrue("There is no this entry or method contsins broken.", sTree.contains(entry));
+		assertThat(sTree.contains(entry)).isTrue();
 	}
 
 	@Test
 	public void testContains2() {
 		sTree = new SkillTree(0);
-		setupEntry();
 		sTree.addEntry(entry);
-		assertTrue("There is no this entry or method contsins broken.",
-				sTree.contains(JutsuParams.MEISAIGAKURE.getJutsuID()));
-	}
-
-	private void setupEntry() {
-		entry = new SkillTreeEntry(2, 2, SkillTreeEnum.NONE, new Meisaigakure(), JutsuTier.A, 15,
-				new ArrayList<SkillTreeEntry>());
+		assertThat(sTree.contains(JutsuParams.MEISAIGAKURE.getJutsuID())).isTrue();
 	}
 }

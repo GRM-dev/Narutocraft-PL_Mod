@@ -1,6 +1,5 @@
-
 plugins {
-    id "net.minecraftforge.gradle.forge" version "2.0.1"
+    id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 
 apply plugin: 'pmd'
@@ -8,18 +7,20 @@ apply plugin: 'pmd'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = "1.8-1502-0.00"
+version = "1.8-1552-0.01"
 group= "pl.grm.narutocraft"
 archivesBaseName = "NarutoCraft_Mod"
 
 minecraft {
-    version = "1.8-11.14.3.1519"
-    runDir = "eclipse"
+    version = "1.8-11.14.3.1552"
+    runDir = "run"
 	mappings = "snapshot_20141130"
+	// makeObfSourceJar = false
 }
 
 dependencies {
     testCompile 'junit:junit:4.12'
+	testCompile 'org.assertj:assertj-core:3.2.0'
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
 }
@@ -92,5 +93,5 @@ pmd {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.7'
+    gradleVersion = '2.8'
 }

@@ -6,198 +6,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import pl.grm.narutocraft.NarutoCraft;
-import pl.grm.narutocraft.items.DScroll;
-import pl.grm.narutocraft.items.EScroll;
-import pl.grm.narutocraft.items.FScroll;
-import pl.grm.narutocraft.items.HScroll;
-import pl.grm.narutocraft.items.KScroll;
-import pl.grm.narutocraft.items.NScroll;
-import pl.grm.narutocraft.items.RScroll;
-import pl.grm.narutocraft.items.Rin;
-import pl.grm.narutocraft.items.Ryo;
-import pl.grm.narutocraft.items.SScroll;
+import pl.grm.narutocraft.items.*;
 import pl.grm.narutocraft.items.armor.NCPLItemArmor;
-import pl.grm.narutocraft.items.food.FoodMilitaryPill;
-import pl.grm.narutocraft.items.food.IchirakuRamen;
-import pl.grm.narutocraft.items.food.NarutoMaki;
-import pl.grm.narutocraft.items.food.Pasta;
-import pl.grm.narutocraft.items.food.PillWithCoagulatedBlood;
-import pl.grm.narutocraft.items.food.Ramen;
-import pl.grm.narutocraft.items.weapons.BigKunai;
-import pl.grm.narutocraft.items.weapons.BigScroll;
-import pl.grm.narutocraft.items.weapons.Bijuudama;
-import pl.grm.narutocraft.items.weapons.BushidoKatana;
-import pl.grm.narutocraft.items.weapons.ChioRyuuGatana;
-import pl.grm.narutocraft.items.weapons.DoubleKusarigama;
-import pl.grm.narutocraft.items.weapons.ExplosiveNote;
-import pl.grm.narutocraft.items.weapons.Hiramekarei;
-import pl.grm.narutocraft.items.weapons.HyuugaSalve;
-import pl.grm.narutocraft.items.weapons.IronGlove;
-import pl.grm.narutocraft.items.weapons.KabutowariAxe;
-import pl.grm.narutocraft.items.weapons.KabutowariHammer;
-import pl.grm.narutocraft.items.weapons.Kama;
-import pl.grm.narutocraft.items.weapons.Katana;
-import pl.grm.narutocraft.items.weapons.Kiba;
-import pl.grm.narutocraft.items.weapons.Knuckleduster;
-import pl.grm.narutocraft.items.weapons.Kubikiribocho;
-import pl.grm.narutocraft.items.weapons.Kurosawa;
-import pl.grm.narutocraft.items.weapons.Kusanagi;
-import pl.grm.narutocraft.items.weapons.KusanagiOrochimaru;
-import pl.grm.narutocraft.items.weapons.KusariFuuboo;
-import pl.grm.narutocraft.items.weapons.Kusarigama;
-import pl.grm.narutocraft.items.weapons.Kusarigamawithpiston;
-import pl.grm.narutocraft.items.weapons.LightBomb;
-import pl.grm.narutocraft.items.weapons.LullingBomb;
-import pl.grm.narutocraft.items.weapons.Machete;
-import pl.grm.narutocraft.items.weapons.MetalCable;
-import pl.grm.narutocraft.items.weapons.Mine;
-import pl.grm.narutocraft.items.weapons.Nuibari;
-import pl.grm.narutocraft.items.weapons.Nunchaku;
-import pl.grm.narutocraft.items.weapons.Raitanto;
-import pl.grm.narutocraft.items.weapons.RikudouStaff;
-import pl.grm.narutocraft.items.weapons.Ringtones;
-import pl.grm.narutocraft.items.weapons.RyuuKatana;
-import pl.grm.narutocraft.items.weapons.Samehada;
-import pl.grm.narutocraft.items.weapons.SamuraiSword;
-import pl.grm.narutocraft.items.weapons.Scalpel;
-import pl.grm.narutocraft.items.weapons.ShellRockMace;
-import pl.grm.narutocraft.items.weapons.Shibuki;
-import pl.grm.narutocraft.items.weapons.SmokeBomb;
-import pl.grm.narutocraft.items.weapons.StoneSword;
-import pl.grm.narutocraft.items.weapons.TaishouSword;
-import pl.grm.narutocraft.items.weapons.Tanto;
-import pl.grm.narutocraft.items.weapons.ThreeProngedKnife;
-import pl.grm.narutocraft.items.weapons.Wakizashi;
-import pl.grm.narutocraft.items.weapons.WarKunai;
-import pl.grm.narutocraft.items.weapons.Weights;
-import pl.grm.narutocraft.items.weapons.projectiles.BigShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.DoubleKunai;
-import pl.grm.narutocraft.items.weapons.projectiles.ExplodeKunai;
-import pl.grm.narutocraft.items.weapons.projectiles.FuumaShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.KumoShuriken;
-import pl.grm.narutocraft.items.weapons.projectiles.Kunai;
-import pl.grm.narutocraft.items.weapons.projectiles.PoisonedSenbon;
-import pl.grm.narutocraft.items.weapons.projectiles.Senbon;
-import pl.grm.narutocraft.items.weapons.projectiles.Shuriken;
-import pl.grm.narutocraft.jutsu.bukijutsu.FumaNinken;
-import pl.grm.narutocraft.jutsu.bukijutsu.Hadan;
-import pl.grm.narutocraft.jutsu.bukijutsu.Iaido;
-import pl.grm.narutocraft.jutsu.bukijutsu.Issen;
-import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiKiri;
-import pl.grm.narutocraft.jutsu.bukijutsu.MikazukiNoMai;
-import pl.grm.narutocraft.jutsu.bukijutsu.Omotegiri;
-import pl.grm.narutocraft.jutsu.bukijutsu.SamuraiSabreTechnique;
-import pl.grm.narutocraft.jutsu.bukijutsu.Yosakugiri;
-import pl.grm.narutocraft.jutsu.fuuinjutsu.JikukanKekkai;
-import pl.grm.narutocraft.jutsu.genjutsu.Haykkaroran;
-import pl.grm.narutocraft.jutsu.genjutsu.KokuangyoNoJutsu;
-import pl.grm.narutocraft.jutsu.genjutsu.Koukongarasu;
-import pl.grm.narutocraft.jutsu.genjutsu.RaigenRaikochu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Byakugo;
-import pl.grm.narutocraft.jutsu.iryojutsu.ChakuraNoMesu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Dokugiri;
-import pl.grm.narutocraft.jutsu.iryojutsu.InyuShometsu;
-import pl.grm.narutocraft.jutsu.iryojutsu.Ranshinsho;
-import pl.grm.narutocraft.jutsu.iryojutsu.SaikanChushutsuNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.ChioOdamaRasengan;
-import pl.grm.narutocraft.jutsu.ninjutsu.Enmakugire;
-import pl.grm.narutocraft.jutsu.ninjutsu.FukimiHari;
-import pl.grm.narutocraft.jutsu.ninjutsu.HariJizo;
-import pl.grm.narutocraft.jutsu.ninjutsu.Kai;
-import pl.grm.narutocraft.jutsu.ninjutsu.KawarimiNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.KuchiyoseRashomon;
-import pl.grm.narutocraft.jutsu.ninjutsu.Meisaigakure;
-import pl.grm.narutocraft.jutsu.ninjutsu.NanKaizou;
-import pl.grm.narutocraft.jutsu.ninjutsu.NawanukeNoJutsu;
-import pl.grm.narutocraft.jutsu.ninjutsu.OdamaRasengan;
-import pl.grm.narutocraft.jutsu.ninjutsu.Rasengan;
-import pl.grm.narutocraft.jutsu.ninjutsu.Sharingan;
-import pl.grm.narutocraft.jutsu.ninjutsu.ShunshinNoJutsu;
-import pl.grm.narutocraft.jutsu.taijutsu.AsaKujaku;
-import pl.grm.narutocraft.jutsu.taijutsu.Hirudora;
-import pl.grm.narutocraft.jutsu.taijutsu.KageBuyo;
-import pl.grm.narutocraft.jutsu.taijutsu.KosaHo;
-import pl.grm.narutocraft.jutsu.taijutsu.OmoteRenge;
-import pl.grm.narutocraft.jutsu.taijutsu.UraRenge;
-import pl.grm.narutocraft.libs.config.Materials;
-import pl.grm.narutocraft.libs.config.References;
+import pl.grm.narutocraft.items.food.*;
+import pl.grm.narutocraft.items.weapons.*;
+import pl.grm.narutocraft.items.weapons.projectiles.*;
+import pl.grm.narutocraft.libs.config.*;
 
 public class RegItems extends NarutoCraft {
-
-	
-	
-
-	
-	// Jutsus
-	public static Item AsaKujaku = new AsaKujaku()
-			.setUnlocalizedName("AsaKujaku");
-public static Item Hirudora = new Hirudora().setUnlocalizedName("Hirudora");
-	public static Item KageBuyo = new KageBuyo().setUnlocalizedName("KageBuyo");
-	public static Item KosaHo = new KosaHo().setUnlocalizedName("KosaHo");
-	public static Item OmoteRenge = new OmoteRenge()
-			.setUnlocalizedName("OmoteRenge");
-	public static Item UraRenge = new UraRenge().setUnlocalizedName("UraRenge");
-	public static Item FumaNinken = new FumaNinken()
-			.setUnlocalizedName("FumaNinken");
-	public static Item Hadan = new Hadan().setUnlocalizedName("Hadan");
-	public static Item Iaido = new Iaido().setUnlocalizedName("Iaido");
-	public static Item Issen = new Issen().setUnlocalizedName("Issen");
-	public static Item MikazukiKiri = new MikazukiKiri()
-			.setUnlocalizedName("MikazukiKiri");
-	public static Item MikazukiNoMai = new MikazukiNoMai()
-			.setUnlocalizedName("MikazukiNoMai");
-	public static Item Omotegiri = new Omotegiri()
-			.setUnlocalizedName("Omotegiri");
-	public static Item SamuraiSabreTechnique = new SamuraiSabreTechnique()
-			.setUnlocalizedName("SamuraSabreTechnique");
-	public static Item Yosakugiri = new Yosakugiri()
-			.setUnlocalizedName("Yosakugiri");
-	public static Item JikukanKekkai = new JikukanKekkai()
-			.setUnlocalizedName("JikukanKekkai");
-	public static Item Haykkaroran = new Haykkaroran()
-			.setUnlocalizedName("Haykkaroran");
-	public static Item KokuangyoNoJutsu = new KokuangyoNoJutsu()
-			.setUnlocalizedName("KokuangyoNoJutsu");
-	public static Item Koukongarasu = new Koukongarasu()
-			.setUnlocalizedName("Koukongarasu");
-	public static Item RaigenRaikochu = new RaigenRaikochu()
-			.setUnlocalizedName("RaigenRaikochu");
-	public static Item Byakugo = new Byakugo().setUnlocalizedName("Byakugo");
-	public static Item ChakuraNoMesu = new ChakuraNoMesu()
-			.setUnlocalizedName("ChakuraNoMesu");
-	public static Item Dokugiri = new Dokugiri().setUnlocalizedName("Dokugiri");
-	public static Item InyuShometsu = new InyuShometsu()
-			.setUnlocalizedName("InyuShometsu");
-	public static Item Ranshinsho = new Ranshinsho()
-			.setUnlocalizedName("Ranshinsho");
-	public static Item SaikanChushutsuNoJutsu = new SaikanChushutsuNoJutsu()
-			.setUnlocalizedName("SaikanChushutsuNoJutsu");
-	public static Item ChioOdamaRasengan = new ChioOdamaRasengan()
-			.setUnlocalizedName("ChioOdamaRasengan");
-	public static Item Enmakugire = new Enmakugire()
-			.setUnlocalizedName("Enmakugire");
-	public static Item FukimiHari = new FukimiHari()
-			.setUnlocalizedName("FukimiHari");
-	public static Item HariJizo = new HariJizo().setUnlocalizedName("HariJizo");
-	public static Item Kai = new Kai().setUnlocalizedName("Kai");
-	public static Item KawarimiNoJutsu = new KawarimiNoJutsu()
-			.setUnlocalizedName("KawarimiNoJutsu");
-	public static Item KuchiyoseRashomon = new KuchiyoseRashomon()
-			.setUnlocalizedName("KuchiyoseRashomon");
-	public static Item Meisaigakure = new Meisaigakure()
-			.setUnlocalizedName("Meisaigakure");
-	public static Item NanKaizou = new NanKaizou()
-			.setUnlocalizedName("NanKaizou");
-	public static Item NawanukeNoJutsu = new NawanukeNoJutsu()
-			.setUnlocalizedName("NawanukeNoJutsu");
-	public static Item OdamaRasengan = new OdamaRasengan()
-			.setUnlocalizedName("OdamaRasengan");
-	public static Item Rasengan = new Rasengan().setUnlocalizedName("Rasengan");
-	public static Item Sharingan = new Sharingan()
-			.setUnlocalizedName("Sharingan");
-	public static Item ShunshinNoJutsu = new ShunshinNoJutsu()
-			.setUnlocalizedName("ShunshinNoJutsu");
-
 	//Items
 	public static Item FScroll = new FScroll().setUnlocalizedName("FutonScroll");
 	public static Item KScroll = new KScroll().setUnlocalizedName("KatonScroll");
@@ -445,22 +261,7 @@ public static Item YuBand = new NCPLItemArmor(Band, 4, 0).setUnlocalizedName("Yu
 
 
 
-protected static void registerItem(Item item, String name) {
-	GameRegistry.registerItem(item, name);
-}
-protected static void registerRendererToItem(Item item, String name) {
-		Minecraft
-				.getMinecraft()
-				.getRenderItem()
-				.getItemModelMesher()
-				.register(
-						item,
-						0,
-						new ModelResourceLocation(References.ModTexturePath
-								+ name, "inventory"));
-	}
-
-	public static void regItemsList() {
+public static void regItemsList() {
 		// registerItem(, "");
 		
 		//Items
@@ -617,51 +418,13 @@ protected static void registerRendererToItem(Item item, String name) {
 		registerItem(TakiBand, "TakiBand");
 		registerItem(IshiBand, "IshiBand");
 		registerItem(YuBand, "YuBand");
-		//Jutsus
-		registerItem(AsaKujaku, "AsaKujaku");
-		registerItem(Hirudora, "Hirudora");
-		registerItem(KageBuyo, "KageBuyo");
-		registerItem(KosaHo, "KosaHo");
-		registerItem(OmoteRenge, "OmoteRenge");
-		registerItem(UraRenge, "UraRenge");
-		registerItem(FumaNinken, "FumaNinken");
-		registerItem(Hadan, "Hadan");
-		registerItem(Iaido, "Iaido");
-		registerItem(Issen, "Issen");
-		registerItem(MikazukiKiri, "MikazukiKiri");
-		registerItem(MikazukiNoMai, "MikazukiNoMai");
-		registerItem(Omotegiri, "Omotegiri");
-		registerItem(SamuraiSabreTechnique, "SamuraiSabreTechnique");
-		registerItem(Yosakugiri, "Yosakugiri");
-		registerItem(JikukanKekkai, "JikukanKekkai");
-		registerItem(Haykkaroran, "Haykkaroran");
-		registerItem(KokuangyoNoJutsu, "KokuangyoNoJutsu");
-		registerItem(Koukongarasu, "Koukongarasu");
-		registerItem(RaigenRaikochu, "RaigenRaikochu");
-		registerItem(Byakugo, "Byakugo");
-		registerItem(ChakuraNoMesu, "ChakuraNoMesu");
-		registerItem(Dokugiri, "Dokugiri");
-		registerItem(InyuShometsu, "InyuShometsu");
-		registerItem(Ranshinsho, "Ranshinsho");
-		registerItem(SaikanChushutsuNoJutsu, "SaikanChushutsuNoJutsu");
-		registerItem(ChioOdamaRasengan, "ChioOdamaRasengan");
-		registerItem(Enmakugire, "Enmakugire");
-		registerItem(FukimiHari, "FukimiHari");
-		registerItem(HariJizo, "HariJizo");
-		registerItem(Kai, "Kai");
-		registerItem(KawarimiNoJutsu, "KawarimiNoJutsu");
-		registerItem(KuchiyoseRashomon, "KuchiyoseRashomon");
-		registerItem(Meisaigakure, "Meisaigakure");
-		registerItem(NanKaizou, "NanKaizou");
-		registerItem(NawanukeNoJutsu, "NawanukeNoJutsu");
-		registerItem(OdamaRasengan, "OdamaRasengan");
-		registerItem(Rasengan, "Rasengan");
-		registerItem(Sharingan, "Sharingan");
-		registerItem(ShunshinNoJutsu, "ShunshinNoJutsu");
 
 		// registerItem(, "");
 	}
 
+	protected static void registerItem(Item item, String name) {
+		GameRegistry.registerItem(item, name);
+	}
 	public static void regRenderers() {
 		
 		
@@ -740,49 +503,6 @@ protected static void registerRendererToItem(Item item, String name) {
 		registerRendererToItem(Bijuudama, "Bijuudama");
 		registerRendererToItem(RikudouStaff, "RikudouStaff");
 		registerRendererToItem(IronGlove, "IronGlove");
-		
-		
-		//Jutsus
-		registerRendererToItem(AsaKujaku, "AsaKujaku");
-		registerRendererToItem(Hirudora, "Hirudora");
-		registerRendererToItem(KageBuyo, "KageBuyo");
-		registerRendererToItem(KosaHo, "KosaHo");
-		registerRendererToItem(OmoteRenge, "OmoteRenge");
-		registerRendererToItem(UraRenge, "UraRenge");
-		registerRendererToItem(FumaNinken, "FumaNinken");
-		registerRendererToItem(Hadan, "Hadan");
-		registerRendererToItem(Iaido, "Iaido");
-		registerRendererToItem(Issen, "Issen");
-		registerRendererToItem(MikazukiKiri, "MikazukiKiri");
-		registerRendererToItem(MikazukiNoMai, "MikazukiNoMai");
-		registerRendererToItem(Omotegiri, "Omotegiri");
-		registerRendererToItem(SamuraiSabreTechnique, "SamuraiSabreTechnique");
-		registerRendererToItem(JikukanKekkai, "JikukanKekkai");
-		registerRendererToItem(Haykkaroran, "Haykkaroran");
-		registerRendererToItem(KokuangyoNoJutsu, "KokuangyoNoJutsu");
-		registerRendererToItem(Koukongarasu, "Koukongarasu");
-		registerRendererToItem(RaigenRaikochu, "RaigenRaikochu");
-		registerRendererToItem(Byakugo, "Byakugo");
-		registerRendererToItem(ChakuraNoMesu, "ChakuraNoMesu");
-		registerRendererToItem(Dokugiri, "Dokugiri");
-		registerRendererToItem(InyuShometsu, "InyuShometsu");
-		registerRendererToItem(Ranshinsho, "Ranshinsho");
-		registerRendererToItem(SaikanChushutsuNoJutsu, "SaikanChushutsuNoJutsu");
-		registerRendererToItem(ChioOdamaRasengan, "ChioOdamaRasengan");
-		registerRendererToItem(Enmakugire, "Enmakugire");
-		registerRendererToItem(FukimiHari, "FukimiHari");
-		registerRendererToItem(HariJizo, "HariJizo");
-		registerRendererToItem(Kai, "Kai");
-		registerRendererToItem(KawarimiNoJutsu, "KawarimiNoJutsu");
-		registerRendererToItem(KuchiyoseRashomon, "KuchiyoseRashomon");
-		registerRendererToItem(Meisaigakure, "Meisaigakure");
-		registerRendererToItem(NanKaizou, "NanKaizou");
-		registerRendererToItem(NawanukeNoJutsu, "NawanukeNoJutsu");
-		registerRendererToItem(OdamaRasengan, "OdamaRasengan");
-		registerRendererToItem(Rasengan, "Rasengan");
-		registerRendererToItem(Sharingan, "Sharingan");
-		registerRendererToItem(ShunshinNoJutsu, "ShunshinNoJutsu");
-		registerRendererToItem(Yosakugiri, "Yosakugiri");
 		//Armors
 		registerRendererToItem(HelmetRyu, "HelmetRyu");
 		registerRendererToItem(ChestplateRyu, "ChestplateRyu");
@@ -862,5 +582,17 @@ protected static void registerRendererToItem(Item item, String name) {
 		registerRendererToItem(TakiBand, "TakiBand");
 		registerRendererToItem(IshiBand, "IshiBand");
 		registerRendererToItem(YuBand, "YuBand");
+	}
+
+	protected static void registerRendererToItem(Item item, String name) {
+		Minecraft
+				.getMinecraft()
+				.getRenderItem()
+				.getItemModelMesher()
+				.register(
+						item,
+						0,
+						new ModelResourceLocation(References.ModTexturePath
+								+ name, "inventory"));
 	}
 }

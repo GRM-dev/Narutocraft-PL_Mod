@@ -1,16 +1,11 @@
 package pl.grm.narutocraft.skilltrees;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import net.minecraftforge.fml.common.FMLLog;
 import pl.grm.narutocraft.handlers.JutsuManager;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
-import pl.grm.narutocraft.jutsu.JutsuTier;
+import pl.grm.narutocraft.jutsu.*;
 import pl.grm.narutocraft.libs.config.ConfigurationHandler;
 
 /**
@@ -126,11 +121,11 @@ public class SkillTreeManager {
 	public void lockEntries(int[] disabledJutsusIDs) {
 		unlockAllEntries();
 		for (int id : disabledJutsusIDs) {
-			SkillTreeEntry entry = getEntry(JutsuManager.instance.getJutsu(id));
+			SkillTreeEntry entry = getEntry(JutsuManager.instance.getJutsuEntry(id));
 			if (entry != null) {
 				entry.setEntryState(EntryStates.LOCKED);
 				FMLLog.info("Locked",
-						new Object[]{JutsuManager.instance.getJutsu(entry.getJutsu().getJutsuProps().getID())});
+						new Object[]{JutsuManager.instance.getJutsuEntry(entry.getJutsu().getJutsuProps().getID())});
 			} else {
 				FMLLog.warning("Entry read problem. Entry exists?", new Object[0]);
 			}
@@ -204,7 +199,7 @@ public class SkillTreeManager {
 				Entry<Integer, SkillTreeEntry> entryE = itTree.next();
 				SkillTreeEntry entry = entryE.getValue();
 				if (entry.getEntryState() == EntryStates.UNLOCKED) {
-					this.disableds.add(Integer.valueOf(JutsuManager.instance.getJutsuID(entry.getJutsu())));
+					this.disableds.add(entry.getJutsu().getJutsuProps().getID());
 				}
 			}
 		}

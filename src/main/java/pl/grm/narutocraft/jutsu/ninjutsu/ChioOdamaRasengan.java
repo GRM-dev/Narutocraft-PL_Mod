@@ -4,14 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.jutsu.*;
 
 public class ChioOdamaRasengan extends Jutsu implements IJutsu {
 
 	public ChioOdamaRasengan() {
-		super(JutsuParams.NONE);
+		super(JutsuParams.CHIOODAMARASENGAN);
 	}
 
 	@Override

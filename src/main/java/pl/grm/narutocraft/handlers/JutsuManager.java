@@ -1,17 +1,14 @@
 package pl.grm.narutocraft.handlers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.nbt.*;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import pl.grm.narutocraft.jutsu.IJutsu;
-import pl.grm.narutocraft.jutsu.Jutsu;
-import pl.grm.narutocraft.jutsu.JutsuParams;
+import pl.grm.narutocraft.jutsu.*;
+import pl.grm.narutocraft.libs.config.References;
 import pl.grm.narutocraft.player.ExtendedProperties;
 import pl.grm.narutocraft.skilltrees.SkillTreeEntry;
 
@@ -34,9 +31,12 @@ public class JutsuManager {
 	 * Iterate over JutsuEnum and calls regitster method
 	 */
 	public static void regJutsusList() {
-		for (JutsuParams jutsu : JutsuParams.values()) {
-			if (jutsu != JutsuParams.NONE && jutsu != null) {
-				registerJutsu(jutsu);
+		for (JutsuParams jutsuE : JutsuParams.values()) {
+			if (jutsuE != JutsuParams.NONE) {
+				Jutsu jutsu = (Jutsu) jutsuE.getJutsu();
+				if (jutsu != null) {
+					registerJutsu(jutsu);
+				}
 			}
 		}
 	}
@@ -46,12 +46,19 @@ public class JutsuManager {
 	 * 
 	 * @param jutsuE
 	 */
-	private static void registerJutsu(JutsuParams jutsuE) {
-		Jutsu jutsu = (Jutsu) jutsuE.getJutsu();
-		//GameRegistry.registerItem(jutsu, jutsuE.getName());
+	private static void registerJutsu(Jutsu jutsu) {
+		GameRegistry.registerItem(jutsu, jutsu.getJutsuProps().getUnlocalizedName());
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(jutsu, 0,
+ new ModelResourceLocation(
+				References.ModTexturePath + jutsu.getJutsuProps().getUnlocalizedName(), "inventory"));
 		ExtendedProperties.jutsuList.put(jutsu.getJutsuProps().getID(), jutsu);
 	}
 
+	/**
+	 * Called on game save
+	 * 
+	 * @param compound
+	 */
 	public void writeToNBT(NBTTagCompound compound) {
 		NBTTagList jutsuList = new NBTTagList();
 		this.activeJutsus = ExtendedProperties.activeJutsus;
@@ -65,6 +72,11 @@ public class JutsuManager {
 		compound.setTag("JutsuManager", jutsuList);
 	}
 
+	/**
+	 * Called when game has loaded
+	 * 
+	 * @param compound
+	 */
 	public void readFromNBT(NBTTagCompound compound) {
 		NBTTagList jutsus = compound.getTagList("JutsuManager", Constants.NBT.TAG_COMPOUND);
 		int amount = jutsus.tagCount();
@@ -111,22 +123,14 @@ public class JutsuManager {
 		}
 	}
 
-	public SkillTreeEntry getJutsu(int id) {
-		SkillTreeEntry component = this.registeredEntries.get(Integer.valueOf(id));
+	public SkillTreeEntry getJutsuEntry(int id) {
+		SkillTreeEntry component = this.registeredEntries.get(id);
 		return component;
 	}
 
-	public SkillTreeEntry getJutsu(String name) {
-		Integer ID = JutsuParams.getByName(name).getJutsuID();
-		if (ID == null) { return null; }
+	public SkillTreeEntry getJutsuEntry(String name) {
+		int ID = JutsuParams.getByName(name).getJutsuID();
+		if (ID == 0) { return null; }
 		return this.registeredEntries.get(ID);
-	}
-
-	public int getJutsuID(IJutsu jutsu) {
-		return ((Jutsu) jutsu).getJutsuProps().getID();
-	}
-
-	public int getJutsuID(JutsuParams jutsuListElem) {
-		return jutsuListElem.getJutsuID();
 	}
 }
