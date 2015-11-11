@@ -52,9 +52,9 @@ public class RegRecipes extends NarutoCraft {
 		GameRegistry.addRecipe(new ItemStack(RegItems.Kama, 1), "xy ", " x ", "  z", 'x', StickStack, 'y', GoldenIngotStack, 'z', IronIngotStack);
 		GameRegistry.addRecipe(new ItemStack(RegItems.Kusarigamawithpiston, 1), "x  ", " y ", "  z", 'x', IronIngotStack, 'y', MetalCable, 'z', Kama);;
 		GameRegistry.addRecipe(new ItemStack(RegItems.DoubleKusarigama, 1), "x  ", " y ", "  z", 'x', Kama,'y', MetalCable, 'z', ThreeProngedKnife );
-		GameRegistry.addRecipe(new ItemStack(RegItems.Kusarigama, 1), "x  ", " y ", "   ", 'x',MetalCable, 'y', Kama);
+		GameRegistry.addRecipe(new ItemStack(RegItems.Kusarigama, 1), "x  ", " y ", 'x',MetalCable, 'y', Kama);
 		//Throwable
-		GameRegistry.addRecipe(new ItemStack(RegItems.Shuriken, 1), " x ", "xyx", " x ", 'x', IronIngotStack, 'y',
+		GameRegistry.addRecipe(new ItemStack(RegItems.Shuriken, 1), " x ", "xyx", " x ", 'x',IronIngotStack, 'y',
 				StickStack);
 		GameRegistry.addRecipe(new ItemStack(RegItems.Kunai, 2), "x  ", " y ", "  x", 'x', DiamondStack, 'y',
 				StickStack);
@@ -64,7 +64,7 @@ public class RegRecipes extends NarutoCraft {
 		GameRegistry.addRecipe(new ItemStack(RegItems.DoubleKunai, 1),"xx ", 'x',Shuriken);
 		GameRegistry.addRecipe(new ItemStack(RegItems.Mine, 1), "xxx", "xyx", "xxx", 'x', IronIngotStack, 'y', TNT);
 		GameRegistry.addRecipe(new ItemStack(RegItems.WarKunai, 1), "xxx", 'x', Kunai);
-		GameRegistry.addRecipe(new ItemStack(RegItems.KusariFuuboo, 1), "xx ", "   ", "   ", 'x', Kusarigamawithpiston);
+		GameRegistry.addRecipe(new ItemStack(RegItems.KusariFuuboo, 1), "xx ", 'x', Kusarigamawithpiston);
 		//Others
 		GameRegistry.addRecipe(new ItemStack(RegItems.ExplosiveNote, 1),"x",'x', TNT);
 		GameRegistry.addRecipe(new ItemStack(RegItems.MetalCable, 1), "x  ", " y ", 'x', String, 'y', IronIngotStack);
@@ -73,7 +73,7 @@ public class RegRecipes extends NarutoCraft {
 		GameRegistry.addRecipe(new ItemStack(RegItems.Pasta, 1), "xyz", 'x',WoodenBowl,'y',WaterBucket, 'z', Wheat);
 		GameRegistry.addRecipe(new ItemStack(RegItems.NarutoMaki, 1), "xy ", 'x', Fish, 'y', GoldenIngotStack);
 		GameRegistry.addRecipe(new ItemStack(RegItems.IchirakuRamen, 1),"xyz","abc","d  ", 'x',WoodenBowl,'y', Pasta, 'z',WaterBucket,'a',NarutoMaki,'b',Egg,'c',Fish,'d',Beef);
-		
+	
 		// GameRegistry.addShapelessRecipe(ItemStack result, Object... recipe)
 	}
 }
