@@ -7,7 +7,7 @@ before_install:
  - ./gradlew check -S
  
 
-install: ./gradlew setupDecompWorkspace -S
+install: ./gradlew setupCiWorkspace -S
 script: ./gradlew build -S
 
 env:
@@ -20,6 +20,6 @@ addons:
       name: "GRMdev/Narutocraft-PL_Mod"
       description: "Build submitted via Travis CI"
     notification_email: narutocraft@gmail.com
-    build_command_prepend: "./gradlew setupDecompWorkspace -S"
+    build_command_prepend: "./gradlew setupCiWorkspace -S"
     build_command:   "./gradlew build -S"
     branch_pattern: coverity_scan

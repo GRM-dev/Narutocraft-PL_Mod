@@ -8,7 +8,7 @@ Chat: [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/GRM-
 #####If all are failed tan is something wrong with code after last commit(s)
 [![Build Status](http://jenkins.grmdev.pl/job/NarutoCraft_Mod/badge/icon)](http://jenkins.grmdev.pl/job/NarutoCraft_Mod/)
 | 
-[![Build Status](https://travis-ci.org/GRM-dev/Narutocraft-PL_Mod.svg?branch=master)](https://travis-ci.org/GRM-Group/Narutocraft-PL_Mod) 
+[![Build Status](https://travis-ci.org/GRM-dev/Narutocraft-PL_Mod.svg?branch=master)](https://travis-ci.org/GRM-dev/Narutocraft-PL_Mod) 
 | 
 [![Build Status](http://tc.grmdev.pl/app/rest/builds/buildType:NarutocraftPlMod_Build/statusIcon)](http://tc.grmdev.pl/viewLog.html?buildTypeId=NarutocraftPlMod_Build&buildId=lastFinished) 
 #

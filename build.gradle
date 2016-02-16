@@ -18,7 +18,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 version = "1.8.9-1746-0.01"
-group= "pl.grm.narutocraft"
+group= "pl.grmdev.narutocraft"
 archivesBaseName = "NarutoCraft_Mod"
 
 minecraft {
