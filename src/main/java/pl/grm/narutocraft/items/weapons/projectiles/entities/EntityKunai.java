@@ -63,7 +63,7 @@ public class EntityKunai extends EntityArrow implements IProjectile {
 
 		this.posY = (par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight()) - 0.10000000149011612D;
 		double d0 = par3EntityLivingBase.posX - par2EntityLivingBase.posX;
-		double d1 = (par3EntityLivingBase.getBoundingBox().minY + (par3EntityLivingBase.height / 3.0F)) - this.posY;
+		double d1 = (par3EntityLivingBase.getMountedYOffset() + (par3EntityLivingBase.height / 3.0F)) - this.posY;
 		double d2 = par3EntityLivingBase.posZ - par2EntityLivingBase.posZ;
 		double d3 = MathHelper.sqrt_double((d0 * d0) + (d2 * d2));
 

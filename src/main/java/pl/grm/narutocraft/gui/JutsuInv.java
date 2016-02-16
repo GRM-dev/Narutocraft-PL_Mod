@@ -53,15 +53,6 @@ public class JutsuInv implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		ItemStack stack = getStackInSlot(slot);
-		if (stack != null) {
-			setInventorySlotContents(slot, null);
-		}
-		return stack;
-	}
-
-	@Override
 	public boolean hasCustomName() {
 		return this.name.length() > 0;
 	}
@@ -73,6 +64,15 @@ public class JutsuInv implements IInventory {
 		// ItemShield) return true;
 		// return itemstack.getItem() instanceof Jutsu;
 		return true;
+	}
+
+	@Override
+	public ItemStack removeStackFromSlot(int index) {
+		ItemStack stack = getStackInSlot(index);
+		if (stack != null) {
+			setInventorySlotContents(index, null);
+		}
+		return stack;
 	}
 
 	@Override

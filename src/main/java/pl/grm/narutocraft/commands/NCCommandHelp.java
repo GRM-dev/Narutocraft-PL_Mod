@@ -31,7 +31,7 @@ public class NCCommandHelp extends NCCommandBase {
 	}
 
 	@Override
-	public void execute(ICommandSender commSender, String[] args) {
+	public void processCommand(ICommandSender commSender, String[] args) {
 		try {
 			showHelp(false);
 		}

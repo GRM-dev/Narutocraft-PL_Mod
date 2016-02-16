@@ -6,7 +6,7 @@ import pl.grm.narutocraft.commands.util.NCCommandBase;
 public class NCCommandChakraReplenish extends NCCommandBase {
 
 	@Override
-	public void execute(ICommandSender commSender, String[] args) {
+	public void processCommand(ICommandSender commSender, String[] args) {
 		// TODO Auto-generated method stub
 
 	}

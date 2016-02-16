@@ -12,14 +12,14 @@ public class NCPotion extends Potion {
 	private static ResourceLocation potionTexture;
 
 	protected NCPotion(int par1, boolean par2, int par3) {
-		super(par1, potionTexture, par2, par3);
+		super(setTextureSheet("empty"), par2, par3);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getStatusIconIndex() {
-		if (this.potionTexture != null) {
-			Minecraft.getMinecraft().renderEngine.bindTexture(this.potionTexture);
+		if (NCPotion.potionTexture != null) {
+			Minecraft.getMinecraft().renderEngine.bindTexture(NCPotion.potionTexture);
 		}
 		return super.getStatusIconIndex();
 	}
@@ -28,12 +28,13 @@ public class NCPotion extends Potion {
 	@SideOnly(Side.CLIENT)
 	public boolean hasStatusIcon() {
 		setTextureSheet("buffs_1.png");
-		Minecraft.getMinecraft().renderEngine.bindTexture(this.potionTexture);
+		Minecraft.getMinecraft().renderEngine.bindTexture(NCPotion.potionTexture);
 		return true;
 	}
 
-	public void setTextureSheet(String texturesheet) {
-		this.potionTexture = new ResourceLocation(References.GUI_TEXTURE_PATH + texturesheet);
+	public static ResourceLocation setTextureSheet(String texturesheet) {
+		NCPotion.potionTexture = new ResourceLocation(References.GUI_TEXTURE_PATH + texturesheet);
+		return NCPotion.potionTexture;
 	}
 
 	@Override

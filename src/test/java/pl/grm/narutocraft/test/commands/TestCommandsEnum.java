@@ -34,7 +34,7 @@ public class TestCommandsEnum {
 						} else {
 							fail("Create Instance failed. Error:" + ec.getLocalizedMessage());
 						}
-					} else if (instance.getName() == null) {
+					} else if (instance.getCommandName() == null) {
 						fail("Instance created, but something wrong with (" + name + ")");
 					}
 				}

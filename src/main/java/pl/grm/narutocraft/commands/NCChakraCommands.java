@@ -6,7 +6,7 @@ import pl.grm.narutocraft.commands.util.*;
 public class NCChakraCommands extends NCCommandBase {
 
 	@Override
-	public void execute(ICommandSender commSender, String[] args) {
+	public void processCommand(ICommandSender commSender, String[] args) {
 		NCCommandExecutor commandExecutor;
 		if (args.length == 0) {
 

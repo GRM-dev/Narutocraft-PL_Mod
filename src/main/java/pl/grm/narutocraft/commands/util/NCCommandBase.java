@@ -1,11 +1,15 @@
 package pl.grm.narutocraft.commands.util;
 
-import net.minecraft.command.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommandSender;
 
 public class NCCommandBase extends CommandBase {
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		return "narutocraft";
 	}
 
@@ -16,14 +20,16 @@ public class NCCommandBase extends CommandBase {
 	}
 
 	@Override
-	public void execute(ICommandSender var1, String[] var2) {
+	public void processCommand(ICommandSender var1, String[] var2) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public int compareTo(Object obj) {
-		return super.compareTo(obj);
+	public List<String> getCommandAliases() {
+		List<String> aliases = new ArrayList<String>();
+		aliases.add("ncpl");
+		aliases.add("nc");
+		return aliases;
 	}
-
 }
