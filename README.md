@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/GRM-Group/Narutocraft-PL_Mod.png?label=ready&title=Ready)](https://waffle.io/GRM-Group/Narutocraft-PL_Mod)
 Narutocraft-PL_Mod
 ==================
 #Mod do serwera Minecraft NarutoCraft-PL
